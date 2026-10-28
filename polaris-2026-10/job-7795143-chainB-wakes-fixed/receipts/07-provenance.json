@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-28T21:11:52+0000",
+  "connection_id": "532e6418-cd86-4384-b04c-d2c78a662942",
+  "dry_run": false,
+  "host": "x3001c0s19b0n0",
+  "job": "7795143",
+  "query_default": "flowcept",
+  "restarted": false,
+  "status": "ok",
+  "step": "07-provenance",
+  "verification": {
+    "probe_id": "e80cbfba-24af-41a3-af82-7c914b9bd31c",
+    "revision": "192b580931a4853f6eb69e0d996eedf7c9698be20b45386f84d1f96cd7dd4dfa",
+    "verified_at": "2026-10-28T21:11:49.136512+00:00",
+    "write_readback": true
+  },
+  "vllm_state": "running"
+}

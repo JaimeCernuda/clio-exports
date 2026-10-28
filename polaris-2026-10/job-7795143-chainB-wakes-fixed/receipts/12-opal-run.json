@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-28T21:18:26+0000",
+  "broad_exit": "skipped",
+  "broad_receipt": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/evidence/opal/broad.json",
+  "broad_session": "sess_717ef0af4e95",
+  "chain_exit": "0",
+  "chain_outputs": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/operator/chain-exp32-chain-0020-hard-<condition>",
+  "conditions": "B",
+  "dry_run": false,
+  "host": "x3001c0s19b0n0",
+  "job": "7795143",
+  "status": "ok",
+  "step": "12-opal-run"
+}

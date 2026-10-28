@@ -1,0 +1,50 @@
+{
+  "agents": {
+    "broad": "clio/appl-core",
+    "chain": "clio/appl-core",
+    "chain_B": "clio/appl-core"
+  },
+  "at": "2026-10-28T21:12:13+0000",
+  "broad": "sess_717ef0af4e95",
+  "chain_B": "sess_251f0ae81d50",
+  "chain_B_run1": "sess_f75caca0af51",
+  "dry_run": false,
+  "endpoint": "http://127.0.0.1:8100",
+  "host": "x3001c0s19b0n0",
+  "job": "7795143",
+  "link": {
+    "error": "POST /v1/workspaces/ws_6c21b13037d9/sources/source_795280c770274ffb8f1e7e6344b15587/link -> HTTP 409: {\"error\": {\"error\": \"request_error\", \"message\": \"Choose a conversation in this workspace to track this work.\", \"details\": {}, \"recoverable\": true}}"
+  },
+  "model": {
+    "model_id": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub/ibm-granite--granite-4.2-8b--a7042144125ce5ae64f89610e8289647fc000b9a",
+    "provider_id": "vllm"
+  },
+  "source_id": "source_795280c770274ffb8f1e7e6344b15587",
+  "spotter_broad": {
+    "agent_ref": "clio/spotter-ai",
+    "approval_mode": "spotter-ai",
+    "available": true,
+    "details": {
+      "verified": "static"
+    },
+    "message": "",
+    "reason": "",
+    "remedy": "",
+    "schema_version": "clio.spotter_availability.v1"
+  },
+  "spotter_chain_B": {
+    "agent_ref": "clio/spotter-ai",
+    "approval_mode": "spotter-ai",
+    "available": true,
+    "details": {
+      "verified": "static"
+    },
+    "message": "",
+    "reason": "",
+    "remedy": "",
+    "schema_version": "clio.spotter_availability.v1"
+  },
+  "status": "ok",
+  "step": "10-opal-setup",
+  "workspace_id": "ws_6c21b13037d9"
+}

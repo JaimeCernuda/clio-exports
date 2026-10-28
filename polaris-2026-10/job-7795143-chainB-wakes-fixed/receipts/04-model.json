@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-28T21:11:35+0000",
+  "detail": "4 shards, 17.6 GB",
+  "dry_run": false,
+  "host": "x3001c0s19b0n0",
+  "job": "7795143",
+  "listed_by_clio": true,
+  "path": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub/ibm-granite--granite-4.2-8b--a7042144125ce5ae64f89610e8289647fc000b9a",
+  "source": "existing",
+  "status": "ok",
+  "step": "04-model"
+}

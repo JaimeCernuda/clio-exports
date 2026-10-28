@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-28T21:11:34+0000",
+  "before": {
+    "captures": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/state/data/captures",
+    "models": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub",
+    "root": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/state/data",
+    "service_data": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/state/data/services",
+    "temporary": "/local/scratch/clio-jcernuda-7795143/clio-tmp"
+  },
+  "dry_run": false,
+  "effective": {
+    "captures": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/state/data/captures",
+    "models": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub",
+    "root": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/state/data",
+    "service_data": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/state/data/services",
+    "temporary": "/local/scratch/clio-jcernuda-7795143/clio-tmp"
+  },
+  "host": "x3001c0s19b0n0",
+  "job": "7795143",
+  "requested": {
+    "captures": "",
+    "models": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub",
+    "root": "",
+    "service_data": "",
+    "temporary": "/local/scratch/clio-jcernuda-7795143/clio-tmp"
+  },
+  "status": "ok",
+  "step": "03-storage"
+}
