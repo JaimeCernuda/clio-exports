@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-28T16:17:29+0000",
+  "dry_run": false,
+  "host": "x3005c0s25b1n0",
+  "job": "7794812",
+  "status": "ok",
+  "step": "13-teardown-services",
+  "stopped": [
+    {
+      "error": null,
+      "service": "vllm",
+      "state": "succeeded"
+    },
+    {
+      "error": null,
+      "service": "vllm@spotter",
+      "state": "succeeded"
+    },
+    {
+      "error": null,
+      "service": "flowcept",
+      "state": "succeeded"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "address": "http://127.0.0.1:40117/v1",
+  "at": "2026-10-28T15:58:04+0000",
+  "credential_ref": "managed-server:local:vllm@spotter",
+  "dry_run": false,
+  "host": "x3005c0s25b1n0",
+  "job": "7794812",
+  "server_id": "server-vllm-spotter",
+  "spotter_model": "server-vllm-spotter//lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub/ibm-granite--granite-4.2-8b--a7042144125ce5ae64f89610e8289647fc000b9a",
+  "status": "ok",
+  "step": "08b-spotter-bind"
+}

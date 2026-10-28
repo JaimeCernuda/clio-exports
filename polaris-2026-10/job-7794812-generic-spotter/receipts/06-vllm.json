@@ -1,0 +1,84 @@
+{
+  "at": "2026-10-28T15:54:17+0000",
+  "captures": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/state/data/services/x3005c0s25b1n0/clio-vllm/evidence",
+  "connector": "file:///lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/build/connector/vllm_attn_connector-0.1.0-py3-none-any.whl",
+  "dry_run": false,
+  "effective_parameters": [
+    {
+      "detail": "--tensor-parallel-size as launched by CLIO",
+      "id": "tensor_parallel_size",
+      "label": "Tensor parallel size",
+      "source": "launch_request",
+      "value": "1"
+    },
+    {
+      "detail": "--pipeline-parallel-size not set",
+      "id": "pipeline_parallel_size",
+      "label": "Pipeline parallel size",
+      "source": "engine_default",
+      "value": "1"
+    },
+    {
+      "detail": "--max-num-seqs as launched by CLIO",
+      "id": "max_num_seqs",
+      "label": "Concurrent sequences",
+      "source": "launch_request",
+      "value": "1"
+    },
+    {
+      "detail": "vLLM /v1/models max_model_len",
+      "id": "max_model_len",
+      "label": "Context length",
+      "source": "server_report",
+      "value": "106496"
+    },
+    {
+      "detail": "vLLM /metrics cache_config_info",
+      "id": "gpu_memory_utilization",
+      "label": "GPU memory fraction",
+      "source": "server_report",
+      "value": "0.9"
+    },
+    {
+      "detail": "CUDA_VISIBLE_DEVICES as launched by CLIO",
+      "id": "cuda_devices",
+      "label": "NVIDIA GPU devices",
+      "source": "launch_request",
+      "value": "0"
+    },
+    {
+      "detail": "--tool-call-parser as launched by CLIO",
+      "id": "tool_call_parser",
+      "label": "Tool-call parser",
+      "source": "launch_request",
+      "value": "qwen3_coder"
+    },
+    {
+      "detail": "--reasoning-parser as launched by CLIO",
+      "id": "reasoning_parser",
+      "label": "Reasoning parser",
+      "source": "launch_request",
+      "value": "nemotron_v3"
+    },
+    {
+      "detail": "--dtype as launched by CLIO",
+      "id": "dtype",
+      "label": "Weight precision",
+      "source": "launch_request",
+      "value": "bfloat16"
+    }
+  ],
+  "host": "x3005c0s25b1n0",
+  "job": "7794812",
+  "model": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub/ibm-granite--granite-4.2-8b--a7042144125ce5ae64f89610e8289647fc000b9a",
+  "service_directory": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/state/data/services/x3005c0s25b1n0/clio-vllm",
+  "status": "ok",
+  "step": "06-vllm",
+  "steps": [
+    "install: succeeded",
+    "start: succeeded"
+  ],
+  "tensor_parallel_size": "1",
+  "url": "http://127.0.0.1:8000",
+  "variant": "native-cuda-attention"
+}

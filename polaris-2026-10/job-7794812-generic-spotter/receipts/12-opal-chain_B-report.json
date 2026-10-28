@@ -1,0 +1,25 @@
+{
+  "assistant_messages": 5,
+  "at": "2026-10-28T16:17:20+0000",
+  "attention_available": 4,
+  "attention_enabled": true,
+  "attention_reason": null,
+  "dry_run": false,
+  "host": "x3005c0s25b1n0",
+  "job": "7794812",
+  "session_id": "sess_2eb86bf3e84d",
+  "spotter": {
+    "agent_ref": "clio/spotter-ai",
+    "approval_mode": "spotter-ai",
+    "available": true,
+    "details": {
+      "verified": "static"
+    },
+    "message": "",
+    "reason": "",
+    "remedy": "",
+    "schema_version": "clio.spotter_availability.v1"
+  },
+  "status": "ok",
+  "step": "12-opal-chain_B-report"
+}

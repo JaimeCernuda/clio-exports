@@ -1,0 +1,17 @@
+{
+  "address": "http://127.0.0.1:40117/v1",
+  "check": {
+    "checked_at": "2026-10-28T15:58:01.977184+00:00",
+    "connectivity": "ok",
+    "error": "",
+    "models": [
+      "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub/ibm-granite--granite-4.2-8b--a7042144125ce5ae64f89610e8289647fc000b9a"
+    ],
+    "reachable": true
+  },
+  "credential_ref": "managed-server:local:vllm@spotter",
+  "custom": true,
+  "id": "server-vllm-spotter",
+  "label": "vLLM (spotter)",
+  "preset_id": "vllm"
+}

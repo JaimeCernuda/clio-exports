@@ -1,0 +1,125 @@
+{
+  "accounts": [
+    {
+      "billing": "free",
+      "delegation_allowed": true,
+      "endpoint": "http://127.0.0.1:8000/v1",
+      "failure": "",
+      "health": "ready",
+      "id": "vllm",
+      "label": "vLLM",
+      "provider_kind": "openai",
+      "spend": {
+        "cost_usd": 0.0,
+        "tokens": 6959834,
+        "tokens_cached": 0,
+        "tokens_input": 6745237,
+        "tokens_output": 214597,
+        "turns": 73,
+        "turns_without_cost": 73
+      },
+      "usage": {
+        "account": "vllm",
+        "balance": null,
+        "extra": {},
+        "observed_at": "2026-10-28T15:58:04.114669+00:00",
+        "read_failed_at": "",
+        "read_failure": "",
+        "source": "local_endpoint",
+        "state": "unmetered",
+        "status": "",
+        "windows": []
+      },
+      "usage_missing_reason": ""
+    },
+    {
+      "billing": "free",
+      "delegation_allowed": true,
+      "endpoint": "http://127.0.0.1:40117/v1",
+      "failure": "",
+      "health": "ready",
+      "id": "server-vllm-spotter",
+      "label": "vLLM (spotter)",
+      "provider_kind": "openai",
+      "spend": {
+        "cost_usd": 0.0,
+        "tokens": 919080,
+        "tokens_cached": 0,
+        "tokens_input": 891686,
+        "tokens_output": 27394,
+        "turns": 6,
+        "turns_without_cost": 6
+      },
+      "usage": {
+        "account": "server-vllm-spotter",
+        "balance": null,
+        "extra": {},
+        "observed_at": "2026-10-28T15:58:04.114687+00:00",
+        "read_failed_at": "",
+        "read_failure": "",
+        "source": "local_endpoint",
+        "state": "unmetered",
+        "status": "",
+        "windows": []
+      },
+      "usage_missing_reason": ""
+    }
+  ],
+  "entries": [
+    {
+      "account": "vllm",
+      "aliases": [],
+      "available": true,
+      "context_tokens": 106496,
+      "effort_levels": [
+        "off",
+        "high"
+      ],
+      "model": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub/ibm-granite--granite-4.2-8b--a7042144125ce5ae64f89610e8289647fc000b9a",
+      "output_tokens": null,
+      "price": {},
+      "price_source": "",
+      "ref": "vllm//lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub/ibm-granite--granite-4.2-8b--a7042144125ce5ae64f89610e8289647fc000b9a",
+      "tool_calling": true,
+      "unavailable_reason": "",
+      "vision": null
+    },
+    {
+      "account": "server-vllm-spotter",
+      "aliases": [],
+      "available": true,
+      "context_tokens": null,
+      "effort_levels": [],
+      "model": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub/ibm-granite--granite-4.2-8b--a7042144125ce5ae64f89610e8289647fc000b9a",
+      "output_tokens": null,
+      "price": {},
+      "price_source": "",
+      "ref": "server-vllm-spotter//lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub/ibm-granite--granite-4.2-8b--a7042144125ce5ae64f89610e8289647fc000b9a",
+      "tool_calling": true,
+      "unavailable_reason": "",
+      "vision": true
+    }
+  ],
+  "estimated_sessions": 0,
+  "observed_at": "2026-10-28T15:58:04.114845+00:00",
+  "spend_by_model": {
+    "server-vllm-spotter//lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub/ibm-granite--granite-4.2-8b--a7042144125ce5ae64f89610e8289647fc000b9a": {
+      "cost_usd": 0.0,
+      "tokens": 919080,
+      "tokens_cached": 0,
+      "tokens_input": 891686,
+      "tokens_output": 27394,
+      "turns": 6,
+      "turns_without_cost": 6
+    },
+    "vllm//lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub/ibm-granite--granite-4.2-8b--a7042144125ce5ae64f89610e8289647fc000b9a": {
+      "cost_usd": 0.0,
+      "tokens": 6959834,
+      "tokens_cached": 0,
+      "tokens_input": 6745237,
+      "tokens_output": 214597,
+      "turns": 73,
+      "turns_without_cost": 73
+    }
+  }
+}

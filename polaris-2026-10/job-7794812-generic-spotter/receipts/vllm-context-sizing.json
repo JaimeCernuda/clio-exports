@@ -1,0 +1,22 @@
+{
+  "current": 106496,
+  "current_choice": "fit_to_gpu",
+  "current_reason": "Fit to GPU: trained context 131072 capped to 106496 so the KV cache fits 36.0 GiB of GPU memory (0.9 of 1 GPU(s), within free memory) beside the weights",
+  "fit_to_gpu": {
+    "available": true,
+    "reason": "trained context 131072 capped to 106496 so the KV cache fits 36.0 GiB of GPU memory (0.9 of 1 GPU(s), within free memory) beside the weights",
+    "strategies": [
+      {
+        "description": "The largest context up to the model's own maximum whose KV cache fits the deployment's GPU memory beside the weights, with headroom.",
+        "id": "fit_to_gpu",
+        "label": "Fit to GPU"
+      }
+    ],
+    "strategy": "fit_to_gpu",
+    "value": 106496
+  },
+  "maximum": 131072,
+  "maximum_reason": "config.json (granite)",
+  "minimum": 16,
+  "semantics": "deployment"
+}
