@@ -1,0 +1,15 @@
+{
+  "address": "http://127.0.0.1:8000/v1",
+  "at": "2026-10-28T16:53:00+0000",
+  "credential_ref": "managed-server:local:vllm",
+  "dry_run": false,
+  "host": "x3001c0s19b1n0",
+  "job": "7794878",
+  "model": {
+    "model_id": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub/ibm-granite--granite-4.2-8b--a7042144125ce5ae64f89610e8289647fc000b9a",
+    "provider_id": "vllm"
+  },
+  "server_id": "vllm",
+  "status": "ok",
+  "step": "08-bind"
+}

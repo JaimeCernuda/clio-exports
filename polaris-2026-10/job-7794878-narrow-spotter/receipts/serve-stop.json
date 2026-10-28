@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-28T16:52:21+0000",
+  "dry_run": false,
+  "forced": false,
+  "host": "x3001c0s19b1n0",
+  "job": "7794878",
+  "note": "",
+  "pid": 2258619,
+  "status": "ok",
+  "step": "serve-stop"
+}

@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-28T16:51:31+0000",
+  "dry_run": false,
+  "error": "POST /v1/sessions -> HTTP 422: {\"error\": {\"error\": \"spotter_watcher_unmountable\", \"message\": \"SPOTTER surveillance was not armed: a declared MCP server for the watcher agent does not resolve, so the watcher would start with none of its tools and every protected tool call would be denied. (Watcher agent is not installed: clio/spotter-ai)\", \"details\": {\"reason\": \"spotter_watcher_unmountable\", \"agent_ref\": \"clio/spotter-ai\", \"mcp_server\": \"\", \"detail\": \"Watcher agent is not installed: clio/spotter-ai\", \"session_id\": \"sess_6618656bc90d\"}, \"recoverable\": true}}",
+  "host": "x3001c0s19b1n0",
+  "job": "7794878",
+  "status": "failed",
+  "step": "failed-spotter-smoke"
+}

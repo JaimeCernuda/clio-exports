@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-28T16:51:31+0000",
+  "dry_run": false,
+  "error": "SPOTTER unavailable: spotter_watcher_agent_not_installed SPOTTER needs its watcher agent, which is not installed. (remedy: install the marketplace that provides the clio/spotter-ai agent)",
+  "host": "x3001c0s19b1n0",
+  "job": "7794878",
+  "status": "failed",
+  "step": "failed-opal-setup"
+}
