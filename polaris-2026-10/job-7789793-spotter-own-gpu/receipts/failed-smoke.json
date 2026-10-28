@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-28T15:06:49+0000",
+  "dry_run": false,
+  "error": "attention smoke failed: available=True reason=None stop=end_turn (see /lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/evidence/job-7789793)",
+  "host": "x3004c0s7b1n0",
+  "job": "7789793",
+  "status": "failed",
+  "step": "failed-smoke"
+}

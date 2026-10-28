@@ -1,0 +1,26 @@
+{
+  "agent_ready": "no-boot-agent",
+  "at": "2026-10-28T14:59:46+0000",
+  "command": [
+    "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/src/clio-agent/.venv/bin/clio-agent",
+    "serve",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8100"
+  ],
+  "connector_source": "file:///lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/build/connector/vllm_attn_connector-0.1.0-py3-none-any.whl",
+  "dry_run": false,
+  "host": "x3004c0s7b1n0",
+  "job": "7789793",
+  "log": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/logs/clio-serve-x3004c0s7b1n0-7789793-145934.log",
+  "overall": "ready",
+  "pgid": 1778604,
+  "pid": 1778604,
+  "port": 8100,
+  "reused": false,
+  "started_at": "2026-10-28T14:59:34+0000",
+  "starttime": "499062746",
+  "status": "ok",
+  "step": "02-serve"
+}

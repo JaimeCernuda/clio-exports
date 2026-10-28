@@ -1,0 +1,10 @@
+{
+  "at": "2026-10-28T15:16:02+0000",
+  "dir": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/evidence/sessions/7789793",
+  "dry_run": false,
+  "host": "x3004c0s7b1n0",
+  "job": "7789793",
+  "sessions": "sess_717ef0af4e95 sess_dc98d901a379 sess_85d2f41fee02 sess_e1b41d64ce35",
+  "status": "ok",
+  "step": "15-export-sessions"
+}

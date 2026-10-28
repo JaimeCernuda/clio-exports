@@ -1,0 +1,37 @@
+{
+  "errors": [
+    {
+      "error": "ValueError: The recorded model storage location is unavailable on this host",
+      "storage_root": "/eagle/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/state/data"
+    }
+  ],
+  "models": [
+    {
+      "bytes_done": 17593025016,
+      "bytes_total": 17593025016,
+      "created_at": 1793035627.5328038,
+      "destination": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub/ibm-granite--granite-4.2-8b--a7042144125ce5ae64f89610e8289647fc000b9a",
+      "error": null,
+      "error_code": null,
+      "exit_code": null,
+      "file_path": null,
+      "files": [],
+      "id": "2d8360234b55e48a5f7a19ab",
+      "log_path": null,
+      "log_tail": [],
+      "observed_at": 1793046990.8867033,
+      "origin": "receipt",
+      "phase": "Model available; choose a runtime to serve it",
+      "repository": "ibm-granite/granite-4.2-8b",
+      "requested_revision": "a7042144125ce5ae64f89610e8289647fc000b9a",
+      "reuse": null,
+      "revision": "a7042144125ce5ae64f89610e8289647fc000b9a",
+      "state": "ready",
+      "storage_root": "/eagle/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/state/data",
+      "target_id": "local",
+      "updated_at": 1793035796.600216
+    }
+  ],
+  "target_id": "local",
+  "unavailable_reason": null
+}
