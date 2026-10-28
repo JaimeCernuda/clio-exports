@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+motion/node_modules/
+motion/bundle/
+motion/out/
+motion/review/
+.cache/
+*.tsbuildinfo

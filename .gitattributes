@@ -1,0 +1,5 @@
+# Keep authored sources stable across Windows and Linux format checks.
+* text=auto eol=lf
+# Native archives and their published checksums must survive checkout exactly.
+*.html -text
+SHA256SUMS -text

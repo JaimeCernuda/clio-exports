@@ -1,0 +1,49 @@
+/* Adapted from iowarp/gact-tui web/src/theme/themes.css; source receipts are in references/. */
+.clio-ui {
+  --background: oklch(0.985 0.008 225);
+  --foreground: oklch(0.19 0.026 235);
+  --card: oklch(1 0 0);
+  --composer: oklch(0.955 0.01 225);
+  --composer-border: oklch(0.83 0.018 225);
+  --muted: oklch(0.95 0.01 225);
+  --muted-foreground: oklch(0.47 0.035 235);
+  --border: oklch(0.87 0.024 225);
+  --primary: oklch(0.63 0.14 205);
+  --info: oklch(0.48 0.13 220);
+  --success: oklch(0.46 0.13 155);
+  --sidebar: oklch(0.965 0.012 225);
+}
+.clio-ui,
+.clio-ui * {
+  box-sizing: border-box;
+}
+.clio-ui {
+  font-family: "Inter Variable", sans-serif;
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+}
+.clio-ui button {
+  font: inherit;
+}
+.clio-ui .mono {
+  font-family: "JetBrains Mono Variable", monospace;
+}
+.clio-ui .panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.clio-ui .agent-card {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  border-left: 3px solid var(--primary);
+  padding: 16px 18px;
+  background: var(--card);
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 5px 18px #16394c08;
+}
+.clio-ui .muted {
+  color: var(--muted-foreground);
+}

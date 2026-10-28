@@ -1,0 +1,4 @@
+interface:
+  display_name: "CLIO Motion Review"
+  short_description: "Check source fidelity, motion and video output"
+  default_prompt: "Use $clio-motion-review to review this CLIO cut and report source, visual and encoding findings separately."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "CLIO Motion Scenes"
+  short_description: "Compose editable CLIO UI from real sessions"
+  default_prompt: "Use $clio-motion-scenes to create a CLIO capability shot with editable UI and genuine session evidence."

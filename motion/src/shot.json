@@ -1,0 +1,24 @@
+{
+  "cues": {
+    "typingEnd": 112,
+    "send": [124, 165],
+    "parallel": [165, 245],
+    "gridExit": [360, 380],
+    "inspect": [377, 425],
+    "rootExit": [548, 570],
+    "return": [560, 625],
+    "result": [578, 625]
+  },
+  "layout": {
+    "sidebarOpen": 256,
+    "sidebarClosed": 88,
+    "contextLeft": 240,
+    "gridLeft": 850,
+    "gridTop": 165,
+    "cardWidth": 460,
+    "cardHeight": 122,
+    "columnPitch": 482,
+    "rowPitch": 143,
+    "columns": 2
+  }
+}
