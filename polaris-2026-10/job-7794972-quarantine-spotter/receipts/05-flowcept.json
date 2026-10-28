@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-28T19:10:17+0000",
+  "dry_run": false,
+  "host": "x3001c0s19b1n0",
+  "job": "7794972",
+  "settings_path": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/state/data/services/x3001c0s19b1n0/flowcept/settings.yaml",
+  "state": "running",
+  "status": "ok",
+  "step": "05-flowcept",
+  "steps": [
+    "reused running deployment"
+  ],
+  "url": "http://127.0.0.1:8008",
+  "variant": "native"
+}

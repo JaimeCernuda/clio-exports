@@ -1,0 +1,334 @@
+{
+  "answer_chars": 632,
+  "assistant_message_id": "msg_asst_d527efd10776",
+  "at": "2026-10-28T19:11:29+0000",
+  "attention_available": true,
+  "attention_message": null,
+  "attention_reason": null,
+  "availability": {
+    "enabled": true,
+    "messages": {
+      "msg_asst_d527efd10776": true
+    }
+  },
+  "capture_sha256": "662cdbf56e7ae862b7d6cde3af829e676976b513a7007db2a564ea525e6433ec",
+  "dry_run": false,
+  "error_info": null,
+  "host": "x3001c0s19b1n0",
+  "items_available": true,
+  "items_profile": "attn-analytics",
+  "items_reason": null,
+  "job": "7794972",
+  "lm_call_id": "sem_00580ef751a94d9e",
+  "recent_capture_files": [
+    {
+      "bytes": 137752864,
+      "metadata": {
+        "head_code": "layer * 32 + head",
+        "kv_cache_group_id": "0",
+        "no_entry_sentinel": "-1",
+        "request_id": "chatcmpl-963b2e7ae8748366-ab54281e",
+        "segment_mode": "variable",
+        "top_pct": "10.0",
+        "workflow_id": "vllm-attn-34c5f96bea93"
+      },
+      "path": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/state/data/services/x3001c0s19b1n0/clio-vllm/evidence/vllm-attn-34c5f96bea93/chatcmpl-963b2e7ae8748366-ab54281e_g0.safetensors",
+      "tensors": {
+        "attn_peak": {
+          "dtype": "F32",
+          "shape": [
+            42881
+          ]
+        },
+        "attn_sum": {
+          "dtype": "F32",
+          "shape": [
+            42881
+          ]
+        },
+        "prompt_token_ids": {
+          "dtype": "I32",
+          "shape": [
+            42881
+          ]
+        },
+        "segments": {
+          "dtype": "I32",
+          "shape": [
+            29,
+            3
+          ]
+        },
+        "topk_head": {
+          "dtype": "I32",
+          "shape": [
+            1996,
+            4297
+          ]
+        },
+        "topk_pos": {
+          "dtype": "I32",
+          "shape": [
+            1996,
+            4297
+          ]
+        },
+        "topk_residual": {
+          "dtype": "F32",
+          "shape": [
+            1996,
+            1
+          ]
+        },
+        "val_all_avg": {
+          "dtype": "F32",
+          "shape": [
+            1996,
+            4297
+          ]
+        },
+        "val_all_max": {
+          "dtype": "F32",
+          "shape": [
+            1996,
+            4297
+          ]
+        }
+      }
+    },
+    {
+      "bytes": 18560,
+      "metadata": {
+        "head_code": "layer * 32 + head",
+        "kv_cache_group_id": "0",
+        "no_entry_sentinel": "-1",
+        "request_id": "chatcmpl-bc89d523e2cb6ba7-aedc095c",
+        "segment_mode": "fixed",
+        "top_pct": "10.0",
+        "workflow_id": "vllm-attn-75d819dd057a"
+      },
+      "path": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/state/data/services/x3001c0s19b1n0/clio-vllm/evidence/vllm-attn-75d819dd057a/chatcmpl-bc89d523e2cb6ba7-aedc095c_g0.safetensors",
+      "tensors": {
+        "attn_peak": {
+          "dtype": "F32",
+          "shape": [
+            295
+          ]
+        },
+        "attn_sum": {
+          "dtype": "F32",
+          "shape": [
+            295
+          ]
+        },
+        "prompt_token_ids": {
+          "dtype": "I32",
+          "shape": [
+            295
+          ]
+        },
+        "segments": {
+          "dtype": "I32",
+          "shape": [
+            10,
+            3
+          ]
+        },
+        "topk_head": {
+          "dtype": "I32",
+          "shape": [
+            31,
+            28
+          ]
+        },
+        "topk_pos": {
+          "dtype": "I32",
+          "shape": [
+            31,
+            28
+          ]
+        },
+        "topk_residual": {
+          "dtype": "F32",
+          "shape": [
+            31,
+            1
+          ]
+        },
+        "val_all_avg": {
+          "dtype": "F32",
+          "shape": [
+            31,
+            28
+          ]
+        },
+        "val_all_max": {
+          "dtype": "F32",
+          "shape": [
+            31,
+            28
+          ]
+        }
+      }
+    },
+    {
+      "bytes": 63316,
+      "metadata": {
+        "head_code": "layer * 32 + head",
+        "kv_cache_group_id": "0",
+        "no_entry_sentinel": "-1",
+        "request_id": "chatcmpl-97687464a61cf096-a906a30b",
+        "segment_mode": "fixed",
+        "top_pct": "10.0",
+        "workflow_id": "vllm-attn-75d819dd057a"
+      },
+      "path": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/state/data/services/x3001c0s19b1n0/clio-vllm/evidence/vllm-attn-75d819dd057a/chatcmpl-97687464a61cf096-a906a30b_g0.safetensors",
+      "tensors": {
+        "attn_peak": {
+          "dtype": "F32",
+          "shape": [
+            295
+          ]
+        },
+        "attn_sum": {
+          "dtype": "F32",
+          "shape": [
+            295
+          ]
+        },
+        "prompt_token_ids": {
+          "dtype": "I32",
+          "shape": [
+            295
+          ]
+        },
+        "segments": {
+          "dtype": "I32",
+          "shape": [
+            10,
+            3
+          ]
+        },
+        "topk_head": {
+          "dtype": "I32",
+          "shape": [
+            130,
+            28
+          ]
+        },
+        "topk_pos": {
+          "dtype": "I32",
+          "shape": [
+            130,
+            28
+          ]
+        },
+        "topk_residual": {
+          "dtype": "F32",
+          "shape": [
+            130,
+            1
+          ]
+        },
+        "val_all_avg": {
+          "dtype": "F32",
+          "shape": [
+            130,
+            28
+          ]
+        },
+        "val_all_max": {
+          "dtype": "F32",
+          "shape": [
+            130,
+            28
+          ]
+        }
+      }
+    },
+    {
+      "bytes": 22314992,
+      "metadata": {
+        "head_code": "layer * 32 + head",
+        "kv_cache_group_id": "0",
+        "no_entry_sentinel": "-1",
+        "request_id": "chatcmpl-b15fcf36dea4fccb-ae85fd3f",
+        "segment_mode": "variable",
+        "top_pct": "10.0",
+        "workflow_id": "vllm-attn-75d819dd057a"
+      },
+      "path": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/state/data/services/x3001c0s19b1n0/clio-vllm/evidence/vllm-attn-75d819dd057a/chatcmpl-b15fcf36dea4fccb-ae85fd3f_g0.safetensors",
+      "tensors": {
+        "attn_peak": {
+          "dtype": "F32",
+          "shape": [
+            27186
+          ]
+        },
+        "attn_sum": {
+          "dtype": "F32",
+          "shape": [
+            27186
+          ]
+        },
+        "prompt_token_ids": {
+          "dtype": "I32",
+          "shape": [
+            27186
+          ]
+        },
+        "segments": {
+          "dtype": "I32",
+          "shape": [
+            9,
+            3
+          ]
+        },
+        "topk_head": {
+          "dtype": "I32",
+          "shape": [
+            505,
+            2721
+          ]
+        },
+        "topk_pos": {
+          "dtype": "I32",
+          "shape": [
+            505,
+            2721
+          ]
+        },
+        "topk_residual": {
+          "dtype": "F32",
+          "shape": [
+            505,
+            1
+          ]
+        },
+        "val_all_avg": {
+          "dtype": "F32",
+          "shape": [
+            505,
+            2721
+          ]
+        },
+        "val_all_max": {
+          "dtype": "F32",
+          "shape": [
+            505,
+            2721
+          ]
+        }
+      }
+    }
+  ],
+  "response_id": "chatcmpl-b15fcf36dea4fccb",
+  "session_id": "sess_0dbff9988582",
+  "status": "ok",
+  "step": "09-attention-smoke",
+  "stop_reason": "end_turn",
+  "tensor_parallel_size": "1",
+  "thinking_separated": true,
+  "turn_seconds": 21.7,
+  "workspace_id": "ws_fac499f31592"
+}

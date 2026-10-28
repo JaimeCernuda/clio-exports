@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-28T19:08:55+0000",
+  "dry_run": false,
+  "error": "POST /v1/infrastructure/provenance/connections/153d8de0-9faf-4d2d-898e-9e22cbf98ea2/verify -> HTTP 409: {\"error\": {\"error\": \"request_error\", \"message\": \"Provenance verification failed; check service health and local settings\", \"details\": {}, \"recoverable\": true}}",
+  "host": "x3001c0s19b1n0",
+  "job": "7794972",
+  "status": "failed",
+  "step": "failed-provenance"
+}
