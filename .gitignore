@@ -4,8 +4,17 @@ __pycache__/
 .ruff_cache/
 *.egg-info/
 motion/node_modules/
+motion/native/node_modules/
 motion/bundle/
 motion/out/
 motion/review/
+motion/.native-ui/
 .cache/
 *.tsbuildinfo
+# Rendered movies stay local; keep source, fixtures and scripts in Git.
+*.mp4
+*.webm
+*.mov
+*.mkv
+*.m4v
+*.avi

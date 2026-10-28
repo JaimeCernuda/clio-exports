@@ -1,0 +1,30 @@
+{
+  "schema": "clio.scene-catalog.v1",
+  "scenes": [
+    {
+      "file": "tahoe.native.json",
+      "title": "Lake Tahoe mapped area and detail",
+      "sessionId": "sess_9cca40f4085e"
+    },
+    {
+      "file": "reading-guide.native.json",
+      "title": "Reading guide to the design folder",
+      "sessionId": "sess_7874a96ceb51"
+    },
+    {
+      "file": "reading-child.native.json",
+      "title": "sdk design B",
+      "sessionId": "sess_4505e61ec6b27e4fd41543f08398d25e"
+    },
+    {
+      "file": "alta.native.json",
+      "title": "Alta seasonal and monthly snowfall",
+      "sessionId": "sess_4e74d38f7a9d"
+    },
+    {
+      "file": "konza.native.json",
+      "title": "Konza burn science for collaborators",
+      "sessionId": "sess_b1bbf58c66a5"
+    }
+  ]
+}

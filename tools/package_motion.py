@@ -71,6 +71,10 @@ def package_motion(repository: Path, destination: Path) -> dict[str, Any]:
                 "clio-editable-ui/PACKAGE.txt",
                 "Reusable CLIO UI motion toolkit. See motion/README.md.\n"
                 "Run npm ci then npm run studio inside motion/.\n"
+                "For the native investigation film, see motion/native/FILM.md.\n"
+                "For session import/preview, see motion/native/README.md.\n"
+                "It requires the pinned clean gact-tui source checkout and its pnpm dependencies.\n"
+                "The older ClioProof composition was rejected for UI fidelity.\n"
                 "Selected evidence is included; large original HTML archives are omitted.\n"
                 "To re-index, overlay this package on https://github.com/jaimecernuda/clio-exports\n"
                 "Repo-local skills are in .agents/skills; any agent can read their SKILL.md files.\n",

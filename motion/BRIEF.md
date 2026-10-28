@@ -10,7 +10,39 @@ The original 25-second concept proved motion-rendering capability, not successfu
 art direction. The later Tahoe screenshot cut was rejected. Neither is an approved
 visual template. Encoding tests are not creative acceptance.
 
-## First component proof
+The later full NDP film was also rejected for creative judgment: routine data
+selection did not need full-screen treatment, a generic lake zoom had no payoff,
+and arbitrary text selections added no meaning. Work on that video is stopped.
+The replay/capture pipeline remains reusable. Start new work with
+[clio-videos](../.agents/skills/clio-videos/SKILL.md); neither expansion nor
+interaction is an obligation for every output.
+
+The subsequent editable delegation proof was also rejected for UI fidelity.
+Matching colors and icons did not preserve the product's shell or hierarchy.
+The correction in `native/` uses production gact-tui components directly and
+retains the Tahoe native conversation projection, including its three exchanges,
+110 tools, four A2UI views and ten artifact records. The full-session preview
+preserves that source structure. The new `ClioNativePromo` composition uses an
+editable native stage with a deterministic Remotion frame bridge.
+
+## Earlier native cut
+
+The 108-second cut follows the recorded question, source discovery, method choice,
+metadata check, calculation, map generation and result. The follow-up preserves
+the saved boundary, explains the new method, runs the comparison, creates a chart
+and interprets the result. Native thoughts and explanations retain source IDs.
+The earlier 26-second cut proved rendering but omitted those causal connections. Native
+components reflow for each shot. A cached USGS reference map adds geographic
+context beneath the unchanged recorded boundary. The source chart data and
+encodings remain intact. See [FILM.md](native/FILM.md) for the editorial selections,
+render workflow and attribution.
+
+The ZIP/reproducibility exchange is omitted per the user's direction. The film
+ends on the interpreted comparison and CLIO identity. It is silent and makes no
+claim that the recorded work took the film's duration or was newly rerun.
+Production notes and duplicate provenance-credit strips stay outside the film.
+
+## Earlier component proof (fidelity rejected)
 
 A single 15-second continuous shot explores one product capability: parallel
 delegation while retaining an inspectable parent/child conversation relationship.

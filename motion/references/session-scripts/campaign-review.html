@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>NDP + CLIO — revised campaign</title>
+<style>
+html,body{margin:0;height:100%;background:#f5f5f1;font:14px system-ui;color:#183442}
+main{height:100%;display:flex;flex-direction:column}video{width:100%;height:calc(100vh - 48px);object-fit:contain}
+footer{height:48px;display:flex;align-items:center;gap:12px;padding:0 16px}button{padding:6px 12px;border:1px solid #cbdce2;border-radius:5px;background:white;color:inherit}input{flex:1}output{width:100px;font-variant-numeric:tabular-nums}
+</style>
+<main><video aria-label="Revised NDP and CLIO pitch" controls playsinline muted preload="auto"></video>
+<footer><button id="restart">Play from beginning</button><button id="pause">Pause</button><input aria-label="Seek video seconds" type="range" min="0" max="88" step="0.1" value="0"><output>0.0 / 88.0</output></footer></main>
+<script>
+const v=document.querySelector('video'),s=document.querySelector('input'),o=document.querySelector('output');
+v.src=location.search.includes('proof')?'/ndp-clio-followup-proof-v2.mp4':'/ndp-clio-pitch-v2.mp4';
+document.querySelector('#restart').onclick=()=>{v.currentTime=0;v.play()};document.querySelector('#pause').onclick=()=>v.pause();
+s.oninput=()=>{v.pause();v.currentTime=Number(s.value)};v.onloadedmetadata=()=>{s.max=v.duration};
+v.ontimeupdate=()=>{s.value=v.currentTime;o.textContent=v.currentTime.toFixed(1)+' / '+v.duration.toFixed(1)+(v.ended?' · ended':'')};
+</script></html>

@@ -20,6 +20,7 @@ if (options.help) {
 const inputProps = options.propsFile
   ? JSON.parse(await readFile(path.resolve(root, options.propsFile), "utf8"))
   : {};
+const cursorSamples = new Map();
 if (
   inputProps === null ||
   Array.isArray(inputProps) ||
@@ -35,7 +36,11 @@ const url = await bundle({
 });
 const browser = await openBrowser("chrome", {
   browserExecutable: process.env.DEMO_CHROME_PATH,
-  chromiumOptions: { gl: "swangle" },
+  chromiumOptions: {
+    // Hardware ANGLE intermittently enlarges SVG glyphs on one capture worker.
+    // SwiftShader also renders the native map while keeping chart text stable.
+    gl: process.env.DEMO_GL ?? "swangle",
+  },
 });
 try {
   const composition = await selectComposition({
@@ -103,6 +108,12 @@ try {
       concurrency: options.concurrency,
       x264Preset: "fast",
       logLevel: "error",
+      onBrowserLog: (log) => {
+        if (log.text.startsWith("__CLIO_CURSOR__")) {
+          const value = JSON.parse(log.text.slice("__CLIO_CURSOR__".length));
+          cursorSamples.set(value.frame, value.pose);
+        }
+      },
       onProgress: ({ progress }) => {
         const p = Math.floor(progress * 10) * 10;
         if (p !== last) {
@@ -140,6 +151,14 @@ try {
       "+faststart",
       output,
     ]);
+    if (inputProps.recordCursor) {
+      if (!cursorSamples.size)
+        throw new Error("Native cursor measurements were not recorded");
+      await writeFile(
+        output + ".cursor.raw.json",
+        JSON.stringify(Object.fromEntries(cursorSamples), null, 2) + "\n",
+      );
+    }
     console.log(`DONE ${output}`);
   }
 } finally {

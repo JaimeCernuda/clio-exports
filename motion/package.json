@@ -4,10 +4,21 @@
   "type": "module",
   "scripts": {
     "studio": "remotion studio src/index.tsx --port=3347 --no-open",
+    "native:dev": "node native/run.mjs dev",
+    "native:build": "node native/run.mjs build",
+    "native:check": "node native/run.mjs check",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test tests/ui.test.tsx tests/render-options.test.mjs",
-    "format:check": "prettier --check src scripts tests render.mjs examples",
+    "test": "tsx --test tests/ui.test.tsx tests/render-options.test.mjs tests/native-session.test.ts tests/native-film.test.ts tests/campaign.test.ts tests/ndp-campaigns.test.ts tests/story.test.ts tests/cursor.test.ts tests/vector-chart.test.ts tests/frame-review.test.ts",
+    "format:check": "prettier --check src scripts tests render.mjs examples native/*.ts native/*.tsx native/*.mjs native/*.css native/*.html native/source.json",
     "stills": "node render.mjs stills",
+    "promo:stills": "node render.mjs stills --composition ClioNativePromo",
+    "promo:render": "node render.mjs video --composition ClioNativePromo --scale 1 --output out/clio-investigation-story.mp4",
+    "campaign:pitch": "node render.mjs video --composition NdpClioPitch --scale 1 --output out/ndp-clio-tahoe-v4.mp4",
+    "campaign:alta": "node render.mjs video --composition NdpClioAlta --scale 1 --output out/ndp-clio-alta-v2.mp4",
+    "campaign:konza": "node render.mjs video --composition NdpClioKonza --scale 1 --output out/ndp-clio-konza-v2.mp4",
+    "campaign:inspections": "tsx scripts/render-inspections.ts",
+    "campaign:story": "tsx scripts/assemble-story.ts",
+    "campaign:social": "node render.mjs video --composition NdpClioSocial --scale 1 --output out/ndp-clio-conversation-social.mp4",
     "render": "node render.mjs video"
   },
   "dependencies": {
@@ -19,6 +30,7 @@
     "lucide-react": "1.33.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
+    "remend": "1.3.0",
     "remotion": "4.0.521"
   },
   "devDependencies": {

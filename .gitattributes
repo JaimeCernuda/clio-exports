@@ -3,3 +3,10 @@
 # Native archives and their published checksums must survive checkout exactly.
 *.html -text
 SHA256SUMS -text
+# Opaque source exports and historical snapshots retain their exact bytes.
+# Maintained code stays textual; these hash-identified records are not reformatted.
+ndp/*.html binary
+motion/references/session-scripts/*.mjs binary
+motion/references/session-scripts/*.ps1 binary
+motion/references/session-scripts/*.py binary
+motion/references/session-scripts/*.html binary

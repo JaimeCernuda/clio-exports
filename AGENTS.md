@@ -18,7 +18,8 @@ approved creative direction.
 - Preserve original HTML exports and existing checksum files unchanged.
 - New exports may represent multi-day sessions. Decode and index incrementally;
   select small source-linked beats before rendering. Do not bundle whole archives
-  or embedded binary assets into the animation.
+  into the animation. Include only the saved dependencies needed by selected
+  native views; do not drop their maps, tables or images to make a smaller file.
 - Keep source identities and editorial timing distinct. A short composed sequence
   must not imply the actual work completed in that duration.
 - Tie claims and depicted agents, tools and outputs to actual exported records.
@@ -38,6 +39,7 @@ approved creative direction.
 
 For motion work, read the relevant repo-local skill before making changes:
 
+- `.agents/skills/clio-videos/SKILL.md`: story, shot purpose and lessons from rejected cuts.
 - `.agents/skills/clio-motion-stack/SKILL.md`: setup, data pipeline, shared kit and packaging.
 - `.agents/skills/clio-motion-scenes/SKILL.md`: editable UI scenes and choreography.
 - `.agents/skills/clio-motion-review/SKILL.md`: evidence, visual review and output verification.
@@ -45,8 +47,17 @@ For motion work, read the relevant repo-local skill before making changes:
 These skills are stored in the repository for any agent to read; no global skill
 installation is required. The original three documents under `motion/references/`
 are historical references. Use the maintained local skills for current commands.
-The shared entrypoint is `motion/src/ui/index.ts`; the component API is documented
-in `motion/UI-KIT.md`. Keep shared components independent of a transcript, film
+The earlier `motion/src/ui` kit was rejected for product fidelity. It is retained
+for its animation examples, not as an authoritative CLIO reconstruction. Start
+conversation work from `motion/native/workspace.tsx`, which imports the pinned
+production gact-tui shell, composer, conversation rows, Markdown, A2UI and artifact
+viewers. Small recorded navigation/context-bar presenters retain the native
+layout and agent `+` without requiring uncaptured live state. Setup and the precise
+adaptations are in `motion/native/README.md`.
+Preserve `transcript_views` and `snapshot` with `tools/prepare_native_scene.py`;
+plain text excerpts cannot stand in for the ordered rich conversation.
+
+The older component API is documented in `motion/UI-KIT.md`. Keep shared components independent of a transcript, film
 copy, backend services and Remotion's runtime. Frame/time and geometry enter as
 props. Preserve compatibility exports when moving an existing component.
 

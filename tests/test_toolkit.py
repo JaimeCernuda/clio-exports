@@ -216,9 +216,28 @@ def test_source_package_contains_portable_skills_and_matching_hashes(tmp_path: P
         names = archive.namelist()
         assert "clio-editable-ui/motion/src/ui/index.ts" in names
         assert "clio-editable-ui/.agents/skills/clio-motion-scenes/SKILL.md" in names
+        assert "clio-editable-ui/.agents/skills/clio-videos/SKILL.md" in names
+        assert "clio-editable-ui/.agents/skills/clio-videos/references/lessons.md" in names
+        assert "clio-editable-ui/motion/scripts/review-connected.ts" in names
+        assert "clio-editable-ui/motion/scripts/review-joins.ts" in names
         assert "clio-editable-ui/tools/verify_video.py" in names
+        assert "clio-editable-ui/motion/native/workspace.tsx" in names
+        assert "clio-editable-ui/motion/native/public/tahoe.native.json" in names
+        assert "clio-editable-ui/tools/prepare_native_scene.py" in names
+        assert "clio-editable-ui/motion/story/ndp-connected.json" in names
+        assert "clio-editable-ui/motion/story/RESEARCH.md" in names
+        assert "clio-editable-ui/motion/scripts/assemble-story.ts" in names
+        assert "clio-editable-ui/motion/scripts/compose-cursor.ts" in names
+        assert "clio-editable-ui/motion/native/cursor-plan.ts" in names
+        assert "clio-editable-ui/motion/src/CursorComposite.tsx" in names
+        assert "clio-editable-ui/motion/native/recorded-chart-layout.tsx" in names
         assert not any(
-            name.endswith(".html") or "/node_modules/" in name or "/out/" in name for name in names
+            name.endswith(".html")
+            and any(f"/{folder}/" in name for folder in ("ndp", "delegation", "studies"))
+            for name in names
+        )
+        assert not any(
+            "/node_modules/" in name or "/out/" in name or "/.native-ui/" in name for name in names
         )
         manifest = json.loads(archive.read("clio-editable-ui/SOURCE-MANIFEST.json"))
         assert result["files"] == len(manifest)
@@ -252,8 +271,13 @@ def test_package_destination_cannot_contaminate_its_sources() -> None:
 def test_skill_references_are_portable_and_resolve() -> None:
     """Every local skill reference must resolve from a checkout without machine-specific paths."""
     skills = list((ROOT / ".agents/skills").glob("*/SKILL.md"))
-    assert len(skills) == 3
-    for skill in skills:
+    assert {skill.parent.name for skill in skills} == {
+        "clio-videos",
+        "clio-motion-stack",
+        "clio-motion-scenes",
+        "clio-motion-review",
+    }
+    for skill in (ROOT / ".agents/skills").rglob("*.md"):
         for reference in re.findall(r"\[[^]]+\]\(([^)]+)\)", skill.read_text(encoding="utf-8")):
             if "://" in reference:
                 continue

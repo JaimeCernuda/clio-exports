@@ -1,0 +1,310 @@
+{
+  "links": [
+    "nationaldataplatform.org",
+    "clio.iowarp.ai"
+  ],
+  "closing": "Explore NDP\nwith CLIO.",
+  "status": "Proposed campaign cut for review; not an announcement of endorsement. Public agent explanations and saved views; source time condensed. Reproducibility/ZIP turns omitted.",
+  "title": "NDP + CLIO | Alta snowfall",
+  "hook": "A snowy winter.\nCompared with what?",
+  "sceneFile": "alta.native.json",
+  "replay": {
+    "toolIds": [
+      "call_21e8c26db26c",
+      "call_169109e67789",
+      "call_6674694d37b1",
+      "call_6e7fe9c5109b",
+      "call_b7a0be63f1b5",
+      "call_0ed5cacdf5f1",
+      "call_b9d761084059",
+      "call_535403aa906d",
+      "call_2d73c8af5ea8",
+      "call_3947a410b2da",
+      "call_98e560feb76d",
+      "call_0efcbc281e43",
+      "call_3a1d17a4f600",
+      "call_a5b9727074e9",
+      "call_28b5e93dce07",
+      "call_2f780db0cc1b",
+      "call_bbc80dba615c"
+    ],
+    "reasoningIds": [],
+    "includeInjections": false,
+    "answerParagraphs": 2,
+    "answerParagraphsByBlockId": {
+      "part_4d97e827efc3": 1
+    }
+  },
+  "workbench": {
+    "searchCall": "call_21e8c26db26c",
+    "connectCall": "call_169109e67789",
+    "downloadCall": "call_6e7fe9c5109b",
+    "datasetId": "16bee949-c829-4038-a316-204a5322b7d8",
+    "tabs": [
+      {
+        "label": "Winters",
+        "surfaceId": "alta-winter-comparison",
+        "artifactId": "artifact_0aa3909d91fe4c8b872de87800dc4853"
+      },
+      {
+        "label": "Months",
+        "surfaceId": "alta-monthly-comparison",
+        "artifactId": "artifact_734bca454e7c4a01bda5a4a9be8d1fdd"
+      }
+    ]
+  },
+  "focuses": [
+    {
+      "id": "compare-winters",
+      "surfaceId": "alta-winter-comparison",
+      "offset": 245,
+      "frames": 480,
+      "action": "chart-hover",
+      "targetLabel": "635.5",
+      "maxZoom": 1,
+      "canvas": true,
+      "observations": [
+        {
+          "at": 150,
+          "label": "635.5",
+          "scroll": 0,
+          "select": "replace"
+        }
+      ],
+      "chartHeights": {
+        "chart": {
+          "from": 620,
+          "to": 480
+        }
+      }
+    },
+    {
+      "id": "inspect-february",
+      "surfaceId": "alta-monthly-comparison",
+      "offset": 55,
+      "frames": 1320,
+      "action": "chart-hover",
+      "targetLabel": "Monthly snowfall (inches): 154.5",
+      "maxZoom": 1,
+      "canvas": true,
+      "observations": [
+        {
+          "at": 540,
+          "label": "Monthly snowfall (inches): 154.5",
+          "scroll": 0,
+          "select": "replace"
+        }
+      ],
+      "controls": [
+        {
+          "id": "baseline",
+          "kind": "choices",
+          "options": [
+            "Same 17 complete winters",
+            "All complete months (17 Oct; 24 Nov-Apr)"
+          ],
+          "initial": [
+            "Same 17 complete winters"
+          ],
+          "keyframes": [
+            {
+              "at": 200,
+              "value": [
+                "All complete months (17 Oct; 24 Nov-Apr)"
+              ],
+              "target": "All complete months (17 Oct; 24 Nov-Apr)"
+            },
+            {
+              "at": 864,
+              "value": [
+                "Same 17 complete winters"
+              ],
+              "target": "Same 17 complete winters"
+            }
+          ]
+        },
+        {
+          "id": "months",
+          "kind": "choices",
+          "options": [
+            "Oct",
+            "Nov",
+            "Dec",
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr"
+          ],
+          "initial": [
+            "Oct",
+            "Nov",
+            "Dec",
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr"
+          ],
+          "keyframes": [
+            {
+              "at": 360,
+              "value": [
+                "Nov",
+                "Dec",
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr"
+              ],
+              "target": "Oct"
+            },
+            {
+              "at": 396,
+              "value": [
+                "Dec",
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr"
+              ],
+              "target": "Nov"
+            },
+            {
+              "at": 432,
+              "value": [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr"
+              ],
+              "target": "Dec"
+            },
+            {
+              "at": 468,
+              "value": [
+                "Jan",
+                "Feb",
+                "Mar"
+              ],
+              "target": "Apr"
+            },
+            {
+              "at": 720,
+              "value": [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Oct"
+              ],
+              "target": "Oct"
+            },
+            {
+              "at": 756,
+              "value": [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Oct",
+                "Nov"
+              ],
+              "target": "Nov"
+            },
+            {
+              "at": 792,
+              "value": [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Oct",
+                "Nov",
+                "Dec"
+              ],
+              "target": "Dec"
+            },
+            {
+              "at": 828,
+              "value": [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Oct",
+                "Nov",
+                "Dec",
+                "Apr"
+              ],
+              "target": "Apr"
+            }
+          ]
+        }
+      ],
+      "selectionClearAt": 684,
+      "download": {
+        "open": 976,
+        "formats": 1036,
+        "save": 1096,
+        "label": "PNG image"
+      }
+    },
+    {
+      "id": "read-monthly-finding",
+      "blockId": "part_4d97e827efc3",
+      "frames": 300,
+      "action": "select-text",
+      "selectionText": "January–March"
+    }
+  ],
+  "pitch": {
+    "frames": 6900,
+    "sourceFrames": 4200,
+    "turns": 2,
+    "layoutFile": "alta-pitch-layout.json",
+    "stages": [
+      {
+        "id": "intro",
+        "start": 0,
+        "end": 120
+      },
+      {
+        "id": "conversation",
+        "start": 120,
+        "end": 6420
+      },
+      {
+        "id": "result",
+        "start": 6420,
+        "end": 6720
+      },
+      {
+        "id": "outro",
+        "start": 6720,
+        "end": 6900
+      }
+    ]
+  },
+  "social": {
+    "frames": 4800,
+    "sourceFrames": 4200,
+    "turns": 2,
+    "stages": [
+      {
+        "id": "intro",
+        "start": 0,
+        "end": 120
+      },
+      {
+        "id": "conversation",
+        "start": 120,
+        "end": 4320
+      },
+      {
+        "id": "result",
+        "start": 4320,
+        "end": 4620
+      },
+      {
+        "id": "outro",
+        "start": 4620,
+        "end": 4800
+      }
+    ]
+  }
+}

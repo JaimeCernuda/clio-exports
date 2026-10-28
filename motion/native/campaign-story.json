@@ -1,0 +1,180 @@
+{
+  "title": "Explore NDP with CLIO",
+  "hook": "What can you ask\nof NDP data?",
+  "closing": "Explore NDP\nwith CLIO.",
+  "links": ["nationaldataplatform.org", "clio.iowarp.ai"],
+  "sceneFile": "tahoe.native.json",
+  "excerpts": {
+    "plan": {
+      "from": "I’ll check what the boundary represents"
+    },
+    "shorePlan": {
+      "until": " That will show"
+    },
+    "shoreReason": {
+      "until": " I'll check if"
+    },
+    "interpret": {
+      "until": "\n\nFor comparison"
+    }
+  },
+  "pitch": {
+    "frames": 6120,
+    "layoutFile": "tahoe-pitch-layout.json",
+    "stages": [
+      {
+        "id": "intro",
+        "start": 0,
+        "end": 120
+      },
+      {
+        "id": "conversation",
+        "start": 120,
+        "end": 5700
+      },
+      {
+        "id": "result",
+        "start": 5700,
+        "end": 5940
+      },
+      {
+        "id": "outro",
+        "start": 5940,
+        "end": 6120
+      }
+    ],
+    "sourceFrames": 3600
+  },
+  "social": {
+    "frames": 2160,
+    "stages": [
+      {
+        "id": "intro",
+        "start": 0,
+        "end": 90
+      },
+      {
+        "id": "conversation",
+        "start": 90,
+        "end": 1980
+      },
+      {
+        "id": "outro",
+        "start": 1980,
+        "end": 2160
+      }
+    ],
+    "sourceFrames": 1890
+  },
+  "status": "Proposed co-branded campaign assets for the user's NDP pitch. No announcement of a formal partnership, NDP endorsement or public campaign launch is asserted. The user controls sending and publication.",
+  "replay": {
+    "toolIds": [
+      "call_ab09646f162e",
+      "call_9e7cadd7ee50",
+      "call_b289879bb9dc",
+      "call_789b19c74420",
+      "call_0f1258338db6",
+      "call_4acc61fb620d",
+      "call_b866b971c32d",
+      "call_9318527a9744",
+      "call_3dc012b4f1ab",
+      "call_602d42cce5a7",
+      "call_e0a5d9c473fd",
+      "call_60db61e428ea",
+      "call_188eb5b3c5b5",
+      "call_a2327bf600cb",
+      "call_c468e2e9e7f0",
+      "call_d484952b7674",
+      "call_f114af281027",
+      "call_59e8aba094b6",
+      "call_8ec17c20ee0b",
+      "call_afddda4755fa",
+      "call_596d7074f68e",
+      "call_c4ee89dd2d6f",
+      "call_347b1feff5b2"
+    ],
+    "includeInjections": false,
+    "reasoningIds": [
+      "part_492821ffebf9",
+      "part_f6878f6c133b",
+      "part_f34c4149d8dd"
+    ],
+    "answerParagraphs": 2
+  },
+  "workbench": {
+    "connectCall": "call_347b1feff5b2",
+    "downloadCall": "call_0f1258338db6",
+    "tabs": [
+      {
+        "label": "Map",
+        "surfaceId": "tahoe-boundary-map",
+        "artifactId": "artifact_47ed32665c174a5daf93ef98517023fc"
+      },
+      {
+        "label": "Method",
+        "surfaceId": "tahoe-area-method-figure",
+        "artifactId": "artifact_3a09385d009c4dcb9e1155fc044a5924"
+      },
+      {
+        "label": "Shoreline",
+        "surfaceId": "tahoe-shoreline-resolution",
+        "artifactId": "artifact_a5003b83127f4d239017ac63ab12cbf8"
+      },
+      {
+        "label": "Detail",
+        "surfaceId": "tahoe-shoreline-detail-figure",
+        "artifactId": "artifact_a2c52694c3ba4084b7d91e32722870db"
+      }
+    ],
+    "searchCall": "call_ab09646f162e",
+    "datasetId": "f8e23062-bc48-4bdd-9698-374bee3712fd"
+  },
+  "focuses": [
+    {
+      "id": "choose-resources",
+      "toolId": "call_ab09646f162e",
+      "frames": 480,
+      "action": "resources",
+      "canvas": true,
+      "maxZoom": 1
+    },
+    {
+      "id": "inspect-map",
+      "surfaceId": "tahoe-boundary-map",
+      "offset": 45,
+      "frames": 480,
+      "action": "map-zoom",
+      "canvas": true,
+      "maxZoom": 1
+    },
+    {
+      "id": "inspect-comparison",
+      "surfaceId": "tahoe-shoreline-resolution",
+      "offset": 45,
+      "frames": 720,
+      "action": "chart-hover",
+      "canvas": true,
+      "maxZoom": 1,
+      "observations": [
+        {
+          "at": 150,
+          "label": "112.67",
+          "scroll": 0,
+          "select": "replace"
+        },
+        {
+          "at": 330,
+          "label": "Selected measurement",
+          "selector": "tbody tr[aria-selected=\"true\"]",
+          "scroll": 260
+        }
+      ]
+    },
+    {
+      "id": "read-result",
+      "blockId": "part_89ec467ab0e8",
+      "frames": 300,
+      "action": "select-text"
+    }
+  ]
+}

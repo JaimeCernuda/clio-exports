@@ -1,5 +1,24 @@
 # Reusable CLIO UI motion toolkit
 
+Start with [clio-videos](../.agents/skills/clio-videos/SKILL.md) for story and shot
+selection. The final NDP full cut was rejected for unnecessary full-screen data
+selection, an uninteresting lake zoom and arbitrary text highlights. Its renderer
+is reusable; its focus manifest is not an approved creative template. The video
+work is stopped, with sources retained for future work.
+
+The technical campaign uses [source-ordered conversation replay](native/REPLAY.md)
+and the [connected-story workflow](story/README.md): production UI components,
+native canvas expansion, real data controls, linked selections and PNG export.
+The pointer is a separate editable layer bound to native DOM targets. Use that
+workflow to reproduce the existing technical edit. `ClioNativePromo` and `ClioProof` remain earlier
+rendering and animation references.
+
+Use the [native conversation preview](native/README.md) to ingest and inspect new
+exports. It imports the production shell, composer, conversation rows, rich views
+and artifact viewers. The earlier kit/proof below was rejected for UI fidelity.
+
+## Earlier component proof
+
 This is a 15-second component proof for the [product brief](BRIEF.md). It reconstructs
 CLIO's source visual language as live React text, SVG icons and DOM panels. Each
 agent card and tool row is independent. The interface reflows for the shot rather
@@ -17,6 +36,7 @@ and two layouts for development/review.
 
 Repo-local skills for other agents:
 
+- [clio-videos](../.agents/skills/clio-videos/SKILL.md): story, purposeful shot selection and campaign lessons.
 - [clio-motion-stack](../.agents/skills/clio-motion-stack/SKILL.md): setup, evidence and packaging.
 - [clio-motion-scenes](../.agents/skills/clio-motion-scenes/SKILL.md): UI scene authoring and choreography.
 - [clio-motion-review](../.agents/skills/clio-motion-review/SKILL.md): source, visual and encoding review.
@@ -139,3 +159,5 @@ before handing off a shared-component change.
 The full pytest suite includes checksums of the original HTML archives and runs
 in a full checkout. A portable source package can run `uv run pytest tests/test_toolkit.py -q`
 with its included indexes, plus the Node tests, without those archives.
+
+The native campaign renderer now includes source-bound Alta snowfall and Konza particle/wind/CO₂ cuts. See [native replay authoring](native/REPLAY.md) for campaign selection, measured scrolling, genuine focus gestures and the omitted packaging turns. The two landscape compositions are `NdpClioAlta` and `NdpClioKonza`.

@@ -1,5 +1,38 @@
 {
-  "files": [".gitattributes", ".gitignore", "AGENTS.md", "README.md", "pyproject.toml", "uv.lock"],
-  "directories": [".agents/skills", "tools", "tests", "typings", "motion/src", "motion/scripts", "motion/tests", "motion/examples", "motion/data", "motion/evidence", "motion/public", "motion/references"],
-  "motionFiles": ["package.json", "package-lock.json", "tsconfig.json", "render.mjs", "README.md", "BRIEF.md", "UI-KIT.md", "package-manifest.json"]
+  "files": [
+    ".gitattributes",
+    ".gitignore",
+    "AGENTS.md",
+    "README.md",
+    "pyproject.toml",
+    "uv.lock",
+    "ndp/README.md",
+    "ndp/SHA256SUMS"
+  ],
+  "directories": [
+    ".agents/skills",
+    "tools",
+    "tests",
+    "typings",
+    "motion/native",
+    "motion/src",
+    "motion/scripts",
+    "motion/tests",
+    "motion/examples",
+    "motion/data",
+    "motion/evidence",
+    "motion/public",
+    "motion/references",
+    "motion/story"
+  ],
+  "motionFiles": [
+    "package.json",
+    "package-lock.json",
+    "tsconfig.json",
+    "render.mjs",
+    "README.md",
+    "BRIEF.md",
+    "UI-KIT.md",
+    "package-manifest.json"
+  ]
 }

@@ -1,5 +1,14 @@
 # CLIO UI component API
 
+**Fidelity correction:** the kit described below was rejected as an accurate
+CLIO reconstruction. Preserve it for its motion mechanisms. New conversation
+work starts with [the production-component adapter](native/README.md) and
+`native/workspace.tsx`. That path uses the actual shell, composer, conversation
+rows, Markdown, saved A2UI views and artifact viewers. Do not render Tahoe through
+`SourceText`: it cannot represent the saved conversation's block structure.
+For editable native film components and frame-controlled layout, use
+[FILM.md](native/FILM.md), `native/film.tsx` and `native/film-plan.ts`.
+
 Import from `src/ui/index.ts`. The kit uses React, lucide SVG icons and CSS; it
 imports no transcript, film copy, Remotion runtime, service provider or agent
 client. It presents state supplied by its host. Choreography and optional

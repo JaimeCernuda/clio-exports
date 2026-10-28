@@ -1,0 +1,989 @@
+{
+  "schema": "clio.connected-review.v1",
+  "subsequentUserReview": {
+    "date": "2026-10-28",
+    "status": "Creative treatment rejected; video work stopped at user request.",
+    "feedback": [
+      "Routine initial NDP data selection did not warrant full-screen presentation.",
+      "One generic lake zoom had no interesting payoff; leave the map alone unless a useful interaction earns attention.",
+      "Arbitrary text selections were distracting and added no meaning.",
+      "There is no obligation to interact with every output."
+    ],
+    "scope": "Earlier technical checks and the 7/10 pointer proof do not establish approval of the full film."
+  },
+  "film": {
+    "frames": 20196,
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "sha256": "c12665f737ef20044513c3f453801f4ea646db8d0614ce36e08338609238fc90",
+    "bytes": 93861133,
+    "timeline": [
+      {
+        "id": "opening",
+        "kind": "card",
+        "cardId": "intro",
+        "index": 0,
+        "start": 0,
+        "end": 300,
+        "frames": 300
+      },
+      {
+        "id": "find-and-measure",
+        "kind": "clip",
+        "campaign": "tahoe",
+        "file": "ndp-clio-tahoe-v4.mp4",
+        "sha256": "b1b27657d4a94775dd098f943cfb1e56d7f7034d902110f315e6d6f2ca21137d",
+        "sourceFrames": 6120,
+        "inFrame": 120,
+        "outFrame": 5940,
+        "holdFrames": 0,
+        "index": 1,
+        "start": 276,
+        "end": 6096,
+        "frames": 5820
+      },
+      {
+        "id": "change-to-record",
+        "kind": "card",
+        "cardId": "alta-bridge",
+        "index": 2,
+        "start": 6072,
+        "end": 6372,
+        "frames": 300
+      },
+      {
+        "id": "compare-winters",
+        "kind": "clip",
+        "campaign": "alta",
+        "file": "ndp-clio-alta-v2.mp4",
+        "sha256": "bfd6ace55f7ee6a15fd415e76b00eca407567a7e722d17096c27e6916dc4b2b7",
+        "sourceFrames": 6900,
+        "inFrame": 120,
+        "outFrame": 6720,
+        "holdFrames": 0,
+        "index": 3,
+        "start": 6348,
+        "end": 12948,
+        "frames": 6600
+      },
+      {
+        "id": "change-to-explanation",
+        "kind": "card",
+        "cardId": "konza-bridge",
+        "index": 4,
+        "start": 12924,
+        "end": 13224,
+        "frames": 300
+      },
+      {
+        "id": "test-explanation",
+        "kind": "clip",
+        "campaign": "konza",
+        "file": "ndp-clio-konza-v2.mp4",
+        "sha256": "aba328f144c087026160a5fae1e388423742d3d8619ac82258e8e1961941dbb8",
+        "sourceFrames": 7020,
+        "inFrame": 120,
+        "outFrame": 6840,
+        "holdFrames": 0,
+        "index": 5,
+        "start": 13200,
+        "end": 19920,
+        "frames": 6720
+      },
+      {
+        "id": "closing",
+        "kind": "card",
+        "cardId": "outro",
+        "index": 6,
+        "start": 19896,
+        "end": 20196,
+        "frames": 300
+      }
+    ],
+    "source": {
+      "schema": "clio.connected-story.v1",
+      "title": "Three questions for NDP + CLIO",
+      "fps": 60,
+      "width": 1920,
+      "height": 1080,
+      "crossfadeFrames": 24,
+      "mediaServer": "http://127.0.0.1:3357",
+      "publishers": [
+        {
+          "id": "tahoe",
+          "short": "TRPA",
+          "name": "Tahoe Regional Planning Agency",
+          "dataset": "Lake Tahoe boundary",
+          "datasetId": "f8e23062-bc48-4bdd-9698-374bee3712fd"
+        },
+        {
+          "id": "alta",
+          "short": "University of Utah",
+          "name": "The Hive · University of Utah Research Data Repository",
+          "dataset": "Alta-Collins snowfall",
+          "datasetId": "16bee949-c829-4038-a316-204a5322b7d8"
+        },
+        {
+          "id": "konza",
+          "short": "NEON / Sage / WIFIRE",
+          "name": "NEON MDP / Sage / WIFIRE BP3D",
+          "dataset": "Konza Prairie burn observations",
+          "datasetId": "335fa1cb-d6d2-4e96-bc8e-c309d957b24d"
+        }
+      ],
+      "cards": [
+        {
+          "id": "intro",
+          "frames": 300,
+          "kicker": "FIND AND MEASURE",
+          "question": "What can you ask\nof NDP data?",
+          "publisher": 0,
+          "fromPublisher": 0
+        },
+        {
+          "id": "alta-bridge",
+          "frames": 300,
+          "kicker": "COMPARE",
+          "question": "How unusual\nwas the winter?",
+          "publisher": 1,
+          "fromPublisher": 0
+        },
+        {
+          "id": "konza-bridge",
+          "frames": 300,
+          "kicker": "TEST THE EXPLANATION",
+          "question": "What do three\nsensors tell us?",
+          "publisher": 2,
+          "fromPublisher": 1
+        },
+        {
+          "id": "outro",
+          "frames": 300,
+          "kicker": "",
+          "question": "Explore NDP\nwith CLIO.",
+          "publisher": 2,
+          "fromPublisher": 2
+        }
+      ],
+      "segments": [
+        {
+          "id": "opening",
+          "kind": "card",
+          "cardId": "intro"
+        },
+        {
+          "id": "find-and-measure",
+          "kind": "clip",
+          "campaign": "tahoe",
+          "file": "ndp-clio-tahoe-v4.mp4",
+          "sha256": "b1b27657d4a94775dd098f943cfb1e56d7f7034d902110f315e6d6f2ca21137d",
+          "sourceFrames": 6120,
+          "inFrame": 120,
+          "outFrame": 5940,
+          "holdFrames": 0
+        },
+        {
+          "id": "change-to-record",
+          "kind": "card",
+          "cardId": "alta-bridge"
+        },
+        {
+          "id": "compare-winters",
+          "kind": "clip",
+          "campaign": "alta",
+          "file": "ndp-clio-alta-v2.mp4",
+          "sha256": "bfd6ace55f7ee6a15fd415e76b00eca407567a7e722d17096c27e6916dc4b2b7",
+          "sourceFrames": 6900,
+          "inFrame": 120,
+          "outFrame": 6720,
+          "holdFrames": 0
+        },
+        {
+          "id": "change-to-explanation",
+          "kind": "card",
+          "cardId": "konza-bridge"
+        },
+        {
+          "id": "test-explanation",
+          "kind": "clip",
+          "campaign": "konza",
+          "file": "ndp-clio-konza-v2.mp4",
+          "sha256": "aba328f144c087026160a5fae1e388423742d3d8619ac82258e8e1961941dbb8",
+          "sourceFrames": 7020,
+          "inFrame": 120,
+          "outFrame": 6840,
+          "holdFrames": 0
+        },
+        {
+          "id": "closing",
+          "kind": "card",
+          "cardId": "outro"
+        }
+      ],
+      "editorial": {
+        "narrative": "Find an appropriate source and measure it; compare a historical record with coverage limits; test whether an explanation follows from paired observations.",
+        "cuts": "Each case retains its first two questions, including native control changes and generated results. The Tahoe follow-up includes plot-to-table selection. Short source-organization bridges connect the independent sessions.",
+        "scope": "The sessions remain distinct. Publisher names identify recorded NDP collections, not endorsements or a newly combined live run. Konza starts from data already acquired through NDP.",
+        "cachedActors": "Continuous moving native UI renders are reused as source actors. The native React components, transcripts, manifests and layout tracks remain editable in this repository; regenerate a case movie to change its UI.",
+        "omitted": "Repeated individual-film openings and closings, other questions, packaging/ZIP exchanges and source footers."
+      }
+    }
+  },
+  "verification": {
+    "decodedFrames": 20196,
+    "completeDecode": true,
+    "format": "1920x1080, 60fps, H.264/yuv420p, BT.709, silent",
+    "nodeTests": {
+      "passed": 42,
+      "failed": 0,
+      "skipped": 0
+    },
+    "pythonTests": {
+      "passed": 67,
+      "failed": 0,
+      "skipped": 0
+    },
+    "typecheck": "pass",
+    "nativeBuild": "pass",
+    "formatCheck": "pass"
+  },
+  "visualReview": "Reviewed the complete 3-second overview, all 14 replacement boundary pairs, consecutive frames at the largest motion candidates, all-worker Konza chart samples, and native actions/returns. Large motion candidates correspond to continuous conversation scrolling and canvas restoration. No enlarged chart-label artifacts observed in reviewed frames. Browser playback reached the final frame.",
+  "limitations": "Frame scanning and sampled visual review support technical continuity; they do not replace human review of the film pacing. Minor subpixel raster differences remain between native chart capture workers.",
+  "joins": [
+    {
+      "campaign": "konza",
+      "shot": "konza-inspect-particle-burst",
+      "boundary": "enter",
+      "frame": 14822,
+      "seconds": 247.03333333333333,
+      "difference": 3.54649
+    },
+    {
+      "campaign": "konza",
+      "shot": "konza-inspect-particle-burst",
+      "boundary": "leave",
+      "frame": 16082,
+      "seconds": 268.03333333333336,
+      "difference": 2.43233
+    },
+    {
+      "campaign": "konza",
+      "shot": "konza-inspect-counterexample",
+      "boundary": "enter",
+      "frame": 17892,
+      "seconds": 298.2,
+      "difference": 3.14449
+    },
+    {
+      "campaign": "konza",
+      "shot": "konza-inspect-counterexample",
+      "boundary": "leave",
+      "frame": 18552,
+      "seconds": 309.2,
+      "difference": 2.56877
+    },
+    {
+      "campaign": "tahoe",
+      "shot": "tahoe-choose-resources",
+      "boundary": "enter",
+      "frame": 500,
+      "seconds": 8.333333333333334,
+      "difference": 1.9922
+    },
+    {
+      "campaign": "tahoe",
+      "shot": "tahoe-choose-resources",
+      "boundary": "leave",
+      "frame": 980,
+      "seconds": 16.333333333333332,
+      "difference": 2.01716
+    },
+    {
+      "campaign": "tahoe",
+      "shot": "tahoe-inspect-map",
+      "boundary": "enter",
+      "frame": 2168,
+      "seconds": 36.13333333333333,
+      "difference": 2.00011
+    },
+    {
+      "campaign": "tahoe",
+      "shot": "tahoe-inspect-map",
+      "boundary": "leave",
+      "frame": 2648,
+      "seconds": 44.13333333333333,
+      "difference": 1.74935
+    },
+    {
+      "campaign": "tahoe",
+      "shot": "tahoe-inspect-comparison",
+      "boundary": "enter",
+      "frame": 3881,
+      "seconds": 64.68333333333334,
+      "difference": 2.1558
+    },
+    {
+      "campaign": "tahoe",
+      "shot": "tahoe-inspect-comparison",
+      "boundary": "leave",
+      "frame": 4601,
+      "seconds": 76.68333333333334,
+      "difference": 1.97924
+    },
+    {
+      "campaign": "alta",
+      "shot": "alta-compare-winters",
+      "boundary": "enter",
+      "frame": 8327,
+      "seconds": 138.78333333333333,
+      "difference": 7.24472
+    },
+    {
+      "campaign": "alta",
+      "shot": "alta-compare-winters",
+      "boundary": "leave",
+      "frame": 8807,
+      "seconds": 146.78333333333333,
+      "difference": 2.06716
+    },
+    {
+      "campaign": "alta",
+      "shot": "alta-inspect-february",
+      "boundary": "enter",
+      "frame": 10193,
+      "seconds": 169.88333333333333,
+      "difference": 3.59204
+    },
+    {
+      "campaign": "alta",
+      "shot": "alta-inspect-february",
+      "boundary": "leave",
+      "frame": 11513,
+      "seconds": 191.88333333333333,
+      "difference": 2.07085
+    }
+  ],
+  "pointers": [
+    {
+      "id": "tahoe-choose-resources",
+      "frames": 480,
+      "sha256": "d4e035128d7a1cff343165d635937c70686ce449e5266d98c98fafd40dad36ad",
+      "cursor": {
+        "track": [
+          {
+            "at": 0,
+            "sampleAt": 0,
+            "kind": "button",
+            "pulse": false,
+            "x": 1830,
+            "y": 230.25,
+            "size": 31.5
+          },
+          {
+            "at": 72,
+            "sampleAt": 72,
+            "kind": "button",
+            "pulse": true,
+            "x": 1830,
+            "y": 140.25,
+            "size": 31.5
+          },
+          {
+            "at": 198,
+            "sampleAt": 198,
+            "kind": "button",
+            "pulse": true,
+            "x": 109.5,
+            "y": 466.59375,
+            "size": 31.5
+          },
+          {
+            "at": 232,
+            "sampleAt": 232,
+            "kind": "button",
+            "pulse": true,
+            "x": 109.5,
+            "y": 547.59375,
+            "size": 31.5
+          },
+          {
+            "at": 266,
+            "sampleAt": 266,
+            "kind": "button",
+            "pulse": true,
+            "x": 109.5,
+            "y": 628.59375,
+            "size": 31.5
+          },
+          {
+            "at": 360,
+            "sampleAt": 359,
+            "kind": "button",
+            "pulse": true,
+            "x": 1827.1171875,
+            "y": 141.046875,
+            "size": 31.5
+          }
+        ],
+        "maximumStep": 22.890668445028986,
+        "method": "Native DOM endpoints; short smooth speed ramps, steady travel, matched slider drags, fixed action times.",
+        "sourceSha256": "3bacf2eb7a18e6ccd1e98d90c769d1abd04036fddd1e9e810a023c6e2a758201"
+      }
+    },
+    {
+      "id": "tahoe-inspect-map",
+      "frames": 480,
+      "sha256": "bba37c191e420a8196f4902469a8139f25f1dd3ed0adce9b5f774c917effe188",
+      "cursor": {
+        "track": [
+          {
+            "at": 0,
+            "sampleAt": 0,
+            "kind": "button",
+            "pulse": false,
+            "x": 1830,
+            "y": 230.25,
+            "size": 31.5
+          },
+          {
+            "at": 72,
+            "sampleAt": 72,
+            "kind": "button",
+            "pulse": true,
+            "x": 1830,
+            "y": 140.25,
+            "size": 31.5
+          },
+          {
+            "at": 198,
+            "sampleAt": 198,
+            "kind": "button",
+            "pulse": true,
+            "x": 1802.25,
+            "y": 282.75,
+            "size": 31.5
+          },
+          {
+            "at": 360,
+            "sampleAt": 359,
+            "kind": "button",
+            "pulse": true,
+            "x": 1829.953125,
+            "y": 140.484375,
+            "size": 31.5
+          }
+        ],
+        "maximumStep": 1.9102214714385093,
+        "method": "Native DOM endpoints; short smooth speed ramps, steady travel, matched slider drags, fixed action times.",
+        "sourceSha256": "3bacf2eb7a18e6ccd1e98d90c769d1abd04036fddd1e9e810a023c6e2a758201"
+      }
+    },
+    {
+      "id": "tahoe-inspect-comparison",
+      "frames": 720,
+      "sha256": "a5697b205bd13cf22823adf758bea1ea3b29d72b84af7935994f6c6a589d5f41",
+      "cursor": {
+        "track": [
+          {
+            "at": 0,
+            "sampleAt": 0,
+            "kind": "button",
+            "pulse": false,
+            "x": 1830,
+            "y": 230.25,
+            "size": 31.5
+          },
+          {
+            "at": 72,
+            "sampleAt": 72,
+            "kind": "button",
+            "pulse": true,
+            "x": 1830,
+            "y": 140.25,
+            "size": 31.5
+          },
+          {
+            "at": 182,
+            "sampleAt": 182,
+            "kind": "observation",
+            "label": "112.67",
+            "x": 1169.0859375,
+            "y": 408.3046875,
+            "size": 31.5
+          },
+          {
+            "at": 210,
+            "sampleAt": 210,
+            "kind": "observation",
+            "label": "112.67",
+            "pulse": true,
+            "x": 1169.0859375,
+            "y": 408.3046875,
+            "size": 31.5
+          },
+          {
+            "at": 362,
+            "sampleAt": 362,
+            "kind": "observation",
+            "label": "Selected measurement",
+            "x": 960.75,
+            "y": 831.75,
+            "size": 31.5
+          },
+          {
+            "at": 600,
+            "sampleAt": 599,
+            "kind": "button",
+            "pulse": true,
+            "x": 1828.5234375,
+            "y": 141.3984375,
+            "size": 31.5
+          }
+        ],
+        "maximumStep": 14.590533223402678,
+        "method": "Native DOM endpoints; short smooth speed ramps, steady travel, matched slider drags, fixed action times.",
+        "sourceSha256": "3bacf2eb7a18e6ccd1e98d90c769d1abd04036fddd1e9e810a023c6e2a758201"
+      }
+    },
+    {
+      "id": "alta-compare-winters",
+      "frames": 480,
+      "sha256": "487084f34b47f063e5f6266f7ba33c35e541c1b0d9c28fad0f723f08fbcaf582",
+      "cursor": {
+        "track": [
+          {
+            "at": 0,
+            "sampleAt": 0,
+            "kind": "button",
+            "pulse": false,
+            "x": 1830,
+            "y": 230.25,
+            "size": 31.5
+          },
+          {
+            "at": 72,
+            "sampleAt": 72,
+            "kind": "button",
+            "pulse": true,
+            "x": 1830,
+            "y": 140.25,
+            "size": 31.5
+          },
+          {
+            "at": 182,
+            "sampleAt": 182,
+            "kind": "observation",
+            "label": "635.5",
+            "x": 763.7109375,
+            "y": 918.234375,
+            "size": 31.5
+          },
+          {
+            "at": 210,
+            "sampleAt": 210,
+            "kind": "observation",
+            "label": "635.5",
+            "pulse": true,
+            "x": 763.7109375,
+            "y": 918.234375,
+            "size": 31.5
+          },
+          {
+            "at": 360,
+            "sampleAt": 359,
+            "kind": "button",
+            "pulse": true,
+            "x": 1828.1953125,
+            "y": 141.5390625,
+            "size": 31.5
+          }
+        ],
+        "maximumStep": 17.338404050961596,
+        "method": "Native DOM endpoints; short smooth speed ramps, steady travel, matched slider drags, fixed action times.",
+        "sourceSha256": "3bacf2eb7a18e6ccd1e98d90c769d1abd04036fddd1e9e810a023c6e2a758201"
+      }
+    },
+    {
+      "id": "alta-inspect-february",
+      "frames": 1320,
+      "sha256": "77486f562e378c304e4252182642229f4e4a9ac475ad439f3397623f35d6aa27",
+      "cursor": {
+        "track": [
+          {
+            "at": 0,
+            "sampleAt": 0,
+            "kind": "button",
+            "pulse": false,
+            "x": 1830,
+            "y": 230.25,
+            "size": 31.5
+          },
+          {
+            "at": 72,
+            "sampleAt": 72,
+            "kind": "button",
+            "pulse": true,
+            "x": 1830,
+            "y": 140.25,
+            "size": 31.5
+          },
+          {
+            "at": 200,
+            "sampleAt": 200,
+            "kind": "control",
+            "pulse": true,
+            "x": 610.078125,
+            "y": 298.5,
+            "size": 31.5
+          },
+          {
+            "at": 360,
+            "sampleAt": 360,
+            "kind": "control",
+            "pulse": true,
+            "x": 116.4609375,
+            "y": 400.5,
+            "size": 31.5
+          },
+          {
+            "at": 396,
+            "sampleAt": 396,
+            "kind": "control",
+            "pulse": true,
+            "x": 195.84375,
+            "y": 400.5,
+            "size": 31.5
+          },
+          {
+            "at": 432,
+            "sampleAt": 432,
+            "kind": "control",
+            "pulse": true,
+            "x": 277.453125,
+            "y": 400.5,
+            "size": 31.5
+          },
+          {
+            "at": 468,
+            "sampleAt": 468,
+            "kind": "control",
+            "pulse": true,
+            "x": 596.8359375,
+            "y": 400.5,
+            "size": 31.5
+          },
+          {
+            "at": 572,
+            "sampleAt": 572,
+            "kind": "observation",
+            "label": "Monthly snowfall (inches): 154.5",
+            "x": 1005.75,
+            "y": 683.296875,
+            "size": 31.5
+          },
+          {
+            "at": 600,
+            "sampleAt": 600,
+            "kind": "observation",
+            "label": "Monthly snowfall (inches): 154.5",
+            "pulse": true,
+            "x": 1005.75,
+            "y": 683.296875,
+            "size": 31.5
+          },
+          {
+            "at": 720,
+            "sampleAt": 720,
+            "kind": "control",
+            "pulse": true,
+            "x": 116.8828125,
+            "y": 400.5,
+            "size": 31.5
+          },
+          {
+            "at": 756,
+            "sampleAt": 756,
+            "kind": "control",
+            "pulse": true,
+            "x": 197.1328125,
+            "y": 400.5,
+            "size": 31.5
+          },
+          {
+            "at": 792,
+            "sampleAt": 792,
+            "kind": "control",
+            "pulse": true,
+            "x": 279.375,
+            "y": 400.5,
+            "size": 31.5
+          },
+          {
+            "at": 828,
+            "sampleAt": 828,
+            "kind": "control",
+            "pulse": true,
+            "x": 599.6953125,
+            "y": 400.5,
+            "size": 31.5
+          },
+          {
+            "at": 864,
+            "sampleAt": 864,
+            "kind": "control",
+            "pulse": true,
+            "x": 230.9765625,
+            "y": 298.5,
+            "size": 31.5
+          },
+          {
+            "at": 976,
+            "sampleAt": 975,
+            "kind": "button",
+            "pulse": true,
+            "x": 1814.15625,
+            "y": 500.015625,
+            "size": 31.5
+          },
+          {
+            "at": 1036,
+            "sampleAt": 1035,
+            "kind": "button",
+            "pulse": true,
+            "x": 1774.203125,
+            "y": 542.765625,
+            "size": 31.5
+          },
+          {
+            "at": 1096,
+            "sampleAt": 1095,
+            "kind": "button",
+            "pulse": true,
+            "x": 1642.28125,
+            "y": 546.96875,
+            "size": 31.5
+          },
+          {
+            "at": 1200,
+            "sampleAt": 1199,
+            "kind": "button",
+            "pulse": true,
+            "x": 1828.171875,
+            "y": 139.421875,
+            "size": 31.5
+          }
+        ],
+        "maximumStep": 21.25372273865772,
+        "method": "Native DOM endpoints; short smooth speed ramps, steady travel, matched slider drags, fixed action times.",
+        "sourceSha256": "3bacf2eb7a18e6ccd1e98d90c769d1abd04036fddd1e9e810a023c6e2a758201"
+      }
+    },
+    {
+      "id": "konza-inspect-particle-burst",
+      "frames": 1260,
+      "sha256": "a852c5b82be14d92ad43c2e464434fa65cc3bfddb5ae6dc3d88eb4b0103426d2",
+      "cursor": {
+        "track": [
+          {
+            "at": 0,
+            "sampleAt": 0,
+            "kind": "button",
+            "pulse": false,
+            "x": 1830,
+            "y": 230.25,
+            "size": 31.5
+          },
+          {
+            "at": 72,
+            "sampleAt": 72,
+            "kind": "button",
+            "pulse": true,
+            "x": 1830,
+            "y": 140.25,
+            "size": 31.5
+          },
+          {
+            "at": 180,
+            "sampleAt": 180,
+            "kind": "control",
+            "pulse": true,
+            "x": 1322.9296875,
+            "y": 441,
+            "size": 31.5
+          },
+          {
+            "at": 240,
+            "sampleAt": 240,
+            "kind": "control",
+            "drag": true,
+            "x": 1540.2421875,
+            "y": 441,
+            "size": 31.5
+          },
+          {
+            "at": 300,
+            "sampleAt": 300,
+            "kind": "control",
+            "pulse": true,
+            "x": 1250.484375,
+            "y": 441,
+            "size": 31.5
+          },
+          {
+            "at": 390,
+            "sampleAt": 390,
+            "kind": "control",
+            "drag": true,
+            "x": 670.9921875,
+            "y": 441,
+            "size": 31.5
+          },
+          {
+            "at": 480,
+            "sampleAt": 480,
+            "kind": "control",
+            "pulse": true,
+            "x": 670.9921875,
+            "y": 441,
+            "size": 31.5
+          },
+          {
+            "at": 540,
+            "sampleAt": 540,
+            "kind": "control",
+            "drag": true,
+            "x": 1250.484375,
+            "y": 441,
+            "size": 31.5
+          },
+          {
+            "at": 600,
+            "sampleAt": 600,
+            "kind": "control",
+            "pulse": true,
+            "x": 1540.2421875,
+            "y": 441,
+            "size": 31.5
+          },
+          {
+            "at": 660,
+            "sampleAt": 660,
+            "kind": "control",
+            "drag": true,
+            "x": 1322.9296875,
+            "y": 441,
+            "size": 31.5
+          },
+          {
+            "at": 742,
+            "sampleAt": 742,
+            "kind": "observation",
+            "label": "3,538.36",
+            "x": 1259.3671875,
+            "y": 553.3359375,
+            "size": 31.5
+          },
+          {
+            "at": 932,
+            "sampleAt": 932,
+            "kind": "observation",
+            "label": "Dry CO₂ (µmol/mol): 455.26334",
+            "x": 848.34375,
+            "y": 724.078125,
+            "size": 31.5
+          },
+          {
+            "at": 1140,
+            "sampleAt": 1139,
+            "kind": "button",
+            "pulse": true,
+            "x": 1828.3359375,
+            "y": 141.2109375,
+            "size": 31.5
+          }
+        ],
+        "maximumStep": 15.002993963817156,
+        "method": "Native DOM endpoints; short smooth speed ramps, steady travel, matched slider drags, fixed action times.",
+        "sourceSha256": "3bacf2eb7a18e6ccd1e98d90c769d1abd04036fddd1e9e810a023c6e2a758201"
+      }
+    },
+    {
+      "id": "konza-inspect-counterexample",
+      "frames": 660,
+      "sha256": "fe056906d48519cde3c63497c900953db39548b10c8ce2c995ecb6ae4f0b759c",
+      "cursor": {
+        "track": [
+          {
+            "at": 0,
+            "sampleAt": 0,
+            "kind": "button",
+            "pulse": false,
+            "x": 1830,
+            "y": 230.25,
+            "size": 31.5
+          },
+          {
+            "at": 72,
+            "sampleAt": 72,
+            "kind": "button",
+            "pulse": true,
+            "x": 1830,
+            "y": 140.25,
+            "size": 31.5
+          },
+          {
+            "at": 182,
+            "sampleAt": 182,
+            "kind": "observation",
+            "label": "16:41",
+            "x": 1688.90625,
+            "y": 410.7890625,
+            "size": 31.5
+          },
+          {
+            "at": 210,
+            "sampleAt": 210,
+            "kind": "observation",
+            "label": "16:41",
+            "pulse": true,
+            "x": 1688.90625,
+            "y": 410.7890625,
+            "size": 31.5
+          },
+          {
+            "at": 332,
+            "sampleAt": 332,
+            "kind": "observation",
+            "label": "16:23",
+            "x": 471.9140625,
+            "y": 409.3359375,
+            "size": 31.5
+          },
+          {
+            "at": 360,
+            "sampleAt": 360,
+            "kind": "observation",
+            "label": "16:23",
+            "pulse": true,
+            "x": 471.9140625,
+            "y": 409.3359375,
+            "size": 31.5
+          },
+          {
+            "at": 540,
+            "sampleAt": 539,
+            "kind": "button",
+            "pulse": true,
+            "x": 1827.7265625,
+            "y": 140.6953125,
+            "size": 31.5
+          }
+        ],
+        "maximumStep": 18.186454087720225,
+        "method": "Native DOM endpoints; short smooth speed ramps, steady travel, matched slider drags, fixed action times.",
+        "sourceSha256": "3bacf2eb7a18e6ccd1e98d90c769d1abd04036fddd1e9e810a023c6e2a758201"
+      }
+    }
+  ]
+}
