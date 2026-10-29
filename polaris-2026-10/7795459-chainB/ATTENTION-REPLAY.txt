@@ -1,0 +1,1 @@
+Replay bundle (2.6 GB, not in git): /lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/exports/attention-replay-7795459/  -- descriptor check 6/6 ok
