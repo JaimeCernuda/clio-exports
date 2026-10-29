@@ -1,0 +1,4 @@
+interface:
+  display_name: "CLIO Motion Stack"
+  short_description: "Maintain CLIO's reusable UI film toolkit"
+  default_prompt: "Use $clio-motion-stack to prepare this repository for another source-linked CLIO film."

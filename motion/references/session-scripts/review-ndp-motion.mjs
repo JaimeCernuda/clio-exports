@@ -1,0 +1,8 @@
+import fs from 'node:fs';
+const name=process.argv[2],root='C:/Users/jaime/Documents/Codex/2026-10-27/i-found-the-earlier-session-on/work';
+if(!['alta','konza'].includes(name))throw new Error('Choose alta or konza');
+const story=JSON.parse(fs.readFileSync(`D:/Libraries/Documents/projects/clio-exports/motion/native/campaigns/${name}.json`));
+const parse=file=>[...fs.readFileSync(file,'utf8').matchAll(/frame:(\d+)[^\n]*pts_time:([\d.]+)\n[^\n]*YDIF=([-+\d.eE]+)/g)].map(m=>({frame:Number(m[1]),seconds:Number(m[2]),difference:Number(m[3])}));
+const tracks={chat:parse(`${root}/${name}-chat-diff.txt`),canvas:parse(`${root}/${name}-canvas-diff.txt`)};
+for(const [track,values]of Object.entries(tracks)){if(values.length!==story.pitch.frames)throw new Error(`${track}: incomplete scan ${values.length}`);const impulses=values.slice(1,-1).map((v,i)=>({...v,impulse:v.difference-Math.max(values[i].difference,values[i+2].difference)})).sort((a,b)=>b.impulse-a.impulse);tracks[track]={frames:values.length,topImpulses:impulses.slice(0,20),topDifferences:[...values].sort((a,b)=>b.difference-a.difference).slice(0,10)};}
+const result={schema:'clio.motion-review.v1',video:`ndp-clio-${name}-v1.mp4`,method:'All adjacent decoded frames. Chat crop 988x660 at 60,169 to 480x320; canvas crop 808x840 at 1050,168 to 480x360. Mean luma difference and isolated impulse relative to neighbors flag review candidates, not automatic defects.',tracks,visualReview:'Pending encoded playback and candidate inspection'};fs.writeFileSync(`${root}/${name}-motion-review.json`,JSON.stringify(result,null,2));console.log(JSON.stringify(Object.fromEntries(Object.entries(tracks).map(([k,v])=>[k,v.topImpulses.slice(0,8)])),null,2));

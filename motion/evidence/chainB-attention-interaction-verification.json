@@ -1,0 +1,17 @@
+{
+  "path": "motion\\out\\spotter-attention-interaction-v2.mp4",
+  "video": {
+    "width": 1280,
+    "height": 720,
+    "fps": "60",
+    "frames": 600,
+    "seconds": 10.0,
+    "codec": "h264",
+    "pixelFormat": "yuv420p",
+    "colorRange": "tv",
+    "matrix": "bt709",
+    "audioStreams": 0
+  },
+  "fullDecode": "passed",
+  "creativeAcceptance": "not established by this verifier"
+}

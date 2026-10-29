@@ -1,0 +1,142 @@
+{
+  "sceneFile": "tahoe.native.json",
+  "sourceSessionId": "sess_9cca40f4085e",
+  "questionIds": [
+    "a359ea79-4c95-4063-89a8-f345ed58c687",
+    "2a8625f6-7d4f-4c6e-953a-06473215e6a3"
+  ],
+  "toolIds": [
+    "call_ab09646f162e",
+    "call_b289879bb9dc",
+    "call_9318527a9744",
+    "call_602d42cce5a7",
+    "call_a2327bf600cb",
+    "call_d484952b7674",
+    "call_59e8aba094b6",
+    "call_8ec17c20ee0b",
+    "call_afddda4755fa"
+  ],
+  "resultMessageId": "msg_asst_b2db01de4e3b",
+  "resultPartId": "part_b84be6a12ade",
+  "mapSurfaceId": "tahoe-boundary-map",
+  "chartSurfaceId": "tahoe-shoreline-resolution",
+  "datasetId": "f8e23062-bc48-4bdd-9698-374bee3712fd",
+  "fragments": {
+    "plan": {
+      "message": "msg_asst_b2db01de4e3b",
+      "part": "part_c96546bff201"
+    },
+    "inspect": {
+      "message": "msg_asst_b2db01de4e3b",
+      "part": "part_492821ffebf9",
+      "until": " It looks like",
+      "from": "Maybe using web fetch"
+    },
+    "area": {
+      "message": "msg_asst_b2db01de4e3b",
+      "part": "part_b84be6a12ade"
+    },
+    "shorePlan": {
+      "message": "msg_asst_587b3a98be67",
+      "part": "part_db62b8383dee"
+    },
+    "shoreReason": {
+      "message": "msg_asst_587b3a98be67",
+      "part": "part_f34c4149d8dd",
+      "until": " It seems likely"
+    },
+    "interpret": {
+      "message": "msg_asst_587b3a98be67",
+      "part": "part_89ec467ab0e8"
+    },
+    "finish": {
+      "message": "msg_asst_587b3a98be67",
+      "part": "part_f34f95d42e43",
+      "from": "**Practical takeaway:**",
+      "until": " **123.05 km"
+    }
+  },
+  "stages": [
+    {
+      "id": "ask",
+      "start": 0,
+      "end": 300,
+      "caption": ""
+    },
+    {
+      "id": "discover",
+      "start": 300,
+      "end": 660,
+      "caption": "Find the boundary"
+    },
+    {
+      "id": "plan",
+      "start": 660,
+      "end": 1380,
+      "caption": "Choose a method"
+    },
+    {
+      "id": "inspect",
+      "start": 1380,
+      "end": 1800,
+      "caption": "Check the source"
+    },
+    {
+      "id": "measure",
+      "start": 1800,
+      "end": 2280,
+      "caption": "Run the calculation"
+    },
+    {
+      "id": "map",
+      "start": 2280,
+      "end": 2700,
+      "caption": "Build the map",
+      "cause": "call_a2327bf600cb"
+    },
+    {
+      "id": "area",
+      "start": 2700,
+      "end": 3360,
+      "caption": "Show how it was measured"
+    },
+    {
+      "id": "follow",
+      "start": 3360,
+      "end": 3720,
+      "caption": ""
+    },
+    {
+      "id": "shore-plan",
+      "start": 3720,
+      "end": 4440,
+      "caption": "Continue with the same data"
+    },
+    {
+      "id": "shore-compute",
+      "start": 4440,
+      "end": 4980,
+      "caption": "Test the effect of detail"
+    },
+    {
+      "id": "chart",
+      "start": 4980,
+      "end": 5400,
+      "caption": "Build the comparison",
+      "cause": "call_afddda4755fa"
+    },
+    {
+      "id": "interpret",
+      "start": 5400,
+      "end": 6240,
+      "caption": "Explain the result"
+    },
+    {
+      "id": "finish",
+      "start": 6240,
+      "end": 6480,
+      "caption": ""
+    }
+  ],
+  "omissions": "Selected source passages and completed actions appear in recorded order. The ZIP exchange and unrelated setup/debug activity are omitted. Production notes belong in documentation, never in the film. Excerpts are contiguous source text; scientific geometry and chart values remain unchanged."
+}

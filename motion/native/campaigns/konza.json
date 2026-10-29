@@ -1,0 +1,202 @@
+{
+  "links": [
+    "nationaldataplatform.org",
+    "clio.iowarp.ai"
+  ],
+  "closing": "Explore NDP\nwith CLIO.",
+  "status": "Proposed campaign cut for review; not an announcement of endorsement. Public agent explanations and saved views; source time condensed. Reproducibility/ZIP turns omitted.",
+  "title": "NDP + CLIO | Konza burn observations",
+  "hook": "Three signals.\nOne explanation?",
+  "sceneFile": "konza.native.json",
+  "replay": {
+    "toolIds": [
+      "call_b058b93de822",
+      "call_4b84d7774f83",
+      "call_565e7a86d8c5",
+      "call_76f6ad7877c6",
+      "call_18b8f1309c86",
+      "call_f97e4f1607e4",
+      "call_b33f54a322be",
+      "call_8a12d2e46183",
+      "call_5ad539a94b41",
+      "call_aecfad46776a",
+      "call_163d13cee502",
+      "call_be9549ff2853",
+      "call_f3d9ba0ff378",
+      "call_e60e2752668c"
+    ],
+    "reasoningIds": [],
+    "includeInjections": false,
+    "answerParagraphs": 2
+  },
+  "workbench": {
+    "tabs": [
+      {
+        "label": "Observations",
+        "surfaceId": "konza-burn-explorer",
+        "artifactId": "artifact_d660b4bce7ff4909b164db7651895fb9"
+      },
+      {
+        "label": "Comparison",
+        "surfaceId": "konza-particle-co2-association",
+        "artifactId": "artifact_db884b6c5bd2499e8d181b519bb6a428"
+      }
+    ]
+  },
+  "focuses": [
+    {
+      "id": "inspect-particle-burst",
+      "surfaceId": "konza-burn-explorer",
+      "offset": 55,
+      "frames": 1260,
+      "action": "chart-hover",
+      "targetLabel": "3,538.36",
+      "maxZoom": 1,
+      "canvas": true,
+      "observations": [
+        {
+          "at": 710,
+          "label": "3,538.36",
+          "scroll": 0
+        },
+        {
+          "at": 900,
+          "label": "Dry CO₂ (µmol/mol): 455.26334",
+          "scroll": 300
+        }
+      ],
+      "controls": [
+        {
+          "id": "hours",
+          "kind": "range",
+          "initial": [
+            16,
+            17
+          ],
+          "step": 0.25,
+          "keyframes": [
+            {
+              "at": 180,
+              "duration": 60,
+              "value": [
+                16,
+                20
+              ]
+            },
+            {
+              "at": 300,
+              "duration": 90,
+              "value": [
+                8,
+                20
+              ]
+            },
+            {
+              "at": 480,
+              "duration": 60,
+              "value": [
+                16,
+                20
+              ]
+            },
+            {
+              "at": 600,
+              "duration": 60,
+              "value": [
+                16,
+                17
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inspect-counterexample",
+      "surfaceId": "konza-particle-co2-association",
+      "offset": 55,
+      "frames": 660,
+      "action": "chart-hover",
+      "targetLabel": "16:23",
+      "maxZoom": 1,
+      "canvas": true,
+      "observations": [
+        {
+          "at": 150,
+          "label": "16:41",
+          "scroll": 0,
+          "select": "replace"
+        },
+        {
+          "at": 300,
+          "label": "16:23",
+          "scroll": 0,
+          "select": "add"
+        }
+      ],
+      "selectionClearAt": 540
+    },
+    {
+      "id": "read-window-finding",
+      "blockId": "part_af74e7c6d458",
+      "frames": 300,
+      "action": "select-text",
+      "selectionText": "depends substantially"
+    }
+  ],
+  "pitch": {
+    "frames": 7020,
+    "sourceFrames": 4200,
+    "turns": 2,
+    "layoutFile": "konza-pitch-layout.json",
+    "stages": [
+      {
+        "id": "intro",
+        "start": 0,
+        "end": 120
+      },
+      {
+        "id": "conversation",
+        "start": 120,
+        "end": 6540
+      },
+      {
+        "id": "result",
+        "start": 6540,
+        "end": 6840
+      },
+      {
+        "id": "outro",
+        "start": 6840,
+        "end": 7020
+      }
+    ]
+  },
+  "social": {
+    "frames": 4800,
+    "sourceFrames": 4200,
+    "turns": 2,
+    "stages": [
+      {
+        "id": "intro",
+        "start": 0,
+        "end": 120
+      },
+      {
+        "id": "conversation",
+        "start": 120,
+        "end": 4320
+      },
+      {
+        "id": "result",
+        "start": 4320,
+        "end": 4620
+      },
+      {
+        "id": "outro",
+        "start": 4620,
+        "end": 4800
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "index": "reading-guide.json",
+    "rootSessionId": "sess_7874a96ceb51",
+    "source": {
+      "path": "delegation/Reading-guide-session.html",
+      "sha256": "bd505defbd060f243d7a7da315621fdc4e13d97a612d6a0f4e94c28c19d1837a",
+      "bytes": 87331887,
+      "exportSchema": "clio.session-export.v2"
+    },
+    "sessions": 11
+  },
+  {
+    "index": "skill-review.json",
+    "rootSessionId": "sess_b095500427c6",
+    "source": {
+      "path": "delegation/Skill-review-session.html",
+      "sha256": "1c3622e3f8754e977b0557e800f6514dc4446f6d47827336ac6650f4b65aef9f",
+      "bytes": 35512587,
+      "exportSchema": "clio.session-export.v2"
+    },
+    "sessions": 7
+  },
+  {
+    "index": "wordle-study-views.json",
+    "rootSessionId": "sess_6dbedc01ef1a",
+    "source": {
+      "path": "studies/Wordle-study-views-session.html",
+      "sha256": "1d1db8bb3de7cccbd215968fa196c2ca82bd0700df90640d2e547a21f2a69e0d",
+      "bytes": 32895657,
+      "exportSchema": "clio.session-export.v2"
+    },
+    "sessions": 7
+  },
+  {
+    "index": "wordle-study.json",
+    "rootSessionId": "sess_e483d2ea61ab",
+    "source": {
+      "path": "studies/Wordle-study-session.html",
+      "sha256": "8d3a29db0ec2aa39fad261f78a017e520715c94317815ffb36ca4483c00d6b61",
+      "bytes": 48278832,
+      "exportSchema": "clio.session-export.v2"
+    },
+    "sessions": 20
+  }
+]

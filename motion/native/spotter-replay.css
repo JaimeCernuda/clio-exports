@@ -1,0 +1,227 @@
+.opal-replay {
+  position: absolute;
+  inset: 38px 12px 12px;
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 14px;
+}
+body:has(.opal-replay) {
+  background: #f5f5f1;
+}
+.paired-main {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+.paired-context {
+  height: 40px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+}
+.paired-canvas {
+  width: 44%;
+  min-width: 420px;
+  border-left: 1px solid var(--border);
+}
+.paired-reviewer {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+}
+.paired-reviewer-header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.paired-reviewer-header > div {
+  flex: 1;
+}
+.paired-reviewer-header p {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  margin: 4px 0 0;
+}
+.paired-transcript {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden;
+}
+.paired-log {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  scrollbar-width: thin;
+  padding: 12px 12px 16px 26px;
+  overflow-anchor: none;
+}
+.paired-log-wrap {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+.paired-messages {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.paired-rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 15;
+  width: 25px;
+  overflow: visible;
+}
+.paired-composer {
+  padding: 4px 18px 10px;
+  flex-shrink: 0;
+}
+.paired-review-controls {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 24px;
+  font: 12px system-ui;
+}
+.paired-review-controls button {
+  padding: 3px 9px;
+  border: 1px solid #ccdce1;
+  background: white;
+  border-radius: 5px;
+}
+.paired-review-controls input {
+  flex: 1;
+}
+.opal-replay .is-user [data-slot="message-text"] {
+  background: color-mix(in oklab, var(--secondary) 45%, var(--background));
+  border: 1px solid var(--border);
+  padding: 16px 20px;
+  line-height: 1.55;
+}
+.opal-replay .is-user blockquote {
+  white-space: normal;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-style: normal;
+  color: var(--foreground);
+  line-height: 1.5;
+  border: 0;
+  margin: 12px 0;
+  padding: 12px;
+  background: var(--muted);
+  border-radius: 6px;
+}
+.recorded-opal-prompt {
+  white-space: pre-wrap;
+  line-height: 1.55;
+}
+.recorded-opal-prompt [data-prompt-section="reference"] {
+  display: block;
+  padding: 12px;
+  background: var(--muted);
+  border-radius: 6px;
+  font: 12px/1.5 var(--font-mono, monospace);
+  overflow-wrap: anywhere;
+}
+.opal-replay .is-user blockquote blockquote {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.opal-replay .is-user blockquote p {
+  white-space: pre-wrap;
+  font-style: normal;
+  font-family: inherit;
+  line-height: inherit;
+}
+.opal-replay [data-slot="message-completion-footer"] {
+  display: none;
+}
+.opal-replay [data-slot="transcript-reasoning-text"] {
+  max-height: 360px;
+  color: var(--foreground);
+}
+.opal-replay
+  [data-slot="transcript-reasoning"]:has([data-slot="recorded-thinking-clip"])
+  > button
+  svg:last-child {
+  rotate: calc(var(--recorded-thinking-open, 0) * 90deg);
+  transform: none;
+  transition: none;
+}
+.opal-replay * {
+  caret-color: transparent !important;
+}
+.opal-replay .animate-spin {
+  animation: none;
+  rotate: var(--attention-shot-spinner, 0deg);
+}
+.paired-reviewer .paired-log {
+  padding: 10px 12px 12px;
+}
+.paired-log [data-message-id] {
+  padding-inline: 12px;
+}
+.paired-reviewer [data-message-id] {
+  padding: 0 0 6px;
+}
+.paired-reviewer [data-slot="conversation-message-sender"] {
+  margin-bottom: 0;
+}
+.paired-reviewer .not-prose[data-state] {
+  margin-block: 4px;
+}
+.paired-reviewer .is-assistant {
+  max-width: 100%;
+  gap: 4px;
+}
+.paired-reviewer [data-slot="transcript-activity-timeline"] {
+  padding-left: 8px;
+  margin-top: 2px;
+}
+.paired-reviewer [data-slot="transcript-reasoning-text"] {
+  padding-left: 8px;
+  line-height: 1.45;
+}
+.paired-reviewer [data-slot="transcript-entry-sequence"] {
+  gap: 4px;
+}
+.paired-reviewer [data-slot="chain-of-thought"] {
+  margin-block: 5px;
+}
+.paired-reviewer .paired-messages > section {
+  gap: 14px;
+}
+.spotter-film-caption {
+  height: 34px;
+  padding: 9px 18px 0;
+  color: #527282;
+  font:
+    12px Inter Variable,
+    sans-serif;
+}
+.paired-main:has([data-slot="attention-mode-banner"])
+  [data-slot="spotter-quarantine-preview"] {
+  display: none;
+}
+body:has(.opal-replay) [data-slot="dropdown-menu-content"] {
+  animation: none !important;
+}
+body:has(.opal-replay):has([data-render-mode="true"]) {
+  margin: 0;
+}

@@ -1,0 +1,4289 @@
+{
+  "schema": "clio.motion-index.v1",
+  "source": {
+    "path": "studies/Wordle-study-session.html",
+    "sha256": "8d3a29db0ec2aa39fad261f78a017e520715c94317815ffb36ca4483c00d6b61",
+    "bytes": 48278832,
+    "exportSchema": "clio.session-export.v2"
+  },
+  "rootSessionId": "sess_e483d2ea61ab",
+  "sessions": [
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_349601827962",
+              "text": "What is the best approach to solving Wordle? Use the word list from the wordle tools, not the official one. Play every game yourself instead of writing a solver.",
+              "truncated": false,
+              "headings": []
+            }
+          ],
+          "text_chars": 161,
+          "id": "user_c5c2821751326051b94d91f2ea7495f7c196ab92f9d1ba66af2a8759b8779166",
+          "role": "user",
+          "created_at": "2026-10-27T15:10:08.645952+00:00",
+          "updated_at": "2026-10-27T15:10:08.645952+00:00",
+          "stop_reason": ""
+        },
+        {
+          "excerpts": [
+            {
+              "partId": "part_340c2ec47a1c",
+              "text": "I'll treat this as a study: load the study procedure and the board catalog, and fetch the game's word list.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_6c078949fe89",
+              "text": "The list is 3,000 synthetic words, not English, so English intuition (e.g. \"CRANE\") may not transfer. Before framing hypotheses I'll look at the list's letter statistics. This only describes the list; it is not a solver, and every game will still be played by hand.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_80b3a13e1db3",
+              "text": "The list is clearly synthetic: every word has exactly 2 or 3 of {a,e,i,o,u,y}, the commonest letters are u, a, o, i, y, k, z, v, and English staples like e, s, t are rare. That makes \"which opener\" a real question here. I'll pick candidate openers from the list (a description of the list, not a solver).",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_d9bcadc5b5a3",
+              "text": "I now have the ingredients for a fair comparison. Framing the study in the log:",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_4baca596d9ad",
+              "text": "Malformed braces in my block; resending correctly.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_abe5ae8bf58b",
+              "text": "Hypotheses recorded. I'll copy the word list into the workspace so every branch reads the same file, then launch the branched workflow.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_8aadd3752c52",
+              "text": "Now the workflow: one branch per hypothesis on shared seeds 1–20, a merge, and a review step that can extend the sample.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_d6aa522060cb",
+              "text": "The workflow is running: three strategy branches on shared seeds 1–20 (60 games), then a merge and an independent review. The answer depends on its result, so I'll wait for it.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_277fa742447c",
+              "text": "The workflow finished, and the review step confirms the merged numbers. I'll read the rest of the result (the merge step's own report) and the Conclusion entry before answering.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_fc0171d6f651",
+              "text": "# The best way to solve this Wordle\n\n**Short answer:** On this word list, the method that mattered was **always guessing a word that fits every clue so far**. With that rule, every opener I tried solved all of its games in 3–5 guesses. Twenty games per opener could not show that any opener was better than another.\n\n## What was tested\n\nThe tool's list has 3,000 made-up words, not English ones. Every word contains 2 or 3 of a, e, i, o, u, y. The most common letters are **u, a, o, i, y, k, z, v**, and English favourites like e, s and t are rare. That gave three openers to compare:\n\n- **`akuzo`**: the opener whose letters cover the most words in this list.\n- **`akuzo` then `nivyl`**: two fixed openers covering 10 different common letters.\n- **`terva`**: an English-style opener, like CRATE.\n\nEach opener played the same 20 games (seeds 1–20), 60 games in total. After the opener, the agent guessed a word that fit every clue so far. Agents chose every guess themselves; grep was used only to list the words that still fit the clues.\n\n## Results\n\n| Strategy | Mean guesses | Failures | Games in 3 / 4 / 5 guesses |\n|---|---|---|---|\n| `akuzo` | 3.65 | 0/20 | 9 / 9 / 2 |\n| `akuzo` + `nivyl` | 3.65 | 0/20 | 8 / 11 / 1 |\n| `terva` | 3.75 | 0/20 | 9 / 7 / 4 |\n\nThe table below compares openers game by game on the same seeds. A negative difference means the first strategy needed fewer guesses. The ranges are 95% bootstrap intervals (10,000 resamples, random seed 20261027).\n\n| Comparison | Mean difference (95% range) |\n|---|---|\n| `akuzo` − `terva` | −0.10 [−0.55, 0.35] |\n| `akuzo`+`nivyl` − `akuzo` | 0.00 [−0.30, 0.30] |\n| `akuzo`+`nivyl` − `terva` | −0.10 [−0.40, 0.20] |\n\nEvery range includes zero. The merge step also produced a chart, `strategy_comparison.png`, which is saved with the study's files.\n\nAll of this is recorded in the Science log, under Conclusion `e_0efad464f535` for question `e_20da865e4b44`. A separate review step recalculated every number by hand and found that they all match.\n\n## What this means\n\n- **Fitting every clue is what kept all 60 games under 6 guesses.** I did not test a strategy without this rule, so this is an observation, not a measured comparison.\n- **The opener made no measurable difference.** The list-tuned `akuzo` came out 0.1 guesses better than `terva`, but that gap is far smaller than the noise.\n  - The noise comes mostly from the player:",
+              "truncated": true,
+              "headings": [
+                "The best way to solve this Wordle",
+                "What was tested",
+                "Results",
+                "What this means",
+                "Settling the opener question"
+              ]
+            }
+          ],
+          "text_chars": 5821,
+          "id": "msg_asst_c4f23bbe06b4",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:28:52.946259+00:00",
+          "updated_at": "2026-10-27T15:28:52.946275+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_5c421a6a3af5",
+          "tool": "load_skill",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_304cac549446",
+          "tool": "load_skill",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_2540f8f10c8c",
+          "tool": "wordle_word_list",
+          "status": "completed",
+          "description": "Fetch the valid-guess word list for the study"
+        },
+        {
+          "call_id": "call_9404c75ba5f3",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "Letter statistics of the wordle word list"
+        },
+        {
+          "call_id": "call_7cb0e0554639",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "Find opener candidates in the word list"
+        },
+        {
+          "call_id": "call_bd3d8c26b1ff",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_4ff9b79e5595",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_b2fea330cbf3",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_d570af2f98f5",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_c16654bef6b2",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "Save word list to workspace"
+        },
+        {
+          "call_id": "call_a497247c962b",
+          "tool": "run_workflow",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_0b3f30c285ac",
+          "tool": "wait_tasks",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_6823f2630786",
+          "tool": "query_log",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_c5814e5bf761",
+          "tool": "get_task_result",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_e483d2ea61ab",
+      "title": "Wordle study",
+      "created_at": "2026-10-27T15:08:16.833936+00:00",
+      "last_interaction_at": "2026-10-27T15:28:53.797980+00:00",
+      "parent_session_id": "",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_0d24540bbf9f",
+              "text": "[check, on claude_code/claude-opus-5-5]\nI'll start with the merge step's result and the study log together.\n\nBoth filtered queries came back empty, so I'll read the whole log without a filter and try to observe the merge task.\n\nI have the full log: 60 Observations, 3 Evidence entries, 2 Conflicts and the Conclusion e_0efad464f535. Next I'll recompute every number myself from the logged measurements.\n\n**Verdict: the merge holds, with caveats.** I recomputed every mean, failure count, paired difference, sign test and Wilcoxon test by hand from the logged measurements, and all of them match. The claims are worded to match the evidence: low confidence, an underpowered null, explicitly not equivalence. Four smaller statements are imprecise or incomplete.\n\nI could not write or run a script: this session is read-only and `fs_write_file` was refused. So I did the arithmetic by hand. I also could not read the merge task's own result or its analysis call: `get_task_result` and `observe_tasks` on task_5d8d640c… returned \"unavailable\". Everything below comes from `query_log` (study e_20da865e4b44, all branches).\n\n### 1. Inputs are complete\n- **What I checked:** each experiment's Observations in `query_log`.\n- **Result:** 20 Observations per experiment, seeds 1–20, no gaps or duplicates.\n  - tuned: e_77157bf0cd73\n  - two-fixed: e_8bcca241e623\n  - English: e_c116796b11b2\n- **Lineage:** each Observation cites a `wordle_new_game` call and every guess call.\n- **Rules:** I spot-checked these games for consistent guesses and found no violations:\n  - tuned seed 3 (e_1d7f328d7cb2)\n  - two-fixed seeds 2 and 3 (e_ea0d9461edf7, e_a52e0a89b123)\n  - English seeds 1 and 14 (e_af26ab639500, e_2d2b7cfaacd7)\n- **Two-fixed exception:** 'akuzo' never solved a game on its own, so the exception for that case never applied.\n\n### 2. Means and failures are correct\n\n| Seeds | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | Sum | Mean |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| tuned | 3 | 3 | 5 | 4 | 4 | 4 | 3 | 3 | 4 | 3 | 3 | 4 | 3 | 3 | 4 | 4 | 4 | 4 | 3 | 5 | 73 | **3.65** |\n| English | 5 | 3 | 3 | 4 | 4 | 3 | 3 | 5 | 5 | 3 | 4 | 3 | 4 | 4 | 5 | 3 | 4 | 3 | 3 | 4 | 75 | **3.75** |\n| two-fixed | 4 | 3 | 4 | 4 | 5 | 3 | 4 | 4 | 4 | 3 | 3 | 3 | 3 | 4 | 4 | 4 | 4 | 3 | 3 | 4 | 73 | **3.65** |\n\n- Ever",
+              "truncated": true,
+              "headings": [
+                "1. Inputs are complete",
+                "2. Means and failures are correct",
+                "3. Paired differences, tests and CIs are correct",
+                "4. Do the claims follow?",
+                "5. What would decide the key comparison (tuned vs English)",
+                "Merge report: study e_20da865e4b44 (Conclusion e_0efad464f535)"
+              ]
+            }
+          ],
+          "text_chars": 25754,
+          "id": "msg_asst_463049932219",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:28:16.061410+00:00",
+          "updated_at": "2026-10-27T15:28:16.061423+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [],
+      "id": "sess_36e796375e158bf0c5da60ead3367ea6",
+      "title": "CLIO Science",
+      "created_at": "2026-10-27T15:11:29.480529+00:00",
+      "last_interaction_at": "2026-10-27T15:28:16.436673+00:00",
+      "parent_session_id": "sess_e483d2ea61ab",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_ec61cc60388b",
+              "text": "I'll start with the merge step's result and the study log together.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_3fed4aa70d29",
+              "text": "Both filtered queries came back empty, so I'll read the whole log without a filter and try to observe the merge task.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_280f0d930a03",
+              "text": "I have the full log: 60 Observations, 3 Evidence entries, 2 Conflicts and the Conclusion e_0efad464f535. Next I'll recompute every number myself from the logged measurements.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_3243306360b1",
+              "text": "**Verdict: the merge holds, with caveats.** I recomputed every mean, failure count, paired difference, sign test and Wilcoxon test by hand from the logged measurements, and all of them match. The claims are worded to match the evidence: low confidence, an underpowered null, explicitly not equivalence. Four smaller statements are imprecise or incomplete.\n\nI could not write or run a script: this session is read-only and `fs_write_file` was refused. So I did the arithmetic by hand. I also could not read the merge task's own result or its analysis call: `get_task_result` and `observe_tasks` on task_5d8d640c… returned \"unavailable\". Everything below comes from `query_log` (study e_20da865e4b44, all branches).\n\n### 1. Inputs are complete\n- **What I checked:** each experiment's Observations in `query_log`.\n- **Result:** 20 Observations per experiment, seeds 1–20, no gaps or duplicates.\n  - tuned: e_77157bf0cd73\n  - two-fixed: e_8bcca241e623\n  - English: e_c116796b11b2\n- **Lineage:** each Observation cites a `wordle_new_game` call and every guess call.\n- **Rules:** I spot-checked these games for consistent guesses and found no violations:\n  - tuned seed 3 (e_1d7f328d7cb2)\n  - two-fixed seeds 2 and 3 (e_ea0d9461edf7, e_a52e0a89b123)\n  - English seeds 1 and 14 (e_af26ab639500, e_2d2b7cfaacd7)\n- **Two-fixed exception:** 'akuzo' never solved a game on its own, so the exception for that case never applied.\n\n### 2. Means and failures are correct\n\n| Seeds | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | Sum | Mean |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| tuned | 3 | 3 | 5 | 4 | 4 | 4 | 3 | 3 | 4 | 3 | 3 | 4 | 3 | 3 | 4 | 4 | 4 | 4 | 3 | 5 | 73 | **3.65** |\n| English | 5 | 3 | 3 | 4 | 4 | 3 | 3 | 5 | 5 | 3 | 4 | 3 | 4 | 4 | 5 | 3 | 4 | 3 | 3 | 4 | 75 | **3.75** |\n| two-fixed | 4 | 3 | 4 | 4 | 5 | 3 | 4 | 4 | 4 | 3 | 3 | 3 | 3 | 4 | 4 | 4 | 4 | 3 | 3 | 4 | 73 | **3.65** |\n\n- Every `solved` value is 1, so there are 0 failures per strategy.\n- Every game took 3–5 guesses.\n- This matches the Conclusion's first two claims (e_0efad464f535).\n\n### 3. Paired differences, tests and CIs are correct\n\n| Comparison | Mean diff | Better / worse / tie | Sign p | Wilcoxon p (normal approx., tie-corrected) | SD of diff | t-approx. 95% CI | Logged bootstrap CI |\n|---|---|---|---|---|---|---|---",
+              "truncated": true,
+              "headings": [
+                "1. Inputs are complete",
+                "2. Means and failures are correct",
+                "3. Paired differences, tests and CIs are correct",
+                "4. Do the claims follow?",
+                "5. What would decide the key comparison (tuned vs English)"
+              ]
+            }
+          ],
+          "text_chars": 6255,
+          "id": "msg_asst_360aeaad23ce",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:28:14.513664+00:00",
+          "updated_at": "2026-10-27T15:28:14.513685+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_fe2958caca80",
+          "tool": "query_log",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_7de327ca80c1",
+          "tool": "query_log",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_4716cd577fbd",
+          "tool": "",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_051588c3a4d6",
+          "tool": "query_log",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_64fc9504c42b",
+          "tool": "observe_tasks",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_d223063449b4",
+          "tool": "",
+          "status": "failed"
+        }
+      ],
+      "id": "sess_d4d99983a9076512028bb01bfcb7fc31",
+      "title": "check",
+      "created_at": "2026-10-27T15:26:49.360993+00:00",
+      "last_interaction_at": "2026-10-27T15:28:14.905891+00:00",
+      "parent_session_id": "sess_36e796375e158bf0c5da60ead3367ea6",
+      "agent.id": "review"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_4ec5b0bdc19f",
+              "text": "I'll load the study skill and read the log.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_e7cd7c426226",
+              "text": "The log holds 60 games: 20 seeds for each of the 3 strategies, and every game was solved. Next I'll export the measurements.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_971ac39211a4",
+              "text": "I'll write the analysis script and check the CSV header first.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_936140140218",
+              "text": "The analysis call is `call_d2bf083fb14a`. Next I'll register the artifacts and check the chart.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_5688a5e4554c",
+              "text": "The chart reads correctly. Next I'll log the three Evidence entries, one per hypothesis comparison.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_1e5304ab6cb8",
+              "text": "Both Conflict calls failed because I passed `description` as a top-level argument instead of inside `fields`. Retrying them correctly:",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_c1388ec519f1",
+              "text": "The Conclusion was rejected because `caveats` must be a list. Resubmitting with the caveats split into items:",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_8ba9912eb5be",
+              "text": "## Merge report: study e_20da865e4b44 (Conclusion e_0efad464f535)\n\nThe sample could not separate the three strategies. Every paired 95% CI includes 0 and no strategy failed a game.\n\n**Data:** 60 Observations from `query_log`: 20 shared seeds (1-20) for each strategy, every game solved. Exported with `export_measurements` to `measurements-call_e43b5d3e114c.csv` (sha256 39cea1bd…, 120 rows). The analysis is `analyze.py`, run in call `sess_7567dadf5b9c8817d474d38ea745628d/call_d2bf083fb14a`. Outputs are `analysis_results.json` and `strategy_comparison.png`, both registered as artifacts.\n\n**Per strategy (failures counted as 7):**\n\n| Strategy | Mean guesses | SD | Failures | Distribution |\n|---|---|---|---|---|\n| English 'terva' | 3.75 | 0.79 | 0/20 | 3:9, 4:7, 5:4 |\n| Tuned 'akuzo' | 3.65 | 0.67 | 0/20 | 3:9, 4:9, 5:2 |\n| Two-fixed 'akuzo'+'nivyl' | 3.65 | 0.59 | 0/20 | 3:8, 4:11, 5:1 |\n\n**Paired per-seed differences** (bootstrap B=10000, rng seed 20261027; negative means the first strategy needed fewer guesses):\n\n| Comparison | Mean diff | 95% CI | First better / worse / tie | Sign test p | Wilcoxon p |\n|---|---|---|---|---|---|\n| tuned − English | −0.10 | [−0.55, 0.35] | 7 / 6 / 7 | 1.0 | 0.66 |\n| two-fixed − tuned | 0.00 | [−0.30, 0.30] | 5 / 5 / 10 | 1.0 | 1.0 |\n| two-fixed − English | −0.10 | [−0.40, 0.20] | 6 / 4 / 10 | 0.75 | 0.53 |\n\n**Could the sample separate the strategies?** No.\n- The SD of the per-seed differences is about 1.07 guesses, roughly ten times the largest observed effect (0.1).\n- Detecting a 0.1-guess effect at 80% power would need about 900 paired seeds; a 0.25-guess effect would need about 150. These are approximate normal calculations.\n- What n=20 does show is that any true difference is under about 0.4-0.55 guesses, direction unknown.\n\n**Log entries written:**\n- Evidence: e_971a12290138 (tuned vs English), e_77faaecfaaea (two-fixed vs tuned), e_22962a4d935c (two-fixed vs English). All are weak and all cite the analysis call.\n- Status changes, each applied by the hypothesis's own pre-registered refuting prediction:\n  - H-tuned e_d501905012d0: refuted.\n  - H-twofixed e_7e30d060a2af: refuted.\n  - H-english e_14f219a0f07e: supported, weakly.\n  - All three reasons note this is an underpowered null.\n- Conflict e_4c3a5ad4439b: the refuting criteria are asymmetric. A null result refutes the two tuned hypotheses and leaves H-english standing, s",
+              "truncated": true,
+              "headings": [
+                "Merge report: study e_20da865e4b44 (Conclusion e_0efad464f535)"
+              ]
+            }
+          ],
+          "text_chars": 3784,
+          "id": "msg_asst_96338c8b1340",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:26:46.967918+00:00",
+          "updated_at": "2026-10-27T15:26:46.967937+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_e4b50885f661",
+          "tool": "load_skill",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_ad47abaf19af",
+          "tool": "query_log",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_e43b5d3e114c",
+          "tool": "export_measurements",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_cd340a1b748c",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "inspect csv"
+        },
+        {
+          "call_id": "call_f315978b0893",
+          "tool": "fs_write_file",
+          "status": "completed",
+          "description": "write analysis script"
+        },
+        {
+          "call_id": "call_d2bf083fb14a",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "run analysis"
+        },
+        {
+          "call_id": "call_731e2cab18ec",
+          "tool": "view_image",
+          "status": "completed",
+          "path": "/home/user/clio-agent/.cloud-run/f13/ws-ws-f13-take13/runs/flowrun_4776354df376eddc7ad00d69/merge/strategy_comparison.png"
+        },
+        {
+          "call_id": "call_1ebbccc10c53",
+          "tool": "create_artifact",
+          "status": "completed",
+          "path": ""
+        },
+        {
+          "call_id": "call_f9142b95189b",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_c69e46304ff8",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_adf1256ea3cd",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_827d49eafa91",
+          "tool": "set_status",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_31bff8e28105",
+          "tool": "set_status",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_138906b13b4a",
+          "tool": "set_status",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_ec3d3ddeff48",
+          "tool": "",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_cd1d0e798d7c",
+          "tool": "",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_b978d69b2b36",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_96e953fc6fcb",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_5338216181ec",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_528119c841c1",
+          "tool": "log_entry",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_7567dadf5b9c8817d474d38ea745628d",
+      "title": "merge",
+      "created_at": "2026-10-27T15:24:13.525018+00:00",
+      "last_interaction_at": "2026-10-27T15:26:47.753918+00:00",
+      "parent_session_id": "sess_36e796375e158bf0c5da60ead3367ea6",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_51e93b5dadb9",
+              "text": "I'll load the study procedure and check the existing log entries for this branch's hypothesis and root question.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_5b8d06250792",
+              "text": "Both entries exist. Next I'll write the Experiment for this branch.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_3a2c017b1fe2",
+              "text": "The Experiment is logged as e_c116796b11b2. Now I'll split the 20 seeds across four children with the same self-contained rules.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_8fabf2ce4aea",
+              "text": "I made an error in that spawn. I sent a literal \"TASK_PLACEHOLDER\" assignment to one child (task_7e3048c1…, session sess_5897b154…) instead of the four real self-contained tasks. That child has no rules, seeds or experiment id, so any games it plays won't count. I'm cancelling it now and launching the four correct children. I'll check whether the bad child logged anything or played games before collecting results.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_5e40ac7dc2a6",
+              "text": "The placeholder child (task_7e3048c1…) is confirmed cancelled. Before waiting on the four real batches, I'll check its transcript for any games played or entries logged.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_3e0a6502ba68",
+              "text": "The placeholder child had no entries linked to the experiment. Its only transcript row is the cancelled turn (msg_asst_fc4371f9f3b3, error \"turn cancelled by client\"), so it played no games that need accounting for. I'll now wait for the four real batches.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_936683af10ff",
+              "text": "All four batches finished. Next I'll check the log for all 20 Observations linked to experiment e_c116796b11b2 and their measurements.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_8424df9b88dd",
+              "text": "I collected and played all 20 games for branch H-english, and logged one Observation per seed. All 20 were solved, with a mean of **3.75 guesses** and **0 failures**.\n\n**Experiment:** e_c116796b11b2 (hypothesis e_14f219a0f07e, study e_20da865e4b44, sample size 20).\n\nI checked the log with `query_log(type=observation, links_to=e_c116796b11b2)`. It returns exactly 20 Observations, one for each of seeds 1–20 with no gaps or duplicates. Each one carries `guesses` and `solved` measurements with conditions `{strategy: english_terva, seed}`. Each one's `from_calls` lists the `wordle_new_game` call and every `wordle_guess` call for that game.\n\n| seed | game_id | guesses | solved | Observation |\n|---|---|---|---|---|\n| 1 | g20-s1 | 5 | 1 | e_af26ab639500 |\n| 2 | g17-s2 | 3 | 1 | e_c06cfb08965d |\n| 3 | g22-s3 | 3 | 1 | e_588348a48cab |\n| 4 | g23-s4 | 4 | 1 | e_79fdef899110 |\n| 5 | g25-s5 | 4 | 1 | e_05d918bb1a5a |\n| 6 | g29-s6 | 3 | 1 | e_10f07dc5b23a |\n| 7 | g27-s7 | 3 | 1 | e_98ea448976ae |\n| 8 | g26-s8 | 5 | 1 | e_986e3b291c2d |\n| 9 | g28-s9 | 5 | 1 | e_e05c303ad80f |\n| 10 | g30-s10 | 3 | 1 | e_a207c04572f1 |\n| 11 | g35-s11 | 4 | 1 | e_f84c40324f3d |\n| 12 | g32-s12 | 3 | 1 | e_4bc53deb2261 |\n| 13 | g33-s13 | 4 | 1 | e_cc75bd9a13db |\n| 14 | g34-s14 | 4 | 1 | e_2d2b7cfaacd7 |\n| 15 | g31-s15 | 5 | 1 | e_6bbaa75ec04c |\n| 16 | g36-s16 | 3 | 1 | e_eabe97d01f4b |\n| 17 | g37-s17 | 4 | 1 | e_dc3ed58a003d |\n| 18 | g39-s18 | 3 | 1 | e_b04613af15c9 |\n| 19 | g38-s19 | 3 | 1 | e_b0db438b54fa |\n| 20 | g40-s20 | 4 | 1 | e_ceb5ce19c513 |\n\n**Summary:**\n- **Total and mean:** 75 guesses over 20 games, a mean of 3.75.\n- **Distribution:** 9 games took 3 guesses, 7 took 4 and 4 took 5.\n- **Spread:** sample SD ≈ 0.79, and the approximate 95% t-interval for the mean is about [3.38, 4.12].\n- **Solve rate:** 20 of 20, with no failures.\n\nI worked these figures out by hand from the logged measurements. I did not write an Evidence entry or run a recorded analysis call; the merge step should run `export_measurements` and do its own analysis.\n\n**Observed pattern:** `terva` returned all-absent in 7 of 20 games (seeds 4, 7, 8, 9, 10, 11 and 15). That left 863 candidates after the opener in each of those games. Three of the four 5-guess games are among those seven.\n\n**Caveats and problems:**\n- **Placeholder child:** my first spawn sent a literal \"TASK_PLACEHOLDER\" assignment to one child (task_7e304",
+              "truncated": true,
+              "headings": []
+            },
+            {
+              "partId": "part_32f3238db581",
+              "text": "Branch H-english (hypothesis e_14f219a0f07e), experiment e_c116796b11b2: all 20 games on seeds 1-20 were solved, with a mean of 3.75 guesses and 0 failures. Distribution: 9 games took 3 guesses, 7 took 4 and 4 took 5. Sample SD is about 0.79, and the approximate 95% CI for the mean is [3.38, 4.12] (computed by hand from the logged measurements; no recorded analysis call or Evidence entry).\n\nquery_log confirms exactly 20 Observations linked to e_c116796b11b2, one per seed, each with `guesses`/`solved` measurements, conditions {strategy: english_terva, seed}, and from_calls covering the new_game call and every guess call.\n\nPer seed (guesses, Observation):\n1:5 e_af26ab639500 | 2:3 e_c06cfb08965d | 3:3 e_588348a48cab | 4:4 e_79fdef899110 | 5:4 e_05d918bb1a5a | 6:3 e_10f07dc5b23a | 7:3 e_98ea448976ae | 8:5 e_986e3b291c2d | 9:5 e_e05c303ad80f | 10:3 e_a207c04572f1 | 11:4 e_f84c40324f3d | 12:3 e_4bc53deb2261 | 13:4 e_cc75bd9a13db | 14:4 e_2d2b7cfaacd7 | 15:5 e_6bbaa75ec04c | 16:3 e_eabe97d01f4b | 17:4 e_dc3ed58a003d | 18:3 e_b04613af15c9 | 19:3 e_b0db438b54fa | 20:4 e_ceb5ce19c513\n\nObserved pattern: 'terva' got all-absent feedback in 7 of 20 games (seeds 4, 7, 8, 9, 10, 11, 15). Three of the four 5-guess games are among those seven.\n\nCaveats:\n- Placeholder child: my first spawn sent a literal TASK_PLACEHOLDER assignment to child task_7e3048c1… (sess_5897b154…). It is cancelled (confirmed); its only transcript row is the cancelled turn and it logged no entries. Whether it made any game calls before cancellation is unverified, but none are linked to this experiment.\n- Shared second guess: seeds 7-10 all used 'kuizo' as guess 2. Each was consistent with the feedback, but those games are less independent at guess 2.\n- Unsourced measurements: all 20 `solved` values and the `guesses` values for seeds 11-20 are typed, not sourced from calls. Only seeds 1-10 cite the final call's turns_used.\n- Filter mistakes: grep mistakes in seeds 4, 5, 7, 12 and 18 were caught before the guesses that depended on them, so no turn was affected.\n- Open: the paired comparison against the akuzo branch on shared seeds, plus the Evidence entry and the hypothesis status, are left to the merge step.",
+              "truncated": false,
+              "headings": []
+            }
+          ],
+          "text_chars": 6847,
+          "id": "msg_asst_eaa112bb0bc7",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:23:54.148680+00:00",
+          "updated_at": "2026-10-27T15:23:54.148700+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_faebe6e7892a",
+          "tool": "load_skill",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_54cf40eee048",
+          "tool": "query_log",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_80ed9fc1fdeb",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_7babfd5bb720",
+          "tool": "spawn_agents_parallel",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_642b80edbf4b",
+          "tool": "spawn_agents_parallel",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_0f433097f92d",
+          "tool": "cancel_tasks",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_790f5bb93bb1",
+          "tool": "query_log",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_634aea22fe22",
+          "tool": "observe_tasks",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_3655124eac08",
+          "tool": "wait_tasks",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_23b97a9d1cb2",
+          "tool": "query_log",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_8a41e2029f6686fa83a6822755a2f977",
+      "title": "english",
+      "created_at": "2026-10-27T15:11:34.914064+00:00",
+      "last_interaction_at": "2026-10-27T15:23:54.714393+00:00",
+      "parent_session_id": "sess_36e796375e158bf0c5da60ead3367ea6",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_aa9297b88f54",
+              "text": "Loading the run-a-study skill before logging the experiment.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_da8d6c8a12f5",
+              "text": "The parser has rejected this twice, at a similar position each time. I'm retrying with a shorter method string that has no parentheses.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_09252942e556",
+              "text": "The earlier blocks were missing the brace that closes the outer call object, which is why the parser rejected them each time. Here is the experiment entry with that brace restored.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_1eb3f596c41c",
+              "text": "Experiment e_8bcca241e623 is logged. Next I'm starting four children with five seeds each. Each child gets the full shared rules and the experiment id.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_c34d2ef84348",
+              "text": "Four children are running: seeds 1-5, 6-10, 11-15 and 16-20. I'll wait until all of them report back.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_c6ae1e0f27ef",
+              "text": "All four children finished. Next I'll check that all 20 Observations exist in the log and export their measurements so the mean comes from logged data.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_92efd3bab159",
+              "text": "All 20 Observations are present and linked to e_8bcca241e623, one per seed from 1 to 20. The export returned the whole study (60 observations from all branches), so the analysis filters it to this strategy.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_fbca1cc64da3",
+              "text": "The log rejected the free-text strength value, so I'm resending the entry with strength \"moderate\" and the caveat moved into the interpretation.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_b0d1222d7041",
+              "text": "The submit call failed because the answer was not wrapped in \"arguments\". I'm resending it.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_e726e8e2a60b",
+              "text": "Branch H-twofixed (hypothesis e_7e30d060a2af) is finished: all 20 games were played and all 20 were solved.\n\n**Experiment:** e_8bcca241e623, sample_size 20.\n\nThe four child batches, each with five seeds, all completed:\n- task_6a77e40e…, seeds 1-5\n- task_ad823314…, seeds 6-10\n- task_dbbf1d1c…, seeds 11-15\n- task_409810a6…, seeds 16-20\n\n**Check:** `query_log` (call_1f0c9236c308) shows exactly 20 Observations linked to e_8bcca241e623, one per seed from 1 to 20. Each cites its `wordle_new_game` call and every `wordle_guess` call in `from_calls`. Each has the measurements `guesses` and `solved` with conditions {strategy: 'twofixed_akuzo_nivyl', seed}.\n\n| Seed | Guesses | Solved | Answer | Observation |\n|---|---|---|---|---|\n| 1 | 4 | 1 | ykyke | e_fe412d477a9b |\n| 2 | 3 | 1 | anrik | e_ea0d9461edf7 |\n| 3 | 4 | 1 | ludqe | e_a52e0a89b123 |\n| 4 | 4 | 1 | nhigu | e_663f593f8a3f |\n| 5 | 5 | 1 | ohoka | e_1e50595eb0fb |\n| 6 | 3 | 1 | lyuvu | e_be3524b0554b |\n| 7 | 4 | 1 | kzifi | e_0929095780f4 |\n| 8 | 4 | 1 | ulgon | e_c28b0c5bf24e |\n| 9 | 4 | 1 | ojbig | e_db8d2e115123 |\n| 10 | 3 | 1 | miugo | e_ecef28a437ec |\n| 11 | 3 | 1 | lkojo | e_c52eadf5e192 |\n| 12 | 3 | 1 | fgovo | e_a82be2ec8f5e |\n| 13 | 3 | 1 | izapy | e_271fad50cdda |\n| 14 | 4 | 1 | unaru | e_c273cf16eb37 |\n| 15 | 4 | 1 | mubnu | e_616474b9853d |\n| 16 | 4 | 1 | emhaz | e_28ad28fc785b |\n| 17 | 4 | 1 | vmyqy | e_591566d18006 |\n| 18 | 3 | 1 | abaky | e_aef416615226 |\n| 19 | 3 | 1 | erzin | e_5ba6bbb6ce9f |\n| 20 | 4 | 1 | rpepo | e_d737f8c4b953 |\n\n**Summary statistics** come from the exported measurements, filtered to this strategy:\n- Mean 3.65 guesses, standard deviation 0.587, t 95% CI 3.375 to 3.925.\n- 8 games took 3 guesses, 11 took 4 and 1 took 5.\n- There were no failures; 20 of 20 were solved.\n- Analysis call: sess_f67dd8e795670b932cde4355cedb1d0f/call_903ac4997574.\n- Export: measurements-call_abc611828448.csv in this node folder, sha256 39cea1bd…0922.\n\n**Open items:**\n- **No Evidence entry is logged.** The log requires Evidence to support or refute a hypothesis. On its own this branch only estimates its own mean, so whether it supports or refutes the hypothesis is left to the merge, which can compare it paired over seeds 1-20 with the other branches.\n- **Seeds 11-15 have typed guesses values.** Their `guesses` measurements are typed in rather than sourced from the `turns_used` field. The values do match",
+              "truncated": true,
+              "headings": []
+            }
+          ],
+          "text_chars": 4095,
+          "id": "msg_asst_b4fb9a6131b8",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:24:11.337843+00:00",
+          "updated_at": "2026-10-27T15:24:11.337864+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_585d2444571c",
+          "tool": "load_skill",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_c6dcdb2d6a1c",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_219ccc47ba39",
+          "tool": "spawn_agents_parallel",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_6fd2cc3f22af",
+          "tool": "wait_tasks",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_1f0c9236c308",
+          "tool": "query_log",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_abc611828448",
+          "tool": "export_measurements",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_903ac4997574",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "Analyze twofixed guesses"
+        },
+        {
+          "call_id": "call_fb1dcb203487",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_ef29e53abe53",
+          "tool": "log_entry",
+          "status": "failed"
+        }
+      ],
+      "id": "sess_f67dd8e795670b932cde4355cedb1d0f",
+      "title": "twofixed",
+      "created_at": "2026-10-27T15:11:34.199647+00:00",
+      "last_interaction_at": "2026-10-27T15:24:11.831838+00:00",
+      "parent_session_id": "sess_36e796375e158bf0c5da60ead3367ea6",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_382ca8c93ff6",
+              "text": "Loading the study skill first.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_36619085c56d",
+              "text": "I'll write the Experiment entry and read the hypothesis entry at the same time.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_4a6e2719894d",
+              "text": "Experiment is e_77157bf0cd73. Next I'll start 4 children with 5 seeds each.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_eb7b717e3d0a",
+              "text": "All 4 children were accepted. I'll wait for every one of them to finish.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_a3ac8627b369",
+              "text": "All four children report 20/20 solved. Next I'll confirm in the log that all 20 Observations exist with their measurements.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_b6c320ac9a49",
+              "text": "All 20 games for H-tuned ('akuzo' opener, then only guesses consistent with all feedback) were solved, with a mean of **3.65 guesses** and **no failures**. All 20 Observations exist in the log and link to Experiment `e_77157bf0cd73`, under hypothesis `e_d501905012d0` and study `e_20da865e4b44`.\n\n| seed | game_id | guess sequence | guesses | solved | Observation |\n|---|---|---|---|---|---|\n| 1 | g1-s1 | akuzo → ekivy → ykyke | 3 | 1 | e_2542a7d24fe0 |\n| 2 | g2-s2 | akuzo → ankir → anrik | 3 | 1 | e_38381ef25d06 |\n| 3 | g4-s3 | akuzo → udryn → xudmi → cudbu → ludqe | 5 | 1 | e_1d7f328d7cb2 |\n| 4 | g3-s4 | akuzo → ivnur → nuidy → nhigu | 4 | 1 | e_b22822ba1c57 |\n| 5 | g5-s5 | akuzo → romka → onika → ohoka | 4 | 1 | e_765611d85f87 |\n| 6 | g6-s6 | akuzo → vruni → mvumy → lyuvu | 4 | 1 | e_040fc73c6faf |\n| 7 | g8-s7 | akuzo → kizri → kzifi | 3 | 1 | e_1dfa15eb4ec9 |\n| 8 | g7-s8 | akuzo → uvoli → ulgon | 3 | 1 | e_e3d55eaa1d6b |\n| 9 | g9-s9 | akuzo → ivron → moipy → ojbig | 4 | 1 | e_251bbd3ea6a7 |\n| 10 | g10-s10 | akuzo → imuro → miugo | 3 | 1 | e_b4aa3fac89ee |\n| 11 | g13-s11 | akuzo → lkydo → lkojo | 3 | 1 | e_d2b051f4e0bb |\n| 12 | g12-s12 | akuzo → vmyro → ofivo → fgovo | 4 | 1 | e_313f6074c577 |\n| 13 | g14-s13 | akuzo → razni → izapy | 3 | 1 | e_f3e18bded687 |\n| 14 | g11-s14 | akuzo → yranu → unaru | 3 | 1 | e_8d073368bcab |\n| 15 | g15-s15 | akuzo → nuidy → runer → mubnu | 4 | 1 | e_04351d75dc3b |\n| 16 | g16-s16 | akuzo → razni → yzwad → emhaz | 4 | 1 | e_b49c7fc127de |\n| 17 | g18-s17 | akuzo → milry → gymjy → vmyqy | 4 | 1 | e_a0a7bb512376 |\n| 18 | g19-s18 | akuzo → arnik → avkam → abaky | 4 | 1 | e_5370966ad0fe |\n| 19 | g21-s19 | akuzo → rezmi → erzin | 3 | 1 | e_ed71ee7533d2 |\n| 20 | g24-s20 | akuzo → vmyro → rifno → robxo → rpepo | 5 | 1 | e_e56c326a6437 |\n\n**Summary**\n- **Total and mean:** 73 guesses over 20 games, mean 3.65.\n- **Distribution:** 9 games took 3 guesses, 9 took 4, 2 took 5. No game was solved in 1–2 guesses and none failed.\n- **Spread:** sample SD ≈ 0.67, SE ≈ 0.15, so the 95% t-interval is about [3.34, 3.96].\n- **Solve rate:** 20/20 solved, 0 failures.\n- **Check:** these figures are my own hand arithmetic on the logged values. I did not record an analysis call or write an Evidence entry. The merge should recompute them with `export_measurements` (filter strategy=tuned_akuzo) before citing them.\n\n**Provenance**\n- **Log check:** I confirmed ",
+              "truncated": true,
+              "headings": []
+            }
+          ],
+          "text_chars": 4480,
+          "id": "msg_asst_6f12edfd7d9e",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:22:52.904968+00:00",
+          "updated_at": "2026-10-27T15:22:52.904987+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_6bf2fa340058",
+          "tool": "load_skill",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_cb9e6c8c73c7",
+          "tool": "query_log",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_0af74cd65cc7",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_e68e96b2ba80",
+          "tool": "spawn_agents_parallel",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_a28a2d8938ec",
+          "tool": "wait_tasks",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_9a72a5d4e44f",
+          "tool": "query_log",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_64960c8b3e1394144a0c8d104f95983e",
+      "title": "tuned",
+      "created_at": "2026-10-27T15:11:33.887168+00:00",
+      "last_interaction_at": "2026-10-27T15:22:53.246833+00:00",
+      "parent_session_id": "sess_36e796375e158bf0c5da60ead3367ea6",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_f634fcdd4143",
+              "text": "I'll load the study skill and start all five games at once.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_acf5c1b462cb",
+              "text": "Opening all five games with 'terva'.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_34bf4c3ebe71",
+              "text": "Filtering candidates for all five games from the word list.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_6ad04c45a515",
+              "text": "Filters check out against the feedback (S18's stray non-ASCII character is harmless because the second grep re-applies the correct pattern). Second guesses, all chosen from the consistent candidate lists:\n- S16: emady\n- S17: uvizy\n- S18: anoku\n- S19: erodi\n- S20: kyeru",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_6c177bd58e2e",
+              "text": "Feedback after guess 2. Filtering the next candidates.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_91058abb0b3c",
+              "text": "Filters match all feedback. Third guesses: S16 emhaz, S17 voydy, S18 abaky, S19 erzin and S20 rmemo. S16, S18 and S19 each have only one consistent candidate.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_c2f94076da4d",
+              "text": "S16, S18 and S19 are solved in 3 guesses each. Seeds 17 and 20 each have exactly one remaining candidate that fits all feedback:\n- **S17**: the pattern is v?y?y with o and d absent. Of the earlier candidate list, only vmyqy fits.\n- **S20**: the pattern is r?e?o with m absent. Of the earlier candidate list (rmemo, rpepo), only rpepo fits.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_4df9fd02dd60",
+              "text": "All five games are solved. Logging one Observation per game.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_6471ae98cd64",
+              "text": "All five games (seeds 16–20) are solved, and each has one Observation logged.\n\n| seed | game_id | guess sequence (feedback) | guesses | solved | Observation id |\n|---|---|---|---|---|---|\n| 16 | g36-s16 | terva (-Y--Y), emady (GGY--), emhaz (GGGGG) | 3 | 1 | e_eabe97d01f4b |\n| 17 | g37-s17 | terva (---Y-), uvizy (-Y--G), voydy (G-G-G), vmyqy (GGGGG) | 4 | 1 | e_dc3ed58a003d |\n| 18 | g39-s18 | terva (----Y), anoku (G--G-), abaky (GGGGG) | 3 | 1 | e_b04613af15c9 |\n| 19 | g38-s19 | terva (-YY--), erodi (GG--Y), erzin (GGGGG) | 3 | 1 | e_b0db438b54fa |\n| 20 | g40-s20 | terva (-YY--), kyeru (--GY-), rmemo (G-G-G), rpepo (GGGGG) | 4 | 1 | e_ceb5ce19c513 |\n\nThis batch averages 3.4 guesses with 5 of 5 solved.\n\n**How the games were played:**\n- Every game opened with 'terva'.\n- Every later guess was consistent with all feedback so far. I picked each one from candidates listed by `grep` on `study/words.txt`, and no solver or script chose any guess.\n- All five Observations link to experiment e_c116796b11b2, study e_20da865e4b44.\n- Each Observation's `from_calls` lists that game's `wordle_new_game` call and every one of its `wordle_guess` calls.\n- Measurements carry `conditions` {strategy: 'english_terva', seed}.\n\n**Problems and notes:**\n- **Typo in the first seed-18 filter:** that `grep` contained one non-ASCII character. It had no effect, because a second `grep` in the same pipeline re-applied the correct ASCII pattern, and the next filter (call_e9550ab627d1) was clean.\n- **Game IDs are not in seed order:** seed 18 is g39-s18 and seed 19 is g38-s19. Match games by seed rather than by game number.\n- **Single-candidate guesses:** some third and fourth guesses had only one consistent word left (S16, S18 and S19 at guess 3; S17 and S20 at guess 4). S16, S18 and S19 needed no choice at guess 3. S17 and S20 did involve a choice at guess 3, from 5 and 2 candidates.",
+              "truncated": false,
+              "headings": []
+            }
+          ],
+          "text_chars": 2913,
+          "id": "msg_asst_8021c286a1ff",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:20:11.605797+00:00",
+          "updated_at": "2026-10-27T15:20:11.605825+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_050f81d3d995",
+          "tool": "load_skill",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_4d41f373d78d",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 16"
+        },
+        {
+          "call_id": "call_4c9cde72d386",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 17"
+        },
+        {
+          "call_id": "call_78372fa58422",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 19"
+        },
+        {
+          "call_id": "call_9383bc679ff3",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 18"
+        },
+        {
+          "call_id": "call_720faba917fd",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 20"
+        },
+        {
+          "call_id": "call_afdbf4b99344",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s17 g1"
+        },
+        {
+          "call_id": "call_cd6da4a3d0d8",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s20 g1"
+        },
+        {
+          "call_id": "call_6120dd16ec04",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s19 g1"
+        },
+        {
+          "call_id": "call_74243d9ad995",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s18 g1"
+        },
+        {
+          "call_id": "call_9ae388b0c0dd",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s16 g1"
+        },
+        {
+          "call_id": "call_b3d707e36c78",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates after terva"
+        },
+        {
+          "call_id": "call_cad65aceff3f",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s16 g2"
+        },
+        {
+          "call_id": "call_a42fa801151c",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s18 g2"
+        },
+        {
+          "call_id": "call_e7dc48079cad",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s20 g2"
+        },
+        {
+          "call_id": "call_b13c37575ddf",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s17 g2"
+        },
+        {
+          "call_id": "call_c6c0968dc0d8",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s19 g2"
+        },
+        {
+          "call_id": "call_e9550ab627d1",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter after guess 2"
+        },
+        {
+          "call_id": "call_cad39cfb92fe",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s16 g3"
+        },
+        {
+          "call_id": "call_f5ebb62ad242",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s18 g3"
+        },
+        {
+          "call_id": "call_c3b34ba3674d",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s19 g3"
+        },
+        {
+          "call_id": "call_c95a9de8950b",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s17 g3"
+        },
+        {
+          "call_id": "call_5788270d1d6d",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s20 g3"
+        },
+        {
+          "call_id": "call_0cf28dfef87c",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s17 g4"
+        },
+        {
+          "call_id": "call_ac9eb87a61aa",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s20 g4"
+        },
+        {
+          "call_id": "call_0d69ba04e509",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_7df4a096b0bc",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_168d2a24bfba",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_913596d81986",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_cdc644fd777a",
+          "tool": "log_entry",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_ba3f18b300c2eb46b8ba92aff356c2f0",
+      "title": "terva seeds 16-20",
+      "created_at": "2026-10-27T15:12:35.955052+00:00",
+      "last_interaction_at": "2026-10-27T15:20:12.982856+00:00",
+      "parent_session_id": "sess_8a41e2029f6686fa83a6822755a2f977",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_1e911e121840",
+              "text": "I'll load the study skill and start all five games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_dc12dccb304c",
+              "text": "All five games started. Opening each with 'terva'.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_ae293af574ed",
+              "text": "Feedback recorded for all five openers. Next I'll filter the word list for each game.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_e848732385ae",
+              "text": "Candidate lists are filtered. My second guesses: s11 'diuno', s15 'bulky' (different letter coverage for the two blank openers), s12 'gyovu', s13 'adinu', s14 'ukari'.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_61d770c8d436",
+              "text": "Filtering candidates for all five games from the feedback so far.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_828f6ede87d7",
+              "text": "Second-round filters checked (duplicate-letter handling is fine here). Third guesses:\n- s11 'lycko' (25 candidates, ending in o)\n- s12 'fgovo' (the only candidate)\n- s13 'kmazi' (46 candidates)\n- s14 'ugaro' (one of ugaro, unaru, uzaru)\n- s15 'huzbi' (9 candidates)",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_a8bf0647ff5b",
+              "text": "Seed 12 is solved in 3 guesses with 'fgovo'. I'll re-filter the other four games using all feedback so far.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_f146b07ac138",
+              "text": "Four games are down to 2–3 candidates each. I checked each list against all feedback, including the duplicate letters in lkojo and unaru. Fourth guesses: s11 'lkojo', s13 'izapy', s14 'unaru', s15 'dubun'.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_06d1e95570df",
+              "text": "Seed 15: 'dubun' scored -GGYY. Of the remaining candidates (dubun, jubgo, mubnu), only 'mubnu' fits: a second u that is not in position 4, and an n that is not in position 5. I'll guess it.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_07ffe6a1c0a0",
+              "text": "All five games are solved, so I'll log one Observation per game.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_fc4a60e8ee9c",
+              "text": "All five games for seeds 11–15 are solved and logged. Every game opened with 'terva'. Every later guess was consistent with all feedback so far. Each Observation is linked to experiment e_c116796b11b2.\n\n| seed | game_id | guess sequence (feedback) | guesses | solved | Observation id |\n|---|---|---|---|---|---|\n| 11 | g35-s11 | terva ----- > diuno ----G > lycko G--YG > lkojo GGGGG | 4 | 1 | e_f84c40324f3d |\n| 12 | g32-s12 | terva ---G- > gyovu Y-GG- > fgovo GGGGG | 3 | 1 | e_4bc53deb2261 |\n| 13 | g33-s13 | terva ----Y > adinu Y-Y-- > kmazi --GYY > izapy GGGGG | 4 | 1 | e_cc75bd9a13db |\n| 14 | g34-s14 | terva --Y-Y > ukari G-GG- > ugaro G-GG- > unaru GGGGG | 4 | 1 | e_2d2b7cfaacd7 |\n| 15 | g31-s15 | terva ----- > bulky YG--- > huzbi -G-Y- > dubun -GGYY > mubnu GGGGG | 5 | 1 | e_6bbaa75ec04c |\n\n**Batch summary:** 5 of 5 solved, mean 4.0 guesses (4, 3, 4, 4, 5).\n\n**Provenance:** each Observation's from_calls lists that game's wordle_new_game call and every wordle_guess call, all in session sess_1a22b81b34d93f7e0fd4ad1d5cb4c863. Each also carries the measurements guesses and solved with conditions {strategy: english_terva, seed}.\n\n**Problems:** none affected play or logging.\n- One grep filter for seed 12 had a stray character class ('[teraYu]'). It only excluded letters already known to be absent (u, plus an unused 'Y'), so the candidate list was still correct.\n- Candidate lists were made with grep only. No script chose guesses or played games.\n- With 5 games, this batch alone is too small to compare strategies.",
+              "truncated": false,
+              "headings": []
+            }
+          ],
+          "text_chars": 2780,
+          "id": "msg_asst_418486ffbf14",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:22:22.346059+00:00",
+          "updated_at": "2026-10-27T15:22:22.346377+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_895871173e62",
+          "tool": "load_skill",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_1622e430d79f",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 15"
+        },
+        {
+          "call_id": "call_e8e0b84b2096",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 12"
+        },
+        {
+          "call_id": "call_186b2812a4dc",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 13"
+        },
+        {
+          "call_id": "call_9514e50f5937",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 14"
+        },
+        {
+          "call_id": "call_c42bab4a8e11",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 11"
+        },
+        {
+          "call_id": "call_3101d0ccf5b3",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s12 g1"
+        },
+        {
+          "call_id": "call_cbd5a8111dca",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s11 g1"
+        },
+        {
+          "call_id": "call_640e3bcb2363",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s15 g1"
+        },
+        {
+          "call_id": "call_3c63cf7a9647",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s13 g1"
+        },
+        {
+          "call_id": "call_dfc87ba592e5",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s14 g1"
+        },
+        {
+          "call_id": "call_f297996ab2a5",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates after terva"
+        },
+        {
+          "call_id": "call_fe983b0c106d",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s12 g2"
+        },
+        {
+          "call_id": "call_b7a545ca1268",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s11 g2"
+        },
+        {
+          "call_id": "call_2c7fbbdfbedc",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s13 g2"
+        },
+        {
+          "call_id": "call_04d0d7c4d0b5",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s15 g2"
+        },
+        {
+          "call_id": "call_66a1b74fae16",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s14 g2"
+        },
+        {
+          "call_id": "call_589310a16fc7",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates after guess 2"
+        },
+        {
+          "call_id": "call_1ee319839500",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s11 g3"
+        },
+        {
+          "call_id": "call_284d43b47f3e",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s15 g3"
+        },
+        {
+          "call_id": "call_885823f8602f",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s12 g3"
+        },
+        {
+          "call_id": "call_f3a69429a663",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s13 g3"
+        },
+        {
+          "call_id": "call_d939e8c10c50",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s14 g3"
+        },
+        {
+          "call_id": "call_4a48570b5653",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates after guess 3"
+        },
+        {
+          "call_id": "call_85d2b608357d",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s13 g4"
+        },
+        {
+          "call_id": "call_957fa1921cb2",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s15 g4"
+        },
+        {
+          "call_id": "call_7558f3d57cd9",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s14 g4"
+        },
+        {
+          "call_id": "call_e0c3f06d4706",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s11 g4"
+        },
+        {
+          "call_id": "call_a416ed8f2056",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s15 g5"
+        },
+        {
+          "call_id": "call_6c8fdc8d86aa",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_2e16f5650142",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_e51fdd0f8d2e",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_abb069693f54",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_5e8c336fcd56",
+          "tool": "log_entry",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_1a22b81b34d93f7e0fd4ad1d5cb4c863",
+      "title": "terva seeds 11-15",
+      "created_at": "2026-10-27T15:12:28.647572+00:00",
+      "last_interaction_at": "2026-10-27T15:22:24.653625+00:00",
+      "parent_session_id": "sess_8a41e2029f6686fa83a6822755a2f977",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_49eaefb99953",
+              "text": "I'll load the skill and start all five games at once.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_49e00a55c46f",
+              "text": "Opening all five games with 'terva'.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_fbc94d758855",
+              "text": "Filtering candidates for each game.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_968394771690",
+              "text": "Seed 6 has 'v' fixed in position 4; seeds 7–10 got all-absent, leaving 863 candidates each. Next I'll look for a consistent word built from distinct high-frequency letters for the all-absent games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_d6cf4a76f807",
+              "text": "For seeds 7–10 I'm guessing 'kuizo', which tests k, u, i, z and o. For seed 6, 'gyuvi' keeps v in position 4 and tests y, u and i.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_441f3bc5bc13",
+              "text": "Updated constraints per game: s6 `_yuv_`; s7 `k_i__` with z present; s8 u/o present; s9 i/o present; s10 u/i present with o at position 5. Filtering each.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_5ef674533b7a",
+              "text": "Seed 7 has only one candidate left, 'kzifi'. For seed 8 I'm guessing 'lomud', which tests l, m and d. For seed 9, 'iglon' tests g, l and n.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_afc90625669a",
+              "text": "Seeds 6, 7 and 10 are solved in 3. Filtering seeds 8 and 9 with their third-guess feedback.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_2993e3623989",
+              "text": "Seeds 6, 7 and 10 are solved in 3 guesses. Seed 8 has four candidates left (ocolu, owulu, ulgon, yloqu); 'ocolu' is one of them and would give a different pattern for each of the other three. Seed 9 has two candidates left; I'm guessing 'gomqi'.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_a00381f1efda",
+              "text": "Seed 8: 'ocolu' returned Y--YY, which only 'ulgon' fits ('owulu' would have shown o green in position 1, 'yloqu' o green in position 3). Seed 9: 'gomqi' returned YY--Y, which fits 'ojbig'.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_c24798e845f3",
+              "text": "All five games are solved. Next I'm logging one Observation per game.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_4e494159eb8d",
+              "text": "All 5 games were solved with the english_terva strategy. Three took 3 guesses and two took 5, a mean of 3.8 guesses with no failures. Each game has one Observation linked to experiment e_c116796b11b2.\n\n| seed | game_id | guess sequence (feedback) | guesses | solved | Observation |\n|---|---|---|---|---|---|\n| 6 | g29-s6 | terva (---G-), gyuvi (-GGG-), lyuvu (GGGGG) | 3 | 1 | e_10f07dc5b23a |\n| 7 | g27-s7 | terva (-----), kuizo (G-GY-), kzifi (GGGGG) | 3 | 1 | e_98ea448976ae |\n| 8 | g26-s8 | terva (-----), kuizo (-Y--Y), lomud (YY-Y-), ocolu (Y--YY), ulgon (GGGGG) | 5 | 1 | e_986e3b291c2d |\n| 9 | g28-s9 | terva (-----), kuizo (--Y-Y), iglon (YY-Y-), gomqi (YY--Y), ojbig (GGGGG) | 5 | 1 | e_e05c303ad80f |\n| 10 | g30-s10 | terva (-----), kuizo (-YY-G), miugo (GGGGG) | 3 | 1 | e_a207c04572f1 |\n\nEvery guess after the opener was consistent with all feedback so far. Each Observation's from_calls lists the wordle_new_game call and every wordle_guess call for that game. Each guesses measurement cites the final guess call's turns_used field as its source.\n\nProblems:\n- **The opener told us little here.** 'terva' returned all-absent in 4 of the 5 games (seeds 7–10), leaving 863 of 3000 words possible after the first guess. Only seed 6 got any hit, a green v.\n- **No game was affected by a filter bug.** One grep for seed 7 wrongly excluded z from position 2 and returned no candidates. I caught and fixed it before guessing, so no turn was spent on it.\n- **The second guess was the same word in four games.** For seeds 7–10 I chose 'kuizo' each time; it was a valid consistent guess, but this makes those four games less independent at guess 2 than the strategy strictly requires.\n- **Five seeds is a small sample.** It cannot separate strategies on its own; the merge needs the other batches' results.",
+              "truncated": false,
+              "headings": []
+            }
+          ],
+          "text_chars": 3434,
+          "id": "msg_asst_b68ceed11f87",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:23:10.491241+00:00",
+          "updated_at": "2026-10-27T15:23:10.491266+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_335d19591591",
+          "tool": "load_skill",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_2ccb2e3e41c4",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 8"
+        },
+        {
+          "call_id": "call_ff8ba9706b35",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 7"
+        },
+        {
+          "call_id": "call_3929a80a76a0",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 9"
+        },
+        {
+          "call_id": "call_92266899d7ff",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 6"
+        },
+        {
+          "call_id": "call_335d9e0a5fdc",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 10"
+        },
+        {
+          "call_id": "call_6b00fe7419a4",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s7 g1"
+        },
+        {
+          "call_id": "call_e67c18a198df",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s6 g1"
+        },
+        {
+          "call_id": "call_3d70ebcbea6f",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s8 g1"
+        },
+        {
+          "call_id": "call_dd365e25c8c8",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s10 g1"
+        },
+        {
+          "call_id": "call_4e5a8da07775",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s9 g1"
+        },
+        {
+          "call_id": "call_73647100a371",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates"
+        },
+        {
+          "call_id": "call_2eb7eaab055a",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "opener-2 candidates"
+        },
+        {
+          "call_id": "call_340d0ead1be6",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s8 g2"
+        },
+        {
+          "call_id": "call_71db0c224ea8",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s6 g2"
+        },
+        {
+          "call_id": "call_555100e35030",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s7 g2"
+        },
+        {
+          "call_id": "call_a276e5b887c7",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s10 g2"
+        },
+        {
+          "call_id": "call_b732ba2d133c",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s9 g2"
+        },
+        {
+          "call_id": "call_15168cda0afd",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter after guess 2"
+        },
+        {
+          "call_id": "call_539996a73833",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s6 g3"
+        },
+        {
+          "call_id": "call_ee3e13d05db5",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s10 g3"
+        },
+        {
+          "call_id": "call_b0ff1a39751b",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "s7 refilter, s8/s9 freq"
+        },
+        {
+          "call_id": "call_af93d2b6b211",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s7 g3"
+        },
+        {
+          "call_id": "call_597c595484c1",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s8 g3"
+        },
+        {
+          "call_id": "call_1f8e678fa5b0",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s9 g3"
+        },
+        {
+          "call_id": "call_bf638473783d",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter after guess 3"
+        },
+        {
+          "call_id": "call_51a7441dc7d0",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s9 g4"
+        },
+        {
+          "call_id": "call_d66b87d024e5",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s8 g4"
+        },
+        {
+          "call_id": "call_236ce90e4e25",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s8 g5"
+        },
+        {
+          "call_id": "call_8e045fe1038f",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s9 g5"
+        },
+        {
+          "call_id": "call_bcf3215fcf95",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_92b49e21bcd2",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_5dbbdb7ddcec",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_b421491d53fc",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_8429977957f4",
+          "tool": "log_entry",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_98f8c4fbd6273ab2e35ffff4ee92e344",
+      "title": "terva seeds 6-10",
+      "created_at": "2026-10-27T15:12:26.416994+00:00",
+      "last_interaction_at": "2026-10-27T15:23:12.482432+00:00",
+      "parent_session_id": "sess_8a41e2029f6686fa83a6822755a2f977",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_3114925248fa",
+              "text": "Loading the study skill and starting all five games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_a7e0b9701c0b",
+              "text": "All five games are started. Next I'll play the opener 'terva' in each.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_982a0a3db207",
+              "text": "The opener 'terva' is in for all five games. Next I'll filter the word list against each game's feedback.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_f2bda10b7858",
+              "text": "Filtered candidates: seeds 1 and 3 share feedback `-Y---` (131 candidates), seed 2 has 29, seed 4 has 863 and seed 5 has 256. I'm playing seed-1 `uzome`, seed-3 `niyde`, seed-2 `karmy` and seed-5 `okida`. All four appear in their candidate lists. I'm also looking up candidates for seed 4.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_87dc48527f81",
+              "text": "Guess 2 is in for seeds 1, 2, 3 and 5. Next I'll filter each of those against all feedback so far. I'm also playing seed 4's guess 2, `kuido`, which is consistent with `-----` (no t, e, r, v, a) and tests common letters.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_e1f5e25bfd06",
+              "text": "Guess 3 for seeds 1, 2 and 3 uses candidates from the filtered lists. I'm also re-filtering seed 5, this time allowing a second 'a', plus seed 4.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_b6d7eea0b33c",
+              "text": "Seeds 2 and 3 are solved in 3 guesses each. Next, guess 4 for seeds 1 and 5:\n- **Seed 1:** the answer must be `??y?e`, with no n, i, d, u, z, o, m, t, r, v or a. The remaining candidates are `bhyke` and `ykyke`.\n- **Seed 5:** the answer is `o???a` with k in position 3 or 4. The remaining candidates are `ohoka` and `omuka`.\n\nI'm also re-filtering seed 4. The earlier seed-4 regex wrongly ruled out u in position 1.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_98e437f50508",
+              "text": "Seeds 2 and 3 are solved. Next guesses, each consistent with all feedback so far:\n\n- **Seed 1:** after `bhyke --GGG` the answer is `??yke` with no b or h; `ykyke` is the only remaining candidate.\n- **Seed 5:** after `omuka G--GG` the answer is `o??ka` with no m or u; that leaves `ohoka`.\n- **Seed 4:** after `kuido -YG--` the answer has i in position 3 and a u somewhere other than position 2. I'm trying `ulizy`, which tests l, z and y.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_0dbaf4693810",
+              "text": "Seeds 1, 2, 3 and 5 are solved. For seed 4, the answer has i in position 3 and u in position 4 or 5. The letters t, e, r, v, a, k, d, o, l, z and y are all ruled out.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_4e608e352fd3",
+              "text": "Seed 4 is down to three candidates: `fiinu`, `ixipu` and `nhigu`. All three fit every feedback so far. I'm guessing `nhigu`, which tests n, h and g.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_3150003a10e8",
+              "text": "All five games are solved. I'm logging one Observation per game, citing every call for that game.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_5b44055f469b",
+              "text": "**Wordle batch, seeds 1–5, strategy `english_terva` (hypothesis e_14f219a0f07e, experiment e_c116796b11b2)**\n\nAll five games were solved, with a mean of 3.8 guesses (19 over 5 games) and a solve rate of 5/5. Every game opened with `terva`. I checked each later guess by hand against all feedback in its game, and each one was consistent. I played every game myself; the shell was used only to grep the word list for candidates.\n\n| seed | game_id | guess sequence (feedback) | guesses | solved | Observation |\n|---|---|---|---|---|---|\n| 1 | g20-s1 | terva `-Y---` → uzome `----G` → niyde `--G-G` → bhyke `--GGG` → ykyke `GGGGG` | 5 | 1 | e_af26ab639500 |\n| 2 | g17-s2 | terva `--G-Y` → karmy `YYG--` → anrik `GGGGG` | 3 | 1 | e_c06cfb08965d |\n| 3 | g22-s3 | terva `-Y---` → niyde `---YG` → ludqe `GGGGG` | 3 | 1 | e_588348a48cab |\n| 4 | g23-s4 | terva `-----` → kuido `-YG--` → ulizy `Y-G--` → nhigu `GGGGG` | 4 | 1 | e_79fdef899110 |\n| 5 | g25-s5 | terva `----G` → okida `GY--G` → omuka `G--GG` → ohoka `GGGGG` | 4 | 1 | e_05d918bb1a5a |\n\nAll five Observations were accepted into study e_20da865e4b44. Each lists in `from_calls` the `wordle_new_game` call and every `wordle_guess` call for its game. The `guesses` measurement is sourced from the final guess call's `turns_used` field.\n\n**Problems and caveats**\n- **Faulty filters, both fixed before the guesses that depended on them:**\n  - My first seed-4 filter after `kuido` wrongly excluded `u` in position 1. I corrected it, and `ulizy` came from the corrected list.\n  - My first seed-5 filter after `okida` banned `a` in positions 2–4. Re-running it with `a` allowed gave the same two candidates.\n- **Seed 1 hit a near-tie:** after `niyde --G-G` the candidates included `bhyke` and `ykyke`, which differ only in their first two letters. The game therefore took 5 guesses.\n- **`solved` values were typed in:** each is 1 and matches the final call's `status: \"solved\"`, but they carry no `source` reference.\n- **Sample size:** five games say nothing about how this strategy compares with others. The merge step should pool these with the other batches.",
+              "truncated": false,
+              "headings": []
+            }
+          ],
+          "text_chars": 4251,
+          "id": "msg_asst_b3ab8a416def",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:23:15.596947+00:00",
+          "updated_at": "2026-10-27T15:23:15.596971+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_a2a5ed42a1da",
+          "tool": "load_skill",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_041ab58cf6c8",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 2"
+        },
+        {
+          "call_id": "call_3cd57a434aae",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 1"
+        },
+        {
+          "call_id": "call_344a093a4d22",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 3"
+        },
+        {
+          "call_id": "call_a4bbd2c33212",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 4"
+        },
+        {
+          "call_id": "call_7d683f7b7f9c",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 5"
+        },
+        {
+          "call_id": "call_aa7309483b2c",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed5 guess1"
+        },
+        {
+          "call_id": "call_58c86f098105",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed2 guess1"
+        },
+        {
+          "call_id": "call_e44544a77739",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed3 guess1"
+        },
+        {
+          "call_id": "call_393f7b30c9c5",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed1 guess1"
+        },
+        {
+          "call_id": "call_c0c2945a78bf",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed4 guess1"
+        },
+        {
+          "call_id": "call_143ca9c48991",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates after terva"
+        },
+        {
+          "call_id": "call_d394eebd5a67",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed1 guess2"
+        },
+        {
+          "call_id": "call_805ce0af9741",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed5 guess2"
+        },
+        {
+          "call_id": "call_74413fe8597e",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed2 guess2"
+        },
+        {
+          "call_id": "call_1f5b8b227759",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed3 guess2"
+        },
+        {
+          "call_id": "call_7b44331b30ed",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "seed4 candidate listing"
+        },
+        {
+          "call_id": "call_e8b8d9447831",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed4 guess2"
+        },
+        {
+          "call_id": "call_e33b362ae0b6",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter after guess 2"
+        },
+        {
+          "call_id": "call_5a057abd5a3f",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed2 guess3"
+        },
+        {
+          "call_id": "call_313f2c2bbc62",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed3 guess3"
+        },
+        {
+          "call_id": "call_b6f2cfdfddcb",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed1 guess3"
+        },
+        {
+          "call_id": "call_446188f55422",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter seeds 4,5"
+        },
+        {
+          "call_id": "call_2590e17b3fd1",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed5 guess3"
+        },
+        {
+          "call_id": "call_97c792a3c8ec",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed1 guess4"
+        },
+        {
+          "call_id": "call_bc9f56d06e2e",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "seed4 refilter"
+        },
+        {
+          "call_id": "call_7e36b9901e0f",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed5 guess4"
+        },
+        {
+          "call_id": "call_e9f96c620abe",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed1 guess5"
+        },
+        {
+          "call_id": "call_83ecde018a8e",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed4 guess3"
+        },
+        {
+          "call_id": "call_462c00308090",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "seed4 filter after ulizy"
+        },
+        {
+          "call_id": "call_4a7b48f5d548",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed4 guess4"
+        },
+        {
+          "call_id": "call_3054e33458b0",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_bfc3d512fdb7",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_56ae15e057f6",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_a96e8648b1ea",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_8a433bba7800",
+          "tool": "log_entry",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_183d6e16eceaebf0c6a649280508f212",
+      "title": "terva seeds 1-5",
+      "created_at": "2026-10-27T15:12:23.067398+00:00",
+      "last_interaction_at": "2026-10-27T15:23:16.682409+00:00",
+      "parent_session_id": "sess_8a41e2029f6686fa83a6822755a2f977",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_34fb901f13a9",
+              "text": "The delegated task text is only the literal `TASK_PLACEHOLDER`, so no assignment was given. I'll check the node and run folders for a task file before reporting back.",
+              "truncated": false,
+              "headings": []
+            }
+          ],
+          "text_chars": 166,
+          "id": "msg_asst_fc4371f9f3b3",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:12:18.143749+00:00",
+          "updated_at": "2026-10-27T15:12:18.143768+00:00",
+          "stop_reason": "cancelled"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_7387ba2815a9",
+          "tool": "fs_list_directory",
+          "status": "completed",
+          "description": "Look for task definition in run folder",
+          "path": "/home/user/clio-agent/.cloud-run/f13/ws-ws-f13-take13/runs/flowrun_4776354df376eddc7ad00d69"
+        },
+        {
+          "call_id": "call_46ba0c125f48",
+          "tool": "fs_list_directory",
+          "status": "completed",
+          "description": "Look for task definition in node folder",
+          "path": "/home/user/clio-agent/.cloud-run/f13/ws-ws-f13-take13/runs/flowrun_4776354df376eddc7ad00d69/english/terva-seeds-1-5"
+        }
+      ],
+      "id": "sess_5897b154cf5760d123a8879919ffa8a6",
+      "title": "terva seeds 1-5",
+      "created_at": "2026-10-27T15:11:53.276447+00:00",
+      "last_interaction_at": "2026-10-27T15:12:18.773246+00:00",
+      "parent_session_id": "sess_8a41e2029f6686fa83a6822755a2f977",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_7819134463b9",
+              "text": "I'll load the study skill and start all five games at once.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_5528a95d9dd9",
+              "text": "Opening guess 'akuzo' in all five games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_f83e403638aa",
+              "text": "Second fixed guess 'nivyl' in all five games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_42ee5aa2f37a",
+              "text": "I'll filter the word list for each game from the feedback so far.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_3f97df1c852b",
+              "text": "Two of my filters were wrong: S16 excluded z from positions 2, 3 and 5, and S20 excluded a second 'o'. I'll redo those two. Meanwhile I'll guess in the games whose filters were correct: S18 'abaky' (only candidate), S17 'veysy', S19 'erzin'.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_df89e959eff3",
+              "text": "Seeds 18 (abaky) and 19 (erzin) are solved in 3. Next guesses, each consistent with all feedback so far:\n- S17: the pattern is v_y_y without e or s, which leaves vmyqy and vvyhy. I'll guess vmyqy.\n- S16: 11 candidates; I'll guess razam.\n- S20: 16 candidates ending in o; I'll guess rmemo.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_ef60ed9e6604",
+              "text": "Seed 17 solved in 4 with 'vmyqy'. Next guesses, each consistent with all feedback so far:\n- **Seed 16:** 'razam' showed one 'a' at position 4, 'z' present but not at positions 3 or 4, 'm' present but not at position 5, and no 'r'. Of the 11 candidates, only 'emhaz' fits.\n- **Seed 20:** the pattern is r?e?o with no 'm'. Of the 16 candidates, only 'rpepo' fits.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_410444652ce1",
+              "text": "All five games are solved. Now I'll log one Observation per game.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_23a02c9f90ab",
+              "text": "The log rejected all five entries because `result` must be a string, not an object. I'll resubmit them with `result` written as text.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_27ab9d2a1d11",
+              "text": "All five games are solved, with a mean of 3.6 guesses (18 total). Each game has one accepted Observation linked to experiment e_8bcca241e623.\n\n| Seed | game_id | Guess sequence (feedback) | Guesses | Solved | Observation |\n|---|---|---|---|---|---|\n| 16 | g56-s16 | akuzo (Y--Y-), nivyl (-----), razam (--YGY), emhaz (GGGGG) | 4 | 1 | e_28ad28fc785b |\n| 17 | g58-s17 | akuzo (-----), nivyl (--YY-), veysy (G-G-G), vmyqy (GGGGG) | 4 | 1 | e_591566d18006 |\n| 18 | g57-s18 | akuzo (GY---), nivyl (---Y-), abaky (GGGGG) | 3 | 1 | e_aef416615226 |\n| 19 | g59-s19 | akuzo (---Y-), nivyl (YY---), erzin (GGGGG) | 3 | 1 | e_5ba6bbb6ce9f |\n| 20 | g60-s20 | akuzo (----G), nivyl (-----), rmemo (G-G-G), rpepo (GGGGG) | 4 | 1 | e_d737f8c4b953 |\n\n**Logging:** each Observation cites the `wordle_new_game` call and every `wordle_guess` call of its game in `from_calls`. It has a `guesses` measurement taken from the final call's `turns_used`, and a `solved` measurement of 1. Both carry conditions `{strategy: 'twofixed_akuzo_nivyl', seed}`. The entries were recorded in study e_20da865e4b44, branch sess_7e800c7a2c61e52fa497e3c578abd118.\n\n**Errors:**\n- **First logging attempt rejected:** all five entries failed with `entry_fields_invalid` because `result` must be a string. I resubmitted them with `result` as text, and all were accepted. No duplicate entries were created.\n- **Two wrong first-pass filters, no wrong guess:** my first filter for seed 16 wrongly excluded 'z' from three positions, and the one for seed 20 wrongly excluded a second 'o'. I re-ran both filters before making any guess in those games.\n\nEvery guess after the two fixed openers was checked against all the feedback before that guess. No scripts chose or played guesses; grep was used only to filter the word list.",
+              "truncated": false,
+              "headings": []
+            }
+          ],
+          "text_chars": 3077,
+          "id": "msg_asst_0a41811b7bb1",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:22:48.354933+00:00",
+          "updated_at": "2026-10-27T15:22:48.354953+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_1558c6086324",
+          "tool": "load_skill",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_3f241ecd7fb8",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 16"
+        },
+        {
+          "call_id": "call_3c4968eb573b",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 18"
+        },
+        {
+          "call_id": "call_ba03341ed855",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 17"
+        },
+        {
+          "call_id": "call_d32d22548063",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 19"
+        },
+        {
+          "call_id": "call_e703cb8305e5",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 20"
+        },
+        {
+          "call_id": "call_a13b94ac568c",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s16 g1"
+        },
+        {
+          "call_id": "call_a0e624dcedcb",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s17 g1"
+        },
+        {
+          "call_id": "call_393bc69e78db",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s18 g1"
+        },
+        {
+          "call_id": "call_b4c0223a5021",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s19 g1"
+        },
+        {
+          "call_id": "call_462f830d58f5",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s20 g1"
+        },
+        {
+          "call_id": "call_54e00ce4aac1",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s16 g2"
+        },
+        {
+          "call_id": "call_59b9f30dc107",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s17 g2"
+        },
+        {
+          "call_id": "call_5b4ae93956e3",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s19 g2"
+        },
+        {
+          "call_id": "call_75f37d088e87",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s18 g2"
+        },
+        {
+          "call_id": "call_976212d783c2",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s20 g2"
+        },
+        {
+          "call_id": "call_d6c04e8f464b",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates"
+        },
+        {
+          "call_id": "call_2067e6412e3e",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s18 g3"
+        },
+        {
+          "call_id": "call_62071e47e267",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s17 g3"
+        },
+        {
+          "call_id": "call_a2311026d5f5",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "refilter s16 s20"
+        },
+        {
+          "call_id": "call_41d87fddfcf8",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s19 g3"
+        },
+        {
+          "call_id": "call_88282a9fa44b",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s20 g3"
+        },
+        {
+          "call_id": "call_0c21db91784e",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s16 g3"
+        },
+        {
+          "call_id": "call_2f87e7e2aaf4",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s17 g4"
+        },
+        {
+          "call_id": "call_8feaeeea90de",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s16 g4"
+        },
+        {
+          "call_id": "call_ce0a5cde380a",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s20 g4"
+        },
+        {
+          "call_id": "call_d8632bea72a0",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_74db6e33c15b",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_1ebc804ac94c",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_b3f6a59b7a77",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_622fec3bcb20",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_34509c8d010f",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_2f924fbca91d",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_7e2f7b0aed89",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_cb1f0910dc92",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_b3fdf785db7a",
+          "tool": "log_entry",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_7e800c7a2c61e52fa497e3c578abd118",
+      "title": "twofixed seeds 16-20",
+      "created_at": "2026-10-27T15:13:39.762278+00:00",
+      "last_interaction_at": "2026-10-27T15:22:50.848920+00:00",
+      "parent_session_id": "sess_f67dd8e795670b932cde4355cedb1d0f",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_7d294d29463e",
+              "text": "I'll load the skill and start all five games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_a4b672d1bec8",
+              "text": "Games started. Opening with 'akuzo' in all five games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_b5c13a00bc38",
+              "text": "Second guess 'nivyl' in all five games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_fae959cacd4d",
+              "text": "Both fixed openers are done in all five games. Next I'll filter the word list to the candidates consistent with each game's feedback.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_94f7030495a6",
+              "text": "The first filters for seeds 11, 12 and 13 wrongly excluded letters that are present: l at position 1 for s11, v at position 1 for s12, and a everywhere for s13. I'm rerunning those three filters with corrected patterns.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_50ac35633062",
+              "text": "Corrected candidates: s11 has one (lkojo), s12 has three (evoxo, fgovo, fhovo), s13 has one (izapy), s14 has 8 and s15 has 14. I chose each third guess from its candidate list. fgovo splits the s12 set: if it misses, the f feedback identifies the answer. unare leaves at most two s14 candidates sharing a pattern. mudnu leaves at most two s15 candidates sharing a pattern.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_2f5d7590ef2d",
+              "text": "Seeds 11, 12 and 13 are solved in 3. For s14, the pattern `unar?` with a final letter other than e leaves only unaru from the earlier list. For s15, `mu?nu` with a third letter other than d leaves only mubnu.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_73ab24c94d78",
+              "text": "All five games are solved. I'll log one Observation per game.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_15d6ee8be5bc",
+              "text": "The batch failed on a JSON syntax error, so nothing was logged yet. I'm resending the five Observations as one valid block.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_10e9968e945f",
+              "text": "All five log entries were rejected because `result` must be a string. I'm resending them with `result` as a text summary.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_93b7b44661c5",
+              "text": "All five games (seeds 11–15) were solved and five Observations were logged under experiment e_8bcca241e623 (strategy twofixed_akuzo_nivyl). Total guesses: 17, mean 3.4.\n\n| seed | game_id | guess sequence | guesses | solved | Observation |\n|---|---|---|---|---|---|\n| 11 | g55-s11 | akuzo, nivyl, lkojo | 3 | 1 | e_c52eadf5e192 |\n| 12 | g52-s12 | akuzo, nivyl, fgovo | 3 | 1 | e_a82be2ec8f5e |\n| 13 | g53-s13 | akuzo, nivyl, izapy | 3 | 1 | e_271fad50cdda |\n| 14 | g54-s14 | akuzo, nivyl, unare, unaru | 4 | 1 | e_c273cf16eb37 |\n| 15 | g51-s15 | akuzo, nivyl, mudnu, mubnu | 4 | 1 | e_616474b9853d |\n\nEach Observation cites the `wordle_new_game` call and every `wordle_guess` call of its game in `from_calls`. Each carries two measurements, `guesses` and `solved`, with conditions {strategy: 'twofixed_akuzo_nivyl', seed}.\n\nAfter the two fixed openers, every guess was taken from a grep-filtered list of words consistent with all feedback so far. The sizes of those lists were 1 (seed 11), 3 (seed 12), 1 (seed 13), 8 (seed 14) and 14 (seed 15).\n\nErrors, none of which cost a turn or affected any game:\n- My first grep filters for seeds 11–13 wrongly excluded letters that were present. I corrected and reran them before making any third guess.\n- The first logging batch failed to parse as JSON, so nothing was written.\n- The second batch was rejected because `result` must be a string. The third attempt was accepted, so each game has exactly one Observation.\n\nOpen point: I did not check whether the third guesses in seeds 14 and 15 (unare, mudnu) were the best choices among their consistent candidates.",
+              "truncated": false,
+              "headings": []
+            }
+          ],
+          "text_chars": 2980,
+          "id": "msg_asst_105d6c4f91cd",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:23:07.672127+00:00",
+          "updated_at": "2026-10-27T15:23:07.672148+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_2eb8f97cb504",
+          "tool": "load_skill",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_0d4ebcd3b785",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 15"
+        },
+        {
+          "call_id": "call_9247323a96df",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 12"
+        },
+        {
+          "call_id": "call_36f954453b94",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 13"
+        },
+        {
+          "call_id": "call_f1ff298f736c",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 14"
+        },
+        {
+          "call_id": "call_3e865d48401f",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 11"
+        },
+        {
+          "call_id": "call_fd88b1dc1aa1",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s11 g1"
+        },
+        {
+          "call_id": "call_74dd58a724c8",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s15 g1"
+        },
+        {
+          "call_id": "call_8965cf9ac69e",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s12 g1"
+        },
+        {
+          "call_id": "call_64863054195b",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s13 g1"
+        },
+        {
+          "call_id": "call_1b7b9ff151fd",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s14 g1"
+        },
+        {
+          "call_id": "call_1583efca816f",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s12 g2"
+        },
+        {
+          "call_id": "call_a7beac50082a",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s11 g2"
+        },
+        {
+          "call_id": "call_841272fdc6e9",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s13 g2"
+        },
+        {
+          "call_id": "call_1c150b86652c",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s14 g2"
+        },
+        {
+          "call_id": "call_043c38f081d7",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s15 g2"
+        },
+        {
+          "call_id": "call_63cae9118834",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates for 5 games"
+        },
+        {
+          "call_id": "call_3ba5407d09b6",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "corrected filters s11-s13"
+        },
+        {
+          "call_id": "call_15fc202239bb",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s11 g3"
+        },
+        {
+          "call_id": "call_03ec6a76259a",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s12 g3"
+        },
+        {
+          "call_id": "call_9ab1c23bb3d6",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s13 g3"
+        },
+        {
+          "call_id": "call_eca1ac732dfd",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s14 g3"
+        },
+        {
+          "call_id": "call_62dfdd8fb9b3",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s15 g3"
+        },
+        {
+          "call_id": "call_f3e9dd801847",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s15 g4"
+        },
+        {
+          "call_id": "call_a3efe1a51c46",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s14 g4"
+        },
+        {
+          "call_id": "call_dd4094567244",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_81e2f27b32c4",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_efa070b72400",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_cda559534f70",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_4e51053eb7dc",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_e54d9dcca0e3",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_2cd01fd65986",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_abc9a191fb73",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_a4245586846f",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_ba9ba9961585",
+          "tool": "log_entry",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_4a70fd65d6b9453d4f92e7e5fd9b8f50",
+      "title": "twofixed seeds 11-15",
+      "created_at": "2026-10-27T15:13:14.572994+00:00",
+      "last_interaction_at": "2026-10-27T15:23:08.818161+00:00",
+      "parent_session_id": "sess_f67dd8e795670b932cde4355cedb1d0f",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_750a4bd78856",
+              "text": "I'll load the skill and start all five games at once.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_381910072673",
+              "text": "Opening guess 'akuzo' in all five games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_2b97374284b8",
+              "text": "Second fixed guess 'nivyl' in all five games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_e65b01023f0b",
+              "text": "Now I'll filter the word list for each game's constraints.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_3aed4edc41c3",
+              "text": "Candidates are filtered. Next guesses: s6 lyuvu (the only candidate), s7 izrik (splits all 4), s8 colnu, s9 dorpi, s10 miugo.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_0b96429a5dd1",
+              "text": "Seeds 6 and 10 are solved in 3 guesses. I filtered the remaining games by hand against all the feedback so far:\n- **s7:** z must be in position 2, and the word needs two i's, in positions 3 and 5. Only kzifi and pziki fit, so I'll guess kzifi.\n- **s8:** ulgon is the only candidate left.\n- **s9:** ojbig is the only candidate left.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_614a40952d92",
+              "text": "All five games are solved. Next I'll log one Observation per game.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_beb31e02872d",
+              "text": "The previous block was cut off before it ended, so none of those log entries were written. Sending all five Observations again as one complete block.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_992c77d656d1",
+              "text": "The log needs `result` to be a string, so none of the five entries were written. I'm resending them with `result` as text.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_04bee306afea",
+              "text": "All five games (seeds 6–10) were solved, and all five Observations are logged against experiment e_8bcca241e623.\n\n| Seed | game_id | Guess sequence | Guesses | Solved | Observation |\n|---|---|---|---|---|---|\n| 6 | g46-s6 | akuzo, nivyl, lyuvu | 3 | 1 | e_be3524b0554b |\n| 7 | g49-s7 | akuzo, nivyl, izrik, kzifi | 4 | 1 | e_0929095780f4 |\n| 8 | g47-s8 | akuzo, nivyl, colnu, ulgon | 4 | 1 | e_c28b0c5bf24e |\n| 9 | g48-s9 | akuzo, nivyl, dorpi, ojbig | 4 | 1 | e_db8d2e115123 |\n| 10 | g50-s10 | akuzo, nivyl, miugo | 3 | 1 | e_ecef28a437ec |\n\nOver these 5 seeds the mean is 3.6 guesses with 5/5 solved. Five games are too few to compare this strategy with others.\n\n**How the games were played:**\n- Every game opened with akuzo and then nivyl, as the strategy requires.\n- After that I picked each guess myself from words matching all feedback so far. I listed those words with one grep filter on `study/words.txt` (call `sess_05bac9fea879d543f2fb607c10c103a1/call_36b18aaae891`), and the seed 7 and 8 lists were then narrowed by hand. No solver or script chose any guess.\n- Matching words after nivyl:\n  - Seed 6: 1 (lyuvu).\n  - Seed 7: 4.\n  - Seed 8: 2.\n  - Seed 9: 15.\n  - Seed 10: 5.\n\n**Each Observation contains:**\n- `from_calls`: the wordle_new_game call and every wordle_guess call for that game.\n- `guesses` measurement: sourced from the final guess call's `turns_used`.\n- `solved` measurement: 1 for each game.\n- Conditions on both measurements: `{strategy: twofixed_akuzo_nivyl, seed}`.\n- `result`: the guess sequence with each guess's feedback pattern and the answer.\n\n**Errors:** two logging attempts failed before the successful one, and neither wrote anything.\n- My first `tool_calls` block was cut off and could not be read.\n- The second was rejected because `fields.result` must be a string. I resent it with `result` as text, and all five entries were accepted.\n\nNo game moves were repeated, and nothing is left open.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_d5bb5ae8b5e8",
+              "text": "Seeds 6-10 for experiment e_8bcca241e623 (strategy twofixed_akuzo_nivyl): all 5 games solved; mean 3.6 guesses. Five games are too few to compare strategies.\n\n| Seed | game_id | Guess sequence | Guesses | Solved | Observation |\n|---|---|---|---|---|---|\n| 6 | g46-s6 | akuzo, nivyl, lyuvu | 3 | 1 | e_be3524b0554b |\n| 7 | g49-s7 | akuzo, nivyl, izrik, kzifi | 4 | 1 | e_0929095780f4 |\n| 8 | g47-s8 | akuzo, nivyl, colnu, ulgon | 4 | 1 | e_c28b0c5bf24e |\n| 9 | g48-s9 | akuzo, nivyl, dorpi, ojbig | 4 | 1 | e_db8d2e115123 |\n| 10 | g50-s10 | akuzo, nivyl, miugo | 3 | 1 | e_ecef28a437ec |\n\nHow the games were played:\n- Every game opened with akuzo then nivyl.\n- Later guesses were chosen by me from words matching all feedback. One grep filter on study/words.txt listed them (call sess_05bac9fea879d543f2fb607c10c103a1/call_36b18aaae891); seeds 7 and 8 were then narrowed by hand. No solver or script chose guesses.\n- Matching words after nivyl: s6 1, s7 4, s8 2, s9 15, s10 5.\n\nEach Observation contains:\n- from_calls: the wordle_new_game call and every wordle_guess call for that game.\n- guesses measurement: sourced from the final guess call's turns_used.\n- solved measurement: 1 for each game.\n- conditions on both: {strategy, seed}.\n- result: the guess sequence with feedback patterns and the answer, as text.\n\nErrors: two logging attempts failed before the successful one, and neither wrote anything. The first tool block was cut off and unreadable. The second was rejected because fields.result must be a string. The resend with result as text was accepted for all 5. Nothing is left open.",
+              "truncated": false,
+              "headings": []
+            }
+          ],
+          "text_chars": 4515,
+          "id": "msg_asst_b3d56b3822ef",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:22:40.371667+00:00",
+          "updated_at": "2026-10-27T15:22:40.371749+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_be30e81f018a",
+          "tool": "load_skill",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_ffb5b9180872",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 6"
+        },
+        {
+          "call_id": "call_5e38ecc80a18",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 8"
+        },
+        {
+          "call_id": "call_0da2bd7cd8ed",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 9"
+        },
+        {
+          "call_id": "call_ecd1a034d763",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 7"
+        },
+        {
+          "call_id": "call_c339052dedfb",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 10"
+        },
+        {
+          "call_id": "call_3ed8fb1c1947",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s7 g1"
+        },
+        {
+          "call_id": "call_901f5ced9635",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s8 g1"
+        },
+        {
+          "call_id": "call_00121e094d71",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s6 g1"
+        },
+        {
+          "call_id": "call_929af8355e20",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s10 g1"
+        },
+        {
+          "call_id": "call_d90e28d8ba41",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s9 g1"
+        },
+        {
+          "call_id": "call_f4211fa96f16",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s10 g2"
+        },
+        {
+          "call_id": "call_24b4e522d6a2",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s7 g2"
+        },
+        {
+          "call_id": "call_f3df56dec926",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s8 g2"
+        },
+        {
+          "call_id": "call_5cdb34a03e34",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s6 g2"
+        },
+        {
+          "call_id": "call_b5cc4e158467",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s9 g2"
+        },
+        {
+          "call_id": "call_36b18aaae891",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates"
+        },
+        {
+          "call_id": "call_b909b74f8830",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s6 g3"
+        },
+        {
+          "call_id": "call_f45f0ddb994c",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s10 g3"
+        },
+        {
+          "call_id": "call_04cac5363afe",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s8 g3"
+        },
+        {
+          "call_id": "call_e4f489af08a5",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s9 g3"
+        },
+        {
+          "call_id": "call_c43103774475",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s7 g3"
+        },
+        {
+          "call_id": "call_6f6287816515",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s9 g4"
+        },
+        {
+          "call_id": "call_c91b634053eb",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s7 g4"
+        },
+        {
+          "call_id": "call_48b30ea0eacc",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s8 g4"
+        },
+        {
+          "call_id": "call_670d71623193",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_63f1b411fb15",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_981dba169009",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_bbf4a880cf16",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_66a0cb5d59f0",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_c1e378962269",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_2b0d9495fa20",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_b694f8e7c455",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_e7a8c91ce605",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_19fd0dbcc9c0",
+          "tool": "log_entry",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_05bac9fea879d543f2fb607c10c103a1",
+      "title": "twofixed seeds 6-10",
+      "created_at": "2026-10-27T15:12:51.734488+00:00",
+      "last_interaction_at": "2026-10-27T15:22:44.638558+00:00",
+      "parent_session_id": "sess_f67dd8e795670b932cde4355cedb1d0f",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_5f2a0ffb12eb",
+              "text": "I'll load the skill and start all five games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_9d4dfb1ff5b3",
+              "text": "Next I'll make the opening guess 'akuzo' in all five games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_c6f38caa1c2c",
+              "text": "Now 'nivyl' in all five games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_7cf1c192bb38",
+              "text": "I'll filter the word list for the words that fit all feedback so far in each of the five games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_b9211216c053",
+              "text": "Candidates are filtered for each game. My next guesses:\n\n- **S1** (gkymy, ykyke): gkymy.\n- **S2** (ankir, anrik, arnik): anrik, which gives a different feedback for each of the three.\n- **S3**: lurru.\n- **S4** (nhigu, nugim): nugim.\n- **S5**: korka.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_49da0bf319a5",
+              "text": "S2 solved in 3 guesses with anrik. I'll re-filter the candidates for the other four games using the new feedback.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_f9025fde1cac",
+              "text": "Each of S1, S3 and S4 now has one candidate left. S5 has three (djoka, fgoka, ohoka), and any of them gives the same feedback for the other two, so I'll take djoka.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_1dec0b01c40f",
+              "text": "S1, S3 and S4 solved in 4 guesses. In S5, djoka ruled out d and j, so fgoka and ohoka remain. I'll guess ohoka.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_5332c6d7122f",
+              "text": "All five games are solved. Next I'll log one Observation per game.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_8835b9276b7b",
+              "text": "The log rejected `result` because it must be a string, so I'm resubmitting all five entries with `result` as text.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_ab475bf89320",
+              "text": "All five games are solved with strategy `twofixed_akuzo_nivyl`, and each has one Observation linked to experiment `e_8bcca241e623`.\n\n| Seed | game_id | Guess sequence (feedback) | Guesses | Solved | Observation |\n|---|---|---|---|---|---|\n| 1 | g41-s1 | akuzo(-G---) nivyl(---Y-) gkymy(-GG-Y) ykyke(GGGGG) | 4 | 1 | e_fe412d477a9b |\n| 2 | g45-s2 | akuzo(GY---) nivyl(YY---) anrik(GGGGG) | 3 | 1 | e_ea0d9461edf7 |\n| 3 | g42-s3 | akuzo(--Y--) nivyl(----Y) lurru(GG---) ludqe(GGGGG) | 4 | 1 | e_a52e0a89b123 |\n| 4 | g43-s4 | akuzo(--Y--) nivyl(GY---) nugim(GYYY-) nhigu(GGGGG) | 4 | 1 | e_663f593f8a3f |\n| 5 | g44-s5 | akuzo(YY--Y) nivyl(-----) korka(-Y-GG) djoka(--GGG) ohoka(GGGGG) | 5 | 1 | e_1e50595eb0fb |\n\nThe mean is 4.0 guesses with 5/5 solved. This is a single run of one strategy, so it supports no comparison with other branches on its own.\n\n**How the log entries were made:**\n- Each Observation cites in `from_calls` its `wordle_new_game` call and every `wordle_guess` call in that game.\n- The `guesses` measurement takes its value from that game's final guess call (field `turns_used`). `solved` is typed in, because no call returns 1 or 0.\n- Both measurements carry `{strategy: 'twofixed_akuzo_nivyl', seed}`.\n- The study is `e_20da865e4b44` and the branch is `sess_c31965a51a57d0dc8b67a3da969c10ae`.\n\n**Errors:**\n- My first five `log_entry` calls were rejected with `entry_fields_invalid` because `result` must be a string, so no entries were created. I resubmitted with `result` as text and all five were accepted.\n- No game errors occurred.\n- After the opening pair, every guess came from the grep-filtered list of words consistent with all feedback so far; I chose each one myself, without a solver.\n- In seed 5, after korka three candidates remained (djoka, fgoka, ohoka). Any of them gives the same feedback when either of the others is the answer, so no guess could split them, and that game took 5 guesses.",
+              "truncated": false,
+              "headings": []
+            }
+          ],
+          "text_chars": 2972,
+          "id": "msg_asst_13e47eb090a0",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:22:35.796348+00:00",
+          "updated_at": "2026-10-27T15:22:35.796387+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_7c189fafc905",
+          "tool": "load_skill",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_26b49f069b7c",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 1"
+        },
+        {
+          "call_id": "call_422aabe06d17",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 3"
+        },
+        {
+          "call_id": "call_e5b43f0acf7b",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 4"
+        },
+        {
+          "call_id": "call_db3e30c1b832",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 5"
+        },
+        {
+          "call_id": "call_06bdc47b6974",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 2"
+        },
+        {
+          "call_id": "call_de828ff2d1fc",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s2 g1"
+        },
+        {
+          "call_id": "call_44d6a38bc842",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s3 g1"
+        },
+        {
+          "call_id": "call_6ba61e6efc44",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s1 g1"
+        },
+        {
+          "call_id": "call_f466c473f847",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s4 g1"
+        },
+        {
+          "call_id": "call_f1759adb9a81",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s5 g1"
+        },
+        {
+          "call_id": "call_606b06158c0a",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s1 g2"
+        },
+        {
+          "call_id": "call_a3dec921ecb6",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s3 g2"
+        },
+        {
+          "call_id": "call_12c36cb3e797",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s5 g2"
+        },
+        {
+          "call_id": "call_9feb4cd9d3f6",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s2 g2"
+        },
+        {
+          "call_id": "call_d89ddec502bf",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s4 g2"
+        },
+        {
+          "call_id": "call_b0781dc645e9",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates after 2 guesses"
+        },
+        {
+          "call_id": "call_f13090704a3a",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s2 g3"
+        },
+        {
+          "call_id": "call_9198f07776ea",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s1 g3"
+        },
+        {
+          "call_id": "call_9c40b0e6a36d",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s3 g3"
+        },
+        {
+          "call_id": "call_784da4c400d4",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s4 g3"
+        },
+        {
+          "call_id": "call_40ec486c0173",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s5 g3"
+        },
+        {
+          "call_id": "call_a355882ef0bb",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates after 3 guesses"
+        },
+        {
+          "call_id": "call_96e6a752e0d6",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s3 g4"
+        },
+        {
+          "call_id": "call_17df952cf844",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s1 g4"
+        },
+        {
+          "call_id": "call_e1ebad6532d5",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s5 g4"
+        },
+        {
+          "call_id": "call_11db19c42651",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s4 g4"
+        },
+        {
+          "call_id": "call_a023d5eec84e",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s5 g5"
+        },
+        {
+          "call_id": "call_76642afe82cb",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_fb0246f52e08",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_f4f1b5f9b8d4",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_501ef8e08853",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_29c42d4aad6b",
+          "tool": "log_entry",
+          "status": "failed"
+        },
+        {
+          "call_id": "call_60ce73f8df8d",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_59b7f3749ab7",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_a7db1121f25a",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_8ddce6a79409",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_959e55f921e2",
+          "tool": "log_entry",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_c31965a51a57d0dc8b67a3da969c10ae",
+      "title": "twofixed seeds 1-5",
+      "created_at": "2026-10-27T15:12:43.276824+00:00",
+      "last_interaction_at": "2026-10-27T15:22:38.370902+00:00",
+      "parent_session_id": "sess_f67dd8e795670b932cde4355cedb1d0f",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_772c1bb6ab29",
+              "text": "I'll start all five games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_f00184e76e0a",
+              "text": "Opening each game with 'akuzo'.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_398aebd6e84d",
+              "text": "Filtering the word list for each game's constraints.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_ddb365be81d3",
+              "text": "Feedback after \"akuzo\" for each game:\n- **s16:** a and z are present but not in their tested positions; k, u and o are absent.\n- **s17:** all five letters are absent, which leaves 149 candidates.\n- **s18:** a is at position 1; k is present but not at position 2.\n- **s19:** z is present but not at position 4.\n- **s20:** o is at position 5.\n\nFor seeds 16, 18, 19 and 20 I'm playing a candidate from the filtered lists. For s17 I'm listing the 149 candidates first.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_65b69320c859",
+              "text": "Second guesses gave new feedback for four games. I'll filter those four candidate lists again and play my second guess for s17 (`milry`, which uses the common letters m, i, r, y).",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_55262951bc9e",
+              "text": "Filters are correct for s16, s18, s19 and s20. s19 has a single candidate. I'm playing a guess in four games and filtering s17.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_6f4645df682d",
+              "text": "Seed 19 is solved in three guesses. For s17 I'll play `gymjy`, and I'll filter the candidates for s16, s18 and s20.\n\n- **s16:** `a` is at position 4. `z` is at position 1 or 5. The letters k, u, o, r, n, i, y, w and d are absent.\n- **s18:** `a` is at position 1. `k` is at position 4. There is a second `a`, not at position 4. The letters u, z, o, r, n, i, v and m are absent.\n- **s20:** the word matches `r...o`. The letters a, k, u, z, v, m, y, i, f and n are absent.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_e126ccfd2038",
+              "text": "Checking each filter against all feedback so far:\n- **s16:** `lazaz`, `zabaz` and `zamag` have an `a` at position 2, but `razni` marked position 2 as only present. `lazaz` also has a `z` at position 3, which `razni` ruled out. That leaves `emhaz`.\n- **s18:** `akyka` has a `k` at position 2, but `akuzo` marked position 2 as only present. That leaves `abaky`.\n- **s20:** `robxo` and `rpepo` are both consistent. I'll play `robxo`.\n- **s17:** `y` is at position 5. A second `y` is somewhere other than position 2. `m` is at position 2 or 4. I'll filter the list for these.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_6795bfd242fe",
+              "text": "s20: `robxo` excluded o at position 2 and b and x, which leaves `rpepo`. s17: the only consistent candidate is `vmyqy`.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_2b2984c9e424",
+              "text": "All five games are solved. I'll log one Observation per game.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_c7e47cb7694f",
+              "text": "All five games for seeds 16–20 were solved with `tuned_akuzo`, and each has one Observation in the study log linked to experiment `e_77157bf0cd73`.\n\n| seed | game_id | guess sequence | guesses | solved | Observation id |\n|---|---|---|---|---|---|\n| 16 | g16-s16 | akuzo → razni → yzwad → emhaz | 4 | 1 | e_b49c7fc127de |\n| 17 | g18-s17 | akuzo → milry → gymjy → vmyqy | 4 | 1 | e_a0a7bb512376 |\n| 18 | g19-s18 | akuzo → arnik → avkam → abaky | 4 | 1 | e_5370966ad0fe |\n| 19 | g21-s19 | akuzo → rezmi → erzin | 3 | 1 | e_ed71ee7533d2 |\n| 20 | g24-s20 | akuzo → vmyro → rifno → robxo → rpepo | 5 | 1 | e_e56c326a6437 |\n\n**Summary:** 5 of 5 solved, mean 4.0 guesses (3, 4, 4, 4, 5).\n\n**Logging:** All entries were accepted into study `e_20da865e4b44`, in branch `sess_6d70c2993b762c38ade6c2b8a9461326`. Each entry's `from_calls` lists the call reference for that game's `wordle_new_game` and for every `wordle_guess`.\n\n**Errors and rule deviations:**\n- No tool errors, and no guess was rejected or invalid.\n- I chose every guess myself. The shell was used only to grep `study/words.txt` for words that fit the feedback; no script chose guesses or played games.\n- I re-checked each guess by hand against all earlier feedback, and every one was consistent.\n- Three grep filters returned words that did not fit the feedback. For seed 16 these were `lazaz`, `zabaz` and `zamag`, and for seed 18 it was `akyka`, because I had left out some position constraints. I removed them by hand before guessing, so no inconsistent word was played.\n- Several guesses repeat a letter (gymjy, vmyqy, avkam, abaky, robxo, rpepo). That is allowed by the strategy.\n\nNothing remains open for this assignment.",
+              "truncated": false,
+              "headings": []
+            }
+          ],
+          "text_chars": 3782,
+          "id": "msg_asst_f67ec6d13cc0",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:22:18.852891+00:00",
+          "updated_at": "2026-10-27T15:22:18.852917+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_e9195897b005",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 16"
+        },
+        {
+          "call_id": "call_89c6721622ce",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 17"
+        },
+        {
+          "call_id": "call_ad41d630666f",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 18"
+        },
+        {
+          "call_id": "call_f0ae7f769a1d",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 19"
+        },
+        {
+          "call_id": "call_2cb365e06b7c",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 20"
+        },
+        {
+          "call_id": "call_1c838950326d",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s18 g1"
+        },
+        {
+          "call_id": "call_2a893e9e3791",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s19 g1"
+        },
+        {
+          "call_id": "call_49e9e351ab68",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s17 g1"
+        },
+        {
+          "call_id": "call_87e8ae294dde",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s16 g1"
+        },
+        {
+          "call_id": "call_36a253a5b7f8",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s20 g1"
+        },
+        {
+          "call_id": "call_439610e8fe99",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates"
+        },
+        {
+          "call_id": "call_69a3a746ddf3",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s16 g2"
+        },
+        {
+          "call_id": "call_7da7e80afa01",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s18 g2"
+        },
+        {
+          "call_id": "call_80e3627b3406",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s19 g2"
+        },
+        {
+          "call_id": "call_e9fc32c6efa0",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s20 g2"
+        },
+        {
+          "call_id": "call_e87e059f1001",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "s17 candidates"
+        },
+        {
+          "call_id": "call_bbba46ef37af",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s17 g2"
+        },
+        {
+          "call_id": "call_4f214794d877",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter round 2"
+        },
+        {
+          "call_id": "call_3c2095f40e58",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s16 g3"
+        },
+        {
+          "call_id": "call_b4a7221b5481",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s20 g3"
+        },
+        {
+          "call_id": "call_cfb813ae2f07",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s18 g3"
+        },
+        {
+          "call_id": "call_210623323071",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s19 g3"
+        },
+        {
+          "call_id": "call_d6c68fefd083",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "s17 filter"
+        },
+        {
+          "call_id": "call_0e17e66d703c",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s17 g3"
+        },
+        {
+          "call_id": "call_ed5d0e9d323f",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter round 3"
+        },
+        {
+          "call_id": "call_1b0f4d11877b",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s18 g4"
+        },
+        {
+          "call_id": "call_b1a90fe4e4d7",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s16 g4"
+        },
+        {
+          "call_id": "call_3eab60034875",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s20 g4"
+        },
+        {
+          "call_id": "call_3cd36cd6e037",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "s17 filter round 3"
+        },
+        {
+          "call_id": "call_5d76ebccc682",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s20 g5"
+        },
+        {
+          "call_id": "call_b463b6326229",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s17 g4"
+        },
+        {
+          "call_id": "call_cb22f6424bb3",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_fc141a59dbcd",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_797a35460fba",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_1ba5bcd95dc4",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_57b45a13d373",
+          "tool": "log_entry",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_6d70c2993b762c38ade6c2b8a9461326",
+      "title": "akuzo seeds 16-20",
+      "created_at": "2026-10-27T15:12:17.858303+00:00",
+      "last_interaction_at": "2026-10-27T15:22:20.632385+00:00",
+      "parent_session_id": "sess_64960c8b3e1394144a0c8d104f95983e",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_9e015a70919f",
+              "text": "Starting all five games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_803122723c9b",
+              "text": "Opening every game with 'akuzo'.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_b06a4cef7562",
+              "text": "Filtering candidates for each game from the word list.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_52c0ee27abd8",
+              "text": "Filters match the feedback. Second guesses, each consistent with the first: s11 lkydo, s12 vmyro, s13 razni, s14 yranu, s15 nuidy.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_7718f0a7401c",
+              "text": "Updated constraints for each game:\n\n- **s11**: the pattern is `lk??o` with a, u, z, y and d absent. In the earlier list, `lkojo` is the only remaining candidate.\n- **s12**: I'll filter for v present but not in position 1, the o green, and m, y, r, a, k, u, z absent.\n- **s13**: I'll filter for a, z and i present (in positions not yet marked for them), and k, u, o, r, n absent.\n- **s14**: I'll filter for a and u green, r and n present (not in their tested positions), and k, z, o, y absent.\n- **s15**: I'll filter for u green and n present but not in position 1, with a, k, z, o, i, d, y absent.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_7ccd24b93205",
+              "text": "Filters checked. The s13 filter wrongly excluded `a` at position 5, so I'm re-running it. Meanwhile I'm guessing the other four games:\n\n- **s11:** `lkojo` is the only candidate left.\n- **s12:** `ofivo`.\n- **s14:** `unaru` is the only candidate left.\n- **s15:** `runer`.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_144cabf77906",
+              "text": "s11 and s14 are solved in 3 guesses. Next I'm guessing `fgovo` for s12, which fits `f?ovo`; `fhovo` is the other candidate. For s13 I'm guessing `izapy`, the first word in the corrected list. I'm also re-filtering s15 with the `runer` feedback before choosing its guess.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_31f7de053748",
+              "text": "s12 and s13 are solved. s15 has three words left that fit all the feedback: gufnu, mubnu and tucun. I'm guessing mubnu.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_7f690f0d7aac",
+              "text": "All five games are solved. Logging one Observation per game.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_2fa1419c837e",
+              "text": "All five games for seeds 11–15 were solved with strategy tuned_akuzo, and each has one Observation in the study log.\n\n| seed | game_id | guess sequence (feedback) | guesses | solved | Observation id |\n|---|---|---|---|---|---|\n| 11 | g13-s11 | akuzo `-G--G`, lkydo `GG--G`, lkojo `GGGGG` | 3 | 1 | e_d2b051f4e0bb |\n| 12 | g12-s12 | akuzo `----G`, vmyro `Y---G`, ofivo `YY-GG`, fgovo `GGGGG` | 4 | 1 | e_313f6074c577 |\n| 13 | g14-s13 | akuzo `Y--Y-`, razni `-YY-Y`, izapy `GGGGG` | 3 | 1 | e_f3e18bded687 |\n| 14 | g11-s14 | akuzo `Y-Y--`, yranu `-YGYG`, unaru `GGGGG` | 3 | 1 | e_8d073368bcab |\n| 15 | g15-s15 | akuzo `--Y--`, nuidy `YG---`, runer `-GY--`, mubnu `GGGGG` | 4 | 1 | e_04351d75dc3b |\n\nThe mean is 3.4 guesses, with a 5/5 solve rate.\n\n**Logging:** All five Observations are in study e_20da865e4b44 and linked to experiment e_77157bf0cd73. Each one's `from_calls` lists the `wordle_new_game` call and every `wordle_guess` call for that game. Each has the two measurements, `guesses` and `solved`, with conditions {strategy: tuned_akuzo, seed}.\n\n**Errors and rule deviations:**\n- **Guess consistency:** Every guess opened with akuzo and was chosen by me. I checked each one against all earlier feedback and found it consistent.\n- **Filtering:** Filtering used only `grep` on `study/words.txt`; no solver or script chose or played guesses.\n- **Seed 13 filter mistake:** My filter after guess 2 wrongly excluded `a` at position 5 and returned 3 candidates instead of 8. I noticed, re-ran the corrected filter (`izapy izima sibaz wzita zbipa ziawy zmipa zviga`) and guessed `izapy` from that list. The mistake had no effect on any guess made.\n- **Repeated letters:** Some guesses repeat a letter: ofivo and fgovo (o) in seed 12, and mubnu (u) in seed 15. These are allowed because no grey copy of those letters had appeared.\n- **Tool and game errors:** None occurred.",
+              "truncated": false,
+              "headings": []
+            }
+          ],
+          "text_chars": 3429,
+          "id": "msg_asst_88e06d18b3d0",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:21:21.202358+00:00",
+          "updated_at": "2026-10-27T15:21:21.202384+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_64e030b31da7",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 14"
+        },
+        {
+          "call_id": "call_f28ba8435fd3",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 12"
+        },
+        {
+          "call_id": "call_9956b4c3ea74",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 11"
+        },
+        {
+          "call_id": "call_f3ffc590a88c",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 13"
+        },
+        {
+          "call_id": "call_57aadee806c7",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 15"
+        },
+        {
+          "call_id": "call_0d2a3fc61c51",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s12 g1"
+        },
+        {
+          "call_id": "call_115f36b8ac2c",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s11 g1"
+        },
+        {
+          "call_id": "call_92238dcd0ab8",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s14 g1"
+        },
+        {
+          "call_id": "call_f30ae5e10d49",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s15 g1"
+        },
+        {
+          "call_id": "call_9bddbc51b272",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s13 g1"
+        },
+        {
+          "call_id": "call_08ad037c68cd",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates after akuzo"
+        },
+        {
+          "call_id": "call_8378846ca651",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s14 g2"
+        },
+        {
+          "call_id": "call_d20668ac70a6",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s11 g2"
+        },
+        {
+          "call_id": "call_0914ec3169f5",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s12 g2"
+        },
+        {
+          "call_id": "call_c365e94f1562",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s13 g2"
+        },
+        {
+          "call_id": "call_1e650ff099f1",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s15 g2"
+        },
+        {
+          "call_id": "call_478fde681808",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates after guess 2"
+        },
+        {
+          "call_id": "call_c9fec25e92d9",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s14 g3"
+        },
+        {
+          "call_id": "call_d572f574494d",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s11 g3"
+        },
+        {
+          "call_id": "call_326e2994a8a8",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "s13 corrected filter"
+        },
+        {
+          "call_id": "call_8d1e4a066107",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s12 g3"
+        },
+        {
+          "call_id": "call_a38e565e4741",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s15 g3"
+        },
+        {
+          "call_id": "call_86b0423385c6",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s12 g4"
+        },
+        {
+          "call_id": "call_1aa9d874b5ef",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "s15 filter after runer"
+        },
+        {
+          "call_id": "call_3fb507c31377",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s13 g3"
+        },
+        {
+          "call_id": "call_55e4791f5b39",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "s15 g4"
+        },
+        {
+          "call_id": "call_72bdbacc83b6",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_91b1a9a553d1",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_f655af810b00",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_346c72e9a041",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_b66479e72689",
+          "tool": "log_entry",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_95153982bf7203f6188967269c1aaa21",
+      "title": "akuzo seeds 11-15",
+      "created_at": "2026-10-27T15:12:15.516533+00:00",
+      "last_interaction_at": "2026-10-27T15:21:22.530581+00:00",
+      "parent_session_id": "sess_64960c8b3e1394144a0c8d104f95983e",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_54e33029fa41",
+              "text": "Starting all five games.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_d3421be7a3eb",
+              "text": "First guesses are in. Next I'll filter the word list for each game based on its feedback.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_d7d19ef9608e",
+              "text": "Filters check out for each game's feedback. Making second guesses for seeds 6, 7, 8 and 10, and listing seed 9 candidates.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_9d04861e0cab",
+              "text": "Second-round results are in. Seed 7 is narrowed to kzifi and seed 10 to miugo/miupo. Next I'll make those guesses, open seed 9 with ivron, and filter seeds 6 and 8.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_5a77540db32b",
+              "text": "Seed 7 (kzifi) and seed 10 (miugo) are solved in 3 guesses. For seed 8, the only candidate left is ulgon. I checked it against all feedback: u green at 1, o yellow not at 3 or 5, l yellow not at 4. For seed 6 I'm guessing mvumy, which tests v at position 2 plus the letters m and y. Seed 9 needs filtering first.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_e747c34befb1",
+              "text": "Seed 8 is solved with ulgon in 3 guesses. For seed 6, the feedback so far is: u is green at position 3; v and y are present; v is not at position 1 or 2; y is not at position 5; m is absent (both copies were grey); a,k,z,o,r,n,i are absent. I'll recheck seed 6 with a filter. For seed 9 I'm guessing moipy from its 18 consistent candidates.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_25bf2650483e",
+              "text": "Seed 6 is down to lyuvu, xyuvu and ybuve; I'll guess lyuvu because its result separates the other two. For seed 9, I'm adding the moipy feedback: o is not at 2, 4 or 5; i is not at 1 or 3; m, p and y are absent.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_afe76ff4e85c",
+              "text": "Seed 6 is solved: lyuvu in 4 guesses. Seed 9 has two candidates left, ojbig and olofi. Both fit all feedback, so I'll guess ojbig.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_3b228772e2d7",
+              "text": "All five games are solved. Logging one Observation per game.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_c0dad8358d78",
+              "text": "All five games were solved without errors or rule deviations, and one Observation is logged per game, linked to experiment `e_77157bf0cd73`.\n\n| seed | game_id | guess sequence (feedback) | guesses | solved | Observation id |\n|---|---|---|---|---|---|\n| 6 | g6-s6 | akuzo `--G--` → vruni `Y-G--` → mvumy `-YG-Y` → lyuvu `GGGGG` | 4 | 1 | e_040fc73c6faf |\n| 7 | g8-s7 | akuzo `-Y-Y-` → kizri `GYY-G` → kzifi `GGGGG` | 3 | 1 | e_1dfa15eb4ec9 |\n| 8 | g7-s8 | akuzo `--Y-Y` → uvoli `G-YY-` → ulgon `GGGGG` | 3 | 1 | e_e3d55eaa1d6b |\n| 9 | g9-s9 | akuzo `----Y` → ivron `Y--Y-` → moipy `-YY--` → ojbig `GGGGG` | 4 | 1 | e_251bbd3ea6a7 |\n| 10 | g10-s10 | akuzo `--G-G` → imuro `YYG-G` → miugo `GGGGG` | 3 | 1 | e_b4aa3fac89ee |\n\n**Summary:** 5 of 5 solved, mean 3.4 guesses (17 / 5).\n\n**How the games were played:**\n- Every game opened with 'akuzo'.\n- I chose every guess myself; no solver or script picked guesses.\n- I used grep on `study/words.txt` only to list the words consistent with the feedback so far.\n- Every guess after the opener was consistent with all feedback received up to that point.\n\n**Where it was a guess between equals:**\n- **Seed 6:** after guess 3 there were three candidates (lyuvu, xyuvu, ybuve). I picked lyuvu because its feedback would tell the other two apart.\n- **Seed 7:** the filter after guess 1 listed 9 candidates, including kizri. I picked kizri as guess 2, and its feedback left only kzifi.\n- **Seed 9:** guess 3 (moipy) was chosen from 18 consistent candidates. Guess 4 was an arbitrary pick between two consistent words, ojbig and olofi.\n\n**Logging:** each Observation's `from_calls` lists the game's `wordle_new_game` call ref plus every `wordle_guess` call ref for that game. Each one records `guesses` and `solved` measurements with conditions `{strategy: tuned_akuzo, seed}`.\n\n**Open items:** none.",
+              "truncated": false,
+              "headings": []
+            }
+          ],
+          "text_chars": 3287,
+          "id": "msg_asst_49df07cb7da2",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:21:49.380411+00:00",
+          "updated_at": "2026-10-27T15:21:49.380437+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_18526f2fe544",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 6"
+        },
+        {
+          "call_id": "call_062b61c539e6",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 8"
+        },
+        {
+          "call_id": "call_b364ef2bea3d",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 7"
+        },
+        {
+          "call_id": "call_86379670aaf2",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 9"
+        },
+        {
+          "call_id": "call_c777d85ccb34",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 10"
+        },
+        {
+          "call_id": "call_ac2141973b8b",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 6 g1"
+        },
+        {
+          "call_id": "call_251cd6980868",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 7 g1"
+        },
+        {
+          "call_id": "call_aa83c11fc2e2",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 8 g1"
+        },
+        {
+          "call_id": "call_43111f87d3d2",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 9 g1"
+        },
+        {
+          "call_id": "call_9a01a9258681",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 10 g1"
+        },
+        {
+          "call_id": "call_2ab305ee862d",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates after g1"
+        },
+        {
+          "call_id": "call_858fa65b6d91",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 7 g2"
+        },
+        {
+          "call_id": "call_3a8ca11df01b",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 6 g2"
+        },
+        {
+          "call_id": "call_6b53b1d2646d",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 8 g2"
+        },
+        {
+          "call_id": "call_69ae132336f6",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 10 g2"
+        },
+        {
+          "call_id": "call_94c951ea9c41",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "seed 9 candidates"
+        },
+        {
+          "call_id": "call_f612501bacbf",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 9 g2"
+        },
+        {
+          "call_id": "call_247927f8844f",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 10 g3"
+        },
+        {
+          "call_id": "call_b2c42bc0e84a",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 7 g3"
+        },
+        {
+          "call_id": "call_c9887c1f1ea4",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter s6 s8"
+        },
+        {
+          "call_id": "call_5b53f4fdbd6f",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 6 g3"
+        },
+        {
+          "call_id": "call_b265bef27f81",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 8 g3"
+        },
+        {
+          "call_id": "call_b51911032860",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "seed 9 filter g2"
+        },
+        {
+          "call_id": "call_de3d7df54ed3",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "seed 6 filter g3"
+        },
+        {
+          "call_id": "call_5bfa8720c74c",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 9 g3"
+        },
+        {
+          "call_id": "call_55337382c498",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 6 g4"
+        },
+        {
+          "call_id": "call_df7a11243981",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "seed 9 filter g3"
+        },
+        {
+          "call_id": "call_b7607b978732",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 9 g4"
+        },
+        {
+          "call_id": "call_edfaef80268e",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_68e6d8a05259",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_8edb89d8d9f7",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_b454f3928cd1",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_d5212fe23394",
+          "tool": "log_entry",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_9d3d308ee55169ba6bc5e356dadb79b9",
+      "title": "akuzo seeds 6-10",
+      "created_at": "2026-10-27T15:12:14.155005+00:00",
+      "last_interaction_at": "2026-10-27T15:21:51.060580+00:00",
+      "parent_session_id": "sess_64960c8b3e1394144a0c8d104f95983e",
+      "agent.id": "science"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_9067f32a28e9",
+              "text": "I'll start all five games in one step.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_498672eeeccd",
+              "text": "All five games are started. Seeds 3 and 4 got swapped-looking ids (seed 3 is `g4-s3`, seed 4 is `g3-s4`), and I'll use them exactly as returned. Next I'll open each game with 'akuzo'.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_ecc03b14b91e",
+              "text": "All five openers are in. Next I'll filter the word list for each game's feedback.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_7fa88ddbbd2b",
+              "text": "Feedback so far: seed 1 has k green at position 2. Seed 2 has a green at position 1 and k yellow. Seeds 3 and 4 have only u yellow. Seed 5 has a, k and o yellow. For each game I picked a second guess from its filtered candidates that tests common untested letters.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_5fc84bbad088",
+              "text": "Updating constraints from guess 2: seed 2 now has a single fit, 'anrik' (a,n,i green; k must be at position 5 and r at position 3). I'll filter the others.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_f635da78a2e8",
+              "text": "Guess 3 choices, all consistent with every piece of feedback so far:\n- **Seed 1:** 'ykyke' is the only word that fits.\n- **Seed 2:** 'anrik' is the only word that fits.\n- **Seed 3:** 'xudmi' tests m and i.\n- **Seed 4:** 'nuidy' tests d and y.\n- **Seed 5:** 'onika' tests o at position 1 plus n and i.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_278a7704d23d",
+              "text": "Seeds 1 and 2 are solved in 3 guesses each. Next I'll filter the remaining candidates for seeds 3, 4 and 5.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_97cfedf081ff",
+              "text": "Seeds 3 and 4 have candidates I can use now. The seed-5 filter was flawed: it contained a Cyrillic 'о' typo, so it did not exclude Latin o at position 2. That makes 'ohoka' invalid, because o was yellow at position 2 in 'romka'. I'll re-run that filter and play seeds 3 and 4 in the same step.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_07d73252d13e",
+              "text": "Seed 4 is solved in 4 guesses.\n\nI need to correct my last message. 'ohoka' is in fact valid for seed 5. 'romka' put o yellow at position 2, and 'ohoka' has h at position 2 and o at positions 1 and 3. The corrected filter (call_288dd328ce7e) confirms it is the only candidate.\n\nFor seed 3, the grey second u in 'cudbu' means the word has only one u. That rules out 'gudfu', 'wudwu' and 'vuduj', leaving 'ludqe'.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_bba9a1a63c7c",
+              "text": "All five games are solved. Next I'll log one Observation per game.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_5453bdaa7bdb",
+              "text": "All five games were solved, with no failures. That is 19 guesses in total, a mean of 3.8 per game. Each game has one Observation logged to experiment `e_77157bf0cd73` in study `e_20da865e4b44`.\n\n| seed | game_id | guess sequence (feedback) | guesses | solved | Observation id |\n|---|---|---|---|---|---|\n| 1 | g1-s1 | akuzo (-G---) → ekivy (YG--Y) → ykyke (GGGGG) | 3 | 1 | e_2542a7d24fe0 |\n| 2 | g2-s2 | akuzo (GY---) → ankir (GGYGY) → anrik (GGGGG) | 3 | 1 | e_38381ef25d06 |\n| 3 | g4-s3 | akuzo (--Y--) → udryn (YY---) → xudmi (-GG--) → cudbu (-GG--) → ludqe (GGGGG) | 5 | 1 | e_1d7f328d7cb2 |\n| 4 | g3-s4 | akuzo (--Y--) → ivnur (Y-YY-) → nuidy (GYG--) → nhigu (GGGGG) | 4 | 1 | e_b22822ba1c57 |\n| 5 | g5-s5 | akuzo (YY--Y) → romka (-Y-GG) → onika (G--GG) → ohoka (GGGGG) | 4 | 1 | e_765611d85f87 |\n\nEach Observation's `from_calls` lists the `wordle_new_game` call and every `wordle_guess` call for that game, e.g. seed 3 cites `call_882028eef0ff`, `call_34c9646880f4`, `call_180aa3f96aa1`, `call_faae6b8a38b0`, `call_27f334524d81` and `call_908475b5decc`. Each entry records `guesses` and `solved` with conditions `{strategy: tuned_akuzo, seed}`.\n\n**Notes and deviations:**\n- **Game ids:** seed 3 was assigned `g4-s3` and seed 4 `g3-s4` by `wordle_new_game`. I used them exactly as returned.\n- **Strategy compliance:** every game opened with 'akuzo'. I chose every later guess myself, and each was consistent with all feedback received before it. I used grep on `study/words.txt` only to list candidates; no solver or script picked guesses.\n- **Filter typo:** the seed-5 filter after guess 3 contained a Cyrillic 'о' instead of a Latin 'o'. I re-ran it correctly (`call_288dd328ce7e`), and the result was the same: 'ohoka' was the only candidate.\n- **My own error:** before checking, I wrongly called 'ohoka' invalid in my reasoning, then corrected it. Its letters fit the feedback: o at positions 1 and 3, h at position 2. No guess was affected.\n- **Seed 3, guess 4:** 'cudbu' did not separate the candidates well. Its feedback (-GG--, with the second u grey) showed the word has exactly one u, which left only 'ludqe'.\n- No tool errors; nothing remains open.",
+              "truncated": false,
+              "headings": []
+            }
+          ],
+          "text_chars": 4062,
+          "id": "msg_asst_46f923360f1e",
+          "role": "assistant",
+          "created_at": "2026-10-27T15:21:43.217550+00:00",
+          "updated_at": "2026-10-27T15:21:43.217575+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_4b6bae5fe263",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 1 game"
+        },
+        {
+          "call_id": "call_7aaf4e83de3f",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 2 game"
+        },
+        {
+          "call_id": "call_9fefc8525270",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 4 game"
+        },
+        {
+          "call_id": "call_882028eef0ff",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 3 game"
+        },
+        {
+          "call_id": "call_2d0bd928ea29",
+          "tool": "wordle_new_game",
+          "status": "completed",
+          "description": "seed 5 game"
+        },
+        {
+          "call_id": "call_a2157314094f",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 1 guess 1"
+        },
+        {
+          "call_id": "call_a7487e4c3111",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 2 guess 1"
+        },
+        {
+          "call_id": "call_34c9646880f4",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 3 guess 1"
+        },
+        {
+          "call_id": "call_8ba2d75d855b",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 4 guess 1"
+        },
+        {
+          "call_id": "call_b978b5cac98e",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 5 guess 1"
+        },
+        {
+          "call_id": "call_8dce071ea2aa",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates after opener"
+        },
+        {
+          "call_id": "call_0967b37fe2fa",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 1 guess 2"
+        },
+        {
+          "call_id": "call_180aa3f96aa1",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 3 guess 2"
+        },
+        {
+          "call_id": "call_45debb3ee0bb",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 4 guess 2"
+        },
+        {
+          "call_id": "call_40b75a132bce",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 2 guess 2"
+        },
+        {
+          "call_id": "call_5d8ddb2863e3",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 5 guess 2"
+        },
+        {
+          "call_id": "call_31b50c30388f",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates after guess 2"
+        },
+        {
+          "call_id": "call_aaf4d923fad7",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 2 guess 3"
+        },
+        {
+          "call_id": "call_efd5fa117f83",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 1 guess 3"
+        },
+        {
+          "call_id": "call_81cf144ba74f",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 5 guess 3"
+        },
+        {
+          "call_id": "call_faae6b8a38b0",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 3 guess 3"
+        },
+        {
+          "call_id": "call_4bdcb1fe596d",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 4 guess 3"
+        },
+        {
+          "call_id": "call_505bf8e85247",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "filter candidates after guess 3"
+        },
+        {
+          "call_id": "call_27f334524d81",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 3 guess 4"
+        },
+        {
+          "call_id": "call_288dd328ce7e",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "seed 5 corrected filter"
+        },
+        {
+          "call_id": "call_bc17039f0ee7",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 4 guess 4"
+        },
+        {
+          "call_id": "call_908475b5decc",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 3 guess 5"
+        },
+        {
+          "call_id": "call_d7f5b0bc26fc",
+          "tool": "wordle_guess",
+          "status": "completed",
+          "description": "seed 5 guess 4"
+        },
+        {
+          "call_id": "call_441e74bdefbb",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_1a6de607905d",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_9ac5b053f9e9",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_232e31638c93",
+          "tool": "log_entry",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_3bd337e80d6d",
+          "tool": "log_entry",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_7d2164449f5e2ad7cd36c8f901950b0d",
+      "title": "akuzo seeds 1-5",
+      "created_at": "2026-10-27T15:12:13.654008+00:00",
+      "last_interaction_at": "2026-10-27T15:21:44.877208+00:00",
+      "parent_session_id": "sess_64960c8b3e1394144a0c8d104f95983e",
+      "agent.id": "science"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "clio.pacing-review.v1",
+  "video": "out/spotter-chainB-sync-proof-v2.mp4",
+  "range": [
+    6750,
+    7949
+  ],
+  "frames": 1200,
+  "fps": 60,
+  "thinkingHoldFrames": 72,
+  "answerHoldFrames": 36,
+  "collapseFrames": 30,
+  "changes": [
+    "all main reasoning passages stream expanded, including round 2",
+    "native content remains mounted while frame-based grid height collapses",
+    "both source transcripts stay frozen through hold and collapse",
+    "manual disclosure choices override automatic defaults"
+  ],
+  "browserMeasurements": [
+    {
+      "frame": 7037,
+      "openness": 0.5,
+      "heightPx": 184
+    },
+    {
+      "frame": 7600,
+      "passage": "round1",
+      "openness": 0,
+      "heightPx": 0
+    },
+    {
+      "frame": 7600,
+      "passage": "round2",
+      "openness": 1,
+      "heightPx": 368
+    }
+  ],
+  "review": {
+    "nodeTests": {
+      "passed": 58,
+      "failed": 0,
+      "skipped": 0
+    },
+    "typecheck": "passed",
+    "format": "passed",
+    "nativeTypechecks": [
+      "default passed",
+      "opal passed"
+    ],
+    "opalBuild": "passed",
+    "encode": "1200 frames and full decode passed",
+    "visual": "native browser round 2 open; 16 encoded collapse samples at two-frame intervals inspected",
+    "creativeApproval": "pending user review"
+  },
+  "round2Screenshot": {
+    "file": "chainB/chainB-round2-thinking-v2.png",
+    "sha256": "b7c58ff8921e6c53f690b5f59bfa4d6a9f45aba7316e03a9109d1b4fdaf79499"
+  }
+}

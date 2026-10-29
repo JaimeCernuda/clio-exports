@@ -1,0 +1,208 @@
+.replay-window {
+  position: absolute;
+  left: 40px;
+  top: 72px;
+  width: 1200px;
+  height: 600px;
+  background: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 15px 55px #233f4a12;
+}
+.replay-header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.replay-scroll {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40px;
+  bottom: 110px;
+  overflow: hidden;
+  overflow-anchor: none;
+  scrollbar-width: none;
+}
+.replay-log {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 26px 0 28px;
+  font-size: 14px;
+}
+.replay-log p {
+  font-size: 14px;
+  line-height: 1.55;
+}
+.replay-log [data-slot="tool-activity"] {
+  font-size: 13px;
+}
+.replay-log [data-slot="message-completion-footer"] {
+  display: none;
+}
+.replay-composer {
+  position: absolute;
+  bottom: 14px;
+  left: 100px;
+  width: 1000px;
+}
+.replay-with-canvas .replay-header {
+  right: 540px;
+}
+.replay-with-canvas .replay-scroll {
+  right: 540px;
+}
+.replay-with-canvas .replay-log {
+  width: 580px;
+}
+.replay-with-canvas .replay-composer {
+  left: 32px;
+  width: 594px;
+}
+.replay-log [data-slot="a2ui-map-surface"] {
+  --a2ui-map-height: 400px;
+}
+.replay-log [data-slot="a2ui-map-surface"] > p:not([role="alert"]) {
+  display: none;
+}
+.replay-canvas {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 540px;
+  border-left: 1px solid var(--border);
+  background: var(--background);
+}
+.replay-canvas-scroll {
+  position: relative;
+  height: 100%;
+  overflow: auto;
+  padding: 14px;
+  scrollbar-width: none;
+}
+.replay-canvas-surface {
+  width: 100%;
+  --a2ui-map-height: 400px;
+}
+.replay-vector-source {
+  opacity: 0 !important;
+}
+/* Preserve the saved 12px month ticks during responsive SVG resizes. */
+.replay-window #a2ui-surface-alta-monthly-comparison .role-axis-label text {
+  font-size: 12px !important;
+}
+.replay-canvas-surface[style*="hidden"] {
+  height: 0;
+  overflow: hidden;
+  top: 14px;
+  left: 14px;
+  width: calc(100% - 28px);
+}
+.replay-canvas [data-slot="a2ui-map-surface"] > p:not([role="alert"]) {
+  display: none;
+}
+.replay-dataset {
+  padding: 0 2px;
+  font-size: 13px;
+}
+.replay-dataset p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+.replay-dataset [data-slot="tool-activity"] {
+  margin-top: 14px;
+  font-size: 12px;
+}
+.replay-preload {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 900px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  --a2ui-map-height: 400px;
+}
+.replay-preload > div {
+  width: 900px;
+}
+.replay-portrait {
+  left: 24px;
+  top: 175px;
+  width: 672px;
+  height: 1055px;
+}
+.replay-portrait .replay-scroll {
+  bottom: 145px;
+}
+.replay-portrait .replay-log {
+  width: 564px;
+  font-size: 21px;
+  padding-top: 28px;
+}
+.replay-portrait .replay-log p {
+  font-size: 21px;
+  line-height: 1.55;
+}
+.replay-portrait .replay-log [data-slot="tool-activity"] {
+  font-size: 16px;
+}
+.replay-portrait .replay-composer {
+  left: 54px;
+  width: 564px;
+  bottom: 20px;
+}
+.replay-portrait .replay-composer [role="combobox"] {
+  font-size: 20px;
+}
+.replay-portrait [data-slot="tool-duration"] {
+  display: none;
+}
+.replay-cursor {
+  position: absolute;
+  z-index: 90;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 1px #16304450);
+}
+.replay-cursor > span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid #00a6c0;
+  border-radius: 50%;
+}
+.replay-window * {
+  animation: none !important;
+  transition: none !important;
+  caret-color: transparent !important;
+}
+.replay-window ::selection {
+  background: #8fd8e4;
+  color: #042b40;
+}
+.replay-window[data-canvas-expansion="1"]
+  .replay-canvas
+  [data-slot="surface-toolbar"],
+.replay-window[data-canvas-expansion="1"]
+  .replay-canvas
+  [aria-label^="Box select chart"] {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+body:has(.replay-window) #vg-tooltip-element,
+body:has(.replay-window) [data-radix-popper-content-wrapper] * {
+  animation: none !important;
+  transition: none !important;
+}
+/* Toolbar help is clock-delayed; the film keeps data tooltips and native menus. */
+body:has(.replay-window) [role="tooltip"] {
+  visibility: hidden !important;
+}

@@ -1,0 +1,37 @@
+{
+  "source": {
+    "archive": "chainB-sess_2480c090acbb.html.gz",
+    "sha256": "cfdd456f2640519c6a0f715e817927c7fb70e77974d6d9605be12cc903131cd5"
+  },
+  "origin": "2026-10-29T00:18:59.450894+00:00",
+  "timing": {
+    "charactersPerSecond": 100,
+    "thinkingSeconds": 10,
+    "idleSpeed": 16,
+    "thinkingHoldFrames": 72,
+    "answerHoldFrames": 36,
+    "collapseFrames": 30,
+    "toolResultHoldFrames": 60
+  },
+  "plan": {
+    "at": 12611,
+    "source": 558643.8071289062,
+    "shots": [
+      {
+        "id": "chainB-alert-answer-line",
+        "start": 12791,
+        "frames": 756
+      },
+      {
+        "id": "chainB-alert-number",
+        "start": 13547,
+        "frames": 828
+      }
+    ],
+    "resume": 14375,
+    "added": 1764,
+    "frames": 15716
+  },
+  "totalFrames": 16406,
+  "fps": 60
+}
