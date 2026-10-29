@@ -1,0 +1,2 @@
+/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/exports/attention-replay-7795566-B.zip (903,878,740 bytes)
+scp polaris:/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/exports/attention-replay-7795566-B.zip .
