@@ -1,1 +1,9 @@
-Replay bundle (2.6 GB, not in git): /lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/exports/attention-replay-7795459/  -- descriptor check 6/6 ok
+Attention replay zip for this run (chain B, sess_2480c090acbb), 611,259,391 bytes, not in git:
+/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/exports/attention-replay-7795459-chainB.zip
+
+  scp polaris:/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/exports/attention-replay-7795459-chainB.zip .
+
+Only this run: session export, its semantic.jsonl journal, its 6 Flowcept decode_attention
+documents, its 6 byte-exact SafeTensors captures (descriptor check 6/6: bytes and sha256 match),
+tokenizer.json, tokenizer_config.json, chat_template.jinja, metadata.json
+(clio-agent 8d4f2130, gact-tui f333d67d, marketplace 85a12152; ibm-granite/granite-4.2-8b @ a7042144125c).
