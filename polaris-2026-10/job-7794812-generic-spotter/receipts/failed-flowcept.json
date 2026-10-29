@@ -1,9 +1,0 @@
-{
-  "at": "2026-10-28T15:47:39+0000",
-  "dry_run": false,
-  "error": "flowcept install failed: install exited with code 1; inspect its logs (evidence /lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/evidence/job-7794812/ops/flowcept-install*)",
-  "host": "x3005c0s25b1n0",
-  "job": "7794812",
-  "status": "failed",
-  "step": "failed-flowcept"
-}
