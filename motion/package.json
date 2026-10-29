@@ -8,7 +8,7 @@
     "native:build": "node native/run.mjs build",
     "native:check": "node native/run.mjs check",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test tests/ui.test.tsx tests/render-options.test.mjs tests/native-session.test.ts tests/native-film.test.ts tests/campaign.test.ts tests/ndp-campaigns.test.ts tests/story.test.ts tests/cursor.test.ts tests/vector-chart.test.ts tests/frame-review.test.ts",
+    "test": "tsx --test tests/ui.test.tsx tests/render-options.test.mjs tests/native-session.test.ts tests/native-film.test.ts tests/campaign.test.ts tests/ndp-campaigns.test.ts tests/story.test.ts tests/cursor.test.ts tests/vector-chart.test.ts tests/frame-review.test.ts tests/paired-replay.test.ts tests/spotter-intro.test.ts",
     "format:check": "prettier --check src scripts tests render.mjs examples native/*.ts native/*.tsx native/*.mjs native/*.css native/*.html native/source.json",
     "stills": "node render.mjs stills",
     "promo:stills": "node render.mjs stills --composition ClioNativePromo",

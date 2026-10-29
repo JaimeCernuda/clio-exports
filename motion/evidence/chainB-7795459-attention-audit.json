@@ -1,0 +1,94 @@
+{
+  "schema": "clio.attention-bundle-audit.v1",
+  "metadata": {
+    "job_id": "7795459",
+    "sessions": {
+      "chain_B": "sess_2480c090acbb"
+    },
+    "commits": {
+      "clio-agent": "8d4f2130d2c9c7c8c6a25d593276fae882966129",
+      "gact-tui": "f333d67d490174d2f2b82d7c0671e08ee0943ceb",
+      "clio-agent-marketplace": "85a12152698dd122160e41a97b6c6bdcb4a18842",
+      "connector_source": "file:///lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/build/connector/vllm_attn_connector-0.1.0-py3-none-any.whl"
+    },
+    "model": {
+      "snapshot": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/hf/hub/ibm-granite--granite-4.2-8b--a7042144125ce5ae64f89610e8289647fc000b9a",
+      "id": "ibm-granite/granite-4.2-8b",
+      "revision": "a7042144125ce5ae64f89610e8289647fc000b9a"
+    },
+    "journals": {
+      "sess_2480c090acbb": "/lus/eagle/projects/GenesisHackathonOct26/jcernuda/clio-polaris-2026-10/state/state/traces/semantic_traces/sess_2480c090acbb.semantic.jsonl"
+    },
+    "decode_attention_tasks": 6,
+    "captures_copied": 6,
+    "check": {
+      "descriptors_for_sessions": 6,
+      "ok": 6,
+      "not_ok": []
+    },
+    "captures_note": "Chain B only: its 6 model calls, their 6 decode_attention documents and 6 captures. The job's other 35 documents and captures are left out."
+  },
+  "captures": [
+    {
+      "requestId": "chatcmpl-9488f721172894ae-867af75a",
+      "workflowId": "vllm-attn-33e164ed990a",
+      "file": "captures\\vllm-attn-33e164ed990a\\chatcmpl-9488f721172894ae-867af75a_g0.safetensors",
+      "bytes": 191484620,
+      "sha256": "ad181500c9d06f71dbf73621d596a96aedddc984874c59c9728134c26d03bc3e",
+      "decodeSteps": 3717,
+      "dropped": 0,
+      "unscored": 0
+    },
+    {
+      "requestId": "chatcmpl-ac5a3e239e23a31f-bafd6b10",
+      "workflowId": "vllm-attn-33e164ed990a",
+      "file": "captures\\vllm-attn-33e164ed990a\\chatcmpl-ac5a3e239e23a31f-bafd6b10_g0.safetensors",
+      "bytes": 64016648,
+      "sha256": "7b6907dec9de8121894076158609c782bc3b8e7518dd6bb12bd024434d0d2bf0",
+      "decodeSteps": 1091,
+      "dropped": 0,
+      "unscored": 0
+    },
+    {
+      "requestId": "chatcmpl-8704649f4a59b9d7-8ac0a90f",
+      "workflowId": "vllm-attn-33e164ed990a",
+      "file": "captures\\vllm-attn-33e164ed990a\\chatcmpl-8704649f4a59b9d7-8ac0a90f_g0.safetensors",
+      "bytes": 158018456,
+      "sha256": "9f764beb44d8400c922bd543ee1dffb8ba98f4547d1e2cf9fd8b6d9d988b8143",
+      "decodeSteps": 2575,
+      "dropped": 0,
+      "unscored": 0
+    },
+    {
+      "requestId": "chatcmpl-a54a7fed436ab90a-85e9ff2b",
+      "workflowId": "vllm-attn-33e164ed990a",
+      "file": "captures\\vllm-attn-33e164ed990a\\chatcmpl-a54a7fed436ab90a-85e9ff2b_g0.safetensors",
+      "bytes": 299082680,
+      "sha256": "c75a066f60558d37d128f6c76391ff758e07a1b7f233750d069f011da069af3e",
+      "decodeSteps": 4503,
+      "dropped": 0,
+      "unscored": 0
+    },
+    {
+      "requestId": "chatcmpl-88315c76ad63b0a4-a59d3177",
+      "workflowId": "vllm-attn-33e164ed990a",
+      "file": "captures\\vllm-attn-33e164ed990a\\chatcmpl-88315c76ad63b0a4-a59d3177_g0.safetensors",
+      "bytes": 101515728,
+      "sha256": "01c20ca02f3efac349767c3307ea93b3a99ded1e7bb2a504502272e0e4becc61",
+      "decodeSteps": 1356,
+      "dropped": 0,
+      "unscored": 0
+    },
+    {
+      "requestId": "chatcmpl-93323d4b708d68f5-9b9fc88e",
+      "workflowId": "vllm-attn-33e164ed990a",
+      "file": "captures\\vllm-attn-33e164ed990a\\chatcmpl-93323d4b708d68f5-9b9fc88e_g0.safetensors",
+      "bytes": 173605044,
+      "sha256": "bff66e24e37f9f7c48b4e378d6223f7fd5599f6a818c49c302df5a0b518b59d9",
+      "decodeSteps": 2219,
+      "dropped": 0,
+      "unscored": 0
+    }
+  ],
+  "verified": 6
+}

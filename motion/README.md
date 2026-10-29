@@ -1,5 +1,11 @@
 # Reusable CLIO UI motion toolkit
 
+The [SPOTTER / OPAL sources](native/OPAL.md) and
+[manual attention setup](native/MANUAL-ATTENTION.md) are also retained here.
+That full cut remains revision required for reviewer stalls and pointer
+visibility/stacking. Read the [SPOTTER lessons](../.agents/skills/clio-videos/references/spotter-lessons.md)
+before reusing it; the toolkit is not an approved finished demo.
+
 Start with [clio-videos](../.agents/skills/clio-videos/SKILL.md) for story and shot
 selection. The final NDP full cut was rejected for unnecessary full-screen data
 selection, an uninteresting lake zoom and arbitrary text highlights. Its renderer

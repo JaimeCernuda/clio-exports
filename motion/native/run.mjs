@@ -10,6 +10,10 @@ const command = args[0] ?? "dev";
 if (!["dev", "build", "preview", "check"].includes(command))
   throw new Error("Choose dev, build, preview or check");
 const flag = args.indexOf("--source");
+const profileFlag = args.indexOf("--profile");
+const profile = profileFlag < 0 ? "default" : args[profileFlag + 1];
+if (!["default", "opal"].includes(profile))
+  throw new Error("Choose default or opal profile");
 if (flag >= 0 && !args[flag + 1])
   throw new Error("--source needs a checkout path");
 const source = path.resolve(
@@ -18,7 +22,10 @@ const source = path.resolve(
     : (process.env.CLIO_UI_SOURCE ?? path.join(here, "../.native-ui/source")),
 );
 const expected = JSON.parse(
-  readFileSync(path.join(here, "source.json"), "utf8"),
+  readFileSync(
+    path.join(here, profile === "opal" ? "source-opal.json" : "source.json"),
+    "utf8",
+  ),
 );
 if (!existsSync(path.join(source, "web/package.json")))
   throw new Error(
@@ -58,7 +65,10 @@ if (command === "check") {
   };
   const cache = path.join(here, "../.native-ui");
   mkdirSync(cache, { recursive: true });
-  const config = path.join(cache, "tsconfig.json");
+  const config = path.join(
+    cache,
+    profile === "opal" ? "tsconfig-opal.json" : "tsconfig.json",
+  );
   writeFileSync(
     config,
     JSON.stringify({
@@ -84,6 +94,10 @@ if (command === "check") {
       files: [
         path.join(here, "entry.tsx"),
         path.join(here, "workspace.tsx"),
+        path.join(here, "recorded-prompt.tsx"),
+        path.join(here, "recorded-paragraph.tsx"),
+        path.join(here, "recorded-thinking.tsx"),
+        path.join(here, "spotter-notification.ts"),
         path.join(here, "map-context.ts"),
         path.join(
           path.dirname(requireSource.resolve("vite/package.json")),
@@ -115,7 +129,7 @@ const child = spawn(
   {
     cwd: here,
     stdio: "inherit",
-    env: { ...process.env, CLIO_UI_SOURCE: source },
+    env: { ...process.env, CLIO_UI_SOURCE: source, CLIO_UI_PROFILE: profile },
   },
 );
 child.on("error", (error) => {

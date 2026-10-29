@@ -10,3 +10,5 @@ motion/references/session-scripts/*.mjs binary
 motion/references/session-scripts/*.ps1 binary
 motion/references/session-scripts/*.py binary
 motion/references/session-scripts/*.html binary
+# Unified patch context lines use a single space even for an empty source line.
+motion/native/patches/*.patch whitespace=-blank-at-eol

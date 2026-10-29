@@ -1,0 +1,72 @@
+{
+  "video": "spotter-opal-film-v1.mp4",
+  "sha256": "b56bae335efc78aae75582a336d6a3d02ce23157fb966d4a8755e03bbf6c8560",
+  "durationSeconds": 273.433333,
+  "frames": 16406,
+  "fps": 60,
+  "source": {
+    "exportSha256": "cfdd456f2640519c6a0f715e817927c7fb70e77974d6d9605be12cc903131cd5",
+    "session": "sess_2480c090acbb",
+    "reviewer": "sess_675ca5a8918cec66588f34c07a669c6b",
+    "uiCommit": "f333d67d490174d2f2b82d7c0671e08ee0943ceb"
+  },
+  "verification": {
+    "motionTypecheck": "passed",
+    "nativeChecks": "OPAL and default passed",
+    "pythonTests": "79 passed",
+    "ruff": "passed",
+    "deliveryHash": "matched",
+    "fullDecode": "passed",
+    "pyright": "0 errors",
+    "motionTests": "61 passed",
+    "diffCheck": "passed"
+  },
+  "visualReview": {
+    "heldRightPanel": "1763 frame differences; maximum YAVG 0.532741; no samples over diagnostic threshold 2",
+    "detailed": "Seven tool results, six full composition frames, and every frame 13989 through 14005 at the selection handoff inspected",
+    "spinner": "Adjacent encoded frames of the short live proof inspected",
+    "browserPlayback": "Reached ended state at 273.433333 seconds",
+    "overview": "10 contact sheets at 12 fps viewed"
+  },
+  "behavior": {
+    "tools": {
+      "raiseAlertCard": 2,
+      "attentionSources": 4,
+      "reviewWatchedActivity": 1
+    },
+    "reviewer": "Recorded thinking streams, notifications expand and collapse, and tool results remain visible briefly",
+    "sourceOrder": "Preserved; recorded alert occurs after the six main answers",
+    "attention": "Recorded danger alert precedes whole-answer selection and token 73 selection; both agent clocks freeze during inspection and resume afterwards"
+  },
+  "limits": [
+    "Recorded session replay; no new inference performed",
+    "Visual review combines browser playback and sampled overview/detail inspection; not every frame was manually watched at full size",
+    "Creative acceptance remains with the user",
+    "No audio track",
+    "User reports incorrect reviewer stalls, pointer disappearance and pointer occlusion; all remain unresolved in this cut"
+  ],
+  "acceptance": {
+    "status": "revision_required",
+    "reviewedBy": "user",
+    "reportedOn": "2026-10-29",
+    "issues": [
+      {
+        "observed": "Reviewer stops incorrectly at multiple points",
+        "status": "open",
+        "id": "spotter-stalls",
+        "localization": "User report; full list of timestamps not yet recorded"
+      },
+      {
+        "observed": "Pointer disappears during the full edit",
+        "status": "open",
+        "id": "pointer-disappears"
+      },
+      {
+        "observed": "Pointer passes beneath UI elements",
+        "status": "open",
+        "id": "pointer-occluded"
+      }
+    ],
+    "note": "Earlier technical verification and sampled review did not establish full-film synchronization or cursor quality. This source handoff does not fix or approve the film."
+  }
+}

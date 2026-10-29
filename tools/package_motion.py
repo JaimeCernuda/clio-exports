@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 EXCLUDED = {"__pycache__", ".pytest_cache", ".ruff_cache", "node_modules", ".venv"}
+MOVIE_SUFFIXES = {".mp4", ".webm", ".mov", ".mkv", ".m4v", ".avi"}
 
 
 def package_sources(repository: Path) -> list[Path]:
@@ -26,7 +27,9 @@ def package_sources(repository: Path) -> list[Path]:
         files.extend(
             path
             for path in directory.rglob("*")
-            if path.is_file() and not EXCLUDED.intersection(path.relative_to(repository).parts)
+            if path.is_file()
+            and not EXCLUDED.intersection(path.relative_to(repository).parts)
+            and path.suffix.lower() not in MOVIE_SUFFIXES
         )
     for path in files:
         path.resolve().relative_to(repository)

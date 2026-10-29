@@ -1,0 +1,8 @@
+{
+  "purpose": "Static reviewer text during the source-clock hold; excludes animated header and primary pointer",
+  "frames": 1763,
+  "maximum": 0.532741,
+  "average": 0.0018252384466988084,
+  "threshold": 2,
+  "flagged": []
+}

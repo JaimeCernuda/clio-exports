@@ -12,6 +12,13 @@ adds a frame-controlled stage and asset-readiness bridge for Remotion under
 
 ## Run
 
+For synchronized OPAL/SPOTTER transcripts and recorded attention inspections,
+see [OPAL.md](OPAL.md). Its shared source clock keeps main answers, notification
+receipt and reviewer input consumption in source order. The full cut still has
+user-reported reviewer stalls and cursor defects; source ordering alone does not
+qualify its playback. For arbitrary manual selections use the real backend and
+frontend described in [MANUAL-ATTENTION.md](MANUAL-ATTENTION.md).
+
 For the current transcript-driven campaign, read [REPLAY.md](REPLAY.md). It uses
 the native log with frame-controlled tool accumulation, collapsing, streamed
 replies, scrolling and a source-bound canvas. The earlier static excerpt treatment
@@ -154,3 +161,7 @@ an inspectable baseline; they do not approve art direction or motion pacing.
 Generic import tests also cover native JSON, nested child selection, catalog
 updates, message grouping and reuse across the three actual examples. Recorded
 subagents retain their agent label and omit the root agent-composition `+`.
+
+For the OPAL/SPOTTER Chain B reference, use the separate f333d67d `opal` profile
+and port 3359. Its bundle capture, source-mapping patch, native attention
+semantics and synchronization proof are documented in [OPAL.md](OPAL.md#current-reference-chain-b-7795459).

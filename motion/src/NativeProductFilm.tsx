@@ -16,7 +16,11 @@ import type { FocusBeat } from "../native/presentation-plan";
 /** Host the editable native React stage; each captured frame waits for its paint acknowledgement. */
 export const NativeProductFilm: React.FC<{
   nativeServer?: string;
-  mode?: "film" | "campaign";
+  mode?: "film" | "campaign" | "spotter";
+  pairFile?: string;
+  attentionFile?: string;
+  attentionShot?: string;
+  spotterFilm?: boolean;
   cut?: "pitch" | "social";
   frameOffset?: number;
   campaignId?: CampaignId;
@@ -26,6 +30,10 @@ export const NativeProductFilm: React.FC<{
 }> = ({
   nativeServer = "http://127.0.0.1:3357",
   mode = "film",
+  pairFile = "opal-spotter.native.json",
+  attentionFile,
+  attentionShot,
+  spotterFilm = false,
   cut = "pitch",
   frameOffset = 0,
   campaignId = "tahoe",
@@ -44,6 +52,12 @@ export const NativeProductFilm: React.FC<{
   const url = new URL("/?render=1", nativeServer);
   if (recordCursor) url.searchParams.set("cursor", "record");
   url.searchParams.set("mode", mode);
+  if (mode === "spotter") {
+    url.searchParams.set("pair", pairFile);
+    if (attentionFile) url.searchParams.set("attention", attentionFile);
+    if (attentionShot) url.searchParams.set("attentionShot", attentionShot);
+    if (spotterFilm) url.searchParams.set("spotterFilm", "1");
+  }
   if (mode === "campaign") {
     url.searchParams.set("cut", cut);
     url.searchParams.set("campaign", campaignId);

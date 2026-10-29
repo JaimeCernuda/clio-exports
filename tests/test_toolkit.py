@@ -21,6 +21,25 @@ from verify_video import VideoSpec, check_metadata, verify_video
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def test_package_omits_preview_movies_inside_source_directories(tmp_path: Path) -> None:
+    """Saved preview movies must not leak into the reusable source handoff."""
+    public = tmp_path / "motion" / "native" / "public"
+    public.mkdir(parents=True)
+    (public / "session.json").write_text('{"recorded": true}', encoding="utf-8")
+    for suffix in (".mp4", ".WEBM", ".mov", ".mkv", ".m4v", ".avi"):
+        (public / f"preview{suffix}").write_bytes(b"local movie")
+    (tmp_path / "motion" / "package-manifest.json").write_text(
+        json.dumps({"files": [], "motionFiles": [], "directories": ["motion/native"]}),
+        encoding="utf-8",
+    )
+    output = tmp_path / "out" / "source.zip"
+    package_motion(tmp_path, output)
+    with zipfile.ZipFile(output) as archive:
+        names = archive.namelist()
+        assert "clio-editable-ui/motion/native/public/session.json" in names
+        assert not any("preview" in name for name in names)
+
+
 @pytest.fixture
 def reading_index() -> dict[str, Any]:
     """Load the real compact index without copying or executing the original HTML."""

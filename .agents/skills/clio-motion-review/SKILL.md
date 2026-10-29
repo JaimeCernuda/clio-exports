@@ -10,6 +10,9 @@ Keep evidence fidelity, rendering correctness and creative judgment distinct.
 Apply [clio-videos](../clio-videos/SKILL.md): the final NDP cut was rejected for
 unnecessary full-screen selection, a generic lake zoom and arbitrary highlights.
 Passing a pointer proof did not approve the complete edit.
+The [SPOTTER full cut also needs revision](../clio-videos/references/spotter-lessons.md):
+the user reported incorrect reviewer stalls, pointer disappearance and pointer
+occlusion. Existing source-order tests and sampled review did not catch all of them.
 
 ## Source and component checks
 
@@ -84,6 +87,14 @@ overlapping fades, unreadable detail and inadequate result holds. Captions,
 audio and transitions should make CLIO's capability clearer. Sampled stills cannot
 establish temporal quality; if playback review is limited, say so. Do not call the
 art direction approved because a file decodes or matches resolution metadata.
+
+For paired agents, inspect both panes during every long main-agent thinking
+passage. Classify reviewer stillness against recorded wake/consumption/work
+intervals and explicit editorial pause reasons; do not excuse all stalls as
+waiting. Trace the visible pointer across setup, native menus, attention banners,
+scrolling, return and the next selection. Check clipping and portal/iframe
+stacking as well as coordinates and opacity. Record unresolved user findings in
+the review receipt even when earlier technical checks passed.
 
 ## Encoding verification and handoff
 

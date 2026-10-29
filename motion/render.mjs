@@ -115,7 +115,7 @@ try {
         }
       },
       onProgress: ({ progress }) => {
-        const p = Math.floor(progress * 10) * 10;
+        const p = Math.floor(progress * 100);
         if (p !== last) {
           last = p;
           console.log(`RENDER ${p}%`);

@@ -1,7 +1,21 @@
 import React from "react";
+import { RecordedParagraph } from "../native/recorded-paragraph";
 import { renderToStaticMarkup } from "react-dom/server";
 import assert from "node:assert/strict";
 import test from "node:test";
+
+test("recorded Markdown preserves paragraph boundaries for whole-part attention mapping", () => {
+  const html = renderToStaticMarkup(
+    <>
+      <RecordedParagraph>ANSWER: 73; MATCHES</RecordedParagraph>
+      <RecordedParagraph node={{ type: "element" }}>
+        Explanation
+      </RecordedParagraph>
+    </>,
+  );
+  assert.ok(html.includes("MATCHES\n</p><p>Explanation"));
+  assert.ok(!html.includes("node="));
+});
 import {
   ActivityRow,
   AgentCard,

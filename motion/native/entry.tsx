@@ -13,6 +13,7 @@ import {
 } from "./scene-selection";
 import { NativeFilmViewer } from "./film";
 import { campaignStory, type CampaignId } from "./campaign-catalog";
+import { SpotterReplayApp } from "./spotter-replay";
 
 const query = new URLSearchParams(location.search);
 const campaignId = query.get("campaign") ?? "tahoe";
@@ -141,4 +142,4 @@ const container = document.getElementById("root");
 if (!container) throw new Error("The native review page has no root container");
 const root = import.meta.hot?.data.root ?? createRoot(container);
 if (import.meta.hot) import.meta.hot.data.root = root;
-root.render(<App />);
+root.render(query.get("mode") === "spotter" ? <SpotterReplayApp /> : <App />);

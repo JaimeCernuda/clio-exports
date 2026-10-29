@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import base64
 import binascii
+import gzip
 import zlib
 from collections.abc import Generator
 from pathlib import Path
@@ -18,7 +19,7 @@ def payload_chunks(source: Path, chunk_size: int = 65536) -> Generator[bytes, No
     decoder = zlib.decompressobj(16 + zlib.MAX_WBITS)
     found = False
     pending = b""
-    with source.open("rb") as stream:
+    with gzip.open(source, "rb") if source.suffix.lower() == ".gz" else source.open("rb") as stream:
         while chunk := stream.read(chunk_size):
             pending += chunk
             if not found:

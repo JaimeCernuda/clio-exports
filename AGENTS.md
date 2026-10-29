@@ -2,6 +2,12 @@
 
 ## Product brief
 
+For the OPAL/SPOTTER film, SPOTTER-AI is the subject. Lead with its full logo and
+its track/detect/trace investigation. OPAL, CLIO and Flowcept are supporting parts
+of that story. Place transparent logos directly on the film background, without
+colored cards. This campaign direction takes precedence over the general CLIO
+brief below.
+
 CLIO is the subject. Examples make its capabilities concrete; the film is not a
 lesson about a particular scientific result. Recreate recognizable CLIO UI as
 editable React/DOM/SVG components so panels can reflow, separate, scale, transform

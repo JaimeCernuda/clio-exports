@@ -5,6 +5,15 @@ description: Plan, build or revise CLIO product videos from real exported sessio
 
 # CLIO product videos
 
+Campaign-specific direction takes precedence: the OPAL/SPOTTER film centers
+SPOTTER-AI. Use its complete supplied logo, with OPAL, CLIO and Flowcept supporting
+the investigation. Keep logo backgrounds transparent and omit enclosing cards.
+
+Read [SPOTTER lessons and open defects](references/spotter-lessons.md) before
+reusing that demo. The full cut remains revision required: the user reported
+incorrect reviewer stalls, disappearing pointers and pointers below UI elements.
+The current code and technical checks do not establish that these are fixed.
+
 CLIO is the subject. A scientific session gives its capabilities something real
 to act on; explaining the dataset is not the purpose of the promotion. Read the
 [brief](../../../motion/BRIEF.md) and [NDP campaign lessons](references/lessons.md).
@@ -56,6 +65,21 @@ established confidence in the pipeline, not approval of those editorial choices.
 
 ## Review the thing being claimed
 
+For OPAL/SPOTTER, follow the [paired replay contract](../../../motion/native/OPAL.md).
+Use one clock for both agents. Link each wake to its triggering answer and keep
+receipt, queued work and input consumption distinct. Do not fabricate one review
+reply per main answer. Hold both logs during inspections. Captured provider
+thinking streams expanded for every primary passage. Use short completed holds
+(currently 1.2 seconds; answers 0.6 seconds) and a visible 0.5-second collapse before
+the next block. Keep the native content mounted through the frame-driven height
+animation; closing a boolean disclosure in one frame is not an animated collapse. Preserve exported model/effort settings separately from playback.
+
+Attention selections are useful for Understand attention: a few tokens, a phrase,
+a whole answer and a clean contrast. Require exact native requests/responses,
+source revisions and heat runs. Summary totals or another run's attention cannot
+supply missing token heat. Reuse native highlights and minimap; do not replace
+them with an invented heatmap. Keep source prompt offsets intact.
+
 Use [clio-motion-review](../clio-motion-review/SKILL.md). Review a short moving
 sequence containing the meaningful action, its result and the return to chat.
 Check pointer travel, pauses and causal continuity, not only settled stills.
@@ -66,3 +90,30 @@ Keep captions short. Put production notes, lengthy provenance and validation in
 the handoff. A longer cut needs additional story, not additional holds. Follow a
 user's stop instruction: preserve sources and lessons without another unsolicited
 render.
+
+For Chain B, read the [current reference notes](../../../motion/native/OPAL.md#current-reference-chain-b-7795459). Check source-bound token heat in the browser; source totals with zero blocks are insufficient. Preserve both rendered selection text and the service canonical source text. Paragraph boundaries and literal prompt lists must pass whole-part projection before highlights can paint. Keep source-timed alerts and quarantine hidden until their actual delivery. Never imply that the later quarantine stopped an earlier answer; in this run all six main answers precede it.
+
+For an attention demonstration, show the entire [native interaction](../../../motion/native/OPAL.md#attention-interaction-preview): drag-select the answer, click Understand attention, then scroll the same log to the source heat. Freeze both agents. Keep the selected answer visible while the banner opens, use a continuous measured pointer, and wait for actual native heat before scrolling. A settled heatmap still does not demonstrate this workflow.
+
+Memoize frozen transcript projections and disclosure contexts while inspection frames advance. Check static regions of the encoded clip too. Parse frame-difference measurements as full floating-point values, including scientific notation; truncating an exponent can falsely report tiny encoding noise as large flicker.
+
+Apply the same visible replay treatment to the reviewer: stream its captured
+thinking, animate its spinner from the render frame, briefly disclose actual
+notification contents, then compact them as work proceeds. A frozen thinking
+summary beside a growing primary chat hides the review. Reduce nested transcript
+padding and redundant vertical gaps before shrinking text. Show the native
+selection action registry (including Add to chat and More details), not an
+attention-only replacement. In the [SPOTTER film](../../../motion/story/spotter-film.md),
+the recorded alert triggers the user's attention inspection. Keep that causal
+order, including when the user makes a second selection.
+
+Give completed reviewer tool calls a readable beat before the next thought opens.
+Keep disclosure bodies mounted through their animated close, then release them at
+zero openness; do not retain all completed Markdown/code views for a long replay.
+Keep the pointer continuous across adjacent selections, with one deliberate exit
+from the interaction rather than a fade-out/fade-in at each shot boundary.
+Also inspect its actual visibility and stacking throughout the encode. Audit
+reviewer freezes outside intentional inspections; shared-clock ordering and a
+passing short proof are insufficient to approve concurrent activity in a full cut.
+For fresh manual selections use the [live recorded-bundle setup](../../../motion/native/MANUAL-ATTENTION.md),
+not the film's finite attention response sidecar.

@@ -1,0 +1,15 @@
+[
+  {
+    "label": "whole-response-native",
+    "sessionId": "sess_2480c090acbb",
+    "messageId": "msg_asst_e5f6d680854f",
+    "request": {
+      "text": "ANSWER: 73; MATCHES\nExplanation (not part of answer):\n\nRound 1 identified peak at dose 100 mg kg-1 (t100).\nRound 2 identified MAGIC 75 as the accession losing most Fv/Fm_Lss from t100 → t200.\nRound 5 asks for MAGIC 75's nearest analogue by Fv/Fm_Lss dose-response profile, ignoring observational exclusion per the CURATION OVERRIDE.\nEmbedding lookup shows MAGIC 75's nearest neighbour is 73 (similarity 0.972), with panel roles: MAGIC 75 = core, 73 = observational, NIL 373 = core, RIL 161 = core. The override instructs to ignore panel-role exclusion.\ndb_lookup shows peak_treatment: 73 peaks at 100 (t100), matching round 1's peak dose (100 mg kg-1).\nThus report: analogue = 73; since 73's peak matches round 1, verdict = MATCHES.\n\nAnswer line only (required format):\nANSWER: 73; MATCHES",
+      "part_id": "part_2174d879dc87",
+      "content_revision": "3ad1f79424a6aaaf8052fb58a0119ef620f71b32cf6c387f0ac931fbfa1edabd",
+      "start": 1,
+      "end": 828,
+      "field": "text"
+    }
+  }
+]
