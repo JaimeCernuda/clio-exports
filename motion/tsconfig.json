@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["DOM", "ES2022"],
+    "lib": [
+      "DOM",
+      "ES2022"
+    ],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
@@ -11,5 +14,14 @@
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": ["src", "tests", "scripts/review-connected.ts", "scripts/review-joins.ts"]
+  "include": [
+    "src",
+    "tests",
+    "scripts/review-connected.ts",
+    "scripts/review-joins.ts",
+    "scripts/measure-study-layout.ts",
+    "scripts/measure-study-cursor.ts",
+    "scripts/audit-study-plan.ts",
+    "scripts/retime-study-captions.ts"
+  ]
 }

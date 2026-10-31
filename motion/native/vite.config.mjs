@@ -5,7 +5,8 @@ import path from "node:path";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const source = process.env.CLIO_UI_SOURCE;
 const opalProfile = process.env.CLIO_UI_PROFILE === "opal";
-const nativePort = opalProfile ? 3359 : 3357;
+const wordleProfile = process.env.CLIO_UI_PROFILE === "wordle";
+const nativePort = wordleProfile ? 3361 : opalProfile ? 3359 : 3357;
 if (!source) throw new Error("Use native/run.mjs to select a source checkout");
 const web = path.join(source, "web");
 const requireSource = createRequire(path.join(web, "package.json"));
@@ -33,12 +34,205 @@ export default {
   root: here,
   cacheDir: path.join(here, "node_modules/.vite"),
   base: "./",
+  publicDir: wordleProfile
+    ? path.join(here, "../.native-ui/wordle-data")
+    : undefined,
   plugins: [
     {
       name: "native-source-classes",
       enforce: "pre",
       transform(code, id) {
         const sourcePath = id.split("?")[0].replaceAll("\\", "/");
+        if (wordleProfile && sourcePath.endsWith("/hooks/use-now.ts"))
+          return `export {useRecordedStudyNow as useNow} from ${JSON.stringify(path.join(here, "study-controls.tsx").replaceAll("\\", "/"))};`;
+        if (
+          wordleProfile &&
+          sourcePath.endsWith("/components/clio/study-graph.tsx")
+        )
+          return code
+            .replace(
+              "<FitOnResize container={container} />",
+              "<FitOnResize container={container} revision={graph.nodes.map(node=>node.id).join(',')} />",
+            )
+            .replace(
+              "function FitOnResize({ container }: { container: RefObject<HTMLDivElement | null> })",
+              "function FitOnResize({ container, revision }: { container: RefObject<HTMLDivElement | null>; revision:string })",
+            )
+            .replace("[container, fitView]", "[container, fitView, revision]");
+        if (
+          wordleProfile &&
+          sourcePath.endsWith("/components/clio/bound-data-query.tsx")
+        )
+          return code.replace(
+            "return () => subscriptions.forEach((subscription) => subscription.unsubscribe());",
+            "setRevision((current) => current + 1); return () => subscriptions.forEach((subscription) => subscription.unsubscribe());",
+          );
+        if (
+          wordleProfile &&
+          sourcePath === path.join(here, "entry.tsx").replaceAll("\\", "/")
+        )
+          return 'import "./study-entry.tsx";';
+        if (
+          wordleProfile &&
+          sourcePath.endsWith("/components/clio/conversation-turn.tsx")
+        ) {
+          return (
+            `import {StudyActivityKey} from ${JSON.stringify(path.join(here, "study-disclosure.tsx").replaceAll("\\", "/"))};\n` +
+            code
+              .replace(
+                "return (\n    <ChainOfThought\n",
+                "return (<StudyActivityKey.Provider value={`activity:${id}`}>\n    <ChainOfThought\n",
+              )
+              .replace(
+                "</ChainOfThought>\n  );",
+                "</ChainOfThought></StudyActivityKey.Provider>\n  );",
+              )
+              .replace(
+                'className="@container my-3 space-y-0"',
+                'className="@container my-3 space-y-0" data-replay-activity={id}',
+              )
+          );
+        }
+        if (
+          wordleProfile &&
+          sourcePath.endsWith("/components/ai-elements/chain-of-thought.tsx")
+        ) {
+          return (
+            `import {StudyActivityContent} from ${JSON.stringify(path.join(here, "study-disclosure.tsx").replaceAll("\\", "/"))};\n` +
+            code
+              .replace("<CollapsibleContent\n", "<StudyActivityContent\n")
+              .replace("</CollapsibleContent>", "</StudyActivityContent>")
+          );
+        }
+        if (
+          wordleProfile &&
+          sourcePath.endsWith("/components/clio/tool-invocation.tsx")
+        ) {
+          return (
+            `import {useRecordedStudyTool} from ${JSON.stringify(path.join(here, "study-controls.tsx").replaceAll("\\", "/"))};\n` +
+            code.replace(
+              "useState(() => INLINE_MEMORY_TOOLS.has(tool?.name ?? ''))",
+              "useRecordedStudyTool(tool?.id ?? '', INLINE_MEMORY_TOOLS.has(tool?.name ?? ''))",
+            )
+          );
+        }
+        if (
+          wordleProfile &&
+          sourcePath.endsWith("/components/clio/chart-data.ts")
+        ) {
+          return (
+            `import {expressionFields} from ${JSON.stringify(path.join(here, "recorded-expression-fields.ts").replaceAll("\\", "/"))};\n` +
+            code.replace(
+              "return [...fields].filter((name) => !derived.has(name));",
+              "for (const field of expressionFields(spec)) fields.add(field); return [...fields].filter((name) => !derived.has(name));",
+            )
+          );
+        }
+        if (
+          wordleProfile &&
+          sourcePath.endsWith("/components/clio/a2ui-choice-picker.tsx")
+        ) {
+          return (
+            `import {useRecordedStudyChoice,useRecordedStudySeed} from ${JSON.stringify(path.join(here, "study-controls.tsx").replaceAll("\\", "/"))};\n` +
+            code
+              .replace(
+                "const [open, setOpen] = useState(false);",
+                "useRecordedStudySeed(props); const [open, setOpen] = useRecordedStudyChoice<boolean>('seedMenu', false); const [recordedSeedQuery,setRecordedSeedQuery] = useRecordedStudyChoice<string>('seedQuery','');",
+              )
+              .replace(
+                "<CommandInput",
+                "<CommandInput value={recordedSeedQuery} onValueChange={setRecordedSeedQuery}",
+              )
+          );
+        }
+        if (wordleProfile && sourcePath.endsWith("/hooks/use-flow-run.ts")) {
+          return (
+            `import {useRecordedStudyFlow} from ${JSON.stringify(path.join(here, "study-controls.tsx").replaceAll("\\", "/"))};\n` +
+            code
+              .replace(
+                "export function useFlowRun(sessionId: string, handle: string, enabled = true) {",
+                "export function useFlowRun(sessionId: string, handle: string, enabled = true) { const recordedFlow = useRecordedStudyFlow(handle);",
+              )
+              .replace(
+                "  return useQuery({",
+                "  const capturedQuery = useQuery({",
+              )
+              .replace(
+                "enabled: Boolean(sessionId && handle) && enabled,",
+                "enabled: !recordedFlow && Boolean(sessionId && handle) && enabled,",
+              )
+              .replace(
+                "  });\n}\n\n/** Open the conversation",
+                "  }); return recordedFlow ? {...capturedQuery, data: recordedFlow, isPending: false, error: null} : capturedQuery;\n}\n\n/** Open the conversation",
+              )
+          );
+        }
+        if (
+          wordleProfile &&
+          sourcePath.endsWith("/components/clio/science-log-tab.tsx")
+        ) {
+          return (
+            `import {useRecordedStudyChoice} from ${JSON.stringify(path.join(here, "study-controls.tsx").replaceAll("\\", "/"))};\n` +
+            code
+              .replace(
+                "useState<StudyGraphScope>('linked')",
+                "useRecordedStudyChoice<StudyGraphScope>('graphScope', 'all')",
+              )
+              .replace(
+                "useState(initial)",
+                "useRecordedStudyChoice('branch', initial)",
+              )
+              .replace(
+                "useState<string>();",
+                "useRecordedStudyChoice<string | undefined>('entry', undefined);",
+              )
+              .replace(
+                "useState<'views' | 'list' | 'graph'>('list')",
+                "useRecordedStudyChoice<'views' | 'list' | 'graph'>('mode', 'list')",
+              )
+          );
+        }
+        if (
+          wordleProfile &&
+          sourcePath.endsWith("/components/clio/science-log-sources.tsx")
+        ) {
+          return (
+            `import {useRecordedStudySources} from ${JSON.stringify(path.join(here, "study-controls.tsx").replaceAll("\\", "/"))};\n` +
+            code
+              .replace(
+                "const [open, setOpen] = useState(false);",
+                "const [open, setOpen] = useRecordedStudySources(entry.id);",
+              )
+              .replace(
+                'className="min-w-0 text-[11px]"',
+                'className="min-w-0 text-[11px]" open={open}',
+              )
+          );
+        }
+        if (
+          wordleProfile &&
+          sourcePath.endsWith("/components/clio/flow-track.tsx")
+        ) {
+          return (
+            `import {useRecordedStudyChoice} from ${JSON.stringify(path.join(here, "study-controls.tsx").replaceAll("\\", "/"))};\n` +
+            code.replace(
+              "useState<string>();",
+              "useRecordedStudyChoice<string | undefined>('flowSelection', undefined);",
+            )
+          );
+        }
+        if (
+          wordleProfile &&
+          sourcePath.endsWith("/components/clio/study-views.tsx")
+        ) {
+          return (
+            `import {useRecordedStudyChoice} from ${JSON.stringify(path.join(here, "study-controls.tsx").replaceAll("\\", "/"))};\n` +
+            code.replace(
+              "useState<string>();",
+              "useRecordedStudyChoice<string | undefined>('viewEntry', undefined);",
+            )
+          );
+        }
         if (
           opalProfile &&
           sourcePath ===
@@ -284,7 +478,7 @@ export interface ArchiveTranscriptView {`,
           return code
             .replace(
               "export interface ClioWorkbenchProps {",
-              "export interface ClioWorkbenchProps { recordedPresentation?: {tabs: WorkbenchTab[]; activeTabId:string; content:ReactNode; maximized?:boolean};",
+              "export interface ClioWorkbenchProps { recordedPresentation?: {tabs: WorkbenchTab[]; activeTabId:string; content:ReactNode; maximized?:boolean; onTabChange?:(id:string)=>void; onMaximizedChange?:(value:boolean)=>void};",
             )
             .replace(
               "      requestedOpen,\n",
@@ -296,11 +490,11 @@ export interface ArchiveTranscriptView {`,
             )
             .replace(
               "const [activeTabId, setActiveTabId] = useState<string>(initialState.activeTabId);",
-              "const [liveActiveTabId, setActiveTabId] = useState<string>(initialState.activeTabId); const activeTabId = recordedPresentation?.activeTabId ?? liveActiveTabId;",
+              "const [liveActiveTabId, setLiveActiveTabId] = useState<string>(initialState.activeTabId); const activeTabId = recordedPresentation?.activeTabId ?? liveActiveTabId; const setActiveTabId = (value:string) => {setLiveActiveTabId(value); recordedPresentation?.onTabChange?.(value);};",
             )
             .replace(
               "const [maximized, setMaximized] = useState(false);",
-              "const [liveMaximized, setMaximized] = useState(false); const maximized = recordedPresentation?.maximized ?? liveMaximized;",
+              "const [liveMaximized, setLiveMaximized] = useState(false); const maximized = recordedPresentation?.maximized ?? liveMaximized; const setMaximized: typeof setLiveMaximized = (value) => {const next = typeof value === 'function' ? value(maximized) : value; setLiveMaximized(next); recordedPresentation?.onMaximizedChange?.(next);};",
             )
             .replace(
               "maximized && 'fixed inset-0 z-[80] bg-background shadow-2xl'",
@@ -327,11 +521,11 @@ export interface ArchiveTranscriptView {`,
           )
             .replace(
               "components={{ ...streamdownComponents, ...components }}",
-              "components={{ ...streamdownComponents, ...(new URLSearchParams(location.search).get('mode') === 'spotter' ? {p: RecordedParagraph} : {}), ...components }}",
+              "components={{ ...streamdownComponents, ...(new URLSearchParams(location.search).get('mode') === 'spotter' || new URLSearchParams(location.search).get('mode') === 'study' ? {p: RecordedParagraph} : {}), ...components }}",
             )
             .replace(
               "        {...props}\n",
-              "        {...props}\n        mode={['film','campaign','spotter'].includes(new URLSearchParams(location.search).get('mode') ?? '') ? 'static' : props.mode}\n",
+              "        {...props}\n        mode={['film','campaign','spotter','study'].includes(new URLSearchParams(location.search).get('mode') ?? '') ? 'static' : props.mode}\n",
             );
         if (
           id.split("?")[0].replaceAll("\\", "/") ===
@@ -358,11 +552,11 @@ export interface ArchiveTranscriptView {`,
             )
             .replace(
               "canvasAvailable() ? 'canvas' : 'svg'",
-              "['film', 'campaign'].includes(new URLSearchParams(location.search).get('mode') ?? '') ? 'svg' : (canvasAvailable() ? 'canvas' : 'svg')",
+              "['film', 'campaign', 'study'].includes(new URLSearchParams(location.search).get('mode') ?? '') ? 'svg' : (canvasAvailable() ? 'canvas' : 'svg')",
             )
             .replace(
               "setMeasuredWidth(Math.floor(node.getBoundingClientRect().width))",
-              "setMeasuredWidth(Math.floor(['film', 'campaign'].includes(new URLSearchParams(location.search).get('mode') ?? '') ? node.clientWidth : node.getBoundingClientRect().width))",
+              "setMeasuredWidth(Math.floor(['film', 'campaign', 'study'].includes(new URLSearchParams(location.search).get('mode') ?? '') ? node.clientWidth : node.getBoundingClientRect().width))",
             );
         if (
           id.split("?")[0].replaceAll("\\", "/") ===
@@ -372,7 +566,7 @@ export interface ArchiveTranscriptView {`,
         )
           return code.replace(
             "const renderSurface = live || nearViewport || hasInteracted || targeted;",
-            "const renderSurface = ['film', 'campaign'].includes(new URLSearchParams(location.search).get('mode') ?? '') || live || nearViewport || hasInteracted || targeted;",
+            "const renderSurface = ['film', 'campaign', 'study'].includes(new URLSearchParams(location.search).get('mode') ?? '') || live || nearViewport || hasInteracted || targeted;",
           );
         if (
           id.split("?")[0].replaceAll("\\", "/") ===
@@ -435,7 +629,11 @@ export interface ArchiveTranscriptView {`,
   build: {
     outDir: path.join(
       here,
-      opalProfile ? "../.native-ui/build-opal" : "../.native-ui/build",
+      wordleProfile
+        ? "../.native-ui/build-wordle"
+        : opalProfile
+          ? "../.native-ui/build-opal"
+          : "../.native-ui/build",
     ),
     emptyOutDir: true,
     assetsInlineLimit: 0,

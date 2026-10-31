@@ -333,7 +333,15 @@ export function prefixAt(
 }
 
 /** Project both transcripts from the same source clock, including real tool lifecycle boundaries. */
-export function projectPairedSession(session: PairedSession, at: number) {
+export function projectPairedSession(
+  session: PairedSession,
+  at: number,
+  textPrefix?: (
+    block: RecordedMessage["blocks"][number],
+    timing: TimedBlock,
+    at: number,
+  ) => number | undefined,
+) {
   const timing = new Map(session.blocks.map((b) => [b.blockId, b]));
   const tools = session.view.tools
     .filter((tool) =>
@@ -368,7 +376,8 @@ export function projectPairedSession(session: PairedSession, at: number) {
       const timed = timing.get(block.id)!;
       if (!timed || at < timed.start) return [];
       if (!block.text || !timed.checkpoints.length) return [block];
-      const length = prefixAt(timed.checkpoints, at);
+      const length =
+        textPrefix?.(block, timed, at) ?? prefixAt(timed.checkpoints, at);
       if (!length) return [];
       const full = Array.from(block.text),
         complete = length === full.length;

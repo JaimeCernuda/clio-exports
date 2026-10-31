@@ -67,6 +67,13 @@ The older component API is documented in `motion/UI-KIT.md`. Keep shared compone
 copy, backend services and Remotion's runtime. Frame/time and geometry enter as
 props. Preserve compatibility exports when moving an existing component.
 
+## Storage
+
+- Keep generated assets, render work, caches and outputs on D: within this project.
+- Set TEMP, TMP and TMPDIR to a project directory before loading render libraries or running capture/test processes that create temporary files.
+- Never switch to C: when D: is low on space. Stop and clean only owned, rebuildable intermediates.
+- Remove successful raw/chunk render intermediates after validating the final output. Preserve original exports, source code and final videos.
+
 ## Python
 
 Use uv, pyproject.toml, Python 3.11+, typed public functions, pytest, Ruff and pyright.

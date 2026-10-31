@@ -10,6 +10,8 @@ export interface RecordedWorkbenchPresentation {
   activeTabId: string;
   content: ReactNode;
   maximized?: boolean;
+  onTabChange?: (id: string) => void;
+  onMaximizedChange?: (value: boolean) => void;
 }
 
 // The Vite adapter adds only a controlled state/content port. Production renders
@@ -36,6 +38,7 @@ export function RecordedWorkbench({
       artifacts={[]}
       diffs={[]}
       sessionView={null}
+      inStudy={presentation.tabs.some((tab) => tab.kind === "science-log")}
       onOpenSubagent={() => {
         throw new Error("No child selected in this recorded shot");
       }}

@@ -1,0 +1,222 @@
+{
+  "schema": "clio.narration-plan.v1",
+  "title": "CLIO Wordle study technical walkthrough",
+  "fps": 60,
+  "durationSeconds": 510,
+  "status": "presenter_script_draft",
+  "audioGenerated": false,
+  "captionPolicy": "Optional sidecar track. Planned cue timing is editorial; replace it with returned audio alignment before describing it as speech synchronized.",
+  "cues": [
+    {
+      "id": "opening",
+      "start": 0,
+      "end": 4,
+      "text": "Follow one question through a complete CLIO study."
+    },
+    {
+      "id": "question",
+      "start": 4,
+      "end": 22,
+      "text": "The question is how to solve Wordle using the tools’ own word list. CLIO first inspects that list. These are invented words, so a familiar English opener may be a poor choice. The study needs evidence from actual games."
+    },
+    {
+      "id": "hypotheses",
+      "start": 22,
+      "end": 36,
+      "text": "The Science Log records the question and three predictions: open with akuzo, use akuzo then nivyl, or start with terva. Each hypothesis can be checked against the same seeds."
+    },
+    {
+      "id": "study-links",
+      "start": 36,
+      "end": 48,
+      "text": "These are linked scientific records. The graph connects the hypotheses to the question. Later, the experiments, observations and evidence will extend this same record."
+    },
+    {
+      "id": "launch",
+      "start": 48,
+      "end": 59,
+      "text": "The workflow starts three strategies in parallel. Merge waits for all three branches, then an independent review checks the result."
+    },
+    {
+      "id": "flow",
+      "start": 59,
+      "end": 78,
+      "text": "Select a step to inspect its instructions, dependencies and task. The topology is deliberately simple here: three branches, a join, and a review. It is the execution state and the study underneath it that evolve during this run."
+    },
+    {
+      "id": "open-branch",
+      "start": 78,
+      "end": 95,
+      "text": "Opening the English-style branch takes us into the agent’s actual conversation. This branch catches an incorrect delegation, cancels it, and launches the intended batches. That cancelled task remains part of the recorded history."
+    },
+    {
+      "id": "delegation",
+      "start": 95,
+      "end": 110,
+      "text": "The delegation tree opens each worker’s conversation. Each worker receives five seeds, the same strategy rules, and the instruction to cite its tool calls when it writes an observation."
+    },
+    {
+      "id": "worker",
+      "start": 110,
+      "end": 128,
+      "text": "This worker plays seeds sixteen through twenty. It loads the study procedure and starts the games. We are still using the same study clock: the other strategy branches continue while we inspect this worker."
+    },
+    {
+      "id": "feedback",
+      "start": 128,
+      "end": 142,
+      "text": "The first guesses return coloured feedback. The board is built from those tool results. The agent uses the feedback to narrow the candidate words and choose its next guesses."
+    },
+    {
+      "id": "board-inspect",
+      "start": 142,
+      "end": 148,
+      "text": "Pause here: yellow means another position; grey means absent."
+    },
+    {
+      "id": "continue-games",
+      "start": 148,
+      "end": 160,
+      "text": "Resume the worker. More feedback arrives, and the board changes with each returned guess. This game is solved in three guesses."
+    },
+    {
+      "id": "observations",
+      "start": 160,
+      "end": 177,
+      "text": "The worker finishes the remaining games in its batch before logging the observations. The observation appears when it was actually recorded, rather than being moved backwards to the instant of the winning guess."
+    },
+    {
+      "id": "sources",
+      "start": 177,
+      "end": 187,
+      "text": "Expand Sources. This observation cites the new-game call and every guess, with arguments, timestamps and result hashes."
+    },
+    {
+      "id": "source-call",
+      "start": 187,
+      "end": 198,
+      "text": "Follow a citation back into the conversation. Here is the actual winning call and its returned result. The scientific record and the agent transcript remain connected."
+    },
+    {
+      "id": "return-flow",
+      "start": 198,
+      "end": 215,
+      "text": "Return to the workflow. Opening a worker did not create a separate replay timeline. All branches have advanced together, and the merge still waits for their completion."
+    },
+    {
+      "id": "other-boards",
+      "start": 215,
+      "end": 235,
+      "text": "Across the study, workers play the same twenty seeds under three different strategies. Their observations join this shared graph. We can inspect the evidence across branches without losing the source conversation behind each record."
+    },
+    {
+      "id": "log-growth",
+      "start": 235,
+      "end": 255,
+      "text": "The study graph grows as observations arrive from the delegated workers. Each game contributes a guess count and a solved indicator, linked to its experiment and source calls. Retries of a logging call are not counted as extra observations."
+    },
+    {
+      "id": "graph-growth",
+      "start": 255,
+      "end": 275,
+      "text": "The graph now exposes the scientific structure across branches. We can follow a hypothesis to its experiment, then inspect the observations that supply its measurements."
+    },
+    {
+      "id": "merge",
+      "start": 275,
+      "end": 295,
+      "text": "Once the branches finish, merge begins. Its agent reads the study log, exports the measurements and computes paired comparisons on the shared seeds. The analysis itself is recorded as tool activity."
+    },
+    {
+      "id": "evidence",
+      "start": 295,
+      "end": 315,
+      "text": "Evidence records connect the comparisons to their analysis calls. Hypothesis statuses change only when those updates are logged. Conflicts preserve weaknesses in the design and in how the findings should be interpreted."
+    },
+    {
+      "id": "review",
+      "start": 315,
+      "end": 333,
+      "text": "The review step checks the merge independently against the logged measurements. Its conversation shows what it could verify, what it could not rerun, and which claims need more careful wording."
+    },
+    {
+      "id": "uncertainty",
+      "start": 333,
+      "end": 349,
+      "text": "The study does not establish a decisive winner. Its confidence intervals include zero, and the conclusion preserves that uncertainty. The review also identifies limitations in the recorded feedback and in the sample size."
+    },
+    {
+      "id": "conclusion",
+      "start": 349,
+      "end": 360,
+      "text": "The result is a conclusion with a navigable record behind it: question, hypotheses, experiments, observations, evidence and review."
+    },
+    {
+      "id": "second-run",
+      "start": 360,
+      "end": 367,
+      "text": "Now switch to a separate recorded study that adds interactive result views."
+    },
+    {
+      "id": "second-design",
+      "start": 367,
+      "end": 380,
+      "text": "This run uses ten shared seeds and a different English-style opener, anori. Its measurements belong to this run. They are not pooled with the sixty-game study."
+    },
+    {
+      "id": "attached-views",
+      "start": 380,
+      "end": 397,
+      "text": "The Science log’s Views tab contains the dashboards attached to the study. The comparison chart uses the recorded measurements; it was created after these experiments completed."
+    },
+    {
+      "id": "comparison",
+      "start": 397,
+      "end": 420,
+      "text": "Each strategy has ten game results. Lines connect the same seed across strategies, and the mean markers summarize those results. A averages three point six guesses, B four point two, and C four. Those differences still need the uncertainty and caveats in the study record."
+    },
+    {
+      "id": "game-view",
+      "start": 420,
+      "end": 435,
+      "text": "Open the game-board view to inspect the guesses behind the summary. Seed five is a useful comparison: A solves it in four guesses, while B needs six."
+    },
+    {
+      "id": "seed-change",
+      "start": 435,
+      "end": 451,
+      "text": "Choose seed ten. The control changes the data query, and all three boards update to that same game. Strategy C includes a recorded inconsistent guess; the film keeps that mistake visible."
+    },
+    {
+      "id": "tile-provenance",
+      "start": 451,
+      "end": 463,
+      "text": "Hover a tile to inspect the word, feedback and observation identifier. This is a transcription of the logged games, with feedback checked against each recorded answer."
+    },
+    {
+      "id": "seed-return",
+      "start": 463,
+      "end": 475,
+      "text": "Return to seed five. The boards expose how the strategies reached the same answer through different sequences of guesses."
+    },
+    {
+      "id": "view-lineage",
+      "start": 475,
+      "end": 491,
+      "text": "The views are attached to the study record, alongside the scientific entries. The comparison uses the study measurement feed. The game-board view is a saved transcription that would need rebuilding if more games were added."
+    },
+    {
+      "id": "closing-record",
+      "start": 491,
+      "end": 505,
+      "text": "Return to the conclusion and its caveats. We can inspect the result, the work that produced it, and the evidence supporting each claim without losing the relationship between them."
+    },
+    {
+      "id": "close",
+      "start": 505,
+      "end": 510,
+      "text": "The study remains connected to its evidence."
+    }
+  ],
+  "revision": 2
+}

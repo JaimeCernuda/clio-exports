@@ -12,6 +12,10 @@ adds a frame-controlled stage and asset-readiness bridge for Remotion under
 
 ## Run
 
+For synchronized study/workflow replay, graph-led Science Log inspection and
+interactive Wordle boards, follow [WORDLE.md](WORDLE.md). Its profile uses a
+separate source pin, build and port and does not replace this NDP baseline.
+
 For synchronized OPAL/SPOTTER transcripts and recorded attention inspections,
 see [OPAL.md](OPAL.md). Its shared source clock keeps main answers, notification
 receipt and reviewer input consumption in source order. The full cut still has

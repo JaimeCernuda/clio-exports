@@ -12,8 +12,13 @@ if (!["dev", "build", "preview", "check"].includes(command))
 const flag = args.indexOf("--source");
 const profileFlag = args.indexOf("--profile");
 const profile = profileFlag < 0 ? "default" : args[profileFlag + 1];
-if (!["default", "opal"].includes(profile))
-  throw new Error("Choose default or opal profile");
+if (!["default", "opal", "wordle"].includes(profile))
+  throw new Error("Choose default, opal or wordle profile");
+const nativeTemporary = path.join(here, "../.native-ui/tmp");
+mkdirSync(nativeTemporary, { recursive: true });
+process.env.TEMP = nativeTemporary;
+process.env.TMP = nativeTemporary;
+process.env.TMPDIR = nativeTemporary;
 if (flag >= 0 && !args[flag + 1])
   throw new Error("--source needs a checkout path");
 const source = path.resolve(
@@ -23,7 +28,7 @@ const source = path.resolve(
 );
 const expected = JSON.parse(
   readFileSync(
-    path.join(here, profile === "opal" ? "source-opal.json" : "source.json"),
+    path.join(here, profile !== "default" ? "source-opal.json" : "source.json"),
     "utf8",
   ),
 );
@@ -65,10 +70,7 @@ if (command === "check") {
   };
   const cache = path.join(here, "../.native-ui");
   mkdirSync(cache, { recursive: true });
-  const config = path.join(
-    cache,
-    profile === "opal" ? "tsconfig-opal.json" : "tsconfig.json",
-  );
+  const config = path.join(cache, `tsconfig-${profile}.json`);
   writeFileSync(
     config,
     JSON.stringify({
@@ -78,6 +80,7 @@ if (command === "check") {
         tsBuildInfoFile: undefined,
         types: [],
         strict: true,
+        resolveJsonModule: true,
         paths: {
           react: [path.join(reactTypes, "index.d.ts")],
           "react/*": [path.join(reactTypes, "*")],
@@ -93,6 +96,7 @@ if (command === "check") {
       include: [],
       files: [
         path.join(here, "entry.tsx"),
+        ...(profile === "wordle" ? [path.join(here, "study-entry.tsx")] : []),
         path.join(here, "workspace.tsx"),
         path.join(here, "recorded-prompt.tsx"),
         path.join(here, "recorded-paragraph.tsx"),
@@ -125,7 +129,12 @@ const vite = path.join(
 const options = command === "dev" ? [] : [command];
 const child = spawn(
   process.execPath,
-  [vite, ...options, "--config", path.join(here, "vite.config.mjs")],
+  [
+    vite,
+    ...options,
+    "--config",
+    path.join(here, "vite.config.mjs"),
+  ],
   {
     cwd: here,
     stdio: "inherit",

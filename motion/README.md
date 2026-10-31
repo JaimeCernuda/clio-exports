@@ -1,5 +1,11 @@
 # Reusable CLIO UI motion toolkit
 
+For the Wordle study walkthrough, see [WORDLE.md](native/WORDLE.md). It has an
+isolated native profile on port 3361, one source clock across all delegated
+sessions, graph-led Science Log inspections, tool-driven Wordle boards and the
+saved interactive views from a second study. The revised timeline is 8:30 with
+optional presenter captions and an importer for actual speech timing.
+
 The [SPOTTER / OPAL sources](native/OPAL.md) and
 [manual attention setup](native/MANUAL-ATTENTION.md) are also retained here.
 That full cut remains revision required for reviewer stalls and pointer

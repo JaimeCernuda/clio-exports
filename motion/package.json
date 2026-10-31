@@ -8,7 +8,7 @@
     "native:build": "node native/run.mjs build",
     "native:check": "node native/run.mjs check",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test tests/ui.test.tsx tests/render-options.test.mjs tests/native-session.test.ts tests/native-film.test.ts tests/campaign.test.ts tests/ndp-campaigns.test.ts tests/story.test.ts tests/cursor.test.ts tests/vector-chart.test.ts tests/frame-review.test.ts tests/paired-replay.test.ts tests/spotter-intro.test.ts",
+    "test": "tsx --test tests/ui.test.tsx tests/render-options.test.mjs tests/native-session.test.ts tests/native-film.test.ts tests/campaign.test.ts tests/ndp-campaigns.test.ts tests/story.test.ts tests/cursor.test.ts tests/vector-chart.test.ts tests/frame-review.test.ts tests/paired-replay.test.ts tests/spotter-intro.test.ts tests/study-replay.test.ts",
     "format:check": "prettier --check src scripts tests render.mjs examples native/*.ts native/*.tsx native/*.mjs native/*.css native/*.html native/source.json",
     "stills": "node render.mjs stills",
     "promo:stills": "node render.mjs stills --composition ClioNativePromo",
@@ -19,7 +19,10 @@
     "campaign:inspections": "tsx scripts/render-inspections.ts",
     "campaign:story": "tsx scripts/assemble-story.ts",
     "campaign:social": "node render.mjs video --composition NdpClioSocial --scale 1 --output out/ndp-clio-conversation-social.mp4",
-    "render": "node render.mjs video"
+    "render": "node render.mjs video",
+    "wordle:measure": "tsx scripts/measure-study-cursor.ts",
+    "wordle:proof": "node --max-old-space-size=4096 render.mjs video --composition WordleStudyProof --scale 1.5 --concurrency 2 --output out/wordle-study-proof.mp4",
+    "wordle:render": "node --max-old-space-size=4096 render.mjs video --composition WordleStudyWalkthrough --scale 1.5 --concurrency 2 --output out/wordle-study-walkthrough.mp4"
   },
   "dependencies": {
     "@fontsource-variable/inter": "5.3.0",
@@ -37,6 +40,7 @@
     "@types/node": "22.20.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "playwright-core": "1.62.1",
     "prettier": "3.6.2",
     "tsx": "4.23.15",
     "typescript": "5.6.3"

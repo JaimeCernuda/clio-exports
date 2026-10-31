@@ -8,6 +8,8 @@ export type CursorBeat = {
   label?: string;
   pulse?: boolean;
   drag?: boolean;
+  /** Optional bounded travel for a film that does not use the legacy approach timing. */
+  travelFrames?: number;
 };
 export type CursorPose = { x: number; y: number; size: number };
 export type CursorKey = CursorBeat & CursorPose;
@@ -188,6 +190,8 @@ export function cursorAt(
     Math.hypot(next.x - previous.x, next.y - previous.y) > 400
   )
     start = Math.max(previous.at + 8, next.at - 120);
+  if (next?.travelFrames !== undefined)
+    start = Math.max(previous.at, next.at - next.travelFrames);
   const p = !next
     ? 0
     : next.drag

@@ -30,6 +30,32 @@ validatePairedReplay(chainReplay);
 export const RemotionRoot: React.FC = () => (
   <>
     <Composition
+      id="WordleStudyProof"
+      component={NativeProductFilm}
+      width={1280}
+      height={720}
+      fps={60}
+      durationInFrames={5760}
+      defaultProps={{
+        nativeServer: "http://127.0.0.1:3361",
+        mode: "study",
+        cut: "social",
+      }}
+    />
+    <Composition
+      id="WordleStudyWalkthrough"
+      component={NativeProductFilm}
+      width={1280}
+      height={720}
+      fps={60}
+      durationInFrames={30600}
+      defaultProps={{
+        nativeServer: "http://127.0.0.1:3361",
+        mode: "study",
+        cut: "pitch",
+      }}
+    />
+    <Composition
       id="SpotterOpalFilm"
       component={SpotterFilm}
       width={1280}

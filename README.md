@@ -15,6 +15,13 @@ into the build, so a changed file never reaches the site unnoticed.
 
 ## Promotional authoring
 
+The [Wordle technical walkthrough](motion/native/WORDLE.md) follows a branched
+study through its agents, tool-driven boards and evolving Science Log graph,
+then switches explicitly to a separate run's interactive views. Its importer,
+timeline, native controls, cursor measurements and presenter-caption tooling are
+maintained here. The revised 8:30 cut is intended for a live presenter; generated speech
+can be aligned later from saved ElevenLabs timing responses.
+
 Start with [clio-videos](.agents/skills/clio-videos/SKILL.md) and the
 [native CLIO conversation preview](motion/native/README.md), which accepts new
 exports. The source-ordered replay and [connected-story pipeline](motion/story/README.md)

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CLIO Wordle walkthrough</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #f5f5f1;
+        color: #173d50;
+        font:
+          15px system-ui,
+          sans-serif;
+      }
+      main {
+        max-width: 1500px;
+        padding: 20px;
+        margin: auto;
+      }
+      header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+      h1 {
+        font-size: 20px;
+        margin: 0 auto 0 0;
+      }
+      button,
+      select {
+        color: inherit;
+        background: #fff;
+        border: 1px solid #c5d9df;
+        border-radius: 7px;
+        padding: 8px 12px;
+      }
+      button {
+        cursor: pointer;
+      }
+      video {
+        width: 100%;
+        max-height: 80vh;
+        background: #f4fbfd;
+        border: 1px solid #c5d9df;
+        border-radius: 10px;
+        display: block;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 14px;
+      }
+      p {
+        color: #587481;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      output {
+        font-variant-numeric: tabular-nums;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>CLIO Wordle study</h1>
+        <button id="play" type="button">Play</button>
+        <label
+          >Speed
+          <select id="speed">
+            <option value="1">1×</option>
+            <option value="1.5">1.5×</option>
+            <option value="2">2×</option>
+          </select></label
+        >
+        <output id="time">0:00</output>
+      </header>
+      <video
+        id="film"
+        controls
+        playsinline
+        preload="metadata"
+        poster="wordle-study-poster-v2.png"
+      >
+        <track
+          kind="captions"
+          label="Presenter draft"
+          srclang="en"
+          src="wordle-caption-kit-v2/wordle-planned.vtt"
+        />
+      </video>
+      <nav id="chapters" aria-label="Chapters"></nav>
+      <p id="note">
+        Silent presentation cut. Optional captions are a presenter draft; speech
+        alignment can be imported later.
+      </p>
+    </main>
+    <script id="wordle-chapters" type="application/json">
+      [
+        [0, "Question"],
+        [22, "Hypotheses"],
+        [26, "Expand graph"],
+        [48, "Flow"],
+        [78, "Branch"],
+        [110, "Worker"],
+        [128, "Feedback"],
+        [160, "Observations"],
+        [177, "Sources"],
+        [215, "Graph growth"],
+        [275, "Merge"],
+        [315, "Review"],
+        [360, "Second study"],
+        [386, "Comparison"],
+        [420, "Game boards"],
+        [435, "Change seed"],
+        [475, "Graph and conclusion"]
+      ]
+    </script>
+    <script>
+      const video = document.querySelector("#film");
+      const clip =
+        new URLSearchParams(location.search).get("clip") ||
+        "wordle-study-walkthrough-v2.mp4";
+      video.src = clip;
+      const proof = clip.includes("proof");
+      const chapters = proof
+        ? [
+            [0, "Flow"],
+            [4, "Open branch"],
+            [10, "Delegation"],
+            [23, "Worker"],
+            [38, "Feedback"],
+            [46, "Inspect"],
+            [53, "Resume"],
+            [64, "Observation"],
+            [76, "Sources"],
+            [84, "Source call"],
+            [91, "Return"],
+          ]
+        : JSON.parse(document.querySelector("#wordle-chapters").textContent);
+      if (proof || clip.includes("smoke"))
+        document.querySelector("#note").textContent =
+          "Moving proof · native controls, recorded activity and source navigation.";
+      for (const [at, label] of chapters) {
+        if (clip.includes("opening") && at >= 48) continue;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = `${Math.floor(at / 60)}:${String(at % 60).padStart(2, "0")} ${label}`;
+        button.addEventListener("click", () => {
+          video.currentTime = at;
+        });
+        document.querySelector("#chapters").append(button);
+      }
+      document
+        .querySelector("#play")
+        .addEventListener("click", () =>
+          video.paused ? video.play() : video.pause(),
+        );
+      video.addEventListener("play", () => {
+        document.querySelector("#play").textContent = "Pause";
+      });
+      video.addEventListener("pause", () => {
+        document.querySelector("#play").textContent = "Play";
+      });
+      video.addEventListener("timeupdate", () => {
+        document.querySelector("#time").textContent =
+          `${Math.floor(video.currentTime / 60)}:${String(Math.floor(video.currentTime % 60)).padStart(2, "0")}`;
+      });
+      document.querySelector("#speed").addEventListener("change", (event) => {
+        video.playbackRate = Number(event.target.value);
+      });
+    </script>
+  </body>
+</html>

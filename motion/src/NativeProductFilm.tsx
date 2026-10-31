@@ -16,7 +16,7 @@ import type { FocusBeat } from "../native/presentation-plan";
 /** Host the editable native React stage; each captured frame waits for its paint acknowledgement. */
 export const NativeProductFilm: React.FC<{
   nativeServer?: string;
-  mode?: "film" | "campaign" | "spotter";
+  mode?: "film" | "campaign" | "spotter" | "study";
   pairFile?: string;
   attentionFile?: string;
   attentionShot?: string;
@@ -52,6 +52,10 @@ export const NativeProductFilm: React.FC<{
   const url = new URL("/?render=1", nativeServer);
   if (recordCursor) url.searchParams.set("cursor", "record");
   url.searchParams.set("mode", mode);
+  if (mode === "study") {
+    url.searchParams.set("cut", cut === "social" ? "proof" : "full");
+    if (debugLayout) url.searchParams.set("layout", "record");
+  }
   if (mode === "spotter") {
     url.searchParams.set("pair", pairFile);
     if (attentionFile) url.searchParams.set("attention", attentionFile);

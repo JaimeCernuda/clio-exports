@@ -1,11 +1,4 @@
-import { bundle } from "@remotion/bundler";
-import {
-  openBrowser,
-  renderMedia,
-  renderStill,
-  selectComposition,
-} from "@remotion/renderer";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile, unlink, statfs } from "node:fs/promises";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
@@ -17,6 +10,27 @@ if (options.help) {
   console.log(renderHelp);
   process.exit(0);
 }
+if (
+  options.output &&
+  path.parse(path.resolve(root, options.output)).root.toLowerCase() !==
+    path.parse(root).root.toLowerCase()
+)
+  throw new Error(
+    "Keep video outputs on the project drive; no OS-drive fallback is allowed.",
+  );
+const renderTemporary = path.join(root, ".native-ui/render-temp");
+await mkdir(renderTemporary, { recursive: true });
+process.env.TEMP = renderTemporary;
+process.env.TMP = renderTemporary;
+process.env.TMPDIR = renderTemporary;
+const disk = await statfs(root);
+if (disk.bavail * disk.bsize < 1024 ** 3)
+  throw new Error(
+    "Less than 1 GiB free on the project drive. Clean owned intermediates before rendering.",
+  );
+const { bundle } = await import("@remotion/bundler");
+const { openBrowser, renderMedia, renderStill, selectComposition } =
+  await import("@remotion/renderer");
 const inputProps = options.propsFile
   ? JSON.parse(await readFile(path.resolve(root, options.propsFile), "utf8"))
   : {};
@@ -30,7 +44,13 @@ if (
 await mkdir(path.join(root, "review"), { recursive: true });
 await mkdir(path.join(root, "out"), { recursive: true });
 const url = await bundle({
-  entryPoint: path.join(root, "src/index.tsx"),
+  enableCaching: false,
+  entryPoint: path.join(
+    root,
+    options.composition.startsWith("WordleStudy")
+      ? "src/wordle-index.tsx"
+      : "src/index.tsx",
+  ),
   publicDir: path.join(root, "public"),
   outDir: path.join(root, "bundle"),
 });
@@ -39,7 +59,9 @@ const browser = await openBrowser("chrome", {
   chromiumOptions: {
     // Hardware ANGLE intermittently enlarges SVG glyphs on one capture worker.
     // SwiftShader also renders the native map while keeping chart text stable.
-    gl: process.env.DEMO_GL ?? "swangle",
+    gl:
+      process.env.DEMO_GL ??
+      (options.composition.startsWith("WordleStudy") ? "angle" : "swangle"),
   },
 });
 try {
@@ -93,6 +115,7 @@ try {
       path.dirname(output),
       path.basename(output, ".mp4") + ".native.mp4",
     );
+    const renderStarted = Date.now();
     await renderMedia({
       serveUrl: url,
       composition,
@@ -118,7 +141,9 @@ try {
         const p = Math.floor(progress * 100);
         if (p !== last) {
           last = p;
-          console.log(`RENDER ${p}%`);
+          console.log(
+            `RENDER ${p}% (${Math.round((Date.now() - renderStarted) / 1000)}s)`,
+          );
         }
       },
     });
@@ -159,6 +184,7 @@ try {
         JSON.stringify(Object.fromEntries(cursorSamples), null, 2) + "\n",
       );
     }
+    await unlink(native);
     console.log(`DONE ${output}`);
   }
 } finally {
