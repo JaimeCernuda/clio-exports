@@ -12,8 +12,8 @@ if (!["dev", "build", "preview", "check"].includes(command))
 const flag = args.indexOf("--source");
 const profileFlag = args.indexOf("--profile");
 const profile = profileFlag < 0 ? "default" : args[profileFlag + 1];
-if (!["default", "opal", "wordle"].includes(profile))
-  throw new Error("Choose default, opal or wordle profile");
+if (!["default", "opal", "wordle", "engineering"].includes(profile))
+  throw new Error("Choose default, opal, wordle or engineering profile");
 const nativeTemporary = path.join(here, "../.native-ui/tmp");
 mkdirSync(nativeTemporary, { recursive: true });
 process.env.TEMP = nativeTemporary;
@@ -96,6 +96,9 @@ if (command === "check") {
       include: [],
       files: [
         path.join(here, "entry.tsx"),
+        ...(profile === "engineering"
+          ? [path.join(here, "engineering-entry.tsx")]
+          : []),
         ...(profile === "wordle" ? [path.join(here, "study-entry.tsx")] : []),
         path.join(here, "workspace.tsx"),
         path.join(here, "recorded-prompt.tsx"),
@@ -133,7 +136,12 @@ const child = spawn(
     vite,
     ...options,
     "--config",
-    path.join(here, "vite.config.mjs"),
+    path.join(
+      here,
+      profile === "engineering"
+        ? "engineering.vite.config.mjs"
+        : "vite.config.mjs",
+    ),
   ],
   {
     cwd: here,

@@ -1,0 +1,214 @@
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #f5f5f1;
+}
+.engineering-stage {
+  position: absolute;
+  width: 1280px;
+  height: 720px;
+  transform-origin: 0 0;
+  background: #f5f5f1;
+  color: #123245;
+}
+.engineering-window {
+  position: absolute;
+  left: 24px;
+  top: 24px;
+  width: 1232px;
+  height: 672px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--background);
+  box-shadow: 0 15px 55px #233f4a12;
+}
+.engineering-chat {
+  position: absolute;
+  inset: 0;
+}
+.engineering-chat .replay-window {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.engineering-chat .replay-header,
+.engineering-chat .replay-scroll {
+  right: 630px;
+}
+.engineering-chat .replay-log {
+  width: 530px;
+  padding-top: 20px;
+}
+.engineering-chat .replay-composer {
+  left: 26px;
+  width: 548px;
+}
+.engineering-chat .replay-log p {
+  font-size: 14px;
+}
+.engineering-chat .replay-preload {
+  display: none;
+}
+.engineering-canvas {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 630px;
+  border-left: 1px solid var(--border);
+  background: var(--background);
+  overflow: hidden;
+}
+.engineering-scroll {
+  height: 100%;
+  overflow: auto;
+  scrollbar-width: none;
+  padding: 14px 18px 24px;
+}
+.engineering-scroll [data-slot="a2ui-dashboard"] {
+  padding: 0;
+}
+.engineering-sweep [data-a2ui-component-id="inspFiles"] {
+  max-height: 200px;
+  overflow: auto;
+}
+.engineering-canvas [data-slot="a2ui-mesh-viewport"] h3 {
+  font-size: 12px;
+}
+.engineering-canvas
+  [data-slot="a2ui-mesh-viewport"]
+  [data-slot="surface-toolbar"] {
+  opacity: 1;
+}
+.engineering-canvas table {
+  font-size: 11px;
+}
+.engineering-canvas [data-slot="message-completion-footer"] {
+  display: none;
+}
+.engineering-canvas canvas {
+  max-width: 100%;
+}
+.engineering-review {
+  position: fixed;
+  z-index: 2147483640;
+  left: 12px;
+  top: 4px;
+  background: #fff;
+  border: 1px solid #c6d8df;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 3px 8px;
+  font: 12px system-ui;
+}
+.engineering-review input {
+  width: 250px;
+}
+.engineering-review button,
+.engineering-review a {
+  padding: 3px 8px;
+  color: #17465b;
+  background: #f5fbfd;
+  border: 1px solid #cadde5;
+  border-radius: 3px;
+}
+.engineering-pointer {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2147483647;
+  filter: drop-shadow(0 1px 1px #16304466);
+}
+.engineering-stage * {
+  animation: none !important;
+  transition: none !important;
+  caret-color: transparent !important;
+}
+.engineering-file-limit {
+  max-height: 210px;
+  overflow: auto;
+}
+.engineering-studio .engineering-canvas {
+  width: 100%;
+  border-left: 0;
+}
+.engineering-studio .engineering-chat {
+  display: none;
+}
+.engineering-stage [role="alert"] {
+  font-size: 14px;
+}
+.engineering-readout {
+  position: fixed;
+  left: 10px;
+  bottom: 4px;
+  z-index: 2147483640;
+  background: #fff;
+  color: #34566b;
+  padding: 2px 7px;
+  font: 11px monospace;
+  max-width: 95vw;
+}
+.engineering-studio [data-a2ui-component-id="v1"] h3 {
+  font-size: 14px;
+}
+
+.engineering-sweep [data-slot="a2ui-dashboard"] > header {
+  display: none;
+}
+.engineering-sweep [data-slot="a2ui-dashboard"] {
+  --spacing: 0.24rem;
+}
+.engineering-sweep .engineering-scroll {
+  padding-top: 8px;
+}
+.engineering-sweep
+  [data-slot="a2ui-dashboard"]
+  > [data-slot="a2ui-surface-root"] {
+  margin-top: 0;
+}
+.engineering-canvas [data-a2ui-component-id="inspView"] {
+  max-width: 100%;
+}
+.engineering-studio [data-slot="a2ui-dashboard"] > header {
+  display: none;
+}
+.engineering-studio
+  [data-slot="a2ui-dashboard"]
+  > [data-slot="a2ui-surface-root"] {
+  margin-top: 0;
+}
+.engineering-sweep [data-a2ui-component-id^="c"] h3 {
+  white-space: normal;
+  line-height: 1.25;
+  font-size: 10px;
+  min-width: 60px;
+}
+.engineering-sweep [data-a2ui-component-id^="c"] section > div:first-child {
+  min-height: 36px;
+}
+.engineering-canvas [data-slot="a2ui-dashboard"] {
+  padding: 0;
+}
+.engineering-scroll {
+  overflow-x: hidden;
+}
+.engineering-chat .replay-header,
+.engineering-chat .replay-scroll {
+  right: var(--engineering-reserved);
+}
+.engineering-chat .replay-log {
+  width: calc(100% - 64px);
+}
+.engineering-chat .replay-composer {
+  width: calc(100% - 52px - var(--engineering-reserved));
+}

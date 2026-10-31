@@ -1,0 +1,229 @@
+{
+  "schema": "clio.engineering-editorial-copy.v1",
+  "revision": "standalone-v2",
+  "policy": "Faithful editorial condensation for the film; source exports are unchanged. Failed attempts and troubleshooting are omitted, never relabeled successful.",
+  "e4": {
+    "title": "Compare cantilever designs",
+    "blocks": {
+      "part_b096495b5943": {
+        "seconds": 6,
+        "text": "Compare twelve cantilever designs by varying the material budget and filter radius. Keep the geometry, loading and other constraints fixed. Run the study on Slurm, then make the results interactive."
+      },
+      "part_f9d0d58fb3cf": {
+        "seconds": 4,
+        "text": "I'll read the attached problem definition and check the inputs before submitting any cluster work."
+      },
+      "live_call_c6eeafb185f3_call": {
+        "seconds": 2,
+        "tool": "call_c6eeafb185f3",
+        "title": "Read the problem definition"
+      },
+      "part_1f2bc6198a38": {
+        "seconds": 8,
+        "text": "Four material budgets: 10%, 15%, 20% and 25%. Three filter radii: 0.10, 0.15 and 0.20.\n\nThat gives twelve cases, with the remaining problem settings held fixed."
+      },
+      "part_145b25c63da9": {
+        "seconds": 4.5,
+        "text": "Each case will start at its own volume fraction. The input decks have been built and checked with that choice."
+      },
+      "live_call_cf161d543394_call": {
+        "seconds": 2,
+        "tool": "call_cf161d543394",
+        "title": "Submit the twelve-case Slurm array"
+      },
+      "part_8d4f5fbfbefc": {
+        "seconds": 5,
+        "text": "The Slurm array is submitted. The first case is running; the others are waiting for resources. I'll monitor the array in the background."
+      },
+      "live_call_bb2c24f185ff_call": {
+        "seconds": 1,
+        "tool": "call_bb2c24f185ff",
+        "title": "Start the array watcher in the background"
+      },
+      "live_call_945013eb6482_call": {
+        "seconds": 2,
+        "tool": "call_945013eb6482",
+        "title": "Check running and queued cases"
+      },
+      "part_5cb3415927cb": {
+        "seconds": 4,
+        "text": "Nine cases are now running. The last three are queued. I'll collect each case's output when its task finishes."
+      },
+      "live_call_466eba64f0b6_call": {
+        "seconds": 4,
+        "tool": "call_466eba64f0b6",
+        "title": "Collect completed cases and check the final running task"
+      },
+      "part_09b57bf5dd10": {
+        "seconds": 7,
+        "text": "All twelve jobs have completed, taking 10–19 minutes each. Every solver exited successfully, and the copied results match their checksums."
+      },
+      "live_call_7cb59c803d27_call": {
+        "seconds": 2,
+        "tool": "call_7cb59c803d27",
+        "title": "Check the complete sweep summary"
+      },
+      "part_bc50350e3e32": {
+        "seconds": 5,
+        "text": "Every case passes the acceptance checks. No optimization job needed resubmission. I'll now review the measured results."
+      },
+      "part_a2481d8b0a71": {
+        "seconds": 3,
+        "text": "The convergence and grayness measurements are ready. I'll register the results and final designs."
+      },
+      "live_call_0c432c4d48f9_call": {
+        "seconds": 2,
+        "tool": "call_0c432c4d48f9",
+        "title": "Register the study results"
+      },
+      "part_69ee82df6c81": {
+        "seconds": 5,
+        "text": "Each design reached 50 iterations. The summary links every case to its parameters, final compliance, volume fraction and saved geometry."
+      },
+      "live_call_a2869970a95d_call": {
+        "seconds": 1.5,
+        "tool": "call_a2869970a95d",
+        "title": "Register the three-dimensional designs"
+      },
+      "part_7cf54da9dfb6": {
+        "seconds": 3,
+        "text": "I'll make the case table drive the three-dimensional view and the matching file list."
+      },
+      "part_9bf7633cb257": {
+        "seconds": 2.5,
+        "text": "The dashboard will use the case, convergence and file tables."
+      },
+      "live_call_23277d5d44c4_call": {
+        "seconds": 1.5,
+        "tool": "call_23277d5d44c4",
+        "title": "Register the linked data tables"
+      },
+      "part_96e693507d0f": {
+        "seconds": 4.5,
+        "text": "Selecting a case will update its design, highlight its chart data and filter its files together."
+      },
+      "part_fb6ffff07447": {
+        "seconds": 1,
+        "text": "The interactive dashboard is ready to publish."
+      },
+      "live_call_91db385f0ba0_call": {
+        "seconds": 2,
+        "tool": "call_91db385f0ba0",
+        "title": "Publish the parameter-study dashboard"
+      },
+      "part_cc9122f681de": {
+        "seconds": 3,
+        "text": "Published. The twelve designs are ready to explore."
+      },
+      "part_5fe40ff0460b": {
+        "seconds": 6,
+        "text": "Compare the original design with its smoothed version. Keep the same case and material budget."
+      },
+      "part_853c1587cb43": {
+        "seconds": 6,
+        "text": "I'll use the saved designs and branch records to bring the related results together."
+      },
+      "part_67badd2b0e96": {
+        "seconds": 8,
+        "text": "I'll check the geometry and result metadata before assembling the side-by-side comparison."
+      },
+      "live_call_45e01887ce37_call": {
+        "seconds": 4,
+        "tool": "call_45e01887ce37",
+        "title": "Publish the design comparison"
+      }
+    }
+  },
+  "e5": {
+    "title": "Build a topology studio",
+    "blocks": {
+      "part_cf4d702cf9d4": {
+        "seconds": 6,
+        "text": "Build an interactive topology-optimization studio for a cantilever. Let me inspect the mesh, choose solver-specific settings and explore results from Morphorm and Abaqus/Tosca."
+      },
+      "part_f40e3c2d00df": {
+        "seconds": 5,
+        "text": "The mesh job is queued. While it runs, I'll delegate the Abaqus/Tosca script to a specialist and prepare the studio."
+      },
+      "live_call_e67062c96b64_call": {
+        "seconds": 2,
+        "tool": "call_e67062c96b64",
+        "title": "Delegate the Abaqus/Tosca setup"
+      },
+      "part_dfe00fe9d971": {
+        "seconds": 5,
+        "text": "Both meshes pass their checks. The structured HEX8 mesh has 13,824 elements and 15,925 nodes, with no inverted elements."
+      },
+      "part_be73fdd4b04d": {
+        "seconds": 5,
+        "text": "The ten-iteration Morphorm trial is submitted on Slurm. While it runs, I'll register the mesh geometry and build the dashboard."
+      },
+      "live_call_d2b98ab352d6_call": {
+        "seconds": 2,
+        "tool": "call_d2b98ab352d6",
+        "title": "Register the checked meshes"
+      },
+      "part_e5651192f29d": {
+        "seconds": 6,
+        "text": "The Morphorm trial has completed all ten iterations. Its objective fell from 2.65 million to 174,713, with mean density 0.150."
+      },
+      "live_call_f0b74cafd563_call": {
+        "seconds": 2,
+        "tool": "call_f0b74cafd563",
+        "title": "Check the recorded trial result"
+      },
+      "part_a068d5753d66": {
+        "seconds": 3,
+        "text": "The Morphorm trial is saved, with its settings in the saved-trial record."
+      },
+      "live_call_bcc95d4e939e_call": {
+        "seconds": 2,
+        "tool": "call_bcc95d4e939e",
+        "title": "Register the saved Morphorm result"
+      },
+      "part_21197e8f8c95": {
+        "seconds": 5,
+        "text": "The Abaqus/Tosca trial has also completed: ten cycles in 81 seconds. Its result database and geometry exports are ready."
+      },
+      "part_2adadb278bf5": {
+        "seconds": 6,
+        "text": "The final volume fraction is 0.147 against a limit of 0.15. I'll retain the solver fields and convergence data for inspection."
+      },
+      "part_48204fa6648c": {
+        "seconds": 3,
+        "text": "I'll register the Tosca result and trial-history table before removing its temporary run folder."
+      },
+      "live_call_7708244c5598_call": {
+        "seconds": 1.5,
+        "tool": "call_7708244c5598",
+        "title": "Retain the Tosca fields and trial history"
+      },
+      "part_7ee3a3cefa90": {
+        "seconds": 2,
+        "text": "The result artifacts are retained. I'll now discard the temporary Tosca run."
+      },
+      "live_call_702274e12ce7_call": {
+        "seconds": 1,
+        "tool": "call_702274e12ce7",
+        "title": "Remove the temporary solver files"
+      },
+      "part_23efecd43923": {
+        "seconds": 1.5,
+        "text": "The temporary folder is removed. Its recorded result remains available."
+      },
+      "part_03b790bdefb4": {
+        "seconds": 1,
+        "text": "The topology studio is ready to publish."
+      },
+      "live_call_75fa8cd6f5f8_call": {
+        "seconds": 1,
+        "tool": "call_75fa8cd6f5f8",
+        "title": "Publish the topology studio"
+      },
+      "part_006c5f37d929": {
+        "seconds": 2,
+        "text": "Published. The meshes, settings and recorded results are ready to inspect."
+      }
+    }
+  }
+}

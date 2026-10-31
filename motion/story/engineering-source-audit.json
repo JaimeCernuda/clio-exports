@@ -1,0 +1,711 @@
+{
+  "archive": "D:/Libraries/Downloads/CLIO demo - conversations and dashboards-20261030T010137Z-1-001.zip",
+  "archiveBytes": 949645492,
+  "selectedOriginals": [
+    {
+      "file": "dashboards\\P_CLIO_thesis_study_dashboard.html",
+      "bytes": 11577383,
+      "sha256": "ab0fc3d94513cc24c72516d3dd1f122ba311acddaeed58e1b76461e757be89f0"
+    },
+    {
+      "file": "dashboards\\E4c_try_a_case_dashboard.html",
+      "bytes": 11543540,
+      "sha256": "8a096d1ec32e3e8d3241628a3e5c361ba54a831fecb7bdcab8768b5782c33d3a"
+    },
+    {
+      "file": "dashboards\\E2_pick_up_where_it_stopped_dashboard.html",
+      "bytes": 18704056,
+      "sha256": "79dfea64506a18053a26ca8f4b8032f7dfd6758e863673556c2982b235bf0874"
+    },
+    {
+      "file": "dashboards\\E1_half_cantilever_symmetry_plane_dashboard.html",
+      "bytes": 22164079,
+      "sha256": "04bee12027b015edd7b5c2f337e7dd3a9d23e52828a1d6dbead6a1a2a01940ed"
+    },
+    {
+      "file": "dashboards\\E4a_Abaqus_Tosca_comparison_dashboard.html",
+      "bytes": 18180988,
+      "sha256": "d6b9b280b07edbdb601a14c484ff91d87a9c3e23a38c2cd3b96f4a4493d39d0d"
+    },
+    {
+      "file": "dashboards\\E4_cantilever_parameter_sweep_dashboard_2.html",
+      "bytes": 14076046,
+      "sha256": "edf6b9fb3922f34bdb2b59c29523ef737fb19f308201f088e873d93ae5e0844d"
+    },
+    {
+      "file": "dashboards\\E5_topology_optimization_studio_dashboard.html",
+      "bytes": 18299928,
+      "sha256": "a3c8dc146c9223b7c7df61985c0ecd33247256b0526ca60f6c1935ec7ce19aaa"
+    },
+    {
+      "file": "dashboards\\E4b_smoothed_designs_dashboard.html",
+      "bytes": 15020677,
+      "sha256": "a149ee6ee2ddadee8003beca2ae7102b4793995372e1c0f2bb65911076fe31ec"
+    },
+    {
+      "file": "dashboards\\E4_cantilever_parameter_sweep_dashboard_1.html",
+      "bytes": 27067063,
+      "sha256": "0684854855dab2366f8587dcc89f41ff6f67af523b65509504acb6ec1c8b11a3"
+    },
+    {
+      "file": "dashboards\\E3_inputs_GitHub_Globus_CHPC_dashboard.html",
+      "bytes": 30214590,
+      "sha256": "282e7ba365a25f82c95a46d4ab36c407c5b58244c98cc7e15316165b7d450994"
+    },
+    {
+      "file": "conversations\\E5_topology_optimization_studio.html",
+      "bytes": 60745829,
+      "sha256": "0f5de8754e96da02a1e1413cf8ff5c75147a1734b761064abcec83cbe68d3df6"
+    },
+    {
+      "file": "conversations\\E4_cantilever_parameter_sweep.html",
+      "bytes": 156260801,
+      "sha256": "30beb0ba77d265e5bb2a05bd2c12839e3b74739832ba96dfeff4909c0aa5db66"
+    }
+  ],
+  "dashboardSnapshots": [
+    {
+      "file": "E1_half_cantilever_symmetry_plane_dashboard.data.json",
+      "assets": [
+        {
+          "route": "GET /v1/artifacts/artifact_65d9c0a6ec5147dfb1d86d4edbdbff19/bytes",
+          "size": 15942172,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        }
+      ],
+      "failures": [],
+      "tables": {
+        "artifact_de682098d4af49aca37dd391d389e235": {
+          "rows": 51,
+          "total": 51,
+          "truncated": false
+        }
+      }
+    },
+    {
+      "file": "E2_pick_up_where_it_stopped_dashboard.data.json",
+      "assets": [
+        {
+          "route": "GET /v1/artifacts/artifact_b4bf9de5c510497193bd042a14bc40af/bytes",
+          "size": 10534172,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        },
+        {
+          "route": "GET /v1/artifacts/artifact_4230931c875e40179b29163b51870488/bytes",
+          "size": 10534172,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        }
+      ],
+      "failures": [],
+      "tables": {
+        "artifact_7e6a65a035394774873ee10f1a084227": {
+          "rows": 62,
+          "total": 62,
+          "truncated": false
+        },
+        "artifact_5643322599924267a12a9048fb0f48c0": {
+          "rows": 4,
+          "total": 4,
+          "truncated": false
+        }
+      }
+    },
+    {
+      "file": "E3_inputs_GitHub_Globus_CHPC_dashboard.data.json",
+      "assets": [
+        {
+          "route": "GET /v1/workspaces/ws_b3ecd45270e5/files/read?path=E3%2Fwork%2Fviz%2Fe3_topology_full.glb",
+          "size": 22189892,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        }
+      ],
+      "failures": [],
+      "tables": {
+        "artifact_36707244d5c447d18f59b18dd6bd325e": {
+          "rows": 102,
+          "total": 102,
+          "truncated": false
+        },
+        "artifact_c5c0ec449b5542cf9de9e0933351e232": {
+          "rows": 66,
+          "total": 66,
+          "truncated": false
+        },
+        "artifact_f13f313950e14e0e9db4f4ef61fd5ed8": {
+          "rows": 6,
+          "total": 6,
+          "truncated": false
+        }
+      }
+    },
+    {
+      "file": "E4_cantilever_parameter_sweep_dashboard_1.data.json",
+      "assets": [
+        {
+          "route": "GET /v1/artifacts/artifact_99d5d33b1d8640c6b54e59d70d7d8837/bytes",
+          "size": 5884424,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        },
+        {
+          "route": "GET /v1/artifacts/artifact_76291c5aeb594141a3bd95b7d97d3910/bytes",
+          "size": 5885680,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        },
+        {
+          "route": "GET /v1/artifacts/artifact_40f52c016f6f41ec936570e82f784f13/bytes",
+          "size": 2492820,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        },
+        {
+          "route": "GET /v1/artifacts/artifact_6b2d7d67c5b04f97ad0783b5fde52aa1/bytes",
+          "size": 2644976,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        },
+        {
+          "route": "GET /v1/artifacts/artifact_0d3b41e1ace9414d9df60cd251ab0865/bytes",
+          "size": 7413576,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        },
+        {
+          "route": "GET /v1/artifacts/artifact_ec208230f7e14344b2e729db844042ff/bytes",
+          "size": 6649220,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        }
+      ],
+      "failures": [],
+      "tables": {
+        "artifact_7a938db299474179afef1989919b30e7": {
+          "rows": 12,
+          "total": 12,
+          "truncated": false
+        },
+        "artifact_b6c52b22faea4241a94a3774d43c6e95": {
+          "rows": 2340,
+          "total": 2340,
+          "truncated": false
+        }
+      }
+    },
+    {
+      "file": "E4_cantilever_parameter_sweep_dashboard_2.data.json",
+      "assets": [
+        {
+          "route": "GET /v1/artifacts/artifact_99d5d33b1d8640c6b54e59d70d7d8837/bytes",
+          "size": 5884424,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        }
+      ],
+      "failures": [],
+      "tables": {
+        "artifact_025fbea3a5ad4c7fa5d8d152c617e7b9": {
+          "rows": 12,
+          "total": 12,
+          "truncated": false
+        },
+        "artifact_b8da7b4b31c7434c9dbb93179bab762b": {
+          "rows": 612,
+          "total": 612,
+          "truncated": false
+        },
+        "artifact_4132bdba3e5941a895e903ac9dad5101": {
+          "rows": 420,
+          "total": 420,
+          "truncated": false
+        }
+      }
+    },
+    {
+      "file": "E4a_Abaqus_Tosca_comparison_dashboard.data.json",
+      "assets": [
+        {
+          "route": "GET /v1/artifacts/artifact_0d3b41e1ace9414d9df60cd251ab0865/bytes",
+          "size": 7413576,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        },
+        {
+          "route": "GET /v1/artifacts/artifact_99d5d33b1d8640c6b54e59d70d7d8837/bytes",
+          "size": 5884424,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        }
+      ],
+      "failures": [],
+      "tables": {
+        "artifact_572296b5ed1c45e1b6dec120f05759c3": {
+          "rows": 24,
+          "total": 24,
+          "truncated": false
+        },
+        "artifact_f366ff00d3b34b9b9bb28c5923086998": {
+          "rows": 612,
+          "total": 612,
+          "truncated": false
+        },
+        "artifact_029709bd014f43c5810573f54b440813": {
+          "rows": 12,
+          "total": 12,
+          "truncated": false
+        },
+        "artifact_fd5ec8d0962a4fb2a63ed6b9b54afb97": {
+          "rows": 1788,
+          "total": 1788,
+          "truncated": false
+        }
+      }
+    },
+    {
+      "file": "E4b_smoothed_designs_dashboard.data.json",
+      "assets": [
+        {
+          "route": "GET /v1/artifacts/artifact_40f52c016f6f41ec936570e82f784f13/bytes",
+          "size": 2492820,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        },
+        {
+          "route": "GET /v1/artifacts/artifact_6b2d7d67c5b04f97ad0783b5fde52aa1/bytes",
+          "size": 2644976,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        }
+      ],
+      "failures": [],
+      "tables": {
+        "artifact_36e5c8543bf1454da6471786b798a3bd": {
+          "rows": 24,
+          "total": 24,
+          "truncated": false
+        },
+        "artifact_3e0d2e1c5e7f4beda2ccd642705a75f5": {
+          "rows": 12,
+          "total": 12,
+          "truncated": false
+        },
+        "artifact_423f0ac54a344c04a51cce0801c83b1a": {
+          "rows": 120,
+          "total": 120,
+          "truncated": false
+        }
+      }
+    },
+    {
+      "file": "E4c_try_a_case_dashboard.data.json",
+      "assets": [],
+      "failures": [],
+      "tables": {}
+    },
+    {
+      "file": "E5_topology_optimization_studio_dashboard.data.json",
+      "assets": [
+        {
+          "route": "GET /v1/artifacts/artifact_841ff89e9dc44c84aa4e8a6c8dbe28b6/bytes",
+          "size": 5522992,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        },
+        {
+          "route": "GET /v1/artifacts/artifact_778368589bc6465c8509a3f217407e94/bytes",
+          "size": 2761612,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        },
+        {
+          "route": "GET /v1/artifacts/artifact_349e325f9eae4a0e82d8cbeda5015f76/bytes",
+          "size": 5892696,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        },
+        {
+          "route": "GET /v1/artifacts/artifact_4bcf488973694c4c930361d2d3908b2b/bytes",
+          "size": 2623696,
+          "byteKeys": null,
+          "glbValid": true,
+          "meshes": 1,
+          "nodes": 1,
+          "extrasKeys": [],
+          "extensions": []
+        }
+      ],
+      "failures": [],
+      "tables": {
+        "artifact_843d4be1fed24b3cbbd1eeab0d005257": {
+          "rows": 22,
+          "total": 22,
+          "truncated": false
+        },
+        "artifact_a743ebbdd7e4487fad680139e217015d": {
+          "rows": 1,
+          "total": 1,
+          "truncated": false
+        }
+      }
+    },
+    {
+      "file": "P_CLIO_thesis_study_dashboard.data.json",
+      "assets": [],
+      "failures": [],
+      "tables": {}
+    }
+  ],
+  "meshFields": [
+    {
+      "file": "E4_cantilever_parameter_sweep_dashboard_2",
+      "asset": "artifact_99d5d33b1d8640c6b54e59d70d7d8837",
+      "frameCount": 12,
+      "frameSemantics": "Frames index cases, NOT optimization cycles; all are iteration 50",
+      "fields": [
+        {
+          "name": "DENSITY",
+          "count": 165888,
+          "frames": 12,
+          "min": 1.338062854960853e-10,
+          "max": 0.994087815284729
+        }
+      ],
+      "counts": {
+        "vertices": 173952,
+        "triangles": 86976,
+        "nodes": 15925,
+        "cells": 13824
+      }
+    },
+    {
+      "file": "E4b_smoothed_designs_dashboard",
+      "asset": "artifact_40f52c016f6f41ec936570e82f784f13",
+      "frameCount": 12,
+      "frameSemantics": "Frames index cases; show with thresholdField CASE in [0.5, 1]",
+      "fields": [
+        {
+          "name": "CASE",
+          "count": 144,
+          "frames": 12,
+          "min": 0.0,
+          "max": 1.0
+        }
+      ],
+      "counts": {
+        "vertices": 51836,
+        "triangles": 103732,
+        "nodes": 51836,
+        "cells": 12
+      }
+    },
+    {
+      "file": "E4b_smoothed_designs_dashboard",
+      "asset": "artifact_6b2d7d67c5b04f97ad0783b5fde52aa1",
+      "frameCount": 12,
+      "frameSemantics": "Frames index cases; show with thresholdField CASE in [0.5, 1]",
+      "fields": [
+        {
+          "name": "CASE",
+          "count": 144,
+          "frames": 12,
+          "min": 0.0,
+          "max": 1.0
+        }
+      ],
+      "counts": {
+        "vertices": 55006,
+        "triangles": 110072,
+        "nodes": 55006,
+        "cells": 12
+      }
+    },
+    {
+      "file": "E5_topology_optimization_studio_dashboard",
+      "asset": "artifact_841ff89e9dc44c84aa4e8a6c8dbe28b6",
+      "frameCount": 0,
+      "frameSemantics": null,
+      "fields": [
+        {
+          "name": "SCALED_JACOBIAN",
+          "count": 13824,
+          "frames": 1,
+          "min": 1.0,
+          "max": 1.0
+        },
+        {
+          "name": "ASPECT_RATIO",
+          "count": 13824,
+          "frames": 1,
+          "min": 1.0,
+          "max": 1.0
+        },
+        {
+          "name": "NS_NS_FIX",
+          "count": 15925,
+          "frames": 1,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "name": "NS_NS_LOAD",
+          "count": 15925,
+          "frames": 1,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "name": "SS_SS_SYM",
+          "count": 15925,
+          "frames": 1,
+          "min": 0.0,
+          "max": 1.0
+        }
+      ],
+      "counts": {
+        "vertices": 173952,
+        "triangles": 86976,
+        "nodes": 15925,
+        "cells": 13824
+      }
+    },
+    {
+      "file": "E5_topology_optimization_studio_dashboard",
+      "asset": "artifact_778368589bc6465c8509a3f217407e94",
+      "frameCount": 0,
+      "frameSemantics": null,
+      "fields": [
+        {
+          "name": "SCALED_JACOBIAN",
+          "count": 13719,
+          "frames": 1,
+          "min": 0.3709363341331482,
+          "max": 0.9971676468849182
+        },
+        {
+          "name": "ASPECT_RATIO",
+          "count": 13719,
+          "frames": 1,
+          "min": 1.0058462619781494,
+          "max": 2.1964197158813477
+        },
+        {
+          "name": "NS_NS_FIX",
+          "count": 20670,
+          "frames": 1,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "name": "NS_NS_LOAD",
+          "count": 20670,
+          "frames": 1,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "name": "SS_SS_SYM",
+          "count": 20670,
+          "frames": 1,
+          "min": 0.0,
+          "max": 1.0
+        }
+      ],
+      "counts": {
+        "vertices": 85752,
+        "triangles": 28584,
+        "nodes": 20670,
+        "cells": 13719
+      }
+    },
+    {
+      "file": "E5_topology_optimization_studio_dashboard",
+      "asset": "artifact_349e325f9eae4a0e82d8cbeda5015f76",
+      "frameCount": 11,
+      "frameSemantics": null,
+      "fields": [
+        {
+          "name": "DENSITY",
+          "count": 152064,
+          "frames": 11,
+          "min": 2.9669826062672655e-07,
+          "max": 0.8557034134864807
+        },
+        {
+          "name": "U_MAG",
+          "count": 15925,
+          "frames": 1,
+          "min": 0.0,
+          "max": 34609.7578125
+        }
+      ],
+      "counts": {
+        "vertices": 173952,
+        "triangles": 86976,
+        "nodes": 15925,
+        "cells": 13824
+      }
+    },
+    {
+      "file": "E5_topology_optimization_studio_dashboard",
+      "asset": "artifact_4bcf488973694c4c930361d2d3908b2b",
+      "frameCount": 0,
+      "frameSemantics": null,
+      "fields": [
+        {
+          "name": "S_MISES",
+          "count": 20670,
+          "frames": 1,
+          "min": 7.589581230149633e-08,
+          "max": 6113.091796875
+        },
+        {
+          "name": "U_MAG",
+          "count": 20670,
+          "frames": 1,
+          "min": 0.0,
+          "max": 61557.4453125
+        },
+        {
+          "name": "DENSITY",
+          "count": 13719,
+          "frames": 1,
+          "min": 0.0010000000474974513,
+          "max": 1.0
+        }
+      ],
+      "counts": {
+        "vertices": 85752,
+        "triangles": 28584,
+        "nodes": 20670,
+        "cells": 13719
+      }
+    }
+  ],
+  "visualRenderingChecked": false,
+  "combinedFilm": {
+    "direction": "CLIO explores a design space, compares results, then provides a studio for individual trials.",
+    "proposedSeconds": [
+      300,
+      360
+    ],
+    "primary": "E4_cantilever_parameter_sweep",
+    "followup": "E5_topology_optimization_studio",
+    "supporting": "E4b_smoothed_designs",
+    "chapters": [
+      {
+        "title": "Define the study",
+        "source": "E4",
+        "show": "The real brief, input mesh and 12-case plan."
+      },
+      {
+        "title": "Run the sweep",
+        "source": "E4",
+        "show": "Recorded Slurm launch, task activity and completed case results."
+      },
+      {
+        "title": "Explore the designs",
+        "source": "E4",
+        "show": "4x3 3D grid, threshold slider, linked case selection and results."
+      },
+      {
+        "title": "Compare a selected case",
+        "source": "E4/E4b",
+        "show": "Recorded solver and smoothed-design views; keep source cases and fields explicit."
+      },
+      {
+        "title": "Move to the studio",
+        "source": "E5",
+        "show": "A separate chapter: geometry, mesh, solver settings and recorded trial work."
+      },
+      {
+        "title": "Inspect and keep a result",
+        "source": "E5",
+        "show": "Genuine 11-frame Morphorm density history, final fields, convergence and saved-trial ledger."
+      }
+    ],
+    "factsToPreserve": [
+      "E4 mesh frames index 12 different cases, all at iteration 50. They are not an optimization animation.",
+      "E5 contains 11 Morphorm density frames and final displacement. Stress is present for the Tosca result, not the Morphorm result.",
+      "E5 reports that button routing was unverified. Recorded Save/Discard actions used tools/lifecycle.py rather than demonstrated clicks.",
+      "E5 records zero exported UI interactions. An offline Run button is not evidence of new solver execution.",
+      "The e4/e5 dashboard mesh bytes and tables are present, but this pass has not performed a rendered browser check.",
+      "E4 root snapshot has one malformed artifact://` reference. Its standalone sweep/summary/smoothed dashboard snapshots report no capture failures."
+    ]
+  }
+}

@@ -4,7 +4,9 @@ import path from "node:path";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const source = process.env.CLIO_UI_SOURCE;
-const opalProfile = process.env.CLIO_UI_PROFILE === "opal";
+const opalProfile = ["opal", "engineering"].includes(
+  process.env.CLIO_UI_PROFILE,
+);
 const wordleProfile = process.env.CLIO_UI_PROFILE === "wordle";
 const nativePort = wordleProfile ? 3361 : opalProfile ? 3359 : 3357;
 if (!source) throw new Error("Use native/run.mjs to select a source checkout");
