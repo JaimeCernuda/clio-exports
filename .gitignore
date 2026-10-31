@@ -10,6 +10,8 @@ motion/out/
 motion/review/
 motion/.native-ui/
 .cache/
+# Machine-specific release-profile inventories; unrelated to portable video sources.
+/work/storage-cleanup-*/
 *.tsbuildinfo
 # Rendered movies stay local; keep source, fixtures and scripts in Git.
 *.mp4

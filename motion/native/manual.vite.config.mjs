@@ -80,7 +80,9 @@ function manualAttentionProjection() {
 
 export default {
   root: web,
-  cacheDir: path.join(here, "../.native-ui/manual-vite-cache"),
+  cacheDir: process.env.CLIO_MANUAL_CACHE
+    ? path.resolve(process.env.CLIO_MANUAL_CACHE)
+    : path.join(here, "../.native-ui/manual-vite-cache"),
   plugins: [
     manualAttentionProjection(),
     brandPlugin(branding, "clio"),

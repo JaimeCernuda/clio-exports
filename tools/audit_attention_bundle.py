@@ -10,16 +10,17 @@ from pathlib import Path
 from typing import Any
 
 
-def audit_bundle(bundle: Path) -> dict[str, Any]:
+def audit_bundle(bundle: Path, *, captures_dir: Path | None = None) -> dict[str, Any]:
     """Verify every descriptor's safe path, byte size, SHA-256 and tensor layout."""
     bundle = bundle.resolve()
+    capture_root = (captures_dir or bundle / "captures").resolve()
     tasks = json.loads((bundle / "flowcept/decode_attention.json").read_text(encoding="utf-8"))
     captures: list[dict[str, Any]] = []
     for task in tasks:
         descriptor = task["attention_stats"]
         filename = descriptor["uri"].rsplit("/", 1)[-1]
-        capture = (bundle / "captures" / task["workflow_id"] / filename).resolve()
-        if not capture.is_relative_to(bundle / "captures"):
+        capture = (capture_root / task["workflow_id"] / filename).resolve()
+        if not capture.is_relative_to(capture_root):
             raise ValueError("Capture escapes the bundle")
         size = capture.stat().st_size
         if size != descriptor["bytes"]:
@@ -46,7 +47,7 @@ def audit_bundle(bundle: Path) -> dict[str, Any]:
             {
                 "requestId": task["used"]["request_id"],
                 "workflowId": task["workflow_id"],
-                "file": str(capture.relative_to(bundle)),
+                "file": (Path("captures") / capture.relative_to(capture_root)).as_posix(),
                 "bytes": size,
                 "sha256": digest,
                 "decodeSteps": task["used"]["num_decode_tokens"],

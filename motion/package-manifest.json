@@ -10,6 +10,7 @@
     "ndp/SHA256SUMS"
   ],
   "directories": [
+    "videos",
     ".agents/skills",
     "tools",
     "tests",

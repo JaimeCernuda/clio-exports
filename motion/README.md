@@ -1,5 +1,10 @@
 # Reusable CLIO UI motion toolkit
 
+Use the [video catalog](../videos/README.md) to find a film's sources and commands,
+the [emulator guide](native/EMULATOR.md) for the shared replay, and
+[manual attention launch](native/MANUAL-ATTENTION.md) for CLIO + SPOTTER with local
+captures and tokenizer files. The latter runs the complete native application.
+
 For the Wordle study walkthrough, see [WORDLE.md](native/WORDLE.md). It has an
 isolated native profile on port 3361, one source clock across all delegated
 sessions, graph-led Science Log inspections, tool-driven Wordle boards and the

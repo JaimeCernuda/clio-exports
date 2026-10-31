@@ -1,77 +1,174 @@
-# Manual recorded attention in the real CLIO frontend
+# Launch CLIO + SPOTTER with recorded attention
 
-This is separate from the Remotion stage on 3359. It serves the complete pinned
-CLIO application on 4394 and connects to the recorded-bundle backend on 18825.
-Selections are computed from the saved captures by the backend attention service;
-they are not limited to the film's prerecorded response sidecar. No new model
-inference is performed. Only answer portions actually covered by the bundle can
-be explained. Chain B has six main-model captures and no SPOTTER-model captures.
+Use this setup to select text yourself in the **complete native CLIO frontend**.
+It reads local transcripts, captures and tokenizer files without model inference.
+The backend computes attention for your selection from the saved tensors. This
+is separate from the scripted film on port 3359, whose finite attention sidecar
+only supports the selections prepared for the film.
 
-## Backend
+Defaults: backend **18825**, native frontend **4394**. Each process runs in its
+own foreground terminal. The launcher changes no source checkout and never stops
+an existing port owner. Captures and tokenizers stay local, outside Git.
 
-Use an isolated clio-agent checkout containing
-`2ff404fbe376d0fc39dc34e79ff569c9dfeb3c60` from
-`claude/epic-hopper-6s2vhn`. The general server was published in `e5af788de`;
-the later fix preserves source offsets across chat-template boundary trimming.
-Install that checkout's dependencies with `uv sync --frozen --extra dev`.
+## 1. Prepare source checkouts once
 
-In PowerShell, from the clio-agent checkout (substitute your actual unzipped
-bundle path):
+Use isolated, clean checkouts rather than changing an active development branch:
 
-```powershell
-$env:CLIO_AGENT_HOME = Join-Path $PWD 'attention-replay-review/manual-demo/home'
-uv run --frozen --no-sync python -B -m tests.test_gact.test_attention.serve_recorded_bundle '<unzipped-attention-replay-bundle>' --port 18825 --ui-origin http://127.0.0.1:4394
-```
+| Component | Required source | Setup |
+| --- | --- | --- |
+| clio-agent backend | Contains `2ff404fbe376d0fc39dc34e79ff569c9dfeb3c60`, published on `claude/epic-hopper-6s2vhn` | Python 3.12, `uv sync --frozen --extra dev` |
+| gact-tui frontend | Exactly `f333d67d490174d2f2b82d7c0671e08ee0943ceb` | In `web/`: `pnpm install --frozen-lockfile --ignore-scripts` |
+| clio-exports launcher | This repository | `uv sync --frozen`; Node.js on PATH |
+| CLIO branding | Directory containing `clio/brand.json` | Normally the backend checkout's `branding/` |
 
-Keep that process running. The server prints the new session IDs, including
-SPOTTER's transcript as its own session. Use these exact aliases, not IDs inferred
-from list order or older browser links. Startup can restore older sessions from
-the shared local storage daemon even when a new home is used; verify which listed
-session has this process's in-memory transcript and attention model-call mapping.
-Do not delete another runtime's state to make the list cleaner.
-
-## Frontend
-
-Use a clean gact-tui checkout at
-`f333d67d490174d2f2b82d7c0671e08ee0943ceb` and install its dependencies with
-`pnpm install --frozen-lockfile --ignore-scripts`. The CLIO branding directory is
-the directory containing `clio/brand.json`, normally clio-agent's `branding/`.
-From the gact-tui checkout's `web/` directory, in another PowerShell terminal:
+For example, from this repository on D:, if dedicated checkouts do not exist:
 
 ```powershell
-$env:CLIO_UI_SOURCE = '<absolute-gact-tui-checkout>'
-$env:CLIO_MANUAL_BRANDING = '<absolute-clio-agent-checkout>/branding'
-./node_modules/.bin/vite.cmd --config '<absolute-clio-exports-checkout>/motion/native/manual.vite.config.mjs'
+git clone --branch claude/epic-hopper-6s2vhn https://github.com/iowarp/clio-agent.git motion/.native-ui/manual-agent
+git clone https://github.com/iowarp/gact-tui.git motion/.native-ui/manual-ui
+git -C motion/.native-ui/manual-ui switch --detach f333d67d490174d2f2b82d7c0671e08ee0943ceb
 ```
 
-On other platforms use `./node_modules/.bin/vite` with the same configuration.
-Open `http://127.0.0.1:4394/` and connect to `http://127.0.0.1:18825` through the
-native connection form. Open the exact main-session alias printed above. Its
-route is `/workspaces/ws_default/sessions/<printed-session-id>`.
+Run dependency setup in each checkout. Set TEMP, TMP and TMPDIR to D: first;
+see the [emulator setup](EMULATOR.md). Existing installed checkouts can be passed
+directly. The launcher does not install dependencies, download models or fetch
+Git history. Older local backend `c0d25575d54382d018dbb1383f980d71197e80ce`
+contains the equivalent qualified mapping fix and is also accepted. The fix
+preserves source offsets across chat-template boundary trimming; the general
+replay server first appeared in `e5af788de`.
 
-The small Vite port leaves upstream tracked files unchanged. It preserves literal
-OPAL reference text and paragraph boundaries, applies the existing exact
-whole-part projection fallback, and loads the supplied CLIO brand. Native routes,
-controls and requests remain connected to the actual backend. It installs no
-film clock, finite response transport, synthetic reviewer or editorial pointer.
-Insertion points fail if the pinned upstream components change.
+## 2. Identify the local bundle and assets
 
-## Manual checks and limits
+Unzip the recorded attention bundle on D:. Expected layout:
 
-Select answer text, use the native **Understand attention** action, then scroll
-to the highlighted source and inspect the intensity rail. Exit attention before
-trying another response. Exercise a repeated token, a phrase, the whole answer
-and a clean contrast; confirm the requested source span and its visible heat,
-not only the banner's totals. An ambiguous span is an error to fix, not permission
-to silently choose the first occurrence.
+```text
+attention-replay-7795459-chainB/
+  sessions/*.export.json
+  flowcept/decode_attention.json
+  journal/                         # used when present
+  captures/<workflow>/*.safetensors
+  tokenizer/tokenizer.json
+  tokenizer/tokenizer_config.json
+  tokenizer/chat_template.jinja    # or chat_template in tokenizer_config.json
+  metadata.json
+```
 
-The local browser check returned real source heat and a repainted rail after the
-mapping port. The entire arbitrary-selection matrix has not been qualified in
-this manual frontend. The separately exported film still needs revision for
-reviewer stalls and cursor defects. These are different acceptance questions.
+Use the tokenizer and chat template for the exact captured model revision. For
+Chain B: `ibm-granite/granite-4.2-8b` at
+`a7042144125ce5ae64f89610e8289647fc000b9a`. A similarly named tokenizer is not a
+substitute: token IDs and source offsets must match the capture.
 
-The available full bundle is Chain B. The EarthScope files found locally were
-the compact recorded test fixture, not a second full replay bundle, so this setup
-does not claim a complete EarthScope session. Keep the user's requested backend
-and frontend processes running for manual demonstration; record their local
-process IDs, origins and session aliases outside version control.
+If tensors or tokenizer already live elsewhere on the machine, add
+`--captures-dir 'D:/actual/captures'` and/or
+`--tokenizer-dir 'D:/actual/tokenizer'` to the arguments below. The captures root
+contains the workflow subdirectories named by the Flowcept records. The launcher
+creates directory junctions on Windows, or symlinks elsewhere, inside its ignored
+runtime directory. It does not copy large captures or modify the original bundle.
+Existing runtime paths pointing elsewhere are rejected.
+
+## 3. Check, then start both processes
+
+From the clio-exports root, set this argument array in **each terminal**. Replace
+these examples with existing local paths:
+
+```powershell
+$replayArgs = @(
+  '--bundle', 'D:/data/attention-replay-7795459-chainB',
+  '--agent-source', 'D:/Libraries/Documents/projects/clio-exports/motion/.native-ui/manual-agent',
+  '--ui-source', 'D:/Libraries/Documents/projects/clio-exports/motion/.native-ui/manual-ui'
+)
+```
+
+First check inputs and every capture's byte size, SHA-256 and tensor layout.
+This creates no runtime state:
+
+```powershell
+uv run python tools/launch_attention_replay.py check @replayArgs --verify-captures
+```
+
+Terminal 1:
+
+```powershell
+uv run python tools/launch_attention_replay.py backend @replayArgs
+```
+
+Terminal 2:
+
+```powershell
+uv run python tools/launch_attention_replay.py ui @replayArgs
+```
+
+Use `plan @replayArgs --shell powershell` or `--shell bash` to inspect underlying
+commands. With external asset roots, start through the launcher first so it
+prepares directory links before executing those commands.
+
+Runtime state defaults to
+`motion/.native-ui/attention-replay-review/<bundle-name>/`: backend home,
+temporary files, offline Hugging Face cache and Vite cache. No OS-drive fallback
+is used. Optional `--state-root` must contain a literal `attention-replay-review`
+directory, stay outside the immutable inputs and remain on the project drive.
+Stop each process with Ctrl+C in its own terminal.
+
+## 4. Open main and SPOTTER
+
+Open `http://127.0.0.1:4394/` and connect to
+`http://127.0.0.1:18825` through the native connection form. The backend prints
+the **new session aliases**, including SPOTTER as its own session. Use those
+exact aliases in `/workspaces/ws_default/sessions/<printed-session-id>`;
+do not infer IDs from list order or reuse old browser links. The shared local
+storage daemon can list older sessions even with a new home. Do not delete
+another runtime's state to clean that list.
+
+Chain B source identities:
+
+| Transcript | Source ID | Attention available |
+| --- | --- | --- |
+| OPAL main run | `sess_2480c090acbb` | Six main-model capture documents |
+| SPOTTER review | `sess_675ca5a8918cec66588f34c07a669c6b` | No reviewer-model captures in this bundle |
+
+Open the printed main and reviewer aliases in two browser tabs for manual
+comparison. This server supplies SPOTTER's recorded transcript; it does not
+recreate its live delegation relationship or start a new security review. The
+paired, synchronized presentation is the separate [film replay](OPAL.md).
+
+In the main conversation, select captured answer text and click the native
+**Understand attention** action. Scroll to the highlighted source and inspect
+the intensity rail. Exit attention before choosing a second response. Check a
+few tokens, a phrase, a full answer and a clean contrast. Heat must attach to
+the requested source span; a banner alone is insufficient. Only answer portions
+covered by the actual capture can be explained.
+
+## 5. Optional second example
+
+A **full EarthScope replay bundle** can run alongside Chain B with a second
+backend/frontend pair. Reuse the source checkouts, pass its actual bundle, and
+add `--backend-port 18826 --ui-port 4395` to a separate argument array. Use a
+distinct state root or the default derived from that bundle's distinct name.
+Start `backend` and `ui` with those same arguments in two additional terminals;
+connect the frontend on 4395 to the backend on 18826. Each pair has its own
+runtime cache and printed session aliases.
+
+The compact EarthScope test fixture found during the original setup is not a
+full exported session. Some older EarthScope captures cover only the first 32
+decode steps. Do not describe an uncovered answer as supported. A full second
+bundle is an input requirement, not something the launcher fabricates.
+
+## Troubleshooting and review boundaries
+
+- **Missing capture, byte-size or hash mismatch:** locate the original matching
+  tensor file; do not disable validation or invent attention.
+- **Attention exists but no source heat:** verify the backend mapping fix,
+  matching tokenizer/template and this process's printed session alias. Journal
+  model calls and transcript must belong to the same bundle.
+- **Port occupied:** reuse the known running demo or choose another pair of
+  ports. The launcher never kills an unknown server.
+- **Wrong UI source or dirty checkout:** use a dedicated pinned checkout;
+  native adapter insertion points intentionally fail on upstream drift.
+- **SPOTTER attention unavailable:** expected for Chain B; only its main model's
+  captures were exported.
+
+The manual frontend previously returned real source heat and a repainted rail
+after the mapping fix. The entire arbitrary-selection matrix has not been
+qualified. The exported SPOTTER film still needs revision for reviewer stalls
+and cursor defects; a successful launch does not claim those issues are fixed.
+Keep machine-specific PIDs, aliases and local paths out of Git.

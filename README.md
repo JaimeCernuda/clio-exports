@@ -15,6 +15,12 @@ into the build, so a changed file never reaches the site unnoticed.
 
 ## Promotional authoring
 
+Start with the [video catalog](videos/README.md): NDP, SPOTTER/OPAL, Wordle and
+engineering each have a source map, launch recipe and review status. The shared
+[UI replay emulator](motion/native/EMULATOR.md) is documented separately.
+For interactive CLIO + SPOTTER attention using local captures and tokenizer,
+follow the [manual launch guide](motion/native/MANUAL-ATTENTION.md).
+
 The [Wordle technical walkthrough](motion/native/WORDLE.md) follows a branched
 study through its agents, tool-driven boards and evolving Science Log graph,
 then switches explicitly to a separate run's interactive views. Its importer,

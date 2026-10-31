@@ -1,0 +1,46 @@
+{
+  "schema": "clio.video-projects.v1",
+  "emulatorGuide": "motion/native/EMULATOR.md",
+  "projects": [
+    {
+      "id": "ndp",
+      "guide": "videos/ndp/README.md",
+      "profile": "default",
+      "port": 3357,
+      "entrypoint": "motion/src/index.tsx",
+      "compositions": ["NdpClioPitch", "NdpClioAlta", "NdpClioKonza", "NdpClioConnectedStory"],
+      "files": ["motion/native/campaign-story.json", "motion/native/campaigns/alta.json", "motion/native/campaigns/konza.json", "motion/story/ndp-connected.json", "motion/native/REPLAY.md", "motion/story/README.md"],
+      "reviewStatus": "creative-treatment-rejected"
+    },
+    {
+      "id": "spotter-opal",
+      "guide": "videos/spotter-opal/README.md",
+      "profile": "opal",
+      "port": 3359,
+      "entrypoint": "motion/src/index.tsx",
+      "compositions": ["SpotterOpalFilm", "SpotterChainBReplay", "SpotterAttentionProof", "SpotterIntro"],
+      "files": ["motion/native/OPAL.md", "motion/native/MANUAL-ATTENTION.md", "motion/native/paired-replay.ts", "motion/native/spotter-replay.tsx", "motion/native/spotter-film-plan.ts", "motion/story/spotter-film.md", "tools/launch_attention_replay.py"],
+      "reviewStatus": "reviewer-and-pointer-revision-required"
+    },
+    {
+      "id": "wordle",
+      "guide": "videos/wordle/README.md",
+      "profile": "wordle",
+      "port": 3361,
+      "entrypoint": "motion/src/wordle-index.tsx",
+      "compositions": ["WordleStudyWalkthrough", "WordleStudyProof", "WordleStudyOpeningReview"],
+      "files": ["motion/native/WORDLE.md", "tools/prepare_study_replay.py", "motion/native/study-replay-app.tsx", "motion/native/study-replay-model.ts", "motion/story/wordle-walkthrough-plan-v2.json", "motion/story/wordle-narration-v2.json", "tools/study_captions.py"],
+      "reviewStatus": "revised-presentation-cut"
+    },
+    {
+      "id": "engineering",
+      "guide": "videos/engineering/README.md",
+      "profile": "engineering",
+      "port": 3365,
+      "entrypoint": "motion/src/engineering-index.tsx",
+      "compositions": ["EngineeringWalkthrough", "EngineeringSweepSketch", "EngineeringStudioSketch"],
+      "files": ["motion/native/ENGINEERING.md", "tools/import_engineering_bundle.py", "tools/prepare_engineering_video.py", "motion/native/engineering-film.tsx", "motion/native/engineering-film-plan.ts", "motion/story/engineering-film-copy.json", "motion/story/engineering-demo-plan.json", "motion/story/engineering-source-ledger.json", "tools/prepare_engineering_delivery.py", "motion/scripts/render-engineering.mjs"],
+      "reviewStatus": "revised-cut-agent-reviewed-awaiting-user-feedback"
+    }
+  ]
+}

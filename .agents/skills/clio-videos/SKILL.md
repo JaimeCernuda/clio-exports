@@ -5,9 +5,28 @@ description: Plan, build or revise CLIO product videos from real exported sessio
 
 # CLIO product videos
 
+Start with the [video catalog](../../../videos/README.md) and the selected film's
+guide. Shared runtime architecture is in
+[EMULATOR.md](../../../motion/native/EMULATOR.md). For manual CLIO + SPOTTER
+attention with local tensors/tokenizer, use
+[MANUAL-ATTENTION.md](../../../motion/native/MANUAL-ATTENTION.md) and
+`tools/launch_attention_replay.py`; a film sidecar cannot answer arbitrary selections.
+
 Campaign-specific direction takes precedence: the OPAL/SPOTTER film centers
 SPOTTER-AI. Use its complete supplied logo, with OPAL, CLIO and Flowcept supporting
 the investigation. Keep logo backgrounds transparent and omit enclosing cards.
+
+For Daisy's engineering studies, use the [engineering film guide](../../../motion/native/ENGINEERING.md)
+and its source-linked plan. Distinguish independent sweep cases from actual
+iteration history. Preserve historical execution before dashboard inspection;
+an exported Run button is not evidence that it launched a recorded job.
+For cluster work, distinguish the invocation acknowledgement from the background
+task and solver runtime. A short tool call can start a long watcher. Use scheduler
+accounting for per-case durations; never advance an elapsed clock over a stale
+queue snapshot, which falsely implies that queued cases started at the next
+observation. A brief explicit time cut is preferable when intermediate timings
+are absent. The engineering guide records the rejected job-grid treatment and
+the verified twelve-case timings.
 
 Read [SPOTTER lessons and open defects](references/spotter-lessons.md) before
 reusing that demo. The full cut remains revision required: the user reported
@@ -51,6 +70,43 @@ the pinned production UI adapter and packaging;
 [clio-motion-scenes](../clio-motion-scenes/SKILL.md) for source-ordered chat and
 editable canvas choreography. Commands are in the [replay guide](../../../motion/native/REPLAY.md)
 and [connected-story workflow](../../../motion/story/README.md).
+
+For study/workflow walkthroughs, read the [Wordle replay guide](../../../motion/native/WORDLE.md).
+The first Wordle cut was rejected for a dotted label-heavy opening, choppy chat,
+long completed-tool holds and a crawling first pointer move. Use the NDP measured
+viewport treatment for continuous conversation motion. Give the first pointer
+action an explicit travel interval; never interpolate from frame zero to a late
+first click. Do not inherit SPOTTER's long-thinking holds for short tool groups.
+Wordle now uses a brief completed hold and collapse based on the last activity,
+not the arrival of another assistant sentence. Raw export delivery bursts need
+readable public-text pacing and idle compression on the common source clock.
+Prefer the Science Log graph when the story concerns relationships and growth;
+use its native record inspector and Sources rather than switching to long lists.
+Expand the canvas when needed to keep the selected record visible. A study's
+saved final workflow is a topology reference, not its state at every earlier
+frame. Project task lifecycles and scientific status mutations onto the same
+source clock as all delegated conversations. Native elapsed timers must use
+that recorded clock too. Distinguish independent runs when switching to another
+run's views; keep their strategies, seeds and conclusions separate.
+
+Validate interactive view changes against the rendered marks or underlying rows,
+not only the selector label. Measure positive geometry on actual native view
+hosts; protocol wrappers with `display:contents` return zero-sized rectangles and
+can make equality checks pass falsely. Inspect encoded render-worker joins too.
+Native query-column projection must retain fields
+used by calculated Vega expressions. Re-read a choice binding after a newly
+mounted chart subscribes so an early selector update cannot leave stale data.
+Use a timestamped presenter script and optional sidecars for a live presentation;
+editorial cue times become speech-aligned only after importing actual audio
+alignment. The guide includes that reusable workflow.
+
+For caption review in the Codex player, deliver a version with captions burned
+into the pixels. The user confirmed that this player does not display the
+embedded MP4 subtitle track. An optional mov_text track or external VTT is not a
+visible caption review. Use `tools/burn_review_captions.py` to add a caption footer
+below the full UI, preserve the clean master and editable sidecars, and inspect
+the encoded longest caption as well as its timing. Keep the footer font in actual
+output pixels; the ASS defaults otherwise produce oversized text.
 
 Preserve tool accumulation/collapse, progressive public replies, widget generation
 and the next turn at the bottom. Freeze the source clock throughout an inspection
