@@ -1,0 +1,13 @@
+.recorded-opal-prompt {
+  white-space: pre-wrap;
+  line-height: 1.55;
+}
+
+.recorded-opal-prompt [data-prompt-section="reference"] {
+  display: block;
+  padding: 12px;
+  background: var(--muted);
+  border-radius: 6px;
+  font: 12px/1.5 var(--font-mono, monospace);
+  overflow-wrap: anywhere;
+}

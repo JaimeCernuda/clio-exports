@@ -1,0 +1,107 @@
+.engineering-full .engineering-window {
+  top: 34px;
+  height: 656px;
+}
+.engineering-chapter {
+  position: absolute;
+  left: 30px;
+  top: 10px;
+  font:
+    500 12px Inter,
+    sans-serif;
+  color: #345d6d;
+}
+.engineering-full .engineering-chat .replay-header,
+.engineering-full .engineering-chat .replay-scroll {
+  right: var(--engineering-reserved);
+}
+.engineering-full .engineering-chat .replay-log {
+  width: calc(100% - 60px);
+  padding-top: 16px;
+}
+.engineering-full .engineering-chat .replay-composer {
+  left: 22px;
+  width: calc(100% - 44px - var(--engineering-reserved));
+}
+.engineering-full .engineering-chat .replay-log p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.engineering-full .engineering-scroll [data-slot="a2ui-dashboard"] > header {
+  display: none;
+}
+.engineering-full
+  .engineering-scroll
+  [data-slot="a2ui-dashboard"]
+  > [data-slot="a2ui-surface-root"] {
+  margin-top: 0;
+}
+.engineering-full .engineering-scroll {
+  padding: 10px 16px 16px;
+  height: 616px;
+  max-height: 616px;
+  box-sizing: border-box;
+}
+.engineering-full [data-a2ui-component-id="inspFiles"] {
+  max-height: 184px;
+  overflow: auto;
+}
+.engineering-full [data-a2ui-component-id^="c"] h3 {
+  font-size: 11px;
+  white-space: normal;
+  line-height: 1.3;
+}
+.engineering-full [data-a2ui-component-id="caseRow"] {
+  align-items: flex-start;
+}
+.engineering-speed {
+  position: absolute;
+  right: 28px;
+  bottom: 9px;
+  font:
+    10px Inter,
+    sans-serif;
+  color: #52717e;
+}
+.engineering-full .engineering-chat .replay-preload {
+  display: none;
+}
+.engineering-full .engineering-chat .replay-cursor {
+  display: none;
+}
+.engineering-full .engineering-canvas {
+  will-change: width;
+}
+/* The native lazy-view wrapper is outside the mesh's flex-weight host. Size the
+   comparison tracks explicitly so a new worker cannot inherit canvas widths. */
+.engineering-full [data-a2ui-component-id="filmPair"] > div,
+.engineering-full [data-a2ui-component-id="hexViews"] > div {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.engineering-full
+  [data-a2ui-component-id="filmPair"]
+  [data-slot="a2ui-mesh-viewport"],
+.engineering-full
+  [data-a2ui-component-id="hexViews"]
+  [data-slot="a2ui-mesh-viewport"] {
+  width: 100%;
+}
+.engineering-full [data-a2ui-component-id="v1"] h3,
+.engineering-full [data-a2ui-component-id="v9s"] h3 {
+  font-size: 14px;
+}
+.engineering-time-bridge {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(245, 245, 241, 0.96);
+  color: #163c4a;
+  font:
+    500 36px Inter,
+    sans-serif;
+  pointer-events: none;
+}

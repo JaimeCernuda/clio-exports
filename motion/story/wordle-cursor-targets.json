@@ -1,0 +1,467 @@
+{
+  "schema": "clio.study-cursor.v1",
+  "sources": [
+    {
+      "archive": "Wordle-study-session.html",
+      "sha256": "8d3a29db0ec2aa39fad261f78a017e520715c94317815ffb36ca4483c00d6b61"
+    },
+    {
+      "archive": "Wordle-study-views-session.html",
+      "sha256": "1d1db8bb3de7cccbd215968fa196c2ca82bd0700df90640d2e547a21f2a69e0d"
+    }
+  ],
+  "full": [
+    {
+      "begin": 26,
+      "target": "button:Maximize canvas",
+      "x": 1245,
+      "y": 99.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Maximize canvas"
+    },
+    {
+      "begin": 28,
+      "target": "graph-node:e_d501905012d0",
+      "x": 726.7560424804688,
+      "y": 526.0487976074219,
+      "width": 1280,
+      "height": 720,
+      "label": "Hypothesis: H-tuned: opening with the list's highest-coverage word 'akuzo' (letters a,k,u,z,o) and then always guessing a word consistent with all feedback solves faster than an English-style opener., open"
+    },
+    {
+      "begin": 36,
+      "target": "button:Entire study",
+      "x": 214.140625,
+      "y": 184,
+      "width": 1280,
+      "height": 720,
+      "label": "Entire study"
+    },
+    {
+      "begin": 48,
+      "target": "tab:Flow run",
+      "x": 81.84375,
+      "y": 99.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Flow run"
+    },
+    {
+      "begin": 59,
+      "target": "flow:english",
+      "x": 726.5,
+      "y": 332.5,
+      "width": 1280,
+      "height": 720,
+      "label": "english: Running. Runs this agent."
+    },
+    {
+      "begin": 78,
+      "target": "button:Open",
+      "x": 1186.3203125,
+      "y": 495.703125,
+      "width": 1280,
+      "height": 720,
+      "label": "Open english"
+    },
+    {
+      "begin": 95,
+      "target": "tab:Science log",
+      "x": 808.8828125,
+      "y": 99.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Science log"
+    },
+    {
+      "begin": 110,
+      "target": "task:terva seeds 16-20",
+      "x": 1217.6875,
+      "y": 423,
+      "width": 1280,
+      "height": 720,
+      "label": "Open the task of terva seeds 16-20"
+    },
+    {
+      "begin": 142,
+      "target": "chart:board",
+      "x": 241.3424835205078,
+      "y": 373,
+      "width": 1280,
+      "height": 720,
+      "label": "pos: 0; turn: 1; state: absent; branch: terva seeds 16-20; game: g36-s16; guess: terva; status: playing"
+    },
+    {
+      "begin": 177,
+      "target": "sources:e_eabe97d01f4b",
+      "x": 940.5,
+      "y": 661,
+      "width": 1280,
+      "height": 720,
+      "label": "Sources (4)"
+    },
+    {
+      "begin": 187,
+      "target": "source:call_cad39cfb92fe",
+      "x": 1004.78125,
+      "y": 494,
+      "width": 1280,
+      "height": 720,
+      "label": "View call call_cad39cfb92fe in transcript"
+    },
+    {
+      "begin": 198,
+      "target": "tab:Flow run",
+      "x": 681.84375,
+      "y": 99.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Flow run"
+    },
+    {
+      "begin": 203,
+      "target": "nav:Study",
+      "x": 49.34375,
+      "y": 95.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Study"
+    },
+    {
+      "begin": 215,
+      "target": "tab:Science log",
+      "x": 808.8828125,
+      "y": 99.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Science log"
+    },
+    {
+      "begin": 235,
+      "target": "button:Maximize canvas",
+      "x": 1245,
+      "y": 99.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Maximize canvas"
+    },
+    {
+      "begin": 255,
+      "target": "graph-node:e_c116796b11b2",
+      "x": 256.8295364379883,
+      "y": 511.63636779785156,
+      "width": 1280,
+      "height": 720,
+      "label": "Experiment: Play seeds 1-20 (one game per seed) by hand. Open every game with 'terva', then always guess a word consistent with ALL feedback so far, chosen by the playing agent from a grep/regex filter of study/words.txt (preferring candidates whose untested letters are common in the list: u,a,o,i,y,k,z,v,r,m,n,d). No solver or guess-choosing script. Record guesses used (7 if failed after 6) and solved (1/0) per seed. Work is spread over 4 child agents x 5 seeds., planned"
+    },
+    {
+      "begin": 265,
+      "target": "button:Entire study",
+      "x": 227.484375,
+      "y": 184,
+      "width": 1280,
+      "height": 720,
+      "label": "Entire study"
+    },
+    {
+      "begin": 275,
+      "target": "tab:Flow run",
+      "x": 81.84375,
+      "y": 99.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Flow run"
+    },
+    {
+      "begin": 281,
+      "target": "button:Open merge",
+      "x": 1186.3203125,
+      "y": 414.703125,
+      "width": 1280,
+      "height": 720,
+      "label": "Open merge"
+    },
+    {
+      "begin": 295,
+      "target": "tab:Science log",
+      "x": 808.8828125,
+      "y": 99.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Science log"
+    },
+    {
+      "begin": 299,
+      "target": "button:Maximize canvas",
+      "x": 1245,
+      "y": 99.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Maximize canvas"
+    },
+    {
+      "begin": 302,
+      "target": "graph-node:e_d501905012d0",
+      "x": 646.8660583496094,
+      "y": 359.8571319580078,
+      "width": 1280,
+      "height": 720,
+      "label": "Hypothesis: H-tuned: opening with the list's highest-coverage word 'akuzo' (letters a,k,u,z,o) and then always guessing a word consistent with all feedback solves faster than an English-style opener., open"
+    },
+    {
+      "begin": 315,
+      "target": "tab:Flow run",
+      "x": 81.84375,
+      "y": 99.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Flow run"
+    },
+    {
+      "begin": 321,
+      "target": "button:Open check",
+      "x": 1186.3203125,
+      "y": 414.703125,
+      "width": 1280,
+      "height": 720,
+      "label": "Open check"
+    },
+    {
+      "begin": 333,
+      "target": "tab:Science log",
+      "x": 808.8828125,
+      "y": 99.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Science log"
+    },
+    {
+      "begin": 336,
+      "target": "button:Maximize canvas",
+      "x": 1245,
+      "y": 99.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Maximize canvas"
+    },
+    {
+      "begin": 339,
+      "target": "graph-node:e_4c3a5ad4439b",
+      "x": 400.671875,
+      "y": 581,
+      "width": 1280,
+      "height": 720,
+      "label": "Conflict: The pre-registered refuting predictions are asymmetric. A sample that cannot separate the strategies (CI includes 0) refutes H-tuned and H-twofixed by their own criteria and leaves H-english standing. The statuses therefore follow from low power as much as from any real equivalence. Detecting a 0.1-guess difference would need roughly 900 paired seeds; detecting 0.25 guesses would need roughly 150. An equivalence margin and a sample size were never stated, so this disagreement between the 'refuted' and 'supported' labels and what the data can actually show stays unresolved., open"
+    },
+    {
+      "begin": 349,
+      "target": "graph-node:e_0efad464f535",
+      "x": 461.4460144042969,
+      "y": 628.9090881347656,
+      "width": 1280,
+      "height": 720,
+      "label": "Conclusion: All three strategies solved every game: 0 failures in 20 games each (60/60 solved, every game in 3-5 guesses)., recorded"
+    },
+    {
+      "begin": 380,
+      "target": "tab:Science log",
+      "x": 808.8828125,
+      "y": 99.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Science log"
+    },
+    {
+      "begin": 386,
+      "target": "button:Views",
+      "x": 662.9609375,
+      "y": 146,
+      "width": 1280,
+      "height": 720,
+      "label": "Views"
+    },
+    {
+      "begin": 397,
+      "target": "chart:comparison",
+      "x": 272.1666793823242,
+      "y": 445.24285888671875,
+      "width": 1280,
+      "height": 720,
+      "label": "condition.strategy: A; Guesses to solve: 3.6"
+    },
+    {
+      "begin": 420,
+      "target": "view:Game boards by seed",
+      "x": 302.28125,
+      "y": 186,
+      "width": 1280,
+      "height": 720,
+      "label": "Game boards by seed"
+    },
+    {
+      "begin": 435,
+      "target": "seed-option:10",
+      "x": 604,
+      "y": 448,
+      "width": 1280,
+      "height": 720,
+      "label": "10"
+    },
+    {
+      "begin": 435,
+      "target": "seed:10",
+      "x": 640.5,
+      "y": 372,
+      "width": 1280,
+      "height": 720,
+      "label": "Game (seed)"
+    },
+    {
+      "begin": 451,
+      "target": "chart:games",
+      "x": 915.617431640625,
+      "y": 581,
+      "width": 1280,
+      "height": 720,
+      "label": "position: 1; Guess: 4; Feedback: absent; guess: riufo; guess #: 4; letter: R; feedback: absent; log entry: e_4496880762f2"
+    },
+    {
+      "begin": 463,
+      "target": "seed-option:5",
+      "x": 604,
+      "y": 448,
+      "width": 1280,
+      "height": 720,
+      "label": "5"
+    },
+    {
+      "begin": 463,
+      "target": "seed:5",
+      "x": 640.5,
+      "y": 372,
+      "width": 1280,
+      "height": 720,
+      "label": "Game (seed)"
+    },
+    {
+      "begin": 475,
+      "target": "button:Graph",
+      "x": 188.1328125,
+      "y": 146,
+      "width": 1280,
+      "height": 720,
+      "label": "Graph"
+    },
+    {
+      "begin": 481,
+      "target": "graph-node:e_9cdb51455051",
+      "x": 124.27737426757812,
+      "y": 355.2992858886719,
+      "width": 1280,
+      "height": 720,
+      "label": "View: Game boards by seed, recorded"
+    },
+    {
+      "begin": 491,
+      "target": "button:Entire study",
+      "x": 214.140625,
+      "y": 184,
+      "width": 1280,
+      "height": 720,
+      "label": "Entire study"
+    },
+    {
+      "begin": 494,
+      "target": "graph-node:e_82710bfe8985",
+      "x": 537.2700653076172,
+      "y": 597.0511169433594,
+      "width": 1280,
+      "height": 720,
+      "label": "Conclusion: All three strategies solved every one of the 10 shared seeds (10/10 each), so solve rate does not separate them., recorded"
+    }
+  ],
+  "proof": [
+    {
+      "begin": 0,
+      "target": "flow:english",
+      "x": 726.5,
+      "y": 332.5,
+      "width": 1280,
+      "height": 720,
+      "label": "english: Running. Runs this agent."
+    },
+    {
+      "begin": 4,
+      "target": "button:Open",
+      "x": 1186.3203125,
+      "y": 414.703125,
+      "width": 1280,
+      "height": 720,
+      "label": "Open english"
+    },
+    {
+      "begin": 10,
+      "target": "tab:Science log",
+      "x": 808.8828125,
+      "y": 99.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Science log"
+    },
+    {
+      "begin": 23,
+      "target": "task:terva seeds 16-20",
+      "x": 1217.6875,
+      "y": 423,
+      "width": 1280,
+      "height": 720,
+      "label": "Open the task of terva seeds 16-20"
+    },
+    {
+      "begin": 46,
+      "target": "chart:board",
+      "x": 241.3424835205078,
+      "y": 373,
+      "width": 1280,
+      "height": 720,
+      "label": "pos: 0; turn: 1; state: absent; branch: terva seeds 16-20; game: g36-s16; guess: terva; status: playing"
+    },
+    {
+      "begin": 76,
+      "target": "sources:e_eabe97d01f4b",
+      "x": 940.5,
+      "y": 661,
+      "width": 1280,
+      "height": 720,
+      "label": "Sources (4)"
+    },
+    {
+      "begin": 84,
+      "target": "source:call_cad39cfb92fe",
+      "x": 1004.78125,
+      "y": 494,
+      "width": 1280,
+      "height": 720,
+      "label": "View call call_cad39cfb92fe in transcript"
+    },
+    {
+      "begin": 91,
+      "target": "tab:Flow run",
+      "x": 681.84375,
+      "y": 99.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Flow run"
+    },
+    {
+      "begin": 93,
+      "target": "nav:Study",
+      "x": 49.34375,
+      "y": 95.5,
+      "width": 1280,
+      "height": 720,
+      "label": "Study"
+    }
+  ]
+}

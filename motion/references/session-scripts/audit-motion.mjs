@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+const root='C:/Users/jaime/Documents/Codex/2026-10-27/i-found-the-earlier-session-on';
+const parse=(file)=>[...fs.readFileSync(file,'utf8').matchAll(/frame:(\d+)[^\n]*pts_time:([\d.]+)\n[^\n]*YDIF=([-+\d.eE]+)/g)].map((m)=>({frame:Number(m[1]),seconds:Number(m[2]),difference:Number(m[3])}));
+const current=parse(root+'/work/chat-diff-v3.txt');
+const baseline=parse(root+'/work/chat-diff-v2.txt');
+if(current.length!==5520 || baseline.length!==5280)throw new Error('Motion scan is incomplete');
+const timing=JSON.parse(fs.readFileSync(root+'/work/ndp-clio-v2-timing.json','utf8'));
+const classify=(frame)=>frame<120?'intro':frame>=5340?'outro':frame>=5100?'final reading hold':timing.focuses.find((focus)=>frame>=focus.filmStart*60 && frame<focus.filmEnd*60)?.action??'conversation';
+const impulses=current.slice(1,-1).map((value,i)=>({...value,impulse:value.difference-Math.max(current[i].difference,current[i+2].difference),stage:classify(value.frame)})).sort((a,b)=>b.impulse-a.impulse);
+const conversation=impulses.filter((value)=>value.stage==='conversation');
+const comparedFrames=[1847,2456,2937,2967,3016,3060,3100,3139,3239,3288,3391,4593,4642,4843,4927,4978,5056];
+const report={schema:'clio.motion-audit.v1',video:'ndp-clio-pitch-v3.mp4',frames:current.length,method:'Every adjacent decoded frame, native chat crop (988x660 at 60,169), downsampled to 480x320, mean luma difference. Impulse subtracts the larger neighboring difference. These measurements flag candidates; visual inspection establishes whether a change is intended.',topConversationImpulses:conversation.slice(0,25),topAllImpulses:impulses.slice(0,15),previousProblemFrames:comparedFrames.map((frame)=>({frame,seconds:frame/60,before:baseline[frame].difference,after:current[frame].difference})),finalHoldSeconds:4,visualReview:'Pending candidate inspection'};
+fs.writeFileSync(root+'/work/motion-audit-v3.json',JSON.stringify(report,null,2));
+console.log(JSON.stringify({topConversationImpulses:report.topConversationImpulses.slice(0,12),comparisons:report.previousProblemFrames},null,2));

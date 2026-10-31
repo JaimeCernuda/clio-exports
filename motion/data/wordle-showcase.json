@@ -1,0 +1,60 @@
+{
+  "schema": "clio.motion-selection.v1",
+  "source": {
+    "path": "studies/Wordle-study-session.html",
+    "sha256": "8d3a29db0ec2aa39fad261f78a017e520715c94317815ffb36ca4483c00d6b61",
+    "bytes": 48278832,
+    "exportSchema": "clio.session-export.v2"
+  },
+  "rootSessionId": "sess_e483d2ea61ab",
+  "sessionTitle": "Wordle study",
+  "prompt": {
+    "messageId": "user_c5c2821751326051b94d91f2ea7495f7c196ab92f9d1ba66af2a8759b8779166",
+    "partId": "part_349601827962",
+    "fullText": "What is the best approach to solving Wordle? Use the word list from the wordle tools, not the official one. Play every game yourself instead of writing a solver.",
+    "displayText": "What is the best approach to solving Wordle?"
+  },
+  "agents": [
+    {
+      "id": "sess_36e796375e158bf0c5da60ead3367ea6",
+      "name": "CLIO Science",
+      "agent": "science",
+      "createdAt": "2026-10-27T15:11:29.480529+00:00",
+      "lastRecordedAt": "2026-10-27T15:28:16.436673+00:00",
+      "terminalMessageId": "msg_asst_463049932219",
+      "stopReason": "end_turn",
+      "tools": [],
+      "toolRecordCount": 0,
+      "toolsTruncated": false,
+      "excerpt": {
+        "partId": "part_0d24540bbf9f",
+        "text": "[check, on claude_code/claude-opus-5-5]\nI'll start with the merge step's result and the study log together.\n\nBoth filtered queries came back empty, so I'll read the whole log without a filter and try to observe the merge task.\n\nI have the full log: 60 Observations, 3 Evidence entries, 2 Conflicts and the Conclusion e_0efad464f535. Next I'll recompute every number myself from the logged measurements.\n\n**Verdict: the merge holds, with caveats.** I recomputed every mean, failure count, paired difference, sign test and Wilcoxon test by hand from the logged measurements, and all of them match. The claims are worded to match the evidence: low confidence, an underpowered null, explicitly not equivalence. Four smaller statements are imprecise or incomplete.\n\nI could not write or run a script: this session is read-only and `fs_write_file` was refused. So I did the arithmetic by hand. I also could not read the merge task's own result or its analysis call: `get_task_result` and `observe_tasks` on task_5d8d640c… returned \"unavailable\". Everything below comes from `query_log` (study e_20da865e4b44, all branches).\n\n### 1. Inputs are complete\n- **What I checked:** each experiment's Observations in `query_log`.\n- **Result:** 20 Observations per experiment, seeds 1–20, no gaps or duplicates.\n  - tuned: e_77157bf0cd73\n  - two-fixed: e_8bcca241e623\n  - English: e_c116796b11b2\n- **Lineage:** each Observation cites a `wordle_new_game` call and every guess call.\n- **Rules:** I spot-checked these games for consistent guesses and found no violations:\n  - tuned seed 3 (e_1d7f328d7cb2)\n  - two-fixed seeds 2 and 3 (e_ea0d9461edf7, e_a52e0a89b123)\n  - English seeds 1 and 14 (e_af26ab639500, e_2d2b7cfaacd7)\n- **Two-fixed exception:** 'akuzo' never solved a game on its own, so the exception for that case never applied.\n\n### 2. Means and failures are correct\n\n| Seeds | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | Sum | Mean |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| tuned | 3 | 3 | 5 | 4 | 4 | 4 | 3 | 3 | 4 | 3 | 3 | 4 | 3 | 3 | 4 | 4 | 4 | 4 | 3 | 5 | 73 | **3.65** |\n| English | 5 | 3 | 3 | 4 | 4 | 3 | 3 | 5 | 5 | 3 | 4 | 3 | 4 | 4 | 5 | 3 | 4 | 3 | 3 | 4 | 75 | **3.75** |\n| two-fixed | 4 | 3 | 4 | 4 | 5 | 3 | 4 | 4 | 4 | 3 | 3 | 3 | 3 | 4 | 4 | 4 | 4 | 3 | 3 | 4 | 73 | **3.65** |\n\n- Ever",
+        "truncated": true,
+        "headings": [
+          "1. Inputs are complete",
+          "2. Means and failures are correct",
+          "3. Paired differences, tests and CIs are correct",
+          "4. Do the claims follow?",
+          "5. What would decide the key comparison (tuned vs English)",
+          "Merge report: study e_20da865e4b44 (Conclusion e_0efad464f535)"
+        ]
+      },
+      "excerptMessageId": "msg_asst_463049932219"
+    }
+  ],
+  "selectedAgentId": "sess_36e796375e158bf0c5da60ead3367ea6",
+  "result": {
+    "messageId": "msg_asst_c4f23bbe06b4",
+    "partId": "part_fc0171d6f651",
+    "text": "# The best way to solve this Wordle\n\n**Short answer:** On this word list, the method that mattered was **always guessing a word that fits every clue so far**. With that rule, every opener I tried solved all of its games in 3–5 guesses. Twenty games per opener could not show that any opener was better than another.\n\n## What was tested\n\nThe tool's list has 3,000 made-up words, not English ones. Every word contains 2 or 3 of a, e, i, o, u, y. The most common letters are **u, a, o, i, y, k, z, v**, and English favourites like e, s and t are rare. That gave three openers to compare:\n\n- **`akuzo`**: the opener whose letters cover the most words in this list.\n- **`akuzo` then `nivyl`**: two fixed openers covering 10 different common letters.\n- **`terva`**: an English-style opener, like CRATE.\n\nEach opener played the same 20 games (seeds 1–20), 60 games in total. After the opener, the agent guessed a word that fit every clue so far. Agents chose every guess themselves; grep was used only to list the words that still fit the clues.\n\n## Results\n\n| Strategy | Mean guesses | Failures | Games in 3 / 4 / 5 guesses |\n|---|---|---|---|\n| `akuzo` | 3.65 | 0/20 | 9 / 9 / 2 |\n| `akuzo` + `nivyl` | 3.65 | 0/20 | 8 / 11 / 1 |\n| `terva` | 3.75 | 0/20 | 9 / 7 / 4 |\n\nThe table below compares openers game by game on the same seeds. A negative difference means the first strategy needed fewer guesses. The ranges are 95% bootstrap intervals (10,000 resamples, random seed 20261027).\n\n| Comparison | Mean difference (95% range) |\n|---|---|\n| `akuzo` − `terva` | −0.10 [−0.55, 0.35] |\n| `akuzo`+`nivyl` − `akuzo` | 0.00 [−0.30, 0.30] |\n| `akuzo`+`nivyl` − `terva` | −0.10 [−0.40, 0.20] |\n\nEvery range includes zero. The merge step also produced a chart, `strategy_comparison.png`, which is saved with the study's files.\n\nAll of this is recorded in the Science log, under Conclusion `e_0efad464f535` for question `e_20da865e4b44`. A separate review step recalculated every number by hand and found that they all match.\n\n## What this means\n\n- **Fitting every clue is what kept all 60 games under 6 guesses.** I did not test a strategy without this rule, so this is an observation, not a measured comparison.\n- **The opener made no measurable difference.** The list-tuned `akuzo` came out 0.1 guesses better than `terva`, but that gap is far smaller than the noise.\n  - The noise comes mostly from the player:",
+    "truncated": true,
+    "headings": [
+      "The best way to solve this Wordle",
+      "What was tested",
+      "Results",
+      "What this means",
+      "Settling the opener question"
+    ]
+  },
+  "timing": "Editorial reconstruction; timings do not represent elapsed execution time."
+}

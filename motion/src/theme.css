@@ -1,0 +1,2 @@
+/* Compatibility stylesheet; the reusable kit owns the tokens and styles. */
+@import "./ui/theme.css";

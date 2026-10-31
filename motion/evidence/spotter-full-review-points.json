@@ -1,0 +1,234 @@
+{
+  "purpose": "Source-derived navigation points for encoded review; not a quality approval",
+  "source": {
+    "archive": "chainB-sess_2480c090acbb.html.gz",
+    "sha256": "cfdd456f2640519c6a0f715e817927c7fb70e77974d6d9605be12cc903131cd5"
+  },
+  "frames": 16406,
+  "fps": 60,
+  "tools": [
+    {
+      "callId": "call_7cc5fff609ae",
+      "title": "Review watched activity",
+      "sourceStart": 160835.06176757812,
+      "sourceEnd": 160978.90795898438,
+      "startFrame": 3084,
+      "resultFrame": 3117
+    },
+    {
+      "callId": "call_2f6c01e40beb",
+      "title": "Attention sources",
+      "sourceStart": 231873.1708984375,
+      "sourceEnd": 232485.3359375,
+      "startFrame": 4372,
+      "resultFrame": 4408
+    },
+    {
+      "callId": "call_952d48ec9823",
+      "title": "Attention sources",
+      "sourceStart": 240463.70092773438,
+      "sourceEnd": 240883.18188476562,
+      "startFrame": 5317,
+      "resultFrame": 5349
+    },
+    {
+      "callId": "call_318ed9e29dfd",
+      "title": "Attention sources",
+      "sourceStart": 408288.9638671875,
+      "sourceEnd": 409660.3781738281,
+      "startFrame": 9181,
+      "resultFrame": 9295
+    },
+    {
+      "callId": "call_eaa46b6ccbd7",
+      "title": "Raise Alert Card",
+      "sourceStart": 463061.71484375,
+      "sourceEnd": 463084.15087890625,
+      "startFrame": 10539,
+      "resultFrame": 10673
+    },
+    {
+      "callId": "call_66e789e28de8",
+      "title": "Attention sources",
+      "sourceStart": 508803.669921875,
+      "sourceEnd": 510231.8291015625,
+      "startFrame": 12072,
+      "resultFrame": 12108
+    },
+    {
+      "callId": "call_d6535dcc6bfb",
+      "title": "Raise Alert Card",
+      "sourceStart": 558471.4958496094,
+      "sourceEnd": 558643.8071289062,
+      "startFrame": 13030,
+      "resultFrame": 13061,
+      "resumedResultFrame": 14825
+    }
+  ],
+  "inspections": [
+    {
+      "id": "chainB-alert-answer-line",
+      "start": 13241,
+      "selectionStart": 13313,
+      "selectionEnd": 13373,
+      "click": 13421,
+      "sourceShown": 13655,
+      "return": 13907,
+      "exit": 13955,
+      "end": 13996,
+      "source": 558643.8071289062,
+      "text": "ANSWER: 73; MATCHES"
+    },
+    {
+      "id": "chainB-alert-number",
+      "start": 13997,
+      "selectionStart": 14033,
+      "selectionEnd": 14093,
+      "click": 14141,
+      "sourceShown": 14375,
+      "return": 14627,
+      "exit": 14675,
+      "end": 14824,
+      "source": 558643.8071289062,
+      "text": "73"
+    }
+  ],
+  "mainThinking": [
+    {
+      "blockId": "part_607959615679",
+      "begin": 893,
+      "complete": 1557,
+      "closed": 1659
+    },
+    {
+      "blockId": "part_bd9f57229f74",
+      "begin": 1884,
+      "complete": 2574,
+      "closed": 2676
+    },
+    {
+      "blockId": "part_7dd89bdf7972",
+      "begin": 2793,
+      "complete": 4013,
+      "closed": 4115
+    },
+    {
+      "blockId": "part_e2ace1c4be12",
+      "begin": 4235,
+      "complete": 7325,
+      "closed": 7427
+    },
+    {
+      "blockId": "part_010d74ae4a0a",
+      "begin": 7939,
+      "complete": 8734,
+      "closed": 8836
+    },
+    {
+      "blockId": "part_ed4aa683c73f",
+      "begin": 9627,
+      "complete": 10570,
+      "closed": 10672
+    },
+    {
+      "blockId": "part_cba0f67a7e31",
+      "begin": 10734,
+      "complete": 11543,
+      "closed": 11645
+    }
+  ],
+  "reviewerThinking": [
+    {
+      "blockId": "part_53da3282296d",
+      "begin": 1850,
+      "complete": 2977,
+      "closed": 3079
+    },
+    {
+      "blockId": "part_8fc6e6f8a1ac",
+      "begin": 3329,
+      "complete": 4264,
+      "closed": 4366
+    },
+    {
+      "blockId": "part_227a1f0fea20",
+      "begin": 4612,
+      "complete": 5210,
+      "closed": 5312
+    },
+    {
+      "blockId": "part_5afcf98db08a",
+      "begin": 5414,
+      "complete": 6014,
+      "closed": 6116
+    },
+    {
+      "blockId": "part_d35d3b22c35d",
+      "begin": 7908,
+      "complete": 9003,
+      "closed": 9105
+    },
+    {
+      "blockId": "part_fa546c4b9120",
+      "begin": 9438,
+      "complete": 10399,
+      "closed": 10501
+    },
+    {
+      "blockId": "part_8714934efa79",
+      "begin": 10897,
+      "complete": 11966,
+      "closed": 12068
+    },
+    {
+      "blockId": "part_e3943b3a0167",
+      "begin": 12308,
+      "complete": 12911,
+      "closed": 13013
+    },
+    {
+      "blockId": "part_99d383a30a10",
+      "begin": 14895,
+      "complete": 15493,
+      "closed": 15595
+    }
+  ],
+  "notifications": [
+    {
+      "blockId": "live_injection_16a1871bd6f7",
+      "begin": 1711,
+      "open": 1729,
+      "closed": 1843
+    },
+    {
+      "blockId": "live_injection_51eb5de561dd",
+      "begin": 3185,
+      "open": 3203,
+      "closed": 3317
+    },
+    {
+      "blockId": "live_injection_f468a4aaab1c",
+      "begin": 4471,
+      "open": 4489,
+      "closed": 4603
+    },
+    {
+      "blockId": "live_injection_c75b82fcc463",
+      "begin": 7772,
+      "open": 7790,
+      "closed": 7904
+    },
+    {
+      "blockId": "live_injection_2f49d6771884",
+      "begin": 10745,
+      "open": 10763,
+      "closed": 10877
+    },
+    {
+      "blockId": "live_injection_68adbbb01ff3",
+      "begin": 12170,
+      "open": 12188,
+      "closed": 12302
+    }
+  ]
+}

@@ -1,0 +1,646 @@
+{
+  "schema": "clio.demo-plan.v1",
+  "title": "CLIO Wordle study technical walkthrough",
+  "status": "rendered_revision",
+  "created": "2026-10-29",
+  "audience": "Technical viewers evaluating CLIO workflows, subagents, scientific provenance and interactive study views",
+  "durationSeconds": 510,
+  "durationRangeSeconds": [
+    480,
+    600
+  ],
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "fourK": false
+  },
+  "audio": {
+    "selection": "silent_for_live_presenter",
+    "recordAudioNow": false,
+    "captions": "Optional timestamped presenter draft with later ElevenLabs alignment import",
+    "script": "wordle-narration-v2.json"
+  },
+  "takeaway": "Follow a question into parallel experiments, inspect an agent making a move, and trace the resulting observation through review into an explorable study view.",
+  "sourceStrategy": "Use the 60-game run for the complete flow and science-log investigation. Switch explicitly to the separate 30-game run for its attached study views. Preserve each run's identity, strategies, sample size, entries and results.",
+  "sources": [
+    {
+      "id": "run60",
+      "archive": "studies/Wordle-study-session.html",
+      "sha256": "8d3a29db0ec2aa39fad261f78a017e520715c94317815ffb36ca4483c00d6b61",
+      "sessionId": "sess_e483d2ea61ab",
+      "coordinatorSessionId": "sess_36e796375e158bf0c5da60ead3367ea6",
+      "flowRunId": "flowrun_4776354df376eddc7ad00d69",
+      "flowHandle": "task_ce8ae4b51bc7f4cab92b2841630cbc6cf4397acfd813787757a544a65c1884a5",
+      "launchCall": "call_a497247c962b",
+      "questionId": "e_20da865e4b44",
+      "hypothesisIds": [
+        "e_d501905012d0",
+        "e_7e30d060a2af",
+        "e_14f219a0f07e"
+      ],
+      "workflow": {
+        "parallel": [
+          "tuned",
+          "twofixed",
+          "english"
+        ],
+        "join": "merge",
+        "final": "check"
+      },
+      "games": 60,
+      "seedsPerStrategy": 20,
+      "strategies": [
+        "akuzo",
+        "akuzo then nivyl",
+        "terva"
+      ],
+      "capturedSessions": 20,
+      "canonicalScienceEvents": 76,
+      "canonicalEntryTypes": {
+        "question": 1,
+        "hypothesis": 3,
+        "experiment": 3,
+        "observation": 60,
+        "evidence": 3,
+        "status": 3,
+        "conflict": 2,
+        "conclusion": 1
+      },
+      "workflowCheckpointReferences": 34,
+      "savedFinalFlow": true,
+      "editorAddedStepsInSavedFlow": false,
+      "liveWordleData": "Recorded tool uiEvent messages: BoardWall component/spec, group, game key, rows and view",
+      "selectedBranch": {
+        "step": "english",
+        "sessionId": "sess_8a41e2029f6686fa83a6822755a2f977"
+      },
+      "selectedWorker": {
+        "title": "terva seeds 16-20",
+        "sessionId": "sess_ba3f18b300c2eb46b8ba92aff356c2f0"
+      },
+      "selectedGame": {
+        "seed": 16,
+        "gameId": "g36-s16",
+        "newGameCall": "call_4d41f373d78d",
+        "guessCalls": [
+          "call_9ae388b0c0dd",
+          "call_cad65aceff3f",
+          "call_cad39cfb92fe"
+        ],
+        "observationId": "e_eabe97d01f4b",
+        "observationAt": "2026-10-27T15:19:17.182445+00:00",
+        "note": "This worker interleaves five games and logs observations later. Do not move the observation to the instant of the final guess."
+      }
+    },
+    {
+      "id": "run30",
+      "archive": "studies/Wordle-study-views-session.html",
+      "sha256": "1d1db8bb3de7cccbd215968fa196c2ca82bd0700df90640d2e547a21f2a69e0d",
+      "sessionId": "sess_6dbedc01ef1a",
+      "coordinatorSessionId": "sess_8e9d3ac512617f9e76b2f08bfbb19adf",
+      "flowRunId": "flowrun_16c27e6750e549941ef2bc20",
+      "flowHandle": "task_77ed625702d7c457753379c9098ecce6e58768fd290b570d6d026cced9ffe83d",
+      "launchCall": "call_119374134be6",
+      "questionId": "e_e8d54df72c4a",
+      "workflow": {
+        "parallel": [
+          "branch_a",
+          "branch_b",
+          "branch_c"
+        ],
+        "join": "merge",
+        "final": "review"
+      },
+      "games": 30,
+      "seedsPerStrategy": 10,
+      "strategies": [
+        "A: akuzo greedy",
+        "B: anori",
+        "C: akuzo then nivyl"
+      ],
+      "capturedSessions": 7,
+      "canonicalScienceEvents": 50,
+      "canonicalEntryTypes": {
+        "question": 1,
+        "hypothesis": 3,
+        "experiment": 3,
+        "observation": 30,
+        "evidence": 6,
+        "status": 3,
+        "conflict": 1,
+        "conclusion": 1,
+        "view": 2
+      },
+      "workflowCheckpointReferences": 33,
+      "comparison": {
+        "surfaceId": "wordle-strategy-comparison",
+        "revision": 3,
+        "entryId": "e_28b3cb045168",
+        "dataset": "study://e_e8d54df72c4a/measurements",
+        "means": {
+          "A": 3.6,
+          "B": 4.2,
+          "C": 4
+        },
+        "recordedCaptureAvailable": true
+      },
+      "boards": {
+        "surfaceId": "wordle-games",
+        "revision": 4,
+        "entryId": "e_9cdb51455051",
+        "dataArtifactId": "artifact_b1305778b28d422d8a74b407bf83e402",
+        "tileRows": 590,
+        "initialSeed": 5,
+        "secondSeed": 10,
+        "recordedCaptureAvailable": false,
+        "definitionAndDataAvailable": true,
+        "dataMode": "Static transcription of completed games, not a live feed of ongoing games"
+      },
+      "conclusionId": "e_82710bfe8985",
+      "conflictId": "e_a83546e4d217"
+    }
+  ],
+  "documentation": {
+    "requestedUrls": [
+      "https://clio.iowarp.ai/docs/science-log/",
+      "https://clio.iowarp.ai/docs/sdk/flows/",
+      "https://clio.iowarp.ai/docs/sdk/workflows/",
+      "https://clio.iowarp.ai/docs/sdk/available/"
+    ],
+    "readFrom": "Matching MDX sources in iowarp/clio-agent at 2ff404fbe376d0fc39dc34e79ff569c9dfeb3c60; public page fetch returned HTTP 403 in this environment",
+    "semantics": [
+      "A flow is a procedure; this recording uses the workflow flow to execute a data-defined dependency graph, not a newly authored Python flow.",
+      "Ready independent steps may run in parallel. Merge waits for its three dependencies; the recorded final check/review follows merge.",
+      "The study log contains typed linked records. Status changes append records; they do not rewrite old evidence.",
+      "Science log List, Graph and Views are modes of one native tab. Views are dashboards attached by recorded view entries.",
+      "The log validates shapes and references; it does not establish scientific correctness. Recorded conflicts and caveats remain visible.",
+      "Editors and forks are capabilities, but neither supplied saved flow contains an added workflow step. Delegated game workers are not newly invented workflow steps."
+    ]
+  },
+  "visualGrammar": {
+    "home": "Native conversation at left and the native canvas at right; hide the workspace sidebar when it consumes reading space.",
+    "canvasTabs": [
+      "Flow",
+      "Science log",
+      "Wordle boards"
+    ],
+    "rule": "One principal canvas view at a time. Use real native navigation and restore the same source instant on a deliberate inspection pause.",
+    "flowRevisits": "Show the graph at launch, before opening a worker, after returning from the worker, and as merge/check become eligible.",
+    "fullScreen": "Use the native maximize/full-screen control only for a useful graph or board inspection, then restore it. No whole-window pseudozoom or duplicate plot crop.",
+    "text": "Public assistant prose is retyped uniformly within its recorded block boundaries. Weighted source-clock segments give burst-delivered sentences readable time and compress idle gaps. Original token checkpoints remain available for source inspection.",
+    "pointer": "One measured viewport pointer. Park until a distance-bounded 0.35-1 second approach; never interpolate the first move across the whole opening or return to a distant corner after each action.",
+    "labels": [
+      "Question and hypotheses",
+      "Parallel experiments",
+      "From a move to an observation",
+      "Merge and independent check",
+      "Study views"
+    ],
+    "runChange": "Change the native session context and state once in narration that the views belong to a second, 10-seed-per-strategy run. For a silent cut, use one brief explicit transition caption.",
+    "scrolling": "Bake measured native transcript heights into the NDP damped viewport path. Reset between conversations. Short completed tool groups hold 100ms and collapse over 183ms; they do not inherit SPOTTER thinking holds."
+  },
+  "chapters": [
+    {
+      "id": "question",
+      "start": 0,
+      "seconds": 22,
+      "source": "run60",
+      "title": "A question CLIO can investigate",
+      "purpose": "Establish the user task and the relevant agent without a long logo introduction.",
+      "actions": [
+        "Open the native CLIO Science conversation with the Wordle tools carried by this recorded agent.",
+        "Type the actual user request; keep the tool-list restriction and agent-chosen guesses visible.",
+        "Let the first recorded public explanation arrive."
+      ],
+      "visibleEffect": "The viewer sees a scientific study beginning from a normal request, not a prebuilt dashboard.",
+      "narration": "The question is which strategy works on this tool's own word list. CLIO will test competing approaches and record the evidence.",
+      "clock": "Recorded progression; brisk input, readable completed prompt.",
+      "gates": [
+        "native-shell",
+        "multi-session-clock"
+      ]
+    },
+    {
+      "id": "hypotheses",
+      "start": 22,
+      "seconds": 26,
+      "source": "run60",
+      "title": "Turn the request into a study",
+      "purpose": "Make hypotheses and falsifiable predictions concrete.",
+      "actions": [
+        "Show the relevant word-list inspection and log_entry tools in the normal chat flow.",
+        "Open workspace canvas, then Science log in Graph mode.",
+        "Show the question and three hypotheses arriving at their recorded times; select one and reveal its claim and refuting prediction."
+      ],
+      "visibleEffect": "The log grows from an empty study into linked question/hypothesis records before results exist.",
+      "narration": "These are competing hypotheses with explicit refuting predictions. The log keeps their identity as separate branches investigate them.",
+      "clock": "Progress during entry arrival; one brief explicit inspection pause for the selected record.",
+      "gates": [
+        "science-log-as-of"
+      ]
+    },
+    {
+      "id": "launch",
+      "start": 48,
+      "seconds": 30,
+      "source": "run60",
+      "title": "Read the workflow before following it",
+      "purpose": "Explain the real dependency graph and what parallel means here.",
+      "actions": [
+        "Show the successful run_workflow call and its native flow card.",
+        "Open the workflow in the native side panel; use full screen briefly only if needed to read the graph.",
+        "Inspect the three strategy steps, merge and check. Show the three independent steps running while merge/check wait."
+      ],
+      "visibleEffect": "The static dependency plan becomes a running workflow with three separate active branches.",
+      "narration": "This run uses a workflow: a flow whose steps are data. The three experiments can run together; merge waits for all three, and the independent check follows merge.",
+      "clock": "Shared recorded time; selected-step reading may use a declared global inspection pause.",
+      "gates": [
+        "flow-history",
+        "native-flow-navigation"
+      ]
+    },
+    {
+      "id": "open-step",
+      "start": 78,
+      "seconds": 32,
+      "source": "run60",
+      "title": "Open a branch while it works",
+      "purpose": "Connect a graph node to its actual worker and hypothesis.",
+      "actions": [
+        "Select english while all strategy branches are still active.",
+        "Read the selected step's dependency/instruction summary, then use its native Open action.",
+        "Show the branch's recorded experiment and delegation call; expose the batch workers through their native task/session actions."
+      ],
+      "visibleEffect": "The selected workflow step leads to a working conversation, not a separate explanatory scene.",
+      "narration": "The node is an agent doing real work. This branch tests the English-style opener and splits its games among delegated workers.",
+      "clock": "Navigation preserves the global source clock. Show existing worker history as history, then continue its current recorded stream.",
+      "gates": [
+        "native-flow-navigation",
+        "multi-session-clock"
+      ]
+    },
+    {
+      "id": "game",
+      "start": 110,
+      "seconds": 50,
+      "source": "run60",
+      "title": "Follow one worker and one game",
+      "purpose": "Show tools visibly changing a real Wordle A2UI board.",
+      "actions": [
+        "Open the recorded terva seeds 16-20 worker and its board presentation.",
+        "Follow game g36-s16: new-game call, a guess call, returned feedback and the corresponding tile update.",
+        "Show the three recorded guesses for that game with readable feedback. Keep interleaved games in their actual source order rather than pretending this worker only played one game."
+      ],
+      "visibleEffect": "Letters and feedback change only when the matching recorded tool result arrives.",
+      "narration": "The worker chooses the guesses. The tool supplies feedback; the Wordle board renders that returned state. These moves will become a measurement in the study.",
+      "clock": "Continuous progression with idle-time compression; slow down for each shown guess/result/board transition. Other branches continue on the same clock.",
+      "gates": [
+        "wordle-ui-event-replay",
+        "multi-session-clock",
+        "pointer-layer"
+      ]
+    },
+    {
+      "id": "observation",
+      "start": 160,
+      "seconds": 38,
+      "source": "run60",
+      "title": "Trace the game into the science log",
+      "purpose": "Demonstrate provenance rather than merely displaying a result count.",
+      "actions": [
+        "Condense the worker's remaining batch activity and reach the actual logging time for observation e_eabe97d01f4b.",
+        "Open that worker's Science log record; show guesses/solved measurements and seed/strategy conditions.",
+        "Expand Sources, then use View in transcript on one cited Wordle call and return to the observation."
+      ],
+      "visibleEffect": "The displayed measurement is tied to the exact worker, game and returned tool data.",
+      "narration": "This is one observation for a completed game, with its conditions and the recorded calls behind it. The source links take us back to the actual move.",
+      "clock": "Do not backdate the observation to the final guess. Freeze all source projections during citation inspection, then resume together.",
+      "gates": [
+        "science-log-as-of",
+        "native-citation-navigation",
+        "pointer-layer"
+      ]
+    },
+    {
+      "id": "parallel-return",
+      "start": 198,
+      "seconds": 37,
+      "source": "run60",
+      "title": "Return to the other experiments",
+      "purpose": "Prove that background work continued during the active worker sequence.",
+      "actions": [
+        "Return through native navigation to the workflow at the current source time.",
+        "Show the changed branch states and accumulated log entries.",
+        "Open a second strategy briefly, show its different opener and actual in-progress work, then return. Use the same seed only if its recorded state is available at this source time."
+      ],
+      "visibleEffect": "The viewer sees concurrent work and meaningful differences between branches, without restarting their histories.",
+      "narration": "While that worker played, the other branches kept running. They share the seed set, but investigate different strategies independently.",
+      "clock": "Progress during navigation; no global hold added merely because one transcript paragraph is complete.",
+      "gates": [
+        "flow-history",
+        "multi-session-clock"
+      ]
+    },
+    {
+      "id": "growing-log",
+      "start": 235,
+      "seconds": 40,
+      "source": "run60",
+      "title": "Watch the study record accumulate",
+      "purpose": "Show the science log evolving over the run rather than appearing complete.",
+      "actions": [
+        "Return to Science log List mode and expand the actual study/step/delegated-worker tree.",
+        "Show more observations arriving as workers complete their batches.",
+        "Select a branch to change Log of without leaving the current conversation; show a recorded evidence entry only after its analysis is available."
+      ],
+      "visibleEffect": "The tree, per-branch log and accepted observation count develop from the same source events as the conversations.",
+      "narration": "The study record is shared across branches. Observations, analysis and evidence retain their authors and links instead of becoming one flattened answer.",
+      "clock": "Recorded progression with readable local selections. Apply canonical science.entry events, not every log_entry attempt.",
+      "gates": [
+        "science-log-as-of",
+        "multi-session-clock"
+      ]
+    },
+    {
+      "id": "merge-check",
+      "start": 275,
+      "seconds": 40,
+      "source": "run60",
+      "title": "Dependencies unlock merge and check",
+      "purpose": "Complete the workflow story with real state transitions and independent checking.",
+      "actions": [
+        "Return to the flow as the last strategy completes; let merge become active at its actual start.",
+        "Open the merge's analysis briefly and show a real evidence/conclusion link.",
+        "Show merge finishing, check starting, and the checker's actual recorded work before the workflow completes."
+      ],
+      "visibleEffect": "A completed dependency unlocks the next stage, and the checker visibly does work before the green final graph appears.",
+      "narration": "Merge starts only after the experiments finish. The final check is a separate recorded step, not a completion badge painted over the analysis.",
+      "clock": "As-of task lifecycle and source text; never reveal final node statuses at launch.",
+      "gates": [
+        "flow-history",
+        "multi-session-clock"
+      ]
+    },
+    {
+      "id": "evidence-graph",
+      "start": 315,
+      "seconds": 45,
+      "source": "run60",
+      "title": "Read the evidence behind the answer",
+      "purpose": "Show how the science log supports inspection and preserves uncertainty.",
+      "actions": [
+        "Switch the native Science log from List to Graph.",
+        "Select the recorded conclusion, use Selected and linked, and follow a cited evidence or conflict record.",
+        "Show Status reason or Sources on that selected record, then restore Entire study and return to the concise native answer."
+      ],
+      "visibleEffect": "The conclusion's links lead back into the study; the recorded conflicts and sample-size limits remain visible.",
+      "narration": "The log checks structure and references, not scientific truth. Here the study cannot reliably separate the openers, and its caveats remain connected to the answer.",
+      "clock": "Deliberate review of the completed first run; source remains at its completed state.",
+      "gates": [
+        "science-log-as-of",
+        "native-citation-navigation"
+      ]
+    },
+    {
+      "id": "second-run",
+      "start": 360,
+      "seconds": 20,
+      "source": "run30",
+      "title": "A second recorded study adds views",
+      "purpose": "Make the source change explicit before showing different strategies and numbers.",
+      "actions": [
+        "Switch the native session context to the later Wordle study.",
+        "State that this is the separate ten-seed-per-strategy run, with 30 games.",
+        "Show the recorded view-creation/attachment activity and then open Science log Views; do not manufacture this action in the first run."
+      ],
+      "visibleEffect": "The user understands why this chapter has different results and an English-style opener named anori.",
+      "narration": "This second run uses ten seeds per strategy and attaches its own interactive views to the study.",
+      "clock": "Explicit chapter cut between distinct source clocks; preserve order within the second run. Select its view-creation segment rather than replaying the whole experiment again.",
+      "gates": [
+        "study-view-data",
+        "run-boundaries"
+      ]
+    },
+    {
+      "id": "comparison-view",
+      "start": 380,
+      "seconds": 40,
+      "source": "run30",
+      "title": "Inspect the attached comparison view",
+      "purpose": "Show a useful view reading the study's actual measurements.",
+      "actions": [
+        "Open Guesses per game by strategy inside native Science log Views.",
+        "Use native maximize if needed for legibility and hover a specific seeded point to reveal its actual value and seed.",
+        "Show the native data/details action only if it exists and exposes the selected study rows; keep means 3.6, 4.2 and 4.0 associated with this run."
+      ],
+      "visibleEffect": "The attached view exposes the measurements behind the summary without a separate rebuilt chart.",
+      "narration": "This chart reads the study measurements. It compares the same seeds across strategies; the observed means are not a claim of a conclusive winner.",
+      "clock": "Completed-study inspection. The comparison view was created after these games, so do not portray it as watching this recorded run grow live.",
+      "gates": [
+        "study-view-data",
+        "pointer-layer"
+      ]
+    },
+    {
+      "id": "board-view",
+      "start": 420,
+      "seconds": 55,
+      "source": "run30",
+      "title": "Change the seed and compare the boards",
+      "purpose": "Make a control produce a clear, meaningful change in the displayed data.",
+      "actions": [
+        "Switch the native study-view title selector to Game boards by seed; show seed 5's three boards.",
+        "Inspect B's six-guess game beside A's four-guess game; hover a relevant tile to show its recorded guess, feedback and observation ID.",
+        "Click seed 10 and show all three panels changing. Inspect the recorded inconsistent guess rather than adding arbitrary highlights.",
+        "Restore the native workspace before leaving the view."
+      ],
+      "visibleEffect": "A real seed selection changes the three boards, and a tile tooltip identifies the logged source record.",
+      "narration": "Seed five makes the different choices easy to see. Seed ten also exposes a protocol deviation. These boards are a saved reconstruction of the logged games, not a live game feed.",
+      "clock": "Completed second-run review. Keep the editorial cursor live above native menus and tooltips.",
+      "gates": [
+        "study-view-data",
+        "pointer-layer"
+      ]
+    },
+    {
+      "id": "view-to-source",
+      "start": 475,
+      "seconds": 30,
+      "source": "run30",
+      "title": "Return from the view to its evidence",
+      "purpose": "Close the provenance loop for the attached view.",
+      "actions": [
+        "Return to the native Science log and select the observation or conflict relevant to the inspected game.",
+        "Use its native Sources or View in transcript action; do not invent a click-through on a tile whose saved specification only defines a tooltip.",
+        "Return to the study's conclusion with its low-confidence qualification visible."
+      ],
+      "visibleEffect": "The visual inspection leads back to a recorded observation and its source rather than ending on an attractive but disconnected chart.",
+      "narration": "The view helps us inspect a case. The study record preserves the calls and qualifications needed to judge it.",
+      "clock": "Completed-study inspection; preserve native tab and scroll continuity.",
+      "gates": [
+        "native-citation-navigation",
+        "study-view-data",
+        "pointer-layer"
+      ]
+    },
+    {
+      "id": "close",
+      "start": 505,
+      "seconds": 5,
+      "source": "run30",
+      "title": "Finish on the inspectable study",
+      "purpose": "Leave the product outcome clear without a long static outro.",
+      "actions": [
+        "Hold the readable final workspace briefly with the conclusion and an attached view.",
+        "Use a short CLIO closing only if it does not displace the result."
+      ],
+      "visibleEffect": "A question has become parallel work, recorded evidence and views the user can inspect.",
+      "narration": "The outcome is an experiment you can follow and inspect, including where its evidence is still uncertain.",
+      "clock": "Completed state; no fabricated further work.",
+      "gates": [
+        "full-cut-review"
+      ]
+    }
+  ],
+  "replayContract": [
+    "Use one source clock per recorded run. Route every visible session, task state, accepted science entry, Wordle update and table projection through it.",
+    "Parse all nested sessions and deduplicate semantic events by stable identity. The coordinator and delegated workers hold necessary events; root-only parsing is insufficient.",
+    "Join tool records to tool.call.started/completed via event_ids. Tool-record dictionaries alone contain no authoritative started_at/completed_at fields in these exports.",
+    "Hydrate workflow checkpoint content by its recorded descriptor when available; a checkpoint reference is not itself a renderable historical snapshot. Use recorded lifecycle observations and final flow handle mappings for supported projections, never arbitrary status animation.",
+    "Apply append-only science.entry records and status events by occurred_at. Rejected or retried tool invocations must not create extra observations or overwrite history.",
+    "Replay Wordle uiEvent updates by catalog, group and game key after their producing result. Do not treat this path as the same thing as an ordinary saved A2UI surface.",
+    "Keep source time advancing while browsing active workers unless the user-facing sequence deliberately enters an inspection pause. A completed paragraph in one pane must not freeze every other branch.",
+    "Open a worker at the current source instant, including existing history; do not retype its earlier work from frame zero. Returning to the flow shows its then-current state.",
+    "An inspection pause freezes every source projection, then all resume from the same instant. Cursor motion and native spinner animation use editorial frame time, not progress invented for the underlying work.",
+    "Preload data and native components, but reveal records and results only after their recorded arrival. No final-state leakage through prefetched graph nodes, statuses, boards or data tables.",
+    "Do not show the later study's generated views before their recorded attachment. Its CSV board view is a static post-study transcription; its comparison view's live-data capability does not mean a live-growing chart was recorded here."
+  ],
+  "implementationGates": [
+    {
+      "id": "native-shell",
+      "status": "implemented_with_recorded_sources",
+      "work": "Import the pinned native workspace, flow views, Science log modes and action handlers without the Spotter-specific layout/disclosure assumptions.",
+      "proof": "Open Flow and Science log through real controls and return without losing the conversation or canvas state.",
+      "designStatus": "pending"
+    },
+    {
+      "id": "multi-session-clock",
+      "status": "implemented_with_recorded_sources",
+      "work": "Generalize the paired replay to the study's nested session graph, preserving canonical deltas and task lifecycle boundaries.",
+      "proof": "Two active branches progress on the same clock during navigation; a deliberate inspection freezes both and resumes continuously.",
+      "designStatus": "pending"
+    },
+    {
+      "id": "flow-history",
+      "status": "implemented_with_recorded_sources",
+      "work": "Map final flow steps/handles/timings and recorded lifecycle events; resolve the 34/33 checkpoint references before relying on their contents.",
+      "proof": "Capture queued/running/completed frames plus the merge barrier and final check. Do not claim running from task creation alone.",
+      "designStatus": "partially_sourced"
+    },
+    {
+      "id": "native-flow-navigation",
+      "status": "implemented_with_recorded_sources",
+      "work": "Provide source-bound task and session resolution to native Open/Task actions, including delegated game workers.",
+      "proof": "A selected flow step opens its actual conversation, a delegated worker opens through native actions, and return preserves source time.",
+      "designStatus": "pending"
+    },
+    {
+      "id": "science-log-as-of",
+      "status": "implemented_with_recorded_sources",
+      "work": "Feed the native ScienceStudy model from canonical typed entries and status records, with the correct branch relationships and as-of timestamp.",
+      "proof": "At least three growth checkpoints, one hypothesis status change, and one valid cross-branch citation. Final unique observations equal 60/30 respectively.",
+      "designStatus": "partially_sourced"
+    },
+    {
+      "id": "wordle-ui-event-replay",
+      "status": "implemented_with_recorded_sources",
+      "work": "Replay the custom Wordle uiEvent/BoardWall catalog path using its captured component/spec and keyed data updates.",
+      "proof": "Two successive guesses change the correct board with the correct feedback; no later letters or solved state appear early.",
+      "designStatus": "partially_sourced"
+    },
+    {
+      "id": "native-citation-navigation",
+      "status": "implemented_with_recorded_sources",
+      "work": "Resolve native entry links and cited calls against recorded branch/message/call identities.",
+      "proof": "Observation Sources opens the exact Wordle invocation; return restores the selected record and its source context.",
+      "designStatus": "pending"
+    },
+    {
+      "id": "study-view-data",
+      "status": "implemented_with_recorded_sources",
+      "work": "Load the later run's two saved views and their study/artifact datasets, retaining real local filter and tooltip behavior.",
+      "proof": "Select seeds 5 and 10, verify changed tile rows and tooltip values, and inspect the rendered comparison against the saved capture. The board viewer still needs its first rendered validation.",
+      "designStatus": "partially_sourced"
+    },
+    {
+      "id": "run-boundaries",
+      "status": "implemented_with_recorded_sources",
+      "work": "Keep different roots, hypotheses, seed counts, means and source clocks across the explicit chapter transition.",
+      "proof": "No second-run table, view attachment or conclusion appears in the first run.",
+      "designStatus": "designed"
+    },
+    {
+      "id": "pointer-layer",
+      "status": "implemented_with_recorded_sources",
+      "work": "Replace the independently mounted interaction pointers with one presentation-level owner and measured coordinates spanning native portals, overlays and frame boundaries.",
+      "proof": "Inspect consecutive encoded frames through a flow popover, a source disclosure, a board tooltip and a return transition. No disappearance, teleport or UI occlusion.",
+      "designStatus": "pending"
+    },
+    {
+      "id": "full-cut-review",
+      "status": "review_receipt_retained_with_local_media",
+      "work": "Review complete encoded playback at embedded and full size after the source/UI slices work.",
+      "proof": "Check every meaningful branch wait, source hold, navigation, spinner, selection and pointer overlay; technical checks do not mark creative acceptance.",
+      "designStatus": "not_started"
+    }
+  ],
+  "productionOrder": [
+    {
+      "stage": "Source map",
+      "deliverable": "Stable session/task/call/entry/game identities and a source-time ledger",
+      "done": "Implemented. See motion/native/WORDLE.md and the retained automated and native-browser evidence; v1 creative acceptance was rejected."
+    },
+    {
+      "stage": "Native functional slice",
+      "deliverable": "Flow node -> working branch -> game worker -> changing board -> observation -> cited call -> return",
+      "done": "Implemented. See motion/native/WORDLE.md and the retained automated and native-browser evidence; v1 creative acceptance was rejected."
+    },
+    {
+      "stage": "Short moving proof",
+      "deliverable": "Approximately 75-100 seconds covering real concurrency, native navigation, a board update, a growing log and pointer overlays",
+      "done": "Implemented. See motion/native/WORDLE.md and the retained automated and native-browser evidence; v1 creative acceptance was rejected."
+    },
+    {
+      "stage": "Views slice",
+      "deliverable": "Comparison inspection and seed 5 -> seed 10 board filtering in the second run",
+      "done": "Implemented. See motion/native/WORDLE.md and the retained automated and native-browser evidence; v1 creative acceptance was rejected."
+    },
+    {
+      "stage": "Chaptered rough cut",
+      "deliverable": "An approximately 8:30 walkthrough with narration/caption timing, source-bound edits and explicit run change",
+      "done": "Implemented. See motion/native/WORDLE.md and the retained automated and native-browser evidence; v1 creative acceptance was rejected."
+    },
+    {
+      "stage": "Complete playback and corrections",
+      "deliverable": "Full encoded review with remaining defects named; then the final 1080p render",
+      "done": "The v1 was rejected. The full v2 encode is complete; see the local media handoff for decode, frame-scan and playback evidence and its limits."
+    }
+  ],
+  "excludeFromThisCut": [
+    "A tour of every SDK/plugin or code-authoring a Python flow not present in these recordings",
+    "An invented editor-added step, fork, approval prompt, restart recovery or experiment extension",
+    "A universal best-Wordle-strategy claim from small agent-played samples",
+    "Unnecessary full-screen views, arbitrary text selections, mouse gestures without a meaningful data or navigation effect",
+    "A dashboard that appears to update before it was created, or a final-state graph used as the entire replay",
+    "Production notes, verbose provenance captions and long held introduction/outro cards"
+  ],
+  "scienceLogPrimaryView": "graph",
+  "scienceLogDirection": "Graph is the main view. Select nodes for their records and citations; use the task tree briefly for delegated-worker navigation.",
+  "revision": 2,
+  "revisionNotes": [
+    "The 9:20 v1 was rejected for its dotted title, choppy text/scrolling, short-tool pauses and crawling first Science Log pointer.",
+    "The revised full timeline is 8:30. Source archives, event order, run boundaries and scientific qualifications are preserved.",
+    "Both the revised opening and full cut are encoded. Playback review is recorded separately from automated validation; creative acceptance remains with the user."
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "schema": "clio.connected-story.v1",
+  "title": "Three questions for NDP + CLIO",
+  "fps": 60,
+  "width": 1920,
+  "height": 1080,
+  "crossfadeFrames": 24,
+  "mediaServer": "http://127.0.0.1:3357",
+  "publishers": [
+    {
+      "id": "tahoe",
+      "short": "TRPA",
+      "name": "Tahoe Regional Planning Agency",
+      "dataset": "Lake Tahoe boundary",
+      "datasetId": "f8e23062-bc48-4bdd-9698-374bee3712fd"
+    },
+    {
+      "id": "alta",
+      "short": "University of Utah",
+      "name": "The Hive · University of Utah Research Data Repository",
+      "dataset": "Alta-Collins snowfall",
+      "datasetId": "16bee949-c829-4038-a316-204a5322b7d8"
+    },
+    {
+      "id": "konza",
+      "short": "NEON / Sage / WIFIRE",
+      "name": "NEON MDP / Sage / WIFIRE BP3D",
+      "dataset": "Konza Prairie burn observations",
+      "datasetId": "335fa1cb-d6d2-4e96-bc8e-c309d957b24d"
+    }
+  ],
+  "cards": [
+    {
+      "id": "intro",
+      "frames": 300,
+      "kicker": "FIND AND MEASURE",
+      "question": "What can you ask\nof NDP data?",
+      "publisher": 0,
+      "fromPublisher": 0
+    },
+    {
+      "id": "alta-bridge",
+      "frames": 300,
+      "kicker": "COMPARE",
+      "question": "How unusual\nwas the winter?",
+      "publisher": 1,
+      "fromPublisher": 0
+    },
+    {
+      "id": "konza-bridge",
+      "frames": 300,
+      "kicker": "TEST THE EXPLANATION",
+      "question": "What do three\nsensors tell us?",
+      "publisher": 2,
+      "fromPublisher": 1
+    },
+    {
+      "id": "outro",
+      "frames": 300,
+      "kicker": "",
+      "question": "Explore NDP\nwith CLIO.",
+      "publisher": 2,
+      "fromPublisher": 2
+    }
+  ],
+  "segments": [
+    {
+      "id": "opening",
+      "kind": "card",
+      "cardId": "intro"
+    },
+    {
+      "id": "find-and-measure",
+      "kind": "clip",
+      "campaign": "tahoe",
+      "file": "ndp-clio-tahoe-v4.mp4",
+      "sha256": "b1b27657d4a94775dd098f943cfb1e56d7f7034d902110f315e6d6f2ca21137d",
+      "sourceFrames": 6120,
+      "inFrame": 120,
+      "outFrame": 5940,
+      "holdFrames": 0
+    },
+    {
+      "id": "change-to-record",
+      "kind": "card",
+      "cardId": "alta-bridge"
+    },
+    {
+      "id": "compare-winters",
+      "kind": "clip",
+      "campaign": "alta",
+      "file": "ndp-clio-alta-v2.mp4",
+      "sha256": "bfd6ace55f7ee6a15fd415e76b00eca407567a7e722d17096c27e6916dc4b2b7",
+      "sourceFrames": 6900,
+      "inFrame": 120,
+      "outFrame": 6720,
+      "holdFrames": 0
+    },
+    {
+      "id": "change-to-explanation",
+      "kind": "card",
+      "cardId": "konza-bridge"
+    },
+    {
+      "id": "test-explanation",
+      "kind": "clip",
+      "campaign": "konza",
+      "file": "ndp-clio-konza-v2.mp4",
+      "sha256": "aba328f144c087026160a5fae1e388423742d3d8619ac82258e8e1961941dbb8",
+      "sourceFrames": 7020,
+      "inFrame": 120,
+      "outFrame": 6840,
+      "holdFrames": 0
+    },
+    {
+      "id": "closing",
+      "kind": "card",
+      "cardId": "outro"
+    }
+  ],
+  "editorial": {
+    "narrative": "Find an appropriate source and measure it; compare a historical record with coverage limits; test whether an explanation follows from paired observations.",
+    "cuts": "Each case retains its first two questions, including native control changes and generated results. The Tahoe follow-up includes plot-to-table selection. Short source-organization bridges connect the independent sessions.",
+    "scope": "The sessions remain distinct. Publisher names identify recorded NDP collections, not endorsements or a newly combined live run. Konza starts from data already acquired through NDP.",
+    "cachedActors": "Continuous moving native UI renders are reused as source actors. The native React components, transcripts, manifests and layout tracks remain editable in this repository; regenerate a case movie to change its UI.",
+    "omitted": "Repeated individual-film openings and closings, other questions, packaging/ZIP exchanges and source footers."
+  }
+}

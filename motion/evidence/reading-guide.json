@@ -1,0 +1,3171 @@
+{
+  "schema": "clio.motion-index.v1",
+  "source": {
+    "path": "delegation/Reading-guide-session.html",
+    "sha256": "bd505defbd060f243d7a7da315621fdc4e13d97a612d6a0f4e94c28c19d1837a",
+    "bytes": 87331887,
+    "exportSchema": "clio.session-export.v2"
+  },
+  "rootSessionId": "sess_7874a96ceb51",
+  "sessions": [
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_191af2560898",
+              "text": "I'm new to this project and need a reading guide to the design/ folder. For every document in it, write a short paragraph: what it decided, what it builds on, and which questions it leaves open. Group them by topic.",
+              "truncated": false,
+              "headings": []
+            }
+          ],
+          "text_chars": 215,
+          "id": "msg_user_8f192fafefc5",
+          "role": "user",
+          "created_at": "2026-10-27T10:27:23.184706+00:00",
+          "updated_at": "2026-10-27T10:27:23.184706+00:00",
+          "stop_reason": ""
+        },
+        {
+          "excerpts": [
+            {
+              "partId": "part_59ff4531be6c",
+              "text": "I'll start by locating the design/ folder.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_9fa9b2f2796d",
+              "text": "The workspace has three `design` folders. I'll take the one inside the active workspace root and first get its complete file list, since the listing was cut off.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_0cfd621f726c",
+              "text": "The folder holds 94 files (about 2.3 MB), so I'm splitting the reading across parallel readers, each taking a related cluster of documents.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_2533f01dc920",
+              "text": "The nine readers are running; I need all their reports before writing the guide.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_6c8f9abcedc1",
+              "text": "Each report was cut off at 12,000 characters, so I'm fetching the remainder of all ten.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_59a02f078421",
+              "text": "# Reading guide to `design/`\n\nI used the copy at `/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/`. It holds 94 files (93 Markdown, 1 JSON) including the `sdk/` subfolder. Two other `design` folders exist (`/home/user/clio-agent/docs/design`, which has 78 entries, and `external/gact-tui/docs/design`); I did not use them.\n\n**Coverage.** Nine readers each summarised a cluster of files, and I wrote this guide from their reports without re-opening any file myself. Most files were read in full. Some large ones were read only in parts because the file tools cap each read:\n- `planning-mode-research`, `hooks-research`, `agents-creating-agents`\n- `provenance-adapters-and-artifact-storage`\n- `agent-facing-async-tasks`, `turn-transcript`, `agent-task-native-v3`\n- `agent-loop-rebuild`, `compaction-prompt-research`\n- `unified-arc-highway`\n- `acceptance-ledger`, `science-ledger` and the other `sdk/` plans and ledgers\n\nOpen questions for those files may be incomplete. \"No open items stated\" means none in the portions read. Where a file gives no date, I say so.\n\n**Where to begin.**\n- For the project's overall shape, start with `v010-program-2026-08.md`.\n- For the newest work, read `sdk/README.md`, which points to `sdk/megachange-plan.md`.\n- For the task system, read `agent-facing-async-tasks.md`, then `agent-task-native-v3.md`.\n\n---\n\n## 1. Program, roadmap and architecture\n\n**`roadmap.md`** declares the v1 ARC (live context plane) finished and green on ALCF. It lays out the remaining work as dependency threads rather than a schedule, and suggests a clio-core backend behind `make_arc_store` (thread B) as the lead. It builds on `GOAL.md`, the archived ARC specs and `compaction-checkpoint-1339.md`. Threads D (CEE MCP) and E (distributed KV plane) need B, and no owners or dates are given. A banner carries the A2UI completion date, 2026-09-17.\n\n**`unified-arc-highway.md`** (July 2026) decides that one operation-sourced log replaces four overlapping stores (persistence, context, SSE and search indexes), with the external contract frozen. Migration is a seven-step strangler, one consumer at a time. It builds on #737, #893, #889 and #767 PR3. Its own review forced a raw append lane and a live dual-run A/B harness. Open: streaming live-edge atom (Q2), moving secret redaction to the write path (Q3), reload-equals-live gating (Q4), compaction archive semantics (Q6, needs owne",
+              "truncated": true,
+              "headings": [
+                "Reading guide to `design/`",
+                "1. Program, roadmap and architecture",
+                "2. Agent loop, streaming and context compaction",
+                "3. Agent tasks, messaging, questions and transcripts",
+                "4. The task-replacement series",
+                "5. Goals, loops, planning, hooks, skills and agent creation",
+                "6. MCP v2, runtime, provenance routing, extensions and NDP",
+                "7. Artifacts, provenance, A2UI and feedback",
+                "8. Sandboxing, governance and operations",
+                "9. Integration and release status",
+                "10. SDK subfolder: plugins, flows, fleet, memory and science",
+                "Cross-document cautions"
+              ]
+            }
+          ],
+          "text_chars": 42267,
+          "id": "msg_asst_5dcf8a3fa9b9",
+          "role": "assistant",
+          "created_at": "2026-10-27T10:40:20.798645+00:00",
+          "updated_at": "2026-10-27T10:40:20.798698+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_daaf7d727749",
+          "tool": "fs_list_directory",
+          "status": "completed",
+          "description": "List design folder in workspace",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design"
+        },
+        {
+          "call_id": "call_1d499cf38673",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "Locate design directories"
+        },
+        {
+          "call_id": "call_04a2612070cf",
+          "tool": "shell_bash",
+          "status": "completed",
+          "description": "Full recursive listing of workspace design folder with sizes"
+        },
+        {
+          "call_id": "call_01fec274673b",
+          "tool": "spawn_agents_parallel",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_6c5505aa435a",
+          "tool": "wait_tasks",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_d12114fe907a",
+          "tool": "get_task_result",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_c0028c319ff8",
+          "tool": "get_task_result",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_78e3fbc37c1d",
+          "tool": "get_task_result",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_e4e6b043d7fb",
+          "tool": "get_task_result",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_681f518f65b5",
+          "tool": "get_task_result",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_da6320eaf7a0",
+          "tool": "get_task_result",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_efd1c4dd0deb",
+          "tool": "get_task_result",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_588adc81aaef",
+          "tool": "get_task_result",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_da9ce88510d8",
+          "tool": "get_task_result",
+          "status": "completed"
+        },
+        {
+          "call_id": "call_ff6d732dca36",
+          "tool": "get_task_result",
+          "status": "completed"
+        }
+      ],
+      "id": "sess_7874a96ceb51",
+      "title": "Reading guide to the design folder",
+      "created_at": "2026-10-27T10:27:20.739800+00:00",
+      "last_interaction_at": "2026-10-27T10:40:21.810723+00:00",
+      "parent_session_id": "",
+      "agent.id": "standard"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_a3da9c87e973",
+              "text": "Shell is read-only here, so I'll read the files directly.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_f4d7bff4508c",
+              "text": "The reads were cut at 12,000 characters, so I'll pull the rest by section, starting with the headings.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_1459836e12f1",
+              "text": "\n\n```\n\nCorrection: I must use the required format.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_143a134d0fc4",
+              "text": "I have the openings and section maps. Next I'll pull the closing sections where final state and open items sit.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_fbc8eafabe11",
+              "text": "# Reading guide notes: seven SDK design files\n\n**Coverage caveat.** I did not read all seven files in full. Each read was cut at 12,000 characters, and I filled in with heading maps and targeted context searches. I read the openings, the heading structure, the defaults and Done sections, and parts of the ledgers. The middle sections of the plans and most ledger rows beyond those shown are unread. Open-items lines below only cover what I saw. \"None stated\" means none stated in the parts I read, not none in the file.\n\n## 1. acceptance-ledger.md\n- **Date/status:** Qualification defects dated 2026-10-23/24 and a security review dated 2026-10-22. Group: Plugins, SDK and flows (the megachange).\n- **What it records:** The evidence ledger for the plugins, Agent SDK and flows megachange. Rows follow `megachange-plan.md`, and a row passes only with recorded evidence. Statuses are `passed (live)`, `tests only`, `static`, `done`, `open` and `blocked`.\n- **Contents:** Decisions D1–D40, phase rows (P0-1 onward), live scenarios, a K-numbered defect list, a security review (S-1 to S-11) and platform rows.\n- **Decisions seen:**\n  - D1: no new `TaskKind`.\n  - D2: handoff not implemented.\n  - D5: `run_code`, `rlm` and `code` flows out of scope.\n  - D9: remote agents not built.\n  - D21: plugin-change delivery, with `plugin-change-delivery.md` as the next step.\n  - D30: `run_plan` renamed to `run_workflow`.\n  - D36: a full reinstall is required, with no upgrade path.\n  - D40: `response_parts` retained separately from the final answer, citing issue #1857.\n- **Builds on:** `megachange-plan.md`, `plugin-change-delivery.md`, and clio-agent issue #1857.\n- **Left open:**\n  - X-1 (Tauri desktop), X-2 (Windows-only paths) and X-3 (HPC over SSH) are `blocked` because a cloud session cannot run them.\n  - K-10 is open: the `core.tasks` and `core.guidelines` fragments exceed the 150-token budget.\n  - S-10 is open and needs the person's decision: loopback privileged routes can be reached by any local process, including a command the agent runs.\n  - S-11 is accepted as low risk.\n  - K-24 is fixed by tests but was not re-read live.\n  - The grep for `| open |` returned no matches, so the only explicit open rows I found are those listed here.\n- **Relationships:** It is the base ledger. The plan docs below cite its decisions D1–D29 as still in force.\n\n## 2. delegation-fork-science-plan.md\n- **Dat",
+              "truncated": true,
+              "headings": [
+                "Reading guide notes: seven SDK design files",
+                "1. acceptance-ledger.md",
+                "2. delegation-fork-science-plan.md",
+                "3. delegation-fork-science-addendum-a.md",
+                "4. long-term-memory-plan.md",
+                "5. memory-ledger.md",
+                "6. science-ledger.md",
+                "7. windows-openai-qualification.md",
+                "Cross-file notes"
+              ]
+            }
+          ],
+          "text_chars": 12110,
+          "id": "msg_asst_61a1b1419420",
+          "role": "assistant",
+          "created_at": "2026-10-27T10:35:36.966415+00:00",
+          "updated_at": "2026-10-27T10:35:36.966432+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_19ffeaea5f8d",
+          "tool": "",
+          "status": "failed",
+          "description": "Size the files"
+        },
+        {
+          "call_id": "call_a1797c8ab6fd",
+          "tool": "fs_list_directory",
+          "status": "completed",
+          "description": "List sdk design folder",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/"
+        },
+        {
+          "call_id": "call_00c526232f4b",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read acceptance ledger"
+        },
+        {
+          "call_id": "call_8178a961b513",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read delegation plan"
+        },
+        {
+          "call_id": "call_534754ef9f33",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read science ledger"
+        },
+        {
+          "call_id": "call_fb65a08c43d2",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read memory plan"
+        },
+        {
+          "call_id": "call_b6b130b46668",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read memory ledger"
+        },
+        {
+          "call_id": "call_030808c6e194",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read addendum A"
+        },
+        {
+          "call_id": "call_2af548c785cc",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read windows qualification"
+        },
+        {
+          "call_id": "call_9e28db0d358c",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings acceptance ledger",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/acceptance-ledger.md"
+        },
+        {
+          "call_id": "call_ccd36795374a",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings plan",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/delegation-fork-science-plan.md"
+        },
+        {
+          "call_id": "call_7c4a8d2791f1",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings addendum",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/delegation-fork-science-addendum-a.md"
+        },
+        {
+          "call_id": "call_4ea453efda28",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings science ledger",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/science-ledger.md"
+        },
+        {
+          "call_id": "call_d489f28e6032",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings windows",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/windows-openai-qualification.md"
+        },
+        {
+          "call_id": "call_376ca88a4ea1",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings memory ledger",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/memory-ledger.md"
+        },
+        {
+          "call_id": "call_14eecd2935f2",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings memory plan",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/long-term-memory-plan.md"
+        },
+        {
+          "call_id": "call_cd4ba064312f",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "plan defaults",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/delegation-fork-science-plan.md"
+        },
+        {
+          "call_id": "call_c94c13d3152e",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "security section",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/acceptance-ledger.md"
+        },
+        {
+          "call_id": "call_b3cf19f744c2",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "addendum changes",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/delegation-fork-science-addendum-a.md"
+        },
+        {
+          "call_id": "call_e4f0b151827d",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "open rows",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/acceptance-ledger.md"
+        },
+        {
+          "call_id": "call_042f8c346c12",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "plan done",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/delegation-fork-science-plan.md"
+        },
+        {
+          "call_id": "call_955336fac81d",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "blocked rows",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/acceptance-ledger.md"
+        },
+        {
+          "call_id": "call_ea5c48dc05fe",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "addendum defaults",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/delegation-fork-science-addendum-a.md"
+        },
+        {
+          "call_id": "call_2686f94f7de6",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "windows boundaries",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/windows-openai-qualification.md"
+        },
+        {
+          "call_id": "call_175c820f6955",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "memory ledger tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/memory-ledger.md"
+        },
+        {
+          "call_id": "call_fd1540551b17",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "acceptance phase rows",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/acceptance-ledger.md"
+        },
+        {
+          "call_id": "call_78ce93897e0d",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "science ledger scenarios",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/science-ledger.md"
+        },
+        {
+          "call_id": "call_b0d7f3f5a1b5",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "memory plan defaults",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/long-term-memory-plan.md"
+        }
+      ],
+      "id": "sess_4505e61ec6b27e4fd41543f08398d25e",
+      "title": "sdk design B",
+      "created_at": "2026-10-27T10:28:46.542263+00:00",
+      "last_interaction_at": "2026-10-27T10:35:38.888716+00:00",
+      "parent_session_id": "sess_7874a96ceb51",
+      "agent.id": "explore"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_722f5dcf58f2",
+              "text": "Shell is blocked (read-only), so I'll use the file reader instead.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_88a3a563a59c",
+              "text": "The previews for seven files were cut off, so I'll pull their section structure first.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_0f8e968467f2",
+              "text": "The earlier reads were cut off for seven files, so I'll get their headings and the open-item passages next.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_f9ee63e24493",
+              "text": "The first reads were cut off at 12,000 characters for seven of the files. I'll pull their section headings and any open-item passages with targeted searches.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_c1b48d4b6559",
+              "text": "The first reads were cut off at 12,000 characters, so I'll read the missing tails of the seven files by section.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_5ce6009e46ce",
+              "text": "I still need three tails that the earlier reads cut off: the \"Deferred by design\" list in plugins-and-composition, the marketplace section of removal-manifest, and the end of model-fleet.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_8692397da6e1",
+              "text": "# Reading guide: `design/sdk/` (10 assigned files)\n\nEverything below comes from files read under `/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/`.\n\n**Coverage limits**\n- `agent-sdk.md`, `plugin-change-delivery.md` and `README.md` were read in full.\n- For the other seven, the first read was cut at 12,000 characters. I recovered their tails and open-item sections with targeted searches, so some middle sections were not read:\n  - `orchestration-semantics.md`: \"Recursive and programmatic orchestration\", \"Durable execution and HPC workflows\", \"Comparison\", and most of \"Proposed semantics\" (lines ~66–214).\n  - `removal-manifest.md`: the marketplace agent table after line 151.\n  - `megachange-plan.md`: the tail of the Phase 5 live-scenario table (L9 is cut mid-row) and the Phase 5 text after it.\n  - `model-fleet.md`: the end of the Usage view paragraph (line 123).\n  - `model-fleet-ledger.md`: the tails of the M1–M3 and M12 rows.\n- The shell was refused as read-only, so I have no file sizes beyond what `fs_read_file` reported.\n\n## How the README orders them\n\n`README.md` opens with \"Plugins, Agent SDK and flows\" and says to start with `megachange-plan.md`. Its table lists, in this order:\n\n1. megachange-plan\n2. plugins-and-composition\n3. agent-sdk\n4. orchestration-semantics\n5. model-fleet\n6. remote-agents-and-protocols\n7. long-term-memory-plan\n8. memory-ledger\n9. delegation-fork-science-plan\n10. delegation-fork-science-addendum-a\n\nIt says the files were \"exported from the shared design docs as of Oct 20, 2026\", and that the repository copy is now the one to edit.\n\nDifferences between the README and the folder:\n- Four assigned files are not in the README table: `plugin-change-delivery.md`, `removal-manifest.md`, `model-fleet-ledger.md` and (outside my assignment) `science-ledger.md`.\n- `model-fleet.md` is dated Oct 22 and `megachange-plan.md` has additions dated Oct 23. Both postdate the README's stated Oct 20 export, so the README is stale.\n\n## Per-file summaries\n\n### 1. README.md\n- **Records:** an index only. It decides nothing beyond \"start with megachange-plan\" and \"edit here from now on\".\n- **Builds on:** the shared design docs it was exported from.\n- **Open:** none stated.\n- **Date/status:** exported Oct 20, 2026.\n- **Group:** entry point.\n\n### 2. agent-sdk.md\n- **Decided:** plugins hold all content, including the specific external agents they work ",
+              "truncated": true,
+              "headings": [
+                "Reading guide: `design/sdk/` (10 assigned files)",
+                "How the README orders them",
+                "Per-file summaries",
+                "1. README.md",
+                "2. agent-sdk.md",
+                "3. plugins-and-composition.md",
+                "4. plugin-change-delivery.md",
+                "5. orchestration-semantics.md",
+                "6. remote-agents-and-protocols.md",
+                "7. megachange-plan.md",
+                "8. removal-manifest.md",
+                "9. model-fleet.md",
+                "10. model-fleet-ledger.md",
+                "Suggested topic groups and reading order"
+              ]
+            }
+          ],
+          "text_chars": 16860,
+          "id": "msg_asst_0bcd11d51ead",
+          "role": "assistant",
+          "created_at": "2026-10-27T10:37:30.749010+00:00",
+          "updated_at": "2026-10-27T10:37:30.749031+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_19c9f5eb3667",
+          "tool": "",
+          "status": "failed",
+          "description": "Size the files"
+        },
+        {
+          "call_id": "call_240fe41fc860",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read agent-sdk"
+        },
+        {
+          "call_id": "call_e89c404ed2b3",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read plugin-change-delivery"
+        },
+        {
+          "call_id": "call_c846abd2ca41",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read plugins-and-composition"
+        },
+        {
+          "call_id": "call_6aa0d80bf87f",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read orchestration-semantics"
+        },
+        {
+          "call_id": "call_7ee197e6ebe2",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read README"
+        },
+        {
+          "call_id": "call_aa9a03c6b228",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read megachange-plan"
+        },
+        {
+          "call_id": "call_2364a46b0ac9",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read remote-agents"
+        },
+        {
+          "call_id": "call_970ba4a20f14",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read model-fleet"
+        },
+        {
+          "call_id": "call_aa3d05e4e768",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read model-fleet-ledger"
+        },
+        {
+          "call_id": "call_31520aa6fb3d",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read removal-manifest"
+        },
+        {
+          "call_id": "call_8570728c67ec",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "List headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/"
+        },
+        {
+          "call_id": "call_d16247f02553",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "List headings across docs",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/"
+        },
+        {
+          "call_id": "call_d2a74abe7564",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/megachange-plan.md"
+        },
+        {
+          "call_id": "call_3d3c7caaa433",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/remote-agents-and-protocols.md"
+        },
+        {
+          "call_id": "call_249d7538a4d0",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/removal-manifest.md"
+        },
+        {
+          "call_id": "call_c458443ec6ea",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/plugins-and-composition.md"
+        },
+        {
+          "call_id": "call_4f844ee23bdc",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/model-fleet.md"
+        },
+        {
+          "call_id": "call_75a4db5fdb99",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/orchestration-semantics.md"
+        },
+        {
+          "call_id": "call_b0bf95fcc635",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/model-fleet-ledger.md"
+        },
+        {
+          "call_id": "call_b516afcfb377",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "fleet tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/model-fleet.md"
+        },
+        {
+          "call_id": "call_22e1b77205ec",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "open questions orchestration",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/orchestration-semantics.md"
+        },
+        {
+          "call_id": "call_c46ab0946dd3",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "megachange end",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/megachange-plan.md"
+        },
+        {
+          "call_id": "call_4f862a8c2774",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "design part remote",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/remote-agents-and-protocols.md"
+        },
+        {
+          "call_id": "call_c7e1a23be7da",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "tail of plugins doc",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/plugins-and-composition.md"
+        },
+        {
+          "call_id": "call_06495120dcc5",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "tail remote",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/remote-agents-and-protocols.md"
+        },
+        {
+          "call_id": "call_1deab6d8d3eb",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "orchestration tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/orchestration-semantics.md"
+        },
+        {
+          "call_id": "call_0cd25d2efeca",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "removal tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/removal-manifest.md"
+        },
+        {
+          "call_id": "call_2d5357a8a76f",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "megachange tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/megachange-plan.md"
+        },
+        {
+          "call_id": "call_2804b770b3d1",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "ledger tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/model-fleet-ledger.md"
+        },
+        {
+          "call_id": "call_b34c179e5b6e",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "removal manifest tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/removal-manifest.md"
+        },
+        {
+          "call_id": "call_bb0057053b83",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "plugins doc spill (tail)"
+        },
+        {
+          "call_id": "call_641fb2de8d3f",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "fleet tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/model-fleet.md"
+        },
+        {
+          "call_id": "call_1de6b2322dc1",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Read the deferred list tail of plugins doc",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/sdk/plugins-and-composition.md"
+        }
+      ],
+      "id": "sess_ffb4de7869309ae553ce961228d54f5f",
+      "title": "sdk design A",
+      "created_at": "2026-10-27T10:28:38.398833+00:00",
+      "last_interaction_at": "2026-10-27T10:37:31.685277+00:00",
+      "parent_session_id": "sess_7874a96ceb51",
+      "agent.id": "explore"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_07d14dea3a36",
+              "text": "\n\n```\n\nI'll fix the format and issue the calls properly.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_06aebd09b241",
+              "text": "The earlier reads were truncated for five files, so I'm reading the rest in chunks directly from the source files.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_9d2b0169da5a",
+              "text": "The shell is blocked as read-only, so I'll read the remainders with the search tool, which returns long line-numbered context.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_4dcb85e4b442",
+              "text": "Shell is refused as read-only, so I'm mapping each long file's headings first, then reading the unread sections through bounded line-numbered search.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_7d674091ff1a",
+              "text": "Shell is refused as read-only, so I'm reading the unread remainder of each long file with line-anchored searches.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_06ff6c9aa00d",
+              "text": "Continuing with the unread remainder: the highway's §2–§5, beta3's outstanding-work section, and the tail of the slices doc.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_a77de1f2b91e",
+              "text": "Two sections are still unread: beta3's outstanding-work list and the highway's open questions Q4 onward. I'm reading those now.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_395646f02599",
+              "text": "# Reading guide: eight design docs in `design/`\n\n**Coverage caveat.** The shell was refused as read-only, so I could not chunk the files with `tail`/`head`. I read `roadmap.md`, `beta2-integration-qualification-2026-10-03.md` and `blueprint-core-coordination.md` completely. For the other five I read the first ~12K characters of each, then the rest through line-numbered search windows. The unread parts are listed under \"Not read\" at the end. Dates come from the files themselves, and where a file gives none I say so.\n\n## Chronological chain\n\n1. `roadmap.md`: v1 ARC plane done; the later threads are scoped. It carries a 2026-09-17 banner.\n2. `unified-arc-highway.md`: design dated 2026-07-11/12, with status lines edited as late as the 2026-09 agent-loop rebuild.\n3. `v010-program-2026-08.md`: status line \"ACTIVE, 2026-07-30\". The filename says 2026-08.\n4. `v010-slices-2026-08.md`: issue-tree expansion of the program doc. It cites the program doc on develop at `1c8e39fd` and owner statements dated 2026-07-30.\n5. `campaign-integration-landing-2026-09.md`: the September references and child-interaction wave. Marketplace PR #59 merged 2026-09-03.\n6. `beta2-integration-qualification-2026-10-03.md`: 2026-10-03.\n7. `beta3-integration-status.md`: checkpoints dated October 4 and October 5. It supersedes its own \"do not publish\" hold.\n8. `blueprint-core-coordination.md`: **undated**. It cites Core PRs #1273/#1274 and the registry/blueprint work, which fits the beta-3 era. That placement is inference, not stated.\n\nThe v0.10 program and slices docs and the highway doc all date from July, so the order among them is partly overlap. The highway design is the earliest and is independent of the v0.10 UI/MCP program.\n\n## Best entry point\n\n**`v010-program-2026-08.md`** is the best single entry point.\n- It states the thesis, the program structure and the owner decisions D1–D3, then lays out phases P0–P5 and a deletion inventory.\n- It names the repos and the issues the other docs refer back to.\n- The slices doc is its expansion.\n- `roadmap.md` is shorter, but it covers only the ARC plane and is the least current.\n- The highway doc is the right second read for anyone touching messages, sessions or ARC internals.\n\n## Per-file findings\n\n### 1. `roadmap.md`\n**Group:** ARC live context plane. **Status:** no date of its own. A banner says the A2UI 0.9.1 compatibility campaign (S0–S9) compl",
+              "truncated": true,
+              "headings": [
+                "Reading guide: eight design docs in `design/`",
+                "Chronological chain",
+                "Best entry point",
+                "Per-file findings",
+                "1. `roadmap.md`",
+                "2. `unified-arc-highway.md`",
+                "3. `v010-program-2026-08.md`",
+                "4. `v010-slices-2026-08.md`",
+                "5. `campaign-integration-landing-2026-09.md`",
+                "6. `beta2-integration-qualification-2026-10-03.md`",
+                "7. `beta3-integration-status.md`",
+                "8. `blueprint-core-coordination.md`",
+                "Suggested topic groups",
+                "Not read (do not treat as covered)"
+              ]
+            }
+          ],
+          "text_chars": 17673,
+          "id": "msg_asst_a55e3507e8a1",
+          "role": "assistant",
+          "created_at": "2026-10-27T10:36:47.894189+00:00",
+          "updated_at": "2026-10-27T10:36:47.894215+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_4f3cd01984ca",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read roadmap"
+        },
+        {
+          "call_id": "call_41602b6faf20",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read v010 slices"
+        },
+        {
+          "call_id": "call_f220a774d57b",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read beta2 qualification"
+        },
+        {
+          "call_id": "call_ac37e4a99fdf",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read campaign landing"
+        },
+        {
+          "call_id": "call_5f92242cd1b4",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read unified arc highway"
+        },
+        {
+          "call_id": "call_0f112ff5a48e",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read beta3 status"
+        },
+        {
+          "call_id": "call_d5a194b3d271",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read v010 program"
+        },
+        {
+          "call_id": "call_e14dbea55a70",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read blueprint"
+        },
+        {
+          "call_id": "call_34a153daaaaa",
+          "tool": "",
+          "status": "failed",
+          "description": "slices chunk 2"
+        },
+        {
+          "call_id": "call_f1a3bc265893",
+          "tool": "",
+          "status": "failed",
+          "description": "slices chunk 3"
+        },
+        {
+          "call_id": "call_e56fe758fadc",
+          "tool": "",
+          "status": "failed",
+          "description": "program chunk 2"
+        },
+        {
+          "call_id": "call_f418f207f0cd",
+          "tool": "",
+          "status": "failed",
+          "description": "program chunk 3"
+        },
+        {
+          "call_id": "call_125078e83f6d",
+          "tool": "",
+          "status": "failed",
+          "description": "highway chunk 2"
+        },
+        {
+          "call_id": "call_a2c9d18bb28c",
+          "tool": "",
+          "status": "failed",
+          "description": "highway chunk 3"
+        },
+        {
+          "call_id": "call_f679628e10f8",
+          "tool": "",
+          "status": "failed",
+          "description": "highway chunk 4"
+        },
+        {
+          "call_id": "call_42324fbbb029",
+          "tool": "",
+          "status": "failed",
+          "description": "highway chunk 5"
+        },
+        {
+          "call_id": "call_189fa5fc9a30",
+          "tool": "",
+          "status": "failed",
+          "description": "highway chunk 7"
+        },
+        {
+          "call_id": "call_78d2a034f33c",
+          "tool": "",
+          "status": "failed",
+          "description": "campaign chunk 2"
+        },
+        {
+          "call_id": "call_bca20ac4859e",
+          "tool": "",
+          "status": "failed",
+          "description": "beta3 chunk 2"
+        },
+        {
+          "call_id": "call_fba2ed19de99",
+          "tool": "",
+          "status": "failed",
+          "description": "highway chunk 6"
+        },
+        {
+          "call_id": "call_e5bd1eee8966",
+          "tool": "",
+          "status": "failed",
+          "description": "campaign chunk 3"
+        },
+        {
+          "call_id": "call_2be9a7b4802c",
+          "tool": "",
+          "status": "failed",
+          "description": "campaign chunk 4"
+        },
+        {
+          "call_id": "call_64180625087d",
+          "tool": "",
+          "status": "failed",
+          "description": "beta3 chunk 4"
+        },
+        {
+          "call_id": "call_56737200d30e",
+          "tool": "",
+          "status": "failed",
+          "description": "beta3 chunk 3"
+        },
+        {
+          "call_id": "call_a2e7dd519ab2",
+          "tool": "",
+          "status": "failed",
+          "description": "beta3 chunk 5"
+        },
+        {
+          "call_id": "call_bcbcfda2c6f2",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "highway remainder",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/unified-arc-highway.md"
+        },
+        {
+          "call_id": "call_25927b4bce60",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "slices remainder",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/v010-slices-2026-08.md"
+        },
+        {
+          "call_id": "call_be2ea936b7d5",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "program remainder",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/v010-program-2026-08.md"
+        },
+        {
+          "call_id": "call_10961886bc7e",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "highway headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/unified-arc-highway.md"
+        },
+        {
+          "call_id": "call_5490f268e9d7",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "beta3 headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/beta3-integration-status.md"
+        },
+        {
+          "call_id": "call_134799dc2ef9",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "campaign headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/campaign-integration-landing-2026-09.md"
+        },
+        {
+          "call_id": "call_8e19391815e4",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "slices headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/v010-slices-2026-08.md"
+        },
+        {
+          "call_id": "call_65a519a42e0f",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "program headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/v010-program-2026-08.md"
+        },
+        {
+          "call_id": "call_6375c6c9e131",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "slices 137-237",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/v010-slices-2026-08.md"
+        },
+        {
+          "call_id": "call_29e8c46a9e6b",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "program 285-end",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/v010-program-2026-08.md"
+        },
+        {
+          "call_id": "call_9924d5ed5d3f",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "program 195-295",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/v010-program-2026-08.md"
+        },
+        {
+          "call_id": "call_03c9003051e7",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "slices 211-end",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/v010-slices-2026-08.md"
+        },
+        {
+          "call_id": "call_6905fd262c4e",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "campaign 131-231",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/campaign-integration-landing-2026-09.md"
+        },
+        {
+          "call_id": "call_48247a4b41f5",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "beta3 165-255",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/beta3-integration-status.md"
+        },
+        {
+          "call_id": "call_94e1cdc050b7",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "campaign 195-295",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/campaign-integration-landing-2026-09.md"
+        },
+        {
+          "call_id": "call_38eb20e4988b",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "beta3 387-487",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/beta3-integration-status.md"
+        },
+        {
+          "call_id": "call_41eaa6f16cbb",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "campaign 347-end",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/campaign-integration-landing-2026-09.md"
+        },
+        {
+          "call_id": "call_2fc156a1a74f",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "beta3 317-407",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/beta3-integration-status.md"
+        },
+        {
+          "call_id": "call_5149bb32c44a",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "campaign 288-388",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/campaign-integration-landing-2026-09.md"
+        },
+        {
+          "call_id": "call_e49bcd515fa5",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "beta3 485-585",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/beta3-integration-status.md"
+        },
+        {
+          "call_id": "call_cac1a9fa2b7c",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "beta3 242-332",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/beta3-integration-status.md"
+        },
+        {
+          "call_id": "call_fac45fe26814",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "beta3 554-644",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/beta3-integration-status.md"
+        },
+        {
+          "call_id": "call_5a5a7ffcd72a",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "highway 5.x region",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/unified-arc-highway.md"
+        },
+        {
+          "call_id": "call_1bf6352032db",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "anchor",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/beta3-integration-status.md"
+        },
+        {
+          "call_id": "call_ea1b52924b02",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "slices tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/v010-slices-2026-08.md"
+        },
+        {
+          "call_id": "call_f8f9096b91b6",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "highway 3.4 region",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/unified-arc-highway.md"
+        },
+        {
+          "call_id": "call_c671a33a9915",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "highway 4.2 region",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/unified-arc-highway.md"
+        },
+        {
+          "call_id": "call_42a388e181ec",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "anchor",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/unified-arc-highway.md"
+        },
+        {
+          "call_id": "call_f43af51f4afd",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "beta3 tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/beta3-integration-status.md"
+        },
+        {
+          "call_id": "call_6895049a29db",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "highway Q4+",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/unified-arc-highway.md"
+        },
+        {
+          "call_id": "call_d978dcca15a0",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "beta3 outstanding",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/beta3-integration-status.md"
+        }
+      ],
+      "id": "sess_6917db4d8929e5e133a80f79ba416517",
+      "title": "program & releases",
+      "created_at": "2026-10-27T10:28:34.448606+00:00",
+      "last_interaction_at": "2026-10-27T10:36:49.777581+00:00",
+      "parent_session_id": "sess_7874a96ceb51",
+      "agent.id": "explore"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_158cc5344d46",
+              "text": "Shell is read-only here, so I'll read the files with `fs_read_file`.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_1ba9f1c876aa",
+              "text": "The three largest files were truncated at about 12,000 characters, so I'll pull their structure and then read the remainder in chunks.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_14e42d861a09",
+              "text": "Output was truncated for the three large files, so I'm reading the rest by line range.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_e53c5d58b131",
+              "text": "Several middle sections of the three large files are still unread, so I'm fetching them now.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_e90062837c4c",
+              "text": "I still have two gaps: governance lines ~210-256 and landing lines ~123-140. I'm reading those now.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_321e00bbb659",
+              "text": "I have one gap left: governance-surfaces lines ~210–256. I'm reading them now.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_1da95575d51f",
+              "text": "# Reading-guide findings: design docs in `design/`\n\nAll nine files were read. The three large ones (`codex-rework-landing`, `governance-surfaces`, `system-cleanup`) were read partly through truncated results and partly through line-context searches. I saw every line range, but several very long bullets in the landing doc were cut off at about 500 characters in search output. These are the Phase 1, 2, 4 and 5 records and the qualification bullets. Those bullets are not quoted in full, and no claim below depends on their cut-off tails.\n\nAll paths are under `/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/`.\n\n## Topic group A: OS sandboxing (a chain: campaign → rework → net)\n\n### 1. `sandboxing-campaign-2026-07.md`\n- **Status:** \"the landed record\" for umbrella #974, July 2026. The file does not state a final status for the live gates.\n- **Decided:**\n  - Campaign B (B1–B6, issues #975–#980) built OS write-confinement.\n  - It used a backend ladder of srt, then Landlock, then none, with srt as the Windows path.\n  - It added a CONNECT-only network chokepoint that allows and records egress by default.\n  - Grants became recorded `boundary.*` events.\n  - Provenance was upgraded: `gap` became `policy_violation`, `lease-window` became `fence_proven`, and egress became `used web:<domain>@<time>`.\n  - `file_policy` stays as an advisory twin.\n  - It includes a `sandbox_conformance` sweep for zero untyped degrades.\n- **Builds on:** #966 (artifacts) and `docs/design/artifact-provenance-design.md` §5.\n- **Left open:**\n  - The five campaign-done live gates still show \"pending\" placeholders (`<!-- LIVE-GATE-n RESULT -->`).\n  - Only the unit matrix for gate 4 is marked green.\n  - Native Windows restricted-token implementation is explicitly \"not built\" and listed as a future rung.\n- **Superseded:** its srt-based design is replaced by file 2, which deletes srt. The live-gate placeholders are not updated in this file.\n\n### 2. `codex-sandbox-rework-2026-07.md`\n- **Status:** July 2026. The deletion inventory is marked DONE (B-codex-5, 2026-07-23).\n- **Decided:**\n  - Replace srt with the OpenAI Codex sandbox (v0.145.0) as the sole OS-fence backend on all platforms.\n  - srt's native-Windows leg failed to enforce: `srt-win wfp verify` failed with 0x80070005, and issue srt #402 reports writes escaping `allowWrite`.\n  - The verified invocation recipe is a `-p` profile layer file ",
+              "truncated": true,
+              "headings": [
+                "Reading-guide findings: design docs in `design/`",
+                "Topic group A: OS sandboxing (a chain: campaign → rework → net)",
+                "1. `sandboxing-campaign-2026-07.md`",
+                "2. `codex-sandbox-rework-2026-07.md`",
+                "3. `codex-net-2026-07.md`",
+                "Topic group B: governance and live gate",
+                "4. `governance-surfaces-2026-07.md`",
+                "5. `live-gate-governance-1057-verdict.json`",
+                "Topic group C: campaigns and hygiene",
+                "6. `system-cleanup-2026-07.md`",
+                "7. `codex-rework-landing-2026-08.md`",
+                "Topic group D: installation and local models",
+                "8. `installation-and-storage-recovery.md`",
+                "9. `vllm-local-qualification-20260904.md`",
+                "Supersession and relationship summary",
+                "Not done or not readable"
+              ]
+            }
+          ],
+          "text_chars": 15880,
+          "id": "msg_asst_b465deac9d25",
+          "role": "assistant",
+          "created_at": "2026-10-27T10:36:06.587216+00:00",
+          "updated_at": "2026-10-27T10:36:06.587238+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_337e2a4d6d21",
+          "tool": "",
+          "status": "failed",
+          "description": "Size files"
+        },
+        {
+          "call_id": "call_a99251d98967",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read file"
+        },
+        {
+          "call_id": "call_d2f1be48332b",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read file"
+        },
+        {
+          "call_id": "call_afe866390ea8",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read file"
+        },
+        {
+          "call_id": "call_6cbeec6b25b5",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read file"
+        },
+        {
+          "call_id": "call_7e63ade43b00",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read file"
+        },
+        {
+          "call_id": "call_fe23a48c9a02",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read file"
+        },
+        {
+          "call_id": "call_042a47fbe683",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read file"
+        },
+        {
+          "call_id": "call_42b573ada788",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read file"
+        },
+        {
+          "call_id": "call_312526630a65",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read file"
+        },
+        {
+          "call_id": "call_3883c0dcf789",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Headings of governance doc",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/governance-surfaces-2026-07.md"
+        },
+        {
+          "call_id": "call_662f8c566b52",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Headings of landing doc",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/codex-rework-landing-2026-08.md"
+        },
+        {
+          "call_id": "call_d7e58db15fcb",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Headings of cleanup doc",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/system-cleanup-2026-07.md"
+        },
+        {
+          "call_id": "call_18b4d74616c5",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Landing doc lines ~58-70",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/codex-rework-landing-2026-08.md"
+        },
+        {
+          "call_id": "call_9fabb39c1dbb",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Governance end",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/governance-surfaces-2026-07.md"
+        },
+        {
+          "call_id": "call_ce617284b95d",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Landing doc 68-158",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/codex-rework-landing-2026-08.md"
+        },
+        {
+          "call_id": "call_0ecef37f8091",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Landing doc 140-236",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/codex-rework-landing-2026-08.md"
+        },
+        {
+          "call_id": "call_c748cacfab8b",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Landing doc 206-290",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/codex-rework-landing-2026-08.md"
+        },
+        {
+          "call_id": "call_38290a45f210",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Cleanup end",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/system-cleanup-2026-07.md"
+        },
+        {
+          "call_id": "call_3fb4ecbf8586",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Cleanup middle",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/system-cleanup-2026-07.md"
+        },
+        {
+          "call_id": "call_2a23a06f1fd8",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "landing 241-273",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/codex-rework-landing-2026-08.md"
+        },
+        {
+          "call_id": "call_97574ea29b35",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "landing 185-205",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/codex-rework-landing-2026-08.md"
+        },
+        {
+          "call_id": "call_b78dfb1da351",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "landing 257-end",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/codex-rework-landing-2026-08.md"
+        },
+        {
+          "call_id": "call_473d283593f9",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "landing 203-211",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/codex-rework-landing-2026-08.md"
+        },
+        {
+          "call_id": "call_c2762fd1a117",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "landing 118-125",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/codex-rework-landing-2026-08.md"
+        },
+        {
+          "call_id": "call_6afe1f895b01",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "governance decisions",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/governance-surfaces-2026-07.md"
+        },
+        {
+          "call_id": "call_ae43df9ecde0",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "landing verification",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/codex-rework-landing-2026-08.md"
+        },
+        {
+          "call_id": "call_e82fbfb1371a",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "governance pillar 2",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/governance-surfaces-2026-07.md"
+        },
+        {
+          "call_id": "call_b11baa236532",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "governance verification",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/governance-surfaces-2026-07.md"
+        },
+        {
+          "call_id": "call_1e7226ff0ba5",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "governance 209-258",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/governance-surfaces-2026-07.md"
+        },
+        {
+          "call_id": "call_3f2ecdec5570",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "landing 125-140",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/codex-rework-landing-2026-08.md"
+        },
+        {
+          "call_id": "call_39e8fb078381",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "governance lines 209-259",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/governance-surfaces-2026-07.md"
+        }
+      ],
+      "id": "sess_2c16fd48b6d50cabba6bd4e7afc3d908",
+      "title": "sandbox/codex/governance/ops",
+      "created_at": "2026-10-27T10:28:27.997714+00:00",
+      "last_interaction_at": "2026-10-27T10:36:09.156715+00:00",
+      "parent_session_id": "sess_7874a96ceb51",
+      "agent.id": "explore"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_20b210b082d6",
+              "text": "<invoke_placeholder>",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_2aaa7ce87dd7",
+              "text": "Shell is blocked, so I'll read the files directly.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_284eb32ec331",
+              "text": "Several files were cut off in the first read, so I'm reading the remaining parts now.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_0c9a39c24366",
+              "text": "Three files were cut off in the first read, so I'm listing their headings to read the unread sections.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_65469bc683ce",
+              "text": "Parts of three files are still unread. I'm pulling those sections now.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_ad70975e1b0f",
+              "text": "Part of the provenance-adapters doc (its tail and the open-item language) is still unread. I'm reading that before writing the report.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_ad0dcfe307b6",
+              "text": "# Reading guide notes: 9 design docs\n\nAll paths are under `/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/`. `shell_bash` was refused (read-only session), so I read with `fs_read_file` and `fs_search_text`.\n\n**Coverage limits**\n- Fully read: `artifact-provenance-design.md`, `artifacts-campaign-2026-07.md`, `artifacts-research-2026-07.md`, `document-artifacts-human-review-2026-07.md`, `a2ui-release-handoff-2026-10-03.md`, `widget-visual-feedback.md`, `response-feedback.md`.\n- `provenance-adapters-and-artifact-storage-2026-08.md` (74 KB, about 1,370 lines) was only partly read. I read the header and §1–3.3, the heading list, §9 (decision ledger), the start of §10, §12–13, §14.1–14.3 (start) and the start of §14.x. I did not read §3.4–8, the rest of §10, §11 beyond 11.3–11.6, or the tail of §14.3.\n- `a2ui-compat-campaign-2026-09.md` (46 KB) was read except the slice-ledger table rows (S2–S9), which the tool cut off mid-cell, and the text between \"Live evidence\" and the per-agent follow-up.\n\n## Group A: Artifacts and provenance (2026-07 → 08)\n\n### 1. `artifacts-research-2026-07.md` (prior-art survey)\n- **Decided:** Nothing; it describes itself as \"a survey, not a design\". Its §5 lists \"directions, not a plan\":\n  - register at the output-path grounding hook (`execution.py:1176`);\n  - adopt clio-relay's `ArtifactRef` shape;\n  - use W&B version semantics;\n  - treat UI payloads and transform specs as artifact kinds;\n  - use A2A parts for delivery;\n  - keep records as a projection over existing stores (RULE 4 / #737).\n- **Builds on:** The owner framing (`b = transform(a)`); a survey of Claude, other agent products, A2A/MCP, W&B, DVC, OpenLineage, PROV, RO-Crate and Pachyderm; clio-relay issue #58 and PR #59 (`ArtifactUse`, content-pinned used edges); #948.\n- **Open:** No explicit open-items section. Its stated verdict is that clio-agent has no artifact record today and no agent product ships this model.\n- **Status:** Dated 2026-07. §4b says the Cowork capture design is \"Superseded by `docs/design/artifact-provenance-design.md` (v2, 2026-07-16)\".\n- **Group:** Artifacts and provenance (research input).\n\n### 2. `artifact-provenance-design.md` (v2)\n- **Decided:**\n  - Scope is two campaigns: A (artifacts plus provenance floor) and B (sandboxing plus provenance upgrade).\n  - The model is never in the chain of custody; artifacts are designated, not discovered.\n  - ",
+              "truncated": true,
+              "headings": [
+                "Reading guide notes: 9 design docs",
+                "Group A: Artifacts and provenance (2026-07 → 08)",
+                "1. `artifacts-research-2026-07.md` (prior-art survey)",
+                "2. `artifact-provenance-design.md` (v2)",
+                "3. `artifacts-campaign-2026-07.md` (landed record)",
+                "4. `document-artifacts-human-review-2026-07.md`",
+                "5. `provenance-adapters-and-artifact-storage-2026-08.md` (partly read; see limits)",
+                "Group B: A2UI (2026-09 → 10)",
+                "6. `a2ui-compat-campaign-2026-09.md`",
+                "7. `a2ui-release-handoff-2026-10-03.md`",
+                "8. `widget-visual-feedback.md`",
+                "Group C: Feedback and evaluation",
+                "9. `response-feedback.md`",
+                "Supersession summary"
+              ]
+            }
+          ],
+          "text_chars": 14353,
+          "id": "msg_asst_a9a56eecbdc3",
+          "role": "assistant",
+          "created_at": "2026-10-27T10:34:47.636215+00:00",
+          "updated_at": "2026-10-27T10:34:47.636235+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_63fd3427e4a9",
+          "tool": "",
+          "status": "failed",
+          "description": "Check sizes of the design docs"
+        },
+        {
+          "call_id": "call_acd45512fb87",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read design doc 3"
+        },
+        {
+          "call_id": "call_1d769eb2afa0",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read design doc 5"
+        },
+        {
+          "call_id": "call_7881d146b69f",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read design doc 4"
+        },
+        {
+          "call_id": "call_ce0efa852d66",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read design doc 7"
+        },
+        {
+          "call_id": "call_56a3bd976250",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read design doc 8"
+        },
+        {
+          "call_id": "call_b5d46f15048d",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read design doc 1"
+        },
+        {
+          "call_id": "call_f15c4659faba",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read design doc 6"
+        },
+        {
+          "call_id": "call_19ae82d81136",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read design doc 9"
+        },
+        {
+          "call_id": "call_024964f345fe",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read design doc 2"
+        },
+        {
+          "call_id": "call_6f018f6571f4",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Read tail of provenance design",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/artifact-provenance-design.md"
+        },
+        {
+          "call_id": "call_fb104be6bd49",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Headings of research doc",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/artifacts-research-2026-07.md"
+        },
+        {
+          "call_id": "call_b2892515c1ca",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Headings of a2ui compat doc",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/a2ui-compat-campaign-2026-09.md"
+        },
+        {
+          "call_id": "call_d650dcfc78cc",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Headings of provenance adapters doc",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/provenance-adapters-and-artifact-storage-2026-08.md"
+        },
+        {
+          "call_id": "call_a30d57b0b1ed",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "research 4b",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/artifacts-research-2026-07.md"
+        },
+        {
+          "call_id": "call_63cc6247dd76",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "research 5",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/artifacts-research-2026-07.md"
+        },
+        {
+          "call_id": "call_df3e45de6a78",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "prov 12",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/provenance-adapters-and-artifact-storage-2026-08.md"
+        },
+        {
+          "call_id": "call_38c4cab764ce",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "prov 9",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/provenance-adapters-and-artifact-storage-2026-08.md"
+        },
+        {
+          "call_id": "call_026b9783c0b4",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "a2ui seam/scope",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/a2ui-compat-campaign-2026-09.md"
+        },
+        {
+          "call_id": "call_7e7aafc557c2",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "prov 14",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/provenance-adapters-and-artifact-storage-2026-08.md"
+        },
+        {
+          "call_id": "call_bb428d4f44fd",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "a2ui slices",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/a2ui-compat-campaign-2026-09.md"
+        },
+        {
+          "call_id": "call_2865ee1ae8b6",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "a2ui followup",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/a2ui-compat-campaign-2026-09.md"
+        },
+        {
+          "call_id": "call_24f6fcb799ed",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "section 10",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/provenance-adapters-and-artifact-storage-2026-08.md"
+        },
+        {
+          "call_id": "call_946bf704b513",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "tail of provenance doc",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/provenance-adapters-and-artifact-storage-2026-08.md"
+        },
+        {
+          "call_id": "call_65bf8f66d3ad",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "open items in decision ledger",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/provenance-adapters-and-artifact-storage-2026-08.md"
+        }
+      ],
+      "id": "sess_73cb5db41d3a348d5d11fea581afb497",
+      "title": "artifacts/provenance/A2UI",
+      "created_at": "2026-10-27T10:28:25.269583+00:00",
+      "last_interaction_at": "2026-10-27T10:34:49.479340+00:00",
+      "parent_session_id": "sess_7874a96ceb51",
+      "agent.id": "explore"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_18d2f3ddc300",
+              "text": "<invoke_note>I'll start by listing the folder and file sizes.</invoke_note>",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_5ad0d01160ef",
+              "text": "Shell is blocked because this session is read-only, so I'll read the files with fs_read_file.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_8cbd13b82ab7",
+              "text": "Four files were truncated in the inline view, so I'll pull their headings first, then read the relevant sections.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_c29f6dba32e6",
+              "text": "Several files were cut off in the inline view, so I'm reading the missing sections directly.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_69439027175a",
+              "text": "# Reading guide: seven design docs in `design/`\n\n**Coverage caveat.** `shell_bash` was refused because this session is read-only, so I read the files with `fs_read_file` and `fs_search_text`.\n- **Read in full:** `goal-command-presentation.md`, `independent-goal-controls-2026-10.md`, `loop-goal-cron-research-2026-07.md`.\n- **Read in part:** the other four files were cut off in the inline view, and I did not read their full spilled copies. Their summaries rest on what I saw: the opening, the full heading list, and the sections quoted below. Anything not listed under \"Read\" for a file is not covered by its summary.\n\nPaths are all under `/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/`.\n\n## Group A: Goal / loop / schedule (current behaviour and its research)\n\n### 1. `goal-command-presentation.md` (1,408 B)\n- **Decided:** `/goal` records a service notice with `source: goal` and an explicit result code (`goal_started`, `goal_stopped`, `goal_rejected`, `goal_command`). Start and stop receipts keep the objective. The conversation shows a Goal entry with a target icon and an \"Open Work\" action. That action only navigates; it does not re-run the command, restart work or stop a goal. Goal receipts get no \"Done\" footer. Older text receipts are projected from their recorded metadata, and ordinary prose mentioning `/goal` is not reclassified. The Work finder and footer use the same Goal icon, kept distinct from loops, schedules and todos, and the footer drops the duplicate todo count at narrow widths.\n- **Builds on:** it cites no earlier docs or issues. It refers only to the existing notice block and Work view.\n- **Open:** none stated.\n- **Status:** no date or status line.\n- **Topic group:** goal UI/presentation. Read after #2.\n\n### 2. `independent-goal-controls-2026-10.md` (3,830 B)\n- **Decided:** the goal controller pursues an observable objective, not an iteration counter or timer. Setting a goal starts work at once. Each completed turn gets an independent completion check, and an unmet objective continues. Explicit human limits take precedence, and omitted limits are unlimited.\n  - **Judge:** it sees bounded recent evidence plus a retained progress ledger and cannot run tools. A failed judge pauses the goal, a decision needing human input parks it, and ten identical final responses stop continuation.\n  - **Loops and schedules** are independent of goals: goal ",
+              "truncated": true,
+              "headings": [
+                "Reading guide: seven design docs in `design/`",
+                "Group A: Goal / loop / schedule (current behaviour and its research)",
+                "1. `goal-command-presentation.md` (1,408 B)",
+                "2. `independent-goal-controls-2026-10.md` (3,830 B)",
+                "3. `loop-goal-cron-research-2026-07.md` (9,045 B)",
+                "Group B: Governance surfaces research (plan mode, hooks)",
+                "4. `planning-mode-research-2026-07.md` (71,710 B)",
+                "5. `hooks-research-2026-07.md` (51,133 B)",
+                "Group C: Skills and agent runtime",
+                "6. `skill-semantics-2026-07.md` (13,311 B)",
+                "7. `agents-creating-agents-2026-07.md` (18,412 B)",
+                "Suggested reading order",
+                "Not covered"
+              ]
+            }
+          ],
+          "text_chars": 14288,
+          "id": "msg_asst_6b40d0d68ca1",
+          "role": "assistant",
+          "created_at": "2026-10-27T10:32:38.696380+00:00",
+          "updated_at": "2026-10-27T10:32:38.696403+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_efae75c244f4",
+          "tool": "",
+          "status": "failed",
+          "description": "Check sizes of design docs"
+        },
+        {
+          "call_id": "call_1bbd5b26ad41",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read design doc"
+        },
+        {
+          "call_id": "call_4362496fa1c8",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read design doc"
+        },
+        {
+          "call_id": "call_1ed4a1489757",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read design doc"
+        },
+        {
+          "call_id": "call_96f4549c6220",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read design doc"
+        },
+        {
+          "call_id": "call_c70ba93eb195",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read design doc"
+        },
+        {
+          "call_id": "call_6dea0670ef10",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read design doc"
+        },
+        {
+          "call_id": "call_0adef3f0c289",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read design doc"
+        },
+        {
+          "call_id": "call_d834dcfb41a8",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/planning-mode-research-2026-07.md"
+        },
+        {
+          "call_id": "call_a924e8567ae2",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/planning-mode-research-2026-07.md"
+        },
+        {
+          "call_id": "call_1796bfa3e99d",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/hooks-research-2026-07.md"
+        },
+        {
+          "call_id": "call_b288d160871b",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agents-creating-agents-2026-07.md"
+        },
+        {
+          "call_id": "call_2f274448dae1",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/skill-semantics-2026-07.md"
+        },
+        {
+          "call_id": "call_6dffefca02e0",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "read planning tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/planning-mode-research-2026-07.md"
+        },
+        {
+          "call_id": "call_ec6446ad1f82",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "read planning rec",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/planning-mode-research-2026-07.md"
+        },
+        {
+          "call_id": "call_9a691f3fa8ba",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "read hooks open",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/hooks-research-2026-07.md"
+        },
+        {
+          "call_id": "call_8af22109dce9",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "read hooks rec",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/hooks-research-2026-07.md"
+        },
+        {
+          "call_id": "call_f233f0c5e25d",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "read skill tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/skill-semantics-2026-07.md"
+        },
+        {
+          "call_id": "call_c64386badd2e",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "read agents deviations",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agents-creating-agents-2026-07.md"
+        },
+        {
+          "call_id": "call_55e5cff033d8",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "read agents open",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agents-creating-agents-2026-07.md"
+        }
+      ],
+      "id": "sess_ac37d18ab5e6b496204d0e92a0cc3c9f",
+      "title": "goals/planning/hooks",
+      "created_at": "2026-10-27T10:28:23.563116+00:00",
+      "last_interaction_at": "2026-10-27T10:32:40.184847+00:00",
+      "parent_session_id": "sess_7874a96ceb51",
+      "agent.id": "explore"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_b45bb89540ff",
+              "text": "Shell is blocked (read-only session), so I'll use the file tools instead.\n\n\n\n```\n\nI'll start by listing the folder and reading the smaller files.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_46554220b68d",
+              "text": "The listing and the five smaller files came back truncated at about 12,000 characters. I'll test whether the spilled results can be read in full, and look at the largest file's size.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_52e8055d5722",
+              "text": "I can only see the first ~12,000 characters of each file per read, so I'll map each file's structure by headings and then read the rest in windows with line-numbered searches.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_f59426181a08",
+              "text": "Reads and searches are capped at about 12,000 characters per call, so I'll read the remaining sections in line-anchored windows, starting with the composer and checkpoint docs.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_d45d9bfb85d4",
+              "text": "Reads are capped near 12,000 characters per call, so I'm reading the two long files in line-anchored windows. Their remaining sections come first.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_4892c475be62",
+              "text": "Most of the loop-rebuild doc is read. The remaining unread parts are lines ~1326–1810, plus the recommendation and tail of the compaction research doc.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_8de30eed3b05",
+              "text": "I still have to read the end of the compaction research doc, which holds its open items, and the loop-rebuild doc's status and in-flight sections.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_e5c34fa0a0d9",
+              "text": "# Reading-guide notes: six design docs\n\nAll files are in `/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/`. Shell was blocked (read-only session), and `fs_read_file` and `fs_search_text` return only about 12,000 characters per call. I read through line-anchored searches.\n\n**Coverage gaps**\n- **`react-loop-completion-2026-09.md`, `model-stream-recovery.md`:** read in full.\n- **`composer-pipeline-landing-2026-09.md`:** read in full (292 lines).\n- **`compaction-checkpoint-1339.md`:** read lines 1–434 in full.\n- **`agent-loop-rebuild-2026-09.md` (1837 lines):** I did not read these ranges, and the summary below may miss open items in them:\n  - roughly 981–1000\n  - 1102–1118 (the rest of the History mode sub-plan)\n  - 1326–1357 (the rest of Phase 11a and the start of 11b)\n  - 1458–1512\n  - 1614–1630\n  - 1702–1756 (final-verification sections A and B)\n- **`compaction-prompt-research-2026-10.md` (~948 lines):** I read lines 1–160 (Codex, Gemini), 748–948 (comparison, failure modes, recommendation, sources) and the section headings. I did not read §1.3's tail through §1.11 (Claude Code, OpenHands, Cline, Roo, Aider, Goose, LangChain, Letta, blogs) or the §2 table.\n\n---\n\n## 1. `agent-loop-rebuild-2026-09.md`\n\n**Date / status:** APPROVED 2026-09-28 (owner). Line 3 says \"Phase 1 implemented\", but the body is updated through 2026-10-02. By then the implementation is complete on `rework_agent`, CI is green, and the release PRs to main (#1604, gact-tui#526) are open and not merged (line 1646).\n\n**Group:** Agent loop and context (core campaign).\n\n**Decided.**\n- **Own the loop:** `ClioReAct(dspy.Module)` replaces the `ReActV2` subclass. Tools run concurrently, and cancel is checked at every boundary.\n- **Context system:** clio-core is the single context store, with one event log and two projections (UI and agent). Context spans turns, and injections, steers and child results are recorded at the step boundary.\n- **No silent repair:** deterministic fixes are recorded as `injection` parts and told to the model.\n  - A path error becomes a \"did you mean\" hint.\n  - The circuit breaker is configurable.\n  - Oversize results spill to a file.\n- **Providers:** DSPy 3.4 engines replace the LiteLLM/CustomLLM path. The Codex SDK was removed in Phase 10 (2026-10-01); Codex direct (WebSocket) is the only Codex path.\n- **Extract:** DSPy's extract is config-driven.\n- **Failure polic",
+              "truncated": true,
+              "headings": [
+                "Reading-guide notes: six design docs",
+                "1. `agent-loop-rebuild-2026-09.md`",
+                "2. `react-loop-completion-2026-09.md`",
+                "3. `model-stream-recovery.md`",
+                "4. `composer-pipeline-landing-2026-09.md`",
+                "5. `compaction-checkpoint-1339.md`",
+                "6. `compaction-prompt-research-2026-10.md`",
+                "Suggested topic groups and reading order"
+              ]
+            }
+          ],
+          "text_chars": 18223,
+          "id": "msg_asst_4f2a76b5982d",
+          "role": "assistant",
+          "created_at": "2026-10-27T10:36:40.092670+00:00",
+          "updated_at": "2026-10-27T10:36:40.092685+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_1de0d038f639",
+          "tool": "",
+          "status": "failed",
+          "description": "List design folder and sizes"
+        },
+        {
+          "call_id": "call_c058a3b17102",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read model-stream-recovery"
+        },
+        {
+          "call_id": "call_f0809b459572",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read react-loop-completion"
+        },
+        {
+          "call_id": "call_84df964a87d0",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read composer-pipeline-landing"
+        },
+        {
+          "call_id": "call_6317b6c0848b",
+          "tool": "fs_list_directory",
+          "status": "completed",
+          "description": "List design folder",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/"
+        },
+        {
+          "call_id": "call_d869777ef912",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read compaction-prompt-research"
+        },
+        {
+          "call_id": "call_a634f2570ab5",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read compaction-checkpoint-1339"
+        },
+        {
+          "call_id": "call_f65c9f0afc32",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read spilled composer file result"
+        },
+        {
+          "call_id": "call_a52b9c8c0661",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Probe loop rebuild doc status lines",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_6fa1ad8b5ce9",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Headings of checkpoint doc",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/compaction-checkpoint-1339.md"
+        },
+        {
+          "call_id": "call_4558cefe9592",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Headings of loop rebuild doc",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_dcf223e83e43",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Headings of composer doc",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/composer-pipeline-landing-2026-09.md"
+        },
+        {
+          "call_id": "call_2c17394e4944",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Headings of prompt research doc",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/compaction-prompt-research-2026-10.md"
+        },
+        {
+          "call_id": "call_29476d009591",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "checkpoint ~230-314",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/compaction-checkpoint-1339.md"
+        },
+        {
+          "call_id": "call_6f0795447456",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "checkpoint ~204-280",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/compaction-checkpoint-1339.md"
+        },
+        {
+          "call_id": "call_ad652d89be8e",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "composer lines ~188-272",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/composer-pipeline-landing-2026-09.md"
+        },
+        {
+          "call_id": "call_94b76b0bbd00",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "composer tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/composer-pipeline-landing-2026-09.md"
+        },
+        {
+          "call_id": "call_9708618df404",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "composer lines ~136-220",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/composer-pipeline-landing-2026-09.md"
+        },
+        {
+          "call_id": "call_dfd02834b741",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "checkpoint verification",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/compaction-checkpoint-1339.md"
+        },
+        {
+          "call_id": "call_ab2b242f495b",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "checkpoint ~149-245",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/compaction-checkpoint-1339.md"
+        },
+        {
+          "call_id": "call_0358f80f6fd1",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "checkpoint ~307-391",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/compaction-checkpoint-1339.md"
+        },
+        {
+          "call_id": "call_cb43a23f185d",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "checkpoint tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/compaction-checkpoint-1339.md"
+        },
+        {
+          "call_id": "call_5de467b1ea8c",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 470-570",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_f5c753dc39d8",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 300-400",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_2b6738350609",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 227-327",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_d37aae30840f",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 399-499",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_5192e77ef19c",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 1-80",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_9804df1f3242",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 29-129",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_a5a265896233",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 130-230",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_d18d9031cbc9",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 706-806",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_587296b83cdd",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 598-698",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_d3e393238000",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 880-980",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_e7e1719e114c",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 761-861",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_09325e39f1f4",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 1131-1231",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_244af608fc84",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 1001-1101",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_e9aba6543206",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "all ### headings",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_c8ca7772e8e6",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 557-657",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_866bc2a13981",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 1226-1326",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_78b91a1eed5c",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 1358-1458",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_3b88cef22d79",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_632079d34cf6",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "research 3-4",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/compaction-prompt-research-2026-10.md"
+        },
+        {
+          "call_id": "call_b36ee7b18509",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 1631-1731",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_4417c1d7f43a",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "research tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/compaction-prompt-research-2026-10.md"
+        },
+        {
+          "call_id": "call_e60a22799cce",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "research 4.1",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/compaction-prompt-research-2026-10.md"
+        },
+        {
+          "call_id": "call_81a0179bc92e",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 1563-1630",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_e07a724ac387",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "research tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/compaction-prompt-research-2026-10.md"
+        },
+        {
+          "call_id": "call_11f20cf2ec0d",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "loop 1527-1580",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-loop-rebuild-2026-09.md"
+        },
+        {
+          "call_id": "call_e190aae86982",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "research 4.4+",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/compaction-prompt-research-2026-10.md"
+        }
+      ],
+      "id": "sess_f52d0a1124739a2b056b872af243f674",
+      "title": "agent loop & prompts",
+      "created_at": "2026-10-27T10:28:19.741140+00:00",
+      "last_interaction_at": "2026-10-27T10:36:43.382734+00:00",
+      "parent_session_id": "sess_7874a96ceb51",
+      "agent.id": "explore"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_101729fce0b3",
+              "text": "Shell is blocked (read-only), so I'll use the file-reading tools instead.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_66a5f6e20504",
+              "text": "Four files were cut off at about 12,000 characters, so I'm reading their remaining tails now.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_64be8bb5b040",
+              "text": "Two files still have unread tails (obligations after row F7, unification after the inventory section). I'm reading them with the maximum context window.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_9cd2b9d068e9",
+              "text": "Two tails are still unread: the obligations file after row F7, and the unification file after its inventory section. I'm using narrow searches to get them.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_e10e7c2f68a0",
+              "text": "Most of the files are read in full. Two tails remain: the obligations table after row G1, and the unification file after line 207. I'm reading those now.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_d465f92bddcc",
+              "text": "The unification file is still unread after line 236, so I'm reading the saved full-result copies of it and of the obligations file.\n\n\n\n\n\n\nWait — I must use the required format.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_e65905a1fe65",
+              "text": "Still unread: the unification file after line 236, and the truncated tails of cells F7, H3 and H8. I'm fetching those now.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_342ecabdb25a",
+              "text": "Remaining unread: the unification file after line 283, and the obligations file after line 72. I'm fetching those now.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_96b2bb30f437",
+              "text": "# Reading-guide notes: 13 design docs\n\nAll files are under `/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/`.\n\n**Coverage and limits**\n- Shell was blocked (read-only), so I read with `fs_read_file` and `fs_search_text`.\n- I read every file in full, but several long table cells in `mcp-client-obligations-2026-07-28.md` came back cut off mid-cell by tool display. These are F7, H3, H8, D1 and E11. I report only what was visible.\n- I did not read any doc these files cite but are not in the list, for example `vllm-local-qualification-20260904.md`.\n\n## Group A: MCP v2 / unified client (read in this order)\n\n### 1. `mcp-v2-understanding-2026-08.md`\n- **Date/status:** written 2026-08-29. Companion to the obligations table for iowarp/clio-agent#1274.\n- **Decided:** this is an explanation, not a decision record. Its thesis is that MCP v2 is stateless.\n  - Every request carries its own `_meta`.\n  - State becomes explicit handles: task id, subscription id, `requestState`.\n  - Server-to-client interaction is inverted into MRTR (multi round-trip requests).\n  - Capabilities are negotiated through a generic extensions framework.\n  - Cache freshness is server-governed.\n  - Refusals are typed and self-describing (-32020/-32021/-32022).\n  - Hosts owe the human real consent surfaces.\n- **Builds on:** the 2026-07-28 spec and the SEPs it cites. It names SEP-2577 for the deprecation of sampling, roots and logging. Companion: `mcp-client-obligations-2026-07-28.md`.\n- **Open:** none stated. It is a conceptual summary only.\n\n### 2. `mcp-client-obligations-2026-07-28.md`\n- **Date/status:** research record, 2026-08-29, later updated for the #1285 C1-S5 b1→b5 bump.\n- **Decided:** a per-item obligations table (A1–J3) classifying each client duty as library-covered, \"OURS\", or done. Stated results:\n  - Done: x-mcp-header retry (B3), listChanged invalidation wired into production (D2), CIMD deployment doc (H6).\n  - Opt-in and default OFF: the response cache (E11). Its MUST-NOTs are \"structural by construction, not independently tested\".\n  - Verified SDK gap: H3. The SDK always sends S256 and never checks `code_challenge_methods_supported`; the refusal is not implemented and was called out of scope.\n  - Owner-ruled: the `createMessage` sampling primitive stays un-added (F7). C1-S7 (#1309) delivers the residual semantics via agent-driven elicitation.\n  - Roots, sampling, logging and ",
+              "truncated": true,
+              "headings": [
+                "Reading-guide notes: 13 design docs",
+                "Group A: MCP v2 / unified client (read in this order)",
+                "1. `mcp-v2-understanding-2026-08.md`",
+                "2. `mcp-client-obligations-2026-07-28.md`",
+                "3. `mcp-2026-07-28-compat-matrix.md`",
+                "4. `mcp-client-unification-2026-08.md`",
+                "5. `mcp-fleet-memory-2026-07.md`",
+                "Group B: Shared runtime, provenance and provider routing (#1319–#1323)",
+                "6. `hpc-mcp-runtime-semantics-1321.md`",
+                "7. `shared-mcp-runtime-integration-1319.md`",
+                "8. `external-input-provenance-1320.md`",
+                "9. `provider-runtime-routing-1322-1323.md`",
+                "10. `unified-spotter-provenance-mcp-2026-08.md`",
+                "Group C: Extensions and NDP",
+                "11. `extensions-discovery-and-connection.md`",
+                "12. `ndp-connected-source.md`",
+                "13. `ndp-endpoint-operations.md`",
+                "Supersession and relationship summary",
+                "Suggested topic groups for the guide"
+              ]
+            }
+          ],
+          "text_chars": 18901,
+          "id": "msg_asst_f0f625beca00",
+          "role": "assistant",
+          "created_at": "2026-10-27T10:36:58.765347+00:00",
+          "updated_at": "2026-10-27T10:36:58.765366+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_08d9b0216fb2",
+          "tool": "",
+          "status": "failed",
+          "description": "Check sizes of design files"
+        },
+        {
+          "call_id": "call_b508de77ecea",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read client obligations"
+        },
+        {
+          "call_id": "call_6b0d2caf8741",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read v2 understanding"
+        },
+        {
+          "call_id": "call_1ba8079ae2f5",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read fleet memory"
+        },
+        {
+          "call_id": "call_e09fef8ce107",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read client unification"
+        },
+        {
+          "call_id": "call_1b12c6ce1a0e",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read 1320"
+        },
+        {
+          "call_id": "call_76e5d6ee956a",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read compat matrix"
+        },
+        {
+          "call_id": "call_7f3704163cf0",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read 1319"
+        },
+        {
+          "call_id": "call_81c955ac984c",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read 1321"
+        },
+        {
+          "call_id": "call_bd8cf1abec7c",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read 1322-1323"
+        },
+        {
+          "call_id": "call_361c140cb920",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read spotter provenance"
+        },
+        {
+          "call_id": "call_69706df74ce1",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read extensions discovery"
+        },
+        {
+          "call_id": "call_54c9b7ee1ed9",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read ndp connected source"
+        },
+        {
+          "call_id": "call_b383d42a387a",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read ndp endpoint ops"
+        },
+        {
+          "call_id": "call_7e3373fa92f9",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Read tail of spotter",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/unified-spotter-provenance-mcp-2026-08.md"
+        },
+        {
+          "call_id": "call_e2426776953e",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Read tail of ndp connected",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/ndp-connected-source.md"
+        },
+        {
+          "call_id": "call_fa6bc47419d9",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Read tail of obligations",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/mcp-client-obligations-2026-07-28.md"
+        },
+        {
+          "call_id": "call_40690c7e8dea",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Read tail of unification",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/mcp-client-unification-2026-08.md"
+        },
+        {
+          "call_id": "call_692edfe9bda1",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "obligations G rows",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/mcp-client-obligations-2026-07-28.md"
+        },
+        {
+          "call_id": "call_4c135e962aa3",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "unification tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/mcp-client-unification-2026-08.md"
+        },
+        {
+          "call_id": "call_4258892c0622",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "obligations rows after F7",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/mcp-client-obligations-2026-07-28.md"
+        },
+        {
+          "call_id": "call_8afe1749f1e0",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "obligations H rows onward",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/mcp-client-obligations-2026-07-28.md"
+        },
+        {
+          "call_id": "call_0e147f3edafb",
+          "tool": "fs_search_text",
+          "status": "failed",
+          "description": "probe",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/mcp-client-obligations-2026-07-28.md"
+        },
+        {
+          "call_id": "call_90906e7030b8",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "unification status tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/mcp-client-unification-2026-08.md"
+        },
+        {
+          "call_id": "call_07ebf445c27a",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read full obligations file spill"
+        },
+        {
+          "call_id": "call_521ee7eb7ee0",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read full unification file spill"
+        },
+        {
+          "call_id": "call_28b830960171",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "H8 tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/mcp-client-obligations-2026-07-28.md"
+        },
+        {
+          "call_id": "call_9832449298e0",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "unification slice list",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/mcp-client-unification-2026-08.md"
+        },
+        {
+          "call_id": "call_64ad6a0ec113",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "unification tail after S3",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/mcp-client-unification-2026-08.md"
+        },
+        {
+          "call_id": "call_ce0616443db5",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "H3 tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/mcp-client-obligations-2026-07-28.md"
+        },
+        {
+          "call_id": "call_cba33ebbdb64",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "unification S7 tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/mcp-client-unification-2026-08.md"
+        },
+        {
+          "call_id": "call_f9d261f83b5e",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "obligations post-table tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/mcp-client-obligations-2026-07-28.md"
+        }
+      ],
+      "id": "sess_728fccf1e711d173af51b8960608f856",
+      "title": "MCP/NDP/extensions",
+      "created_at": "2026-10-27T10:28:17.499119+00:00",
+      "last_interaction_at": "2026-10-27T10:37:00.084849+00:00",
+      "parent_session_id": "sess_7874a96ceb51",
+      "agent.id": "explore"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_04993749e62f",
+              "text": "\n\n\nI'll start by checking file sizes.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_396e661f2aa9",
+              "text": "Shell is blocked (read-only), so I'll use the file reader directly.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_fdbe9826cb85",
+              "text": "The first read truncated four files (1, 2, 4 and 6). I'll list their section headings with line numbers so I can read the rest in ranges.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_d84cad3ddd58",
+              "text": "Continuing with the truncated parts of the four large files, read in line ranges.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_9cba31800810",
+              "text": "Shell is blocked and long lines in search context are cut at about 500 characters, so I'll read the unread tails with targeted searches, starting with the open-item sections.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_d223d6f4c4bd",
+              "text": "# Reading guide: nine design docs in `/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/`\n\n**Coverage caveat.** Shell was blocked (read-only session), so I read with `fs_read_file` and `fs_search_text`. Each of those caps output (`fs_read_file` at 12,000 characters, and `fs_search_text` cuts long lines at about 500 characters), so I did not read four files in full.\n\nI read these in full:\n- `task-transcript-coordination.md`\n- `steering-delivery-order.md`\n- `agent-question-modes.md`\n- `agent-driven-elicitation-and-mrtr.md`\n- `agent-communication-campaign-notes.md`\n\nI read these only partly:\n- **`agent-task-native-v3.md`:** I read lines 1–160 of about 165. Several long lines (for example 69, 72, 76, 78, 80, 134, 145) were cut at about 500 characters.\n- **`agent-facing-async-tasks.md`:** I read about lines 1–302, 303–365 and 365–551 as long-line excerpts, and about 727–815. I did not read about lines 551–727 (the qualification sub-sections from \"Subsequent actual-model task guidance and input recovery\" through the start of \"Fresh Claude verification and malformed tool output\").\n- **`turn-transcript.md`:** I read lines 1–~190, 361–487, and the \"problem\" and \"invariant\" sections. I did not read §3.3, §4, §5 and §6 (PR-by-PR migration, about lines 189–360).\n- **`subagent-lifecycle-and-session-messaging.md`:** I read lines 1–~232 (one gap) and 232–386. I did not read \"Pause, Stop, cancel and restart\" and \"Proposed model-facing controls\" (about lines 250–310) except their first lines.\n\nStatements below come from what I read. Where a file's open items might sit in an unread region, I say so.\n\n---\n\n## Topic group A: Agent-facing async tasks (core contract and replacement)\n\n### 1. `agent-task-native-v3.md`\n- **Status and date:** No date or status line.\n- **Decided:**\n  - Rebuild the task integration around native execution (FastMCP Tasks for Shell/Download/Indexing) and CLIO's conversation engine for agent assignments.\n  - Keep the shared tools `query_tasks`, `observe_tasks`, `wait_tasks`, `cancel_tasks` and `get_task_result`.\n  - Add a Question kind: `ask_user` returns a durable handle at once, and `wait_tasks(question_handle)` waits unbounded by default.\n  - Persist submissions before invoking the backend. Recovery promises honest uncertainty, not exactly-once effects.\n  - Use one admission path and one Core-backed mailbox per session. Sessions are stable addres",
+              "truncated": true,
+              "headings": [
+                "Reading guide: nine design docs in `/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/`",
+                "Topic group A: Agent-facing async tasks (core contract and replacement)",
+                "1. `agent-task-native-v3.md`",
+                "2. `agent-facing-async-tasks.md`",
+                "3. `task-transcript-coordination.md`",
+                "Topic group B: Subagent lifecycle and messaging",
+                "4. `subagent-lifecycle-and-session-messaging.md`",
+                "5. `steering-delivery-order.md`",
+                "Topic group C: Turn transcript and streaming",
+                "6. `turn-transcript.md`",
+                "Topic group D: Questions, elicitation and agent-to-agent notes",
+                "7. `agent-question-modes.md`",
+                "8. `agent-driven-elicitation-and-mrtr.md`",
+                "9. `agent-communication-campaign-notes.md`",
+                "Suggested reading order and cross-doc notes",
+                "Not verified"
+              ]
+            }
+          ],
+          "text_chars": 17390,
+          "id": "msg_asst_37e88af4f7cd",
+          "role": "assistant",
+          "created_at": "2026-10-27T10:33:44.153226+00:00",
+          "updated_at": "2026-10-27T10:33:44.153246+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_8143e768d818",
+          "tool": "",
+          "status": "failed",
+          "description": "Check file sizes"
+        },
+        {
+          "call_id": "call_2f19de63e551",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read doc 2"
+        },
+        {
+          "call_id": "call_82672dd07ae2",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read doc 1"
+        },
+        {
+          "call_id": "call_65651a519594",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read doc 4"
+        },
+        {
+          "call_id": "call_a1d7836b77a1",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read doc 3"
+        },
+        {
+          "call_id": "call_f97786014b3f",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read doc 5"
+        },
+        {
+          "call_id": "call_c48c02a7cf98",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read doc 7"
+        },
+        {
+          "call_id": "call_9952196c7c3b",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read doc 6"
+        },
+        {
+          "call_id": "call_46a2e2d2076a",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read doc 9"
+        },
+        {
+          "call_id": "call_67284ffb4aa4",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read doc 8"
+        },
+        {
+          "call_id": "call_376c2a37c123",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings doc2",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-facing-async-tasks.md"
+        },
+        {
+          "call_id": "call_16fac744b825",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings doc1",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-task-native-v3.md"
+        },
+        {
+          "call_id": "call_5e19e55e6188",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings doc4",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/turn-transcript.md"
+        },
+        {
+          "call_id": "call_de6748c6be6f",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "headings doc6",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/subagent-lifecycle-and-session-messaging.md"
+        },
+        {
+          "call_id": "call_4384f7029683",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "doc1 tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-task-native-v3.md"
+        },
+        {
+          "call_id": "call_db0b0ced84f0",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "doc2 253-353",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-facing-async-tasks.md"
+        },
+        {
+          "call_id": "call_37b2546e409b",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "doc2 315-415",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-facing-async-tasks.md"
+        },
+        {
+          "call_id": "call_7baaad5def0b",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "doc2 142-242",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-facing-async-tasks.md"
+        },
+        {
+          "call_id": "call_2043ec53c316",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "doc1 lines ~20-120",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-task-native-v3.md"
+        },
+        {
+          "call_id": "call_f182e30255f8",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "doc2 451-551",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-facing-async-tasks.md"
+        },
+        {
+          "call_id": "call_07f974664366",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "doc1 tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-task-native-v3.md"
+        },
+        {
+          "call_id": "call_829e5058e828",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "doc2 end",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-facing-async-tasks.md"
+        },
+        {
+          "call_id": "call_5fca46b45bc4",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "doc1 sec3",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-task-native-v3.md"
+        },
+        {
+          "call_id": "call_5aec4862838a",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "doc4 risks",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/turn-transcript.md"
+        },
+        {
+          "call_id": "call_edbf61899a27",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "doc2 757",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/agent-facing-async-tasks.md"
+        },
+        {
+          "call_id": "call_f267e45bb204",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "doc6 audit",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/subagent-lifecycle-and-session-messaging.md"
+        },
+        {
+          "call_id": "call_7005d3302ffe",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "doc4 alignment",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/turn-transcript.md"
+        },
+        {
+          "call_id": "call_22e5dffa4e66",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "doc6 end",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/subagent-lifecycle-and-session-messaging.md"
+        }
+      ],
+      "id": "sess_9f061078a5099e295b0237a1e2742b83",
+      "title": "agent tasks/messaging",
+      "created_at": "2026-10-27T10:28:16.010780+00:00",
+      "last_interaction_at": "2026-10-27T10:33:46.400464+00:00",
+      "parent_session_id": "sess_7874a96ceb51",
+      "agent.id": "explore"
+    },
+    {
+      "messages": [
+        {
+          "excerpts": [
+            {
+              "partId": "part_b124d9e563af",
+              "text": "\n```\n\nI'll list the folder first.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_46649421d8f8",
+              "text": "I'll check file sizes, then read all 17 files.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_9da036decd68",
+              "text": "Shell is blocked in this read-only session, so I'll read the files directly with fs_read_file.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_d2fda55ae1c4",
+              "text": "Continuing with the remaining files. The plan's display was truncated, so I'll also locate its headings for chunked reading.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_d1aff3ae53bf",
+              "text": "The plan and r32 were cut off in the displayed output, so I'm reading their remaining sections now.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_7970e4dc3ccc",
+              "text": "I still need the plan's tail sections and the end of r32, which the displayed output cut off.",
+              "truncated": false,
+              "headings": []
+            },
+            {
+              "partId": "part_f21fed20c640",
+              "text": "# Reading guide: task-replacement series (17 files)\n\n**Where I looked:** all 17 files under `/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/`.\n\n**Coverage gaps:**\n- The plan (64,964 bytes) and r32 (12,058 bytes) exceeded the display cap. I read their top sections in full. For the later sections I used line-numbered search with context, so a few long lines (plan lines 62, 75, 79, 83, 85, 89, 95, 112, 116, 130, 136, 138, 140, 144, 396 and the tail of 405) were cut off mid-sentence.\n- I did not read the plan's module-by-module removal tables (about lines 193–333). I saw only their headings and a few rows.\n- Nothing in the series gives a date except the plan's 2026-10-13 preflight and Oct 14 target, and r32's \"October 15 source progress\". \"Status\" below is what each file says about itself.\n\n---\n\n## 1. `task-replacement-plan.md` (revision R2), group: Foundation contract\n- **Status:** target release Oct 14 (America/Chicago). Preflight receipt dated 2026-10-13. The target is explicitly not permission to bypass acceptance.\n- **Decided:**\n  - Delete the old task integration first, then rebuild around one typed `TaskSnapshot`, one confirmed Core writer and one recipient-input record as the only delivery acknowledgement.\n  - Native execution goes through FastMCP/Docket. The pinned tuple is FastMCP/fastmcp-tasks 4.1.0, MCP 2.0.0, Docket 0.26.2.\n  - The conversation engine alone decides assignment transitions. Relay becomes an ordinary MCP server.\n  - No old-engine fallback, stubs or archives. A deliberately broken removal commit stays local with draft PRs.\n  - Acceptance is gated on Q1–Q9 live families, six races (R1–R6) repeated five times each, CI, and migration idempotence.\n- **Builds on:** baseline core `5475042f` / GACT `32044a38`, and the protected human design docs (`subagent-lifecycle-and-session-messaging.md`, `agent-task-architecture-review-2026-10-12.md`, `session-recall-and-long-term-memory.md`). Later sections cite removal reviews and \"R30\" Astra review.\n- **Left open:**\n  - If gates fail, no release.\n  - Provider-continuation reattachment was pending implementation and Claude source review (line 405).\n  - Local-transfer interruption is an explicit migration/native-recovery requirement (W01/N12).\n  - Relay migration is explicitly not promised.\n  - Startup-replay and performance optimizations are deferred to measurement (Q8).\n  - Live-model availabi",
+              "truncated": true,
+              "headings": [
+                "Reading guide: task-replacement series (17 files)",
+                "1. `task-replacement-plan.md` (revision R2), group: Foundation contract",
+                "2. `task-replacement-corrections-r19.md`, group: Retained-behavior corrections",
+                "3. `task-replacement-corrections-r21.md`, group: Retained-behavior corrections",
+                "4. `task-replacement-corrections-r23.md`, group: Retained-behavior corrections",
+                "5. `task-replacement-corrections-r26.md`, group: Boundary tightening",
+                "6. `task-replacement-corrections-r27.md`, group: Boundary tightening",
+                "7. `task-replacement-r32-corrections.md`, group: Stop/input/UI",
+                "8. `task-replacement-r33-corrections.md`, group: Stop/input/UI",
+                "9. `task-replacement-r34-corrections.md`, group: Stop/input/UI",
+                "10. `task-replacement-r35-corrections.md`, group: Startup/initialization",
+                "11. `task-replacement-r36-corrections.md`, group: Startup/initialization",
+                "12. `task-replacement-r37-corrections.md`, group: Startup/initialization",
+                "13. `task-replacement-r38-corrections.md`, group: Startup/initialization",
+                "14. `task-replacement-r39-corrections.md`, group: Native/external/test migration",
+                "15. `task-replacement-r40-corrections.md`, group: Native/external/test migration",
+                "16. `task-replacement-r41-corrections.md`, group: Native/external/test migration",
+                "How the series relates (reading order)"
+              ]
+            }
+          ],
+          "text_chars": 18887,
+          "id": "msg_asst_a3967b76c16a",
+          "role": "assistant",
+          "created_at": "2026-10-27T10:34:43.175567+00:00",
+          "updated_at": "2026-10-27T10:34:43.175578+00:00",
+          "stop_reason": "end_turn"
+        }
+      ],
+      "tools": [
+        {
+          "call_id": "call_487e9eedce6a",
+          "tool": "fs_list_directory",
+          "status": "completed",
+          "description": "List design folder",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/"
+        },
+        {
+          "call_id": "call_4446cc173f19",
+          "tool": "",
+          "status": "failed",
+          "description": "File sizes"
+        },
+        {
+          "call_id": "call_b1078caeb758",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read r23"
+        },
+        {
+          "call_id": "call_a648396c4b51",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read r21"
+        },
+        {
+          "call_id": "call_7eb5a4fc277e",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read r19"
+        },
+        {
+          "call_id": "call_b42754f3ad48",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read r26"
+        },
+        {
+          "call_id": "call_0d790df623fd",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read plan"
+        },
+        {
+          "call_id": "call_573e1555e663",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read r27"
+        },
+        {
+          "call_id": "call_093c55511686",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read r32"
+        },
+        {
+          "call_id": "call_588a98a22776",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read r33"
+        },
+        {
+          "call_id": "call_88bd7a069071",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read r34"
+        },
+        {
+          "call_id": "call_6d1a4697e4f0",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read r36"
+        },
+        {
+          "call_id": "call_62caddd34210",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read r37"
+        },
+        {
+          "call_id": "call_a201c2e34952",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read r35"
+        },
+        {
+          "call_id": "call_fb875374dbb6",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read r38"
+        },
+        {
+          "call_id": "call_312940642f75",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read r40"
+        },
+        {
+          "call_id": "call_887f4c9be94c",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read r41"
+        },
+        {
+          "call_id": "call_cc3f6260403c",
+          "tool": "fs_read_file",
+          "status": "completed",
+          "description": "Read r39"
+        },
+        {
+          "call_id": "call_928740b086ea",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Plan headings with line numbers",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/task-replacement-plan.md"
+        },
+        {
+          "call_id": "call_bbc6d2031568",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Plan 152-188",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/task-replacement-plan.md"
+        },
+        {
+          "call_id": "call_fe3d0a412919",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Plan 374-430",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/task-replacement-plan.md"
+        },
+        {
+          "call_id": "call_424d623a48df",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Plan lines 77-121",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/task-replacement-plan.md"
+        },
+        {
+          "call_id": "call_4e7456020e29",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "r32 tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/task-replacement-r32-corrections.md"
+        },
+        {
+          "call_id": "call_969fcc8feaa6",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Plan 122-150",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/task-replacement-plan.md"
+        },
+        {
+          "call_id": "call_9f21dd01f422",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Plan 297",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/task-replacement-plan.md"
+        },
+        {
+          "call_id": "call_fc3e4c4bf0c8",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Plan lines 60-76",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/task-replacement-plan.md"
+        },
+        {
+          "call_id": "call_dc260d354cd6",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Plan lines 170-195",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/task-replacement-plan.md"
+        },
+        {
+          "call_id": "call_381fe86a2713",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Plan inventory start",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/task-replacement-plan.md"
+        },
+        {
+          "call_id": "call_1671d293d820",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "Plan tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/task-replacement-plan.md"
+        },
+        {
+          "call_id": "call_e56235ff6d22",
+          "tool": "fs_search_text",
+          "status": "completed",
+          "description": "r32 tail",
+          "path": "/home/user/clio-agent/.cloud-run/f17/ws-f17-docs/design/task-replacement-r32-corrections.md"
+        }
+      ],
+      "id": "sess_6714ef4817d08fc8279dab1927c7a1b4",
+      "title": "task-replacement series",
+      "created_at": "2026-10-27T10:28:13.738284+00:00",
+      "last_interaction_at": "2026-10-27T10:34:46.240963+00:00",
+      "parent_session_id": "sess_7874a96ceb51",
+      "agent.id": "explore"
+    }
+  ]
+}

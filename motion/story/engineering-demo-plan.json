@@ -1,0 +1,457 @@
+{
+  "schema": "clio.demo-plan.v1",
+  "title": "CLIO engineering walkthrough",
+  "status": "revision_in_progress_after_user_rejection",
+  "created": "2026-10-29",
+  "durationSeconds": 356,
+  "durationRangeSeconds": [300, 360],
+  "takeaway": "CLIO can carry an engineering request through cluster execution into results the researcher can explore and a studio for individual trials.",
+  "organization": "Two related chapters: explore the design space with E4, then inspect the E5 studio. They are sibling sessions, not a single continuous run.",
+  "chronology": "E5 was recorded earlier than E4. Chapter order is editorial. Switch through the native session context; never fabricate an E4 follow-up prompt that supposedly created E5.",
+  "subject": "CLIO's work and the researcher's decisions. Explain only enough mechanics to understand the interaction.",
+  "delivery": {
+    "master": "1920x1080, 60 fps, silent for the live presenter",
+    "review": "Same film with visible burned captions below the full UI; retain the clean master",
+    "captions": "Editable timed presenter draft, SRT/VTT, later real audio alignment using the existing ElevenLabs response importer",
+    "secondaryCuts": [
+      {
+        "name": "Parameter study",
+        "start": 0,
+        "end": 195
+      },
+      {
+        "name": "Individual trials",
+        "start": 195,
+        "end": 356
+      }
+    ],
+    "publication": "Local deliverables only. No commit, push, YouTube upload or external message is part of planning."
+  },
+  "sources": {
+    "bundle": "CLIO demo - conversations and dashboards-20261030T010137Z-1-001.zip",
+    "parentSessionId": "sess_93f9cb658a98",
+    "e4": {
+      "file": "conversations/E4_cantilever_parameter_sweep.html",
+      "sha256": "30beb0ba77d265e5bb2a05bd2c12839e3b74739832ba96dfeff4909c0aa5db66",
+      "sessionId": "sess_6e6efe28fa7d",
+      "requestId": "user_ba8e765fae908fe098e6af39af8ecf6ebda0501b2f7eedce4eb9f5831716a7c1",
+      "visualRequestId": "user_64c4515774a6bf3ef86272a474bbe74bf9be8f86c2fd174d54ea9f15d15c428f",
+      "dashboardRequestId": "user_b47d7c16f158ffef8078981e7cb3bb436473a132b84234f530440fba4fcf4ca0",
+      "comparisonRequestId": "user_13f40988b3ce096dd84257d4dd1bdc11e8b66642a72f8b37f27dc2b27cefd7c4",
+      "sweepDashboard": "dashboards/E4_cantilever_parameter_sweep_dashboard_2.html",
+      "sweepReportId": "10b82315-def3-4bf2-b5fd-7804395258e8",
+      "summaryDashboard": "dashboards/E4_cantilever_parameter_sweep_dashboard_1.html",
+      "summaryReportId": "23d77667-907e-4cdd-8cb7-7821e8413080",
+      "smoothedDashboard": "dashboards/E4b_smoothed_designs_dashboard.html",
+      "smoothedSessionId": "sess_14d07dfd07ce",
+      "arrayJob": "16435955",
+      "caseCount": 12,
+      "selectedCase": "c05",
+      "selectedFrame": 4,
+      "selectedParameters": {
+        "volumeFraction": 0.15,
+        "filterRadius": 0.15
+      },
+      "meshArtifact": "artifact_99d5d33b1d8640c6b54e59d70d7d8837",
+      "field": "DENSITY",
+      "frameMeaning": "Frames 0-11 are different cases, all at iteration 50. They are not optimization time steps.",
+      "rows": {
+        "cases": 12,
+        "convergence": 612,
+        "files": 420
+      },
+      "calls": {
+        "launchArray": "call_cf161d543394",
+        "registerMesh": "call_a2869970a95d",
+        "createWidget": "call_47cba60f725f",
+        "registerTables": "call_23277d5d44c4",
+        "publishSweep": "call_91db385f0ba0",
+        "publishSummaryRevision": "call_45e01887ce37"
+      }
+    },
+    "e5": {
+      "file": "conversations/E5_topology_optimization_studio.html",
+      "sha256": "0f5de8754e96da02a1e1413cf8ff5c75147a1734b761064abcec83cbe68d3df6",
+      "sessionId": "sess_04ef578bc45d",
+      "requestId": "user_550d64f59c9dee93af16ce55e49bc4bc1db1ecf637db3f94f9aad0ee47141349",
+      "dashboard": "dashboards/E5_topology_optimization_studio_dashboard.html",
+      "reportId": "b62e033e-73d0-49b1-9a8e-0384fd6a6a02",
+      "morphormTrial": "T001",
+      "morphormJob": "16434096",
+      "morphormResult": "artifact_349e325f9eae4a0e82d8cbeda5015f76",
+      "history": {
+        "field": "DENSITY",
+        "frames": 11,
+        "iterations": [0, 10],
+        "binding": "/res/iter"
+      },
+      "toscaTrial": "T009",
+      "toscaJob": "16434678",
+      "toscaResult": "artifact_4bcf488973694c4c930361d2d3908b2b",
+      "fields": {
+        "Morphorm": ["DENSITY", "U_MAG"],
+        "Tosca": ["DENSITY", "S_MISES", "U_MAG"]
+      },
+      "lifecycle": {
+        "T001": "saved",
+        "T009": "discarded",
+        "T002-T008": "failed attempts retained in the source"
+      },
+      "calls": {
+        "createStudio": "call_5c6e0322c84f",
+        "registerMorphormResult": "call_bcc95d4e939e",
+        "registerToscaResult": "call_7708244c5598",
+        "publishStudio": "call_75fa8cd6f5f8"
+      }
+    }
+  },
+  "nativeChecks": [
+    {
+      "check": "E4 mesh rendering",
+      "status": "observed",
+      "evidence": "Saved GLB renders through pinned production DashboardView and ArchiveTransport on port 3365."
+    },
+    {
+      "check": "E4 synchronized orbit",
+      "status": "observed",
+      "evidence": "Dragging one saved viewport rotates its peers."
+    },
+    {
+      "check": "E4 density threshold",
+      "status": "observed",
+      "evidence": "Changing 0.50 to 0.35 updates the displayed geometry."
+    },
+    {
+      "check": "E4 linked selection",
+      "status": "observed",
+      "evidence": "Clicking c05 updates the selected view and the file table to E4/results/c05/."
+    },
+    {
+      "check": "E5 dashboard and result tabs",
+      "status": "observed",
+      "evidence": "Geometry, setup and results render; density views, stress view and convergence chart load."
+    },
+    {
+      "check": "E5 iteration control",
+      "status": "missing_in_saved_definition",
+      "evidence": "Eleven frames and /res/iter exist, but no iteration slider is exposed in the saved dashboard."
+    },
+    {
+      "check": "E5 button-to-agent routing",
+      "status": "unverified",
+      "evidence": "The source explicitly says routing was not demonstrated; lifecycle actions were run through tools/lifecycle.py. Exported interactions are empty."
+    },
+    {
+      "check": "E5 completed tool states",
+      "status": "reconciled_from_matching_source_receipts",
+      "evidence": "All 36 stale running tool records are reconciled only against their matching semantic tool.call.completed events; source exports remain unchanged."
+    }
+  ],
+  "shots": [
+    {
+      "id": "question",
+      "start": 0,
+      "end": 6,
+      "chapter": "E4",
+      "title": "The engineering request",
+      "source": "e4.requestId",
+      "chat": "Type a faithful excerpt of the real request to vary volume fraction and filter radius; retain the 12-case matrix.",
+      "canvas": "Keep the conversation dominant. No result geometry before its source creation.",
+      "interaction": "Submit the request with one measured, brisk pointer move.",
+      "payoff": "A recognizable CLIO request starts the work.",
+      "caption": "Explore the design space",
+      "presenterCue": "The researcher wants to compare twelve combinations of material budget and filter radius while keeping the rest of the problem fixed."
+    },
+    {
+      "id": "plan",
+      "start": 6,
+      "end": 23,
+      "chapter": "E4",
+      "title": "CLIO reads the constraints and plans the work",
+      "source": "e4.requestId and following recorded public replies",
+      "chat": "Show relevant connected-data reads, short tool accumulation and public planning text. Include the recorded initial-density decision before submission.",
+      "canvas": "Use native tool detail if it can be pinned; otherwise retain the ordinary expanded tool row.",
+      "interaction": "Expand one useful input or plan detail, then compact it.",
+      "payoff": "The request becomes a concrete run matrix and execution plan.",
+      "caption": "Twelve cases under one specification",
+      "presenterCue": "CLIO checks the inputs, preserves the locked settings, and lays out the run matrix and storage plan before launching compute."
+    },
+    {
+      "id": "compute",
+      "start": 23,
+      "end": 58,
+      "chapter": "E4",
+      "title": "Launch and monitor the sweep",
+      "source": "e4.calls.launchArray, call_bb2c24f185ff, captured queue/completion checks and the saved case-runtime table",
+      "chat": "Replay the actual array submission, background watcher launch and queue check. Hold the source during a short Later transition, then show collection and completion.",
+      "canvas": "Keep the ordinary conversation. No invented scheduler grid, interpolated elapsed clock or inferred per-case start times.",
+      "interaction": "Read the watcher launch and queue update before the editorial time cut.",
+      "payoff": "CLIO carries out and checks the cluster work.",
+      "caption": "Each case took 10–19 minutes",
+      "presenterCue": "The twelve cases run as a Slurm array. CLIO monitors execution and collects the summaries and final designs."
+    },
+    {
+      "id": "create-views",
+      "start": 58,
+      "end": 88,
+      "chapter": "E4",
+      "title": "Results become an interactive view",
+      "source": "e4.calls.registerMesh, createWidget, registerTables, publishSweep",
+      "chat": "Show the relevant public explanation, registration and successful widget/dashboard creation before the interface appears.",
+      "canvas": "Open the native sweep dashboard only after its source boundary.",
+      "interaction": "Open the generated view through its actual native artifact/widget entry.",
+      "payoff": "The dashboard is visibly produced by the work in the chat.",
+      "caption": "Inspect the results",
+      "presenterCue": "The mesh data and result tables are registered and assembled into a dashboard. Each viewport represents one completed case."
+    },
+    {
+      "id": "matrix",
+      "start": 88,
+      "end": 130,
+      "chapter": "E4",
+      "title": "Explore the twelve designs",
+      "source": "e4.sweepDashboard, c01-c12 and threshold components",
+      "chat": "Freeze the complete source clock for this inspection; preserve the conversation for the return.",
+      "canvas": "Use native canvas expansion and a readable grid. Keep parameter labels visible; do not shrink an entire long dashboard into one frame.",
+      "interaction": "Make one short synchronized orbit, ending in a clear three-quarter view. Move the density threshold from 0.50 to 0.35, inspect the geometry change, then restore 0.50.",
+      "payoff": "The viewer sees actual differences and can distinguish a display threshold from a new solver run.",
+      "caption": "Compare the designs",
+      "presenterCue": "All twelve views share a camera. The density threshold changes which material is displayed; it does not rerun optimization or change the recorded performance numbers."
+    },
+    {
+      "id": "case",
+      "start": 130,
+      "end": 154,
+      "chapter": "E4",
+      "title": "A design stays linked to its evidence",
+      "source": "e4 cases.csv, case_files.csv and selected mesh frame 4",
+      "chat": "Keep the source paused while the researcher inspects a result, then restore the conversation.",
+      "canvas": "Reflow the case table, selected viewport and relevant file rows into a readable native canvas.",
+      "interaction": "Select c05, inspect its linked design and files, compare c10, then return to c05 before restoring the chat.",
+      "payoff": "The shape is connected to settings, numbers and source files.",
+      "caption": "Select a case",
+      "presenterCue": "Selecting a case updates the design and its evidence together. This is c05: volume fraction 0.15 and filter radius 0.15."
+    },
+    {
+      "id": "comparison-work",
+      "start": 154,
+      "end": 178,
+      "chapter": "E4",
+      "title": "Bring the completed branches together",
+      "source": "e4.summaryDashboard and smoothedDashboard, selected c05",
+      "chat": "Replay the actual comparison request, then the recorded report publication. Source order is preserved.",
+      "canvas": "Keep the previous completed sweep in context until the next report is published.",
+      "interaction": "The next report opens after successful publication.",
+      "payoff": "CLIO brings related work into a usable comparison.",
+      "caption": "Inspect the same case in detail",
+      "presenterCue": "The follow-up work adds solver comparisons and smoothed representations. We inspect one corresponding case while retaining the links to the underlying studies."
+    },
+    {
+      "id": "comparison",
+      "start": 178,
+      "end": 195,
+      "chapter": "E4",
+      "title": "Inspect a comparison without touring every report",
+      "source": "e4.summaryDashboard and smoothedDashboard, selected c05",
+      "chat": "Retain the actual request for the combined report and its successful publication; omit repetitive report-building boilerplate.",
+      "canvas": "One Morphorm case before and after smoothing, using the native saved viewports and identical camera.",
+      "interaction": "Inspect c05 with one short synchronized orbit.",
+      "payoff": "CLIO brings related work into a usable comparison.",
+      "caption": "Inspect the same case in detail",
+      "presenterCue": "The same Morphorm result can be inspected as a density threshold and a smoothed surface. No cross-solver objective comparison is implied."
+    },
+    {
+      "id": "studio-bridge",
+      "start": 195,
+      "end": 203,
+      "chapter": "E5",
+      "title": "Open the separate studio session",
+      "source": "e5.requestId and native sibling-session context",
+      "chat": "Switch explicitly to E5 and show the real studio request, not an invented continuation of E4.",
+      "canvas": "Restore the normal split workspace before entering the studio.",
+      "interaction": "Use the native session/branch picker; carry one continuous pointer across the transition.",
+      "payoff": "The film changes from exploring a batch to working with individual trials.",
+      "caption": "Individual trials",
+      "presenterCue": "A separate session asks CLIO to build an interactive studio for setting up and inspecting individual trials."
+    },
+    {
+      "id": "trial-work",
+      "start": 203,
+      "end": 257,
+      "chapter": "E5",
+      "title": "Build and execute the recorded trials",
+      "source": "e5 T001/T009 jobs, semantic completion events and artifact-registration calls",
+      "chat": "Replay the recorded meshes, Morphorm trial, subsequent Tosca result, registration, discard and final publication in source order. Do not show the completed dashboard early.",
+      "canvas": "Keep chat dominant until final studio publication.",
+      "interaction": "Base cut uses recorded agent commands. A click on Check/Run causing new work is conditional on separately proven live routing.",
+      "payoff": "Recorded execution connects the configuration work to the resulting artifacts.",
+      "caption": "Run and inspect",
+      "presenterCue": "CLIO tests both solvers in short Slurm trials, checks the jobs, and registers the completed results for inspection."
+    },
+    {
+      "id": "setup",
+      "start": 257,
+      "end": 278,
+      "chapter": "E5",
+      "title": "Inspect the completed studio",
+      "source": "e5.dashboard Geometry & Mesh and Setup tabs",
+      "chat": "The recorded execution is complete; the source clock is frozen.",
+      "canvas": "Open native Geometry & Mesh, expand the canvas, then activate Setup at 265 seconds.",
+      "interaction": "Inspect the real quality and boundary views, then the settings matching T001: volume fraction 0.15, filter radius 0.15, ten iterations.",
+      "payoff": "The controls are tied to a concrete engineering configuration.",
+      "caption": "Configure a trial",
+      "presenterCue": "The studio exposes the real solver settings and mesh information. For the recorded Morphorm test, use volume fraction 0.15, radius 0.15 and ten iterations."
+    },
+    {
+      "id": "history",
+      "start": 278,
+      "end": 309,
+      "chapter": "E5",
+      "title": "Show genuine optimization history",
+      "source": "e5.morphormResult, DENSITY frames 0-10, /res/iter",
+      "chat": "Open the result only after the recorded work and publication. Freeze source execution while inspecting its completed history.",
+      "canvas": "Give the Morphorm viewport useful native canvas space. Hold the camera and colour range steady during frame changes.",
+      "interaction": "Open the completed design at iteration ten, lower the density threshold to 0.10, replay actual frames 0–10, then restore 0.50. No invented iteration slider.",
+      "payoff": "The structure changes through genuine stored optimization steps.",
+      "caption": "Inspect the iteration history",
+      "presenterCue": "The completed Morphorm test includes eleven saved states, from the initial density through iteration ten. We can inspect how the material distribution changed."
+    },
+    {
+      "id": "fields",
+      "start": 309,
+      "end": 336,
+      "chapter": "E5",
+      "title": "Inspect a solver field",
+      "source": "e5.toscaResult S_MISES and U_MAG, final cycle",
+      "chat": "Keep the completed source state fixed while the researcher inspects the result.",
+      "canvas": "Use the native Tosca field viewport with its trial identity and scale. Keep mesh and convergence context readable.",
+      "interaction": "Probe two actual stress values, orbit the mesh, then inspect the recorded first and last convergence points.",
+      "payoff": "The result can be interrogated beyond its outline.",
+      "caption": "Inspect the solver output",
+      "presenterCue": "The Tosca result includes stress and displacement fields. The Morphorm deck here supplies displacement and density, but no stress. The two test objectives use different meshes and scales."
+    },
+    {
+      "id": "retain",
+      "start": 336,
+      "end": 344,
+      "chapter": "E5",
+      "title": "Keep the useful result and its record",
+      "source": "e5 Saved trials table and recorded lifecycle results",
+      "chat": "Show the relevant final public result with its source qualifications.",
+      "canvas": "Show the saved T001 entry and return to its result. Keep T009's discarded state accurate.",
+      "interaction": "Open Saved trials. No staged Save/Discard press until its live route is demonstrated.",
+      "payoff": "The work leaves an inspectable result and a trial record.",
+      "caption": "Keep the result and its context",
+      "presenterCue": "T001 was saved and T009 was discarded. The record preserves those decisions and the settings behind the results."
+    },
+    {
+      "id": "close",
+      "start": 344,
+      "end": 356,
+      "chapter": "E5",
+      "title": "Finish on the saved design",
+      "source": "e5 completed studio and T001 result",
+      "chat": "The completed source clock stays paused while the researcher returns to the saved design.",
+      "canvas": "Keep Results expanded so the final design, legend and convergence curve fit completely.",
+      "interaction": "Click the native Results tab, make one short orbit of T001, and hold the inspectable result.",
+      "payoff": "An engineering request has become work, results and a workspace the researcher can inspect.",
+      "caption": "Explore with CLIO",
+      "presenterCue": "The researcher can follow the work, compare the designs and inspect the result."
+    }
+  ],
+  "motionContract": [
+    "Use editable native React components and the captured mesh/table data. Screenshots are planning references, not the film implementation.",
+    "Chat remains center-left; the native canvas carries useful inspections. Keep the workspace sidebar out of the film unless a real navigation requires it.",
+    "Use one monotonic source clock within each session and share it with visible task/artifact states. E4 and E5 have separate origins.",
+    "A deliberate inspection freezes the entire source clock through approach, native expansion, interaction and return. Resume only after restoring context.",
+    "Retype selected public explanations as contiguous prefixes, compress idle gaps, and use the NDP measured damped viewport path. Do not reveal whole paragraphs between adjacent frames.",
+    "Short completed tool groups use brief holds and visible height collapse. Do not inherit long thinking holds from SPOTTER.",
+    "One measured pointer stays above menus and fullscreen roots. Park until a 0.35-1 second approach, including the first action. No teleport, fade reset or distant return after every click.",
+    "Use native maximize only when it enables an actual inspection. Return to the conversation; do not replace interactions with slight whole-window scales.",
+    "Prewarm fonts, mesh buffers and charts. A canvas element alone is not paint readiness: require the intended artifact, frame, scalar field, threshold and case binding.",
+    "Constrain simultaneously active WebGL viewports. The 26-view smoothed dashboard is a source collection, not the film layout.",
+    "Keep technical production notes, long provenance strips, private custody paths and unsupported feature claims out of the picture. Caption review uses a separate visible footer.",
+    "No invented flow execution graph, Science Log, live iteration feed, upload, export or remote job. Include a capability only when the source and native interaction support it."
+  ],
+  "gates": [
+    {
+      "id": "artifact-availability",
+      "status": "data_checked",
+      "required": "Original hashes retained; GLB lengths/buffer ranges and finite scalar arrays validated; required tables complete. Retest actual native mesh/case bindings in the film layout."
+    },
+    {
+      "id": "tool-lifecycle",
+      "status": "ready_for_implementation",
+      "required": "Reconcile the 36 E5 running records against their exact matching tool.call.completed events, preserving failures and timestamps. Do not infer success merely from output presence."
+    },
+    {
+      "id": "historical-dashboard-state",
+      "status": "before_replay",
+      "required": "Match report/surface publication and artifact arrival boundaries. The latest saved dashboard is not proof of earlier UI states; do not leak final T009/ledger data into T001 execution."
+    },
+    {
+      "id": "native-interactions",
+      "status": "partly_observed",
+      "required": "E4 orbit, threshold and linked table selection observed. Verify both selected model frame and linked data after reflow. Test any planned scalar probe before including it."
+    },
+    {
+      "id": "history-presentation",
+      "status": "before_proof",
+      "required": "Use the 11 real E5 DENSITY frames and existing binding; no nonexistent-slider gesture. Check iteration zero remains visible at the chosen threshold and keep E4 case frames separate from time."
+    },
+    {
+      "id": "parameter-fidelity",
+      "status": "resolved_for_this_film",
+      "required": "The recorded 10-iteration setting is shown. The mesh-size slider whose precision differs from 1/24 is excluded from the inspection."
+    },
+    {
+      "id": "field-units",
+      "status": "resolved_for_this_film",
+      "required": "The source defines a unitless E=1 test. A scoped viewer adapter suppresses incorrect S_MISES and U_MAG unit labels without changing original GLB bytes or numeric field arrays."
+    },
+    {
+      "id": "live-button-routing",
+      "status": "not_proven",
+      "required": "A demonstrated inline Check/Run/Save/Discard action must reach the correct session with matching parameters and a returned result before the click-driven variant is used. Planning and the base recorded-command cut can proceed."
+    },
+    {
+      "id": "moving-proof",
+      "status": "passed_encoded_review",
+      "required": "Encoded opening, grid expansion, native case selection and restoration reviewed. Corrected AAC padding, duplicate selection clicks and WebGL probe context leakage. Full encode review still pending."
+    },
+    {
+      "id": "caption-review",
+      "status": "passed_visible_footer_and_native_player_review",
+      "required": "Timed presenter script plus editable captions; provide a burned-caption review copy for the Codex player and inspect its longest cue."
+    },
+    {
+      "id": "full-cut",
+      "status": "passed_full_decode_frame_scan_and_playback_review",
+      "required": "Render 1080p60 once the focused proofs work. Fully decode, scan adjacent frames and review encoded playback; technical checks do not establish creative approval."
+    }
+  ],
+  "productionOrder": [
+    "Lock the chosen source events, chapter boundaries and short caption/presenter copy.",
+    "Implement source lifecycle reconciliation and scoped native dashboard adapters without changing originals or unrelated previews.",
+    "Measure layout, camera poses and one pointer path. Test mesh readiness, field/frame selection and data updates.",
+    "Encode a 35-45 second conversation-to-matrix proof, including actual geometry changes and the return to chat.",
+    "Encode a 25-35 second history/field proof. Resolve missing-control presentation and unit/precision issues.",
+    "Build the complete chaptered cut, then the visible-caption review copy. Use any later TIMP Q&A to refine emphasis, not as a dependency for planning.",
+    "Derive the E4 and E5 standalone cuts from the same rendered chapters; avoid independent long 3D rerenders."
+  ],
+  "exclusions": [
+    "A tour of every E1-E5 dashboard or an explanation of topology-optimization mathematics",
+    "A fake calendar-chronological E4-to-E5 handoff, an invented follow-up prompt or unseen subagent work",
+    "Treating all 12 final E4 cases as steps of one changing design",
+    "A claim that any 10/50-iteration test is a converged or production-ready design",
+    "Unqualified cross-solver performance numbers, Morphorm stress, or a Tosca filter-radius control the source says is unsupported",
+    "Showing a button as the cause of commands that were actually run by the agent through scripts",
+    "Arbitrary text selection, hover tours, universal full-screen treatment, long frozen thinking or packaging/ZIP sequences"
+  ],
+  "editorialCopy": "engineering-film-copy.json",
+  "revisionNotes": [
+    "V1 was rejected for raw troubleshooting, unfinished list items, internal experiment aliases and immediate-looking Slurm completion.",
+    "Standalone v2 uses explicit source-linked display copy, the actual background-array watcher and a Later time cut. The rejected interpolated clock over stale snapshots implied false per-case runtimes.",
+    "Technical checks do not establish creative approval."
+  ]
+}

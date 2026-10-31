@@ -1,0 +1,15 @@
+{
+  "video": "spotter-attention-interaction-v2.mp4",
+  "framesCompared": 599,
+  "maximumMeanLumaDifference": 1.1264,
+  "meanLumaDifference": 0.0028755666713856424,
+  "flaggedFrames": [],
+  "crop": {
+    "width": 430,
+    "x": 820,
+    "height": 260,
+    "y": 160
+  },
+  "threshold": 2,
+  "parser": "Invariant floating-point, scientific notation included"
+}

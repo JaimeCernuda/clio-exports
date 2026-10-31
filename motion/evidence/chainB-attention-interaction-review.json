@@ -1,0 +1,42 @@
+{
+  "video": "out/spotter-attention-interaction-v2.mp4",
+  "sha256": "dccc99cda7e197f060d97e8593051b38249063243f8177a6089189e1a56e92ea",
+  "source": "opal-chainB-7795459.native.json",
+  "attention": "chainB-7795459-attention.json",
+  "interaction": "chainB-answer-line",
+  "frames": 600,
+  "fps": 60,
+  "sourceTimeMilliseconds": 413438.3068847656,
+  "sourceClock": "Both agents frozen at the fifth reviewer wake throughout all 600 frames",
+  "gestureFrames": {
+    "scrollStart": 234,
+    "dragStart": 36,
+    "scrollEnd": 378,
+    "nativeButtonClick": 144,
+    "holdEnd": 599,
+    "dragEnd": 96
+  },
+  "nativeInteraction": {
+    "domSelection": "ANSWER: 73; MATCHES",
+    "action": "Understand attention native toolbar handler",
+    "result": "Captured token heat, source-intensity rail and item chips",
+    "cursor": "Continuous glyph- and button-measured path, no camera zoom",
+    "source": "CURATION OVERRIDE"
+  },
+  "review": {
+    "differenceParserCorrection": "Initial diagnostic regex omitted scientific exponents. Corrected both reports; v1 also had no flags.",
+    "rightPane": "All 599 frame differences checked in static text crop; no threshold flags",
+    "movingContactSheet": "review/attention-interaction-contact-v2.jpg",
+    "adjacentClickFrames": "140 through 148 inclusive",
+    "browser": "Native interaction checked at drag, banner and source positions"
+  },
+  "validation": {
+    "format": "passed",
+    "fullDecode": "passed",
+    "motionTests": "59 passed, no skipped or failed",
+    "motionTypecheck": "passed",
+    "videoSpec": "1280x720, 60fps, 600 frames, H264 yuv420p, no audio",
+    "nativeOpalTypecheck": "passed"
+  },
+  "limits": "Selected-shot interaction proof; not a full film creative acceptance or fresh model inference"
+}

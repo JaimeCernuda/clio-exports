@@ -1,0 +1,463 @@
+{
+  "schema": "clio.engineering-planning-evidence.v1",
+  "nativeUiCommit": "f333d67d490174d2f2b82d7c0671e08ee0943ceb",
+  "planSha256": "c333cfa414fa513d4a552febfda891c855cb141831a1ad1b4f375f59d37d575f",
+  "nativeChecks": [
+    {
+      "check": "E4 mesh rendering",
+      "status": "observed",
+      "evidence": "Saved GLB renders through pinned production DashboardView and ArchiveTransport on port 3365."
+    },
+    {
+      "check": "E4 synchronized orbit",
+      "status": "observed",
+      "evidence": "Dragging one saved viewport rotates its peers."
+    },
+    {
+      "check": "E4 density threshold",
+      "status": "observed",
+      "evidence": "Changing 0.50 to 0.35 updates the displayed geometry."
+    },
+    {
+      "check": "E4 linked selection",
+      "status": "observed",
+      "evidence": "Clicking c05 updates the selected view and the file table to E4/results/c05/."
+    },
+    {
+      "check": "E5 dashboard and result tabs",
+      "status": "observed",
+      "evidence": "Geometry, setup and results render; density views, stress view and convergence chart load."
+    },
+    {
+      "check": "E5 iteration control",
+      "status": "missing_in_saved_definition",
+      "evidence": "Eleven frames and /res/iter exist, but no iteration slider is exposed in the saved dashboard."
+    },
+    {
+      "check": "E5 button-to-agent routing",
+      "status": "unverified",
+      "evidence": "The source explicitly says routing was not demonstrated; lifecycle actions were run through tools/lifecycle.py. Exported interactions are empty."
+    },
+    {
+      "check": "E5 completed tool states",
+      "status": "reconciled_from_matching_source_receipts",
+      "evidence": "All 36 stale running tool records are reconciled only against their matching semantic tool.call.completed events; source exports remain unchanged."
+    }
+  ],
+  "completionRepairs": [
+    {
+      "callId": "call_09a39dc7ef65",
+      "completedAt": "2026-10-22T20:23:55.100879-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_d7069f8050dd",
+      "completedAt": "2026-10-22T20:28:58.735718-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_19c58bbdda5f",
+      "completedAt": "2026-10-22T20:29:23.990742-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_323e309df5d2",
+      "completedAt": "2026-10-22T20:29:44.339984-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_0b86f88d6e8f",
+      "completedAt": "2026-10-22T20:30:05.50659-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_89614f2a7079",
+      "completedAt": "2026-10-22T20:29:56.194653-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_5d4782d19f2a",
+      "completedAt": "2026-10-22T20:30:18.671424-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_d175c9429911",
+      "completedAt": "2026-10-22T20:30:18.628242-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_b6655f0ae3a8",
+      "completedAt": "2026-10-22T20:30:38.426392-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_ffd0000c35e9",
+      "completedAt": "2026-10-22T20:30:55.578238-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_5e9ab0c2bb9c",
+      "completedAt": "2026-10-22T20:31:50.391388-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_f2b927f717d5",
+      "completedAt": "2026-10-22T20:32:23.417875-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_0d22538eb6b9",
+      "completedAt": "2026-10-22T20:42:44.820357-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_31da1432d614",
+      "completedAt": "2026-10-22T20:42:48.451269-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_d0f13aa7e529",
+      "completedAt": "2026-10-22T20:43:22.515754-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_a5a9a0a742c0",
+      "completedAt": "2026-10-22T20:43:28.676045-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_e67062c96b64",
+      "completedAt": "2026-10-22T20:44:17.494742-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_eecf6397b104",
+      "completedAt": "2026-10-22T20:44:19.841977-05:00",
+      "ok": false
+    },
+    {
+      "callId": "call_3d1e7aeae5f2",
+      "completedAt": "2026-10-22T20:44:33.405065-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_462e42ec5136",
+      "completedAt": "2026-10-22T20:44:44.812509-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_51d8e19cfb6e",
+      "completedAt": "2026-10-22T20:45:03.641915-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_959f8973be68",
+      "completedAt": "2026-10-22T20:45:14.98784-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_a8ed4c9fccf9",
+      "completedAt": "2026-10-22T20:46:13.315481-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_d2b98ab352d6",
+      "completedAt": "2026-10-22T20:46:21.743109-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_b9e7b752c034",
+      "completedAt": "2026-10-22T20:46:21.762311-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_5c6e0322c84f",
+      "completedAt": "2026-10-22T20:46:51.513349-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_742b1703a23c",
+      "completedAt": "2026-10-22T20:46:58.421797-05:00",
+      "ok": false
+    },
+    {
+      "callId": "call_4d1669494aec",
+      "completedAt": "2026-10-22T20:47:02.455808-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_677c4105b897",
+      "completedAt": "2026-10-22T20:47:34.853617-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_16add5ff1b33",
+      "completedAt": "2026-10-22T20:47:50.538676-05:00",
+      "ok": false
+    },
+    {
+      "callId": "call_5420b13392ab",
+      "completedAt": "2026-10-22T20:48:09.359478-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_d1afabb51041",
+      "completedAt": "2026-10-22T20:55:40.634322-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_ee466003b247",
+      "completedAt": "2026-10-22T20:56:27.40952-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_f0b74cafd563",
+      "completedAt": "2026-10-22T20:57:08.931474-05:00",
+      "ok": true
+    },
+    {
+      "callId": "call_1e9a02c24b33",
+      "completedAt": "2026-10-22T20:57:58.005935-05:00",
+      "ok": false
+    },
+    {
+      "callId": "call_80f5899f68a1",
+      "completedAt": "2026-10-22T20:58:56.577783-05:00",
+      "ok": false
+    }
+  ],
+  "meshFields": [
+    {
+      "file": "E4_cantilever_parameter_sweep_dashboard_2",
+      "asset": "artifact_99d5d33b1d8640c6b54e59d70d7d8837",
+      "frameCount": 12,
+      "frameSemantics": "Frames index cases, NOT optimization cycles; all are iteration 50",
+      "fields": [
+        {
+          "name": "DENSITY",
+          "count": 165888,
+          "frames": 12,
+          "min": 1.338062854960853E-10,
+          "max": 0.994087815284729
+        }
+      ],
+      "counts": {
+        "vertices": 173952,
+        "triangles": 86976,
+        "nodes": 15925,
+        "cells": 13824
+      }
+    },
+    {
+      "file": "E4b_smoothed_designs_dashboard",
+      "asset": "artifact_40f52c016f6f41ec936570e82f784f13",
+      "frameCount": 12,
+      "frameSemantics": "Frames index cases; show with thresholdField CASE in [0.5, 1]",
+      "fields": [
+        {
+          "name": "CASE",
+          "count": 144,
+          "frames": 12,
+          "min": 0.0,
+          "max": 1.0
+        }
+      ],
+      "counts": {
+        "vertices": 51836,
+        "triangles": 103732,
+        "nodes": 51836,
+        "cells": 12
+      }
+    },
+    {
+      "file": "E4b_smoothed_designs_dashboard",
+      "asset": "artifact_6b2d7d67c5b04f97ad0783b5fde52aa1",
+      "frameCount": 12,
+      "frameSemantics": "Frames index cases; show with thresholdField CASE in [0.5, 1]",
+      "fields": [
+        {
+          "name": "CASE",
+          "count": 144,
+          "frames": 12,
+          "min": 0.0,
+          "max": 1.0
+        }
+      ],
+      "counts": {
+        "vertices": 55006,
+        "triangles": 110072,
+        "nodes": 55006,
+        "cells": 12
+      }
+    },
+    {
+      "file": "E5_topology_optimization_studio_dashboard",
+      "asset": "artifact_841ff89e9dc44c84aa4e8a6c8dbe28b6",
+      "frameCount": 0,
+      "frameSemantics": null,
+      "fields": [
+        {
+          "name": "SCALED_JACOBIAN",
+          "count": 13824,
+          "frames": 1,
+          "min": 1.0,
+          "max": 1.0
+        },
+        {
+          "name": "ASPECT_RATIO",
+          "count": 13824,
+          "frames": 1,
+          "min": 1.0,
+          "max": 1.0
+        },
+        {
+          "name": "NS_NS_FIX",
+          "count": 15925,
+          "frames": 1,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "name": "NS_NS_LOAD",
+          "count": 15925,
+          "frames": 1,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "name": "SS_SS_SYM",
+          "count": 15925,
+          "frames": 1,
+          "min": 0.0,
+          "max": 1.0
+        }
+      ],
+      "counts": {
+        "vertices": 173952,
+        "triangles": 86976,
+        "nodes": 15925,
+        "cells": 13824
+      }
+    },
+    {
+      "file": "E5_topology_optimization_studio_dashboard",
+      "asset": "artifact_778368589bc6465c8509a3f217407e94",
+      "frameCount": 0,
+      "frameSemantics": null,
+      "fields": [
+        {
+          "name": "SCALED_JACOBIAN",
+          "count": 13719,
+          "frames": 1,
+          "min": 0.3709363341331482,
+          "max": 0.9971676468849182
+        },
+        {
+          "name": "ASPECT_RATIO",
+          "count": 13719,
+          "frames": 1,
+          "min": 1.0058462619781494,
+          "max": 2.1964197158813477
+        },
+        {
+          "name": "NS_NS_FIX",
+          "count": 20670,
+          "frames": 1,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "name": "NS_NS_LOAD",
+          "count": 20670,
+          "frames": 1,
+          "min": 0.0,
+          "max": 1.0
+        },
+        {
+          "name": "SS_SS_SYM",
+          "count": 20670,
+          "frames": 1,
+          "min": 0.0,
+          "max": 1.0
+        }
+      ],
+      "counts": {
+        "vertices": 85752,
+        "triangles": 28584,
+        "nodes": 20670,
+        "cells": 13719
+      }
+    },
+    {
+      "file": "E5_topology_optimization_studio_dashboard",
+      "asset": "artifact_349e325f9eae4a0e82d8cbeda5015f76",
+      "frameCount": 11,
+      "frameSemantics": null,
+      "fields": [
+        {
+          "name": "DENSITY",
+          "count": 152064,
+          "frames": 11,
+          "min": 2.9669826062672655E-07,
+          "max": 0.8557034134864807
+        },
+        {
+          "name": "U_MAG",
+          "count": 15925,
+          "frames": 1,
+          "min": 0.0,
+          "max": 34609.7578125
+        }
+      ],
+      "counts": {
+        "vertices": 173952,
+        "triangles": 86976,
+        "nodes": 15925,
+        "cells": 13824
+      }
+    },
+    {
+      "file": "E5_topology_optimization_studio_dashboard",
+      "asset": "artifact_4bcf488973694c4c930361d2d3908b2b",
+      "frameCount": 0,
+      "frameSemantics": null,
+      "fields": [
+        {
+          "name": "S_MISES",
+          "count": 20670,
+          "frames": 1,
+          "min": 7.589581230149633E-08,
+          "max": 6113.091796875
+        },
+        {
+          "name": "U_MAG",
+          "count": 20670,
+          "frames": 1,
+          "min": 0.0,
+          "max": 61557.4453125
+        },
+        {
+          "name": "DENSITY",
+          "count": 13719,
+          "frames": 1,
+          "min": 0.0010000000474974513,
+          "max": 1.0
+        }
+      ],
+      "counts": {
+        "vertices": 85752,
+        "triangles": 28584,
+        "nodes": 20670,
+        "cells": 13719
+      }
+    }
+  ],
+  "validation": {
+    "shots": 15,
+    "durationSeconds": 356,
+    "contiguous": true,
+    "sourceIdsAndHashes": "passed",
+    "movieRendered": true,
+    "reviewReceipt": "../out/engineering-review.json"
+  }
+}

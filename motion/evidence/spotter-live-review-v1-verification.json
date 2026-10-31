@@ -1,0 +1,17 @@
+{
+  "path": "motion\\out\\spotter-live-review-v1.mp4",
+  "video": {
+    "width": 1280,
+    "height": 720,
+    "fps": "60",
+    "frames": 1500,
+    "seconds": 25.0,
+    "codec": "h264",
+    "pixelFormat": "yuv420p",
+    "colorRange": "tv",
+    "matrix": "bt709",
+    "audioStreams": 0
+  },
+  "fullDecode": "passed",
+  "creativeAcceptance": "not established by this verifier"
+}

@@ -1,0 +1,241 @@
+.ndp-campaign {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #f5f5f1;
+  color: #0a2d55;
+  font-family: var(--typeface-ui), Inter, sans-serif;
+}
+.campaign-native {
+  position: absolute;
+  inset: 0;
+}
+.campaign-native .film-caption,
+.campaign-native .film-brand,
+.campaign-native .film-end {
+  display: none;
+}
+.campaign-design {
+  position: absolute;
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+.campaign-brand {
+  position: absolute;
+  width: 640px;
+  transform-origin: 0 0;
+  z-index: 3;
+}
+.campaign-lockup {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+.campaign-ndp {
+  width: 330px;
+  height: auto;
+}
+.campaign-plus {
+  font-size: 38px;
+  color: #8493a3;
+  font-weight: 300;
+  margin: 0 4px;
+}
+.campaign-clio {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 56px;
+  letter-spacing: -0.025em;
+  font-weight: 650;
+  color: #102e45;
+}
+.campaign-clio-mark {
+  width: 56px;
+  height: 56px;
+}
+.campaign-hook,
+.campaign-closing h1 {
+  white-space: pre-line;
+  text-align: center;
+  font-size: 53px;
+  font-weight: 550;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+.campaign-hook {
+  position: absolute;
+  left: 80px;
+  right: 80px;
+  top: 345px;
+}
+.campaign-caption {
+  position: absolute;
+  top: 26px;
+  left: 56px;
+  max-width: 810px;
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+.campaign-closing {
+  position: absolute;
+  left: 70px;
+  right: 70px;
+  top: 350px;
+}
+.campaign-links {
+  display: flex;
+  justify-content: center;
+  gap: 64px;
+  margin-top: 47px;
+  font-size: 20px;
+  color: #526980;
+  letter-spacing: -0.015em;
+}
+.ndp-social .campaign-hook {
+  left: 40px;
+  right: 40px;
+  top: 435px;
+  font-size: 55px;
+}
+.ndp-social .campaign-caption {
+  left: 35px;
+  right: 35px;
+  top: 118px;
+  text-align: center;
+  max-width: none;
+  font-size: 25px;
+}
+.ndp-social .campaign-closing {
+  top: 455px;
+  left: 40px;
+  right: 40px;
+}
+.ndp-social .campaign-closing h1 {
+  font-size: 55px;
+}
+.ndp-social .campaign-links {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  font-size: 24px;
+  margin-top: 64px;
+}
+.ndp-social .narrative-body p,
+.ndp-social .narrative-sent p {
+  font-size: 24px !important;
+  line-height: 1.42 !important;
+}
+.ndp-social .film-composer [role="combobox"],
+.ndp-social .film-composer [role="combobox"] p {
+  font-size: 22px !important;
+  line-height: 1.4 !important;
+}
+.ndp-social .narrative-body [data-slot="tool-activity"] button {
+  font-size: 20px !important;
+}
+.ndp-social [data-slot="tool-duration"] {
+  display: none;
+}
+.ndp-social .narrative-dataset p,
+.ndp-social .narrative-dataset label,
+.ndp-social .narrative-dataset > div > button {
+  font-size: 21px !important;
+  line-height: 1.45 !important;
+}
+.ndp-social .narrative-dataset label span span {
+  display: none;
+}
+.ndp-social .narrative-body {
+  max-height: 360px;
+}
+.ndp-social .narrative-right {
+  top: 255px;
+}
+.ndp-social .narrative-body[data-film-stage="measure"] + .narrative-right {
+  top: 350px;
+}
+.ndp-social .narrative-terminal pre,
+.ndp-social .narrative-terminal pre * {
+  font-size: 19px !important;
+  line-height: 1.5 !important;
+}
+.ndp-social .film-design {
+  width: 720px;
+  height: 1280px;
+}
+.ndp-social .film-window {
+  left: 24px;
+  top: 185px;
+  width: 672px;
+  height: 1045px;
+}
+.ndp-social .film-rail {
+  width: 40px;
+}
+.ndp-social .film-header {
+  left: 40px;
+}
+.ndp-social .narrative-body {
+  left: 60px;
+  top: 80px !important;
+  width: 550px !important;
+  max-height: 300px;
+  font-size: 16px;
+}
+.ndp-social .narrative-stack {
+  gap: 16px;
+}
+.ndp-social .narrative-right {
+  left: 60px;
+  top: 350px;
+  width: 550px;
+  max-height: 650px;
+}
+.ndp-social .narrative-body[data-film-stage="measure"] + .narrative-right {
+  top: 315px;
+}
+.ndp-social .narrative-terminal pre,
+.ndp-social .narrative-terminal pre * {
+  font-size: 13px !important;
+  line-height: 1.65 !important;
+}
+.ndp-social .narrative-terminal [data-slot="run-output"] {
+  max-height: 480px;
+}
+.ndp-social .narrative-action {
+  font-size: 14px;
+}
+.ndp-social .narrative-sent {
+  left: 60px;
+  top: 100px;
+  width: 550px;
+}
+.ndp-social .film-composer {
+  left: 60px;
+  width: 550px;
+  top: 480px !important;
+}
+.ndp-social .film-map {
+  --a2ui-map-height: 600px;
+  left: 60px !important;
+  top: 440px !important;
+  transform: scale(0.69) !important;
+}
+.ndp-social .narrative-dataset {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+.ndp-social .narrative-dataset label {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.campaign-design * {
+  animation: none !important;
+  transition: none !important;
+}

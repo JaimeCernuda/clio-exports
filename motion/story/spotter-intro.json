@@ -1,0 +1,22 @@
+{
+  "schema": "clio.spotter-intro.v1",
+  "frames": 480,
+  "question": "Where did the poisoned answer\ncome from?",
+  "guardian": "SPOTTER AI",
+  "steps": ["Track", "Detect", "Trace"],
+  "roles": {
+    "opal": "Scientific data",
+    "clio": "Agent",
+    "flowcept": "Provenance"
+  },
+  "assets": {
+    "opal": "spotter/branding/OpalLogo.png",
+    "clio": "clio-mark.svg",
+    "flowcept": "spotter/branding/FlowceptLogo.png",
+    "spotter": "spotter/branding/SpotterLogo.transparent.png"
+  },
+  "sources": [
+    "https://www.anl.gov/genesis-mission/projects/spotter-ai-scientific-provenance-oriented-threat-tracing-and-attribution-for-genesis-workflows",
+    "https://github.com/JaimeCernuda/spotter-telemetry"
+  ]
+}

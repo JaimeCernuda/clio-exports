@@ -1,0 +1,97 @@
+{
+  "schema": "clio.browser-review.v1",
+  "reference": "7795459-chainB",
+  "uiRevision": "f333d67d490174d2f2b82d7c0671e08ee0943ceb",
+  "backendReplayRevision": "e5af788de + saved boundary-trim patch",
+  "nativeBrowserChecks": [
+    "all five security options visible",
+    "SPOTTER selected and opened before first prompt",
+    "73 selection resolves to real heat",
+    "phrase resolves to real heat",
+    "whole rendered response resolves by original revision and [1,828) span",
+    "clean round resolves to its own capture",
+    "answer item chips repaint heat and intensity rail",
+    "source prompt tokens paint with native heat",
+    "recorded final quarantine and SPOTTER conclusion render",
+    "shared source clock pauses during inspection",
+    "final rebuilt replay heat works after backend 18825 is stopped"
+  ],
+  "checks": {
+    "python": {
+      "passed": 79,
+      "failed": 0,
+      "skipped": 0
+    },
+    "motion": {
+      "passed": 57,
+      "failed": 0,
+      "skipped": 0
+    },
+    "backendFocused": {
+      "passed": 25,
+      "failed": 0,
+      "skipped": 0
+    },
+    "ruff": "passed",
+    "pyright": "passed",
+    "motionTypecheck": "passed",
+    "nativeProfiles": [
+      "default checked",
+      "opal checked and built"
+    ]
+  },
+  "screenshots": [
+    {
+      "file": "chainB/chainB-security-menu.png",
+      "sha256": "46ead4a50c2667e92b13fef868f3ff0a4fdf32bf91b67f64eacce6c89af8b177"
+    },
+    {
+      "file": "chainB/chainB-attention-source.png",
+      "sha256": "3915e280d9f51712d129c5ec1422060167977443834048a4e8d8a257786ff384"
+    },
+    {
+      "file": "chainB/chainB-attention-73.png",
+      "sha256": "11dc6f132995d97c44d09154f61d54ff777835996e8f3c70ecd5bf800a78041d"
+    },
+    {
+      "file": "chainB/chainB-attention-phrase.png",
+      "sha256": "7a01f7e5769e231281941e13e7e97fa792ce83d659261e61933347a313ffa9e6"
+    },
+    {
+      "file": "chainB/chainB-attention-whole-response.png",
+      "sha256": "43181b7330baa9fd4e472e9fa74e674163cf07a25fa6a2fdb3207184635d9a5c"
+    },
+    {
+      "file": "chainB/chainB-attention-clean.png",
+      "sha256": "20a0c0aca543efc4b0a60e876a36d4e30be3b8939c2141e240bbc8ac82ea01ba"
+    },
+    {
+      "file": "chainB/chainB-quarantine.png",
+      "sha256": "c3ce59d3d1a580658ef56de9bea6a424e63b3868f04340244f2c885a1ff67969"
+    }
+  ],
+  "movingProof": {
+    "file": "out/spotter-chainB-sync-proof.mp4",
+    "range": [
+      6750,
+      7649
+    ],
+    "frames": 900,
+    "review": "browser playback and 2fps full-range / 4fps collapse samples; no final creative approval"
+  },
+  "limitations": [
+    "no SPOTTER model captures in this bundle",
+    "quarantine follows all six main answers",
+    "attention source intensity is not causality or a poisoning verdict",
+    "attention interactions were reviewed in browser; not authored into this 15-second synchronization proof",
+    "not a fresh model inference run",
+    "local uncommitted work; no push performed"
+  ],
+  "backendRetirement": {
+    "port": 18825,
+    "listener": "absent",
+    "recordedDescendants": "absent",
+    "gracefulSettlement": "unconfirmed; Ctrl-C exited 1",
+    "runtimeCleanup": "automatic approval review blocked deletion without a specific reason; retained"
+  }
+}
