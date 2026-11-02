@@ -8,6 +8,11 @@ description: Plan, build or revise CLIO session demos and motion graphics advert
 For short composition/PR films, use the [standalone ad project](../../../ad/README.md)
 and [creative handoff](../../../ad/HANDOFF.md). Its complete source and focused
 skill are grouped in `ad/` for independent use by another agent.
+The current v10 treatment uses a fixed prompt, owner-colored text edits and a
+persistent capability tree. Skills, hooks, tools and MCP leaves enter and leave
+with their plugin; no dotted count summaries or repeated prompt zoom/refocus.
+The v5–v9 extraction/inspection notes below are historical lessons. Follow the
+current ad skill and handoff where that earlier choreography has been replaced.
 The initial UI-based composability cut and the floating two-column revision were
 both rejected as slides/demos. Advertising uses the separate `composable-ad-index`
 and [art direction](../../../ad/ART-DIRECTION.md). Read the original

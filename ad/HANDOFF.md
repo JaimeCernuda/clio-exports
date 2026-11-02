@@ -89,26 +89,29 @@ These points summarize the conversation; they are not a verbatim transcript.
   disappearing/teleporting cursors, unreadably brief bundles and unexplained
   plugin arrivals. Technical checks did not excuse these problems.
 
-## Current implementation: v9
+## Current implementation: v10
 
-The opening fixes “A” and “agent” while whole domain words rotate vertically,
-accelerate and settle on “composable.” The CLIO/phrase/plus lockup then forms.
-The pointer opens the chooser and selects Manufacturing. Its row expands to show
-its prompt, skill, MCP, tool and hook contributions. The prompt changes with it.
+The opening keeps the vertical domain wheel and aligned CLIO/plus lockup, with
+restrained directional blur derived from its movement. The fourth field stays
+readable, and blur clears as the wheel slows.
 
-Simulation and Reports are offered and visibly added before their contributions
-open and their instructions enter the prompt. Each disclosure closes and docks
-as the same piece. The agent then changes through Genomics, Climate, Robotics,
-Materials and Medical research while retaining Reports. The film closes with
-“Build your own,” CLIO, `clio.iowarp.ai` and a stationary QR for five seconds.
+The prompt now holds one fixed position, scale and rectangle on the left.
+Manufacturing, Simulation and Reports form a persistent capability tree on the
+right. Matching plugin colors mark actual changed prompt fragments. Skills, MCP
+servers, tools and hooks visibly grow beneath their owner and leave when that
+plugin is removed. Reports persists across the later domain changes. There are
+no dotted capability-count summaries or repeated prompt zoom/refocus cycles.
 
-The cut is 38.93 seconds, 1080p, 60 fps with original procedural sound. A strict
-25/30-second limit was not the goal; the user previously asked for the full film.
-There is no narration dependency. Copy and timing are in
-[story/composable-ad.json](story/composable-ad.json).
+Simulation and Reports still get visibly clicked before their effects appear.
+The film ends with Build your own, CLIO, the link and a five-second QR hold.
+V10 is 34.4 seconds, 1080p, 60 fps with original procedural sound. Its shorter
+length comes from removing repeated disclosure/docking loops, not a strict
+25/30-second limit. Copy and timing remain in story/composable-ad.json.
 
 This is a **working baseline awaiting creative approval**. The user's latest
-requests were to fix it again and package the work for another agent. Do not
+direction is to reduce the early blur, color the actual prompt edits, show
+capability branches changing, remove dotted counts, and keep the prompt at a
+steady size. Do not
 interpret successful rendering, passing tests or this handoff as approval of
 the art direction or proof that no further visual defects exist.
 
@@ -120,13 +123,16 @@ The prompt and domain plugins are editorial illustrations, not a complete
 backend-resolved prompt, installed catalogue, successful MCP connection or agent
 run. No LLM inference or session replay backend is required for this ad.
 
-V9 passed 107 motion tests and 120 Python tests in the original repository.
+The preceding V9 passed 107 motion tests and 120 Python tests in the original repository.
 Review measured actual browser geometry and inspected sampled encoded frames,
 including an 801-frame paint-boundary audit. These are technical and frame-review
 results, not human-equivalent uninterrupted playback/listening or creative
 approval. [The v9 receipt](docs/reviews/review-ad-v9.md) contains the exact checks
 and limitations. The source was subsequently consolidated here; the portability
 receipt records validation after that move.
+
+The current [v10 review](docs/reviews/review-ad-v10.md) records the fixed prompt,
+colored edits, persistent capability tree and revised encoded checks.
 
 ## Continuing the work
 

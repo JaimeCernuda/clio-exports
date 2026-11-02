@@ -9,10 +9,15 @@ It contains the editable components, copy, timing, assets, renderer, sound gener
 tests, review scripts and review history. It needs no CLIO backend or transcript server.
 The technical presentation demos elsewhere in this repository are separate projects.
 
-Current baseline: **v9, 38.93 seconds, 1920 × 1080, 60 fps, original procedural audio**.
+Current baseline: **v10, 34.4 seconds, 1920 × 1080, 60 fps, original procedural audio**.
 It is a revision for user review, **not a creatively approved final**. The latest
-[review receipt](docs/reviews/review-ad-v9.md) distinguishes checks from approval.
+[review receipt](docs/reviews/review-ad-v10.md) distinguishes checks from approval.
 Rendered movies remain local and are excluded from Git.
+
+The prompt stays at a fixed size and position. Owner-colored marks identify its
+actual edits, while a persistent tree on the right shows skills, hooks, tools
+and MCP servers entering or leaving with their plugin. The wheel uses restrained
+directional blur, and capability-count summary lines are removed.
 
 ## Run
 
@@ -41,11 +46,11 @@ on that machine's project volume. `DEMO_CHROME_PATH` optionally names an existin
 compatible Chrome executable. Otherwise Remotion obtains its supported browser.
 
 `npm run studio` opens the editable composition on port 3370. `npm run stills --
---frames 926,933,934` renders selected frames. `npm run qr` regenerates the
+--frames 820,827,828` renders selected frames. `npm run qr` regenerates the
 included QR assets if the destination changes. The complete render command writes:
 
-- `out/composable/clio-composable-ad-v9-clean.mp4`
-- `out/composable/clio-composable-ad-v9.mp4`
+- `out/composable/clio-composable-ad-v10-clean.mp4`
+- `out/composable/clio-composable-ad-v10.mp4`
 
 Measurements, extracted review images and reports go in `review/`; bundles and
 temporary files are also ignored. Do not run two bundles/renders against the same
@@ -62,7 +67,8 @@ future renders use this directory's `out/` folder.
 | Goal, aim, user-message summary and handoff | [HANDOFF.md](HANDOFF.md) |
 | Story and creative reasoning | [ART-DIRECTION.md](ART-DIRECTION.md) |
 | Copy, domains, plugin contributions and timing | [story/composable-ad.json](story/composable-ad.json) |
-| Film, plugin rows and disclosures | [src/ComposableAd.tsx](src/ComposableAd.tsx) |
+| Fixed prompt and film | [src/ComposableAd.tsx](src/ComposableAd.tsx) |
+| Persistent plugin/capability tree | [src/AdCapabilities.tsx](src/AdCapabilities.tsx) |
 | Opening wheel and aligned lockup | [src/AdOpening.tsx](src/AdOpening.tsx) |
 | Measured prompt and editable text | [src/AdPrompt.tsx](src/AdPrompt.tsx) |
 | Causal cues, pointer, routes and ownership | [src/composable-ad-plan.ts](src/composable-ad-plan.ts) |

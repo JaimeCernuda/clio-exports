@@ -5,8 +5,8 @@ import path from "node:path";
 const root = path.resolve(import.meta.dirname, "..");
 process.chdir(root);
 const source =
-  process.argv[2] ?? "out/composable/clio-composable-ad-v9-clean.mp4";
-const output = process.argv[3] ?? "out/composable/clio-composable-ad-v9.mp4";
+  process.argv[2] ?? "out/composable/clio-composable-ad-v10-clean.mp4";
+const output = process.argv[3] ?? "out/composable/clio-composable-ad-v10.mp4";
 const score = JSON.parse(await readFile("story/composable-ad.json", "utf8"));
 const rate = 48000,
   seconds = score.frames / score.fps,
@@ -96,31 +96,17 @@ for (const [i, change] of score.changes.entries()) {
   if (change.bundle) {
     const from = score.stages.find((stage) => stage.id === change.from),
       to = score.stages.find((stage) => stage.id === change.to),
-      moduleId = to.modules.find((id) => !from.modules.includes(id)),
-      module = score.modules.find((item) => item.id === moduleId),
+      module = score.modules.find(
+        (item) =>
+          to.modules.includes(item.id) && !from.modules.includes(item.id),
+      ),
       rows =
-        1 +
         module.skills.length +
         module.mcpServers.length +
         module.tools.length +
-        module.hooks.length,
-      dockAt =
-        score.inspection.contentsAt +
-        (rows - 1) * score.inspection.rowStaggerFrames +
-        score.inspection.contentsFrames +
-        change.readFrames +
-        score.inspection.fadeFrames +
-        score.inspection.collapseFrames +
-        score.inspection.transferFrames;
+        module.hooks.length;
     for (let row = 0; row < rows; row++)
-      tick(
-        (change.at +
-          score.inspection.contentsAt +
-          row * score.inspection.rowStaggerFrames) /
-          score.fps,
-        0.025,
-      );
-    tick((change.at + dockAt) / score.fps, 0.04);
+      tick((change.at + 16 + row * 8) / score.fps, 0.025);
   }
 }
 // The wheel has one rising air movement, not a click on every blurred word.

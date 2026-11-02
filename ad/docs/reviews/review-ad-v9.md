@@ -1,5 +1,9 @@
 # Workflow additions: action before effect
 
+Superseded by [v10](review-ad-v10.md). Further feedback requested less early blur,
+colored actual text edits, persistent capability branches and fixed prompt
+framing instead of repeated inspection/refocus. Creative approval was not given.
+
 - Local movie: `motion/out/composable/clio-composable-ad-v9.mp4` (not committed).
 - SHA-256: `37c275577f0a5dd2a2ec14185130fe25cf86a0e272992b0a08161f33e0fc5bae`.
 - 1920 × 1080, 60 fps, 2336 frames, 38.93 seconds, 8,339,421 bytes.

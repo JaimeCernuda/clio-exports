@@ -3,6 +3,7 @@ import { cancelRender, continueRender, delayRender } from "remotion";
 import {
   profiles,
   adWords,
+  adEditMarks,
   type AdProfile,
   type OpeningGeometry,
 } from "./composable-ad-plan";
@@ -129,6 +130,33 @@ export function useAdLayouts(record = false) {
         if (record) {
           console.log(`__CLIO_AD_LAYOUTS__${JSON.stringify(measured)}`);
           console.log(`__CLIO_AD_OPENING__${JSON.stringify(openingGeometry)}`);
+          const paper = document.querySelector<HTMLElement>(
+            "[data-ad-paper-frame]",
+          );
+          if (paper) {
+            const r = paper.getBoundingClientRect();
+            console.log(
+              `__CLIO_AD_PAPER__${JSON.stringify({ frame: Number(paper.dataset.adPaperFrame), x: r.x, y: r.y, width: r.width, height: r.height })}`,
+            );
+          }
+          const capabilities = Array.from(
+            document.querySelectorAll<HTMLElement>("[data-ad-capability]"),
+          ).map((row) => {
+            const card = row.getBoundingClientRect(),
+              name = row
+                .querySelector<HTMLElement>("[data-ad-capability-name]")!
+                .getBoundingClientRect();
+            return {
+              id: row.dataset.adCapability,
+              owner: row.dataset.adOwner,
+              width: card.width,
+              nameRight: name.right - card.left,
+              nameLeft: name.left - card.left,
+            };
+          });
+          console.log(
+            `__CLIO_AD_CAPABILITIES__${JSON.stringify(capabilities)}`,
+          );
           const pluginGeometry = Array.from(
             document.querySelectorAll<HTMLElement>("[data-ad-plugin]"),
           ).map((element) => {
@@ -213,14 +241,35 @@ export function AdPromptInk({
   from,
   to,
   p,
+  frame,
 }: {
   layouts: Record<string, PromptLayout>;
   from: AdProfile;
   to: AdProfile;
   p: number;
+  frame: number;
 }) {
   return (
     <div className="ad-ink">
+      {adEditMarks(layouts[from.id], layouts[to.id], frame).map(
+        (mark, index) => (
+          <div
+            key={`edit-${index}`}
+            data-ad-edit={mark.removed ? "removed" : "added"}
+            style={{
+              position: "absolute",
+              left: mark.x - 4,
+              top: mark.y - 1,
+              width: mark.width + 8,
+              height: mark.height + 2,
+              background: mark.color,
+              borderRadius: 4,
+              opacity: mark.opacity,
+              borderBottom: mark.removed ? "2px solid #ad645b" : undefined,
+            }}
+          />
+        ),
+      )}
       {adWords(layouts[from.id], layouts[to.id], p).map((word) =>
         word.opacity > 0.0001 && word.clipBottom < word.height ? (
           <span

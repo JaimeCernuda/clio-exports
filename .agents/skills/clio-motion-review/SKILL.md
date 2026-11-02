@@ -52,6 +52,13 @@ No failed or skipped tests count as a passing result.
 
 ## Visual and motion checks
 
+For the current composability ad, verify the actual prompt rectangle remains
+fixed across measured frames. Review both the text edits and owned capability
+leaves: v10 keeps a persistent tree instead of the older disclosure/refocus loop.
+Check owner-colored edit marks, retained subtrees, outgoing/replacement leaves,
+early wheel legibility and blur clearing with velocity. Dotted count summaries
+do not show which skills, hooks or MCPs changed.
+
 For conversation replay, check actual encoded playback for growing tool groups,
 collapse at a new public reply, streamed text, inline generated UI and a new turn
 at the bottom. A static held transcript or two-column excerpt layout does not meet

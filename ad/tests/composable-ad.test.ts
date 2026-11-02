@@ -1,167 +1,245 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
-  adContributions,
-  adInspection,
-  adInspectionRoute,
-  adInspectionTiming,
-  adContributionOpacity,
-  adSelection,
-  adMenu,
   adAddition,
-  adFocus,
-  adPromptBounds,
-  adPointer,
-  adPluginPoses,
-  adState,
-  adWheel,
+  adContributions,
+  adEditMarks,
+  adMenu,
+  adModuleRows,
   adOpeningCase,
+  adPointer,
+  adPromptBounds,
+  adSelection,
+  adState,
+  adTreeLayout,
+  adTreePoses,
+  adWheel,
   adWords,
   copy,
+  paper,
   profiles,
+  tree,
 } from "../src/composable-ad-plan";
 import type { PromptLayout, WordBox } from "../src/prompt-morph";
 import { phase } from "../src/prompt-morph";
 
-test("workflow additions are offered and clicked before their instructions change", () => {
-  for (const change of copy.changes.filter(
-    (entry) => entry.bundle && entry.from !== "base",
-  )) {
-    const start = change.at - copy.addition.leadFrames,
-      offer = adAddition(change.at - 1)!;
-    assert.equal(offer.module.id, change.to);
-    assert.equal(offer.opacity, 1);
-    assert.equal(offer.added, 0);
-    assert.equal(adFocus(change.at - 1), 1);
-    assert.equal(adPointer(offer.clickAt).press, 1);
-    assert.equal(adPointer(offer.clickAt).opacity, 1);
-    const pointer = adPointer(offer.clickAt);
-    assert.ok(pointer.x >= offer.x + offer.width - 41);
-    assert.ok(pointer.x <= offer.x + offer.width - 20);
-    assert.ok(pointer.y >= offer.y + 17 && pointer.y <= offer.y + 39);
-    for (let frame = start; frame < change.at; frame++) {
-      const state = adState(frame);
-      assert.equal(state.to.id, change.from);
-      assert.equal(state.p, 1);
-      if (adAddition(frame)!.opacity > 0) assert.equal(adFocus(frame), 1);
+const overlap = (
+  a: { x: number; y: number; width: number; height: number },
+  b: { x: number; y: number; width: number; height: number },
+) =>
+  Math.max(0, Math.min(a.x + a.width, b.x + b.width) - Math.max(a.x, b.x)) *
+  Math.max(0, Math.min(a.y + a.height, b.y + b.height) - Math.max(a.y, b.y));
+
+test("the wheel keeps early fields legible and blur follows motion instead of time", () => {
+  for (const frame of [0, 70, 126, copy.wheel.end, copy.wheel.end + 30])
+    assert.equal(adWheel(frame).blur, 0);
+  let peak = 0;
+  for (let frame = 1; frame <= copy.wheel.end; frame++) {
+    const wheel = adWheel(frame);
+    assert.ok(wheel.position >= adWheel(frame - 1).position - 1e-9);
+    assert.ok(wheel.blur <= 4);
+    if (wheel.position <= 3.5) assert.ok(wheel.blur < 1);
+    if (Math.abs(wheel.velocity) <= copy.wheel.motionBlur.threshold)
+      assert.equal(wheel.blur, 0);
+    peak = Math.max(peak, wheel.blur);
+  }
+  assert.ok(peak > 2);
+  assert.equal(adWheel(copy.wheel.end).position, copy.wheel.words.length - 1);
+  assert.equal(copy.wheel.words.at(-1), "composable");
+  assert.ok(new Set(copy.wheel.words).size >= 12);
+});
+
+test("sentence case changes without a doubled letter", () => {
+  assert.deepEqual(adOpeningCase(copy.staging.brandAt), { upper: 1, lower: 0 });
+  for (let f = copy.staging.brandAt; f < copy.staging.brandAt + 50; f++)
+    assert.ok(adOpeningCase(f).upper === 0 || adOpeningCase(f).lower === 0);
+});
+
+test("the prompt stays the same size and position while plugin branches change", () => {
+  const expected = { x: 140, y: 245, width: 1240 * 0.82, height: 620 * 0.82 };
+  assert.deepEqual(adPromptBounds(), expected);
+  assert.equal(paper.scale, 0.82);
+  for (let frame = copy.staging.selectAt; frame < copy.closing.at; frame++) {
+    const poses = adTreePoses(frame).filter((pose) => pose.opacity > 0.2),
+      addition = adAddition(frame);
+    const boxes = [
+      ...poses,
+      ...(addition && frame < addition.change.at && addition.opacity > 0.2
+        ? [addition]
+        : []),
+    ].sort((a, b) => a.y - b.y);
+    for (const box of boxes) {
+      assert.equal(overlap(box, expected), 0);
+      assert.ok(box.y + box.height < 990);
     }
-    const target = adPluginPoses(
-      profiles[change.from],
-      profiles[change.to],
-      1,
-    ).find((pose) => pose.added)!;
-    const inspection = adInspection(change.at, change.at, target.x, true);
-    for (const key of ["x", "y", "width", "opacity", "focus"] as const)
-      assert.equal(inspection[key], offer[key], `Addition jumps in ${key}`);
-    assert.equal(inspection.expand, 0);
-    assert.equal(inspection.bodyOpacity, 0);
-    let previous = adPointer(start);
-    for (let frame = start + 1; frame <= change.at + 36; frame++) {
-      const next = adPointer(frame);
-      if (next.opacity > 0 && previous.opacity > 0)
-        assert.ok(Math.hypot(next.x - previous.x, next.y - previous.y) < 18);
-      previous = next;
-    }
+    for (let i = 1; i < boxes.length; i++)
+      assert.equal(
+        overlap(boxes[i - 1], boxes[i]),
+        0,
+        "Tree branches overlap at " + frame,
+      );
   }
 });
 
-test("selected menu row preserves source geometry and clears neighbors before growing", () => {
-  const start = adSelection(copy.staging.selectAt);
+test("the selected native row retains its shape and clears the fixed prompt", () => {
+  const first = adSelection(copy.staging.selectAt);
   assert.deepEqual(
-    { x: start.x, y: start.y, width: start.width, height: start.height },
+    { x: first.x, y: first.y, width: first.width, height: first.height },
     copy.selection.source,
   );
   assert.equal(adMenu(559).hover, 1);
-  assert.equal(adMenu(559).sourceOpacity, 1);
-  assert.equal(adMenu(copy.staging.selectAt).sourceOpacity, 0);
-  let previous = start;
+  assert.equal(adMenu(560).sourceOpacity, 0);
+  let previous = first;
   for (
     let frame = copy.staging.selectAt;
     frame <= copy.staging.dockAt;
     frame++
   ) {
-    const actor = adSelection(frame);
-    if (adMenu(frame).opacity > 0.001) {
-      assert.equal(actor.morph, 0);
-      assert.equal(actor.height, copy.selection.source.height);
+    const next = adSelection(frame);
+    assert.equal(overlap(next, adPromptBounds()), 0);
+    assert.ok(Math.hypot(next.x - previous.x, next.y - previous.y) < 20);
+    assert.equal(next.height, tree.header);
+    previous = next;
+  }
+  assert.equal(previous.x, tree.x);
+  assert.equal(previous.y, tree.y);
+  assert.equal(previous.width, tree.width);
+});
+
+test("workflow clicks precede instruction and capability additions without a row jump", () => {
+  for (const change of copy.changes.filter(
+    (c) => c.bundle && c.from !== "base",
+  )) {
+    const offer = adAddition(change.at - 1)!;
+    assert.equal(offer.opacity, 1);
+    assert.equal(offer.added, 0);
+    assert.equal(adPointer(offer.clickAt).press, 1);
+    assert.equal(adPointer(offer.clickAt).opacity, 1);
+    for (
+      let frame = change.at - copy.addition.leadFrames;
+      frame < change.at;
+      frame++
+    )
+      assert.equal(adState(frame).to.id, change.from);
+    const added = adTreePoses(change.at).find(
+      (pose) => pose.module.id === offer.module.id,
+    )!;
+    for (const key of ["x", "y", "width", "height", "opacity"] as const)
+      assert.equal(added[key], offer[key]);
+    assert.ok(added.rows.every((row) => row.opacity === 0));
+  }
+});
+
+test("capabilities persist with their owner and follow domain removals and additions", () => {
+  for (const change of copy.changes) {
+    const end = adTreePoses(change.at + change.duration).filter(
+      (p) => p.opacity > 0.99,
+    );
+    assert.deepEqual(
+      end.map((p) => p.module.id),
+      profiles[change.to].modules.map((m) => m.id),
+    );
+    for (const pose of end) {
+      assert.equal(pose.open, 1);
       assert.ok(
-        actor.y + actor.height <=
-          copy.selection.source.y + copy.selection.source.height,
+        pose.rows.every(
+          (row) => row.opacity === 1 && row.owner === pose.module.id,
+        ),
       );
     }
-    assert.ok(Math.abs(actor.height - previous.height) < 3);
-    previous = actor;
+    for (let f = 0; f <= change.duration; f++) {
+      const poses = adTreePoses(change.at + f),
+        reports = poses.find((p) => p.module.id === "reports");
+      if (profiles[change.from].modules.some((m) => m.id === "reports")) {
+        assert.ok(reports);
+        assert.equal(reports.opacity, 1);
+        assert.ok(reports.rows.every((r) => r.opacity === 1));
+      }
+    }
   }
-  assert.equal(previous.height, 76);
-  assert.equal(previous.morph, 1);
+  const all = adContributions(profiles.reports);
+  assert.equal(all.length, 10);
+  assert.ok(all.some((row) => row.family === "mcpServers"));
+  assert.ok(all.some((row) => row.family === "hooks"));
 });
 
-test("opening sentence case clears the uppercase glyph before revealing lowercase", () => {
-  assert.deepEqual(adOpeningCase(copy.staging.brandAt), { upper: 1, lower: 0 });
-  assert.deepEqual(adOpeningCase(copy.staging.brandAt + 34), {
-    upper: 0,
-    lower: 1,
+test("each tree leaf reveals after its parent opens and remains readable", () => {
+  for (const change of copy.changes.filter((c) => c.bundle)) {
+    const target = profiles[change.to].modules.find(
+      (m) => !profiles[change.from].modules.some((a) => a.id === m.id),
+    )!;
+    for (let f = 0; f <= change.duration + 40; f++) {
+      const pose = adTreePoses(change.at + f).find(
+        (p) => p.module.id === target.id,
+      )!;
+      if (pose.rows.some((row) => row.opacity > 0.01))
+        assert.equal(pose.open, 1);
+      for (let i = 1; i < pose.rows.length; i++)
+        if (pose.rows[i].opacity > 0)
+          assert.ok(
+            pose.rows[i - 1].opacity > pose.rows[i].opacity ||
+              pose.rows[i].opacity === 1,
+          );
+    }
+    const lastAt = change.at + 16 + (adModuleRows(target).length - 1) * 8 + 10;
+    const next = copy.changes.find((c) => c.at > change.at)!;
+    assert.ok(next.at - lastAt > 60);
+  }
+});
+
+test("the pointer stays continuous while visible and operates the initial chooser", () => {
+  assert.equal(adPointer(484).press, 1);
+  assert.equal(adPointer(559).press, 1);
+  let previous = adPointer(440);
+  for (let frame = 441; frame < copy.closing.at; frame++) {
+    const point = adPointer(frame);
+    if (point.opacity > 0 && previous.opacity > 0)
+      assert.ok(Math.hypot(point.x - previous.x, point.y - previous.y) < 22);
+    previous = point;
+  }
+});
+
+test("prompt edits use the owning plugin color and leave stable text unmarked", () => {
+  const word = (block: string, text: string, y: number): WordBox => ({
+    id: block,
+    block,
+    text,
+    x: 0,
+    y,
+    width: 160,
+    height: 30,
+    fontSize: 28,
+    fontWeight: 450,
+    color: "#15364a",
+    mono: true,
   });
-  for (
-    let frame = copy.staging.brandAt;
-    frame <= copy.staging.brandAt + 50;
-    frame++
-  ) {
-    const glyph = adOpeningCase(frame);
-    assert.equal(glyph.upper * glyph.lower, 0);
-  }
+  const a: PromptLayout = {
+    words: [word("stable", "Keep this", 0)],
+    boxes: [],
+    height: 44,
+  };
+  const b: PromptLayout = {
+    words: [...a.words, word("simulation:design", "Run simulations", 44)],
+    boxes: [],
+    height: 88,
+  };
+  const at = copy.changes.find((c) => c.to === "simulation")!.at;
+  const marks = adEditMarks(a, b, at + 84);
+  assert.equal(marks.length, 1);
+  assert.equal(marks[0].color, profiles.simulation.modules[1].color);
+  assert.ok(marks[0].y > 0);
+  assert.deepEqual(adEditMarks(a, b, at + 84 + 48), []);
 });
 
-test("menu extraction clears the appearing prompt and hands off without a jump", () => {
-  let previous = adSelection(copy.staging.selectAt);
-  for (let f = copy.staging.selectAt; f <= copy.staging.dockAt; f++) {
-    const actor = adSelection(f),
-      paper = adPromptBounds(316, actor.focus),
-      body = phase(f, copy.staging.promptAt, 70);
-    paper.y += 20 * (1 - body);
-    const overlapX =
-        Math.min(actor.x + actor.width, paper.x + paper.width) -
-        Math.max(actor.x, paper.x),
-      overlapY =
-        Math.min(actor.y + 76, paper.y + paper.height) -
-        Math.max(actor.y, paper.y);
-    assert.ok(overlapX <= 0 || overlapY <= 0, `Prompt crossed at frame ${f}`);
-    assert.ok(Math.hypot(actor.x - previous.x, actor.y - previous.y) < 20);
-    previous = actor;
+test("all domain changes resolve before a stationary five-second closing", () => {
+  for (const [i, change] of copy.changes.entries()) {
+    assert.equal(change.from, i ? copy.changes[i - 1].to : "base");
+    assert.equal(adState(change.at).p, 0);
+    assert.equal(adState(change.at + change.duration).p, 1);
+    assert.ok(change.at + change.duration < copy.closing.at);
   }
-  const end = adSelection(copy.staging.dockAt),
-    inspection = adInspection(
-      copy.staging.dockAt,
-      copy.staging.dockAt,
-      805,
-      true,
-    );
-  assert.ok(Math.abs(end.x - inspection.x) < 0.001);
-  assert.ok(Math.abs(end.y - inspection.y) < 0.001);
-  assert.equal(end.width, inspection.width);
-  assert.equal(end.focus, inspection.focus);
+  assert.ok(copy.frames - copy.closing.settled >= 300);
 });
-
-test("one vertical wheel holds whole words, accelerates, and stops on composable", () => {
-  assert.equal(adWheel(0).position, 0);
-  assert.equal(adWheel(70).position, 1);
-  assert.equal(adWheel(126).position, 2);
-  assert.equal(copy.wheel.words.at(-1), "composable");
-  let maximum = 0;
-  for (let f = 1; f <= copy.wheel.end; f++) {
-    assert.ok(adWheel(f).position >= adWheel(f - 1).position - 1e-9);
-    maximum = Math.max(maximum, adWheel(f).velocity);
-  }
-  assert.ok(maximum > 18);
-  assert.equal(
-    adWheel(copy.wheel.end + 1).position,
-    copy.wheel.words.length - 1,
-  );
-  assert.equal(adWheel(copy.wheel.end + 1).blur, 0);
-  assert.ok(!("intro" in copy));
-  assert.ok(new Set(copy.wheel.words).size >= 12);
-});
-
 test("plugins bring bundles of capabilities, never independently added skills or MCPs", () => {
   for (const module of copy.modules) {
     assert.ok(module.lines.length >= 2);
@@ -242,86 +320,6 @@ test("common operating instructions stay unchanged through all domain changes", 
   }
 });
 
-test("retained and arriving plugin slots keep clearance during reconfiguration", () => {
-  for (const change of copy.changes)
-    for (let f = 0; f <= change.duration; f++) {
-      const poses = adPluginPoses(
-        profiles[change.from],
-        profiles[change.to],
-        f / change.duration,
-      )
-        .filter((pose) => pose.opacity > 0.2)
-        .sort((a, b) => a.x - b.x);
-      for (let i = 1; i < poses.length; i++)
-        assert.ok(poses[i].x - (poses[i - 1].x + poses[i - 1].width) >= 19.99);
-      if (f === change.duration)
-        assert.deepEqual(
-          poses.map((pose) => pose.name),
-          profiles[change.to].pieces,
-        );
-    }
-});
-
-test("domain changes resolve before a stationary five-second close", () => {
-  for (const [i, change] of copy.changes.entries()) {
-    assert.equal(change.from, i ? copy.changes[i - 1].to : "base");
-    assert.equal(adState(change.at).p, 0);
-    assert.equal(adState(change.at + change.duration).p, 1);
-    assert.ok(change.at + change.duration < copy.closing.at);
-  }
-  assert.ok(copy.frames - copy.closing.settled >= 300);
-  assert.ok(/illustrative/iu.test(copy.copyMode));
-});
-
-test("a new domain identity follows a visible incoming plugin", () => {
-  const role = (text: string): WordBox => ({
-    id: "role:0",
-    block: "role",
-    text,
-    x: 0,
-    y: 0,
-    width: 130,
-    height: 30,
-    fontSize: 28,
-    fontWeight: 450,
-    color: "#15364a",
-    mono: true,
-  });
-  const before: PromptLayout = {
-    words: [role("climate")],
-    boxes: [],
-    height: 44,
-  };
-  const after: PromptLayout = {
-    words: [role("robotics")],
-    boxes: [],
-    height: 44,
-  };
-  for (let f = 0; f <= 72; f++) {
-    const p = f / 72,
-      word = adWords(before, after, p).find(
-        (entry) => entry.text === "robotics",
-      )!;
-    const plugin = adPluginPoses(profiles.climate, profiles.robotics, p).find(
-      (entry) => entry.name === "Robotics",
-    )!;
-    if (word.opacity > 0.5) assert.ok(plugin.opacity > 0.2);
-  }
-});
-
-test("the pointer continuously presses the aligned plus and the plugin choice", () => {
-  assert.equal(adPointer(484).press, 1);
-  assert.equal(adPointer(559).press, 1);
-  assert.equal(adPointer(610).opacity, 0);
-  let maximum = 0;
-  for (let frame = 441; frame <= 605; frame++) {
-    const a = adPointer(frame - 1),
-      b = adPointer(frame);
-    maximum = Math.max(maximum, Math.hypot(a.x - b.x, a.y - b.y));
-  }
-  assert.ok(maximum < 32);
-});
-
 test("inserted instructions cannot cover a retained lower fragment", () => {
   const word = (block: string, y: number): WordBox => ({
     id: block,
@@ -390,109 +388,4 @@ test("removed instructions clear before a retained report moves through them", (
         removed.y + removed.height - removed.clipBottom <= report.y - 6.9,
       );
   }
-});
-
-test("a plugin closes before transfer and routes around the prompt and retained plugins", () => {
-  const overlap = (
-    a: { x: number; y: number; width: number; height: number },
-    b: { x: number; y: number; width: number; height: number },
-  ) =>
-    Math.max(0, Math.min(a.x + a.width, b.x + b.width) - Math.max(a.x, b.x)) *
-    Math.max(0, Math.min(a.y + a.height, b.y + b.height) - Math.max(a.y, b.y));
-  for (const change of copy.changes.filter((change) => change.bundle)) {
-    const from = profiles[change.from],
-      to = profiles[change.to];
-    const target = adPluginPoses(from, to, 1).find((pose) => pose.added)!;
-    let previous = adInspection(change.at, change.at, target.x, true);
-    for (
-      let elapsed = 0;
-      elapsed <= adInspectionTiming(change.at).end;
-      elapsed++
-    ) {
-      const p = Math.min(1, elapsed / change.duration),
-        state = adInspection(change.at + elapsed, change.at, target.x, true);
-      const lineCount =
-        from.lines.length +
-        (to.lines.length - from.lines.length) *
-          (p * p * p * (p * (p * 6 - 15) + 10));
-      const prompt = adPromptBounds(lineCount * 44 + 96, state.focus);
-      const rows =
-        1 +
-        target.module.skills.length +
-        target.module.mcpServers.length +
-        target.module.tools.length +
-        target.module.hooks.length;
-      const card = {
-        x: state.x,
-        y: state.y,
-        width: state.width,
-        height: 76 + (rows * 43 + 15) * state.expand,
-      };
-      if (state.opacity > 0.2)
-        assert.equal(
-          overlap(card, prompt),
-          0,
-          `${change.to} covers the prompt at ${elapsed}`,
-        );
-      if (state.travel > 0) {
-        assert.equal(state.expand, 0);
-        assert.equal(state.bodyOpacity, 0);
-      }
-      if (state.bodyOpacity > 0.01) assert.equal(state.expand, 1);
-      for (const other of adPluginPoses(from, to, p).filter(
-        (pose) => pose.name !== target.name && pose.opacity > 0.2,
-      )) {
-        assert.equal(
-          overlap(card, {
-            x: other.x,
-            y: 820 - (other.kept ? 0 : 35 * (1 - other.opacity)),
-            width: 310,
-            height: 76,
-          }),
-          0,
-        );
-      }
-      assert.ok(Math.hypot(state.x - previous.x, state.y - previous.y) < 50);
-      previous = state;
-    }
-    assert.deepEqual(adInspectionRoute(target.x, 0), { x: 1300, y: 300 });
-    assert.deepEqual(adInspectionRoute(target.x, 1), { x: target.x, y: 820 });
-  }
-});
-
-test("bundle rows reveal in order and stay fully readable before closing", () => {
-  const inspections = copy.changes.filter((change) => change.bundle);
-  assert.equal(inspections.length, 3);
-  assert.equal(inspections[0].to, "manufacturing");
-  assert.ok(copy.changes.filter((change) => !change.bundle).length >= 5);
-  for (const [index, change] of inspections.entries()) {
-    const timing = adInspectionTiming(change.at),
-      next = copy.changes.find((candidate) => candidate.at > change.at);
-    assert.ok(timing.fadeAt - timing.allRowsAt >= (index === 0 ? 108 : 60));
-    assert.ok(next && change.at + timing.end < next.at);
-    for (let elapsed = timing.allRowsAt; elapsed <= timing.fadeAt; elapsed++)
-      for (let row = 0; row < timing.rows; row++)
-        assert.equal(
-          adContributionOpacity(change.at + elapsed, change.at, row),
-          1,
-        );
-    for (let row = 1; row < timing.rows; row++) {
-      const start =
-        change.at +
-        copy.inspection.contentsAt +
-        row * copy.inspection.rowStaggerFrames;
-      assert.equal(adContributionOpacity(start, change.at, row), 0);
-      assert.ok(adContributionOpacity(start, change.at, row - 1) > 0);
-    }
-    for (let row = 0; row < timing.rows; row++)
-      assert.equal(
-        adContributionOpacity(change.at + timing.transferAt, change.at, row),
-        0,
-      );
-  }
-  assert.throws(() => adInspectionTiming(0), /No bundle inspection/);
-  assert.throws(
-    () => adContributionOpacity(620, 620, -1),
-    /Invalid contribution row/,
-  );
 });

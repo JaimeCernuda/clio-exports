@@ -2,70 +2,55 @@
 
 **One agent. Different domains. Plugins bring the pieces together.**
 
-The film must demonstrate both composition and transformation. A manufacturing-only
-build implies a specialist product. A succession of identity rewrites misses the
-fact that plugins bring multiple capabilities. The bridge between those ideas is
-reuse: add a Reports plugin, then retain it while the agent changes domain.
+The opening and closing are PR; the middle is a stylized composition of real
+CLIO elements. Demonstrate both specialization across many fields and additive
+capabilities. Retain Reports across domain changes to make reuse visible.
 
-## Story
+## Current story: v10
 
-1. A and agent stay fixed. Whole domain words roll vertically in the gap, first
-   readably, then accelerating through many fields and settling on composable.
-   This is the sole opening device; do not combine it with delete/retype.
-2. The owl and CLIO join the phrase. The plus appears in the same measured flex
-   row, on the same center line, with consistent gaps based on the text widths.
-   The full brand scales into its allocated space without clipped letters or owl.
-   Press the plus to reveal the native-style plugin picker.
-   Let the filmed cursor highlight its choice. Preserve that row's measured
-   geometry as it leaves the menu; add metadata only after the neighboring
-   choices retire, with no instantaneous replacement by a larger card.
-3. Manufacturing is selected. Its row expands to show instructions, a skill,
-   an MCP server, a tool and a hook. The prompt becomes a manufacturing prompt.
-   Rows arrive in sequence, then the complete bundle has 1.8 seconds of reading
-   time. The disclosure docks as the same plugin piece beneath the prompt.
-4. Simulation and Reports bring their own bundles and extend the current work.
-   Each appears as an offered plugin row. Hover and press its plus before its
-   contribution disclosure opens or its instructions enter the prompt. Hold the
-   same row geometry across the click and rotate the plus into removal.
-   Their contributions are owned by those plugins, never independently added.
-   Give each completed list 1.1 seconds before closing it.
-5. Replace the domain with Genomics and Climate, then move more briskly through
-   Robotics, Materials and Medical research. Identity and domain instructions
-   change coherently. Reports stays, making reuse visible. Do not reopen an
-   inspector for every domain: the established motion vocabulary carries these
-   changes more briskly.
+1. Keep A and agent fixed while whole domain words roll vertically. Start readably,
+   accelerate through many fields, and settle on composable. Blur follows vertical
+   motion with a short exposure and a restrained cap; early fields stay legible
+   and every hold is sharp. Do not mix the wheel with delete/retype.
+2. Form one measured CLIO/phrase/plus lockup. Use the real owl. Press plus and
+   select Manufacturing from a recognizable plugin chooser. Preserve the selected
+   row's rectangle and label as it leaves; retire neighboring choices first.
+3. The row connects to a persistent capability tree on the right. Its owned skills,
+   MCP servers, tools and hooks branch out beneath it. Matching warm color marks
+   the actual identity/instruction edits inside the prompt on the left.
+4. Offer Simulation and Reports at their eventual tree positions, visibly click
+   their plus controls, then reveal their owned branches and color the added
+   prompt fragments. The earlier plugins and their leaves remain present.
+5. Replace Manufacturing/Simulation with Genomics, then Climate, Robotics, Materials
+   and Medical research. Old capability branches leave; new names and branches
+   arrive. Reports stays connected and moves as a complete subtree. Identity and
+   domain instructions change with their owning plugin.
 6. Resolve to Build your own / CLIO, the URL and a stationary QR for five seconds.
 
-## Form
+## Spatial and color argument
 
-The opening and closing are PR; the middle is a pseudo demo. Use recognizable
-CLIO plugin rows, cube/removal controls and expandable contribution families.
-Reshape and enlarge them for the film. Retain the real owl. Remove the large
-agent header, robot substitute, grey System prompt label and clio/standard ref:
-those elements explain the inspector, not the value of composition.
+The prompt has one fixed rectangle, position and scale throughout the composition.
+It does not grow into the center whenever a disclosure docks and shrink again for
+the next inspection. Its fixed space accommodates the real addition/removal of
+instruction lines. The tree gives the changing capabilities a persistent home,
+rather than closing them into a count-only chip.
 
-Use one uniform mono text face for the prompt. Its role must match the active
-domain. Keep common instructions stable; workflow plugins append their own
-instructions. A domain replacement changes the relevant fragments, preserving
-the reusable Reports contribution. Text clears before retained lines move through
-it, and new identity follows a visible incoming plugin.
+The hierarchy is prompt connection → plugin root → owned capability leaves. Keep
+root labels, remove/add controls, icons and contribution-family rows recognizable
+from CLIO, while reflowing them for the film. Do not add skills or MCPs independently.
+Remove the x skills / x MCPs summary line, including its middle-dot separators.
 
-The active plugin is inspected at readable scale. The prompt makes room before
-the selected row rises out of the menu. Contributions fade before their container
-closes. The closed row then travels down beside the prompt, around a rounded corner,
-across beneath it and down into the rail, clearing retained rows. The prompt regains
-the center after that same piece docks. Keep inspection, closure, travel and
-refocus timing independent from the text morph; a finished text edit does not mean
-the card has reached its destination.
-The domain-color marker changes with the new identity's reveal, preserving the
-old color while the outgoing identity is still readable.
-The plug-in-and-transform sequence provides the motion, rather than a permanent
-two-column page or arbitrary camera pulses.
+Use uniform navy mono text for the prompt. Tint the changed words/fragments with
+the owning plugin's pastel color, hold through the reading settle, then fade the
+tint. Common instructions stay anchored and unmarked. Outgoing instructions clear
+before retained lines cross them. Stable Reports leaves do not disappear/reopen
+during domain replacement.
 
-White background, navy type and controlled pastel plugin colors follow CLIO's
-light presentation. The choices are editorial examples, not an installed catalogue
-or a claim that a server connected. Keep production disclosure in the guide,
-outside the film. Do not add abstract core/filesystem/dependency explanations.
+Keep the white background, navy branding and controlled pastel palette. Omit the
+large app header, robot substitute, grey System prompt label, clio/standard ref,
+core/filesystem/dependency explanations and unrelated scientific case names.
+Source and copy are editorial illustrations rather than an installed catalogue
+or a live execution. Keep that disclosure in the guide, outside the film.
 
 ## Craft references and interpretation
 

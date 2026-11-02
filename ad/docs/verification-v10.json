@@ -1,0 +1,27 @@
+{
+  "video": "out/composable/clio-composable-ad-v10.mp4",
+  "sha256": "5b5b57671831ebd27a6fdacf5a14de1fd8b6e451b221f8517821e193d31da4dd",
+  "frames": 2064,
+  "fps": 60,
+  "width": 1920,
+  "height": 1080,
+  "audio": "original procedural sound design",
+  "profiles": 9,
+  "transitions": 8,
+  "measuredCapabilityLeaves": 30,
+  "measuredPromptFrames": 27,
+  "promptBounds": {
+    "x": 140,
+    "y": 245,
+    "width": 1016.8,
+    "height": 508.4
+  },
+  "wordCollisions": [],
+  "componentOcclusions": [],
+  "encodedCompositionFrames": 1144,
+  "paintLeaks": [],
+  "qr": "https://clio.iowarp.ai/",
+  "settledFrameDifferenceMax": 0.0778766,
+  "decode": "passed",
+  "reviewBoundary": "Measured geometry and encoded frames; creative and uninterrupted playback review are separate."
+}

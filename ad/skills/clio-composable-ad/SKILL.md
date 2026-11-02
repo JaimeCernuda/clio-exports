@@ -13,10 +13,10 @@ Make the viewer understand “build the agent you need.” Show both plugins ext
 an existing agent and specialization across many fields. The bookends are PR;
 the middle reshapes recognizable CLIO elements for motion. Keep the real owl,
 uniform prompt text and matching domain identity. Avoid reconstructing a whole
-app, technical catalogue or slide layout. V9 is a baseline, not an approved final.
+app, technical catalogue or slide layout. V10 is a baseline, not an approved final.
 
 Choose one opening mechanism. The current decision is a vertical wheel with the
-surrounding words fixed; do not mix it with typing/backspacing. Keep the brand,
+surrounding words fixed; do not mix it with typing/backspacing. Keep blur directional, tied to velocity and restrained enough that early fields remain readable. Clear it at holds and deceleration. Keep the brand,
 phrase and plus on one measured center line. Core, filesystem and case-specific
 names from other demo campaigns do not serve this concept.
 
@@ -30,14 +30,22 @@ stable text, clear removed text before retained text crosses it, open insertion
 space, and reveal the incoming text. Do not crossfade two readable paragraphs in
 the same place or reduce the prompt to decorative three-line copy.
 
+Keep the prompt at one fixed scale, position and rectangle through composition.
+Do not repeat a small-prompt/large-prompt inspection loop. The persistent tree
+connects the prompt to plugins and their owned skills, hooks, tools and MCPs.
+Animate leaf names entering and leaving, not just the identity text. Remove count
+summary lines and middle-dot separators. Color actual changed prompt fragments
+with the owning plugin's tint; leave stable instructions unmarked.
+
 Plan motion through occupied space. Menu-row extraction must preserve the source
 rectangle and label on the selection frame. Retire neighbors before growing the
 row. Later plugin additions also need a visible cause: offer the row, press its
 plus, then extend the prompt. Measure both sides of the handoff. A filmed cursor
 does not trigger CSS hover; derive feedback from the same cues as pointer/audio.
 
-Unmount hidden contribution text, clip/contain its paint, and close disclosures
-before moving them. Whole cards must clear the prompt and retained rail pieces.
+Unmount hidden contribution text and clip/contain its paint. Keep persistent
+subtrees connected; a retained plugin and its leaves move together. Whole nodes
+must clear the fixed prompt and other branches.
 Allow reading time after the last row is fully visible, rather than counting its
 fade-in as a hold. Avoid repeating an expanded inspection for every domain.
 

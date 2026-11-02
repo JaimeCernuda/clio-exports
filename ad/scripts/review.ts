@@ -5,123 +5,98 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { PNG } from "pngjs";
 import jsQR from "jsqr";
 import {
-  adWords,
+  adAddition,
+  adContributions,
+  adEditMarks,
+  adPromptBounds,
   adSelection,
   adState,
+  adTreePoses,
   adPointer,
-  adAddition,
-  adFocus,
-  adInspection,
-  adInspectionTiming,
-  adPluginPoses,
-  adPromptBounds,
-  profiles,
+  adWords,
   copy,
+  tree,
   type OpeningGeometry,
 } from "../src/composable-ad-plan";
-import { ease, phase } from "../src/prompt-morph";
 import type { PromptLayout } from "../src/prompt-morph";
-
-const layouts: Record<string, PromptLayout> = JSON.parse(
-  readFileSync("review/composable-ad-layouts.json", "utf8"),
-);
-for (const [name, layout] of Object.entries(layouts)) {
-  assert.ok(layout.height <= 600, `Instructions exceed the film card: ${name}`);
-  assert.ok(
-    layout.words.every(
-      (word) => word.x >= 0 && word.x + word.width <= 1120 && word.width > 0,
-    ),
-    `Text clipping: ${name}`,
-  );
+import { phase } from "../src/prompt-morph";
+const read = (name: string) =>
+  JSON.parse(readFileSync("review/composable-ad-" + name + ".json", "utf8"));
+const layouts: Record<string, PromptLayout> = read("layouts"),
+  opening: OpeningGeometry = read("opening");
+for (const [id, layout] of Object.entries(layouts)) {
+  assert.ok(layout.height <= 524, id + " prompt height");
+  for (const word of layout.words) {
+    assert.equal(word.fontSize, 28);
+    assert.equal(word.fontWeight, 450);
+    assert.ok(word.x >= 0 && word.x + word.width <= 1120);
+  }
 }
-const opening: OpeningGeometry = JSON.parse(
-  readFileSync("review/composable-ad-opening.json", "utf8"),
-);
+assert.ok(opening.brand && opening.prefix && opening.slot && opening.suffix);
 assert.ok(
   Math.abs(
     opening.logo.y +
       opening.logo.height / 2 -
-      (opening.plus.y + opening.plus.height / 2),
+      opening.plus.y -
+      opening.plus.height / 2,
   ) < 0.1,
-  "Brand and plus are misaligned",
 );
-assert.ok(opening.brand && opening.prefix && opening.slot && opening.suffix);
 for (const [a, b] of [
   [opening.brand, opening.prefix],
   [opening.prefix, opening.slot],
   [opening.slot, opening.suffix],
   [opening.suffix, opening.plus],
 ])
-  assert.ok(
-    Math.abs(b.x - a.x - a.width - 20) < 0.5,
-    "Opening spacing must follow the measured text",
-  );
-const plugins: Array<{
+  assert.ok(Math.abs(b.x - a.x - a.width - 20) < 0.5);
+const headers: Array<{
   id: string;
   width: number;
   nameRight: number;
   closeLeft: number;
   closeRight: number;
-}> = JSON.parse(readFileSync("review/composable-ad-plugins.json", "utf8"));
+}> = read("plugins");
 for (const module of copy.modules)
   assert.ok(
-    plugins.some(
-      (plugin) => plugin.id === module.id && Math.abs(plugin.width - 310) < 0.1,
-    ),
-    `Missing compact header measurement: ${module.id}`,
+    headers.some((p) => p.id === module.id && p.width === tree.width),
+    "Missing header " + module.id,
   );
-for (const plugin of plugins) {
+for (const head of headers) {
   assert.ok(
-    plugin.closeLeft - plugin.nameRight >= 8,
-    `Plugin name crowds removal: ${plugin.id}`,
+    head.closeLeft - head.nameRight >= 8,
+    "Name crowds control " + head.id,
   );
-  assert.ok(
-    plugin.closeRight <= plugin.width - 12,
-    `Removal is clipped: ${plugin.id}`,
-  );
+  assert.ok(head.closeRight <= head.width - 12);
 }
-type Rect = { x: number; y: number; width: number; height: number };
 const selections: Array<{
   frame: number;
-  source: Rect;
-  piece: Rect;
-  sourceName: Rect;
-  pieceName: Rect;
-}> = JSON.parse(readFileSync("review/composable-ad-selections.json", "utf8"));
-const selectedStart = selections.find(
-  (entry) => entry.frame === copy.staging.selectAt,
+  source: Record<string, number>;
+  piece: Record<string, number>;
+  sourceName: Record<string, number>;
+  pieceName: Record<string, number>;
+}> = read("selections");
+const selected = selections.find(
+  (item) => item.frame === copy.staging.selectAt,
 );
-assert.ok(
-  selectedStart,
-  "Measure the exact frame when the menu choice is selected",
-);
-for (const key of ["x", "y", "width", "height"] as const) {
+assert.ok(selected);
+for (const key of ["x", "y", "width", "height"]) {
   assert.ok(
-    Math.abs(selectedStart.source[key] - selectedStart.piece[key]) < 0.1,
-    `Selection card jumps in ${key}`,
+    Math.abs(selected.source[key] - selected.piece[key]) < 0.1,
+    "Menu row jumps " + key,
   );
   assert.ok(
-    Math.abs(selectedStart.sourceName[key] - selectedStart.pieceName[key]) <
-      1.6,
-    `Selected label jumps in ${key}`,
+    Math.abs(selected.sourceName[key] - selected.pieceName[key]) < 1.6,
+    "Menu label jumps " + key,
   );
 }
-const additions: Array<Record<string, number | string>> = JSON.parse(
-  readFileSync("review/composable-ad-additions.json", "utf8"),
-);
+const additions: Array<Record<string, number | string>> = read("additions");
 for (const change of copy.changes.filter(
-  (entry) => entry.bundle && entry.from !== "base",
+  (c) => c.bundle && c.from !== "base",
 )) {
-  const before = additions.find(
-    (entry) => entry.id === change.to && entry.frame === change.at - 1,
-  );
-  const after = additions.find(
-    (entry) => entry.id === change.to && entry.frame === change.at,
-  );
-  assert.ok(
-    before && after,
-    `Measure both sides of the ${change.to} add click`,
-  );
+  const a = additions.find(
+      (p) => p.id === change.to && p.frame === change.at - 1,
+    ),
+    b = additions.find((p) => p.id === change.to && p.frame === change.at);
+  assert.ok(a && b);
   for (const key of [
     "x",
     "y",
@@ -133,33 +108,57 @@ for (const change of copy.changes.filter(
     "labelHeight",
   ])
     assert.ok(
-      Math.abs(Number(before[key]) - Number(after[key])) < 0.1,
-      `${change.to} add handoff jumps in ${key}`,
+      Math.abs(Number(a[key]) - Number(b[key])) < 0.1,
+      change.to + " add row jumps " + key,
     );
 }
-assert.deepEqual(
-  [
-    ...new Set(
-      Object.values(layouts).flatMap((layout) =>
-        layout.words.map((word) => word.fontSize),
-      ),
-    ),
-  ],
-  [28],
-  "Prompt typography must be uniform",
+const papers: Array<Record<string, number>> = read("paper"),
+  expectedPaper = adPromptBounds();
+assert.ok(papers.length > 10);
+for (const measured of papers)
+  for (const key of ["x", "y", "width", "height"] as const)
+    assert.ok(
+      Math.abs(measured[key] - expectedPaper[key]) < 0.06,
+      "Prompt moves/resizes at " + measured.frame,
+    );
+const capabilities: Array<{
+  id: string;
+  owner: string;
+  width: number;
+  nameRight: number;
+  nameLeft: number;
+}> = read("capabilities");
+const allLeaves = new Set(
+  copy.modules
+    .flatMap((module) =>
+      adContributions({
+        id: "measured",
+        role: "",
+        color: "",
+        lines: [],
+        pieces: [module.name],
+        modules: [module],
+      }),
+    )
+    .map((row) => row.id),
 );
-assert.deepEqual(
-  [
-    ...new Set(
-      Object.values(layouts).flatMap((layout) =>
-        layout.words.map((word) => word.fontWeight),
-      ),
-    ),
-  ],
-  [450],
-  "Prompt weight must be uniform",
-);
-const collisions: unknown[] = [];
+for (const id of allLeaves)
+  assert.ok(
+    capabilities.some((row) => row.id === id),
+    "Missing measured capability " + id,
+  );
+for (const row of capabilities) {
+  assert.ok(row.nameRight <= row.width, "Leaf clips " + row.id);
+  assert.ok(row.nameLeft > 0);
+}
+const collisions: unknown[] = [],
+  componentOcclusions: unknown[] = [];
+const overlap = (
+  a: { x: number; y: number; width: number; height: number },
+  b: { x: number; y: number; width: number; height: number },
+) =>
+  Math.max(0, Math.min(a.x + a.width, b.x + b.width) - Math.max(a.x, b.x)) *
+  Math.max(0, Math.min(a.y + a.height, b.y + b.height) - Math.max(a.y, b.y));
 for (const change of copy.changes)
   for (let f = 0; f <= change.duration; f++) {
     const words = adWords(
@@ -167,153 +166,50 @@ for (const change of copy.changes)
       layouts[change.to],
       f / change.duration,
     )
-      .filter((word) => word.opacity > 0.2 && word.clipBottom < word.height)
-      .map((word) => ({ ...word, height: word.height - word.clipBottom }));
+      .filter((w) => w.opacity > 0.2 && w.clipBottom < w.height)
+      .map((w) => ({ ...w, height: w.height - w.clipBottom }));
     for (let i = 0; i < words.length; i++)
-      for (let j = i + 1; j < words.length; j++) {
-        const a = words[i],
-          b = words[j];
-        if (
-          Math.min(a.x + a.width, b.x + b.width) - Math.max(a.x, b.x) > 2 &&
-          Math.min(a.y + a.height, b.y + b.height) - Math.max(a.y, b.y) > 2
-        )
-          collisions.push({ frame: change.at + f, a: a.text, b: b.text });
-      }
+      for (let j = i + 1; j < words.length; j++)
+        if (overlap(words[i], words[j]) > 4)
+          collisions.push({
+            frame: change.at + f,
+            a: words[i].text,
+            b: words[j].text,
+          });
   }
-assert.deepEqual(collisions, [], "Instruction words collide");
-const componentOcclusions: unknown[] = [];
-const overlap = (
-  a: { x: number; y: number; width: number; height: number },
-  b: { x: number; y: number; width: number; height: number },
-) =>
-  Math.max(0, Math.min(a.x + a.width, b.x + b.width) - Math.max(a.x, b.x)) *
-  Math.max(0, Math.min(a.y + a.height, b.y + b.height) - Math.max(a.y, b.y));
-for (let frame = copy.staging.selectAt; frame < copy.staging.dockAt; frame++) {
-  const actor = adSelection(frame),
-    paper = adPromptBounds(layouts.base.height + 96, actor.focus);
-  paper.y += 20 * (1 - phase(frame, copy.staging.promptAt, 70));
-  if (overlap(actor, paper) > 0)
-    componentOcclusions.push({ frame, kind: "menu extraction" });
-}
-for (const change of copy.changes.filter(
-  (entry) => entry.bundle && entry.from !== "base",
-)) {
-  for (
-    let frame = change.at - copy.addition.leadFrames;
-    frame < change.at;
-    frame++
-  ) {
-    const offer = adAddition(frame)!;
-    if (offer.opacity <= 0.2) continue;
-    const paper = adPromptBounds(
-      layouts[change.from].height + 96,
-      adFocus(frame),
-    );
-    if (overlap(offer, paper) > 0)
-      componentOcclusions.push({ frame, kind: "offered plugin covers prompt" });
+for (let frame = copy.staging.selectAt; frame < copy.closing.at; frame++) {
+  const addition = adAddition(frame),
+    boxes = [
+      ...adTreePoses(frame).filter((p) => p.opacity > 0.2),
+      ...(addition && frame < addition.change.at && addition.opacity > 0.2
+        ? [addition]
+        : []),
+      ...(frame < copy.staging.dockAt ? [adSelection(frame)] : []),
+    ].sort((a, b) => a.y - b.y);
+  for (const box of boxes) {
+    if (overlap(box, expectedPaper) > 0)
+      componentOcclusions.push({ frame, kind: "prompt" });
+    assert.ok(box.y + box.height < 990);
   }
+  for (let i = 0; i < boxes.length; i++)
+    for (let j = i + 1; j < boxes.length; j++)
+      if (overlap(boxes[i], boxes[j]) > 1)
+        componentOcclusions.push({ frame, kind: "tree" });
 }
-for (const change of copy.changes.filter((change) => change.bundle)) {
-  const from = profiles[change.from],
-    to = profiles[change.to],
-    target = adPluginPoses(from, to, 1).find((pose) => pose.added)!;
-  for (
-    let elapsed = 0;
-    elapsed <= adInspectionTiming(change.at).end;
-    elapsed++
-  ) {
-    const p = Math.min(1, elapsed / change.duration),
-      actor = adInspection(change.at + elapsed, change.at, target.x, true);
-    const height =
-      layouts[from.id].height +
-      (layouts[to.id].height - layouts[from.id].height) * ease(p) +
-      96;
-    const prompt = adPromptBounds(height, actor.focus);
-    const rows =
-      1 +
-      target.module.skills.length +
-      target.module.mcpServers.length +
-      target.module.tools.length +
-      target.module.hooks.length;
-    const card = {
-      x: actor.x,
-      y: actor.y,
-      width: actor.width,
-      height: 76 + (rows * 43 + 15) * actor.expand,
-    };
-    if (actor.opacity > 0.2 && overlap(card, prompt) > 0)
-      componentOcclusions.push({ frame: change.at + elapsed, kind: "prompt" });
-    if (actor.travel > 0) {
-      assert.equal(actor.expand, 0);
-      assert.equal(actor.bodyOpacity, 0);
-    }
-    for (const other of adPluginPoses(from, to, p).filter(
-      (pose) => pose.name !== target.name && pose.opacity > 0.2,
-    ))
-      if (
-        overlap(card, {
-          x: other.x,
-          y: 820 - (other.kept ? 0 : 35 * (1 - other.opacity)),
-          width: 310,
-          height: 76,
-        }) > 0
-      )
-        componentOcclusions.push({
-          frame: change.at + elapsed,
-          kind: "retained plugin",
-        });
-  }
-}
-assert.deepEqual(
-  componentOcclusions,
-  [],
-  "Whole plugin cards obscure other elements",
-);
+assert.deepEqual(collisions, []);
+assert.deepEqual(componentOcclusions, []);
 if (process.argv.includes("--geometry-only")) {
   console.log(
-    `Measured geometry passed: ${Object.keys(layouts).length} prompts, uniform font, aligned logo and plus, no word or component collisions.`,
+    "Measured geometry passed: fixed prompt, all owned capability rows, stable add handoffs, no collisions.",
   );
   process.exit(0);
 }
-const video = process.argv[2] ?? "out/composable/clio-composable-ad-v9.mp4";
-// Inspect every encoded inspection frame, including every render worker. DOM
-// bounds alone cannot detect a browser compositing glyph outside its container.
-const inspectionFrames = copy.changes
-  .filter((change) => change.bundle)
-  .flatMap((change) =>
-    Array.from(
-      {
-        length: adInspectionTiming(change.at).end + 1,
-      },
-      (_, elapsed) => ({ frame: change.at + elapsed, change, elapsed }),
-    ),
-  );
-const offerFrames = copy.changes
-  .filter((change) => change.bundle && change.from !== "base")
-  .flatMap((change) =>
-    Array.from(
-      { length: copy.addition.leadFrames },
-      (_, index) => change.at - copy.addition.leadFrames + index,
-    ),
-  );
-const paintFrames = [
-  ...Array.from(
-    { length: copy.staging.dockAt - copy.staging.selectAt },
-    (_, index) => copy.staging.selectAt + index,
+const video = process.argv[2] ?? "out/composable/clio-composable-ad-v10.mp4";
+const auditFrames = Array.from(
+    { length: copy.closing.at - copy.staging.selectAt },
+    (_, i) => copy.staging.selectAt + i,
   ),
-  ...inspectionFrames.map((entry) => entry.frame),
-  ...offerFrames,
-].sort((a, b) => a - b);
-const selection =
-  `between(n\\,${copy.staging.selectAt}\\,${copy.staging.dockAt - 1})+` +
-  copy.changes
-    .filter((change) => change.bundle)
-    .map(
-      (change) =>
-        `between(n\\,${change.at - (change.from === "base" ? 0 : copy.addition.leadFrames)}\\,${change.at + adInspectionTiming(change.at).end})`,
-    )
-    .join("+");
-const paintWidth = 640,
+  paintWidth = 640,
   paintHeight = 360,
   paintSize = paintWidth * paintHeight;
 const paint = execFileSync(
@@ -324,92 +220,59 @@ const paint = execFileSync(
     "-i",
     video,
     "-vf",
-    `select='${selection}',scale=${paintWidth}:${paintHeight},format=gray`,
+    `select='between(n\\,${copy.staging.selectAt}\\,${copy.closing.at - 1})',scale=640:360,format=gray`,
     "-fps_mode",
     "passthrough",
     "-f",
     "rawvideo",
     "-",
   ],
-  { maxBuffer: 256 * 1024 * 1024 },
+  { maxBuffer: 512 * 1024 * 1024 },
 );
-assert.equal(paint.length, paintFrames.length * paintSize);
+assert.equal(paint.length, auditFrames.length * paintSize);
 const paintLeaks: Array<{ frame: number; darkPixels: number }> = [];
-for (const [index, frame] of paintFrames.entries()) {
-  const { from, to, p, change } = adState(frame),
-    target = adPluginPoses(from, to, 1).find((pose) => pose.added),
-    actor = change
-      ? adInspection(frame, change.at, target!.x, true)
-      : { ...adSelection(frame), expand: 0 },
-    height =
-      layouts[from.id].height +
-      (layouts[to.id].height - layouts[from.id].height) * ease(p) +
-      96;
-  const rows = target
-    ? 1 +
-      target.module.skills.length +
-      target.module.mcpServers.length +
-      target.module.tools.length +
-      target.module.hooks.length
-    : 0;
-  const paper = adPromptBounds(height, adFocus(frame));
-  paper.y += 20 * (1 - phase(frame, copy.staging.promptAt, 70));
-  const logoTravel = phase(frame, 500, 100),
+for (const [index, frame] of auditFrames.entries()) {
+  const pointer = adPointer(frame, opening),
+    addition = adAddition(frame),
+    logoTravel = phase(frame, 500, 100),
     startX = 960 - opening.width / 2 + opening.logo.x,
-    startY = 540 - opening.height / 2 + opening.logo.y,
-    pointer = adPointer(frame, opening);
+    startY = 540 - opening.height / 2 + opening.logo.y;
   const boxes = [
-    paper,
+    expectedPaper,
+    { x: 1152, y: 238, width: 125, height: 710 },
     {
-      x: startX + (245 - startX) * logoTravel,
-      y: startY + (160 - startY) * logoTravel,
+      x: startX + (140 - startX) * logoTravel,
+      y: startY + (135 - startY) * logoTravel,
       width: 84 - 12 * logoTravel,
       height: 84 - 12 * logoTravel,
     },
     { x: pointer.x, y: pointer.y, width: 34, height: 43 },
-    ...(adAddition(frame) && frame < adAddition(frame)!.change.at
-      ? [adAddition(frame)!]
-      : []),
+    ...adTreePoses(frame),
+    ...(addition && frame < addition.change.at ? [addition] : []),
+    ...(frame < copy.staging.dockAt ? [adSelection(frame)] : []),
     ...(frame < copy.staging.selectAt + copy.selection.retireFrames
-      ? [{ x: 1040, y: 602, width: 600, height: 367 }]
+      ? [{ x: 1190, y: 602, width: 600, height: 367 }]
       : []),
-    {
-      x: actor.x,
-      y: actor.y,
-      width: actor.width,
-      height: change
-        ? 76 + (rows * 43 + 15) * actor.expand
-        : adSelection(frame).height,
-    },
-    ...adPluginPoses(from, to, p)
-      .filter((pose) => pose.name !== target?.name)
-      .map((pose) => ({
-        x: pose.x,
-        y: 820 - (pose.kept ? 0 : 35 * (1 - pose.opacity)),
-        width: 310,
-        height: 76,
-      })),
   ];
   const mask = new Uint8Array(paintSize);
   for (const box of boxes) {
-    // Three output pixels cover codec ringing and the antialiased card edge.
-    const left = Math.max(0, Math.floor(box.x / 3) - 3),
-      right = Math.min(paintWidth, Math.ceil((box.x + box.width) / 3) + 3),
-      top = Math.max(0, Math.floor(box.y / 3) - 3),
-      bottom = Math.min(paintHeight, Math.ceil((box.y + box.height) / 3) + 3);
-    for (let y = top; y < bottom; y++)
-      mask.fill(1, y * paintWidth + left, y * paintWidth + right);
+    const l = Math.max(0, Math.floor(box.x / 3) - 3),
+      r = Math.min(paintWidth, Math.ceil((box.x + box.width) / 3) + 3),
+      t = Math.max(0, Math.floor(box.y / 3) - 3),
+      b = Math.min(paintHeight, Math.ceil((box.y + box.height) / 3) + 3);
+    for (let y = t; y < b; y++)
+      mask.fill(1, y * paintWidth + l, y * paintWidth + r);
   }
   let darkPixels = 0;
-  for (let pixel = 0; pixel < paintSize; pixel++)
-    if (!mask[pixel] && paint[index * paintSize + pixel] < 205) darkPixels++;
+  for (let p = 0; p < paintSize; p++)
+    if (!mask[p] && paint[index * paintSize + p] < 205) darkPixels++;
   if (darkPixels > 12) paintLeaks.push({ frame, darkPixels });
 }
 writeFileSync(
   "review/composable-ad-paint.json",
-  JSON.stringify({ frames: paintFrames.length, paintLeaks }, null, 2) + "\n",
+  JSON.stringify({ frames: auditFrames.length, paintLeaks }, null, 2),
 );
-assert.deepEqual(paintLeaks, [], "Ink escapes the encoded component bounds");
+assert.deepEqual(paintLeaks, []);
 const metadata = JSON.parse(
   execFileSync(
     "ffprobe",
@@ -491,24 +354,18 @@ const report = {
   audio: "original procedural sound design",
   profiles: Object.keys(layouts).length,
   transitions: copy.changes.length,
-  bundleReadSeconds: copy.changes
-    .filter((change) => change.bundle)
-    .map((change) => ({
-      plugin: change.to,
-      seconds: change.readFrames / copy.fps,
-    })),
-  measuredPluginHeaders: plugins.length,
+  measuredCapabilityLeaves: capabilities.length,
+  measuredPromptFrames: papers.length,
+  promptBounds: expectedPaper,
   wordCollisions: collisions,
   componentOcclusions,
-  encodedInspectionFrames: inspectionFrames.length,
-  encodedOfferFrames: offerFrames.length,
-  encodedExtractionFrames: copy.staging.dockAt - copy.staging.selectAt,
+  encodedCompositionFrames: auditFrames.length,
   paintLeaks,
   qr: qr?.data,
   settledFrameDifferenceMax: Math.max(...values),
   decode: "passed",
   reviewBoundary:
-    "Frame geometry and encoding verification. Creative review is separate; illustrative prompts are not recorded agent runs.",
+    "Measured geometry and encoded frames; creative and uninterrupted playback review are separate.",
 };
 writeFileSync(
   "review/composable-ad-review.json",

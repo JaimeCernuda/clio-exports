@@ -1,5 +1,8 @@
 # Standalone project validation
 
+This is the historical v9 consolidation receipt. The current creative revision
+and its checks are recorded in [the v10 review](reviews/review-ad-v10.md).
+
 The current v9 source was consolidated from clio-exports commit `4927425` into
 `ad/`. Components, prompt/timing, source provenance and review history moved here;
 the older technical demo remains outside. Compatibility launchers preserve the

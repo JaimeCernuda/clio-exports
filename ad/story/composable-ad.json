@@ -1,7 +1,7 @@
 {
-  "schema": "clio.composable-ad.v9",
+  "schema": "clio.composable-ad.v10",
   "fps": 60,
-  "frames": 2336,
+  "frames": 2064,
   "treatment": "One agent. Different domains. Plugins bring the instructions and capabilities together.",
   "copyMode": "Native-derived CLIO composition elements with illustrative domain plugins and uniform editorial prompt text; not an installed catalogue, complete resolved backend prompt, or recorded run.",
   "wheel": {
@@ -28,7 +28,12 @@
       "research",
       "composable"
     ],
-    "colors": ["#bde9dc", "#ffdc9b", "#dbcefa", "#cee6f4"]
+    "colors": ["#bde9dc", "#ffdc9b", "#dbcefa", "#cee6f4"],
+    "motionBlur": {
+      "threshold": 4,
+      "exposure": 0.22,
+      "maxPixels": 4
+    }
   },
   "staging": {
     "brandAt": 352,
@@ -43,7 +48,12 @@
     "hoverFrames": 8,
     "retireFrames": 14,
     "morphFrames": 12,
-    "source": { "x": 1053, "y": 666, "width": 574, "height": 58 }
+    "source": {
+      "x": 1203,
+      "y": 666,
+      "width": 574,
+      "height": 58
+    }
   },
   "addition": {
     "leadFrames": 48,
@@ -52,23 +62,19 @@
     "clickBefore": 8,
     "controlFrames": 10
   },
-  "inspection": {
-    "expandFrames": 16,
-    "contentsAt": 16,
-    "contentsFrames": 8,
-    "rowStaggerFrames": 6,
-    "fadeFrames": 8,
-    "collapseFrames": 8,
-    "transferFrames": 54,
-    "settleFrames": 20
-  },
   "baseLines": [
-    { "id": "role", "text": "You are CLIO, a composable agent." },
+    {
+      "id": "role",
+      "text": "You are CLIO, a composable agent."
+    },
     {
       "id": "workspace",
       "text": "Work in the user's workspace. Keep outputs inspectable."
     },
-    { "id": "plan", "text": "Understand the goal. Plan before acting." },
+    {
+      "id": "plan",
+      "text": "Understand the goal. Plan before acting."
+    },
     {
       "id": "verify",
       "text": "Use tools, verify results and explain your conclusions."
@@ -242,15 +248,42 @@
   ],
   "choices": ["Manufacturing", "Genomics", "Climate", "Robotics", "Materials"],
   "stages": [
-    { "id": "base", "modules": [] },
-    { "id": "manufacturing", "modules": ["manufacturing"] },
-    { "id": "simulation", "modules": ["manufacturing", "simulation"] },
-    { "id": "reports", "modules": ["manufacturing", "simulation", "reports"] },
-    { "id": "genomics", "modules": ["genomics", "reports"] },
-    { "id": "climate", "modules": ["climate", "reports"] },
-    { "id": "robotics", "modules": ["robotics", "reports"] },
-    { "id": "materials", "modules": ["materials", "reports"] },
-    { "id": "medical", "modules": ["medical", "reports"] }
+    {
+      "id": "base",
+      "modules": []
+    },
+    {
+      "id": "manufacturing",
+      "modules": ["manufacturing"]
+    },
+    {
+      "id": "simulation",
+      "modules": ["manufacturing", "simulation"]
+    },
+    {
+      "id": "reports",
+      "modules": ["manufacturing", "simulation", "reports"]
+    },
+    {
+      "id": "genomics",
+      "modules": ["genomics", "reports"]
+    },
+    {
+      "id": "climate",
+      "modules": ["climate", "reports"]
+    },
+    {
+      "id": "robotics",
+      "modules": ["robotics", "reports"]
+    },
+    {
+      "id": "materials",
+      "modules": ["materials", "reports"]
+    },
+    {
+      "id": "medical",
+      "modules": ["medical", "reports"]
+    }
   ],
   "changes": [
     {
@@ -262,7 +295,7 @@
       "bundle": true
     },
     {
-      "at": 934,
+      "at": 828,
       "duration": 84,
       "from": "manufacturing",
       "to": "simulation",
@@ -270,7 +303,7 @@
       "bundle": true
     },
     {
-      "at": 1200,
+      "at": 986,
       "duration": 78,
       "from": "simulation",
       "to": "reports",
@@ -278,7 +311,7 @@
       "bundle": true
     },
     {
-      "at": 1418,
+      "at": 1144,
       "duration": 90,
       "from": "reports",
       "to": "genomics",
@@ -286,7 +319,7 @@
       "bundle": false
     },
     {
-      "at": 1562,
+      "at": 1290,
       "duration": 90,
       "from": "genomics",
       "to": "climate",
@@ -294,7 +327,7 @@
       "bundle": false
     },
     {
-      "at": 1658,
+      "at": 1386,
       "duration": 72,
       "from": "climate",
       "to": "robotics",
@@ -302,7 +335,7 @@
       "bundle": false
     },
     {
-      "at": 1754,
+      "at": 1482,
       "duration": 66,
       "from": "robotics",
       "to": "materials",
@@ -310,7 +343,7 @@
       "bundle": false
     },
     {
-      "at": 1850,
+      "at": 1578,
       "duration": 60,
       "from": "materials",
       "to": "medical",
@@ -319,8 +352,8 @@
     }
   ],
   "closing": {
-    "at": 1976,
-    "settled": 2036,
+    "at": 1704,
+    "settled": 1764,
     "line": "Build your own.",
     "url": "https://clio.iowarp.ai/"
   }

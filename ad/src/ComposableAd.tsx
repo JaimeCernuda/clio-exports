@@ -1,4 +1,3 @@
-import React from "react";
 import {
   AbsoluteFill,
   Img,
@@ -6,191 +5,22 @@ import {
   useCurrentFrame,
   interpolateColors,
 } from "remotion";
-import {
-  ArrowUpRight,
-  Box,
-  ChevronRight,
-  Database,
-  FileText,
-  Plus,
-  Search,
-  Sparkles,
-  Wrench,
-  X,
-  Zap,
-} from "lucide-react";
+import { ArrowUpRight, Box, ChevronRight, Plus, Search } from "lucide-react";
 import {
   adPointer,
-  adPluginPoses,
-  adInspection,
   adSelection,
   adMenu,
-  adAddition,
-  adFocus,
-  adContributionOpacity,
   adState,
   copy,
+  paper,
   profiles,
-  type AdModule,
 } from "./composable-ad-plan";
-import { ease, phase } from "./prompt-morph";
+import { phase } from "./prompt-morph";
 import { AdMeasures, AdPromptInk, useAdLayouts } from "./AdPrompt";
 import { AdOpening } from "./AdOpening";
+import { AdCapabilities, PluginNode } from "./AdCapabilities";
 import "./composable-ad.css";
-
 const mix = (a: number, b: number, p: number) => a + (b - a) * p;
-
-/** The native contribution hierarchy belongs to its plugin, including hooks. */
-function PluginPiece({
-  module,
-  expand,
-  bodyOpacity = 0,
-  frame,
-  inspectionAt,
-  selectionProgress,
-  additionProgress,
-  additionHover = 0,
-  style = {},
-}: {
-  module: AdModule;
-  expand: number;
-  bodyOpacity?: number;
-  frame?: number;
-  inspectionAt?: number;
-  selectionProgress?: number;
-  additionProgress?: number;
-  additionHover?: number;
-  style?: React.CSSProperties;
-}) {
-  const morph = selectionProgress ?? 1,
-    headerHeight = 58 + 18 * morph,
-    meta = phase(morph, 0.85, 0.15);
-  const rows = [
-    {
-      label: "Prompt",
-      value: module.role ? "Identity + workflow" : "Workflow instructions",
-      Icon: FileText,
-    },
-    ...module.skills.map((value) => ({
-      label: "Skills",
-      value,
-      Icon: Sparkles,
-    })),
-    ...module.mcpServers.map((value) => ({
-      label: "MCP servers",
-      value,
-      Icon: Database,
-    })),
-    ...module.tools.map((value) => ({ label: "Tools", value, Icon: Wrench })),
-    ...module.hooks.map((value) => ({ label: "Hooks", value, Icon: Zap })),
-  ];
-  return (
-    <div
-      className="ad-plugin-frame"
-      data-ad-plugin={module.id}
-      data-ad-selection-frame={
-        selectionProgress !== undefined ? frame : undefined
-      }
-      data-ad-add-frame={additionProgress !== undefined ? frame : undefined}
-      style={{
-        ...style,
-        height: headerHeight + (rows.length * 43 + 15) * expand,
-      }}
-    >
-      <div
-        className="ad-plugin"
-        style={{
-          borderRadius: 8 + 7 * morph,
-          borderColor: `rgba(202,221,229,${morph})`,
-          clipPath: `inset(0 round ${8 + 7 * morph}px)`,
-        }}
-      >
-        <div
-          className="ad-plugin-title"
-          style={{
-            background: module.color,
-            height: headerHeight,
-            paddingLeft: 17 + 3 * morph,
-            gap: 14 - 2 * morph,
-          }}
-        >
-          <Box size={23 + 2 * morph} style={{ marginTop: 3.5 - 1.5 * morph }} />
-          <strong
-            data-ad-plugin-name
-            style={{
-              fontSize: 25 + morph,
-              fontWeight: 500 + 50 * morph,
-              letterSpacing: -0.7 * morph,
-            }}
-          >
-            {module.name}
-          </strong>
-          <span
-            className="ad-plugin-control"
-            style={{
-              right: 17 + 3 * morph,
-              top: 18.5 - 0.5 * morph,
-              background: `rgba(255,255,255,${0.75 * additionHover * (1 - (additionProgress ?? 1))})`,
-              boxShadow: `0 0 0 6px rgba(255,255,255,${0.75 * additionHover * (1 - (additionProgress ?? 1))})`,
-            }}
-          >
-            <ChevronRight
-              size={19}
-              style={{
-                opacity:
-                  additionProgress === undefined ? 1 - phase(morph, 0, 0.4) : 0,
-              }}
-            />
-            {additionProgress !== undefined ? (
-              <Plus
-                data-ad-plugin-remove
-                size={19}
-                style={{
-                  transform: `rotate(${45 * additionProgress}deg) scale(${1 - 0.1 * additionProgress})`,
-                }}
-              />
-            ) : (
-              <X
-                data-ad-plugin-remove
-                size={17}
-                style={{ left: 1, top: 1, opacity: phase(morph, 0.6, 0.4) }}
-              />
-            )}
-          </span>
-          {meta > 0.001 ? (
-            <small style={{ opacity: meta }}>
-              {module.skills.length} skill
-              {module.skills.length === 1 ? "" : "s"}
-              {module.mcpServers.length
-                ? ` · ${module.mcpServers.length} MCP`
-                : ""}{" "}
-              · {module.hooks.length} hook{module.hooks.length === 1 ? "" : "s"}
-            </small>
-          ) : null}
-        </div>
-        {bodyOpacity > 0.001 && expand > 0.001 ? (
-          <div className="ad-plugin-contents">
-            {rows.map(({ label, value, Icon }, index) => (
-              <div
-                key={`${label}:${value}`}
-                style={{
-                  opacity:
-                    frame !== undefined && inspectionAt !== undefined
-                      ? adContributionOpacity(frame, inspectionAt, index)
-                      : bodyOpacity,
-                }}
-              >
-                <Icon size={21} />
-                <span>{label}</span>
-                <strong>{value}</strong>
-              </div>
-            ))}
-          </div>
-        ) : null}
-      </div>
-    </div>
-  );
-}
 
 function PluginPicker({ frame }: { frame: number }) {
   const open = phase(frame, copy.staging.menuAt, 18),
@@ -231,18 +61,17 @@ function PluginPicker({ frame }: { frame: number }) {
         ))}
       </div>
       {frame >= copy.staging.selectAt && frame < copy.staging.dockAt ? (
-        <PluginPiece
+        <PluginNode
           module={profiles.manufacturing.modules[0]}
-          expand={0}
           frame={frame}
-          selectionProgress={selected.morph}
+          morph={selected.morph}
+          selected
           style={{
             position: "absolute",
             left: selected.x,
             top: selected.y,
             width: selected.width,
             opacity: 1,
-            boxShadow: `0 17px 42px rgba(21,56,75,${0.0784 * selected.morph})`,
             zIndex: 12,
           }}
         />
@@ -251,86 +80,7 @@ function PluginPicker({ frame }: { frame: number }) {
   );
 }
 
-/** A plugin is inspected, then the same row docks; capabilities are never added alone. */
-function Composition({ frame }: { frame: number }) {
-  const state = adState(frame),
-    p = state.p,
-    poses = adPluginPoses(state.from, state.to, p),
-    addition = adAddition(frame);
-  return (
-    <>
-      {addition && frame < addition.change.at ? (
-        <PluginPiece
-          key={`offer-${addition.module.id}`}
-          module={addition.module}
-          expand={0}
-          frame={frame}
-          additionProgress={0}
-          additionHover={addition.hover}
-          style={{
-            position: "absolute",
-            left: addition.x,
-            top: addition.y,
-            width: addition.width,
-            opacity: addition.opacity,
-            zIndex: 8,
-          }}
-        />
-      ) : null}
-      {poses.map((pose) => {
-        const inspected = pose.added && state.change?.bundle;
-        if (inspected) {
-          const target = adPluginPoses(state.from, state.to, 1).find(
-            (item) => item.name === pose.name,
-          )!;
-          const actor = adInspection(frame, state.change!.at, target.x, true);
-          return (
-            <PluginPiece
-              key={pose.name}
-              module={pose.module}
-              expand={actor.expand}
-              bodyOpacity={actor.bodyOpacity}
-              frame={frame}
-              inspectionAt={state.change!.at}
-              additionProgress={
-                state.from.id !== "base"
-                  ? phase(frame, state.change!.at, copy.addition.controlFrames)
-                  : undefined
-              }
-              additionHover={addition?.hover}
-              style={{
-                position: "absolute",
-                left: actor.x,
-                top: actor.y,
-                width: actor.width,
-                opacity:
-                  actor.opacity * (1 - phase(frame, copy.closing.at, 30)),
-                zIndex: 8,
-              }}
-            />
-          );
-        }
-        return (
-          <PluginPiece
-            key={pose.name}
-            module={pose.module}
-            expand={0}
-            style={{
-              position: "absolute",
-              left: pose.x,
-              top: 820 - (pose.kept ? 0 : 35 * (1 - pose.opacity)),
-              width: pose.width,
-              opacity: pose.opacity * (1 - phase(frame, copy.closing.at, 30)),
-              zIndex: 5,
-            }}
-          />
-        );
-      })}
-    </>
-  );
-}
-
-/** A single visual argument: compose a plugin bundle, then reuse it across domains. */
+/** One fixed prompt and a persistent tree show composition without repeated zooms. */
 export function ComposableAd({
   auditLayouts = false,
 }: {
@@ -339,24 +89,18 @@ export function ComposableAd({
   const frame = useCurrentFrame(),
     { layouts, opening } = useAdLayouts(auditLayouts),
     state = adState(frame),
-    p = state.p,
-    t = ease(p);
-  const body = phase(frame, copy.staging.promptAt, 70),
+    body = phase(frame, copy.staging.promptAt, 70),
     retire = phase(frame, copy.closing.at, 32),
     brandClose = phase(frame, copy.closing.at + 14, 46),
-    end = phase(frame, copy.closing.at + 46, 14);
-  const focus = adFocus(frame);
-  const height = layouts
-    ? mix(layouts[state.from.id].height, layouts[state.to.id].height, t) + 96
-    : 316;
-  const pointer = adPointer(frame, opening);
+    end = phase(frame, copy.closing.at + 46, 14),
+    pointer = adPointer(frame, opening),
+    logoTravel = phase(frame, 500, 100);
   const startLogo = opening
     ? {
         x: 960 - opening.width / 2 + opening.logo.x,
         y: 540 - opening.height / 2 + opening.logo.y,
       }
     : { x: 260, y: 498 };
-  const logoTravel = phase(frame, 500, 100);
   return (
     <AbsoluteFill className="ad-film">
       <AdMeasures />
@@ -364,13 +108,14 @@ export function ComposableAd({
       <PluginPicker frame={frame} />
       <div
         className="ad-prompt-paper"
+        data-ad-paper-frame={frame}
         style={{
-          left: 340 - 180 * focus,
-          top: 465 - height / 2,
-          width: 1240,
-          height,
+          left: paper.x,
+          top: paper.y,
+          width: paper.width,
+          height: paper.height,
           opacity: body * (1 - retire),
-          transform: `translateY(${20 * (1 - body)}px) scale(${1 - 0.2 * focus}) rotate(${-1.3 * focus}deg)`,
+          transform: `scale(${paper.scale})`,
         }}
       >
         <div className="ad-prompt-content">
@@ -379,7 +124,8 @@ export function ComposableAd({
               layouts={layouts}
               from={state.from}
               to={state.to}
-              p={p}
+              p={state.p}
+              frame={frame}
             />
           ) : null}
         </div>
@@ -387,7 +133,7 @@ export function ComposableAd({
           className="ad-domain-rule"
           style={{
             background: interpolateColors(
-              p,
+              state.p,
               [0, 0.18, 0.47, 1],
               [
                 state.from.color,
@@ -399,14 +145,14 @@ export function ComposableAd({
           }}
         />
       </div>
-      <Composition frame={frame} />
+      <AdCapabilities frame={frame} />
       {frame >= 500 ? (
         <Img
           src={staticFile("clio-mark.svg")}
           className="ad-brand-owl"
           style={{
-            left: mix(mix(startLogo.x, 245, logoTravel), 530, brandClose),
-            top: mix(mix(startLogo.y, 160, logoTravel), 490, brandClose),
+            left: mix(mix(startLogo.x, 140, logoTravel), 530, brandClose),
+            top: mix(mix(startLogo.y, 135, logoTravel), 490, brandClose),
             width: mix(mix(84, 72, logoTravel), 148, brandClose),
             height: mix(mix(84, 72, logoTravel), 148, brandClose),
           }}

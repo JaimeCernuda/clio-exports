@@ -94,7 +94,12 @@ export function adWheel(frame: number) {
   };
   const position = positionAt(frame),
     velocity = (positionAt(frame + 0.5) - positionAt(frame - 0.5)) * 124;
-  return { position, velocity, blur: Math.min(17, Math.abs(velocity) * 0.75) };
+  const blur = Math.min(
+    copy.wheel.motionBlur.maxPixels,
+    Math.max(0, Math.abs(velocity) - copy.wheel.motionBlur.threshold) *
+      copy.wheel.motionBlur.exposure,
+  );
+  return { position, velocity, blur };
 }
 
 /** Change the sentence case in two phases so readable A/a glyphs never overlap. */
@@ -105,99 +110,154 @@ export function adOpeningCase(frame: number) {
   };
 }
 
-/** Retained plugins move first; arriving rows keep clearance from occupied slots. */
-export function adPluginPoses(from: AdProfile, to: AdProfile, p: number) {
-  const slots = (profile: AdProfile) =>
-    Object.fromEntries(
-      profile.pieces.map((name, i) => [
-        name,
-        960 - (profile.pieces.length * 330 - 20) / 2 + i * 330,
-      ]),
-    );
-  const before = slots(from),
-    after = slots(to),
-    t = ease(p);
-  return [...new Set([...from.pieces, ...to.pieces])].map((name) => {
-    const a = before[name],
-      b = after[name],
-      kept = a !== undefined && b !== undefined;
-    const module = [...to.modules, ...from.modules].find(
-      (module) => module.name === name,
-    )!;
-    const enter = phase(p, 0.18, 0.27),
-      exit = 1 - ease(p / 0.18);
-    let x = kept
-      ? a + (b - a) * t
-      : b === undefined
-        ? a - 70 * (1 - exit)
-        : b + (to.pieces.indexOf(name) === 0 ? -220 : 220) * (1 - enter);
-    if (a === undefined)
-      for (const other of from.pieces.filter(
-        (candidate) => after[candidate] !== undefined,
-      )) {
-        const occupied = before[other] + (after[other] - before[other]) * t;
-        x =
-          b < after[other]
-            ? Math.min(x, occupied - 330)
-            : Math.max(x, occupied + 330);
-      }
-    return {
-      name,
-      module,
-      width: 310,
-      x,
-      opacity: kept ? 1 : b === undefined ? exit : enter,
-      kept,
-      added: a === undefined,
-    };
-  });
+export const paper = { x: 140, y: 245, width: 1240, height: 620, scale: 0.82 };
+export const tree = {
+  x: 1270,
+  y: 240,
+  width: 500,
+  header: 58,
+  rowTop: 70,
+  rowHeight: 38,
+  gap: 26,
+};
+
+/** Each visible leaf retains its plugin owner and real contribution family. */
+export function adContributions(profile: AdProfile) {
+  return profile.modules.flatMap((module) => adModuleRows(module));
 }
 
-/** Contribution ownership is preserved when plugins are added, removed or reused. */
-export function adContributions(profile: AdProfile) {
-  return profile.modules.flatMap((module) =>
-    (["skills", "mcpServers", "tools", "hooks"] as const).flatMap((family) =>
-      module[family].map((name) => ({ owner: module.id, family, name })),
-    ),
+/** Flatten each plugin's capability arrays into attributed, readable tree leaves. */
+export function adModuleRows(module: AdModule) {
+  const labels = {
+    skills: "Skills",
+    mcpServers: "MCP servers",
+    tools: "Tools",
+    hooks: "Hooks",
+  };
+  return (["skills", "mcpServers", "tools", "hooks"] as const).flatMap(
+    (family) =>
+      module[family].map((name, index) => ({
+        id: module.id + ":" + family + ":" + index,
+        owner: module.id,
+        family,
+        label: labels[family],
+        name,
+      })),
   );
 }
 
-/** Extract below the prompt, round its corner, then rise beside it. */
-export function adSelection(frame: number) {
-  const cue = copy.staging,
-    source = copy.selection.source,
-    progress = phase(frame, cue.selectAt, cue.dockAt - cue.selectAt),
-    firstLeg = 1280 - source.x,
-    lastLeg = source.y - 20 - 300,
-    distance = progress * (firstLeg + 10 * Math.PI + lastLeg),
-    morph = phase(
-      frame,
-      cue.selectAt + copy.selection.retireFrames,
-      copy.selection.morphFrames,
-    );
-  let x: number, y: number;
-  if (distance <= firstLeg) {
-    x = source.x + distance;
-    y = source.y;
-  } else if (distance <= firstLeg + 10 * Math.PI) {
-    const angle = (distance - firstLeg) / 20;
-    x = 1280 + 20 * Math.sin(angle);
-    y = source.y - 20 + 20 * Math.cos(angle);
-  } else {
-    x = 1300;
-    y = source.y - 20 - (distance - firstLeg - 10 * Math.PI);
-  }
+/** Persistent capability branches make room for an additive plugin below its owners. */
+export function adTreeLayout(profile: AdProfile) {
+  let y: number = tree.y;
+  return profile.modules.map((module) => {
+    const rows = adModuleRows(module),
+      height = tree.header + 22 + rows.length * tree.rowHeight;
+    const pose = { module, rows, x: tree.x, y, width: tree.width, height };
+    y += height + tree.gap;
+    return pose;
+  });
+}
+
+/** Kept branches move as a unit; removed leaves clear before the replacement grows. */
+export function adTreePoses(frame: number) {
+  const { from, to, p, change } = adState(frame),
+    before = adTreeLayout(from),
+    after = adTreeLayout(to);
+  return [
+    ...new Set([...from.modules, ...to.modules].map((module) => module.id)),
+  ]
+    .map((id) => {
+      const a = before.find((pose) => pose.module.id === id),
+        b = after.find((pose) => pose.module.id === id),
+        source = b ?? a!,
+        kept = Boolean(a && b),
+        added = !a,
+        opacity = kept
+          ? 1
+          : !b
+            ? 1 - phase(p, 0, 0.18)
+            : change?.bundle
+              ? 1
+              : phase(p, 0.18, 0.27),
+        open =
+          kept || !b
+            ? 1
+            : change?.bundle
+              ? phase(frame, change.at, 16)
+              : phase(p, 0.22, 0.2);
+      return {
+        ...source,
+        kept,
+        added,
+        opacity,
+        open,
+        edge: kept
+          ? 1
+          : !b
+            ? opacity
+            : change?.bundle
+              ? phase(frame, change.at, 16)
+              : opacity,
+        y: kept ? a!.y + (b!.y - a!.y) * ease(p) : source.y,
+        height: tree.header + (source.height - tree.header) * open,
+        rows: source.rows.map((row, i) => ({
+          ...row,
+          opacity: kept
+            ? 1
+            : !b
+              ? 1 - phase(p, 0, 0.14)
+              : change?.bundle
+                ? phase(frame, change.at + 16 + i * 8, 10)
+                : phase(p, 0.4 + i * 0.08, 0.16),
+        })),
+      };
+    })
+    .sort((a, b) => a.y - b.y);
+}
+
+/** The paper has one fixed scale, position and size throughout composition. */
+export function adPromptBounds() {
   return {
-    x,
-    y,
-    width: source.width + (470 - source.width) * progress,
-    height: source.height + (76 - source.height) * morph,
-    morph,
-    focus: phase(frame, cue.selectAt, 16),
+    x: paper.x,
+    y: paper.y,
+    width: paper.width * paper.scale,
+    height: paper.height * paper.scale,
   };
 }
 
-/** The filmed cursor highlights its choice; neighbors retire before the row grows. */
+/** A workflow addition is offered at its eventual tree position before the click. */
+export function adAddition(frame: number) {
+  const change = copy.changes.find(
+    (entry) =>
+      entry.bundle &&
+      entry.from !== "base" &&
+      frame >= entry.at - copy.addition.leadFrames &&
+      frame <= entry.at + 36,
+  );
+  if (!change) return null;
+  const target = adTreeLayout(profiles[change.to]).find(
+    (pose) =>
+      !profiles[change.from].modules.some(
+        (module) => module.id === pose.module.id,
+      ),
+  );
+  if (!target) throw Error("Missing offered plugin at " + change.at);
+  return {
+    ...target,
+    height: tree.header,
+    change,
+    opacity: phase(
+      frame,
+      change.at - copy.addition.leadFrames,
+      copy.addition.showFrames,
+    ),
+    hover: phase(frame, change.at - 20, 8),
+    added: phase(frame, change.at, copy.addition.controlFrames),
+    clickAt: change.at - copy.addition.clickBefore,
+  };
+}
+
+/** Menu neighbors disappear before the selected source row changes its styling. */
 export function adMenu(frame: number) {
   return {
     opacity:
@@ -208,206 +268,147 @@ export function adMenu(frame: number) {
   };
 }
 
-/** A workflow plugin is offered and clicked before it changes the agent. */
-export function adAddition(frame: number) {
-  const change = copy.changes.find(
-    (entry) =>
-      entry.bundle &&
-      entry.from !== "base" &&
-      frame >= entry.at - copy.addition.leadFrames &&
-      frame <= entry.at + 36,
-  );
-  if (!change) return null;
-  const module = profiles[change.to].modules.find(
-    (entry) => !profiles[change.from].pieces.includes(entry.name),
-  );
-  if (!module) throw new Error(`Missing offered plugin at ${change.at}`);
-  const start = change.at - copy.addition.leadFrames;
-  return {
-    change,
-    module,
-    x: 1300,
-    y: 300,
-    width: 470,
-    height: 76,
-    opacity: phase(
+/** The selected row follows a rounded, clear route into the capability tree. */
+export function adSelection(frame: number) {
+  const source = copy.selection.source,
+    p = phase(
       frame,
-      start + copy.addition.focusFrames,
-      copy.addition.showFrames,
+      copy.staging.selectAt,
+      copy.staging.dockAt - copy.staging.selectAt,
     ),
-    focus: phase(frame, start, copy.addition.focusFrames),
-    hover: phase(frame, change.at - 20, 8),
-    added: phase(frame, change.at, copy.addition.controlFrames),
-    clickAt: change.at - copy.addition.clickBefore,
-  };
-}
-
-/** Make room before offering a plugin and retain that framing through its handoff. */
-export function adFocus(frame: number) {
-  const pending = adAddition(frame);
-  if (pending && frame < pending.change.at) return pending.focus;
-  const state = adState(frame);
-  if (state.change?.bundle)
-    return adInspection(frame, state.change.at, 805, true).focus;
-  return state.change ? 0 : adSelection(frame).focus;
-}
-
-interface RoutePoint {
-  x: number;
-  y: number;
-  length: number;
-}
-const inspectionRoutes = new Map<number, RoutePoint[]>();
-
-/** Row count and reading time determine when a bundle can close and travel. */
-export function adInspectionTiming(at: number) {
-  const change = copy.changes.find((change) => change.at === at);
-  if (!change?.bundle) throw new Error(`No bundle inspection at frame ${at}`);
-  const module = profiles[change.to].modules.find(
-    (module) => !profiles[change.from].pieces.includes(module.name),
-  );
-  if (!module) throw new Error(`No new plugin at frame ${at}`);
-  const rows =
-    1 +
-    module.skills.length +
-    module.mcpServers.length +
-    module.tools.length +
-    module.hooks.length;
-  const cue = copy.inspection,
-    allRowsAt =
-      cue.contentsAt + (rows - 1) * cue.rowStaggerFrames + cue.contentsFrames,
-    fadeAt = allRowsAt + change.readFrames,
-    collapseAt = fadeAt + cue.fadeFrames,
-    transferAt = collapseAt + cue.collapseFrames,
-    settleAt = transferAt + cue.transferFrames,
-    end = settleAt + cue.settleFrames;
-  return { rows, allRowsAt, fadeAt, collapseAt, transferAt, settleAt, end };
-}
-
-/** Contributions appear in their plugin in order, with a readable complete hold. */
-export function adContributionOpacity(frame: number, at: number, row: number) {
-  const cue = copy.inspection,
-    elapsed = frame - at,
-    timing = adInspectionTiming(at);
-  if (!Number.isInteger(row) || row < 0 || row >= timing.rows)
-    throw new Error(`Invalid contribution row ${row}`);
-  return (
-    phase(
-      elapsed,
-      cue.contentsAt + row * cue.rowStaggerFrames,
-      cue.contentsFrames,
-    ) *
-    (1 - phase(elapsed, timing.fadeAt, cue.fadeFrames))
-  );
-}
-
-/** Constant-distance sampling of a rounded route outside prompt and occupied slots. */
-export function adInspectionRoute(targetX: number, progress: number) {
-  let points = inspectionRoutes.get(targetX);
-  if (!points) {
-    const coordinates: Array<{ x: number; y: number }> = [
-      { x: 1300, y: 300 },
-      { x: 1300, y: 680 },
-    ];
-    const corner = (
-      start: { x: number; y: number },
-      control: { x: number; y: number },
-      end: { x: number; y: number },
-    ) => {
-      for (let i = 1; i <= 24; i++) {
-        const t = i / 24;
-        coordinates.push({
-          x:
-            (1 - t) ** 2 * start.x +
-            2 * (1 - t) * t * control.x +
-            t * t * end.x,
-          y:
-            (1 - t) ** 2 * start.y +
-            2 * (1 - t) * t * control.y +
-            t * t * end.y,
-        });
-      }
-    };
-    corner({ x: 1300, y: 680 }, { x: 1300, y: 715 }, { x: 1265, y: 715 });
-    coordinates.push({ x: targetX + 35, y: 715 });
-    corner(
-      { x: targetX + 35, y: 715 },
-      { x: targetX, y: 715 },
-      { x: targetX, y: 750 },
-    );
-    coordinates.push({ x: targetX, y: 820 });
-    let length = 0;
-    points = coordinates.map((point, i) => {
-      if (i)
-        length += Math.hypot(
-          point.x - coordinates[i - 1].x,
-          point.y - coordinates[i - 1].y,
-        );
-      return { ...point, length };
-    });
-    inspectionRoutes.set(targetX, points);
+    radius = 20,
+    leg = tree.x - radius - source.x,
+    turn = (Math.PI * radius) / 2,
+    rise = source.y - radius - tree.y,
+    distance = p * (leg + turn + rise);
+  let x: number, y: number;
+  if (distance <= leg) {
+    x = source.x + distance;
+    y = source.y;
+  } else if (distance <= leg + turn) {
+    const angle = (distance - leg) / radius;
+    x = tree.x - radius + radius * Math.sin(angle);
+    y = source.y - radius + radius * Math.cos(angle);
+  } else {
+    x = tree.x;
+    y = source.y - radius - (distance - leg - turn);
   }
-  const distance = points.at(-1)!.length * Math.max(0, Math.min(1, progress));
-  const i = Math.max(
-    1,
-    points.findIndex((point) => point.length >= distance),
-  );
-  const a = points[i - 1],
-    b = points[i],
-    p = (distance - a.length) / (b.length - a.length);
-  return { x: a.x + (b.x - a.x) * p, y: a.y + (b.y - a.y) * p };
-}
-
-/** Inspection, collapse, transfer and refocus are separate from prompt-edit timing. */
-export function adInspection(
-  frame: number,
-  at: number,
-  targetX: number,
-  handedOff = false,
-) {
-  const cue = copy.inspection,
-    elapsed = frame - at,
-    timing = adInspectionTiming(at);
-  const arrival = handedOff ? 1 : phase(elapsed, 4, 12);
-  const collapse = phase(elapsed, timing.collapseAt, cue.collapseFrames);
-  const expand = phase(elapsed, 0, cue.expandFrames) * (1 - collapse);
-  const travel = phase(elapsed, timing.transferAt, cue.transferFrames);
-  const route = adInspectionRoute(targetX, travel);
-  const release = phase(elapsed, timing.settleAt, cue.settleFrames);
   return {
-    x: route.x + 280 * (1 - arrival),
-    y: route.y,
-    width: 470 - 160 * collapse,
-    expand,
-    bodyOpacity:
-      phase(elapsed, cue.contentsAt, cue.contentsFrames) *
-      (1 - phase(elapsed, timing.fadeAt, cue.fadeFrames)),
-    opacity: arrival,
-    focus:
-      (handedOff ? adSelection(frame).focus : phase(elapsed, 0, 16)) *
-      (1 - release),
-    travel,
+    x,
+    y,
+    width: source.width + (tree.width - source.width) * p,
+    height: tree.header,
+    morph: phase(
+      frame,
+      copy.staging.selectAt + copy.selection.retireFrames,
+      copy.selection.morphFrames,
+    ),
   };
 }
 
-/** The visible prompt bounds, including its cinematic scale and slight rotation. */
-export function adPromptBounds(height: number, focus: number) {
-  const scale = 1 - 0.2 * focus,
-    angle = (1.3 * focus * Math.PI) / 180;
-  const cx = 960 - 180 * focus,
-    cy = 465;
-  const halfWidth =
-    scale * (620 * Math.cos(angle) + (height / 2) * Math.sin(angle));
-  const halfHeight =
-    scale * ((height / 2) * Math.cos(angle) + 620 * Math.sin(angle));
-  return {
-    x: cx - halfWidth,
-    y: cy - halfHeight,
-    width: halfWidth * 2,
-    height: halfHeight * 2,
-  };
+/** Color only changed fragments, with their owning plugin's tint, through the reading settle. */
+export function adEditMarks(a: PromptLayout, b: PromptLayout, frame: number) {
+  const state = adState(frame);
+  if (!state.change) return [];
+  const strength =
+      1 - phase(frame, state.change.at + state.change.duration + 24, 24),
+    groups = new Map<
+      string,
+      {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+        color: string;
+        opacity: number;
+        removed: boolean;
+      }
+    >();
+  for (const word of adWords(a, b, state.p)) {
+    if (
+      word.motion === "keep" ||
+      word.opacity < 0.02 ||
+      word.clipBottom >= word.height
+    )
+      continue;
+    const removed = word.motion === "remove",
+      profile = removed ? state.from : state.to,
+      owner = profile.modules.find((module) =>
+        word.block.startsWith(module.id + ":"),
+      ),
+      color = owner?.color ?? profile.color,
+      opacity = removed ? word.opacity * 0.34 : strength * word.opacity * 0.7,
+      key = word.motion + ":" + word.block + ":" + word.y.toFixed(2),
+      existing = groups.get(key),
+      right = word.x + word.width;
+    if (opacity <= 0.001) continue;
+    if (existing) {
+      const left = Math.min(existing.x, word.x);
+      existing.width = Math.max(existing.x + existing.width, right) - left;
+      existing.x = left;
+    } else
+      groups.set(key, {
+        x: word.x,
+        y: word.y,
+        width: word.width,
+        height: word.height - word.clipBottom,
+        color,
+        opacity,
+        removed,
+      });
+  }
+  return [...groups.values()];
 }
 
+/** One continuous cursor approaches each actual add control, then clears the tree. */
+export function adPointer(frame: number, geometry?: OpeningGeometry | null) {
+  const addition = adAddition(frame);
+  if (addition) {
+    const r = frame - addition.change.at,
+      approach = phase(r, -36, 22),
+      depart = phase(r, 6, 22),
+      targetX = addition.x + addition.width - 31,
+      targetY = addition.y + tree.header / 2 - 2;
+    return {
+      x: targetX + 101 * (1 - approach) + 71 * depart,
+      y: targetY + 148 * (1 - approach) + 103 * depart,
+      opacity: phase(r, -36, 8) * (1 - phase(r, 16, 16)),
+      press: Math.max(0, 1 - Math.abs(frame - addition.clickAt) / 5),
+    };
+  }
+  const plus = geometry
+      ? {
+          x:
+            960 -
+            geometry.width / 2 +
+            geometry.plus.x +
+            geometry.plus.width / 2,
+          y: 540,
+        }
+      : { x: 1600, y: 540 },
+    points = [
+      { f: 440, x: 1790, y: 755 },
+      { f: 480, ...plus },
+      { f: 500, ...plus },
+      { f: 554, x: 1450, y: 694 },
+      { f: 568, x: 1450, y: 694 },
+      { f: 604, x: 1810, y: 900 },
+    ],
+    b = points.find((point) => frame <= point.f) ?? points.at(-1)!,
+    i = points.indexOf(b),
+    a = points[Math.max(0, i - 1)],
+    p = a.f === b.f ? 1 : phase(frame, a.f, b.f - a.f);
+  return {
+    x: a.x + (b.x - a.x) * p,
+    y: a.y + (b.y - a.y) * p,
+    opacity: phase(frame, 440, 16) * (1 - phase(frame, 585, 20)),
+    press: Math.max(
+      0,
+      1 - Math.abs(frame - 484) / 5,
+      1 - Math.abs(frame - 559) / 5,
+    ),
+  };
+}
 /** Inserted text waits for the retained lower lines to open its space. */
 export function adWords(
   a: PromptLayout,
@@ -447,48 +448,4 @@ export function adWords(
           bottom = Math.min(bottom, following.y - 7);
     return { ...word, clipBottom: Math.max(0, word.y + word.height - bottom) };
   });
-}
-
-/** A continuous pointer operates the plus and the real-style plugin picker. */
-export function adPointer(frame: number, geometry?: OpeningGeometry | null) {
-  const addition = adAddition(frame);
-  if (addition) {
-    const relative = frame - addition.change.at,
-      approach = phase(relative, -36, 22),
-      depart = phase(relative, 6, 22);
-    return {
-      x: 1840 + (1739 - 1840) * approach + 71 * depart,
-      y: 475 + (327 - 475) * approach + 103 * depart,
-      opacity: phase(relative, -36, 8) * (1 - phase(relative, 16, 16)),
-      press: Math.max(0, 1 - Math.abs(frame - addition.clickAt) / 5),
-    };
-  }
-  const plus = geometry
-    ? {
-        x: 960 - geometry.width / 2 + geometry.plus.x + geometry.plus.width / 2,
-        y: 540,
-      }
-    : { x: 1600, y: 540 };
-  const points = [
-    { f: 440, x: 1790, y: 755 },
-    { f: 480, ...plus },
-    { f: 500, ...plus },
-    { f: 554, x: 1300, y: 694 },
-    { f: 568, x: 1300, y: 694 },
-    { f: 604, x: 1770, y: 900 },
-  ];
-  const b = points.find((point) => frame <= point.f) ?? points.at(-1)!;
-  const i = points.indexOf(b),
-    a = points[Math.max(0, i - 1)],
-    p = a.f === b.f ? 1 : phase(frame, a.f, b.f - a.f);
-  return {
-    x: a.x + (b.x - a.x) * p,
-    y: a.y + (b.y - a.y) * p,
-    opacity: phase(frame, 440, 16) * (1 - phase(frame, 585, 20)),
-    press: Math.max(
-      0,
-      1 - Math.abs(frame - 484) / 5,
-      1 - Math.abs(frame - 559) / 5,
-    ),
-  };
 }

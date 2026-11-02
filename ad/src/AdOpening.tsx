@@ -21,6 +21,7 @@ export function AdOpening({
   const brand = phase(frame, copy.staging.brandAt, 58),
     plus = phase(frame, copy.staging.plusAt, 26),
     wheel = adWheel(frame);
+  const filterId = measure ? "ad-wheel-motion-measure" : "ad-wheel-motion";
   const font = 96 - 20 * brand;
   const brandWidth = geometry?.brand?.width ?? 300,
     sentenceCase = adOpeningCase(frame);
@@ -110,7 +111,7 @@ export function AdOpening({
         <div
           className="ad-word-viewport"
           style={{
-            filter: `blur(${wheel.blur}px)`,
+            filter: wheel.blur > 0 ? `url(#${filterId})` : undefined,
             position: measure ? "relative" : undefined,
           }}
         >
@@ -163,6 +164,25 @@ export function AdOpening({
       >
         <Plus size={38} />
       </div>
+      <svg
+        width={0}
+        height={0}
+        style={{ position: "absolute" }}
+        aria-hidden="true"
+      >
+        <defs>
+          <filter
+            id={filterId}
+            x="-5%"
+            y="-30%"
+            width="110%"
+            height="160%"
+            colorInterpolationFilters="sRGB"
+          >
+            <feGaussianBlur stdDeviation={`0 ${wheel.blur}`} />
+          </filter>
+        </defs>
+      </svg>
     </div>
   );
 }
