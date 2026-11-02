@@ -4,18 +4,37 @@ import {
   adContributions,
   adInspection,
   adInspectionRoute,
+  adInspectionTiming,
+  adContributionOpacity,
   adSelection,
   adPromptBounds,
   adPointer,
   adPluginPoses,
   adState,
   adWheel,
+  adOpeningCase,
   adWords,
   copy,
   profiles,
 } from "../src/composable-ad-plan";
 import type { PromptLayout, WordBox } from "../src/prompt-morph";
 import { phase } from "../src/prompt-morph";
+
+test("opening sentence case clears the uppercase glyph before revealing lowercase", () => {
+  assert.deepEqual(adOpeningCase(copy.staging.brandAt), { upper: 1, lower: 0 });
+  assert.deepEqual(adOpeningCase(copy.staging.brandAt + 34), {
+    upper: 0,
+    lower: 1,
+  });
+  for (
+    let frame = copy.staging.brandAt;
+    frame <= copy.staging.brandAt + 50;
+    frame++
+  ) {
+    const glyph = adOpeningCase(frame);
+    assert.equal(glyph.upper * glyph.lower, 0);
+  }
+});
 
 test("menu extraction clears the appearing prompt and hands off without a jump", () => {
   let previous = adSelection(copy.staging.selectAt);
@@ -314,7 +333,11 @@ test("a plugin closes before transfer and routes around the prompt and retained 
       target.x,
       from.id === "base",
     );
-    for (let elapsed = 0; elapsed <= 148; elapsed++) {
+    for (
+      let elapsed = 0;
+      elapsed <= adInspectionTiming(change.at).end;
+      elapsed++
+    ) {
       const p = Math.min(1, elapsed / change.duration),
         state = adInspection(
           change.at + elapsed,
@@ -369,4 +392,41 @@ test("a plugin closes before transfer and routes around the prompt and retained 
     assert.deepEqual(adInspectionRoute(target.x, 0), { x: 1300, y: 300 });
     assert.deepEqual(adInspectionRoute(target.x, 1), { x: target.x, y: 820 });
   }
+});
+
+test("bundle rows reveal in order and stay fully readable before closing", () => {
+  const inspections = copy.changes.filter((change) => change.bundle);
+  assert.equal(inspections.length, 3);
+  assert.equal(inspections[0].to, "manufacturing");
+  assert.ok(copy.changes.filter((change) => !change.bundle).length >= 5);
+  for (const [index, change] of inspections.entries()) {
+    const timing = adInspectionTiming(change.at),
+      next = copy.changes.find((candidate) => candidate.at > change.at);
+    assert.ok(timing.fadeAt - timing.allRowsAt >= (index === 0 ? 108 : 60));
+    assert.ok(next && change.at + timing.end < next.at);
+    for (let elapsed = timing.allRowsAt; elapsed <= timing.fadeAt; elapsed++)
+      for (let row = 0; row < timing.rows; row++)
+        assert.equal(
+          adContributionOpacity(change.at + elapsed, change.at, row),
+          1,
+        );
+    for (let row = 1; row < timing.rows; row++) {
+      const start =
+        change.at +
+        copy.inspection.contentsAt +
+        row * copy.inspection.rowStaggerFrames;
+      assert.equal(adContributionOpacity(start, change.at, row), 0);
+      assert.ok(adContributionOpacity(start, change.at, row - 1) > 0);
+    }
+    for (let row = 0; row < timing.rows; row++)
+      assert.equal(
+        adContributionOpacity(change.at + timing.transferAt, change.at, row),
+        0,
+      );
+  }
+  assert.throws(() => adInspectionTiming(0), /No bundle inspection/);
+  assert.throws(
+    () => adContributionOpacity(620, 620, -1),
+    /Invalid contribution row/,
+  );
 });

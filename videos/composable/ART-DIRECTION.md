@@ -13,15 +13,21 @@ reuse: add a Reports plugin, then retain it while the agent changes domain.
    readably, then accelerating through many fields and settling on composable.
    This is the sole opening device; do not combine it with delete/retype.
 2. The owl and CLIO join the phrase. The plus appears in the same measured flex
-   row, on the same center line. Press it to reveal the native-style plugin picker.
+   row, on the same center line, with consistent gaps based on the text widths.
+   The full brand scales into its allocated space without clipped letters or owl.
+   Press the plus to reveal the native-style plugin picker.
 3. Manufacturing is selected. Its row expands to show instructions, a skill,
    an MCP server, a tool and a hook. The prompt becomes a manufacturing prompt.
-   The disclosure then docks as the same plugin piece beneath the prompt.
+   Rows arrive in sequence, then the complete bundle has 1.8 seconds of reading
+   time. The disclosure docks as the same plugin piece beneath the prompt.
 4. Simulation and Reports bring their own bundles and extend the current work.
    Their contributions are owned by those plugins, never independently added.
+   Give each completed list 1.1 seconds before closing it.
 5. Replace the domain with Genomics and Climate, then move more briskly through
    Robotics, Materials and Medical research. Identity and domain instructions
-   change coherently. Reports stays, making reuse visible.
+   change coherently. Reports stays, making reuse visible. Do not reopen an
+   inspector for every domain: the established motion vocabulary carries these
+   changes more briskly.
 6. Resolve to Build your own / CLIO, the URL and a stationary QR for five seconds.
 
 ## Form

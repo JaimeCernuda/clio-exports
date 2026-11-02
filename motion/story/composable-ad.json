@@ -1,7 +1,7 @@
 {
-  "schema": "clio.composable-ad.v6",
+  "schema": "clio.composable-ad.v7",
   "fps": 60,
-  "frames": 2100,
+  "frames": 2240,
   "treatment": "One agent. Different domains. Plugins bring the instructions and capabilities together.",
   "copyMode": "Native-derived CLIO composition elements with illustrative domain plugins and uniform editorial prompt text; not an installed catalogue, complete resolved backend prompt, or recorded run.",
   "wheel": {
@@ -42,11 +42,9 @@
     "expandFrames": 16,
     "contentsAt": 16,
     "contentsFrames": 8,
-    "fadeAt": 52,
+    "rowStaggerFrames": 6,
     "fadeFrames": 8,
-    "collapseAt": 60,
     "collapseFrames": 8,
-    "transferAt": 68,
     "transferFrames": 54,
     "settleFrames": 20
   },
@@ -246,61 +244,69 @@
       "duration": 84,
       "from": "base",
       "to": "manufacturing",
+      "readFrames": 108,
       "bundle": true
     },
     {
-      "at": 770,
+      "at": 886,
       "duration": 84,
       "from": "manufacturing",
       "to": "simulation",
+      "readFrames": 66,
       "bundle": true
     },
     {
-      "at": 920,
+      "at": 1104,
       "duration": 78,
       "from": "simulation",
       "to": "reports",
+      "readFrames": 66,
       "bundle": true
     },
     {
-      "at": 1070,
+      "at": 1322,
       "duration": 90,
       "from": "reports",
       "to": "genomics",
-      "bundle": true
+      "readFrames": 0,
+      "bundle": false
     },
     {
-      "at": 1240,
+      "at": 1466,
       "duration": 90,
       "from": "genomics",
       "to": "climate",
-      "bundle": true
+      "readFrames": 0,
+      "bundle": false
     },
     {
-      "at": 1400,
+      "at": 1562,
       "duration": 72,
       "from": "climate",
       "to": "robotics",
+      "readFrames": 0,
       "bundle": false
     },
     {
-      "at": 1520,
+      "at": 1658,
       "duration": 66,
       "from": "robotics",
       "to": "materials",
+      "readFrames": 0,
       "bundle": false
     },
     {
-      "at": 1630,
+      "at": 1754,
       "duration": 60,
       "from": "materials",
       "to": "medical",
+      "readFrames": 0,
       "bundle": false
     }
   ],
   "closing": {
-    "at": 1740,
-    "settled": 1800,
+    "at": 1880,
+    "settled": 1940,
     "line": "Build your own.",
     "url": "https://clio.iowarp.ai/"
   }

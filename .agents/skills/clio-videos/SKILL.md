@@ -48,6 +48,15 @@ Keep that choreography independent of the text-edit duration. Hidden contributio
 DOM painted outside a moving card in the encode: unmount hidden contents, remove
 unnecessary nested transforms and use explicit paint containment and clipping.
 Check all workers and consecutive encoded frames, not only the intended DOM boxes.
+Technical clearance did not fix the v6 pacing: full contribution lists were readable
+for under half a second, and five identical inspections became repetitive. Budget
+reading time after the last row is completely visible, stagger contribution rows
+inside their owning plugin, and reserve the expanded treatment for the additive
+build. Reuse that vocabulary for brisk domain changes. The current cut holds its
+first complete bundle for 1.8 seconds and the next two for 1.1 seconds; these are
+film-specific choices, not a global duration rule. Measure all opening words and
+their gaps, not only the owl and plus. Reveal the full brand in its allocated
+space and clear A before introducing a, avoiding a doubled glyph during a fade.
 For source-bound demos, source real identities and contributed prompt fragments. Scope text matches
 by fragment and ordered phrases; isolated repeated words should not fly across
 unrelated prose. Measure destination wrapping after fonts load. Open insertion

@@ -22,6 +22,10 @@ export interface OpeningGeometry {
   height: number;
   logo: { x: number; y: number; width: number; height: number };
   plus: { x: number; y: number; width: number; height: number };
+  brand?: { x: number; y: number; width: number; height: number };
+  prefix?: { x: number; y: number; width: number; height: number };
+  slot?: { x: number; y: number; width: number; height: number };
+  suffix?: { x: number; y: number; width: number; height: number };
 }
 
 /** Plugins own their instructions and every contributed capability family. */
@@ -91,6 +95,14 @@ export function adWheel(frame: number) {
   const position = positionAt(frame),
     velocity = (positionAt(frame + 0.5) - positionAt(frame - 0.5)) * 124;
   return { position, velocity, blur: Math.min(17, Math.abs(velocity) * 0.75) };
+}
+
+/** Change the sentence case in two phases so readable A/a glyphs never overlap. */
+export function adOpeningCase(frame: number) {
+  return {
+    upper: 1 - phase(frame, copy.staging.brandAt + 14, 10),
+    lower: phase(frame, copy.staging.brandAt + 24, 10),
+  };
 }
 
 /** Retained plugins move first; arriving rows keep clearance from occupied slots. */
@@ -182,6 +194,48 @@ interface RoutePoint {
 }
 const inspectionRoutes = new Map<number, RoutePoint[]>();
 
+/** Row count and reading time determine when a bundle can close and travel. */
+export function adInspectionTiming(at: number) {
+  const change = copy.changes.find((change) => change.at === at);
+  if (!change?.bundle) throw new Error(`No bundle inspection at frame ${at}`);
+  const module = profiles[change.to].modules.find(
+    (module) => !profiles[change.from].pieces.includes(module.name),
+  );
+  if (!module) throw new Error(`No new plugin at frame ${at}`);
+  const rows =
+    1 +
+    module.skills.length +
+    module.mcpServers.length +
+    module.tools.length +
+    module.hooks.length;
+  const cue = copy.inspection,
+    allRowsAt =
+      cue.contentsAt + (rows - 1) * cue.rowStaggerFrames + cue.contentsFrames,
+    fadeAt = allRowsAt + change.readFrames,
+    collapseAt = fadeAt + cue.fadeFrames,
+    transferAt = collapseAt + cue.collapseFrames,
+    settleAt = transferAt + cue.transferFrames,
+    end = settleAt + cue.settleFrames;
+  return { rows, allRowsAt, fadeAt, collapseAt, transferAt, settleAt, end };
+}
+
+/** Contributions appear in their plugin in order, with a readable complete hold. */
+export function adContributionOpacity(frame: number, at: number, row: number) {
+  const cue = copy.inspection,
+    elapsed = frame - at,
+    timing = adInspectionTiming(at);
+  if (!Number.isInteger(row) || row < 0 || row >= timing.rows)
+    throw new Error(`Invalid contribution row ${row}`);
+  return (
+    phase(
+      elapsed,
+      cue.contentsAt + row * cue.rowStaggerFrames,
+      cue.contentsFrames,
+    ) *
+    (1 - phase(elapsed, timing.fadeAt, cue.fadeFrames))
+  );
+}
+
 /** Constant-distance sampling of a rounded route outside prompt and occupied slots. */
 export function adInspectionRoute(targetX: number, progress: number) {
   let points = inspectionRoutes.get(targetX);
@@ -247,17 +301,14 @@ export function adInspection(
   handedOff = false,
 ) {
   const cue = copy.inspection,
-    elapsed = frame - at;
+    elapsed = frame - at,
+    timing = adInspectionTiming(at);
   const arrival = handedOff ? 1 : phase(elapsed, 4, 12);
-  const collapse = phase(elapsed, cue.collapseAt, cue.collapseFrames);
+  const collapse = phase(elapsed, timing.collapseAt, cue.collapseFrames);
   const expand = phase(elapsed, 0, cue.expandFrames) * (1 - collapse);
-  const travel = phase(elapsed, cue.transferAt, cue.transferFrames);
+  const travel = phase(elapsed, timing.transferAt, cue.transferFrames);
   const route = adInspectionRoute(targetX, travel);
-  const release = phase(
-    elapsed,
-    cue.transferAt + cue.transferFrames,
-    cue.settleFrames,
-  );
+  const release = phase(elapsed, timing.settleAt, cue.settleFrames);
   return {
     x: route.x + 280 * (1 - arrival),
     y: route.y,
@@ -265,7 +316,7 @@ export function adInspection(
     expand,
     bodyOpacity:
       phase(elapsed, cue.contentsAt, cue.contentsFrames) *
-      (1 - phase(elapsed, cue.fadeAt, cue.fadeFrames)),
+      (1 - phase(elapsed, timing.fadeAt, cue.fadeFrames)),
     opacity: arrival,
     focus:
       (handedOff ? adSelection(frame).focus : phase(elapsed, 0, 16)) *

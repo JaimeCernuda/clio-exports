@@ -10,6 +10,7 @@ import {
   adState,
   adPointer,
   adInspection,
+  adInspectionTiming,
   adPluginPoses,
   adPromptBounds,
   profiles,
@@ -42,6 +43,41 @@ assert.ok(
   ) < 0.1,
   "Brand and plus are misaligned",
 );
+assert.ok(opening.brand && opening.prefix && opening.slot && opening.suffix);
+for (const [a, b] of [
+  [opening.brand, opening.prefix],
+  [opening.prefix, opening.slot],
+  [opening.slot, opening.suffix],
+  [opening.suffix, opening.plus],
+])
+  assert.ok(
+    Math.abs(b.x - a.x - a.width - 20) < 0.5,
+    "Opening spacing must follow the measured text",
+  );
+const plugins: Array<{
+  id: string;
+  width: number;
+  nameRight: number;
+  closeLeft: number;
+  closeRight: number;
+}> = JSON.parse(readFileSync("review/composable-ad-plugins.json", "utf8"));
+for (const module of copy.modules)
+  assert.ok(
+    plugins.some(
+      (plugin) => plugin.id === module.id && Math.abs(plugin.width - 310) < 0.1,
+    ),
+    `Missing compact header measurement: ${module.id}`,
+  );
+for (const plugin of plugins) {
+  assert.ok(
+    plugin.closeLeft - plugin.nameRight >= 8,
+    `Plugin name crowds removal: ${plugin.id}`,
+  );
+  assert.ok(
+    plugin.closeRight <= plugin.width - 12,
+    `Removal is clipped: ${plugin.id}`,
+  );
+}
 assert.deepEqual(
   [
     ...new Set(
@@ -106,10 +142,7 @@ for (const change of copy.changes.filter((change) => change.bundle)) {
     target = adPluginPoses(from, to, 1).find((pose) => pose.added)!;
   for (
     let elapsed = 0;
-    elapsed <=
-    copy.inspection.transferAt +
-      copy.inspection.transferFrames +
-      copy.inspection.settleFrames;
+    elapsed <= adInspectionTiming(change.at).end;
     elapsed++
   ) {
     const p = Math.min(1, elapsed / change.duration),
@@ -170,7 +203,7 @@ if (process.argv.includes("--geometry-only")) {
   );
   process.exit(0);
 }
-const video = process.argv[2] ?? "out/composable/clio-composable-ad-v6.mp4";
+const video = process.argv[2] ?? "out/composable/clio-composable-ad-v7.mp4";
 // Inspect every encoded inspection frame, including every render worker. DOM
 // bounds alone cannot detect a browser compositing glyph outside its container.
 const inspectionFrames = copy.changes
@@ -178,11 +211,7 @@ const inspectionFrames = copy.changes
   .flatMap((change) =>
     Array.from(
       {
-        length:
-          copy.inspection.transferAt +
-          copy.inspection.transferFrames +
-          copy.inspection.settleFrames +
-          1,
+        length: adInspectionTiming(change.at).end + 1,
       },
       (_, elapsed) => ({ frame: change.at + elapsed, change, elapsed }),
     ),
@@ -200,7 +229,7 @@ const selection =
     .filter((change) => change.bundle)
     .map(
       (change) =>
-        `between(n\\,${change.at}\\,${change.at + copy.inspection.transferAt + copy.inspection.transferFrames + copy.inspection.settleFrames})`,
+        `between(n\\,${change.at}\\,${change.at + adInspectionTiming(change.at).end})`,
     )
     .join("+");
 const paintWidth = 640,
@@ -376,6 +405,13 @@ const report = {
   audio: "original procedural sound design",
   profiles: Object.keys(layouts).length,
   transitions: copy.changes.length,
+  bundleReadSeconds: copy.changes
+    .filter((change) => change.bundle)
+    .map((change) => ({
+      plugin: change.to,
+      seconds: change.readFrames / copy.fps,
+    })),
+  measuredPluginHeaders: plugins.length,
   wordCollisions: collisions,
   componentOcclusions,
   encodedInspectionFrames: inspectionFrames.length,

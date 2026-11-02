@@ -121,10 +121,35 @@ export function useAdLayouts(record = false) {
           height: origin.height,
           logo: relative("[data-ad-logo]"),
           plus: relative("[data-ad-plus]"),
+          brand: relative("[data-ad-brand]"),
+          prefix: relative("[data-ad-prefix]"),
+          slot: relative("[data-ad-slot]"),
+          suffix: relative("[data-ad-suffix]"),
         };
         if (record) {
           console.log(`__CLIO_AD_LAYOUTS__${JSON.stringify(measured)}`);
           console.log(`__CLIO_AD_OPENING__${JSON.stringify(openingGeometry)}`);
+          const pluginGeometry = Array.from(
+            document.querySelectorAll<HTMLElement>("[data-ad-plugin]"),
+          ).map((element) => {
+            const card = element.getBoundingClientRect(),
+              name = element
+                .querySelector<HTMLElement>("[data-ad-plugin-name]")!
+                .getBoundingClientRect(),
+              close = element
+                .querySelector<SVGElement>(
+                  ".ad-plugin-title > svg:last-of-type",
+                )!
+                .getBoundingClientRect();
+            return {
+              id: element.dataset.adPlugin,
+              width: card.width,
+              nameRight: name.right - card.left,
+              closeLeft: close.left - card.left,
+              closeRight: close.right - card.left,
+            };
+          });
+          console.log(`__CLIO_AD_PLUGINS__${JSON.stringify(pluginGeometry)}`);
         }
         setLayouts(measured);
         setOpening(openingGeometry);

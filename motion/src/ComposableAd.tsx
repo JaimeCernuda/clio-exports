@@ -18,6 +18,7 @@ import {
   adPluginPoses,
   adInspection,
   adSelection,
+  adContributionOpacity,
   adState,
   copy,
   profiles,
@@ -35,11 +36,15 @@ function PluginPiece({
   module,
   expand,
   bodyOpacity = 0,
+  frame,
+  inspectionAt,
   style = {},
 }: {
   module: AdModule;
   expand: number;
   bodyOpacity?: number;
+  frame?: number;
+  inspectionAt?: number;
   style?: React.CSSProperties;
 }) {
   const rows = [
@@ -64,12 +69,13 @@ function PluginPiece({
   return (
     <div
       className="ad-plugin-frame"
+      data-ad-plugin={module.id}
       style={{ ...style, height: 76 + (rows.length * 43 + 15) * expand }}
     >
       <div className="ad-plugin">
         <div className="ad-plugin-title" style={{ background: module.color }}>
           <Box size={25} />
-          <strong>{module.name}</strong>
+          <strong data-ad-plugin-name>{module.name}</strong>
           <X size={17} />
           <small>
             {module.skills.length} skill{module.skills.length === 1 ? "" : "s"}
@@ -80,15 +86,18 @@ function PluginPiece({
           </small>
         </div>
         {bodyOpacity > 0.001 && expand > 0.001 ? (
-          <div
-            className="ad-plugin-contents"
-            style={{
-              opacity: bodyOpacity,
-            }}
-          >
-            {rows.map(({ label, value, Icon }) => (
-              <div key={`${label}:${value}`}>
-                <Icon size={19} />
+          <div className="ad-plugin-contents">
+            {rows.map(({ label, value, Icon }, index) => (
+              <div
+                key={`${label}:${value}`}
+                style={{
+                  opacity:
+                    frame !== undefined && inspectionAt !== undefined
+                      ? adContributionOpacity(frame, inspectionAt, index)
+                      : bodyOpacity,
+                }}
+              >
+                <Icon size={21} />
                 <span>{label}</span>
                 <strong>{value}</strong>
               </div>
@@ -169,6 +178,8 @@ function Composition({ frame }: { frame: number }) {
               module={pose.module}
               expand={actor.expand}
               bodyOpacity={actor.bodyOpacity}
+              frame={frame}
+              inspectionAt={state.change!.at}
               style={{
                 position: "absolute",
                 left: actor.x,
@@ -236,7 +247,7 @@ export function ComposableAd({
   return (
     <AbsoluteFill className="ad-film">
       <AdMeasures />
-      <AdOpening frame={frame} />
+      <AdOpening frame={frame} geometry={opening} />
       <PluginPicker frame={frame} />
       <div
         className="ad-prompt-paper"

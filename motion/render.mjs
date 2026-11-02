@@ -38,7 +38,13 @@ const cursorSamples = new Map();
 let promptLayouts;
 let adLayouts;
 let adOpening;
+const adPlugins = new Map();
 const collectBrowserLog = (log) => {
+  if (log.text.startsWith("__CLIO_AD_PLUGINS__"))
+    for (const plugin of JSON.parse(
+      log.text.slice("__CLIO_AD_PLUGINS__".length),
+    ))
+      adPlugins.set(`${plugin.id}:${plugin.width}`, plugin);
   if (log.text.startsWith("__CLIO_AD_OPENING__"))
     adOpening = JSON.parse(log.text.slice("__CLIO_AD_OPENING__".length));
   if (log.text.startsWith("__CLIO_AD_LAYOUTS__"))
@@ -213,6 +219,11 @@ try {
     await writeFile(
       path.join(root, "review/composable-ad-layouts.json"),
       JSON.stringify(adLayouts, null, 2) + "\n",
+    );
+  if (adPlugins.size)
+    await writeFile(
+      path.join(root, "review/composable-ad-plugins.json"),
+      JSON.stringify([...adPlugins.values()], null, 2),
     );
   if (adOpening)
     await writeFile(

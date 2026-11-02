@@ -28,11 +28,19 @@
   transform: none;
 }
 .ad-opening-brand {
+  position: relative;
+  height: 124px;
+  overflow: visible;
+  flex-shrink: 0;
+}
+.ad-opening-brand-content {
   display: flex;
   align-items: center;
   gap: 15px;
-  overflow: hidden;
-  flex-shrink: 0;
+  height: 124px;
+  left: 0;
+  top: 0;
+  transform-origin: left center;
 }
 .ad-opening-brand img {
   flex-shrink: 0;
@@ -45,11 +53,19 @@
 }
 .ad-opening-prefix,
 .ad-opening-suffix {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 124px;
   flex-shrink: 0;
+}
+.ad-prefix-letter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .ad-word-slot {
   position: relative;
@@ -279,13 +295,13 @@
   flex-shrink: 0;
 }
 .ad-plugin-contents span {
-  width: 108px;
+  width: 124px;
   flex-shrink: 0;
-  font-size: 16px;
+  font-size: 20px;
   color: #254a5e;
 }
 .ad-plugin-contents strong {
-  font-size: 20px;
+  font-size: 22px;
   letter-spacing: -0.4px;
   font-weight: 500;
 }

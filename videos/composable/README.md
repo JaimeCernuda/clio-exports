@@ -1,6 +1,6 @@
 # CLIO: a composable agent
 
-The active film is a 35-second, 1920 × 1080 / 60 fps motion advertisement. Its
+The active film is a 37⅓-second, 1920 × 1080 / 60 fps motion advertisement. Its
 opening and closing are PR. The middle is a pseudo demo of editable native-derived
 CLIO plugin controls and prompt text, reshaped for the film without app chrome.
 See [ART-DIRECTION.md](ART-DIRECTION.md) for the story and craft references.
@@ -8,18 +8,26 @@ See [ART-DIRECTION.md](ART-DIRECTION.md) for the story and craft references.
 One vertical wheel changes whole domain words inside **A [domain] agent** while
 the surrounding words stay fixed. It accelerates, settles on composable, and
 forms one aligned CLIO/phrase/plus lockup. There is no typing/backspacing sequence.
+Every part uses measured text widths with uniform gaps. The brand arrives as a
+complete piece; the sentence-case change clears the old letter before revealing
+the new one.
 
 Manufacturing opens to reveal its prompt, skill, MCP, tool and hook contributions.
 Simulation and Reports then extend it. The agent becomes Genomics, Climate,
 Robotics, Materials and Medical research, retaining Reports to demonstrate reuse.
+Only the three additive bundles open. Their contents reveal in sequence and stay
+fully readable for 1.8 seconds for Manufacturing and 1.1 seconds for Simulation
+and Reports. Domain changes then proceed without repeating the inspection loop.
 Its displayed identity always follows the active domain. The real CLIO owl remains
 the brand anchor. There is no generic robot, agent reference or inspector header.
 
 The selected row clears the prompt before rising into inspection. Each disclosure
 fades its contents, closes, and follows a rounded route below the prompt before
 docking. The prompt returns to center after the row arrives. Timing for those
-steps is separate from the prompt edits and is controlled by `inspection` in the
-story file.
+steps is separate from the prompt edits. `inspection` controls expansion, row
+reveal, closure and transfer; each change's `readFrames` starts after the final
+row is fully visible. Changing a reading hold automatically shifts closure,
+docking and the corresponding sound cue. Keep the next change after refocus ends.
 
 These are illustrative domain plugins and a uniform editorial representation of
 their prompt. The film does not claim to show a complete backend-resolved prompt,
@@ -64,8 +72,8 @@ node scripts/prepare-composable-qr.mjs
 npm run composable:render
 ```
 
-Outputs: `out/composable/clio-composable-ad-v6-clean.mp4` and
-`out/composable/clio-composable-ad-v6.mp4`. Original synthetic sound is aligned
+Outputs: `out/composable/clio-composable-ad-v7-clean.mp4` and
+`out/composable/clio-composable-ad-v7.mp4`. Original synthetic sound is aligned
 to the cues. No reference-film footage, artwork or soundtrack is reused. Successful
 raw renderer intermediates and the temporary WAV are removed; movies stay local.
 
@@ -75,15 +83,18 @@ the render frame. Do not launch a second bundle into `motion/bundle` during a re
 After changing text or layout, measure again before checking geometry:
 
 ```powershell
-node render.mjs stills --composition ClioComposableAd --scale 1 --frames 588,688,1090,2050 --props examples/composable-measure.json > review/composable-ad-v6-measure.log
+node render.mjs stills --composition ClioComposableAd --scale 1 --frames 480,700,870,950,1090,1170,1310,1420,1560,1656,1752,1820,2050 --props examples/composable-measure.json > review/composable-ad-v7-measure.log
 npx tsx scripts/review-composable-ad.ts --geometry-only
 npm run composable:review
 ```
 
-Review covers uniform prompt typography, measured logo/plus alignment, every
+Measure every compact plugin header after changing names, fonts or timing; the
+reviewer checks that each name and removal control fits the actual component.
+
+Review covers uniform prompt typography, measured opening alignment and gaps, every
 instruction edit frame, whole-card clearance from the prompt and retained rows,
 full movie decode, audio, QR decoding and a settled final five seconds. An encoded
-paint audit covers all 62 menu-extraction frames and all 715 inspection frames,
+paint audit covers all 62 menu-extraction frames and all 645 inspection frames,
 including every render worker. It flags dark paint outside the expected component
 bounds at 640 × 360 with a small codec-edge allowance; it does not judge animation
 quality or detect every possible defect inside those bounds.
@@ -103,4 +114,4 @@ in `motion/data/composable-prompts.json`; regenerate it only when deliberately
 changing those source pins. Prior movies remain local for comparison.
 
 Current status: revised full cut for user review; creative approval is pending.
-See [the current review receipt](review-ad-v6.md) for checks and review limits.
+See [the current review receipt](review-ad-v7.md) for checks and review limits.

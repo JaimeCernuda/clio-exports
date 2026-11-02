@@ -5,8 +5,8 @@ import path from "node:path";
 const root = path.resolve(import.meta.dirname, "..");
 process.chdir(root);
 const source =
-  process.argv[2] ?? "out/composable/clio-composable-ad-v6-clean.mp4";
-const output = process.argv[3] ?? "out/composable/clio-composable-ad-v6.mp4";
+  process.argv[2] ?? "out/composable/clio-composable-ad-v7-clean.mp4";
+const output = process.argv[3] ?? "out/composable/clio-composable-ad-v7.mp4";
 const score = JSON.parse(await readFile("story/composable-ad.json", "utf8"));
 const rate = 48000,
   seconds = score.frames / score.fps,
@@ -54,7 +54,7 @@ function chime(at, frequency = 480, strength = 0.032) {
 }
 
 // A sparse, warm pulse gives the film a meter without competing with the words.
-for (let beat = 0; beat < 48; beat++) {
+for (let beat = 0; beat * 0.5 < score.closing.at / score.fps; beat++) {
   const at = beat * 0.5;
   if (beat % 2 === 0)
     add(
@@ -88,14 +88,35 @@ for (const frame of [
 for (const [i, change] of score.changes.entries()) {
   tick((change.at + 10) / 60, 0.07);
   chime((change.at + 45) / 60, [440, 523.251, 659.255][i % 3], 0.022);
-  if (change.bundle)
-    tick(
-      (change.at +
-        score.inspection.transferAt +
-        score.inspection.transferFrames) /
-        60,
-      0.04,
-    );
+  if (change.bundle) {
+    const from = score.stages.find((stage) => stage.id === change.from),
+      to = score.stages.find((stage) => stage.id === change.to),
+      moduleId = to.modules.find((id) => !from.modules.includes(id)),
+      module = score.modules.find((item) => item.id === moduleId),
+      rows =
+        1 +
+        module.skills.length +
+        module.mcpServers.length +
+        module.tools.length +
+        module.hooks.length,
+      dockAt =
+        score.inspection.contentsAt +
+        (rows - 1) * score.inspection.rowStaggerFrames +
+        score.inspection.contentsFrames +
+        change.readFrames +
+        score.inspection.fadeFrames +
+        score.inspection.collapseFrames +
+        score.inspection.transferFrames;
+    for (let row = 0; row < rows; row++)
+      tick(
+        (change.at +
+          score.inspection.contentsAt +
+          row * score.inspection.rowStaggerFrames) /
+          score.fps,
+        0.025,
+      );
+    tick((change.at + dockAt) / score.fps, 0.04);
+  }
 }
 // The wheel has one rising air movement, not a click on every blurred word.
 sweep(score.wheel.at / 60, (score.wheel.end - score.wheel.at) / 60, 0.07);

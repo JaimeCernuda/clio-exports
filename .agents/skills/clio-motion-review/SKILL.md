@@ -84,9 +84,15 @@ missed an expanded plugin sweeping across the prompt and contribution glyphs
 escaping a card during its entrance. Check the menu extraction too: a safe dock
 route does not prove the selected row cleared the prompt on the way in. The current
 reviewer audits actual measured prompt bounds through every handoff and decodes
-all 777 extraction/inspection frames for unexpected dark paint outside the
+every extraction/inspection frame, derived from the current cues, for unexpected dark paint outside the
 components. Its broad masks and downsampled threshold are a regression check,
 not a substitute for inspecting the contents or judging motion.
+Check readable time after the final row reaches full opacity, rather than using
+the container's open duration. V6 passed clearance checks while providing less
+than half a second to read each bundle. Also inspect repeated motion patterns,
+all opening word gaps, sentence-case changes, whole-logo entrances, and plugin
+name/removal-control clearance. Record the measured compact header for every
+plugin; a bounding box around the whole card cannot detect clipping inside it.
 Verify source fonts/brand assets finish loading. Use the component lab's alternate
 layout to check a shared-component change without relying only on one film.
 

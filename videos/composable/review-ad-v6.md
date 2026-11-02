@@ -1,6 +1,9 @@
 # Plugin handoffs: re-review
 
-Revised full cut for user review. Creative approval remains pending.
+Superseded by [v7](review-ad-v7.md). Creative approval was not given. Further
+review found insufficient reading time for contribution lists, repetitive
+inspection loops and oversized gaps in the resolved opening. The receipt below
+records the v6 clearance checks, which did not establish those aspects of quality.
 
 - Local movie: `motion/out/composable/clio-composable-ad-v6.mp4` (not committed).
 - SHA-256: `6104418feb39fe310ed9b79de4796b0640bd9ed331e1f5c709552de67d12c294`.
