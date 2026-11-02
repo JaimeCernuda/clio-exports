@@ -38,9 +38,13 @@ instructions. A domain replacement changes the relevant fragments, preserving
 the reusable Reports contribution. Text clears before retained lines move through
 it, and new identity follows a visible incoming plugin.
 
-The active plugin is inspected at readable scale. The prompt makes room for it,
-then regains the center when the same plugin row docks. Finish horizontal travel
-before lowering a new plugin into the rail; this prevents crossing retained rows.
+The active plugin is inspected at readable scale. The prompt makes room before
+the selected row rises out of the menu. Contributions fade before their container
+closes. The closed row then travels down beside the prompt, around a rounded corner,
+across beneath it and down into the rail, clearing retained rows. The prompt regains
+the center after that same piece docks. Keep inspection, closure, travel and
+refocus timing independent from the text morph; a finished text edit does not mean
+the card has reached its destination.
 The plug-in-and-transform sequence provides the motion, rather than a permanent
 two-column page or arbitrary camera pulses.
 

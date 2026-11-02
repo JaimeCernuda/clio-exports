@@ -79,6 +79,14 @@ for the actual native passages. Keep production/disclosure notes outside the fil
 Inspect readable framing at output size and actual intended viewing size. Check
 CLIO's recognizability, hierarchy, typography, source content, clipping and label
 collisions. Sample entrances, exits and mid-morph frames as well as held layouts.
+For the composability ad, check whole cards as well as word boxes. The v5 review
+missed an expanded plugin sweeping across the prompt and contribution glyphs
+escaping a card during its entrance. Check the menu extraction too: a safe dock
+route does not prove the selected row cleared the prompt on the way in. The current
+reviewer audits actual measured prompt bounds through every handoff and decodes
+all 777 extraction/inspection frames for unexpected dark paint outside the
+components. Its broad masks and downsampled threshold are a regression check,
+not a substitute for inspecting the contents or judging motion.
 Verify source fonts/brand assets finish loading. Use the component lab's alternate
 layout to check a shared-component change without relying only on one film.
 

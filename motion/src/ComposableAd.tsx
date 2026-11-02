@@ -16,6 +16,8 @@ import {
 import {
   adPointer,
   adPluginPoses,
+  adInspection,
+  adSelection,
   adState,
   copy,
   profiles,
@@ -32,10 +34,12 @@ const mix = (a: number, b: number, p: number) => a + (b - a) * p;
 function PluginPiece({
   module,
   expand,
+  bodyOpacity = 0,
   style = {},
 }: {
   module: AdModule;
   expand: number;
+  bodyOpacity?: number;
   style?: React.CSSProperties;
 }) {
   const rows = [
@@ -59,35 +63,38 @@ function PluginPiece({
   ];
   return (
     <div
-      className="ad-plugin"
+      className="ad-plugin-frame"
       style={{ ...style, height: 76 + (rows.length * 43 + 15) * expand }}
     >
-      <div className="ad-plugin-title" style={{ background: module.color }}>
-        <Box size={25} />
-        <strong>{module.name}</strong>
-        <X size={17} />
-        <small>
-          {module.skills.length} skill{module.skills.length === 1 ? "" : "s"}
-          {module.mcpServers.length
-            ? ` · ${module.mcpServers.length} MCP`
-            : ""}{" "}
-          · {module.hooks.length} hook{module.hooks.length === 1 ? "" : "s"}
-        </small>
-      </div>
-      <div
-        className="ad-plugin-contents"
-        style={{
-          opacity: phase(expand, 0.15, 0.7),
-          transform: `translateY(${-8 * (1 - expand)}px)`,
-        }}
-      >
-        {rows.map(({ label, value, Icon }) => (
-          <div key={`${label}:${value}`}>
-            <Icon size={19} />
-            <span>{label}</span>
-            <strong>{value}</strong>
+      <div className="ad-plugin">
+        <div className="ad-plugin-title" style={{ background: module.color }}>
+          <Box size={25} />
+          <strong>{module.name}</strong>
+          <X size={17} />
+          <small>
+            {module.skills.length} skill{module.skills.length === 1 ? "" : "s"}
+            {module.mcpServers.length
+              ? ` · ${module.mcpServers.length} MCP`
+              : ""}{" "}
+            · {module.hooks.length} hook{module.hooks.length === 1 ? "" : "s"}
+          </small>
+        </div>
+        {bodyOpacity > 0.001 && expand > 0.001 ? (
+          <div
+            className="ad-plugin-contents"
+            style={{
+              opacity: bodyOpacity,
+            }}
+          >
+            {rows.map(({ label, value, Icon }) => (
+              <div key={`${label}:${value}`}>
+                <Icon size={19} />
+                <span>{label}</span>
+                <strong>{value}</strong>
+              </div>
+            ))}
           </div>
-        ))}
+        ) : null}
       </div>
     </div>
   );
@@ -95,7 +102,7 @@ function PluginPiece({
 
 function PluginPicker({ frame }: { frame: number }) {
   const open = phase(frame, copy.staging.menuAt, 18),
-    select = phase(frame, copy.staging.selectAt, 62),
+    selected = adSelection(frame),
     retire = phase(frame, copy.staging.selectAt, 22);
   return (
     <>
@@ -125,9 +132,9 @@ function PluginPicker({ frame }: { frame: number }) {
           expand={0}
           style={{
             position: "absolute",
-            left: mix(1060, 1300, select),
-            top: mix(660, 300, select),
-            width: mix(560, 470, select),
+            left: selected.x,
+            top: selected.y,
+            width: selected.width,
             opacity: 1,
             zIndex: 12,
           }}
@@ -147,23 +154,28 @@ function Composition({ frame }: { frame: number }) {
       {poses.map((pose) => {
         const inspected = pose.added && state.change?.bundle;
         if (inspected) {
-          const handedOff = state.from.id === "base",
-            arrival = handedOff ? 1 : phase(p, 0.08, 0.17);
-          const expand = phase(p, 0.02, 0.2) * (1 - phase(p, 0.68, 0.29));
-          const travelX = phase(p, 0.62, 0.25),
-            travelY = phase(p, 0.76, 0.24);
+          const target = adPluginPoses(state.from, state.to, 1).find(
+            (item) => item.name === pose.name,
+          )!;
+          const actor = adInspection(
+            frame,
+            state.change!.at,
+            target.x,
+            state.from.id === "base",
+          );
           return (
             <PluginPiece
               key={pose.name}
               module={pose.module}
-              expand={expand}
+              expand={actor.expand}
+              bodyOpacity={actor.bodyOpacity}
               style={{
                 position: "absolute",
-                left: mix(1300 + 280 * (1 - arrival), pose.x, travelX),
-                top: mix(300, 820, travelY),
-                width: mix(470, 310, travelY),
-                opacity: arrival * (1 - phase(frame, copy.closing.at, 30)),
-                transform: `rotate(${(1 - travelX) * 2 * (1 - arrival)}deg)`,
+                left: actor.x,
+                top: actor.y,
+                width: actor.width,
+                opacity:
+                  actor.opacity * (1 - phase(frame, copy.closing.at, 30)),
                 zIndex: 8,
               }}
             />
@@ -206,11 +218,10 @@ export function ComposableAd({
     end = phase(frame, copy.closing.at + 46, 14);
   const inspected = Boolean(state.change?.bundle);
   const focus = inspected
-    ? (state.from.id === "base"
-        ? phase(frame, copy.staging.selectAt, 62)
-        : phase(p, 0, 0.16)) *
-      (1 - phase(p, 0.7, 0.3))
-    : 0;
+    ? adInspection(frame, state.change!.at, 805, state.from.id === "base").focus
+    : !state.change
+      ? adSelection(frame).focus
+      : 0;
   const height = layouts
     ? mix(layouts[state.from.id].height, layouts[state.to.id].height, t) + 96
     : 316;
@@ -235,7 +246,7 @@ export function ComposableAd({
           width: 1240,
           height,
           opacity: body * (1 - retire),
-          transform: `translateY(${45 * (1 - body)}px) scale(${1 - 0.2 * focus}) rotate(${-1.3 * focus}deg)`,
+          transform: `translateY(${20 * (1 - body)}px) scale(${1 - 0.2 * focus}) rotate(${-1.3 * focus}deg)`,
         }}
       >
         <div className="ad-prompt-content">

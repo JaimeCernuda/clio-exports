@@ -1,5 +1,5 @@
 {
-  "schema": "clio.composable-ad.v5",
+  "schema": "clio.composable-ad.v6",
   "fps": 60,
   "frames": 2100,
   "treatment": "One agent. Different domains. Plugins bring the instructions and capabilities together.",
@@ -37,6 +37,18 @@
     "selectAt": 558,
     "promptAt": 540,
     "dockAt": 620
+  },
+  "inspection": {
+    "expandFrames": 16,
+    "contentsAt": 16,
+    "contentsFrames": 8,
+    "fadeAt": 52,
+    "fadeFrames": 8,
+    "collapseAt": 60,
+    "collapseFrames": 8,
+    "transferAt": 68,
+    "transferFrames": 54,
+    "settleFrames": 20
   },
   "baseLines": [
     { "id": "role", "text": "You are CLIO, a composable agent." },

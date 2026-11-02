@@ -5,8 +5,8 @@ import path from "node:path";
 const root = path.resolve(import.meta.dirname, "..");
 process.chdir(root);
 const source =
-  process.argv[2] ?? "out/composable/clio-composable-ad-v5-clean.mp4";
-const output = process.argv[3] ?? "out/composable/clio-composable-ad-v5.mp4";
+  process.argv[2] ?? "out/composable/clio-composable-ad-v6-clean.mp4";
+const output = process.argv[3] ?? "out/composable/clio-composable-ad-v6.mp4";
 const score = JSON.parse(await readFile("story/composable-ad.json", "utf8"));
 const rate = 48000,
   seconds = score.frames / score.fps,
@@ -88,6 +88,14 @@ for (const frame of [
 for (const [i, change] of score.changes.entries()) {
   tick((change.at + 10) / 60, 0.07);
   chime((change.at + 45) / 60, [440, 523.251, 659.255][i % 3], 0.022);
+  if (change.bundle)
+    tick(
+      (change.at +
+        score.inspection.transferAt +
+        score.inspection.transferFrames) /
+        60,
+      0.04,
+    );
 }
 // The wheel has one rising air movement, not a click on every blurred word.
 sweep(score.wheel.at / 60, (score.wheel.end - score.wheel.at) / 60, 0.07);

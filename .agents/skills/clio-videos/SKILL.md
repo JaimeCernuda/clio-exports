@@ -39,6 +39,15 @@ and keep the selected piece above the menu. Incoming plugins must wait for retai
 plugins to vacate their destination. Clear the prompt before the closing brand
 travels through its text, then reveal the CTA after the brand clears that area.
 Inspect these passages in the encode; clean held frames missed the collisions.
+The v5 composability re-review also found whole plugin cards crossing the prompt
+despite passing word-collision checks. Audit complete card bounds through menu
+extraction, inspection, closure, transfer and docking. Make room before a selected
+row rises; fade contents and close before moving it. Route below the prompt and
+above retained rows, with rounded turns, then restore the prompt after docking.
+Keep that choreography independent of the text-edit duration. Hidden contribution
+DOM painted outside a moving card in the encode: unmount hidden contents, remove
+unnecessary nested transforms and use explicit paint containment and clipping.
+Check all workers and consecutive encoded frames, not only the intended DOM boxes.
 For source-bound demos, source real identities and contributed prompt fragments. Scope text matches
 by fragment and ordered phrases; isolated repeated words should not fly across
 unrelated prose. Measure destination wrapping after fonts load. Open insertion

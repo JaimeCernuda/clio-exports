@@ -1,6 +1,10 @@
 # Plugin bundles and domains: review receipt
 
-Revised full cut for user review; creative approval is pending.
+Superseded by [the v6 re-review](review-ad-v6.md); creative approval was not given.
+Re-review found expanded plugin cards crossing the prompt and stray contribution
+text painted outside a card during an entrance. The original receipt below
+describes the checks performed, which did not catch those defects. Word-collision
+checks did not establish clearance of whole cards or correct browser compositing.
 
 - Local movie: `motion/out/composable/clio-composable-ad-v5.mp4` (not committed).
 - SHA-256: `38e2373c3b11d1cf29c9d461351d41af9d74372feb0f25f3af0a8369b38f7827`.

@@ -150,6 +150,148 @@ export function adContributions(profile: AdProfile) {
   );
 }
 
+/** Extract below the prompt, round its corner, then rise beside it. */
+export function adSelection(frame: number) {
+  const cue = copy.staging,
+    progress = phase(frame, cue.selectAt, cue.dockAt - cue.selectAt),
+    distance = progress * (220 + 10 * Math.PI + 340);
+  let x: number, y: number;
+  if (distance <= 220) {
+    x = 1060 + distance;
+    y = 660;
+  } else if (distance <= 220 + 10 * Math.PI) {
+    const angle = (distance - 220) / 20;
+    x = 1280 + 20 * Math.sin(angle);
+    y = 640 + 20 * Math.cos(angle);
+  } else {
+    x = 1300;
+    y = 640 - (distance - 220 - 10 * Math.PI);
+  }
+  return {
+    x,
+    y,
+    width: 560 - 90 * progress,
+    focus: phase(frame, cue.selectAt, 16),
+  };
+}
+
+interface RoutePoint {
+  x: number;
+  y: number;
+  length: number;
+}
+const inspectionRoutes = new Map<number, RoutePoint[]>();
+
+/** Constant-distance sampling of a rounded route outside prompt and occupied slots. */
+export function adInspectionRoute(targetX: number, progress: number) {
+  let points = inspectionRoutes.get(targetX);
+  if (!points) {
+    const coordinates: Array<{ x: number; y: number }> = [
+      { x: 1300, y: 300 },
+      { x: 1300, y: 680 },
+    ];
+    const corner = (
+      start: { x: number; y: number },
+      control: { x: number; y: number },
+      end: { x: number; y: number },
+    ) => {
+      for (let i = 1; i <= 24; i++) {
+        const t = i / 24;
+        coordinates.push({
+          x:
+            (1 - t) ** 2 * start.x +
+            2 * (1 - t) * t * control.x +
+            t * t * end.x,
+          y:
+            (1 - t) ** 2 * start.y +
+            2 * (1 - t) * t * control.y +
+            t * t * end.y,
+        });
+      }
+    };
+    corner({ x: 1300, y: 680 }, { x: 1300, y: 715 }, { x: 1265, y: 715 });
+    coordinates.push({ x: targetX + 35, y: 715 });
+    corner(
+      { x: targetX + 35, y: 715 },
+      { x: targetX, y: 715 },
+      { x: targetX, y: 750 },
+    );
+    coordinates.push({ x: targetX, y: 820 });
+    let length = 0;
+    points = coordinates.map((point, i) => {
+      if (i)
+        length += Math.hypot(
+          point.x - coordinates[i - 1].x,
+          point.y - coordinates[i - 1].y,
+        );
+      return { ...point, length };
+    });
+    inspectionRoutes.set(targetX, points);
+  }
+  const distance = points.at(-1)!.length * Math.max(0, Math.min(1, progress));
+  const i = Math.max(
+    1,
+    points.findIndex((point) => point.length >= distance),
+  );
+  const a = points[i - 1],
+    b = points[i],
+    p = (distance - a.length) / (b.length - a.length);
+  return { x: a.x + (b.x - a.x) * p, y: a.y + (b.y - a.y) * p };
+}
+
+/** Inspection, collapse, transfer and refocus are separate from prompt-edit timing. */
+export function adInspection(
+  frame: number,
+  at: number,
+  targetX: number,
+  handedOff = false,
+) {
+  const cue = copy.inspection,
+    elapsed = frame - at;
+  const arrival = handedOff ? 1 : phase(elapsed, 4, 12);
+  const collapse = phase(elapsed, cue.collapseAt, cue.collapseFrames);
+  const expand = phase(elapsed, 0, cue.expandFrames) * (1 - collapse);
+  const travel = phase(elapsed, cue.transferAt, cue.transferFrames);
+  const route = adInspectionRoute(targetX, travel);
+  const release = phase(
+    elapsed,
+    cue.transferAt + cue.transferFrames,
+    cue.settleFrames,
+  );
+  return {
+    x: route.x + 280 * (1 - arrival),
+    y: route.y,
+    width: 470 - 160 * collapse,
+    expand,
+    bodyOpacity:
+      phase(elapsed, cue.contentsAt, cue.contentsFrames) *
+      (1 - phase(elapsed, cue.fadeAt, cue.fadeFrames)),
+    opacity: arrival,
+    focus:
+      (handedOff ? adSelection(frame).focus : phase(elapsed, 0, 16)) *
+      (1 - release),
+    travel,
+  };
+}
+
+/** The visible prompt bounds, including its cinematic scale and slight rotation. */
+export function adPromptBounds(height: number, focus: number) {
+  const scale = 1 - 0.2 * focus,
+    angle = (1.3 * focus * Math.PI) / 180;
+  const cx = 960 - 180 * focus,
+    cy = 465;
+  const halfWidth =
+    scale * (620 * Math.cos(angle) + (height / 2) * Math.sin(angle));
+  const halfHeight =
+    scale * ((height / 2) * Math.cos(angle) + 620 * Math.sin(angle));
+  return {
+    x: cx - halfWidth,
+    y: cy - halfHeight,
+    width: halfWidth * 2,
+    height: halfHeight * 2,
+  };
+}
+
 /** Inserted text waits for the retained lower lines to open its space. */
 export function adWords(
   a: PromptLayout,

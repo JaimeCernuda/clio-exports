@@ -15,6 +15,12 @@ Robotics, Materials and Medical research, retaining Reports to demonstrate reuse
 Its displayed identity always follows the active domain. The real CLIO owl remains
 the brand anchor. There is no generic robot, agent reference or inspector header.
 
+The selected row clears the prompt before rising into inspection. Each disclosure
+fades its contents, closes, and follows a rounded route below the prompt before
+docking. The prompt returns to center after the row arrives. Timing for those
+steps is separate from the prompt edits and is controlled by `inspection` in the
+story file.
+
 These are illustrative domain plugins and a uniform editorial representation of
 their prompt. The film does not claim to show a complete backend-resolved prompt,
 an installed catalogue, a recorded execution or a successful live MCP connection.
@@ -58,8 +64,8 @@ node scripts/prepare-composable-qr.mjs
 npm run composable:render
 ```
 
-Outputs: `out/composable/clio-composable-ad-v5-clean.mp4` and
-`out/composable/clio-composable-ad-v5.mp4`. Original synthetic sound is aligned
+Outputs: `out/composable/clio-composable-ad-v6-clean.mp4` and
+`out/composable/clio-composable-ad-v6.mp4`. Original synthetic sound is aligned
 to the cues. No reference-film footage, artwork or soundtrack is reused. Successful
 raw renderer intermediates and the temporary WAV are removed; movies stay local.
 
@@ -69,16 +75,24 @@ the render frame. Do not launch a second bundle into `motion/bundle` during a re
 After changing text or layout, measure again before checking geometry:
 
 ```powershell
-node render.mjs stills --composition ClioComposableAd --scale 1 --frames 2050 --props examples/composable-measure.json > review/composable-ad-v5-measure.log
+node render.mjs stills --composition ClioComposableAd --scale 1 --frames 588,688,1090,2050 --props examples/composable-measure.json > review/composable-ad-v6-measure.log
 npx tsx scripts/review-composable-ad.ts --geometry-only
 npm run composable:review
 ```
 
 Review covers uniform prompt typography, measured logo/plus alignment, every
-instruction edit frame, retained/removed text clearance, full movie decode, audio,
-QR decoding and a settled final five seconds. Tests cover plugin ownership,
-domain identity, reusable contributions and action-before-effect timing. Inspect
-the encoded moving handoffs as well; technical checks do not approve taste or pacing.
+instruction edit frame, whole-card clearance from the prompt and retained rows,
+full movie decode, audio, QR decoding and a settled final five seconds. An encoded
+paint audit covers all 62 menu-extraction frames and all 715 inspection frames,
+including every render worker. It flags dark paint outside the expected component
+bounds at 640 × 360 with a small codec-edge allowance; it does not judge animation
+quality or detect every possible defect inside those bounds.
+
+Tests cover plugin ownership, domain identity, reusable contributions,
+action-before-effect timing, continuous handoffs and close-before-transfer.
+Inspect the encoded moving handoffs as well; technical checks do not approve taste
+or pacing. Hidden contribution text is unmounted and explicitly clipped; opacity
+alone is not sufficient protection against browser paint leakage.
 
 ## Prior treatments
 
@@ -89,4 +103,4 @@ in `motion/data/composable-prompts.json`; regenerate it only when deliberately
 changing those source pins. Prior movies remain local for comparison.
 
 Current status: revised full cut for user review; creative approval is pending.
-See [the current review receipt](review-ad-v5.md) for checks and review limits.
+See [the current review receipt](review-ad-v6.md) for checks and review limits.

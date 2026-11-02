@@ -2,6 +2,10 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   adContributions,
+  adInspection,
+  adInspectionRoute,
+  adSelection,
+  adPromptBounds,
   adPointer,
   adPluginPoses,
   adState,
@@ -11,6 +15,37 @@ import {
   profiles,
 } from "../src/composable-ad-plan";
 import type { PromptLayout, WordBox } from "../src/prompt-morph";
+import { phase } from "../src/prompt-morph";
+
+test("menu extraction clears the appearing prompt and hands off without a jump", () => {
+  let previous = adSelection(copy.staging.selectAt);
+  for (let f = copy.staging.selectAt; f <= copy.staging.dockAt; f++) {
+    const actor = adSelection(f),
+      paper = adPromptBounds(316, actor.focus),
+      body = phase(f, copy.staging.promptAt, 70);
+    paper.y += 20 * (1 - body);
+    const overlapX =
+        Math.min(actor.x + actor.width, paper.x + paper.width) -
+        Math.max(actor.x, paper.x),
+      overlapY =
+        Math.min(actor.y + 76, paper.y + paper.height) -
+        Math.max(actor.y, paper.y);
+    assert.ok(overlapX <= 0 || overlapY <= 0, `Prompt crossed at frame ${f}`);
+    assert.ok(Math.hypot(actor.x - previous.x, actor.y - previous.y) < 20);
+    previous = actor;
+  }
+  const end = adSelection(copy.staging.dockAt),
+    inspection = adInspection(
+      copy.staging.dockAt,
+      copy.staging.dockAt,
+      805,
+      true,
+    );
+  assert.ok(Math.abs(end.x - inspection.x) < 0.001);
+  assert.ok(Math.abs(end.y - inspection.y) < 0.001);
+  assert.equal(end.width, inspection.width);
+  assert.equal(end.focus, inspection.focus);
+});
 
 test("one vertical wheel holds whole words, accelerates, and stops on composable", () => {
   assert.equal(adWheel(0).position, 0);
@@ -259,5 +294,79 @@ test("removed instructions clear before a retained report moves through them", (
       assert.ok(
         removed.y + removed.height - removed.clipBottom <= report.y - 6.9,
       );
+  }
+});
+
+test("a plugin closes before transfer and routes around the prompt and retained plugins", () => {
+  const overlap = (
+    a: { x: number; y: number; width: number; height: number },
+    b: { x: number; y: number; width: number; height: number },
+  ) =>
+    Math.max(0, Math.min(a.x + a.width, b.x + b.width) - Math.max(a.x, b.x)) *
+    Math.max(0, Math.min(a.y + a.height, b.y + b.height) - Math.max(a.y, b.y));
+  for (const change of copy.changes.filter((change) => change.bundle)) {
+    const from = profiles[change.from],
+      to = profiles[change.to];
+    const target = adPluginPoses(from, to, 1).find((pose) => pose.added)!;
+    let previous = adInspection(
+      change.at,
+      change.at,
+      target.x,
+      from.id === "base",
+    );
+    for (let elapsed = 0; elapsed <= 148; elapsed++) {
+      const p = Math.min(1, elapsed / change.duration),
+        state = adInspection(
+          change.at + elapsed,
+          change.at,
+          target.x,
+          from.id === "base",
+        );
+      const lineCount =
+        from.lines.length +
+        (to.lines.length - from.lines.length) *
+          (p * p * p * (p * (p * 6 - 15) + 10));
+      const prompt = adPromptBounds(lineCount * 44 + 96, state.focus);
+      const rows =
+        1 +
+        target.module.skills.length +
+        target.module.mcpServers.length +
+        target.module.tools.length +
+        target.module.hooks.length;
+      const card = {
+        x: state.x,
+        y: state.y,
+        width: state.width,
+        height: 76 + (rows * 43 + 15) * state.expand,
+      };
+      if (state.opacity > 0.2)
+        assert.equal(
+          overlap(card, prompt),
+          0,
+          `${change.to} covers the prompt at ${elapsed}`,
+        );
+      if (state.travel > 0) {
+        assert.equal(state.expand, 0);
+        assert.equal(state.bodyOpacity, 0);
+      }
+      if (state.bodyOpacity > 0.01) assert.equal(state.expand, 1);
+      for (const other of adPluginPoses(from, to, p).filter(
+        (pose) => pose.name !== target.name && pose.opacity > 0.2,
+      )) {
+        assert.equal(
+          overlap(card, {
+            x: other.x,
+            y: 820 - (other.kept ? 0 : 35 * (1 - other.opacity)),
+            width: 310,
+            height: 76,
+          }),
+          0,
+        );
+      }
+      assert.ok(Math.hypot(state.x - previous.x, state.y - previous.y) < 50);
+      previous = state;
+    }
+    assert.deepEqual(adInspectionRoute(target.x, 0), { x: 1300, y: 300 });
+    assert.deepEqual(adInspectionRoute(target.x, 1), { x: target.x, y: 820 });
   }
 });

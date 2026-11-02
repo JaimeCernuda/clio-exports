@@ -209,12 +209,20 @@
 .ad-picked-row svg:last-child {
   margin-left: auto;
 }
-.ad-plugin {
-  border: 1px solid #cadde5;
+.ad-plugin-frame {
   border-radius: 15px;
   box-shadow: 0 17px 42px #15384b14;
+}
+.ad-plugin {
+  position: relative;
+  height: 100%;
+  border: 1px solid #cadde5;
+  border-radius: 15px;
   background: #fff;
   overflow: hidden;
+  clip-path: inset(0 round 15px);
+  contain: paint;
+  isolation: isolate;
   transform-origin: top center;
 }
 .ad-plugin-title {
@@ -251,6 +259,13 @@
   color: #244b5d;
 }
 .ad-plugin-contents {
+  position: absolute;
+  top: 76px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  clip-path: inset(0);
   padding: 5px 18px 10px;
 }
 .ad-plugin-contents > div {
