@@ -28,6 +28,12 @@ steps is separate from the prompt edits. `inspection` controls expansion, row
 reveal, closure and transfer; each change's `readFrames` starts after the final
 row is fully visible. Changing a reading hold automatically shifts closure,
 docking and the corresponding sound cue. Keep the next change after refocus ends.
+The menu choice highlights under the filmed cursor. Selection starts with the
+exact menu-row rectangle and label geometry; neighboring choices retire before
+that row grows a border, metadata and removal control. `selection.source` is
+checked against the actual DOM at `staging.selectAt`; remeasure it after changing
+the picker layout. The domain marker follows the identity morph instead of
+switching color on its first frame.
 
 These are illustrative domain plugins and a uniform editorial representation of
 their prompt. The film does not claim to show a complete backend-resolved prompt,
@@ -72,8 +78,8 @@ node scripts/prepare-composable-qr.mjs
 npm run composable:render
 ```
 
-Outputs: `out/composable/clio-composable-ad-v7-clean.mp4` and
-`out/composable/clio-composable-ad-v7.mp4`. Original synthetic sound is aligned
+Outputs: `out/composable/clio-composable-ad-v8-clean.mp4` and
+`out/composable/clio-composable-ad-v8.mp4`. Original synthetic sound is aligned
 to the cues. No reference-film footage, artwork or soundtrack is reused. Successful
 raw renderer intermediates and the temporary WAV are removed; movies stay local.
 
@@ -83,18 +89,20 @@ the render frame. Do not launch a second bundle into `motion/bundle` during a re
 After changing text or layout, measure again before checking geometry:
 
 ```powershell
-node render.mjs stills --composition ClioComposableAd --scale 1 --frames 480,700,870,950,1090,1170,1310,1420,1560,1656,1752,1820,2050 --props examples/composable-measure.json > review/composable-ad-v7-measure.log
+node render.mjs stills --composition ClioComposableAd --scale 1 --frames 480,559,560,574,584,606,700,870,950,1090,1170,1310,1420,1560,1656,1752,1820,2050 --props examples/composable-measure.json > review/composable-ad-v8-measure.log
 npx tsx scripts/review-composable-ad.ts --geometry-only
 npm run composable:review
 ```
 
 Measure every compact plugin header after changing names, fonts or timing; the
 reviewer checks that each name and removal control fits the actual component.
+Include the exact selection frame so the menu row and extracted row can be
+compared, including the label's position and dimensions.
 
 Review covers uniform prompt typography, measured opening alignment and gaps, every
 instruction edit frame, whole-card clearance from the prompt and retained rows,
 full movie decode, audio, QR decoding and a settled final five seconds. An encoded
-paint audit covers all 62 menu-extraction frames and all 645 inspection frames,
+paint audit covers all 60 menu-extraction frames and all 645 inspection frames,
 including every render worker. It flags dark paint outside the expected component
 bounds at 640 × 360 with a small codec-edge allowance; it does not judge animation
 quality or detect every possible defect inside those bounds.
@@ -114,4 +122,4 @@ in `motion/data/composable-prompts.json`; regenerate it only when deliberately
 changing those source pins. Prior movies remain local for comparison.
 
 Current status: revised full cut for user review; creative approval is pending.
-See [the current review receipt](review-ad-v7.md) for checks and review limits.
+See [the current review receipt](review-ad-v8.md) for checks and review limits.

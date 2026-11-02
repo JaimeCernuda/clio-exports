@@ -16,6 +16,9 @@ reuse: add a Reports plugin, then retain it while the agent changes domain.
    row, on the same center line, with consistent gaps based on the text widths.
    The full brand scales into its allocated space without clipped letters or owl.
    Press the plus to reveal the native-style plugin picker.
+   Let the filmed cursor highlight its choice. Preserve that row's measured
+   geometry as it leaves the menu; add metadata only after the neighboring
+   choices retire, with no instantaneous replacement by a larger card.
 3. Manufacturing is selected. Its row expands to show instructions, a skill,
    an MCP server, a tool and a hook. The prompt becomes a manufacturing prompt.
    Rows arrive in sequence, then the complete bundle has 1.8 seconds of reading
@@ -51,6 +54,8 @@ across beneath it and down into the rail, clearing retained rows. The prompt reg
 the center after that same piece docks. Keep inspection, closure, travel and
 refocus timing independent from the text morph; a finished text edit does not mean
 the card has reached its destination.
+The domain-color marker changes with the new identity's reveal, preserving the
+old color while the outgoing identity is still readable.
 The plug-in-and-transform sequence provides the motion, rather than a permanent
 two-column page or arbitrary camera pulses.
 

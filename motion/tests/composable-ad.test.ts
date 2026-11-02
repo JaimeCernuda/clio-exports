@@ -7,6 +7,7 @@ import {
   adInspectionTiming,
   adContributionOpacity,
   adSelection,
+  adMenu,
   adPromptBounds,
   adPointer,
   adPluginPoses,
@@ -19,6 +20,37 @@ import {
 } from "../src/composable-ad-plan";
 import type { PromptLayout, WordBox } from "../src/prompt-morph";
 import { phase } from "../src/prompt-morph";
+
+test("selected menu row preserves source geometry and clears neighbors before growing", () => {
+  const start = adSelection(copy.staging.selectAt);
+  assert.deepEqual(
+    { x: start.x, y: start.y, width: start.width, height: start.height },
+    copy.selection.source,
+  );
+  assert.equal(adMenu(559).hover, 1);
+  assert.equal(adMenu(559).sourceOpacity, 1);
+  assert.equal(adMenu(copy.staging.selectAt).sourceOpacity, 0);
+  let previous = start;
+  for (
+    let frame = copy.staging.selectAt;
+    frame <= copy.staging.dockAt;
+    frame++
+  ) {
+    const actor = adSelection(frame);
+    if (adMenu(frame).opacity > 0.001) {
+      assert.equal(actor.morph, 0);
+      assert.equal(actor.height, copy.selection.source.height);
+      assert.ok(
+        actor.y + actor.height <=
+          copy.selection.source.y + copy.selection.source.height,
+      );
+    }
+    assert.ok(Math.abs(actor.height - previous.height) < 3);
+    previous = actor;
+  }
+  assert.equal(previous.height, 76);
+  assert.equal(previous.morph, 1);
+});
 
 test("opening sentence case clears the uppercase glyph before revealing lowercase", () => {
   assert.deepEqual(adOpeningCase(copy.staging.brandAt), { upper: 1, lower: 0 });

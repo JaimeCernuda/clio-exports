@@ -197,9 +197,6 @@
   font-size: 25px;
   border-radius: 8px;
 }
-.ad-picker-row:first-of-type {
-  background: #ffdc9b;
-}
 .ad-picker-row strong {
   font-weight: 500;
 }
@@ -260,10 +257,15 @@
   flex-shrink: 0;
   margin-top: 2px;
 }
-.ad-plugin-title > svg:last-of-type {
-  margin-left: auto;
-  flex-shrink: 0;
-  margin-top: 6px;
+.ad-plugin-control {
+  position: absolute;
+  width: 19px;
+  height: 19px;
+}
+.ad-plugin-control > svg {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 .ad-plugin-title small {
   position: absolute;

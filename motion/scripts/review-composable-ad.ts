@@ -78,6 +78,32 @@ for (const plugin of plugins) {
     `Removal is clipped: ${plugin.id}`,
   );
 }
+type Rect = { x: number; y: number; width: number; height: number };
+const selections: Array<{
+  frame: number;
+  source: Rect;
+  piece: Rect;
+  sourceName: Rect;
+  pieceName: Rect;
+}> = JSON.parse(readFileSync("review/composable-ad-selections.json", "utf8"));
+const selectedStart = selections.find(
+  (entry) => entry.frame === copy.staging.selectAt,
+);
+assert.ok(
+  selectedStart,
+  "Measure the exact frame when the menu choice is selected",
+);
+for (const key of ["x", "y", "width", "height"] as const) {
+  assert.ok(
+    Math.abs(selectedStart.source[key] - selectedStart.piece[key]) < 0.1,
+    `Selection card jumps in ${key}`,
+  );
+  assert.ok(
+    Math.abs(selectedStart.sourceName[key] - selectedStart.pieceName[key]) <
+      1.6,
+    `Selected label jumps in ${key}`,
+  );
+}
 assert.deepEqual(
   [
     ...new Set(
@@ -133,7 +159,7 @@ for (let frame = copy.staging.selectAt; frame < copy.staging.dockAt; frame++) {
   const actor = adSelection(frame),
     paper = adPromptBounds(layouts.base.height + 96, actor.focus);
   paper.y += 20 * (1 - phase(frame, copy.staging.promptAt, 70));
-  if (overlap({ ...actor, height: 76 }, paper) > 0)
+  if (overlap(actor, paper) > 0)
     componentOcclusions.push({ frame, kind: "menu extraction" });
 }
 for (const change of copy.changes.filter((change) => change.bundle)) {
@@ -203,7 +229,7 @@ if (process.argv.includes("--geometry-only")) {
   );
   process.exit(0);
 }
-const video = process.argv[2] ?? "out/composable/clio-composable-ad-v7.mp4";
+const video = process.argv[2] ?? "out/composable/clio-composable-ad-v8.mp4";
 // Inspect every encoded inspection frame, including every render worker. DOM
 // bounds alone cannot detect a browser compositing glyph outside its container.
 const inspectionFrames = copy.changes
@@ -286,14 +312,16 @@ for (const [index, frame] of paintFrames.entries()) {
       height: 84 - 12 * logoTravel,
     },
     { x: pointer.x, y: pointer.y, width: 34, height: 43 },
-    ...(frame < copy.staging.selectAt + 22
+    ...(frame < copy.staging.selectAt + copy.selection.retireFrames
       ? [{ x: 1040, y: 602, width: 600, height: 367 }]
       : []),
     {
       x: actor.x,
       y: actor.y,
       width: actor.width,
-      height: 76 + (rows * 43 + 15) * actor.expand,
+      height: change
+        ? 76 + (rows * 43 + 15) * actor.expand
+        : adSelection(frame).height,
     },
     ...adPluginPoses(from, to, p)
       .filter((pose) => pose.name !== target?.name)

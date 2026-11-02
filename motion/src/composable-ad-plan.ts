@@ -165,25 +165,46 @@ export function adContributions(profile: AdProfile) {
 /** Extract below the prompt, round its corner, then rise beside it. */
 export function adSelection(frame: number) {
   const cue = copy.staging,
+    source = copy.selection.source,
     progress = phase(frame, cue.selectAt, cue.dockAt - cue.selectAt),
-    distance = progress * (220 + 10 * Math.PI + 340);
+    firstLeg = 1280 - source.x,
+    lastLeg = source.y - 20 - 300,
+    distance = progress * (firstLeg + 10 * Math.PI + lastLeg),
+    morph = phase(
+      frame,
+      cue.selectAt + copy.selection.retireFrames,
+      copy.selection.morphFrames,
+    );
   let x: number, y: number;
-  if (distance <= 220) {
-    x = 1060 + distance;
-    y = 660;
-  } else if (distance <= 220 + 10 * Math.PI) {
-    const angle = (distance - 220) / 20;
+  if (distance <= firstLeg) {
+    x = source.x + distance;
+    y = source.y;
+  } else if (distance <= firstLeg + 10 * Math.PI) {
+    const angle = (distance - firstLeg) / 20;
     x = 1280 + 20 * Math.sin(angle);
-    y = 640 + 20 * Math.cos(angle);
+    y = source.y - 20 + 20 * Math.cos(angle);
   } else {
     x = 1300;
-    y = 640 - (distance - 220 - 10 * Math.PI);
+    y = source.y - 20 - (distance - firstLeg - 10 * Math.PI);
   }
   return {
     x,
     y,
-    width: 560 - 90 * progress,
+    width: source.width + (470 - source.width) * progress,
+    height: source.height + (76 - source.height) * morph,
+    morph,
     focus: phase(frame, cue.selectAt, 16),
+  };
+}
+
+/** The filmed cursor highlights its choice; neighbors retire before the row grows. */
+export function adMenu(frame: number) {
+  return {
+    opacity:
+      phase(frame, copy.staging.menuAt, 18) *
+      (1 - phase(frame, copy.staging.selectAt, copy.selection.retireFrames)),
+    hover: phase(frame, copy.selection.hoverAt, copy.selection.hoverFrames),
+    sourceOpacity: frame < copy.staging.selectAt ? 1 : 0,
   };
 }
 

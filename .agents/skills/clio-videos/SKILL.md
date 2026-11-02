@@ -57,6 +57,14 @@ first complete bundle for 1.8 seconds and the next two for 1.1 seconds; these ar
 film-specific choices, not a global duration rule. Measure all opening words and
 their gaps, not only the owl and plus. Reveal the full brand in its allocated
 space and clear A before introducing a, avoiding a doubled glyph during a fade.
+For menu extraction, preserve the exact source-row rectangle, type and controls
+on the first selected frame. A safe travel route does not excuse an instantaneous
+replacement by a taller card. Fade neighboring options before growing metadata
+space, and reveal metadata after it clears the title. Animate hover feedback from
+the filmed pointer's timeline; CSS hover will not follow an SVG cursor. Audit
+selectors against their actual siblings: a search div prevented first-of-type
+from matching the first plugin row in v7. Keep domain-color changes aligned with
+the changing identity rather than switching them on the first transition frame.
 For source-bound demos, source real identities and contributed prompt fragments. Scope text matches
 by fragment and ordered phrases; isolated repeated words should not fly across
 unrelated prose. Measure destination wrapping after fonts load. Open insertion

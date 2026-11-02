@@ -11,7 +11,7 @@ adapters stay shared in `motion/native/`.
 | SPOTTER-AI / OPAL | Concurrent primary/reviewer logs, alerts and source-token attention | [SPOTTER / OPAL](spotter-opal/README.md) | Full film needs reviewer/pointer revisions; manual attention is a separate working mode |
 | Wordle science study | Evolving flow, delegated workers, boards, Science Log graph and attached views | [Wordle](wordle/README.md) | Revised 8:30 technical walkthrough; presenter captions and later speech alignment |
 | Engineering studies | Twelve-case Slurm sweep, linked 3D designs, solver studio and saved history | [Engineering](engineering/README.md) | Revised 5:56 cut; source-linked editorial copy, corrected job timing and native panel sizing |
-| Composable agent | Vertical domain wheel; plugins bring capability bundles; domain transformations retain reusable pieces | [Composable](composable/README.md) | V7 reading time, opening and domain pacing revised; awaiting creative review |
+| Composable agent | Vertical domain wheel; plugins bring capability bundles; domain transformations retain reusable pieces | [Composable](composable/README.md) | V8 menu continuity and hover re-reviewed; awaiting creative review |
 
 [`catalog.json`](catalog.json) is the machine-readable source map. Its paths are
 relative to the repository root. A passing build or encoding check does not mean

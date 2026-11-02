@@ -1,6 +1,9 @@
 # Bundle readability and composition pacing
 
-Revised full cut for user review. Creative approval remains pending.
+Superseded by [v8](review-ad-v8.md). Creative approval was not given. Repeated
+review found the native menu row being replaced by a taller card in one frame,
+clipping a neighboring choice, and a missing hover highlight. The checks below
+did not compare the source menu row with the extracted card at the selection frame.
 
 - Local movie: `motion/out/composable/clio-composable-ad-v7.mp4` (not committed).
 - SHA-256: `c54ef37f87d37c5ba9da9e56a2ba2437d6248f17c1a4e7945128ee3727be82bb`.

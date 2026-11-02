@@ -39,7 +39,14 @@ let promptLayouts;
 let adLayouts;
 let adOpening;
 const adPlugins = new Map();
+const adSelections = new Map();
 const collectBrowserLog = (log) => {
+  if (log.text.startsWith("__CLIO_AD_SELECTION__")) {
+    const selection = JSON.parse(
+      log.text.slice("__CLIO_AD_SELECTION__".length),
+    );
+    adSelections.set(selection.frame, selection);
+  }
   if (log.text.startsWith("__CLIO_AD_PLUGINS__"))
     for (const plugin of JSON.parse(
       log.text.slice("__CLIO_AD_PLUGINS__".length),
@@ -224,6 +231,11 @@ try {
     await writeFile(
       path.join(root, "review/composable-ad-plugins.json"),
       JSON.stringify([...adPlugins.values()], null, 2),
+    );
+  if (adSelections.size)
+    await writeFile(
+      path.join(root, "review/composable-ad-selections.json"),
+      JSON.stringify([...adSelections.values()], null, 2),
     );
   if (adOpening)
     await writeFile(

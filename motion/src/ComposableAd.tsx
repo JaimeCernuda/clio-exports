@@ -1,5 +1,11 @@
 import React from "react";
-import { AbsoluteFill, Img, staticFile, useCurrentFrame } from "remotion";
+import {
+  AbsoluteFill,
+  Img,
+  staticFile,
+  useCurrentFrame,
+  interpolateColors,
+} from "remotion";
 import {
   ArrowUpRight,
   Box,
@@ -18,6 +24,7 @@ import {
   adPluginPoses,
   adInspection,
   adSelection,
+  adMenu,
   adContributionOpacity,
   adState,
   copy,
@@ -38,6 +45,7 @@ function PluginPiece({
   bodyOpacity = 0,
   frame,
   inspectionAt,
+  selectionProgress,
   style = {},
 }: {
   module: AdModule;
@@ -45,8 +53,12 @@ function PluginPiece({
   bodyOpacity?: number;
   frame?: number;
   inspectionAt?: number;
+  selectionProgress?: number;
   style?: React.CSSProperties;
 }) {
+  const morph = selectionProgress ?? 1,
+    headerHeight = 58 + 18 * morph,
+    meta = phase(morph, 0.85, 0.15);
   const rows = [
     {
       label: "Prompt",
@@ -70,20 +82,66 @@ function PluginPiece({
     <div
       className="ad-plugin-frame"
       data-ad-plugin={module.id}
-      style={{ ...style, height: 76 + (rows.length * 43 + 15) * expand }}
+      data-ad-selection-frame={
+        selectionProgress !== undefined ? frame : undefined
+      }
+      style={{
+        ...style,
+        height: headerHeight + (rows.length * 43 + 15) * expand,
+      }}
     >
-      <div className="ad-plugin">
-        <div className="ad-plugin-title" style={{ background: module.color }}>
-          <Box size={25} />
-          <strong data-ad-plugin-name>{module.name}</strong>
-          <X size={17} />
-          <small>
-            {module.skills.length} skill{module.skills.length === 1 ? "" : "s"}
-            {module.mcpServers.length
-              ? ` · ${module.mcpServers.length} MCP`
-              : ""}{" "}
-            · {module.hooks.length} hook{module.hooks.length === 1 ? "" : "s"}
-          </small>
+      <div
+        className="ad-plugin"
+        style={{
+          borderRadius: 8 + 7 * morph,
+          borderColor: `rgba(202,221,229,${morph})`,
+          clipPath: `inset(0 round ${8 + 7 * morph}px)`,
+        }}
+      >
+        <div
+          className="ad-plugin-title"
+          style={{
+            background: module.color,
+            height: headerHeight,
+            paddingLeft: 17 + 3 * morph,
+            gap: 14 - 2 * morph,
+          }}
+        >
+          <Box size={23 + 2 * morph} style={{ marginTop: 3.5 - 1.5 * morph }} />
+          <strong
+            data-ad-plugin-name
+            style={{
+              fontSize: 25 + morph,
+              fontWeight: 500 + 50 * morph,
+              letterSpacing: -0.7 * morph,
+            }}
+          >
+            {module.name}
+          </strong>
+          <span
+            className="ad-plugin-control"
+            style={{ right: 17 + 3 * morph, top: 18.5 - 0.5 * morph }}
+          >
+            <ChevronRight
+              size={19}
+              style={{ opacity: 1 - phase(morph, 0, 0.4) }}
+            />
+            <X
+              data-ad-plugin-remove
+              size={17}
+              style={{ left: 1, top: 1, opacity: phase(morph, 0.6, 0.4) }}
+            />
+          </span>
+          {meta > 0.001 ? (
+            <small style={{ opacity: meta }}>
+              {module.skills.length} skill
+              {module.skills.length === 1 ? "" : "s"}
+              {module.mcpServers.length
+                ? ` · ${module.mcpServers.length} MCP`
+                : ""}{" "}
+              · {module.hooks.length} hook{module.hooks.length === 1 ? "" : "s"}
+            </small>
+          ) : null}
         </div>
         {bodyOpacity > 0.001 && expand > 0.001 ? (
           <div className="ad-plugin-contents">
@@ -112,13 +170,13 @@ function PluginPiece({
 function PluginPicker({ frame }: { frame: number }) {
   const open = phase(frame, copy.staging.menuAt, 18),
     selected = adSelection(frame),
-    retire = phase(frame, copy.staging.selectAt, 22);
+    menu = adMenu(frame);
   return (
     <>
       <div
         className="ad-plugin-picker"
         style={{
-          opacity: open * (1 - retire),
+          opacity: menu.opacity,
           transform: `translateY(${15 * (1 - open)}px) scale(${0.96 + 0.04 * open})`,
         }}
       >
@@ -128,9 +186,21 @@ function PluginPicker({ frame }: { frame: number }) {
           <Plus size={20} />
         </div>
         {copy.choices.map((name) => (
-          <div className="ad-picker-row" key={name}>
+          <div
+            className="ad-picker-row"
+            data-ad-picker-choice={name}
+            key={name}
+            style={
+              name === "Manufacturing"
+                ? {
+                    background: `rgba(255,220,155,${menu.hover})`,
+                    opacity: menu.sourceOpacity,
+                  }
+                : undefined
+            }
+          >
             <Box size={23} />
-            <strong>{name}</strong>
+            <strong data-ad-choice-name>{name}</strong>
             <ChevronRight size={19} />
           </div>
         ))}
@@ -139,12 +209,15 @@ function PluginPicker({ frame }: { frame: number }) {
         <PluginPiece
           module={profiles.manufacturing.modules[0]}
           expand={0}
+          frame={frame}
+          selectionProgress={selected.morph}
           style={{
             position: "absolute",
             left: selected.x,
             top: selected.y,
             width: selected.width,
             opacity: 1,
+            boxShadow: `0 17px 42px rgba(21,56,75,${0.0784 * selected.morph})`,
             zIndex: 12,
           }}
         />
@@ -272,7 +345,18 @@ export function ComposableAd({
         </div>
         <div
           className="ad-domain-rule"
-          style={{ background: state.to.color }}
+          style={{
+            background: interpolateColors(
+              p,
+              [0, 0.18, 0.47, 1],
+              [
+                state.from.color,
+                state.from.color,
+                state.to.color,
+                state.to.color,
+              ],
+            ),
+          }}
         />
       </div>
       <Composition frame={frame} />

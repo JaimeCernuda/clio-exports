@@ -93,6 +93,12 @@ than half a second to read each bundle. Also inspect repeated motion patterns,
 all opening word gaps, sentence-case changes, whole-logo entrances, and plugin
 name/removal-control clearance. Record the measured compact header for every
 plugin; a bounding box around the whole card cannot detect clipping inside it.
+Check continuity across component replacement too. V7's extracted row cleared
+the prompt but changed from a 58 px menu row to a 76 px card in one frame and
+clipped the next option. Measure the source and extracted row, plus their label
+bounds, on the exact selection frame. Retire neighbors before growing the row;
+reveal metadata only after it has enough vertical room. A filmed SVG cursor does
+not trigger CSS hover, so verify the frame-driven hover feedback in the encode.
 Verify source fonts/brand assets finish loading. Use the component lab's alternate
 layout to check a shared-component change without relying only on one film.
 

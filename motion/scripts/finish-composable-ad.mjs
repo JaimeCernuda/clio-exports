@@ -5,8 +5,8 @@ import path from "node:path";
 const root = path.resolve(import.meta.dirname, "..");
 process.chdir(root);
 const source =
-  process.argv[2] ?? "out/composable/clio-composable-ad-v7-clean.mp4";
-const output = process.argv[3] ?? "out/composable/clio-composable-ad-v7.mp4";
+  process.argv[2] ?? "out/composable/clio-composable-ad-v8-clean.mp4";
+const output = process.argv[3] ?? "out/composable/clio-composable-ad-v8.mp4";
 const score = JSON.parse(await readFile("story/composable-ad.json", "utf8"));
 const rate = 48000,
   seconds = score.frames / score.fps,

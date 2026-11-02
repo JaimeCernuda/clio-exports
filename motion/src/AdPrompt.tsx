@@ -137,9 +137,7 @@ export function useAdLayouts(record = false) {
                 .querySelector<HTMLElement>("[data-ad-plugin-name]")!
                 .getBoundingClientRect(),
               close = element
-                .querySelector<SVGElement>(
-                  ".ad-plugin-title > svg:last-of-type",
-                )!
+                .querySelector<SVGElement>("[data-ad-plugin-remove]")!
                 .getBoundingClientRect();
             return {
               id: element.dataset.adPlugin,
@@ -150,6 +148,28 @@ export function useAdLayouts(record = false) {
             };
           });
           console.log(`__CLIO_AD_PLUGINS__${JSON.stringify(pluginGeometry)}`);
+          const selected = document.querySelector<HTMLElement>(
+            "[data-ad-selection-frame]",
+          );
+          if (selected) {
+            const source = document.querySelector<HTMLElement>(
+              '[data-ad-picker-choice="Manufacturing"]',
+            );
+            if (!source)
+              throw new Error("Missing menu source for selection handoff");
+            const box = (element: Element) => {
+              const r = element.getBoundingClientRect();
+              return { x: r.x, y: r.y, width: r.width, height: r.height };
+            };
+            const geometry = {
+              frame: Number(selected.dataset.adSelectionFrame),
+              source: box(source),
+              piece: box(selected),
+              sourceName: box(source.querySelector("[data-ad-choice-name]")!),
+              pieceName: box(selected.querySelector("[data-ad-plugin-name]")!),
+            };
+            console.log(`__CLIO_AD_SELECTION__${JSON.stringify(geometry)}`);
+          }
         }
         setLayouts(measured);
         setOpening(openingGeometry);
