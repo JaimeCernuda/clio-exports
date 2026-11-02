@@ -1,204 +1,294 @@
 {
-  "schema": "clio.composable-ad.v4",
+  "schema": "clio.composable-ad.v5",
   "fps": 60,
-  "frames": 1930,
-  "treatment": "Many possible agents. One agent assembled from plugins, instructions, skills and MCP connections.",
-  "copyMode": "Real CLIO UI vocabulary and additive composition semantics; illustrative domain plugins and shortened editorial instructions, not an installed catalogue or recorded run.",
-  "intro": [
-    {
-      "word": "genomic",
-      "color": "#bde9dc",
-      "at": 0,
-      "typed": 19,
-      "erase": 47,
-      "end": 63
-    },
-    {
-      "word": "manufacturing",
-      "color": "#ffdc9b",
-      "at": 63,
-      "typed": 96,
-      "erase": 124,
-      "end": 146
-    },
-    {
-      "word": "composable",
-      "color": "#cee6f4",
-      "at": 330,
-      "typed": 330,
-      "erase": 1930,
-      "end": 1930
-    }
-  ],
+  "frames": 2100,
+  "treatment": "One agent. Different domains. Plugins bring the instructions and capabilities together.",
+  "copyMode": "Native-derived CLIO composition elements with illustrative domain plugins and uniform editorial prompt text; not an installed catalogue, complete resolved backend prompt, or recorded run.",
   "wheel": {
-    "at": 146,
+    "at": 0,
     "end": 330,
     "words": [
+      "genomic",
+      "manufacturing",
       "research",
       "climate",
       "robotics",
       "materials",
       "chemistry",
-      "energy",
-      "astronomy",
-      "medicine",
-      "engineering",
-      "agriculture",
-      "oceanography",
-      "education",
-      "genomics",
+      "power",
+      "space",
+      "medical",
+      "design",
+      "farming",
+      "marine",
+      "teaching",
+      "data",
+      "genomic",
       "manufacturing",
-      "research"
-    ]
+      "research",
+      "composable"
+    ],
+    "colors": ["#bde9dc", "#ffdc9b", "#dbcefa", "#cee6f4"]
   },
   "staging": {
-    "menuAt": 514,
-    "optionsAt": 554,
-    "selectAt": 630,
-    "promptAt": 642
+    "brandAt": 352,
+    "plusAt": 422,
+    "menuAt": 490,
+    "selectAt": 558,
+    "promptAt": 540,
+    "dockAt": 620
   },
   "baseLines": [
+    { "id": "role", "text": "You are CLIO, a composable agent." },
     {
-      "id": "role",
-      "text": "You are CLIO, an autonomous scientific coding and data assistant."
+      "id": "workspace",
+      "text": "Work in the user's workspace. Keep outputs inspectable."
     },
+    { "id": "plan", "text": "Understand the goal. Plan before acting." },
     {
-      "id": "purpose",
-      "text": "Work in the user's workspace with the capabilities below."
-    },
-    { "id": "approach:heading", "text": "Operating guidelines" },
-    {
-      "id": "approach:plan",
-      "text": "Understand the goal. Plan before acting."
-    },
-    {
-      "id": "approach:verify",
+      "id": "verify",
       "text": "Use tools, verify results and explain your conclusions."
+    },
+    {
+      "id": "evidence",
+      "text": "Ground recommendations in the available evidence."
     }
   ],
   "modules": [
     {
       "id": "manufacturing",
       "name": "Manufacturing",
-      "kind": "plugin",
       "color": "#ffdc9b",
+      "role": "You are a manufacturing agent.",
       "lines": [
-        { "id": "manufacturing:heading", "text": "Manufacturing" },
         {
-          "id": "manufacturing:compare",
+          "id": "manufacturing:scope",
           "text": "Compare materials, processes and production constraints."
         },
         {
-          "id": "manufacturing:result",
+          "id": "manufacturing:tradeoffs",
           "text": "Explain trade-offs and propose a practical next step."
         }
-      ]
+      ],
+      "skills": ["Material selection"],
+      "mcpServers": ["Materials library"],
+      "tools": ["Compare materials"],
+      "hooks": ["Validate units"]
     },
     {
       "id": "simulation",
       "name": "Simulation",
-      "kind": "plugin",
       "color": "#cee6f4",
+      "role": "",
       "lines": [
-        { "id": "simulation:heading", "text": "Simulation" },
         {
-          "id": "simulation:work",
-          "text": "Test design variants and use the results to refine the plan."
-        }
-      ]
-    },
-    {
-      "id": "parameter-sweep",
-      "name": "Parameter sweep",
-      "kind": "skill",
-      "color": "#bde9dc",
-      "lines": [
-        { "id": "skills:heading", "text": "Skills" },
+          "id": "simulation:design",
+          "text": "Test design variants with the simulation tools."
+        },
         {
-          "id": "skills:sweep",
-          "text": "Parameter sweep — compare design variants systematically."
+          "id": "simulation:checks",
+          "text": "Validate inputs before each run. Compare the results."
         }
-      ]
-    },
-    {
-      "id": "materials-db",
-      "name": "Materials database",
-      "kind": "mcp",
-      "color": "#dbcefa",
-      "lines": [
-        { "id": "mcp:heading", "text": "MCP connections" },
-        {
-          "id": "mcp:materials",
-          "text": "Materials database — retrieve properties for the comparison."
-        }
-      ]
+      ],
+      "skills": ["Parameter sweep"],
+      "mcpServers": [],
+      "tools": ["Run simulation"],
+      "hooks": ["Validate inputs"]
     },
     {
       "id": "reports",
       "name": "Reports",
-      "kind": "plugin",
       "color": "#f6d6d4",
+      "role": "",
       "lines": [
-        { "id": "reports:heading", "text": "Reporting" },
         {
-          "id": "reports:work",
+          "id": "reports:write",
           "text": "Turn the evidence into a clear technical report."
+        },
+        {
+          "id": "reports:trace",
+          "text": "Include sources, results and the checks performed."
         }
-      ]
+      ],
+      "skills": ["Technical report"],
+      "mcpServers": [],
+      "tools": ["Write report"],
+      "hooks": ["Check citations"]
+    },
+    {
+      "id": "genomics",
+      "name": "Genomics",
+      "color": "#bde9dc",
+      "role": "You are a genomics agent.",
+      "lines": [
+        {
+          "id": "genomics:scope",
+          "text": "Analyse sequences and compare biological evidence."
+        },
+        {
+          "id": "genomics:checks",
+          "text": "Validate identifiers before querying genome data."
+        }
+      ],
+      "skills": ["Sequence analysis"],
+      "mcpServers": ["Genome data"],
+      "tools": ["Compare sequences"],
+      "hooks": ["Validate identifiers"]
+    },
+    {
+      "id": "climate",
+      "name": "Climate",
+      "color": "#dbcefa",
+      "role": "You are a climate research agent.",
+      "lines": [
+        {
+          "id": "climate:scope",
+          "text": "Compare observations across places and time."
+        },
+        {
+          "id": "climate:checks",
+          "text": "Check units and uncertainty before comparing trends."
+        }
+      ],
+      "skills": ["Trend analysis"],
+      "mcpServers": ["Climate archive"],
+      "tools": ["Compare observations"],
+      "hooks": ["Check units"]
+    },
+    {
+      "id": "robotics",
+      "name": "Robotics",
+      "color": "#cee6f4",
+      "role": "You are a robotics agent.",
+      "lines": [
+        {
+          "id": "robotics:scope",
+          "text": "Plan robot tasks and evaluate candidate motions."
+        },
+        {
+          "id": "robotics:checks",
+          "text": "Check constraints before proposing an action."
+        }
+      ],
+      "skills": ["Motion planning"],
+      "mcpServers": ["Robot workspace"],
+      "tools": ["Evaluate motion"],
+      "hooks": ["Check constraints"]
+    },
+    {
+      "id": "materials",
+      "name": "Materials",
+      "color": "#ffdc9b",
+      "role": "You are a materials research agent.",
+      "lines": [
+        {
+          "id": "materials:scope",
+          "text": "Compare material properties and candidate structures."
+        },
+        {
+          "id": "materials:checks",
+          "text": "Check conditions and units before comparing results."
+        }
+      ],
+      "skills": ["Property comparison"],
+      "mcpServers": ["Materials catalogue"],
+      "tools": ["Compare properties"],
+      "hooks": ["Validate conditions"]
+    },
+    {
+      "id": "medical",
+      "name": "Medical research",
+      "color": "#bde9dc",
+      "role": "You are a medical research agent.",
+      "lines": [
+        {
+          "id": "medical:scope",
+          "text": "Compare published evidence and research findings."
+        },
+        {
+          "id": "medical:checks",
+          "text": "Track study limitations and cite the original sources."
+        }
+      ],
+      "skills": ["Evidence review"],
+      "mcpServers": ["Research literature"],
+      "tools": ["Compare studies"],
+      "hooks": ["Check sources"]
     }
   ],
-  "choices": [
-    "Genetics",
-    "Manufacturing",
-    "Climate",
-    "Robotics",
-    "Materials",
-    "Chemistry",
-    "Energy",
-    "Astronomy",
-    "Medicine",
-    "Data analysis",
-    "Simulation",
-    "Reports"
-  ],
+  "choices": ["Manufacturing", "Genomics", "Climate", "Robotics", "Materials"],
   "stages": [
     { "id": "base", "modules": [] },
     { "id": "manufacturing", "modules": ["manufacturing"] },
     { "id": "simulation", "modules": ["manufacturing", "simulation"] },
-    {
-      "id": "skill",
-      "modules": ["manufacturing", "simulation", "parameter-sweep"]
-    },
-    {
-      "id": "connected",
-      "modules": [
-        "manufacturing",
-        "simulation",
-        "parameter-sweep",
-        "materials-db"
-      ]
-    },
-    {
-      "id": "reports",
-      "modules": [
-        "manufacturing",
-        "simulation",
-        "parameter-sweep",
-        "materials-db",
-        "reports"
-      ]
-    }
+    { "id": "reports", "modules": ["manufacturing", "simulation", "reports"] },
+    { "id": "genomics", "modules": ["genomics", "reports"] },
+    { "id": "climate", "modules": ["climate", "reports"] },
+    { "id": "robotics", "modules": ["robotics", "reports"] },
+    { "id": "materials", "modules": ["materials", "reports"] },
+    { "id": "medical", "modules": ["medical", "reports"] }
   ],
   "changes": [
-    { "at": 700, "duration": 70, "from": "base", "to": "manufacturing" },
-    { "at": 904, "duration": 78, "from": "manufacturing", "to": "simulation" },
-    { "at": 1084, "duration": 78, "from": "simulation", "to": "skill" },
-    { "at": 1270, "duration": 72, "from": "skill", "to": "connected" },
-    { "at": 1420, "duration": 60, "from": "connected", "to": "reports" }
+    {
+      "at": 620,
+      "duration": 84,
+      "from": "base",
+      "to": "manufacturing",
+      "bundle": true
+    },
+    {
+      "at": 770,
+      "duration": 84,
+      "from": "manufacturing",
+      "to": "simulation",
+      "bundle": true
+    },
+    {
+      "at": 920,
+      "duration": 78,
+      "from": "simulation",
+      "to": "reports",
+      "bundle": true
+    },
+    {
+      "at": 1070,
+      "duration": 90,
+      "from": "reports",
+      "to": "genomics",
+      "bundle": true
+    },
+    {
+      "at": 1240,
+      "duration": 90,
+      "from": "genomics",
+      "to": "climate",
+      "bundle": true
+    },
+    {
+      "at": 1400,
+      "duration": 72,
+      "from": "climate",
+      "to": "robotics",
+      "bundle": false
+    },
+    {
+      "at": 1520,
+      "duration": 66,
+      "from": "robotics",
+      "to": "materials",
+      "bundle": false
+    },
+    {
+      "at": 1630,
+      "duration": 60,
+      "from": "materials",
+      "to": "medical",
+      "bundle": false
+    }
   ],
   "closing": {
-    "at": 1564,
-    "settled": 1624,
+    "at": 1740,
+    "settled": 1800,
     "line": "Build your own.",
     "url": "https://clio.iowarp.ai/"
   }

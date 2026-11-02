@@ -37,7 +37,10 @@ const inputProps = options.propsFile
 const cursorSamples = new Map();
 let promptLayouts;
 let adLayouts;
+let adOpening;
 const collectBrowserLog = (log) => {
+  if (log.text.startsWith("__CLIO_AD_OPENING__"))
+    adOpening = JSON.parse(log.text.slice("__CLIO_AD_OPENING__".length));
   if (log.text.startsWith("__CLIO_AD_LAYOUTS__"))
     adLayouts = JSON.parse(log.text.slice("__CLIO_AD_LAYOUTS__".length));
   if (log.text.startsWith("__CLIO_PROMPT_LAYOUTS__"))
@@ -210,6 +213,11 @@ try {
     await writeFile(
       path.join(root, "review/composable-ad-layouts.json"),
       JSON.stringify(adLayouts, null, 2) + "\n",
+    );
+  if (adOpening)
+    await writeFile(
+      path.join(root, "review/composable-ad-opening.json"),
+      JSON.stringify(adOpening, null, 2) + "\n",
     );
 } finally {
   await browser.close({ silent: true });

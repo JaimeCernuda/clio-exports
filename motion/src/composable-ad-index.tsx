@@ -1,5 +1,6 @@
 import { Composition, registerRoot } from "remotion";
 import "@fontsource-variable/inter";
+import "@fontsource-variable/jetbrains-mono";
 import { ComposableAd } from "./ComposableAd";
 import { copy } from "./composable-ad-plan";
 

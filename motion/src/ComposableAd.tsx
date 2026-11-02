@@ -1,252 +1,186 @@
 import React from "react";
-import {
-  AbsoluteFill,
-  Img,
-  spring,
-  staticFile,
-  useCurrentFrame,
-} from "remotion";
+import { AbsoluteFill, Img, staticFile, useCurrentFrame } from "remotion";
 import {
   ArrowUpRight,
-  Bot,
   Box,
-  Check,
+  ChevronRight,
   Database,
   FileText,
   Plus,
+  Search,
   Sparkles,
+  Wrench,
   X,
+  Zap,
 } from "lucide-react";
 import {
-  adHeadline,
   adPointer,
   adPluginPoses,
   adState,
-  adWheel,
   copy,
   profiles,
-  type AdProfile,
+  type AdModule,
 } from "./composable-ad-plan";
 import { ease, phase } from "./prompt-morph";
 import { AdMeasures, AdPromptInk, useAdLayouts } from "./AdPrompt";
+import { AdOpening } from "./AdOpening";
 import "./composable-ad.css";
 
 const mix = (a: number, b: number, p: number) => a + (b - a) * p;
-function pop(frame: number, at: number) {
-  return spring({
-    frame: Math.max(0, frame - at),
-    fps: 60,
-    config: { damping: 21, stiffness: 180, mass: 0.75 },
-  });
-}
-type Field = { x: number; y: number; width: number; height: number };
 
-/** The same colored material travels from language to the add control. */
-function Hook({ frame, field }: { frame: number; field: Field | null }) {
-  const h =
-    frame >= 318
-      ? { text: "composable", color: "#cee6f4", typing: false }
-      : adHeadline(frame);
-  const brand = phase(frame, 372, 58),
-    peel = phase(frame, 436, 54);
-  const reveal =
-    frame < 318 ? 1 - phase(frame, 146, 12) : phase(frame, 318, 28);
+/** The native contribution hierarchy belongs to its plugin, including hooks. */
+function PluginPiece({
+  module,
+  expand,
+  style = {},
+}: {
+  module: AdModule;
+  expand: number;
+  style?: React.CSSProperties;
+}) {
+  const rows = [
+    {
+      label: "Prompt",
+      value: module.role ? "Identity + workflow" : "Workflow instructions",
+      Icon: FileText,
+    },
+    ...module.skills.map((value) => ({
+      label: "Skills",
+      value,
+      Icon: Sparkles,
+    })),
+    ...module.mcpServers.map((value) => ({
+      label: "MCP servers",
+      value,
+      Icon: Database,
+    })),
+    ...module.tools.map((value) => ({ label: "Tools", value, Icon: Wrench })),
+    ...module.hooks.map((value) => ({ label: "Hooks", value, Icon: Zap })),
+  ];
+  return (
+    <div
+      className="ad-plugin"
+      style={{ ...style, height: 76 + (rows.length * 43 + 15) * expand }}
+    >
+      <div className="ad-plugin-title" style={{ background: module.color }}>
+        <Box size={25} />
+        <strong>{module.name}</strong>
+        <X size={17} />
+        <small>
+          {module.skills.length} skill{module.skills.length === 1 ? "" : "s"}
+          {module.mcpServers.length
+            ? ` · ${module.mcpServers.length} MCP`
+            : ""}{" "}
+          · {module.hooks.length} hook{module.hooks.length === 1 ? "" : "s"}
+        </small>
+      </div>
+      <div
+        className="ad-plugin-contents"
+        style={{
+          opacity: phase(expand, 0.15, 0.7),
+          transform: `translateY(${-8 * (1 - expand)}px)`,
+        }}
+      >
+        {rows.map(({ label, value, Icon }) => (
+          <div key={`${label}:${value}`}>
+            <Icon size={19} />
+            <span>{label}</span>
+            <strong>{value}</strong>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PluginPicker({ frame }: { frame: number }) {
+  const open = phase(frame, copy.staging.menuAt, 18),
+    select = phase(frame, copy.staging.selectAt, 62),
+    retire = phase(frame, copy.staging.selectAt, 22);
   return (
     <>
       <div
-        className="ad-hook"
+        className="ad-plugin-picker"
         style={{
-          left: mix(334, 738, brand),
-          top: mix(433, 448, brand),
-          fontSize: mix(106, 80, brand),
-          opacity: reveal * (1 - phase(frame, copy.staging.menuAt, 20)),
+          opacity: open * (1 - retire),
+          transform: `translateY(${15 * (1 - open)}px) scale(${0.96 + 0.04 * open})`,
         }}
       >
-        <span
-          className="ad-hook-A"
-          style={{ opacity: 1 - phase(frame, 372, 20) }}
-        >
-          A
-        </span>
-        <span
-          className="ad-lower-a"
-          style={{ width: brand * 49, opacity: brand }}
-        >
-          a
-        </span>
-        <span
-          className="ad-field"
-          style={{ background: peel > 0 ? "transparent" : h.color }}
-        >
-          <span
-            style={{
-              filter:
-                frame >= 318
-                  ? `blur(${18 * (1 - phase(frame, 318, 28))}px)`
-                  : undefined,
-            }}
-          >
-            {h.text}
-          </span>
-          <i
-            style={{
-              opacity:
-                frame < 146 && (h.typing || Math.floor(frame / 15) % 2 === 0)
-                  ? 1
-                  : 0,
-            }}
-          />
-        </span>
-        <span className="ad-hook-agent">agent{brand < 0.5 ? "." : ""}</span>
-      </div>
-      {peel > 0 && frame < 540 ? (
-        <div
-          className="ad-color-piece"
-          style={{
-            left: mix(738 + (field?.x ?? 69), 1548, peel),
-            top: mix(448 + (field?.y ?? 0), 449, peel),
-            width: mix(field?.width ?? 452, 80, peel),
-            height: mix(field?.height ?? 125, 80, peel),
-            borderRadius: mix(7, 24, peel),
-            background: "#cee6f4",
-            opacity: 1 - phase(frame, 520, 20),
-            transform: `rotate(${Math.sin(peel * Math.PI) * -5}deg)`,
-          }}
-        >
-          <Plus size={40} style={{ opacity: phase(frame, 465, 23) }} />
+        <div className="ad-picker-search">
+          <Search size={22} />
+          <span>Add plugin</span>
+          <Plus size={20} />
         </div>
+        {copy.choices.map((name) => (
+          <div className="ad-picker-row" key={name}>
+            <Box size={23} />
+            <strong>{name}</strong>
+            <ChevronRight size={19} />
+          </div>
+        ))}
+      </div>
+      {frame >= copy.staging.selectAt && frame < copy.staging.dockAt ? (
+        <PluginPiece
+          module={profiles.manufacturing.modules[0]}
+          expand={0}
+          style={{
+            position: "absolute",
+            left: mix(1060, 1300, select),
+            top: mix(660, 300, select),
+            width: mix(560, 470, select),
+            opacity: 1,
+            zIndex: 12,
+          }}
+        />
       ) : null}
     </>
   );
 }
 
-function DomainWheel({ frame }: { frame: number }) {
-  const wheel = adWheel(frame),
-    colors = ["#dbcefa", "#bde9dc", "#cee6f4", "#ffdc9b"];
-  return (
-    <div
-      className="ad-wheel"
-      style={{ opacity: wheel.opacity, filter: `blur(${wheel.blur}px)` }}
-    >
-      {copy.wheel.words.map((word, i) => {
-        const dx = (i - wheel.position) * 740,
-          distance = Math.min(1, Math.abs(dx) / 1700);
-        return (
-          <div
-            key={`${i}-${word}`}
-            className="ad-wheel-word"
-            style={{
-              background: colors[i % colors.length],
-              transform: `translateX(${dx}px) rotateY(${-dx / 70}deg) scale(${1 - 0.12 * distance})`,
-              opacity: 1 - 0.55 * distance,
-            }}
-          >
-            {word}
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-/** Film-sized adaptation of the native plugin row: box, name, provenance, removal. */
-function PluginPiece({
-  name,
-  color,
-  style = {},
-  installed = false,
-}: {
-  name: string;
-  color: string;
-  style?: React.CSSProperties;
-  installed?: boolean;
-}) {
-  return (
-    <div className="ad-capability" style={{ background: color, ...style }}>
-      <Box size={24} />
-      <strong>{name}</strong>
-      {installed ? (
-        <X size={16} className="ad-piece-action" />
-      ) : (
-        <Plus size={17} className="ad-piece-action" />
-      )}
-    </div>
-  );
-}
-
-function Choices({ frame, targetY }: { frame: number; targetY: number }) {
-  const select = phase(frame, copy.staging.selectAt, 70),
-    retire = phase(frame, copy.staging.selectAt - 10, 24);
-  return (
-    <div className="ad-choices">
-      {copy.choices.map((name, index) => {
-        const p = pop(frame, copy.staging.optionsAt + index * 2),
-          selected = name === "Manufacturing";
-        const x = 300 + (index % 4) * 330,
-          y = 320 + Math.floor(index / 4) * 110;
-        return (
-          <PluginPiece
-            key={name}
-            name={name}
-            color={["#bde9dc", "#ffdc9b", "#cee6f4", "#dbcefa"][index % 4]}
-            installed={selected && select > 0.5}
-            style={{
-              position: "absolute",
-              zIndex: selected ? 10 : 3,
-              left: selected
-                ? mix(mix(1548, x, p), 1290, select)
-                : mix(1548, x, p) + retire * 200,
-              top: selected
-                ? mix(mix(449, y, p), targetY, select)
-                : mix(449, y, p),
-              width: selected ? mix(300, 310, select) : 300,
-              height: selected ? mix(84, 60, select) : 84,
-              opacity:
-                Math.min(1, p) *
-                (selected ? (frame < copy.changes[0].at ? 1 : 0) : 1 - retire),
-              transform: `rotate(${mix(-10, 0, p) * (1 - select)}deg) scale(${mix(0.18, 1, p)})`,
-            }}
-          />
-        );
-      })}
-    </div>
-  );
-}
-
-/** Real composition semantics: old plugins stay while each new plugin docks. */
-function PluginSlots({
-  frame,
-  from,
-  to,
-  p,
-  top,
-}: {
-  frame: number;
-  from: AdProfile;
-  to: AdProfile;
-  p: number;
-  top: number;
-}) {
+/** A plugin is inspected, then the same row docks; capabilities are never added alone. */
+function Composition({ frame }: { frame: number }) {
+  const state = adState(frame),
+    p = state.p,
+    poses = adPluginPoses(state.from, state.to, p);
   return (
     <>
-      {adPluginPoses(from, to, p).map(({ name, color, width, enter, x }) => {
+      {poses.map((pose) => {
+        const inspected = pose.added && state.change?.bundle;
+        if (inspected) {
+          const handedOff = state.from.id === "base",
+            arrival = handedOff ? 1 : phase(p, 0.08, 0.17);
+          const expand = phase(p, 0.02, 0.2) * (1 - phase(p, 0.68, 0.29));
+          const travelX = phase(p, 0.62, 0.25),
+            travelY = phase(p, 0.76, 0.24);
+          return (
+            <PluginPiece
+              key={pose.name}
+              module={pose.module}
+              expand={expand}
+              style={{
+                position: "absolute",
+                left: mix(1300 + 280 * (1 - arrival), pose.x, travelX),
+                top: mix(300, 820, travelY),
+                width: mix(470, 310, travelY),
+                opacity: arrival * (1 - phase(frame, copy.closing.at, 30)),
+                transform: `rotate(${(1 - travelX) * 2 * (1 - arrival)}deg)`,
+                zIndex: 8,
+              }}
+            />
+          );
+        }
         return (
           <PluginPiece
-            key={name}
-            name={name}
-            color={color}
-            installed
+            key={pose.name}
+            module={pose.module}
+            expand={0}
             style={{
               position: "absolute",
-              left: x,
-              top: top + 26 - 80 * (1 - enter),
-              width,
-              height: 60,
-              opacity:
-                phase(frame, copy.staging.promptAt, 58) *
-                enter *
-                (1 - phase(frame, copy.closing.at, 30)),
-              transform: `rotate(${8 * (1 - enter)}deg)`,
+              left: pose.x,
+              top: 820 - (pose.kept ? 0 : 35 * (1 - pose.opacity)),
+              width: pose.width,
+              opacity: pose.opacity * (1 - phase(frame, copy.closing.at, 30)),
+              zIndex: 5,
             }}
           />
         );
@@ -255,197 +189,83 @@ function PluginSlots({
   );
 }
 
-/** Native Skills and MCP contribution rows, isolated and enlarged for the film. */
-function Contributions({
-  frame,
-  from,
-  to,
-  p,
-  top,
-}: {
-  frame: number;
-  from: AdProfile;
-  to: AdProfile;
-  p: number;
-  top: number;
-}) {
-  return (
-    <div
-      className="ad-contributions"
-      style={{
-        top,
-        opacity:
-          phase(frame, copy.changes[0].at - 15, 28) *
-          (1 - phase(frame, copy.closing.at, 30)),
-      }}
-    >
-      {(["skill", "mcp"] as const).map((kind) => {
-        const module = to.modules.find((module) => module.kind === kind);
-        const old = from.modules.find((module) => module.kind === kind);
-        const enter = module ? (old ? 1 : ease((p - 0.05) / 0.7)) : 0;
-        const Icon = kind === "skill" ? Sparkles : Database;
-        return (
-          <div key={kind} className="ad-contribution-slot">
-            <div className="ad-slot-label">
-              <Icon size={23} />
-              <span>{kind === "skill" ? "Skills" : "MCP servers"}</span>
-              <Plus size={19} />
-            </div>
-            {module ? (
-              <div
-                className="ad-contribution-row"
-                style={{
-                  background: module.color,
-                  opacity: enter,
-                  transform: `translate(${(kind === "skill" ? -270 : 270) * (1 - enter)}px, ${-44 * (1 - enter)}px) rotate(${(kind === "skill" ? -5 : 5) * (1 - enter)}deg)`,
-                }}
-              >
-                <Icon size={26} />
-                <div>
-                  <small>{kind === "skill" ? "Skills" : "MCP servers"}</small>
-                  <strong>{module.name}</strong>
-                </div>
-                <Check size={20} />
-              </div>
-            ) : null}
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-/** Kinetic advertising wrapper around native-derived, additive composition pieces. */
+/** A single visual argument: compose a plugin bundle, then reuse it across domains. */
 export function ComposableAd({
   auditLayouts = false,
 }: {
   auditLayouts?: boolean;
 }) {
   const frame = useCurrentFrame(),
-    { layouts, hook } = useAdLayouts(auditLayouts),
+    { layouts, opening } = useAdLayouts(auditLayouts),
     state = adState(frame),
-    t = ease(state.p);
-  const body = phase(frame, copy.staging.promptAt, 58),
-    close = phase(frame, copy.closing.at, 60),
+    p = state.p,
+    t = ease(p);
+  const body = phase(frame, copy.staging.promptAt, 70),
     retire = phase(frame, copy.closing.at, 32),
     brandClose = phase(frame, copy.closing.at + 14, 46),
-    title = pop(frame, 422);
+    end = phase(frame, copy.closing.at + 46, 14);
+  const inspected = Boolean(state.change?.bundle);
+  const focus = inspected
+    ? (state.from.id === "base"
+        ? phase(frame, copy.staging.selectAt, 62)
+        : phase(p, 0, 0.16)) *
+      (1 - phase(p, 0.7, 0.3))
+    : 0;
   const height = layouts
-    ? mix(layouts[state.from.id].height, layouts[state.to.id].height, t) + 132
-    : 330;
-  const top = 510 - height / 2,
-    baseTop = layouts ? 510 - (layouts.base.height + 132) / 2 : 345;
-  const menu = phase(frame, copy.staging.menuAt, 55),
-    dock = phase(frame, copy.staging.promptAt, 58);
-  const bx = mix(mix(236, 326, menu), 326, dock),
-    by = mix(mix(433, 186, menu), top + 26, dock);
-  const font = mix(mix(116, 64, menu), 48, dock),
-    end = phase(frame, copy.closing.at + 46, 14),
-    pointer = adPointer(frame);
+    ? mix(layouts[state.from.id].height, layouts[state.to.id].height, t) + 96
+    : 316;
+  const pointer = adPointer(frame, opening);
+  const startLogo = opening
+    ? {
+        x: 960 - opening.width / 2 + opening.logo.x,
+        y: 540 - opening.height / 2 + opening.logo.y,
+      }
+    : { x: 260, y: 498 };
+  const logoTravel = phase(frame, 500, 100);
   return (
     <AbsoluteFill className="ad-film">
       <AdMeasures />
-      <div style={{ opacity: 1 - close }}>
-        <DomainWheel frame={frame} />
-        <Hook frame={frame} field={hook} />
-        <Choices frame={frame} targetY={baseTop + 26} />
-      </div>
+      <AdOpening frame={frame} />
+      <PluginPicker frame={frame} />
       <div
-        className="ad-agent-card"
+        className="ad-prompt-paper"
         style={{
-          opacity: menu * (1 - dock),
-          transform: `translateY(${30 * (1 - menu)}px)`,
-        }}
-      >
-        <p>an autonomous scientific coding and data assistant</p>
-        <button>
-          <Plus size={18} /> Add plugin
-        </button>
-      </div>
-      <div
-        className="ad-paper"
-        style={{
-          left: 260,
-          top,
-          width: 1400,
+          left: 340 - 180 * focus,
+          top: 465 - height / 2,
+          width: 1240,
           height,
           opacity: body * (1 - retire),
-          transform: `translateY(${80 * (1 - body) - 28 * close}px) rotate(${mix(-2, 0, body) + 3 * close}deg) scale(${mix(0.86, 1, body) - 0.12 * close})`,
+          transform: `translateY(${45 * (1 - body)}px) scale(${1 - 0.2 * focus}) rotate(${-1.3 * focus}deg)`,
         }}
       >
-        <div className="ad-paper-rule" />
-        <div className="ad-short-label">
-          <FileText size={20} /> System prompt
-        </div>
-        <div className="ad-paper-content">
+        <div className="ad-prompt-content">
           {layouts ? (
             <AdPromptInk
               layouts={layouts}
               from={state.from}
               to={state.to}
-              p={state.p}
+              p={p}
             />
           ) : null}
         </div>
-      </div>
-      <PluginSlots
-        frame={frame}
-        from={state.from}
-        to={state.to}
-        p={state.p}
-        top={top}
-      />
-      <Contributions
-        frame={frame}
-        from={state.from}
-        to={state.to}
-        p={state.p}
-        top={top + height + 25}
-      />
-      <div
-        className="ad-global-brand"
-        style={{
-          left: mix(bx, 530, brandClose),
-          top: mix(by, 490, brandClose),
-          opacity: Math.min(1, title),
-          transform: `translateX(${-65 * (1 - title)}px)`,
-          fontSize: mix(font, 142, brandClose),
-          gap: mix(16, 28, brandClose),
-        }}
-      >
         <div
-          style={{
-            width: mix(font + 8, 148, brandClose),
-            height: mix(font + 8, 148, brandClose),
-            position: "relative",
-          }}
-        >
-          <Img
-            src={staticFile("clio-mark.svg")}
-            style={{
-              width: "100%",
-              height: "100%",
-              opacity: 1 - dock * (1 - close),
-            }}
-          />
-          <div
-            className="ad-native-bot"
-            style={{ opacity: dock * (1 - close) }}
-          >
-            <Bot size={29} />
-          </div>
-        </div>
-        <strong>CLIO</strong>
-        <span style={{ opacity: (1 - menu) * (1 - close), marginLeft: -12 }}>
-          :
-        </span>
-        <small
-          className="ad-agent-ref"
-          style={{ opacity: dock * (1 - retire) }}
-        >
-          clio/standard
-        </small>
+          className="ad-domain-rule"
+          style={{ background: state.to.color }}
+        />
       </div>
+      <Composition frame={frame} />
+      {frame >= 500 ? (
+        <Img
+          src={staticFile("clio-mark.svg")}
+          className="ad-brand-owl"
+          style={{
+            left: mix(mix(startLogo.x, 245, logoTravel), 530, brandClose),
+            top: mix(mix(startLogo.y, 160, logoTravel), 490, brandClose),
+            width: mix(mix(84, 72, logoTravel), 148, brandClose),
+            height: mix(mix(84, 72, logoTravel), 148, brandClose),
+          }}
+        />
+      ) : null}
       <svg
         className="ad-cursor"
         width={34}
@@ -466,15 +286,18 @@ export function ComposableAd({
           strokeLinejoin="round"
         />
       </svg>
+      <div className="ad-close-wordmark" style={{ opacity: end }}>
+        CLIO
+      </div>
       <div
         className="ad-close-copy"
-        style={{ opacity: end, transform: `translateY(${16 * (1 - end)}px)` }}
+        style={{ opacity: end, transform: `translateY(${12 * (1 - end)}px)` }}
       >
         <div>
           Build your <span>own.</span>
         </div>
         <small>
-          clio.iowarp.ai <ArrowUpRight size={26} />
+          clio.iowarp.ai <ArrowUpRight size={25} />
         </small>
       </div>
       <Img

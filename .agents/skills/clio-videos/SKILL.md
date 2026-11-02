@@ -18,10 +18,19 @@ understandable domains, white space, color continuity, purposeful object handoff
 and sound design. Omit core, filesystem, dependency trees and scientific case names.
 For this ad, the opening/closing are PR; the middle is a pseudo demo of real CLIO
 elements reshaped for the film. Show many possible domains, not just three presets.
-An accelerating horizontal wheel can resolve into composable. Preserve the base
-prompt and visibly append plugin contributions; a three-line identity rewrite
-misrepresents the requested slot/build metaphor. Show named Skills and MCP rows
-arriving and their effect on the prompt, rather than static labels changing color.
+Choose one opening device. The current cut uses only a vertical domain wheel:
+keep A and agent fixed while whole words rotate, accelerate and settle on composable.
+Do not combine that with typing/backspacing or a second horizontal wheel.
+Use one measured flex lockup for CLIO, the phrase and plus. Remove inspector chrome,
+the large header, grey System prompt label and clio/standard reference. Use the real
+CLIO owl, not the generic robot. Keep the prompt uniformly typeset and make its
+identity match the active domain. The middle needs both building and transformations
+across several domains, rather than only one build or a set of identity presets.
+Skills, MCP servers, tools and hooks are brought by plugins. Inspect a plugin's
+multiple contributions, then dock that same plugin row. Never depict standalone
+Add skill or Add MCP actions. Adding a workflow plugin extends the current domain;
+changing the domain updates identity and domain instructions. Keep a reusable
+Reports plugin through those switches so composition and reuse are visible.
 Shortened illustrative domain instructions are allowed when requested; document
 them as editorial examples rather than asserting an installed catalogue or run.
 Plan transitions as paths through occupied space. Move the agent card clear before

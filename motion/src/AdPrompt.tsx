@@ -1,29 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import { cancelRender, continueRender, delayRender } from "remotion";
-import { profiles, adWords, copy, type AdProfile } from "./composable-ad-plan";
-import { morphBoxes, type PromptLayout } from "./prompt-morph";
-import { ChevronDown } from "lucide-react";
-
-declare global {
-  interface Window {
-    __CLIO_AD_LAYOUTS__?: Record<string, PromptLayout>;
-  }
-}
+import {
+  profiles,
+  adWords,
+  type AdProfile,
+  type OpeningGeometry,
+} from "./composable-ad-plan";
+import type { PromptLayout } from "./prompt-morph";
+import { AdOpening } from "./AdOpening";
 
 function Line({ id, text }: { id: string; text: string }) {
   let n = 0;
-  const heading = id.endsWith(":heading");
-  const owner = copy.modules.find((module) =>
-    module.lines.some((line) => line.id === id),
-  );
   return (
-    <div
-      className={`ad-line ${id === "role" ? "ad-line-role" : ""} ${heading ? "ad-line-heading" : ""}`}
-      data-ad-box={heading ? id : undefined}
-      style={
-        heading ? { background: `${owner?.color ?? "#e8f0f3"}70` } : undefined
-      }
-    >
+    <div className="ad-line">
       {text.split(/(\s+)/u).map((token, i) =>
         /^\s+$/u.test(token) ? (
           <React.Fragment key={`s${i}`}>{token}</React.Fragment>
@@ -39,19 +28,7 @@ function Line({ id, text }: { id: string; text: string }) {
 export function AdMeasures() {
   return (
     <div className="ad-measurements" aria-hidden="true">
-      <div
-        data-ad-hook
-        className="ad-hook"
-        style={{ left: 0, top: 0, fontSize: 80 }}
-      >
-        <span className="ad-lower-a" style={{ width: 49 }}>
-          a
-        </span>
-        <span data-ad-field className="ad-field">
-          composable
-        </span>
-        <span className="ad-hook-agent">agent</span>
-      </div>
+      <AdOpening frame={480} measure />
       {Object.values(profiles).map((profile) => (
         <div
           key={profile.id}
@@ -67,20 +44,16 @@ export function AdMeasures() {
   );
 }
 
+/** Measure the same fonts and flex lockup used by the film before any frame paints. */
 export function useAdLayouts(record = false) {
   const [handle] = useState(() =>
-    delayRender("Measure advertisement typography"),
+    delayRender("Measure prompt and aligned brand lockup"),
   );
   const [layouts, setLayouts] = useState<Record<string, PromptLayout> | null>(
-      null,
-    ),
+    null,
+  );
+  const [opening, setOpening] = useState<OpeningGeometry | null>(null),
     done = useRef(false);
-  const [hook, setHook] = useState<{
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-  } | null>(null);
   useEffect(() => {
     let active = true;
     void document.fonts.ready
@@ -91,8 +64,7 @@ export function useAdLayouts(record = false) {
             const root = document.querySelector<HTMLElement>(
               `[data-ad-measure="${profile.id}"]`,
             );
-            if (!root)
-              throw new Error(`Missing measured profile ${profile.id}`);
+            if (!root) throw new Error(`Missing measured prompt ${profile.id}`);
             const origin = root.getBoundingClientRect();
             const words = Array.from(
               root.querySelectorAll<HTMLElement>("[data-ad-word]"),
@@ -110,55 +82,52 @@ export function useAdLayouts(record = false) {
                 fontSize: parseFloat(css.fontSize),
                 fontWeight: Number(css.fontWeight),
                 color: css.color,
-                mono: false,
+                mono: true,
               };
             });
             if (
               !words.length ||
               words.some((word) => word.width <= 0 || word.height <= 0)
             )
-              throw new Error("Empty advertising text geometry");
+              throw new Error("Empty prompt geometry");
             return [
               profile.id,
               {
                 words,
-                boxes: Array.from(
-                  root.querySelectorAll<HTMLElement>("[data-ad-box]"),
-                ).map((element) => {
-                  const box = element.getBoundingClientRect();
-                  return {
-                    id: element.dataset.adBox!,
-                    x: box.x - origin.x,
-                    y: box.y - origin.y + 8,
-                    width: box.width,
-                    height: box.height - 8,
-                    background: getComputedStyle(element).backgroundColor,
-                    border: "transparent",
-                    radius: 6,
-                  };
-                }),
+                boxes: [],
                 height: origin.height,
               } satisfies PromptLayout,
             ];
           }),
         );
-        window.__CLIO_AD_LAYOUTS__ = measured;
-        if (record)
+        const row = document.querySelector<HTMLElement>(
+          '[data-ad-opening="measure"]',
+        );
+        if (!row) throw new Error("Missing aligned lockup measurement");
+        const origin = row.getBoundingClientRect();
+        const relative = (selector: string) => {
+          const element = row.querySelector<HTMLElement>(selector);
+          if (!element) throw new Error(`Missing lockup element ${selector}`);
+          const box = element.getBoundingClientRect();
+          return {
+            x: box.x - origin.x,
+            y: box.y - origin.y,
+            width: box.width,
+            height: box.height,
+          };
+        };
+        const openingGeometry = {
+          width: origin.width,
+          height: origin.height,
+          logo: relative("[data-ad-logo]"),
+          plus: relative("[data-ad-plus]"),
+        };
+        if (record) {
           console.log(`__CLIO_AD_LAYOUTS__${JSON.stringify(measured)}`);
-        const hookRoot = document.querySelector<HTMLElement>("[data-ad-hook]");
-        const hookField =
-          document.querySelector<HTMLElement>("[data-ad-field]");
-        if (!hookRoot || !hookField)
-          throw new Error("Missing hook typography measurement");
-        const origin = hookRoot.getBoundingClientRect(),
-          field = hookField.getBoundingClientRect();
-        setHook({
-          x: field.x - origin.x,
-          y: field.y - origin.y,
-          width: field.width,
-          height: field.height,
-        });
+          console.log(`__CLIO_AD_OPENING__${JSON.stringify(openingGeometry)}`);
+        }
         setLayouts(measured);
+        setOpening(openingGeometry);
         if (!done.current) {
           done.current = true;
           continueRender(handle);
@@ -169,9 +138,10 @@ export function useAdLayouts(record = false) {
       active = false;
     };
   }, [handle, record]);
-  return { layouts, hook };
+  return { layouts, opening };
 }
 
+/** One uniform prompt face, with fragment-scoped edits and no inspector metadata. */
 export function AdPromptInk({
   layouts,
   from,
@@ -185,27 +155,6 @@ export function AdPromptInk({
 }) {
   return (
     <div className="ad-ink">
-      {morphBoxes(layouts[from.id], layouts[to.id], p).map((box) => (
-        <div
-          key={box.id}
-          style={{
-            position: "absolute",
-            left: box.x,
-            top: box.y,
-            width: box.width,
-            height: box.height,
-            borderRadius: box.radius,
-            background: box.background,
-            opacity: box.opacity,
-            overflow: "hidden",
-          }}
-        >
-          <ChevronDown
-            size={18}
-            style={{ position: "absolute", left: 10, top: 8 }}
-          />
-        </div>
-      ))}
       {adWords(layouts[from.id], layouts[to.id], p).map((word) =>
         word.opacity > 0.0001 && word.clipBottom < word.height ? (
           <span
@@ -220,7 +169,7 @@ export function AdPromptInk({
               color: word.color,
               opacity: word.opacity,
               whiteSpace: "pre",
-              letterSpacing: "-0.35px",
+              letterSpacing: "-0.3px",
               clipPath:
                 word.clipBottom > 0
                   ? `inset(0 0 ${word.clipBottom}px 0)`

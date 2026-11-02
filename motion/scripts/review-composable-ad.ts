@@ -4,21 +4,54 @@ import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { PNG } from "pngjs";
 import jsQR from "jsqr";
-import { adWords, copy } from "../src/composable-ad-plan";
+import { adWords, copy, type OpeningGeometry } from "../src/composable-ad-plan";
 import type { PromptLayout } from "../src/prompt-morph";
 
 const layouts: Record<string, PromptLayout> = JSON.parse(
   readFileSync("review/composable-ad-layouts.json", "utf8"),
 );
 for (const [name, layout] of Object.entries(layouts)) {
-  assert.ok(layout.height <= 680, `Instructions exceed the film card: ${name}`);
+  assert.ok(layout.height <= 600, `Instructions exceed the film card: ${name}`);
   assert.ok(
     layout.words.every(
-      (word) => word.x >= 0 && word.x + word.width <= 1268 && word.width > 0,
+      (word) => word.x >= 0 && word.x + word.width <= 1120 && word.width > 0,
     ),
     `Text clipping: ${name}`,
   );
 }
+const opening: OpeningGeometry = JSON.parse(
+  readFileSync("review/composable-ad-opening.json", "utf8"),
+);
+assert.ok(
+  Math.abs(
+    opening.logo.y +
+      opening.logo.height / 2 -
+      (opening.plus.y + opening.plus.height / 2),
+  ) < 0.1,
+  "Brand and plus are misaligned",
+);
+assert.deepEqual(
+  [
+    ...new Set(
+      Object.values(layouts).flatMap((layout) =>
+        layout.words.map((word) => word.fontSize),
+      ),
+    ),
+  ],
+  [28],
+  "Prompt typography must be uniform",
+);
+assert.deepEqual(
+  [
+    ...new Set(
+      Object.values(layouts).flatMap((layout) =>
+        layout.words.map((word) => word.fontWeight),
+      ),
+    ),
+  ],
+  [450],
+  "Prompt weight must be uniform",
+);
 const collisions: unknown[] = [];
 for (const change of copy.changes)
   for (let f = 0; f <= change.duration; f++) {
@@ -41,7 +74,13 @@ for (const change of copy.changes)
       }
   }
 assert.deepEqual(collisions, [], "Instruction words collide");
-const video = process.argv[2] ?? "out/composable/clio-composable-ad.mp4";
+if (process.argv.includes("--geometry-only")) {
+  console.log(
+    `Measured geometry passed: ${Object.keys(layouts).length} prompts, uniform font, aligned logo and plus, no word collisions.`,
+  );
+  process.exit(0);
+}
+const video = process.argv[2] ?? "out/composable/clio-composable-ad-v5.mp4";
 const metadata = JSON.parse(
   execFileSync(
     "ffprobe",

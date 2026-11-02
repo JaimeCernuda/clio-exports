@@ -2,6 +2,11 @@
 
 Revised full cut for user review; creative approval is pending.
 
+Superseded after user rejection: the opening mixed typing and a wheel; inspector
+chrome distracted from the concept; skills/MCPs appeared to be added independently;
+and the manufacturing build did not demonstrate enough domain transformations.
+The current treatment and plugin-ownership model are described in ART-DIRECTION.md.
+
 - Local movie: `motion/out/composable/clio-composable-ad.mp4` (not committed).
 - SHA-256: `e83c6c42f83a162e74fcf2679ba006bd6c0ea2b29f5e023723686b1c8385e4fe`.
 - 1920 × 1080, 60 fps, 1930 frames, 32.167 seconds, 7,066,329 bytes.

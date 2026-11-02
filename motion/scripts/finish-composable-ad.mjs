@@ -4,8 +4,9 @@ import { execFileSync } from "node:child_process";
 import path from "node:path";
 const root = path.resolve(import.meta.dirname, "..");
 process.chdir(root);
-const source = process.argv[2] ?? "out/composable/clio-composable-ad-clean.mp4";
-const output = process.argv[3] ?? "out/composable/clio-composable-ad.mp4";
+const source =
+  process.argv[2] ?? "out/composable/clio-composable-ad-v5-clean.mp4";
+const output = process.argv[3] ?? "out/composable/clio-composable-ad-v5.mp4";
 const score = JSON.parse(await readFile("story/composable-ad.json", "utf8"));
 const rate = 48000,
   seconds = score.frames / score.fps,
@@ -73,25 +74,11 @@ for (let beat = 0; beat < 48; beat++) {
       0.008,
     );
 }
-for (const pass of score.intro.filter((pass) => pass.typed > pass.at)) {
-  for (let i = 0; i < pass.word.length; i++)
-    tick(
-      (pass.at + ((pass.typed - pass.at) * (i + 1)) / pass.word.length) / 60,
-      0.038,
-    );
-  if (pass.erase < score.frames)
-    for (let i = 0; i < pass.word.length; i++)
-      tick(
-        (pass.erase + ((pass.end - pass.erase) * (i + 1)) / pass.word.length) /
-          60,
-        0.023,
-      );
-}
+for (const frame of [70, 126, score.wheel.end]) tick(frame / 60, 0.028);
 for (const frame of [
-  372,
-  436,
+  score.staging.brandAt,
+  score.staging.plusAt,
   score.staging.menuAt,
-  score.staging.optionsAt,
   score.staging.selectAt,
   score.staging.promptAt,
   ...score.changes.map((change) => change.at),

@@ -1,85 +1,92 @@
 # CLIO: a composable agent
 
-The current cut is a 32.17-second, 1920 × 1080 / 60 fps advertisement with original
-sound design. Its opening and closing use kinetic typography. The middle is a
-pseudo demo made from native-derived CLIO elements, reshaped for the film rather
-than enclosed in a complete app window.
+The active film is a 35-second, 1920 × 1080 / 60 fps motion advertisement. Its
+opening and closing are PR. The middle is a pseudo demo of editable native-derived
+CLIO plugin controls and prompt text, reshaped for the film without app chrome.
+See [ART-DIRECTION.md](ART-DIRECTION.md) for the story and craft references.
 
-The middle depicts configuring a fresh agent before a conversation. Its immediate
-instruction changes do not represent hot-swapping an existing conversation's
-already-submitted prompt or making a live MCP connection.
+One vertical wheel changes whole domain words inside **A [domain] agent** while
+the surrounding words stay fixed. It accelerates, settles on composable, and
+forms one aligned CLIO/phrase/plus lockup. There is no typing/backspacing sequence.
 
-The first UI-led cut and the subsequent three-preset treatment were rejected.
-The active treatment is [ART-DIRECTION.md](ART-DIRECTION.md): a wide range of
-possible agents resolves into **composable**, then an agent is assembled by
-addition. Manufacturing, Simulation, a named skill, a named MCP connection and
-Reports extend the same prompt. They do not replace its existing instructions.
-The close holds **Build your own / CLIO**, the website and QR for five seconds.
+Manufacturing opens to reveal its prompt, skill, MCP, tool and hook contributions.
+Simulation and Reports then extend it. The agent becomes Genomics, Climate,
+Robotics, Materials and Medical research, retaining Reports to demonstrate reuse.
+Its displayed identity always follows the active domain. The real CLIO owl remains
+the brand anchor. There is no generic robot, agent reference or inspector header.
 
-## Editable source map
+These are illustrative domain plugins and a uniform editorial representation of
+their prompt. The film does not claim to show a complete backend-resolved prompt,
+an installed catalogue, a recorded execution or a successful live MCP connection.
+It depicts configuration before a conversation; changing an already-submitted
+prompt has additional runtime semantics not covered by this ad.
 
-- [Copy, modules, stages and timing](../../motion/story/composable-ad.json).
-  Add modules in one place; each stage composes its base instructions with the
-  selected contributions. Domain examples and shortened prompt wording are
-  editorial illustrations, not an installed-agent catalogue or recorded run.
-- [Standalone entrypoint](../../motion/src/composable-ad-index.tsx):
-  `ClioComposableAd`. No replay server or native backend is needed.
-- [Choreography and native-derived pieces](../../motion/src/ComposableAd.tsx),
-  [presentation](../../motion/src/composable-ad.css),
-  [composition and collision-aware docking](../../motion/src/composable-ad-plan.ts),
-  [measured editable prompt](../../motion/src/AdPrompt.tsx),
-  [shared text/layout engine](../../motion/src/prompt-morph.ts).
-- [UI source map](ui-sources.json): reviewed production files and checksums.
-  The agent card, Add plugin control, cube/removal rows, section chevrons, Skills
-  and MCP servers labels are adaptations of the actual CLIO components. They
-  retain their visual vocabulary and additive semantics. The film does not
-  import the full production app, simulate backend operations or imply that a
-  configured MCP has connected successfully.
-- [Original sound finisher](../../motion/scripts/finish-composable-ad.mjs):
-  deterministic synthesis aligned with the film cues; no reference-film audio.
-- [QR generator](../../motion/scripts/prepare-composable-qr.mjs),
-  [white-background QR](../../motion/public/composable/clio-qr-white.svg),
-  [encoded review](../../motion/scripts/review-composable-ad.ts),
+## Source map
+
+- [Copy, plugin bundles, stages and cues](../../motion/story/composable-ad.json).
+  Every module is a plugin. Its role, instructions, skills, MCP servers, tools
+  and hooks travel together; there are no independently added skill/MCP objects.
+- [Opening wheel and shared flex lockup](../../motion/src/AdOpening.tsx).
+- [Film and native-derived contribution disclosures](../../motion/src/ComposableAd.tsx),
+  [styling](../../motion/src/composable-ad.css),
+  [composition, ownership and motion](../../motion/src/composable-ad-plan.ts),
+  [uniform measured prompt](../../motion/src/AdPrompt.tsx),
+  [shared word matching](../../motion/src/prompt-morph.ts).
+- [Production UI references and checksums](ui-sources.json). Plugin choice,
+  removal controls and multi-family contribution hierarchy follow CLIO. The
+  film reflows those elements and represents the composed prompt in one text face;
+  it does not mount the full production app or backend.
+- [Standalone Remotion entrypoint](../../motion/src/composable-ad-index.tsx):
+  `ClioComposableAd`, with no transcript or preview server dependency.
+- [Original procedural sound](../../motion/scripts/finish-composable-ad.mjs),
+  [QR generator](../../motion/scripts/prepare-composable-qr.mjs),
+  [review checks](../../motion/scripts/review-composable-ad.ts),
   [behavioral tests](../../motion/tests/composable-ad.test.ts).
 
-## Render and review
+To add a domain, define one plugin and its owned contribution arrays, then select
+it in a stage. A workflow plugin has an empty role and extends the current domain.
+A domain plugin supplies the role; common instructions remain stable. Reusing a
+plugin retains its source IDs and prompt fragments across domain changes.
 
-Install using the repository Python and Node lockfiles. Keep dependencies,
-TEMP/TMP/TMPDIR, caches and renders on the project drive. From `motion/`:
+## Render and inspect
+
+Use the repository lockfiles and keep dependencies, temporary files, caches and
+renders on D:. From `motion/`:
 
 ```powershell
 node scripts/prepare-composable-qr.mjs
 npm run composable:render
 ```
 
-This creates `out/composable/clio-composable-ad-clean.mp4` and the sound version
-`out/composable/clio-composable-ad.mp4`. The successful raw renderer intermediate
-and temporary soundtrack WAV are removed. Movies stay local and are not pushed.
-The renderer waits for fonts and actual text geometry. Every pose follows its
-render frame; there are no CSS clocks or timer-driven typing effects.
+Outputs: `out/composable/clio-composable-ad-v5-clean.mp4` and
+`out/composable/clio-composable-ad-v5.mp4`. Original synthetic sound is aligned
+to the cues. No reference-film footage, artwork or soundtrack is reused. Successful
+raw renderer intermediates and the temporary WAV are removed; movies stay local.
 
-After rendering, collect fresh browser geometry and check the actual movie:
+The renderer waits for fonts and measures the actual DOM. Every value follows
+the render frame. Do not launch a second bundle into `motion/bundle` during a render.
+
+After changing text or layout, measure again before checking geometry:
 
 ```powershell
-node render.mjs stills --composition ClioComposableAd --scale 1 --frames 1850 --props examples/composable-measure.json > review/composable-ad-measure.log
+node render.mjs stills --composition ClioComposableAd --scale 1 --frames 2050 --props examples/composable-measure.json > review/composable-ad-v5-measure.log
+npx tsx scripts/review-composable-ad.ts --geometry-only
 npm run composable:review
 ```
 
-Do not launch a second bundle into `motion/bundle` while a render is active.
-The review checks word collisions, geometry, frame count, audio presence, full
-decoding, the QR in the encoded file, and the settled end for flicker. Unit tests
-also enforce append-only instructions, retained module identities, an
-accelerating domain wheel and clearance during plugin docking. Inspect the
-encoded handoffs and additions as moving passages; passing checks does not
-approve the creative direction. Detailed local receipts stay in `motion/review`.
+Review covers uniform prompt typography, measured logo/plus alignment, every
+instruction edit frame, retained/removed text clearance, full movie decode, audio,
+QR decoding and a settled final five seconds. Tests cover plugin ownership,
+domain identity, reusable contributions and action-before-effect timing. Inspect
+the encoded moving handoffs as well; technical checks do not approve taste or pacing.
 
-## Earlier cut
+## Prior treatments
 
-`ClioComposable` and `npm run composable:legacy` retain the rejected source-bound
-UI cut for history. Its [review receipt](review-v1.md) and actual composer export
-are separate from the current illustrative advertisement. Refresh that legacy
-export with `tools/prepare_composable_prompts.py` only when deliberately updating
-the recorded source pin. It is not the template for a new social film.
+The original `ClioComposable` UI cut and later mixed typewriter/horizontal-wheel
+advertisement were rejected. [V1](review-v1.md) and [V4](review-ad-v4.md) remain
+historical receipts. The original source-bound composer export remains separate
+in `motion/data/composable-prompts.json`; regenerate it only when deliberately
+changing those source pins. Prior movies remain local for comparison.
 
-Current status: revised full advertisement for user review; not creatively approved.
-See [the current review receipt](review-ad-v4.md) for the checks and their limits.
+Current status: revised full cut for user review; creative approval is pending.
+See [the current review receipt](review-ad-v5.md) for checks and review limits.
