@@ -354,3 +354,28 @@
   height: 288px;
   z-index: 18;
 }
+.ad-close-credit {
+  position: absolute;
+  left: 530px;
+  top: 822px;
+  width: 951px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.ad-close-credit img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+.ad-close-credit [data-ad-credit-system] {
+  font-size: 30px;
+  line-height: 40px;
+  font-weight: 500;
+}
+.ad-close-credit [data-ad-credit-byline] {
+  font-size: 26px;
+  line-height: 38px;
+  color: #315469;
+}

@@ -191,6 +191,37 @@ const closing = read("closing");
 assert.ok(closing.url.fontSize >= 40);
 assert.ok(closing.qr.width >= 280 && closing.qr.height >= 280);
 assert.ok(closing.qr.x + closing.qr.width < 1820);
+assert.equal(closing.credit.system.text, copy.closing.credit.system);
+assert.equal(closing.credit.byline.text, copy.closing.credit.byline);
+assert.ok(closing.credit.system.fontSize >= 30);
+assert.ok(closing.credit.byline.fontSize >= 26);
+assert.ok(closing.credit.logo.width >= 80);
+assert.equal(closing.credit.logo.width, closing.credit.logo.height);
+assert.ok(
+  closing.credit.system.x - closing.credit.logo.x - closing.credit.logo.width >=
+    19.9,
+);
+assert.ok(
+  closing.credit.byline.x - closing.credit.logo.x - closing.credit.logo.width >=
+    19.9,
+);
+assert.ok(
+  closing.credit.y >=
+    Math.max(
+      closing.url.y + closing.url.height,
+      closing.qr.y + closing.qr.height,
+    ) +
+      40,
+);
+assert.ok(closing.credit.y + closing.credit.height <= 1000);
+for (const part of [
+  closing.credit.system,
+  closing.credit.byline,
+  closing.credit.logo,
+]) {
+  assert.ok(part.x >= closing.credit.x);
+  assert.ok(part.x + part.width <= closing.credit.x + closing.credit.width);
+}
 const capabilities: Array<{
   id: string;
   owner: string;
@@ -300,7 +331,7 @@ if (process.argv.includes("--geometry-only")) {
   );
   process.exit(0);
 }
-const video = process.argv[2] ?? "out/composable/clio-composable-ad-v13.mp4";
+const video = process.argv[2] ?? "out/composable/clio-composable-ad-v14.mp4";
 const auditFrames = Array.from(
     { length: copy.closing.at - copy.staging.selectAt },
     (_, i) => copy.staging.selectAt + i,

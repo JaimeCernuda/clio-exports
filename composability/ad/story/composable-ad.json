@@ -1,5 +1,5 @@
 {
-  "schema": "clio.composable-ad.v13",
+  "schema": "clio.composable-ad.v14",
   "fps": 60,
   "frames": 2160,
   "treatment": "One agent. Different domains. Plugins bring the instructions and capabilities together.",
@@ -401,7 +401,11 @@
     "at": 1800,
     "settled": 1860,
     "line": "Build your own.",
-    "url": "https://clio.iowarp.ai/"
+    "url": "https://clio.iowarp.ai/",
+    "credit": {
+      "system": "An IOWarp system",
+      "byline": "by the Gnosis Research Center"
+    }
   },
   "removal": {
     "leadFrames": 42,

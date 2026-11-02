@@ -13,10 +13,13 @@ It contains the editable components, copy, timing, assets, renderer, sound gener
 tests, review scripts and review history. It needs no CLIO backend or transcript server.
 The technical presentation demos elsewhere in this repository are separate projects.
 
-Current baseline: **v13, 36 seconds, 1920 × 1080, 60 fps, original procedural audio**.
+Current baseline: **v14, 36 seconds, 1920 × 1080, 60 fps, original procedural audio**.
 It is a revision for user review, **not a creatively approved final**. The latest
-[review receipt](docs/reviews/review-ad-v13.md) distinguishes checks from approval.
+[review receipt](docs/reviews/review-ad-v14.md) distinguishes checks from approval.
 Rendered movies remain local and are excluded from Git.
+
+The GRC closing-credit artwork is the unmodified PNG supplied by the user.
+[Its source and checksum](references/grc-logo.json) accompany the bundled asset.
 
 The prompt stays at a fixed size and position. Owner-colored marks identify its
 actual edits, while a persistent tree on the right shows skills, hooks, tools
@@ -24,7 +27,8 @@ and MCP servers entering or leaving with their plugin. The wheel smoothly shorte
 the keyword hook to four seconds, already fast by Materials/Chemistry. Directional
 blur follows cadence and motion. Every addition opens a global plus menu and
 selects a plugin before its instructions and capabilities enter; removals click X. The closing URL
-and QR are larger, with no arrow beside the URL.
+and QR are larger, with no arrow beside the URL. Beneath them, the supplied
+transparent GRC logo accompanies “An IOWarp system / by the Gnosis Research Center.”
 The cursor follows a continuous route through the frame edge between gestures.
 The traveling owl clears the prompt before it appears, and later domain edits
 settle for 0.6–1.3 seconds before the next change.
@@ -59,8 +63,8 @@ compatible Chrome executable. Otherwise Remotion obtains its supported browser.
 --frames 564,624,649,650` renders selected frames. `npm run qr` regenerates the
 included QR assets if the destination changes. The complete render command writes:
 
-- `out/composable/clio-composable-ad-v13-clean.mp4`
-- `out/composable/clio-composable-ad-v13.mp4`
+- `out/composable/clio-composable-ad-v14-clean.mp4`
+- `out/composable/clio-composable-ad-v14.mp4`
 
 Measurements, extracted review images and reports go in `review/`; bundles and
 temporary files are also ignored. Do not run two bundles/renders against the same

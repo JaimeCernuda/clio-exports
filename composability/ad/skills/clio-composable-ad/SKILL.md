@@ -13,7 +13,7 @@ Make the viewer understand “build the agent you need.” Show both plugins ext
 an existing agent and specialization across many fields. The bookends are PR;
 the middle reshapes recognizable CLIO elements for motion. Keep the real owl,
 uniform prompt text and matching domain identity. Avoid reconstructing a whole
-app, technical catalogue or slide layout. V13 is a baseline, not an approved final.
+app, technical catalogue or slide layout. V14 is a baseline, not an approved final.
 
 Choose one opening mechanism. The current decision is a vertical wheel with the
 surrounding words fixed; do not mix it with typing/backspacing. Shorten successive
@@ -80,5 +80,8 @@ uninterrupted playback/listening, and user creative approval distinct.
 See [review history](../../docs/reviews/) before claiming a prior defect fixed.
 Keep the final QR stationary and decodable. The current close uses a larger URL
 and QR with no link arrow; preserve that request when changing its layout.
+The ad close now includes “An IOWarp system / by the Gnosis Research Center”
+with the supplied transparent GRC logo. Use the original asset directly without
+a backing card, measure separation from URL/QR, and leave website loops unbranded.
 Keep all generated work on the project
 volume (D: on the user's machine), source and lessons in Git, and movies local.

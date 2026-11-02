@@ -1,0 +1,148 @@
+{
+  "video": "out/composable/clio-composable-ad-v14.mp4",
+  "sha256": "2f3013cb26e9b658e1a00b71d34d9b439d2ace0fab1a6e32103ff87480e2ed0e",
+  "frames": 2160,
+  "fps": 60,
+  "width": 1920,
+  "height": 1080,
+  "audio": "original procedural sound design",
+  "profiles": 11,
+  "transitions": 10,
+  "wheelChangeFrames": [
+    48,
+    38,
+    30,
+    23,
+    18,
+    14,
+    12,
+    10,
+    9,
+    8,
+    8,
+    8
+  ],
+  "clickChecks": [
+    {
+      "frame": 564,
+      "id": "global-plus",
+      "action": "open"
+    },
+    {
+      "frame": 624,
+      "id": "simulation",
+      "action": "choose"
+    },
+    {
+      "frame": 758,
+      "id": "global-plus",
+      "action": "open"
+    },
+    {
+      "frame": 818,
+      "id": "reports",
+      "action": "choose"
+    },
+    {
+      "frame": 1000,
+      "id": "simulation",
+      "action": "remove"
+    },
+    {
+      "frame": 1082,
+      "id": "manufacturing",
+      "action": "remove"
+    },
+    {
+      "frame": 1152,
+      "id": "global-plus",
+      "action": "open"
+    },
+    {
+      "frame": 1212,
+      "id": "genomics",
+      "action": "choose"
+    }
+  ],
+  "closing": {
+    "url": {
+      "x": 530,
+      "y": 701,
+      "width": 255.21875,
+      "height": 51,
+      "fontSize": 42
+    },
+    "qr": {
+      "x": 1193,
+      "y": 420,
+      "width": 288,
+      "height": 288
+    },
+    "credit": {
+      "x": 530,
+      "y": 822,
+      "width": 951,
+      "height": 80,
+      "system": {
+        "x": 865.515625,
+        "y": 823,
+        "width": 379.953125,
+        "height": 40,
+        "text": "An IOWarp system",
+        "fontSize": 30
+      },
+      "byline": {
+        "x": 865.515625,
+        "y": 863,
+        "width": 379.953125,
+        "height": 38,
+        "text": "by the Gnosis Research Center",
+        "fontSize": 26
+      },
+      "logo": {
+        "x": 765.515625,
+        "y": 822,
+        "width": 80,
+        "height": 80,
+        "text": "",
+        "fontSize": 16
+      }
+    }
+  },
+  "measuredCapabilityLeaves": 30,
+  "measuredPromptFrames": 52,
+  "promptBounds": {
+    "x": 140,
+    "y": 245,
+    "width": 1016.8,
+    "height": 508.4
+  },
+  "wordCollisions": [],
+  "componentOcclusions": [],
+  "logoOcclusions": [],
+  "cursorPeakSpeed": 22.693874422525546,
+  "domainHolds": [
+    {
+      "id": "climate",
+      "frames": 36
+    },
+    {
+      "id": "robotics",
+      "frames": 42
+    },
+    {
+      "id": "materials",
+      "frames": 48
+    },
+    {
+      "id": "medical",
+      "frames": 80
+    }
+  ],
+  "encodedCompositionFrames": 1418,
+  "paintLeaks": [],
+  "qr": "https://clio.iowarp.ai/",
+  "settledFrameDifferenceMax": 0.136849,
+  "decode": "passed",
+  "reviewBoundary": "Measured geometry and encoded frames; creative and uninterrupted playback review are separate."
+}

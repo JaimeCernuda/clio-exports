@@ -190,6 +190,21 @@ export function ComposableAd({
         src={staticFile("composable/clio-qr-white.svg")}
         style={{ opacity: end }}
       />
+      <div
+        className="ad-close-credit"
+        data-ad-credit
+        style={{ opacity: end, transform: `translateY(${12 * (1 - end)}px)` }}
+      >
+        <Img
+          data-ad-credit-logo
+          src={staticFile("grc-logo.png")}
+          alt="Gnosis Research Center"
+        />
+        <div>
+          <div data-ad-credit-system>{copy.closing.credit.system}</div>
+          <div data-ad-credit-byline>{copy.closing.credit.byline}</div>
+        </div>
+      </div>
     </AbsoluteFill>
   );
 }

@@ -1,9 +1,35 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import test from "node:test";
+import { PNG } from "pngjs";
 
 const root = path.resolve(import.meta.dirname, "..");
+
+test("the credited GRC logo is the intact transparent asset recorded in the handoff", () => {
+  const reference = JSON.parse(
+      readFileSync(path.join(root, "references/grc-logo.json"), "utf8"),
+    ),
+    data = readFileSync(path.join(root, reference.file)),
+    png = PNG.sync.read(data),
+    score = JSON.parse(
+      readFileSync(path.join(root, "story/composable-ad.json"), "utf8"),
+    );
+  assert.equal(reference.source, "https://grc.iit.edu/img/logo.png");
+  assert.equal(
+    createHash("sha256").update(data).digest("hex"),
+    reference.sha256,
+  );
+  assert.equal(png.width, 960);
+  assert.equal(png.height, 960);
+  assert.ok(png.data.some((value, index) => index % 4 === 3 && value === 0));
+  assert.ok(png.data.some((value, index) => index % 4 === 3 && value === 255));
+  assert.deepEqual(score.closing.credit, {
+    system: "An IOWarp system",
+    byline: "by the Gnosis Research Center",
+  });
+});
 const sources = (directory) =>
   readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
     const file = path.join(directory, entry.name);
@@ -54,6 +80,7 @@ test("the handoff includes the creative brief, commands, assets, skill and revie
     "docs/reviews/review-ad-v11.md",
     "docs/reviews/review-ad-v12.md",
     "docs/reviews/review-ad-v13.md",
+    "docs/reviews/review-ad-v14.md",
     "examples/composable-measure.json",
   ])
     assert.ok(

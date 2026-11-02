@@ -29,7 +29,7 @@
     "studio": "remotion studio src/index.tsx --port=3370 --no-open",
     "stills": "node render.mjs stills",
     "measure": "node render.mjs stills --scale 1 --frames 0,14,38,62,100,130,153,171,193,214,232,240,310,382,394,410,420,442,470,526,564,624,636,649,650,694,734,758,818,830,843,844,900,980,1000,1002,1056,1082,1084,1138,1152,1212,1224,1237,1238,1300,1328,1444,1534,1624,1720,1900 --props examples/composable-measure.json",
-    "render": "node render.mjs video --scale 1 --concurrency 4 --output out/composable/clio-composable-ad-v13-clean.mp4 && node scripts/finish.mjs",
+    "render": "node render.mjs video --scale 1 --concurrency 4 --output out/composable/clio-composable-ad-v14-clean.mp4 && node scripts/finish.mjs",
     "qr": "node scripts/prepare-qr.mjs",
     "review": "tsx scripts/review.ts",
     "review:geometry": "tsx scripts/review.ts --geometry-only",

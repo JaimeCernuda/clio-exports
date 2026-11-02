@@ -80,6 +80,10 @@ These points summarize the conversation; they are not a verbatim transcript.
     example described the ramp; the current editable choice is 0.8 to 0.133 seconds.
 13. **Keep the call to action clear.** The link needs no arrow. Enlarge both the
     URL and QR without adding more closing copy.
+14. **Credit IOWarp and GRC.** The user subsequently requested “An IOWarp system”
+    and “by the Gnosis Research Center,” using the logo at
+    `https://grc.iit.edu/img/logo.png`. Place this as a compact supporting credit
+    beneath the closing CTA, using the original transparent logo directly.
 
 ## What was rejected
 
@@ -98,7 +102,7 @@ These points summarize the conversation; they are not a verbatim transcript.
   disappearing/teleporting cursors, unreadably brief bundles and unexplained
   plugin arrivals. Technical checks did not excuse these problems.
 
-## Current implementation: v13
+## Current implementation: v14
 
 The keyword wheel resolves to composable at **4 seconds**. The twelve intervals
 are 48, 38, 30, 23, 18, 14, 12, 10, 9, 8, 8 and 8 frames at 60 fps, after a
@@ -120,12 +124,15 @@ The website build loop uses the same chooser for its first Manufacturing additio
 
 The full ad is 36 seconds, 1080p, 60 fps with original procedural audio. The close
 keeps the 42 px URL without an arrow, 288 px QR and five-second settled hold.
+V14 adds the supplied transparent GRC logo beneath the CTA, beside “An IOWarp
+system” and “by the Gnosis Research Center.” It enters with the closing elements;
+no extra title card or longer runtime is introduced. Website loops remain unbranded.
 Cursor routes stay continuous and opaque; the owl clears the prompt before it
 appears. Later domain edits retain 0.6–1.3 seconds of settled time. These brief
 beats register changes, not time to read an entire document.
 
 This is a **revision awaiting creative approval**. Read the current
-[v13 receipt](docs/reviews/review-ad-v13.md) for exact checks and limits. Prior
+[v14 receipt](docs/reviews/review-ad-v14.md) for exact checks and limits. Prior
 renders and review receipts remain preserved. Passing tests does not approve taste.
 
 ## Implementation and evidence boundaries

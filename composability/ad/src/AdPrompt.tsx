@@ -196,8 +196,26 @@ export function useAdLayouts(record = false) {
           if (url && qr) {
             const u = url.getBoundingClientRect(),
               q = qr.getBoundingClientRect();
+            const credit =
+              document.querySelector<HTMLElement>("[data-ad-credit]");
+            const creditPart = (selector: string) => {
+              const element = credit?.querySelector<HTMLElement>(selector);
+              if (!element)
+                throw new Error(`Missing closing credit ${selector}`);
+              const box = element.getBoundingClientRect();
+              return {
+                x: box.x,
+                y: box.y,
+                width: box.width,
+                height: box.height,
+                text: element.textContent,
+                fontSize: parseFloat(getComputedStyle(element).fontSize),
+              };
+            };
+            if (!credit) throw new Error("Missing closing credit");
+            const c = credit.getBoundingClientRect();
             console.log(
-              `__CLIO_AD_CLOSING__${JSON.stringify({ url: { x: u.x, y: u.y, width: u.width, height: u.height, fontSize: parseFloat(getComputedStyle(url).fontSize) }, qr: { x: q.x, y: q.y, width: q.width, height: q.height } })}`,
+              `__CLIO_AD_CLOSING__${JSON.stringify({ url: { x: u.x, y: u.y, width: u.width, height: u.height, fontSize: parseFloat(getComputedStyle(url).fontSize) }, qr: { x: q.x, y: q.y, width: q.width, height: q.height }, credit: { x: c.x, y: c.y, width: c.width, height: c.height, system: creditPart("[data-ad-credit-system]"), byline: creditPart("[data-ad-credit-byline]"), logo: creditPart("[data-ad-credit-logo]") } })}`,
             );
           }
           const pluginGeometry = Array.from(

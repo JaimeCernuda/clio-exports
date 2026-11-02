@@ -6,7 +6,7 @@ The opening and closing are PR; the middle is a stylized composition of real
 CLIO elements. Demonstrate both specialization across many fields and additive
 capabilities. Retain Reports across domain changes to make reuse visible.
 
-## Current story: v13
+## Current story: v14
 
 1. Keep A and agent fixed while whole domain words roll vertically. Start readably,
    accelerate through many fields, and settle on composable. Each change shortens
@@ -36,7 +36,9 @@ capabilities. Retain Reports across domain changes to make reuse visible.
    entire interval before its successor. Move the cursor out through the edge
    between authored gestures rather than fading it away in the frame.
 6. Resolve to Build your own / CLIO, a larger URL without an arrow and a stationary
-   larger QR for five seconds.
+   larger QR for five seconds. Add a subordinate footer with the transparent GRC
+   logo and “An IOWarp system / by the Gnosis Research Center.” Keep it clear of
+   the URL and QR; it appears with the close and does not extend the runtime.
 
 ## Spatial and color argument
 
