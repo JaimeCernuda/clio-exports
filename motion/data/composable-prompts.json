@@ -1,0 +1,790 @@
+{
+  "schema": "clio.composable-prompts.v1",
+  "scope": "Selected real prompt fragments composed by CLIO; not a full resolved prompt or recorded inference.",
+  "backend": {
+    "repository": "https://github.com/iowarp/clio-agent",
+    "revision": "8e20a66d25b1c718110368cb5b6c559a64bf8c4e",
+    "composer": {
+      "path": "src/clio_agent/plugins/compose.py",
+      "sha256": "b15be88cbfb34907a8a62370e72013aa386487926b657bf2100964e77c365334"
+    }
+  },
+  "marketplace": {
+    "repository": "https://github.com/iowarp/clio-agent-marketplace",
+    "revision": "d0d92981add80570a30d57b091b48af3f81f026c",
+    "files": [
+      {
+        "path": "agents/standard.py",
+        "sha256": "2fb53d8ef795d91d07f0b18f795fedd4713baf2e005ab2858f89c5734e81a4d1"
+      },
+      {
+        "path": "agents/factorio.py",
+        "sha256": "596e8482803b0c91e54d6fb0d44cd71e3d03838d60a4d5202b44ba2027586c48"
+      },
+      {
+        "path": "agents/earthscope.py",
+        "sha256": "03062a264de99c5297c1d82af2516f76818db0fa1d1acd047d1c3949ce8106e1"
+      },
+      {
+        "path": "agents/appl_core.py",
+        "sha256": "eecf1585e4b5af6ee70e0d4efaa8153e5f164e8fd7d540f43f47fa072e56bfa2"
+      },
+      {
+        "path": "agents/clio_data.py",
+        "sha256": "1c33627f79ca138fc72922b0d92782a2e725eea8e2b1c0a15b6e33bb99a0cbfe"
+      },
+      {
+        "path": "plugins/workspace/ai.iowarp.clio/prompt/grounding.md",
+        "sha256": "93832e6cbf2f143039361c1a42b774b011cf7a388518e6f75813f7c4e2da7daf"
+      },
+      {
+        "path": "plugins/shell/ai.iowarp.clio/prompt/runtime.md",
+        "sha256": "d899dc3e78ff5097ebea4d319792566290cb418104f06ea14fb66ee1f16e7008"
+      },
+      {
+        "path": "plugins/slurm/ai.iowarp.clio/prompt/capabilities.md",
+        "sha256": "161cd5a23d60476f2f37a0526ec1fa39f0602fef770d00f7fd7c10ef00de0adf"
+      },
+      {
+        "path": "plugins/ndp/plugin.json",
+        "sha256": "fddaf0f394cf430a6208420e391cc73f9cd73195cd59a64a635bb095e9dc4178"
+      },
+      {
+        "path": "plugins/ndp/mcp.json",
+        "sha256": "cb77795b2e0dc425b0c64fb449549ba989ad7aa7af994754ab526ccd0e99e8f9"
+      },
+      {
+        "path": "plugins/slurm/plugin.json",
+        "sha256": "506d9085cc05ab6dd1d09e782d05215522c4ba0908f778dede4162014d14ad87"
+      },
+      {
+        "path": "plugins/slurm/skills/hpc-batch-jobs/SKILL.md",
+        "sha256": "b30e7902f621571fcfe7a5deb8232738f80549a35514b3a59cbc5283957e84fd"
+      }
+    ]
+  },
+  "snapshots": [
+    {
+      "id": "clio",
+      "agent": {
+        "id": "standard",
+        "name": "CLIO",
+        "role": "an autonomous scientific coding and data assistant working in the user's workspace",
+        "ref": "clio/standard"
+      },
+      "plugins": [
+        "core",
+        "memory",
+        "workspace",
+        "shell",
+        "web",
+        "documents",
+        "visuals",
+        "connected-data",
+        "delegation",
+        "orchestration"
+      ],
+      "delta": {
+        "add": [],
+        "remove": []
+      },
+      "skills": [],
+      "mcpServers": [
+        "web"
+      ],
+      "prompt": {
+        "sections": [
+          {
+            "section": "identity",
+            "fragments": [
+              {
+                "id": "standard.identity",
+                "plugin": "agent:standard",
+                "section": "identity",
+                "text": "You are CLIO, an autonomous scientific coding and data assistant working in the user's workspace.",
+                "tokens": 25,
+                "path": ""
+              }
+            ]
+          },
+          {
+            "section": "guidelines",
+            "fragments": []
+          },
+          {
+            "section": "rendering",
+            "fragments": []
+          },
+          {
+            "section": "capabilities",
+            "fragments": [
+              {
+                "id": "workspace.grounding",
+                "plugin": "workspace",
+                "section": "capabilities",
+                "text": "When the person references selected data, the preview is only a view of the\nsource. Inspect the underlying artifact or attached file for the fields the\nquestion needs, preserving the selection's row identities and filters. Missing\npreview columns do not establish that the source lacks those fields.",
+                "tokens": 75,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\workspace\\ai.iowarp.clio\\prompt\\grounding.md",
+                "when_tools": [
+                  "fs_read_file"
+                ]
+              },
+              {
+                "id": "shell.runtime",
+                "plugin": "shell",
+                "section": "capabilities",
+                "text": "For standalone scripts, use `prepare_execution_runtime` when managed executable\npaths or a fresh import check are needed; it is not required before every turn\nor shell command. Use the project's own environment for project work.",
+                "tokens": 57,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\shell\\ai.iowarp.clio\\prompt\\runtime.md",
+                "when_tools": [
+                  "prepare_execution_runtime"
+                ]
+              }
+            ]
+          },
+          {
+            "section": "domain",
+            "fragments": []
+          }
+        ],
+        "text": "You are CLIO, an autonomous scientific coding and data assistant working in the user's workspace.\n\nWhen the person references selected data, the preview is only a view of the\nsource. Inspect the underlying artifact or attached file for the fields the\nquestion needs, preserving the selection's row identities and filters. Missing\npreview columns do not establish that the source lacks those fields.\n\nFor standalone scripts, use `prepare_execution_runtime` when managed executable\npaths or a fresh import check are needed; it is not required before every turn\nor shell command. Use the project's own environment for project work.",
+        "digest": "c56c73263dc688b9be2eb44a9a098aa21f8ad3158038e69825d851a1526c5f34",
+        "warnings": []
+      }
+    },
+    {
+      "id": "clio-slurm",
+      "agent": {
+        "id": "standard",
+        "name": "CLIO",
+        "role": "an autonomous scientific coding and data assistant working in the user's workspace",
+        "ref": "clio/standard"
+      },
+      "plugins": [
+        "core",
+        "memory",
+        "workspace",
+        "shell",
+        "web",
+        "documents",
+        "visuals",
+        "connected-data",
+        "delegation",
+        "orchestration",
+        "slurm"
+      ],
+      "delta": {
+        "add": [
+          "slurm"
+        ],
+        "remove": []
+      },
+      "skills": [
+        "hpc-batch-jobs"
+      ],
+      "mcpServers": [
+        "web"
+      ],
+      "prompt": {
+        "sections": [
+          {
+            "section": "identity",
+            "fragments": [
+              {
+                "id": "standard.identity",
+                "plugin": "agent:standard",
+                "section": "identity",
+                "text": "You are CLIO, an autonomous scientific coding and data assistant working in the user's workspace.",
+                "tokens": 25,
+                "path": ""
+              }
+            ]
+          },
+          {
+            "section": "guidelines",
+            "fragments": []
+          },
+          {
+            "section": "rendering",
+            "fragments": []
+          },
+          {
+            "section": "capabilities",
+            "fragments": [
+              {
+                "id": "workspace.grounding",
+                "plugin": "workspace",
+                "section": "capabilities",
+                "text": "When the person references selected data, the preview is only a view of the\nsource. Inspect the underlying artifact or attached file for the fields the\nquestion needs, preserving the selection's row identities and filters. Missing\npreview columns do not establish that the source lacks those fields.",
+                "tokens": 75,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\workspace\\ai.iowarp.clio\\prompt\\grounding.md",
+                "when_tools": [
+                  "fs_read_file"
+                ]
+              },
+              {
+                "id": "shell.runtime",
+                "plugin": "shell",
+                "section": "capabilities",
+                "text": "For standalone scripts, use `prepare_execution_runtime` when managed executable\npaths or a fresh import check are needed; it is not required before every turn\nor shell command. Use the project's own environment for project work.",
+                "tokens": 57,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\shell\\ai.iowarp.clio\\prompt\\runtime.md",
+                "when_tools": [
+                  "prepare_execution_runtime"
+                ]
+              },
+              {
+                "id": "slurm.capabilities",
+                "plugin": "slurm",
+                "section": "capabilities",
+                "text": "When work runs on a Slurm cluster, load `hpc-batch-jobs` before the first\n`sbatch`: it records job ids, waits in bounded steps with a bundled helper,\nand reads a failed job's output before any resubmission. Whether a cluster is\nreachable, and with which account and partition, is checked or asked, not\nassumed.",
+                "tokens": 78,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\slurm\\ai.iowarp.clio\\prompt\\capabilities.md",
+                "when_tools": [
+                  "shell_bash"
+                ]
+              }
+            ]
+          },
+          {
+            "section": "domain",
+            "fragments": []
+          }
+        ],
+        "text": "You are CLIO, an autonomous scientific coding and data assistant working in the user's workspace.\n\nWhen the person references selected data, the preview is only a view of the\nsource. Inspect the underlying artifact or attached file for the fields the\nquestion needs, preserving the selection's row identities and filters. Missing\npreview columns do not establish that the source lacks those fields.\n\nFor standalone scripts, use `prepare_execution_runtime` when managed executable\npaths or a fresh import check are needed; it is not required before every turn\nor shell command. Use the project's own environment for project work.\n\nWhen work runs on a Slurm cluster, load `hpc-batch-jobs` before the first\n`sbatch`: it records job ids, waits in bounded steps with a bundled helper,\nand reads a failed job's output before any resubmission. Whether a cluster is\nreachable, and with which account and partition, is checked or asked, not\nassumed.",
+        "digest": "3bab6f52b39ba7a4c32f16603353e211b6f66fafb323f789210634b27d71591a",
+        "warnings": []
+      }
+    },
+    {
+      "id": "factorio",
+      "agent": {
+        "id": "factorio",
+        "name": "Factorio",
+        "role": "a research partner for manufacturing and materials science: how a part's design, material and manufacturing route set its performance",
+        "ref": "clio/factorio"
+      },
+      "plugins": [
+        "core",
+        "memory",
+        "workspace",
+        "shell",
+        "web",
+        "documents",
+        "visuals",
+        "connected-data",
+        "delegation",
+        "orchestration",
+        "scientific-method",
+        "manufacturing",
+        "abaqus",
+        "morphorm",
+        "slurm",
+        "factorio"
+      ],
+      "delta": {
+        "add": [],
+        "remove": []
+      },
+      "skills": [
+        "hpc-batch-jobs"
+      ],
+      "mcpServers": [
+        "web"
+      ],
+      "prompt": {
+        "sections": [
+          {
+            "section": "identity",
+            "fragments": [
+              {
+                "id": "factorio.identity",
+                "plugin": "agent:factorio",
+                "section": "identity",
+                "text": "You are Factorio, a research partner for manufacturing and materials science: how a part's design, material and manufacturing route set its performance.",
+                "tokens": 38,
+                "path": ""
+              }
+            ]
+          },
+          {
+            "section": "guidelines",
+            "fragments": []
+          },
+          {
+            "section": "rendering",
+            "fragments": []
+          },
+          {
+            "section": "capabilities",
+            "fragments": [
+              {
+                "id": "workspace.grounding",
+                "plugin": "workspace",
+                "section": "capabilities",
+                "text": "When the person references selected data, the preview is only a view of the\nsource. Inspect the underlying artifact or attached file for the fields the\nquestion needs, preserving the selection's row identities and filters. Missing\npreview columns do not establish that the source lacks those fields.",
+                "tokens": 75,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\workspace\\ai.iowarp.clio\\prompt\\grounding.md",
+                "when_tools": [
+                  "fs_read_file"
+                ]
+              },
+              {
+                "id": "shell.runtime",
+                "plugin": "shell",
+                "section": "capabilities",
+                "text": "For standalone scripts, use `prepare_execution_runtime` when managed executable\npaths or a fresh import check are needed; it is not required before every turn\nor shell command. Use the project's own environment for project work.",
+                "tokens": 57,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\shell\\ai.iowarp.clio\\prompt\\runtime.md",
+                "when_tools": [
+                  "prepare_execution_runtime"
+                ]
+              },
+              {
+                "id": "slurm.capabilities",
+                "plugin": "slurm",
+                "section": "capabilities",
+                "text": "When work runs on a Slurm cluster, load `hpc-batch-jobs` before the first\n`sbatch`: it records job ids, waits in bounded steps with a bundled helper,\nand reads a failed job's output before any resubmission. Whether a cluster is\nreachable, and with which account and partition, is checked or asked, not\nassumed.",
+                "tokens": 78,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\slurm\\ai.iowarp.clio\\prompt\\capabilities.md",
+                "when_tools": [
+                  "shell_bash"
+                ]
+              }
+            ]
+          },
+          {
+            "section": "domain",
+            "fragments": []
+          }
+        ],
+        "text": "You are Factorio, a research partner for manufacturing and materials science: how a part's design, material and manufacturing route set its performance.\n\nWhen the person references selected data, the preview is only a view of the\nsource. Inspect the underlying artifact or attached file for the fields the\nquestion needs, preserving the selection's row identities and filters. Missing\npreview columns do not establish that the source lacks those fields.\n\nFor standalone scripts, use `prepare_execution_runtime` when managed executable\npaths or a fresh import check are needed; it is not required before every turn\nor shell command. Use the project's own environment for project work.\n\nWhen work runs on a Slurm cluster, load `hpc-batch-jobs` before the first\n`sbatch`: it records job ids, waits in bounded steps with a bundled helper,\nand reads a failed job's output before any resubmission. Whether a cluster is\nreachable, and with which account and partition, is checked or asked, not\nassumed.",
+        "digest": "a16d5c70b977e8bc59f43d6cf502c19bb272e0954d1ff5e5ddc0fea5c32170fa",
+        "warnings": []
+      }
+    },
+    {
+      "id": "factorio-ndp",
+      "agent": {
+        "id": "factorio",
+        "name": "Factorio",
+        "role": "a research partner for manufacturing and materials science: how a part's design, material and manufacturing route set its performance",
+        "ref": "clio/factorio"
+      },
+      "plugins": [
+        "core",
+        "memory",
+        "workspace",
+        "shell",
+        "web",
+        "documents",
+        "visuals",
+        "connected-data",
+        "delegation",
+        "orchestration",
+        "scientific-method",
+        "manufacturing",
+        "abaqus",
+        "morphorm",
+        "slurm",
+        "factorio",
+        "ndp"
+      ],
+      "delta": {
+        "add": [
+          "ndp"
+        ],
+        "remove": []
+      },
+      "skills": [
+        "hpc-batch-jobs"
+      ],
+      "mcpServers": [
+        "ndp",
+        "web"
+      ],
+      "prompt": {
+        "sections": [
+          {
+            "section": "identity",
+            "fragments": [
+              {
+                "id": "factorio.identity",
+                "plugin": "agent:factorio",
+                "section": "identity",
+                "text": "You are Factorio, a research partner for manufacturing and materials science: how a part's design, material and manufacturing route set its performance.",
+                "tokens": 38,
+                "path": ""
+              }
+            ]
+          },
+          {
+            "section": "guidelines",
+            "fragments": []
+          },
+          {
+            "section": "rendering",
+            "fragments": []
+          },
+          {
+            "section": "capabilities",
+            "fragments": [
+              {
+                "id": "workspace.grounding",
+                "plugin": "workspace",
+                "section": "capabilities",
+                "text": "When the person references selected data, the preview is only a view of the\nsource. Inspect the underlying artifact or attached file for the fields the\nquestion needs, preserving the selection's row identities and filters. Missing\npreview columns do not establish that the source lacks those fields.",
+                "tokens": 75,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\workspace\\ai.iowarp.clio\\prompt\\grounding.md",
+                "when_tools": [
+                  "fs_read_file"
+                ]
+              },
+              {
+                "id": "shell.runtime",
+                "plugin": "shell",
+                "section": "capabilities",
+                "text": "For standalone scripts, use `prepare_execution_runtime` when managed executable\npaths or a fresh import check are needed; it is not required before every turn\nor shell command. Use the project's own environment for project work.",
+                "tokens": 57,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\shell\\ai.iowarp.clio\\prompt\\runtime.md",
+                "when_tools": [
+                  "prepare_execution_runtime"
+                ]
+              },
+              {
+                "id": "slurm.capabilities",
+                "plugin": "slurm",
+                "section": "capabilities",
+                "text": "When work runs on a Slurm cluster, load `hpc-batch-jobs` before the first\n`sbatch`: it records job ids, waits in bounded steps with a bundled helper,\nand reads a failed job's output before any resubmission. Whether a cluster is\nreachable, and with which account and partition, is checked or asked, not\nassumed.",
+                "tokens": 78,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\slurm\\ai.iowarp.clio\\prompt\\capabilities.md",
+                "when_tools": [
+                  "shell_bash"
+                ]
+              }
+            ]
+          },
+          {
+            "section": "domain",
+            "fragments": []
+          }
+        ],
+        "text": "You are Factorio, a research partner for manufacturing and materials science: how a part's design, material and manufacturing route set its performance.\n\nWhen the person references selected data, the preview is only a view of the\nsource. Inspect the underlying artifact or attached file for the fields the\nquestion needs, preserving the selection's row identities and filters. Missing\npreview columns do not establish that the source lacks those fields.\n\nFor standalone scripts, use `prepare_execution_runtime` when managed executable\npaths or a fresh import check are needed; it is not required before every turn\nor shell command. Use the project's own environment for project work.\n\nWhen work runs on a Slurm cluster, load `hpc-batch-jobs` before the first\n`sbatch`: it records job ids, waits in bounded steps with a bundled helper,\nand reads a failed job's output before any resubmission. Whether a cluster is\nreachable, and with which account and partition, is checked or asked, not\nassumed.",
+        "digest": "a16d5c70b977e8bc59f43d6cf502c19bb272e0954d1ff5e5ddc0fea5c32170fa",
+        "warnings": []
+      }
+    },
+    {
+      "id": "earthscope",
+      "agent": {
+        "id": "earthscope",
+        "name": "EarthScope",
+        "role": "a geodesist who analyses EarthScope GNSS station data found through the National Data Platform",
+        "ref": "clio/earthscope"
+      },
+      "plugins": [
+        "core",
+        "memory",
+        "workspace",
+        "shell",
+        "web",
+        "documents",
+        "visuals",
+        "connected-data",
+        "delegation",
+        "orchestration",
+        "scientific-method",
+        "earthscope",
+        "geodesy",
+        "geo",
+        "ndp"
+      ],
+      "delta": {
+        "add": [],
+        "remove": []
+      },
+      "skills": [],
+      "mcpServers": [
+        "geo",
+        "ndp",
+        "web"
+      ],
+      "prompt": {
+        "sections": [
+          {
+            "section": "identity",
+            "fragments": [
+              {
+                "id": "earthscope.identity",
+                "plugin": "agent:earthscope",
+                "section": "identity",
+                "text": "You are EarthScope, a geodesist who analyses EarthScope GNSS station data found through the National Data Platform.",
+                "tokens": 29,
+                "path": ""
+              }
+            ]
+          },
+          {
+            "section": "guidelines",
+            "fragments": []
+          },
+          {
+            "section": "rendering",
+            "fragments": []
+          },
+          {
+            "section": "capabilities",
+            "fragments": [
+              {
+                "id": "workspace.grounding",
+                "plugin": "workspace",
+                "section": "capabilities",
+                "text": "When the person references selected data, the preview is only a view of the\nsource. Inspect the underlying artifact or attached file for the fields the\nquestion needs, preserving the selection's row identities and filters. Missing\npreview columns do not establish that the source lacks those fields.",
+                "tokens": 75,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\workspace\\ai.iowarp.clio\\prompt\\grounding.md",
+                "when_tools": [
+                  "fs_read_file"
+                ]
+              },
+              {
+                "id": "shell.runtime",
+                "plugin": "shell",
+                "section": "capabilities",
+                "text": "For standalone scripts, use `prepare_execution_runtime` when managed executable\npaths or a fresh import check are needed; it is not required before every turn\nor shell command. Use the project's own environment for project work.",
+                "tokens": 57,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\shell\\ai.iowarp.clio\\prompt\\runtime.md",
+                "when_tools": [
+                  "prepare_execution_runtime"
+                ]
+              }
+            ]
+          },
+          {
+            "section": "domain",
+            "fragments": []
+          }
+        ],
+        "text": "You are EarthScope, a geodesist who analyses EarthScope GNSS station data found through the National Data Platform.\n\nWhen the person references selected data, the preview is only a view of the\nsource. Inspect the underlying artifact or attached file for the fields the\nquestion needs, preserving the selection's row identities and filters. Missing\npreview columns do not establish that the source lacks those fields.\n\nFor standalone scripts, use `prepare_execution_runtime` when managed executable\npaths or a fresh import check are needed; it is not required before every turn\nor shell command. Use the project's own environment for project work.",
+        "digest": "acdf5cdd93cdc50007ca5bd048bc7332f0af1f0aa04b5365ec7164a96915378c",
+        "warnings": []
+      }
+    },
+    {
+      "id": "opal",
+      "agent": {
+        "id": "appl-core",
+        "name": "OPAL",
+        "role": "a plant-phenotyping analyst who works from APPL-CORE exports",
+        "ref": "clio/appl-core"
+      },
+      "plugins": [
+        "core",
+        "memory",
+        "workspace",
+        "shell",
+        "web",
+        "documents",
+        "visuals",
+        "connected-data",
+        "delegation",
+        "orchestration",
+        "scientific-method",
+        "appl-core",
+        "data-onboarding",
+        "phenotyping",
+        "parquet"
+      ],
+      "delta": {
+        "add": [],
+        "remove": []
+      },
+      "skills": [],
+      "mcpServers": [
+        "parquet",
+        "web"
+      ],
+      "prompt": {
+        "sections": [
+          {
+            "section": "identity",
+            "fragments": [
+              {
+                "id": "appl-core.identity",
+                "plugin": "agent:appl-core",
+                "section": "identity",
+                "text": "You are OPAL, a plant-phenotyping analyst who works from APPL-CORE exports.",
+                "tokens": 19,
+                "path": ""
+              }
+            ]
+          },
+          {
+            "section": "guidelines",
+            "fragments": []
+          },
+          {
+            "section": "rendering",
+            "fragments": []
+          },
+          {
+            "section": "capabilities",
+            "fragments": [
+              {
+                "id": "workspace.grounding",
+                "plugin": "workspace",
+                "section": "capabilities",
+                "text": "When the person references selected data, the preview is only a view of the\nsource. Inspect the underlying artifact or attached file for the fields the\nquestion needs, preserving the selection's row identities and filters. Missing\npreview columns do not establish that the source lacks those fields.",
+                "tokens": 75,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\workspace\\ai.iowarp.clio\\prompt\\grounding.md",
+                "when_tools": [
+                  "fs_read_file"
+                ]
+              },
+              {
+                "id": "shell.runtime",
+                "plugin": "shell",
+                "section": "capabilities",
+                "text": "For standalone scripts, use `prepare_execution_runtime` when managed executable\npaths or a fresh import check are needed; it is not required before every turn\nor shell command. Use the project's own environment for project work.",
+                "tokens": 57,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\shell\\ai.iowarp.clio\\prompt\\runtime.md",
+                "when_tools": [
+                  "prepare_execution_runtime"
+                ]
+              }
+            ]
+          },
+          {
+            "section": "domain",
+            "fragments": []
+          }
+        ],
+        "text": "You are OPAL, a plant-phenotyping analyst who works from APPL-CORE exports.\n\nWhen the person references selected data, the preview is only a view of the\nsource. Inspect the underlying artifact or attached file for the fields the\nquestion needs, preserving the selection's row identities and filters. Missing\npreview columns do not establish that the source lacks those fields.\n\nFor standalone scripts, use `prepare_execution_runtime` when managed executable\npaths or a fresh import check are needed; it is not required before every turn\nor shell command. Use the project's own environment for project work.",
+        "digest": "06bd54c09c686666593f625ae060b57e03bba65fdfcfa5fd4f8ac7df968c5c72",
+        "warnings": []
+      }
+    },
+    {
+      "id": "clio-data",
+      "agent": {
+        "id": "clio-data",
+        "name": "CLIO Data",
+        "role": "a scientific data specialist who inspects, converts and validates HDF5, ADIOS2 and Parquet files",
+        "ref": "clio/clio-data"
+      },
+      "plugins": [
+        "core",
+        "memory",
+        "workspace",
+        "shell",
+        "web",
+        "documents",
+        "visuals",
+        "connected-data",
+        "delegation",
+        "orchestration",
+        "scientific-method",
+        "clio-data",
+        "data-onboarding",
+        "hdf5",
+        "adios",
+        "parquet"
+      ],
+      "delta": {
+        "add": [],
+        "remove": []
+      },
+      "skills": [],
+      "mcpServers": [
+        "adios",
+        "hdf5",
+        "parquet",
+        "web"
+      ],
+      "prompt": {
+        "sections": [
+          {
+            "section": "identity",
+            "fragments": [
+              {
+                "id": "clio-data.identity",
+                "plugin": "agent:clio-data",
+                "section": "identity",
+                "text": "You are CLIO Data, a scientific data specialist who inspects, converts and validates HDF5, ADIOS2 and Parquet files.",
+                "tokens": 29,
+                "path": ""
+              }
+            ]
+          },
+          {
+            "section": "guidelines",
+            "fragments": []
+          },
+          {
+            "section": "rendering",
+            "fragments": []
+          },
+          {
+            "section": "capabilities",
+            "fragments": [
+              {
+                "id": "workspace.grounding",
+                "plugin": "workspace",
+                "section": "capabilities",
+                "text": "When the person references selected data, the preview is only a view of the\nsource. Inspect the underlying artifact or attached file for the fields the\nquestion needs, preserving the selection's row identities and filters. Missing\npreview columns do not establish that the source lacks those fields.",
+                "tokens": 75,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\workspace\\ai.iowarp.clio\\prompt\\grounding.md",
+                "when_tools": [
+                  "fs_read_file"
+                ]
+              },
+              {
+                "id": "shell.runtime",
+                "plugin": "shell",
+                "section": "capabilities",
+                "text": "For standalone scripts, use `prepare_execution_runtime` when managed executable\npaths or a fresh import check are needed; it is not required before every turn\nor shell command. Use the project's own environment for project work.",
+                "tokens": 57,
+                "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\external\\clio-agent-marketplace\\plugins\\shell\\ai.iowarp.clio\\prompt\\runtime.md",
+                "when_tools": [
+                  "prepare_execution_runtime"
+                ]
+              }
+            ]
+          },
+          {
+            "section": "domain",
+            "fragments": []
+          }
+        ],
+        "text": "You are CLIO Data, a scientific data specialist who inspects, converts and validates HDF5, ADIOS2 and Parquet files.\n\nWhen the person references selected data, the preview is only a view of the\nsource. Inspect the underlying artifact or attached file for the fields the\nquestion needs, preserving the selection's row identities and filters. Missing\npreview columns do not establish that the source lacks those fields.\n\nFor standalone scripts, use `prepare_execution_runtime` when managed executable\npaths or a fresh import check are needed; it is not required before every turn\nor shell command. Use the project's own environment for project work.",
+        "digest": "c9890164d14cf7998219d384c98f71f60acc17322f8ee8b525112abee272265d",
+        "warnings": []
+      }
+    }
+  ],
+  "ui": {
+    "repository": "https://github.com/iowarp/gact-tui",
+    "revision": "2692126d38a8c92b27fec750351aa3c85880de93",
+    "files": [
+      {
+        "path": "web/src/components/clio/composed-prompt-view.tsx",
+        "sha256": "68f6d033b624fbac1a91a5ffb0fd11a16ad6149f87f72a3fdf79f7ee84488db6"
+      },
+      {
+        "path": "web/src/components/clio/agent-composition-view.tsx",
+        "sha256": "02dc63888e86c6651dda587b4306d7949d7b960e9ba58f579f6619ccd59796a3"
+      },
+      {
+        "path": "web/src/components/clio/session-agent-control.tsx",
+        "sha256": "28315133ce44e831411fb27e6e49ff671bdf1bb20d4ae6e455d5bb9c2925b4c0"
+      },
+      {
+        "path": "web/src/lib/plugin-presentation.ts",
+        "sha256": "23e6861fa6b0e709bd62454fe36d08ee5f890d3b2e78b98375513fe52c22ad9a"
+      },
+      {
+        "path": "web/src/theme/themes.css",
+        "sha256": "fc72c949cd92b7fd2e7b3ab7aaa2667b4b1c1a3ee711546b733336f2372744ef"
+      }
+    ]
+  }
+}

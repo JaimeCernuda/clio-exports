@@ -5,6 +5,16 @@ description: Plan, build or revise CLIO product videos from real exported sessio
 
 # CLIO product videos
 
+For short composition/PR films, use the [composable-agent guide](../../../videos/composable/README.md).
+Source real agent identities and contributed prompt fragments. Scope text matches
+by fragment and ordered phrases; isolated repeated words should not fly across
+unrelated prose. Measure destination wrapping after fonts load. Open insertion
+space first, clip text to its growing card, and keep retained plugin chips clear
+of arriving chips. Do not crossfade two readable paragraphs on top of each other.
+Switching an agent and adding a plugin are distinct actions. Check what the agent
+already carries before portraying a new addition. A configured MCP declaration
+is not a successful connection. Leave a stationary, decodable QR at the end.
+
 Start with the [video catalog](../../../videos/README.md) and the selected film's
 guide. Shared runtime architecture is in
 [EMULATOR.md](../../../motion/native/EMULATOR.md). For manual CLIO + SPOTTER

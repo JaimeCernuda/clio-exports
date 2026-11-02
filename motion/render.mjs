@@ -35,6 +35,17 @@ const inputProps = options.propsFile
   ? JSON.parse(await readFile(path.resolve(root, options.propsFile), "utf8"))
   : {};
 const cursorSamples = new Map();
+let promptLayouts;
+const collectBrowserLog = (log) => {
+  if (log.text.startsWith("__CLIO_PROMPT_LAYOUTS__"))
+    promptLayouts = JSON.parse(
+      log.text.slice("__CLIO_PROMPT_LAYOUTS__".length),
+    );
+  if (log.text.startsWith("__CLIO_CURSOR__")) {
+    const value = JSON.parse(log.text.slice("__CLIO_CURSOR__".length));
+    cursorSamples.set(value.frame, value.pose);
+  }
+};
 if (
   inputProps === null ||
   Array.isArray(inputProps) ||
@@ -47,9 +58,11 @@ const url = await bundle({
   enableCaching: false,
   entryPoint: path.join(
     root,
-    options.composition.startsWith("WordleStudy")
-      ? "src/wordle-index.tsx"
-      : "src/index.tsx",
+    options.composition === "ClioComposable"
+      ? "src/composable-index.tsx"
+      : options.composition.startsWith("WordleStudy")
+        ? "src/wordle-index.tsx"
+        : "src/index.tsx",
   ),
   publicDir: path.join(root, "public"),
   outDir: path.join(root, "bundle"),
@@ -91,6 +104,7 @@ try {
           `review/${options.composition === "ClioProof" ? "" : options.composition + "-"}frame-${frame}.png`,
         ),
         imageFormat: "png",
+        onBrowserLog: collectBrowserLog,
         scale: options.scale,
         logLevel: "error",
       });
@@ -131,12 +145,7 @@ try {
       concurrency: options.concurrency,
       x264Preset: "fast",
       logLevel: "error",
-      onBrowserLog: (log) => {
-        if (log.text.startsWith("__CLIO_CURSOR__")) {
-          const value = JSON.parse(log.text.slice("__CLIO_CURSOR__".length));
-          cursorSamples.set(value.frame, value.pose);
-        }
-      },
+      onBrowserLog: collectBrowserLog,
       onProgress: ({ progress }) => {
         const p = Math.floor(progress * 100);
         if (p !== last) {
@@ -187,6 +196,11 @@ try {
     await unlink(native);
     console.log(`DONE ${output}`);
   }
+  if (promptLayouts)
+    await writeFile(
+      path.join(root, "review/composable-layouts.json"),
+      JSON.stringify(promptLayouts, null, 2) + "\n",
+    );
 } finally {
   await browser.close({ silent: true });
 }

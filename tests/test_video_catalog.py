@@ -21,6 +21,7 @@ def test_catalog_points_to_real_guides_sources_and_compositions() -> None:
         "spotter-opal",
         "wordle",
         "engineering",
+        "composable",
     }
     registrations = "\n".join(
         (ROOT / filename).read_text("utf-8")
@@ -28,6 +29,7 @@ def test_catalog_points_to_real_guides_sources_and_compositions() -> None:
             "motion/src/Root.tsx",
             "motion/src/wordle-index.tsx",
             "motion/src/engineering-index.tsx",
+            "motion/src/composable-index.tsx",
         )
     )
     for project in projects:

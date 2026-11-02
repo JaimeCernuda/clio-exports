@@ -41,6 +41,15 @@
       "compositions": ["EngineeringWalkthrough", "EngineeringSweepSketch", "EngineeringStudioSketch"],
       "files": ["motion/native/ENGINEERING.md", "tools/import_engineering_bundle.py", "tools/prepare_engineering_video.py", "motion/native/engineering-film.tsx", "motion/native/engineering-film-plan.ts", "motion/story/engineering-film-copy.json", "motion/story/engineering-demo-plan.json", "motion/story/engineering-source-ledger.json", "tools/prepare_engineering_delivery.py", "motion/scripts/render-engineering.mjs"],
       "reviewStatus": "revised-cut-agent-reviewed-awaiting-user-feedback"
+    },
+    {
+      "id": "composable",
+      "guide": "videos/composable/README.md",
+      "profile": "standalone-remotion",
+      "entrypoint": "motion/src/composable-index.tsx",
+      "compositions": ["ClioComposable"],
+      "files": ["motion/data/composable-prompts.json", "tools/prepare_composable_prompts.py", "motion/src/ComposableFilm.tsx", "motion/src/PromptMorph.tsx", "motion/src/prompt-morph.ts", "motion/src/composable-plan.ts", "motion/src/composable-pointer.ts", "motion/src/composable.css", "motion/scripts/prepare-composable-qr.mjs", "motion/scripts/review-composable.ts"],
+      "reviewStatus": "first-social-cut-awaiting-creative-review"
     }
   ]
 }
