@@ -1,10 +1,22 @@
 import { mkdir, readFile, writeFile, unlink, statfs } from "node:fs/promises";
-import { execFile } from "node:child_process";
+import { execFile, execFileSync } from "node:child_process";
 import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { parseRenderArgs, renderHelp } from "./scripts/render-options.mjs";
 const root = path.dirname(fileURLToPath(import.meta.url));
+if (
+  process.argv[process.argv.indexOf("--composition") + 1] === "ClioComposableAd"
+) {
+  execFileSync(
+    process.execPath,
+    [path.join(root, "../ad/render.mjs"), ...process.argv.slice(2)],
+    {
+      stdio: "inherit",
+    },
+  );
+  process.exit(0);
+}
 const options = parseRenderArgs(process.argv.slice(2));
 if (options.help) {
   console.log(renderHelp);

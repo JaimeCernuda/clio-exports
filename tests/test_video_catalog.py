@@ -31,6 +31,7 @@ def test_catalog_points_to_real_guides_sources_and_compositions() -> None:
             "motion/src/engineering-index.tsx",
             "motion/src/composable-index.tsx",
             "motion/src/composable-ad-index.tsx",
+            "ad/src/index.tsx",
         )
     )
     for project in projects:
@@ -55,8 +56,16 @@ def test_portable_package_contains_guides_and_launch_tools_without_runtime_asset
         "videos/wordle/README.md",
         "videos/engineering/README.md",
         "videos/composable/README.md",
-        "videos/composable/ART-DIRECTION.md",
-        "videos/composable/ui-sources.json",
+        "ad/README.md",
+        "ad/HANDOFF.md",
+        "ad/CLAUDE.md",
+        "ad/ART-DIRECTION.md",
+        "ad/references/ui-sources.json",
+        "ad/skills/clio-composable-ad/SKILL.md",
+        "ad/package.json",
+        "ad/package-lock.json",
+        "ad/src/index.tsx",
+        "ad/render.mjs",
         "motion/src/composable-ad-index.tsx",
         "motion/scripts/finish-composable-ad.mjs",
         "motion/native/EMULATOR.md",
@@ -67,3 +76,7 @@ def test_portable_package_contains_guides_and_launch_tools_without_runtime_asset
     assert not any(".native-ui" in Path(name).parts for name in files)
     assert not any(name.startswith("work/") for name in files)
     assert not any(Path(name).suffix in {".mp4", ".safetensors"} for name in files)
+    assert not any(
+        name.startswith(("ad/node_modules/", "ad/.cache/", "ad/bundle/", "ad/out/", "ad/review/"))
+        for name in files
+    )

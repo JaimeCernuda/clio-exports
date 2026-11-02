@@ -291,6 +291,7 @@ def test_skill_references_are_portable_and_resolve() -> None:
     """Every local skill reference must resolve from a checkout without machine-specific paths."""
     skills = list((ROOT / ".agents/skills").glob("*/SKILL.md"))
     assert {skill.parent.name for skill in skills} == {
+        "clio-composable-ad",
         "clio-videos",
         "clio-motion-stack",
         "clio-motion-scenes",

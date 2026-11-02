@@ -1,0 +1,36 @@
+{
+  "video": "out/composable/clio-composable-ad-v9.mp4",
+  "sha256": "a13e93055527e2f1a4e56c282a18f024db9871da3b0521bb1f0b5a1e4c39255a",
+  "frames": 2336,
+  "fps": 60,
+  "width": 1920,
+  "height": 1080,
+  "audio": "original procedural sound design",
+  "profiles": 9,
+  "transitions": 8,
+  "bundleReadSeconds": [
+    {
+      "plugin": "manufacturing",
+      "seconds": 1.8
+    },
+    {
+      "plugin": "simulation",
+      "seconds": 1.1
+    },
+    {
+      "plugin": "reports",
+      "seconds": 1.1
+    }
+  ],
+  "measuredPluginHeaders": 12,
+  "wordCollisions": [],
+  "componentOcclusions": [],
+  "encodedInspectionFrames": 645,
+  "encodedOfferFrames": 96,
+  "encodedExtractionFrames": 60,
+  "paintLeaks": [],
+  "qr": "https://clio.iowarp.ai/",
+  "settledFrameDifferenceMax": 0.0996832,
+  "decode": "passed",
+  "reviewBoundary": "Frame geometry and encoding verification. Creative review is separate; illustrative prompts are not recorded agent runs."
+}

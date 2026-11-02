@@ -1,5 +1,10 @@
 # Reusable CLIO UI motion toolkit
 
+The composable-agent **advertisement** is an independent project in [`ad/`](../ad/README.md).
+Its [Claude handoff](../ad/HANDOFF.md) records the goal, user ideas and creative
+constraints. Its actual components, assets, scripts, tests and focused skill live
+there. The `motion/` composability commands are compatibility launchers.
+
 Use the [video catalog](../videos/README.md) to find a film's sources and commands,
 the [emulator guide](native/EMULATOR.md) for the shared replay, and
 [manual attention launch](native/MANUAL-ATTENTION.md) for CLIO + SPOTTER with local

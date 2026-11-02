@@ -43,6 +43,10 @@ approved creative direction.
 
 ## Reusable toolkit and skills
 
+The independently runnable composable-agent advertisement is grouped in `ad/`.
+For that project read `ad/HANDOFF.md`, `ad/README.md` and its focused skill first.
+Keep its advertising treatment separate from transcript-based technical demos.
+
 For motion work, read the relevant repo-local skill before making changes:
 
 - `.agents/skills/clio-videos/SKILL.md`: story, shot purpose and lessons from rejected cuts.

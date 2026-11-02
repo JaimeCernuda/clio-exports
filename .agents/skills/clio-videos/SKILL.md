@@ -5,10 +5,12 @@ description: Plan, build or revise CLIO session demos and motion graphics advert
 
 # CLIO product videos
 
-For short composition/PR films, use the [composable-agent guide](../../../videos/composable/README.md).
+For short composition/PR films, use the [standalone ad project](../../../ad/README.md)
+and [creative handoff](../../../ad/HANDOFF.md). Its complete source and focused
+skill are grouped in `ad/` for independent use by another agent.
 The initial UI-based composability cut and the floating two-column revision were
 both rejected as slides/demos. Advertising uses the separate `composable-ad-index`
-and [art direction](../../../videos/composable/ART-DIRECTION.md). Read the original
+and [art direction](../../../ad/ART-DIRECTION.md). Read the original
 [motion scenes](../../../motion/references/motion-video-scenes.md),
 [stack](../../../motion/references/motion-video-stack.md) and
 [review](../../../motion/references/motion-video-review.md) skills. One visual

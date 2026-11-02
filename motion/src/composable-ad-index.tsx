@@ -1,20 +1,2 @@
-import { Composition, registerRoot } from "remotion";
-import "@fontsource-variable/inter";
-import "@fontsource-variable/jetbrains-mono";
-import { ComposableAd } from "./ComposableAd";
-import { copy } from "./composable-ad-plan";
-
-function AdCompositions() {
-  return (
-    <Composition
-      id="ClioComposableAd"
-      component={ComposableAd}
-      width={1920}
-      height={1080}
-      fps={60}
-      durationInFrames={copy.frames}
-      defaultProps={{}}
-    />
-  );
-}
-registerRoot(AdCompositions);
+// Compatibility entrypoint. The complete, independently runnable ad is in ad/.
+import "../../ad/src/index";

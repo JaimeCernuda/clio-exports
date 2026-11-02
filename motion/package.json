@@ -30,7 +30,7 @@
     "wordle:proof": "node --max-old-space-size=4096 render.mjs video --composition WordleStudyProof --scale 1.5 --concurrency 2 --output out/wordle-study-proof.mp4",
     "wordle:render": "node --max-old-space-size=4096 render.mjs video --composition WordleStudyWalkthrough --scale 1.5 --concurrency 2 --output out/wordle-study-walkthrough.mp4",
     "composable:legacy": "node render.mjs video --composition ClioComposable --scale 1 --concurrency 4 --output out/composable/clio-composable-v1.mp4",
-    "composable:render": "node render.mjs video --composition ClioComposableAd --scale 1 --concurrency 4 --output out/composable/clio-composable-ad-v9-clean.mp4 && node scripts/finish-composable-ad.mjs",
+    "composable:render": "npm --prefix ../ad run render",
     "composable:review": "tsx scripts/review-composable-ad.ts",
     "composable:legacy-review": "tsx scripts/review-composable.ts"
   },

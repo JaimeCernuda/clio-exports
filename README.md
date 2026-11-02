@@ -15,6 +15,11 @@ into the build, so a changed file never reaches the site unnoticed.
 
 ## Promotional authoring
 
+The standalone [composable-agent advertisement](ad/README.md) includes all source,
+assets, scripts, checks and review history in `ad/`. Its [Claude handoff](ad/HANDOFF.md)
+captures the goal, aim, user ideas and creative constraints. It is separate from
+the technical presentation demos below.
+
 Start with the [video catalog](videos/README.md): NDP, SPOTTER/OPAL, Wordle and
 engineering each have a source map, launch recipe and review status. The shared
 [UI replay emulator](motion/native/EMULATOR.md) is documented separately.

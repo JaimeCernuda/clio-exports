@@ -29,6 +29,12 @@ def package_sources(repository: Path) -> list[Path]:
             for path in directory.rglob("*")
             if path.is_file()
             and not EXCLUDED.intersection(path.relative_to(repository).parts)
+            and not (
+                value == "ad"
+                and {"bundle", "out", "review", ".cache"}.intersection(
+                    path.relative_to(directory).parts
+                )
+            )
             and path.suffix.lower() not in MOVIE_SUFFIXES
         )
     for path in files:

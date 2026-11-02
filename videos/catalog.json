@@ -44,11 +44,11 @@
     },
     {
       "id": "composable",
-      "guide": "videos/composable/README.md",
+      "guide": "ad/README.md",
       "profile": "standalone-remotion",
-      "entrypoint": "motion/src/composable-ad-index.tsx",
+      "entrypoint": "ad/src/index.tsx",
       "compositions": ["ClioComposableAd", "ClioComposable"],
-      "files": ["videos/composable/ART-DIRECTION.md", "videos/composable/ui-sources.json", "motion/story/composable-ad.json", "motion/src/AdOpening.tsx", "motion/src/ComposableAd.tsx", "motion/src/AdPrompt.tsx", "motion/src/composable-ad-plan.ts", "motion/src/composable-ad.css", "motion/src/prompt-morph.ts", "motion/scripts/finish-composable-ad.mjs", "motion/scripts/review-composable-ad.ts", "motion/scripts/prepare-composable-qr.mjs", "motion/tests/composable-ad.test.ts", "motion/data/composable-prompts.json", "tools/prepare_composable_prompts.py"],
+      "files": ["ad/HANDOFF.md", "ad/CLAUDE.md", "ad/ART-DIRECTION.md", "ad/references/ui-sources.json", "ad/story/composable-ad.json", "ad/src/AdOpening.tsx", "ad/src/ComposableAd.tsx", "ad/src/AdPrompt.tsx", "ad/src/composable-ad-plan.ts", "ad/src/composable-ad.css", "ad/src/prompt-morph.ts", "ad/render.mjs", "ad/scripts/finish.mjs", "ad/scripts/review.ts", "ad/scripts/prepare-qr.mjs", "ad/tests/composable-ad.test.ts", "ad/skills/clio-composable-ad/SKILL.md"],
       "reviewStatus": "v9-addition-causality-awaiting-creative-review"
     }
   ]

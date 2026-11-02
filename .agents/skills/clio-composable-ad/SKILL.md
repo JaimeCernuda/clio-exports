@@ -1,0 +1,8 @@
+---
+name: clio-composable-ad
+description: Revise or render the CLIO composable-agent motion advertisement, distinct from the technical session demos.
+---
+
+The maintained, portable skill and its project live in
+[ad/skills/clio-composable-ad/SKILL.md](../../../ad/skills/clio-composable-ad/SKILL.md).
+Read it and [the creative handoff](../../../ad/HANDOFF.md) before acting.
