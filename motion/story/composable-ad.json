@@ -1,0 +1,205 @@
+{
+  "schema": "clio.composable-ad.v4",
+  "fps": 60,
+  "frames": 1930,
+  "treatment": "Many possible agents. One agent assembled from plugins, instructions, skills and MCP connections.",
+  "copyMode": "Real CLIO UI vocabulary and additive composition semantics; illustrative domain plugins and shortened editorial instructions, not an installed catalogue or recorded run.",
+  "intro": [
+    {
+      "word": "genomic",
+      "color": "#bde9dc",
+      "at": 0,
+      "typed": 19,
+      "erase": 47,
+      "end": 63
+    },
+    {
+      "word": "manufacturing",
+      "color": "#ffdc9b",
+      "at": 63,
+      "typed": 96,
+      "erase": 124,
+      "end": 146
+    },
+    {
+      "word": "composable",
+      "color": "#cee6f4",
+      "at": 330,
+      "typed": 330,
+      "erase": 1930,
+      "end": 1930
+    }
+  ],
+  "wheel": {
+    "at": 146,
+    "end": 330,
+    "words": [
+      "research",
+      "climate",
+      "robotics",
+      "materials",
+      "chemistry",
+      "energy",
+      "astronomy",
+      "medicine",
+      "engineering",
+      "agriculture",
+      "oceanography",
+      "education",
+      "genomics",
+      "manufacturing",
+      "research"
+    ]
+  },
+  "staging": {
+    "menuAt": 514,
+    "optionsAt": 554,
+    "selectAt": 630,
+    "promptAt": 642
+  },
+  "baseLines": [
+    {
+      "id": "role",
+      "text": "You are CLIO, an autonomous scientific coding and data assistant."
+    },
+    {
+      "id": "purpose",
+      "text": "Work in the user's workspace with the capabilities below."
+    },
+    { "id": "approach:heading", "text": "Operating guidelines" },
+    {
+      "id": "approach:plan",
+      "text": "Understand the goal. Plan before acting."
+    },
+    {
+      "id": "approach:verify",
+      "text": "Use tools, verify results and explain your conclusions."
+    }
+  ],
+  "modules": [
+    {
+      "id": "manufacturing",
+      "name": "Manufacturing",
+      "kind": "plugin",
+      "color": "#ffdc9b",
+      "lines": [
+        { "id": "manufacturing:heading", "text": "Manufacturing" },
+        {
+          "id": "manufacturing:compare",
+          "text": "Compare materials, processes and production constraints."
+        },
+        {
+          "id": "manufacturing:result",
+          "text": "Explain trade-offs and propose a practical next step."
+        }
+      ]
+    },
+    {
+      "id": "simulation",
+      "name": "Simulation",
+      "kind": "plugin",
+      "color": "#cee6f4",
+      "lines": [
+        { "id": "simulation:heading", "text": "Simulation" },
+        {
+          "id": "simulation:work",
+          "text": "Test design variants and use the results to refine the plan."
+        }
+      ]
+    },
+    {
+      "id": "parameter-sweep",
+      "name": "Parameter sweep",
+      "kind": "skill",
+      "color": "#bde9dc",
+      "lines": [
+        { "id": "skills:heading", "text": "Skills" },
+        {
+          "id": "skills:sweep",
+          "text": "Parameter sweep — compare design variants systematically."
+        }
+      ]
+    },
+    {
+      "id": "materials-db",
+      "name": "Materials database",
+      "kind": "mcp",
+      "color": "#dbcefa",
+      "lines": [
+        { "id": "mcp:heading", "text": "MCP connections" },
+        {
+          "id": "mcp:materials",
+          "text": "Materials database — retrieve properties for the comparison."
+        }
+      ]
+    },
+    {
+      "id": "reports",
+      "name": "Reports",
+      "kind": "plugin",
+      "color": "#f6d6d4",
+      "lines": [
+        { "id": "reports:heading", "text": "Reporting" },
+        {
+          "id": "reports:work",
+          "text": "Turn the evidence into a clear technical report."
+        }
+      ]
+    }
+  ],
+  "choices": [
+    "Genetics",
+    "Manufacturing",
+    "Climate",
+    "Robotics",
+    "Materials",
+    "Chemistry",
+    "Energy",
+    "Astronomy",
+    "Medicine",
+    "Data analysis",
+    "Simulation",
+    "Reports"
+  ],
+  "stages": [
+    { "id": "base", "modules": [] },
+    { "id": "manufacturing", "modules": ["manufacturing"] },
+    { "id": "simulation", "modules": ["manufacturing", "simulation"] },
+    {
+      "id": "skill",
+      "modules": ["manufacturing", "simulation", "parameter-sweep"]
+    },
+    {
+      "id": "connected",
+      "modules": [
+        "manufacturing",
+        "simulation",
+        "parameter-sweep",
+        "materials-db"
+      ]
+    },
+    {
+      "id": "reports",
+      "modules": [
+        "manufacturing",
+        "simulation",
+        "parameter-sweep",
+        "materials-db",
+        "reports"
+      ]
+    }
+  ],
+  "changes": [
+    { "at": 700, "duration": 70, "from": "base", "to": "manufacturing" },
+    { "at": 904, "duration": 78, "from": "manufacturing", "to": "simulation" },
+    { "at": 1084, "duration": 78, "from": "simulation", "to": "skill" },
+    { "at": 1270, "duration": 72, "from": "skill", "to": "connected" },
+    { "at": 1420, "duration": 60, "from": "connected", "to": "reports" }
+  ],
+  "closing": {
+    "at": 1564,
+    "settled": 1624,
+    "line": "Build your own.",
+    "url": "https://clio.iowarp.ai/"
+  }
+}

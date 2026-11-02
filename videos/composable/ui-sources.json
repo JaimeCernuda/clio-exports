@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/iowarp/gact-tui",
+  "revision": "2692126d38a8c92b27fec750351aa3c85880de93",
+  "workingTree": "clean when inspected",
+  "scope": "Native-derived editable presentation; reflowed and enlarged for the film, with illustrative domain plugins and editorial prompt excerpts. Not an imported production application or live backend.",
+  "files": [
+    {"path":"web/src/components/clio/agent-composition-view.tsx","sha256":"02dc63888e86c6651dda587b4306d7949d7b960e9ba58f579f6619ccd59796a3","elements":["agent card","Bot icon","Add plugin control","agent reference"]},
+    {"path":"web/src/components/clio/composed-prompt-view.tsx","sha256":"68f6d033b624fbac1a91a5ffb0fd11a16ad6149f87f72a3fdf79f7ee84488db6","elements":["section hierarchy","fragment rows","expanded chevrons","source-attributed prompt contributions"]},
+    {"path":"web/src/lib/plugin-presentation.ts","sha256":"23e6861fa6b0e709bd62454fe36d08ee5f890d3b2e78b98375513fe52c22ad9a","elements":["additive plugin semantics","section labels","attribution semantics"]},
+    {"path":"web/src/components/clio/agent-plugin-tree.tsx","sha256":"220521d5b1339226430e50409e54036fad2a77d2a28450c8ab0aac59d2f84ff2","elements":["plugin contribution hierarchy","Skills rows","MCP servers rows","remove control"]},
+    {"path":"web/src/components/clio/agent-plugin-menu.tsx","sha256":"7539a460e68eed3da252a76291091bcf840635f7e34302b42d28119de1f7c16a","elements":["plugin choice","add action"]}
+  ]
+}

@@ -21,6 +21,7 @@
     "scripts/audit-study-plan.ts",
     "scripts/retime-study-captions.ts",
     "scripts/measure-engineering.ts",
-    "scripts/review-composable.ts"
+    "scripts/review-composable.ts",
+    "scripts/review-composable-ad.ts"
   ]
 }

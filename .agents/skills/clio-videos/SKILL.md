@@ -1,12 +1,36 @@
 ---
 name: clio-videos
-description: Plan, build or revise CLIO product videos from real exported sessions using the native UI replay in this repository. Use for story, shot selection and the full film workflow; route implementation and review to the motion skills.
+description: Plan, build or revise CLIO session demos and motion graphics advertisements using editable native-derived elements. Use for story, art direction and the full film workflow; route runtime and review to the motion skills.
 ---
 
 # CLIO product videos
 
 For short composition/PR films, use the [composable-agent guide](../../../videos/composable/README.md).
-Source real agent identities and contributed prompt fragments. Scope text matches
+The initial UI-based composability cut and the floating two-column revision were
+both rejected as slides/demos. Advertising uses the separate `composable-ad-index`
+and [art direction](../../../videos/composable/ART-DIRECTION.md). Read the original
+[motion scenes](../../../motion/references/motion-video-scenes.md),
+[stack](../../../motion/references/motion-video-stack.md) and
+[review](../../../motion/references/motion-video-review.md) skills. One visual
+material carries the concept across type, control, capability and prompt; do not
+rebuild a whole app or hold a documentation layout for the advertisement. Use
+understandable domains, white space, color continuity, purposeful object handoffs
+and sound design. Omit core, filesystem, dependency trees and scientific case names.
+For this ad, the opening/closing are PR; the middle is a pseudo demo of real CLIO
+elements reshaped for the film. Show many possible domains, not just three presets.
+An accelerating horizontal wheel can resolve into composable. Preserve the base
+prompt and visibly append plugin contributions; a three-line identity rewrite
+misrepresents the requested slot/build metaphor. Show named Skills and MCP rows
+arriving and their effect on the prompt, rather than static labels changing color.
+Shortened illustrative domain instructions are allowed when requested; document
+them as editorial examples rather than asserting an installed catalogue or run.
+Plan transitions as paths through occupied space. Move the agent card clear before
+unfolding plugin choices, retire neighboring choices before extracting a selection,
+and keep the selected piece above the menu. Incoming plugins must wait for retained
+plugins to vacate their destination. Clear the prompt before the closing brand
+travels through its text, then reveal the CTA after the brand clears that area.
+Inspect these passages in the encode; clean held frames missed the collisions.
+For source-bound demos, source real identities and contributed prompt fragments. Scope text matches
 by fragment and ordered phrases; isolated repeated words should not fly across
 unrelated prose. Measure destination wrapping after fonts load. Open insertion
 space first, clip text to its growing card, and keep retained plugin chips clear

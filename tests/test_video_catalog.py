@@ -30,6 +30,7 @@ def test_catalog_points_to_real_guides_sources_and_compositions() -> None:
             "motion/src/wordle-index.tsx",
             "motion/src/engineering-index.tsx",
             "motion/src/composable-index.tsx",
+            "motion/src/composable-ad-index.tsx",
         )
     )
     for project in projects:
@@ -53,6 +54,11 @@ def test_portable_package_contains_guides_and_launch_tools_without_runtime_asset
         "videos/spotter-opal/README.md",
         "videos/wordle/README.md",
         "videos/engineering/README.md",
+        "videos/composable/README.md",
+        "videos/composable/ART-DIRECTION.md",
+        "videos/composable/ui-sources.json",
+        "motion/src/composable-ad-index.tsx",
+        "motion/scripts/finish-composable-ad.mjs",
         "motion/native/EMULATOR.md",
         "motion/native/MANUAL-ATTENTION.md",
         "tools/launch_attention_replay.py",

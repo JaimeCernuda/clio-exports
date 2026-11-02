@@ -10,4 +10,13 @@ const svg = await QRCode.toString("https://clio.iowarp.ai/", {
   color: { dark: "#113855", light: "#f5f5f1" },
 });
 await writeFile(new URL("clio-qr.svg", destination), svg);
+await writeFile(
+  new URL("clio-qr-white.svg", destination),
+  await QRCode.toString("https://clio.iowarp.ai/", {
+    type: "svg",
+    errorCorrectionLevel: "M",
+    margin: 4,
+    color: { dark: "#15364a", light: "#fff" },
+  }),
+);
 console.log(`QR generated: ${fileURLToPath(destination)}`);

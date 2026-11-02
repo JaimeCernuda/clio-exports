@@ -1,5 +1,9 @@
 # First full cut: review receipt
 
+**Rejected creative treatment.** The user rejected this as a technical demo and
+slide-like layout. Its passing geometry and encoding checks did not establish a
+successful social advertisement. The active treatment is in ART-DIRECTION.md.
+
 - Local output: `motion/out/composable/clio-composable-v1.mp4` (not committed).
 - SHA-256: `bd848da819365af8f02e78f0b34812128379bfeab694f9387aab24097d476f02`.
 - 1920 × 1080, 60 fps, exactly 1800 frames / 30 seconds, silent, 4,700,229 bytes.

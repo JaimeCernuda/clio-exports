@@ -46,10 +46,10 @@
       "id": "composable",
       "guide": "videos/composable/README.md",
       "profile": "standalone-remotion",
-      "entrypoint": "motion/src/composable-index.tsx",
-      "compositions": ["ClioComposable"],
-      "files": ["motion/data/composable-prompts.json", "tools/prepare_composable_prompts.py", "motion/src/ComposableFilm.tsx", "motion/src/PromptMorph.tsx", "motion/src/prompt-morph.ts", "motion/src/composable-plan.ts", "motion/src/composable-pointer.ts", "motion/src/composable.css", "motion/scripts/prepare-composable-qr.mjs", "motion/scripts/review-composable.ts"],
-      "reviewStatus": "first-social-cut-awaiting-creative-review"
+      "entrypoint": "motion/src/composable-ad-index.tsx",
+      "compositions": ["ClioComposableAd", "ClioComposable"],
+      "files": ["videos/composable/ART-DIRECTION.md", "videos/composable/ui-sources.json", "motion/story/composable-ad.json", "motion/src/ComposableAd.tsx", "motion/src/AdPrompt.tsx", "motion/src/composable-ad-plan.ts", "motion/src/composable-ad.css", "motion/src/prompt-morph.ts", "motion/scripts/finish-composable-ad.mjs", "motion/scripts/review-composable-ad.ts", "motion/scripts/prepare-composable-qr.mjs", "motion/tests/composable-ad.test.ts", "motion/data/composable-prompts.json", "tools/prepare_composable_prompts.py"],
+      "reviewStatus": "additive-motion-ad-awaiting-creative-review-prior-ui-cut-rejected"
     }
   ]
 }

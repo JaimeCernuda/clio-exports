@@ -36,7 +36,10 @@ const inputProps = options.propsFile
   : {};
 const cursorSamples = new Map();
 let promptLayouts;
+let adLayouts;
 const collectBrowserLog = (log) => {
+  if (log.text.startsWith("__CLIO_AD_LAYOUTS__"))
+    adLayouts = JSON.parse(log.text.slice("__CLIO_AD_LAYOUTS__".length));
   if (log.text.startsWith("__CLIO_PROMPT_LAYOUTS__"))
     promptLayouts = JSON.parse(
       log.text.slice("__CLIO_PROMPT_LAYOUTS__".length),
@@ -58,11 +61,13 @@ const url = await bundle({
   enableCaching: false,
   entryPoint: path.join(
     root,
-    options.composition === "ClioComposable"
-      ? "src/composable-index.tsx"
-      : options.composition.startsWith("WordleStudy")
-        ? "src/wordle-index.tsx"
-        : "src/index.tsx",
+    options.composition === "ClioComposableAd"
+      ? "src/composable-ad-index.tsx"
+      : options.composition.startsWith("ClioComposable")
+        ? "src/composable-index.tsx"
+        : options.composition.startsWith("WordleStudy")
+          ? "src/wordle-index.tsx"
+          : "src/index.tsx",
   ),
   publicDir: path.join(root, "public"),
   outDir: path.join(root, "bundle"),
@@ -200,6 +205,11 @@ try {
     await writeFile(
       path.join(root, "review/composable-layouts.json"),
       JSON.stringify(promptLayouts, null, 2) + "\n",
+    );
+  if (adLayouts)
+    await writeFile(
+      path.join(root, "review/composable-ad-layouts.json"),
+      JSON.stringify(adLayouts, null, 2) + "\n",
     );
 } finally {
   await browser.close({ silent: true });
