@@ -8,7 +8,7 @@ description: Plan, build or revise CLIO session demos and motion graphics advert
 For short composition/PR films, use the [standalone ad project](../../../ad/README.md)
 and [creative handoff](../../../ad/HANDOFF.md). Its complete source and focused
 skill are grouped in `ad/` for independent use by another agent.
-The current v10 treatment uses a fixed prompt, owner-colored text edits and a
+The current v11 treatment uses a fixed prompt, owner-colored text edits and a
 persistent capability tree. Skills, hooks, tools and MCP leaves enter and leave
 with their plugin; no dotted count summaries or repeated prompt zoom/refocus.
 The v5–v9 extraction/inspection notes below are historical lessons. Follow the
@@ -77,8 +77,12 @@ showed Simulation and Reports arriving without a selection action. Offer each
 workflow plugin before it affects the prompt, visibly press its add control, then
 open its contributions without replacing or relocating the row. Reserve that
 preparation before the edit starts and after the preceding inspection has ended.
-Keep a single glyph through plus-to-removal rotation rather than overlapping two
-readable controls. Derive click sound and pointer timing from the same cue.
+The v10 plus-to-X rotation under the cursor made additions look like removals.
+Use plus for addition, a confirmation check, then expose X after the cursor leaves.
+Show initial removals through explicit X clicks. Check the rendered control's
+identity and hotspot, not only its rectangle. Derive sound and pointer timing
+from the same cue. For the opening wheel, smoothly shorten per-word intervals and
+derive blur from cadence plus actual motion; do not jump to full blur or remove it.
 For source-bound demos, source real identities and contributed prompt fragments. Scope text matches
 by fragment and ordered phrases; isolated repeated words should not fly across
 unrelated prose. Measure destination wrapping after fonts load. Open insertion

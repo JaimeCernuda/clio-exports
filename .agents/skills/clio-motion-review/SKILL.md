@@ -54,9 +54,13 @@ No failed or skipped tests count as a passing result.
 
 For the current composability ad, verify the actual prompt rectangle remains
 fixed across measured frames. Review both the text edits and owned capability
-leaves: v10 keeps a persistent tree instead of the older disclosure/refocus loop.
+leaves: v11 keeps a persistent tree instead of the older disclosure/refocus loop.
 Check owner-colored edit marks, retained subtrees, outgoing/replacement leaves,
-early wheel legibility and blur clearing with velocity. Dotted count summaries
+early wheel legibility, smoothly shortening word intervals, cadence-driven late
+blur and a sharp settled word. Check the actual control beneath every click:
+plus for adds, X for removes. A geometrically correct click on the wrong symbol
+still fails. Verify the larger closing URL and QR without a link arrow.
+Dotted count summaries
 do not show which skills, hooks or MCPs changed.
 
 For conversation replay, check actual encoded playback for growing tool groups,

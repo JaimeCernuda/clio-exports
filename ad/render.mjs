@@ -43,7 +43,16 @@ const adSelections = new Map();
 const adAdditions = new Map();
 const adPapers = new Map();
 const adCapabilities = new Map();
+const adControls = new Map();
+let adClosing;
 const collectBrowserLog = (log) => {
+  if (log.text.startsWith("__CLIO_AD_CLOSING__"))
+    adClosing = JSON.parse(log.text.slice("__CLIO_AD_CLOSING__".length));
+  if (log.text.startsWith("__CLIO_AD_CONTROLS__"))
+    for (const item of JSON.parse(
+      log.text.slice("__CLIO_AD_CONTROLS__".length),
+    ))
+      adControls.set(`${item.frame}:${item.id}`, item);
   if (log.text.startsWith("__CLIO_AD_PAPER__")) {
     const item = JSON.parse(log.text.slice("__CLIO_AD_PAPER__".length));
     adPapers.set(item.frame, item);
@@ -262,6 +271,16 @@ try {
     await writeFile(
       path.join(root, "review/composable-ad-capabilities.json"),
       JSON.stringify([...adCapabilities.values()], null, 2),
+    );
+  if (adControls.size)
+    await writeFile(
+      path.join(root, "review/composable-ad-controls.json"),
+      JSON.stringify([...adControls.values()], null, 2),
+    );
+  if (adClosing)
+    await writeFile(
+      path.join(root, "review/composable-ad-closing.json"),
+      JSON.stringify(adClosing, null, 2),
     );
 } finally {
   await browser.close({ silent: true });

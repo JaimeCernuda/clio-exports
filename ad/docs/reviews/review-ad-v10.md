@@ -1,5 +1,8 @@
 # Fixed prompt, visible edits and persistent capabilities
 
+Historical receipt. V11 supersedes this wheel/control/CTA treatment after user
+feedback; retain these measurements as evidence for the v10 file only.
+
 - Local movie: `ad/out/composable/clio-composable-ad-v10.mp4` (not committed).
 - SHA-256: `5b5b57671831ebd27a6fdacf5a14de1fd8b6e451b221f8517821e193d31da4dd`.
 - 1920 × 1080, 60 fps, 2064 frames, 34.4 seconds, 4,465,774 bytes.

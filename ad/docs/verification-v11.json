@@ -1,0 +1,83 @@
+{
+  "video": "out/composable/clio-composable-ad-v11.mp4",
+  "sha256": "50bd8e221906b9eed34f40e840889327ed813d9c80f8ffa6176ef88e81d04256",
+  "frames": 2474,
+  "fps": 60,
+  "width": 1920,
+  "height": 1080,
+  "audio": "original procedural sound design",
+  "profiles": 11,
+  "transitions": 10,
+  "wheelChangeFrames": [
+    72,
+    71.6084470136789,
+    69.30569819498172,
+    64.26468634159366,
+    56.597177291665375,
+    47.085531912251405,
+    36.91446808774861,
+    27.402822708334632,
+    19.735313658406362,
+    14.694301805018256,
+    12.391552986321152,
+    12
+  ],
+  "clickChecks": [
+    {
+      "frame": 1018,
+      "id": "simulation",
+      "action": "add"
+    },
+    {
+      "frame": 1176,
+      "id": "reports",
+      "action": "add"
+    },
+    {
+      "frame": 1340,
+      "id": "simulation",
+      "action": "remove"
+    },
+    {
+      "frame": 1422,
+      "id": "manufacturing",
+      "action": "remove"
+    },
+    {
+      "frame": 1546,
+      "id": "genomics",
+      "action": "add"
+    }
+  ],
+  "closing": {
+    "url": {
+      "x": 530,
+      "y": 701,
+      "width": 255.21875,
+      "height": 51,
+      "fontSize": 42
+    },
+    "qr": {
+      "x": 1193,
+      "y": 420,
+      "width": 288,
+      "height": 288
+    }
+  },
+  "measuredCapabilityLeaves": 30,
+  "measuredPromptFrames": 44,
+  "promptBounds": {
+    "x": 140,
+    "y": 245,
+    "width": 1016.8,
+    "height": 508.4
+  },
+  "wordCollisions": [],
+  "componentOcclusions": [],
+  "encodedCompositionFrames": 1356,
+  "paintLeaks": [],
+  "qr": "https://clio.iowarp.ai/",
+  "settledFrameDifferenceMax": 0.112531,
+  "decode": "passed",
+  "reviewBoundary": "Measured geometry and encoded frames; creative and uninterrupted playback review are separate."
+}

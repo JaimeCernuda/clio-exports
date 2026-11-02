@@ -51,6 +51,7 @@ test("the handoff includes the creative brief, commands, assets, skill and revie
     "skills/clio-composable-ad/SKILL.md",
     "docs/reviews/review-ad-v9.md",
     "docs/reviews/review-ad-v10.md",
+    "docs/reviews/review-ad-v11.md",
     "examples/composable-measure.json",
   ])
     assert.ok(

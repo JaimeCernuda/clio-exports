@@ -16,6 +16,7 @@ import {
   adWords,
   copy,
   tree,
+  wheelDurations,
   type OpeningGeometry,
 } from "../src/composable-ad-plan";
 import type { PromptLayout } from "../src/prompt-morph";
@@ -121,6 +122,40 @@ for (const measured of papers)
       Math.abs(measured[key] - expectedPaper[key]) < 0.06,
       "Prompt moves/resizes at " + measured.frame,
     );
+const controls: Array<{
+  frame: number;
+  id: string;
+  action: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}> = read("controls");
+const clickChecks = copy.changes
+  .filter((c) => (c.bundle && c.from !== "base") || c.action === "remove")
+  .map((change) => {
+    const removing = change.action === "remove",
+      frame =
+        change.at -
+        (removing ? copy.removal.clickBefore : copy.addition.clickBefore),
+      id = removing ? change.controlId : change.to,
+      control = controls.find((c) => c.frame === frame && c.id === id),
+      cursor = adPointer(frame, opening);
+    assert.ok(control, `Missing measured control at ${frame}: ${id}`);
+    assert.equal(control.action, removing ? "remove" : "add");
+    assert.equal(cursor.press, 1);
+    assert.ok(
+      cursor.x + 4 >= control.x && cursor.x + 4 <= control.x + control.width,
+    );
+    assert.ok(
+      cursor.y + 3 >= control.y && cursor.y + 3 <= control.y + control.height,
+    );
+    return { frame, id, action: control.action };
+  });
+const closing = read("closing");
+assert.ok(closing.url.fontSize >= 40);
+assert.ok(closing.qr.width >= 280 && closing.qr.height >= 280);
+assert.ok(closing.qr.x + closing.qr.width < 1820);
 const capabilities: Array<{
   id: string;
   owner: string;
@@ -204,7 +239,7 @@ if (process.argv.includes("--geometry-only")) {
   );
   process.exit(0);
 }
-const video = process.argv[2] ?? "out/composable/clio-composable-ad-v10.mp4";
+const video = process.argv[2] ?? "out/composable/clio-composable-ad-v11.mp4";
 const auditFrames = Array.from(
     { length: copy.closing.at - copy.staging.selectAt },
     (_, i) => copy.staging.selectAt + i,
@@ -234,7 +269,7 @@ const paintLeaks: Array<{ frame: number; darkPixels: number }> = [];
 for (const [index, frame] of auditFrames.entries()) {
   const pointer = adPointer(frame, opening),
     addition = adAddition(frame),
-    logoTravel = phase(frame, 500, 100),
+    logoTravel = phase(frame, copy.staging.menuAt + 10, 100),
     startX = 960 - opening.width / 2 + opening.logo.x,
     startY = 540 - opening.height / 2 + opening.logo.y;
   const boxes = [
@@ -354,6 +389,9 @@ const report = {
   audio: "original procedural sound design",
   profiles: Object.keys(layouts).length,
   transitions: copy.changes.length,
+  wheelChangeFrames: wheelDurations,
+  clickChecks,
+  closing,
   measuredCapabilityLeaves: capabilities.length,
   measuredPromptFrames: papers.length,
   promptBounds: expectedPaper,

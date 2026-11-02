@@ -9,15 +9,17 @@ It contains the editable components, copy, timing, assets, renderer, sound gener
 tests, review scripts and review history. It needs no CLIO backend or transcript server.
 The technical presentation demos elsewhere in this repository are separate projects.
 
-Current baseline: **v10, 34.4 seconds, 1920 × 1080, 60 fps, original procedural audio**.
+Current baseline: **v11, 41.23 seconds, 1920 × 1080, 60 fps, original procedural audio**.
 It is a revision for user review, **not a creatively approved final**. The latest
-[review receipt](docs/reviews/review-ad-v10.md) distinguishes checks from approval.
+[review receipt](docs/reviews/review-ad-v11.md) distinguishes checks from approval.
 Rendered movies remain local and are excluded from Git.
 
 The prompt stays at a fixed size and position. Owner-colored marks identify its
 actual edits, while a persistent tree on the right shows skills, hooks, tools
-and MCP servers entering or leaving with their plugin. The wheel uses restrained
-directional blur, and capability-count summary lines are removed.
+and MCP servers entering or leaving with their plugin. The wheel smoothly shortens
+each change from 1.2 to 0.2 seconds; directional blur follows cadence and motion.
+Additions use plus then confirmation; removals visibly click X. The closing URL
+and QR are larger, with no arrow beside the URL.
 
 ## Run
 
@@ -46,11 +48,11 @@ on that machine's project volume. `DEMO_CHROME_PATH` optionally names an existin
 compatible Chrome executable. Otherwise Remotion obtains its supported browser.
 
 `npm run studio` opens the editable composition on port 3370. `npm run stills --
---frames 820,827,828` renders selected frames. `npm run qr` regenerates the
+--frames 1018,1025,1026,1340` renders selected frames. `npm run qr` regenerates the
 included QR assets if the destination changes. The complete render command writes:
 
-- `out/composable/clio-composable-ad-v10-clean.mp4`
-- `out/composable/clio-composable-ad-v10.mp4`
+- `out/composable/clio-composable-ad-v11-clean.mp4`
+- `out/composable/clio-composable-ad-v11.mp4`
 
 Measurements, extracted review images and reports go in `review/`; bundles and
 temporary files are also ignored. Do not run two bundles/renders against the same
@@ -72,6 +74,7 @@ future renders use this directory's `out/` folder.
 | Opening wheel and aligned lockup | [src/AdOpening.tsx](src/AdOpening.tsx) |
 | Measured prompt and editable text | [src/AdPrompt.tsx](src/AdPrompt.tsx) |
 | Causal cues, pointer, routes and ownership | [src/composable-ad-plan.ts](src/composable-ad-plan.ts) |
+| Shared visual/audio wheel timing | [src/wheel-timing.mjs](src/wheel-timing.mjs) |
 | Word matching and text morph | [src/prompt-morph.ts](src/prompt-morph.ts) |
 | Typography, geometry and colors | [src/composable-ad.css](src/composable-ad.css) |
 | Remotion entrypoint | [src/index.tsx](src/index.tsx) |
@@ -93,7 +96,9 @@ installed catalogue, successful live connections or a recorded execution.
 ## Review and sharing
 
 Run measurements after changing text, geometry or cues. Include the exact initial
-selection frame and both sides of each later add handoff. Review the actual encode
+selection frame, both sides of each later add handoff and every add/remove click.
+The control must represent the intended action beneath the cursor, not just fit
+its geometry. Review the actual encode
 around entrances, clicks, text morphs, collapses, transfers and the close. The
 automated checks cover geometry, ownership, pointer movement, encoded paint leaks,
 decode, frame count, QR and the final hold. They do not approve taste or pacing.

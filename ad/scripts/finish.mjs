@@ -2,11 +2,12 @@
 import { readFile, writeFile, unlink } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import path from "node:path";
+import { wheelTiming } from "../src/wheel-timing.mjs";
 const root = path.resolve(import.meta.dirname, "..");
 process.chdir(root);
 const source =
-  process.argv[2] ?? "out/composable/clio-composable-ad-v10-clean.mp4";
-const output = process.argv[3] ?? "out/composable/clio-composable-ad-v10.mp4";
+  process.argv[2] ?? "out/composable/clio-composable-ad-v11-clean.mp4";
+const output = process.argv[3] ?? "out/composable/clio-composable-ad-v11.mp4";
 const score = JSON.parse(await readFile("story/composable-ad.json", "utf8"));
 const rate = 48000,
   seconds = score.frames / score.fps,
@@ -74,7 +75,9 @@ for (let beat = 0; beat * 0.5 < score.closing.at / score.fps; beat++) {
       0.008,
     );
 }
-for (const frame of [70, 126, score.wheel.end]) tick(frame / 60, 0.028);
+const wheel = wheelTiming(score.wheel);
+for (const frame of [wheel.stops[1], wheel.stops[2], wheel.stops.at(-1)])
+  tick(frame / score.fps, 0.028);
 for (const frame of [
   score.staging.brandAt,
   score.staging.plusAt,
@@ -87,12 +90,19 @@ for (const frame of [
   sweep(frame / 60, 0.4, 0.055);
 for (const [i, change] of score.changes.entries()) {
   tick(
-    (change.bundle && change.from !== "base"
-      ? change.at - score.addition.clickBefore
-      : change.at + 10) / score.fps,
+    (change.action === "remove"
+      ? change.at - score.removal.clickBefore
+      : change.bundle && change.from !== "base"
+        ? change.at - score.addition.clickBefore
+        : change.at + 10) / score.fps,
     0.07,
   );
-  chime((change.at + 45) / 60, [440, 523.251, 659.255][i % 3], 0.022);
+  if (change.action !== "remove")
+    chime(
+      (change.at + (change.bundle ? 12 : 45)) / score.fps,
+      [440, 523.251, 659.255][i % 3],
+      0.022,
+    );
   if (change.bundle) {
     const from = score.stages.find((stage) => stage.id === change.from),
       to = score.stages.find((stage) => stage.id === change.to),
@@ -110,7 +120,11 @@ for (const [i, change] of score.changes.entries()) {
   }
 }
 // The wheel has one rising air movement, not a click on every blurred word.
-sweep(score.wheel.at / 60, (score.wheel.end - score.wheel.at) / 60, 0.07);
+sweep(
+  wheel.stops[0] / score.fps,
+  (wheel.stops.at(-1) - wheel.stops[0]) / score.fps,
+  0.07,
+);
 chime((score.closing.at + 50) / 60, 261.626, 0.04);
 chime((score.closing.at + 50) / 60, 392, 0.016);
 const pcm = Buffer.alloc(44 + samples.length * 2);

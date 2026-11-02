@@ -31,7 +31,7 @@ export function AdOpening({
       className={`ad-opening ${measure ? "ad-opening-measure" : ""}`}
       style={{
         fontSize: font,
-        opacity: measure ? 1 : 1 - phase(frame, 500, 35),
+        opacity: measure ? 1 : 1 - phase(frame, copy.staging.menuAt + 10, 35),
       }}
     >
       <div
@@ -57,7 +57,7 @@ export function AdOpening({
             style={{
               width: 84,
               height: 84,
-              opacity: measure || frame < 500 ? 1 : 0,
+              opacity: measure || frame < copy.staging.menuAt + 10 ? 1 : 0,
             }}
           />
           <strong>CLIO:</strong>

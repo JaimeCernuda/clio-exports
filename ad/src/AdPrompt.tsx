@@ -4,6 +4,7 @@ import {
   profiles,
   adWords,
   adEditMarks,
+  copy,
   type AdProfile,
   type OpeningGeometry,
 } from "./composable-ad-plan";
@@ -29,7 +30,7 @@ function Line({ id, text }: { id: string; text: string }) {
 export function AdMeasures() {
   return (
     <div className="ad-measurements" aria-hidden="true">
-      <AdOpening frame={480} measure />
+      <AdOpening frame={copy.staging.menuAt - 10} measure />
       {Object.values(profiles).map((profile) => (
         <div
           key={profile.id}
@@ -157,6 +158,31 @@ export function useAdLayouts(record = false) {
           console.log(
             `__CLIO_AD_CAPABILITIES__${JSON.stringify(capabilities)}`,
           );
+          const controls = Array.from(
+            document.querySelectorAll<HTMLElement>("[data-ad-control]"),
+          ).map((control) => {
+            const box = control.getBoundingClientRect();
+            return {
+              frame: Number(paper?.dataset.adPaperFrame),
+              id: control.closest<HTMLElement>("[data-ad-plugin]")!.dataset
+                .adPlugin,
+              action: control.dataset.adControlAction,
+              x: box.x,
+              y: box.y,
+              width: box.width,
+              height: box.height,
+            };
+          });
+          console.log(`__CLIO_AD_CONTROLS__${JSON.stringify(controls)}`);
+          const url = document.querySelector<HTMLElement>("[data-ad-url]"),
+            qr = document.querySelector<HTMLElement>("[data-ad-close-qr]");
+          if (url && qr) {
+            const u = url.getBoundingClientRect(),
+              q = qr.getBoundingClientRect();
+            console.log(
+              `__CLIO_AD_CLOSING__${JSON.stringify({ url: { x: u.x, y: u.y, width: u.width, height: u.height, fontSize: parseFloat(getComputedStyle(url).fontSize) }, qr: { x: q.x, y: q.y, width: q.width, height: q.height } })}`,
+            );
+          }
           const pluginGeometry = Array.from(
             document.querySelectorAll<HTMLElement>("[data-ad-plugin]"),
           ).map((element) => {
@@ -165,7 +191,7 @@ export function useAdLayouts(record = false) {
                 .querySelector<HTMLElement>("[data-ad-plugin-name]")!
                 .getBoundingClientRect(),
               close = element
-                .querySelector<SVGElement>("[data-ad-plugin-remove]")!
+                .querySelector<HTMLElement>("[data-ad-control]")!
                 .getBoundingClientRect();
             return {
               id: element.dataset.adPlugin,

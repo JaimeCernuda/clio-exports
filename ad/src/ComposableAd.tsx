@@ -5,7 +5,7 @@ import {
   useCurrentFrame,
   interpolateColors,
 } from "remotion";
-import { ArrowUpRight, Box, ChevronRight, Plus, Search } from "lucide-react";
+import { Box, ChevronRight, Plus, Search } from "lucide-react";
 import {
   adPointer,
   adSelection,
@@ -94,7 +94,7 @@ export function ComposableAd({
     brandClose = phase(frame, copy.closing.at + 14, 46),
     end = phase(frame, copy.closing.at + 46, 14),
     pointer = adPointer(frame, opening),
-    logoTravel = phase(frame, 500, 100);
+    logoTravel = phase(frame, copy.staging.menuAt + 10, 100);
   const startLogo = opening
     ? {
         x: 960 - opening.width / 2 + opening.logo.x,
@@ -146,7 +146,7 @@ export function ComposableAd({
         />
       </div>
       <AdCapabilities frame={frame} />
-      {frame >= 500 ? (
+      {frame >= copy.staging.menuAt + 10 ? (
         <Img
           src={staticFile("clio-mark.svg")}
           className="ad-brand-owl"
@@ -188,12 +188,11 @@ export function ComposableAd({
         <div>
           Build your <span>own.</span>
         </div>
-        <small>
-          clio.iowarp.ai <ArrowUpRight size={25} />
-        </small>
+        <small data-ad-url>clio.iowarp.ai</small>
       </div>
       <Img
         className="ad-close-qr"
+        data-ad-close-qr
         src={staticFile("composable/clio-qr-white.svg")}
         style={{ opacity: end }}
       />

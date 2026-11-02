@@ -8,6 +8,8 @@ import {
   adModuleRows,
   adOpeningCase,
   adPointer,
+  adPluginControl,
+  adRemoval,
   adPromptBounds,
   adSelection,
   adState,
@@ -19,6 +21,8 @@ import {
   paper,
   profiles,
   tree,
+  wheelDurations,
+  wheelStops,
 } from "../src/composable-ad-plan";
 import type { PromptLayout, WordBox } from "../src/prompt-morph";
 import { phase } from "../src/prompt-morph";
@@ -30,20 +34,35 @@ const overlap = (
   Math.max(0, Math.min(a.x + a.width, b.x + b.width) - Math.max(a.x, b.x)) *
   Math.max(0, Math.min(a.y + a.height, b.y + b.height) - Math.max(a.y, b.y));
 
-test("the wheel keeps early fields legible and blur follows motion instead of time", () => {
-  for (const frame of [0, 70, 126, copy.wheel.end, copy.wheel.end + 30])
+test("the wheel smoothly shortens each change and derives blur from cadence and motion", () => {
+  assert.equal(wheelDurations[0], 72);
+  assert.equal(wheelDurations.at(-1), 12);
+  assert.ok(Math.abs(wheelStops.at(-1)! - copy.wheel.end) < 1e-7);
+  for (let i = 1; i < wheelDurations.length; i++)
+    assert.ok(wheelDurations[i] < wheelDurations[i - 1]);
+  for (const [i, frame] of wheelStops.entries()) {
+    assert.ok(Math.abs(adWheel(frame).position - i) < 1e-7);
+    const before = adWheel(frame - 0.00001),
+      after = adWheel(frame + 0.00001);
+    assert.ok(Math.abs(before.velocity - after.velocity) < 0.0001);
+    assert.ok(Math.abs(before.blur - after.blur) < 0.0001);
+  }
+  for (const frame of [
+    0,
+    copy.wheel.holdFrames,
+    copy.wheel.end,
+    copy.wheel.end + 30,
+  ])
     assert.equal(adWheel(frame).blur, 0);
   let peak = 0;
   for (let frame = 1; frame <= copy.wheel.end; frame++) {
     const wheel = adWheel(frame);
     assert.ok(wheel.position >= adWheel(frame - 1).position - 1e-9);
-    assert.ok(wheel.blur <= 4);
-    if (wheel.position <= 3.5) assert.ok(wheel.blur < 1);
-    if (Math.abs(wheel.velocity) <= copy.wheel.motionBlur.threshold)
-      assert.equal(wheel.blur, 0);
+    assert.ok(wheel.blur <= copy.wheel.motionBlur.maxPixels);
+    if (wheel.position <= 3.5) assert.ok(wheel.blur < 2);
     peak = Math.max(peak, wheel.blur);
   }
-  assert.ok(peak > 2);
+  assert.ok(peak > 8);
   assert.equal(adWheel(copy.wheel.end).position, copy.wheel.words.length - 1);
   assert.equal(copy.wheel.words.at(-1), "composable");
   assert.ok(new Set(copy.wheel.words).size >= 12);
@@ -87,8 +106,8 @@ test("the selected native row retains its shape and clears the fixed prompt", ()
     { x: first.x, y: first.y, width: first.width, height: first.height },
     copy.selection.source,
   );
-  assert.equal(adMenu(559).hover, 1);
-  assert.equal(adMenu(560).sourceOpacity, 0);
+  assert.equal(adMenu(copy.staging.selectAt - 1).hover, 1);
+  assert.equal(adMenu(copy.staging.selectAt).sourceOpacity, 0);
   let previous = first;
   for (
     let frame = copy.staging.selectAt;
@@ -188,14 +207,55 @@ test("each tree leaf reveals after its parent opens and remains readable", () =>
 });
 
 test("the pointer stays continuous while visible and operates the initial chooser", () => {
-  assert.equal(adPointer(484).press, 1);
-  assert.equal(adPointer(559).press, 1);
-  let previous = adPointer(440);
-  for (let frame = 441; frame < copy.closing.at; frame++) {
+  assert.equal(adPointer(copy.staging.menuAt - 6).press, 1);
+  assert.equal(adPointer(copy.staging.selectAt - 1).press, 1);
+  let previous = adPointer(copy.staging.plusAt + 18);
+  for (let frame = copy.staging.plusAt + 19; frame < copy.closing.at; frame++) {
     const point = adPointer(frame);
     if (point.opacity > 0 && previous.opacity > 0)
       assert.ok(Math.hypot(point.x - previous.x, point.y - previous.y) < 22);
     previous = point;
+  }
+});
+
+test("add clicks use plus, then a check, and expose X only after the cursor has left", () => {
+  for (const change of copy.changes.filter(
+    (c) => c.bundle && c.from !== "base",
+  )) {
+    const offer = adAddition(change.at - 1)!;
+    assert.equal(adPluginControl(offer.clickAt, offer.module.id).kind, "add");
+    assert.equal(
+      adPluginControl(change.at + 16, offer.module.id).kind,
+      "added",
+    );
+    for (let f = offer.clickAt - 4; f <= change.at + 45; f++) {
+      const control = adPluginControl(f, offer.module.id);
+      if (control.kind === "remove") assert.equal(adPointer(f).opacity, 0);
+    }
+  }
+});
+
+test("the first removals visibly operate the existing X and retain Reports", () => {
+  const removals = copy.changes.filter((c) => c.action === "remove");
+  assert.deepEqual(
+    removals.map((c) => c.controlId),
+    ["simulation", "manufacturing"],
+  );
+  for (const change of removals) {
+    const removal = adRemoval(change.at - 2)!;
+    assert.equal(removal.module.id, change.controlId);
+    assert.equal(adPointer(removal.clickAt).press, 1);
+    assert.equal(
+      adPluginControl(removal.clickAt, change.controlId).kind,
+      "remove",
+    );
+    assert.ok(
+      profiles[change.from].modules.some((m) => m.id === change.controlId),
+    );
+    assert.ok(
+      !profiles[change.to].modules.some((m) => m.id === change.controlId),
+    );
+    assert.ok(profiles[change.to].modules.some((m) => m.id === "reports"));
   }
 });
 

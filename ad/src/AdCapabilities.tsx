@@ -2,6 +2,7 @@ import React from "react";
 import {
   Box,
   ChevronRight,
+  Check,
   Database,
   Plus,
   Sparkles,
@@ -13,6 +14,7 @@ import {
   adAddition,
   adModuleRows,
   adPromptBounds,
+  adPluginControl,
   adTreePoses,
   copy,
   tree,
@@ -27,8 +29,7 @@ export function PluginNode({
   open = 0,
   rowOpacity = [],
   morph = 1,
-  addition,
-  hover = 0,
+  control,
   selected = false,
   style = {},
 }: {
@@ -37,8 +38,7 @@ export function PluginNode({
   open?: number;
   rowOpacity?: number[];
   morph?: number;
-  addition?: number;
-  hover?: number;
+  control?: ReturnType<typeof adPluginControl>;
   selected?: boolean;
   style?: React.CSSProperties;
 }) {
@@ -49,7 +49,7 @@ export function PluginNode({
       className="ad-plugin-frame"
       data-ad-plugin={module.id}
       data-ad-selection-frame={selected ? frame : undefined}
-      data-ad-add-frame={addition !== undefined ? frame : undefined}
+      data-ad-add-frame={control?.adding ? frame : undefined}
       style={{ ...style, height }}
     >
       <div className="ad-plugin">
@@ -75,20 +75,27 @@ export function PluginNode({
           </strong>
           <span
             className="ad-plugin-control"
+            data-ad-control
+            data-ad-control-action={
+              control?.kind ?? (morph < 0.5 ? "choose" : "remove")
+            }
             style={{
               right: 17 + 3 * morph,
-              background: `rgba(255,255,255,${0.75 * hover * (1 - (addition ?? 1))})`,
-              boxShadow: `0 0 0 6px rgba(255,255,255,${0.75 * hover * (1 - (addition ?? 1))})`,
+              background: `rgba(255,255,255,${0.75 * (control?.hover ?? 0)})`,
+              boxShadow: `0 0 0 6px rgba(255,255,255,${0.75 * (control?.hover ?? 0)})`,
             }}
           >
-            {addition !== undefined ? (
-              <Plus
-                data-ad-plugin-remove
-                size={19}
-                style={{
-                  transform: `rotate(${45 * addition}deg) scale(${1 - 0.1 * addition})`,
-                }}
-              />
+            {control ? (
+              control.kind === "add" ? (
+                <Plus size={19} style={{ opacity: control.opacity }} />
+              ) : control.kind === "added" ? (
+                <Check size={19} style={{ opacity: control.opacity }} />
+              ) : (
+                <X
+                  size={17}
+                  style={{ left: 1, top: 1, opacity: control.opacity }}
+                />
+              )
             ) : (
               <>
                 <ChevronRight
@@ -213,8 +220,7 @@ export function AdCapabilities({ frame }: { frame: number }) {
         <PluginNode
           module={pending.module}
           frame={frame}
-          addition={0}
-          hover={pending.hover}
+          control={adPluginControl(frame, pending.module.id)}
           style={{
             position: "absolute",
             left: pending.x,
@@ -232,12 +238,7 @@ export function AdCapabilities({ frame }: { frame: number }) {
           frame={frame}
           open={pose.open}
           rowOpacity={pose.rows.map((row) => row.opacity)}
-          addition={
-            pose.added && adAddition(frame)?.module.id === pose.module.id
-              ? offer?.added
-              : undefined
-          }
-          hover={offer?.module.id === pose.module.id ? offer.hover : 0}
+          control={adPluginControl(frame, pose.module.id)}
           style={{
             position: "absolute",
             left: pose.x,

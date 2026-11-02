@@ -1,4 +1,5 @@
 import copy from "../story/composable-ad.json";
+import { wheelTiming } from "./wheel-timing.mjs";
 import {
   ease,
   phase,
@@ -72,34 +73,55 @@ export function adState(frame: number) {
     : { from: profiles.base, to: profiles.base, p: 1, change: undefined };
 }
 
-/** One vertical slot: readable first fields, acceleration, then a physical stop. */
+/** Each successive change has a shorter duration along one smooth timing ramp. */
+const wheelClock = wheelTiming(copy.wheel);
+export const wheelDurations = wheelClock.durations;
+export const wheelStops = wheelClock.stops;
+
+/** C1 Hermite motion crosses the duration stops without jumping to a new speed. */
 export function adWheel(frame: number) {
-  const positionAt = (f: number) => {
-    if (f <= 30) return 0;
-    if (f < 70) return phase(f, 30, 40);
-    if (f < 90) return 1;
-    if (f < 126) return 1 + phase(f, 90, 36);
-    if (f < 132) return 2;
-    if (f < 270) return 2 + 12 * ((f - 132) / 138) ** 2;
-    if (f < copy.wheel.end) {
-      const p = (f - 270) / (copy.wheel.end - 270),
-        v = (24 / 138) * (copy.wheel.end - 270);
-      return (
-        (2 * p ** 3 - 3 * p ** 2 + 1) * 14 +
-        (p ** 3 - 2 * p ** 2 + p) * v +
-        (-2 * p ** 3 + 3 * p ** 2) * 18
-      );
-    }
-    return copy.wheel.words.length - 1;
-  };
-  const position = positionAt(frame),
-    velocity = (positionAt(frame + 0.5) - positionAt(frame - 0.5)) * 124;
-  const blur = Math.min(
-    copy.wheel.motionBlur.maxPixels,
-    Math.max(0, Math.abs(velocity) - copy.wheel.motionBlur.threshold) *
-      copy.wheel.motionBlur.exposure,
-  );
-  return { position, velocity, blur };
+  if (frame <= wheelStops[0])
+    return { position: 0, velocity: 0, blur: 0, duration: wheelDurations[0] };
+  if (frame >= wheelStops.at(-1)!)
+    return {
+      position: copy.wheel.words.length - 1,
+      velocity: 0,
+      blur: 0,
+      duration: wheelDurations.at(-1)!,
+    };
+  const i = wheelDurations.findIndex(
+      (_, index) => frame <= wheelStops[index + 1],
+    ),
+    h = wheelDurations[i],
+    u = (frame - wheelStops[i]) / h,
+    m0 = i === 0 ? 0 : 2 / (wheelDurations[i - 1] + h),
+    m1 = i === wheelDurations.length - 1 ? 0 : 2 / (h + wheelDurations[i + 1]),
+    position =
+      i +
+      3 * u * u -
+      2 * u * u * u +
+      h * m0 * (u * u * u - 2 * u * u + u) +
+      h * m1 * (u * u * u - u * u),
+    velocity =
+      124 *
+      ((6 * u - 6 * u * u) / h +
+        m0 * (3 * u * u - 4 * u + 1) +
+        m1 * (3 * u * u - 2 * u)),
+    duration =
+      (wheelDurations[Math.max(0, i - 1)] + h) / 2 +
+      ((h + wheelDurations[Math.min(wheelDurations.length - 1, i + 1)]) / 2 -
+        (wheelDurations[Math.max(0, i - 1)] + h) / 2) *
+        ease(u),
+    cadence =
+      (1 / duration - 1 / wheelDurations[0]) /
+      (1 / wheelDurations.at(-1)! - 1 / wheelDurations[0]),
+    exposure =
+      copy.wheel.motionBlur.slowPixels +
+      (copy.wheel.motionBlur.fastPixels - copy.wheel.motionBlur.slowPixels) *
+        ease(cadence),
+    motion = Math.min(1.5, (Math.abs(velocity) * duration) / 124),
+    blur = Math.min(copy.wheel.motionBlur.maxPixels, exposure * motion);
+  return { position, velocity, blur, duration };
 }
 
 /** Change the sentence case in two phases so readable A/a glyphs never overlap. */
@@ -148,7 +170,12 @@ export function adModuleRows(module: AdModule) {
 
 /** Persistent capability branches make room for an additive plugin below its owners. */
 export function adTreeLayout(profile: AdProfile) {
-  let y: number = tree.y;
+  // Keep the reusable subtree below the vacant domain slot during explicit removal.
+  let y: number =
+    tree.y +
+    (profile.id === "reports-only"
+      ? tree.header + 22 + 4 * tree.rowHeight + tree.gap
+      : 0);
   return profile.modules.map((module) => {
     const rows = adModuleRows(module),
       height = tree.header + 22 + rows.length * tree.rowHeight;
@@ -232,7 +259,7 @@ export function adAddition(frame: number) {
       entry.bundle &&
       entry.from !== "base" &&
       frame >= entry.at - copy.addition.leadFrames &&
-      frame <= entry.at + 36,
+      frame <= entry.at + 48,
   );
   if (!change) return null;
   const target = adTreeLayout(profiles[change.to]).find(
@@ -254,6 +281,62 @@ export function adAddition(frame: number) {
     hover: phase(frame, change.at - 20, 8),
     added: phase(frame, change.at, copy.addition.controlFrames),
     clickAt: change.at - copy.addition.clickBefore,
+  };
+}
+
+/** Locate the actual existing row whose X triggers an explicit removal. */
+export function adRemoval(frame: number) {
+  const change = copy.changes.find(
+    (entry) =>
+      entry.action === "remove" &&
+      frame >= entry.at - copy.removal.leadFrames &&
+      frame <= entry.at + 30,
+  );
+  if (!change) return null;
+  const target = adTreeLayout(profiles[change.from]).find(
+    (pose) => pose.module.id === change.controlId,
+  );
+  if (!target) throw new Error("Missing removal target at " + change.at);
+  return {
+    ...target,
+    change,
+    clickAt: change.at - copy.removal.clickBefore,
+    hover: phase(frame, change.at - 22, 8) * (1 - phase(frame, change.at, 10)),
+  };
+}
+
+/** Add, applied and remove are separate states; X appears after the add cursor leaves. */
+export function adPluginControl(frame: number, id: string) {
+  const addition = adAddition(frame);
+  if (addition?.module.id === id) {
+    const r = frame - addition.change.at;
+    if (r < 4)
+      return {
+        kind: "add" as const,
+        opacity: 1 - phase(r, 0, 4),
+        hover: addition.hover,
+        adding: true,
+      };
+    if (r < 34)
+      return {
+        kind: "added" as const,
+        opacity: phase(r, 4, 6) * (1 - phase(r, 30, 4)),
+        hover: 0,
+        adding: true,
+      };
+    return {
+      kind: "remove" as const,
+      opacity: phase(r, 34, 6),
+      hover: 0,
+      adding: true,
+    };
+  }
+  const removal = adRemoval(frame);
+  return {
+    kind: "remove" as const,
+    opacity: 1,
+    hover: removal?.module.id === id ? removal.hover : 0,
+    adding: false,
   };
 }
 
@@ -362,17 +445,31 @@ export function adEditMarks(a: PromptLayout, b: PromptLayout, frame: number) {
 
 /** One continuous cursor approaches each actual add control, then clears the tree. */
 export function adPointer(frame: number, geometry?: OpeningGeometry | null) {
+  const removal = adRemoval(frame);
+  if (removal) {
+    const r = frame - removal.change.at,
+      approach = phase(r, -36, 24),
+      depart = phase(r, 1, 18),
+      targetX = removal.x + removal.width - 31,
+      targetY = removal.y + tree.header / 2 - 2;
+    return {
+      x: targetX + 101 * (1 - approach) + 71 * depart,
+      y: targetY + 148 * (1 - approach) + 103 * depart,
+      opacity: phase(r, -36, 8) * (1 - phase(r, 10, 12)),
+      press: Math.max(0, 1 - Math.abs(frame - removal.clickAt) / 5),
+    };
+  }
   const addition = adAddition(frame);
   if (addition) {
     const r = frame - addition.change.at,
       approach = phase(r, -36, 22),
-      depart = phase(r, 6, 22),
+      depart = phase(r, -5, 16),
       targetX = addition.x + addition.width - 31,
       targetY = addition.y + tree.header / 2 - 2;
     return {
       x: targetX + 101 * (1 - approach) + 71 * depart,
       y: targetY + 148 * (1 - approach) + 103 * depart,
-      opacity: phase(r, -36, 8) * (1 - phase(r, 16, 16)),
+      opacity: phase(r, -36, 8) * (1 - phase(r, 10, 10)),
       press: Math.max(0, 1 - Math.abs(frame - addition.clickAt) / 5),
     };
   }
@@ -387,12 +484,12 @@ export function adPointer(frame: number, geometry?: OpeningGeometry | null) {
         }
       : { x: 1600, y: 540 },
     points = [
-      { f: 440, x: 1790, y: 755 },
-      { f: 480, ...plus },
-      { f: 500, ...plus },
-      { f: 554, x: 1450, y: 694 },
-      { f: 568, x: 1450, y: 694 },
-      { f: 604, x: 1810, y: 900 },
+      { f: copy.staging.plusAt + 18, x: 1790, y: 755 },
+      { f: copy.staging.menuAt - 10, ...plus },
+      { f: copy.staging.menuAt + 10, ...plus },
+      { f: copy.staging.selectAt - 6, x: 1450, y: 694 },
+      { f: copy.staging.selectAt + 8, x: 1450, y: 694 },
+      { f: copy.staging.dockAt - 16, x: 1810, y: 900 },
     ],
     b = points.find((point) => frame <= point.f) ?? points.at(-1)!,
     i = points.indexOf(b),
@@ -401,11 +498,13 @@ export function adPointer(frame: number, geometry?: OpeningGeometry | null) {
   return {
     x: a.x + (b.x - a.x) * p,
     y: a.y + (b.y - a.y) * p,
-    opacity: phase(frame, 440, 16) * (1 - phase(frame, 585, 20)),
+    opacity:
+      phase(frame, copy.staging.plusAt + 18, 16) *
+      (1 - phase(frame, copy.staging.selectAt + 25, 20)),
     press: Math.max(
       0,
-      1 - Math.abs(frame - 484) / 5,
-      1 - Math.abs(frame - 559) / 5,
+      1 - Math.abs(frame - (copy.staging.menuAt - 6)) / 5,
+      1 - Math.abs(frame - (copy.staging.selectAt - 1)) / 5,
     ),
   };
 }
