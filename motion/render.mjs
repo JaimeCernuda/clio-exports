@@ -10,7 +10,7 @@ if (
 ) {
   execFileSync(
     process.execPath,
-    [path.join(root, "../ad/render.mjs"), ...process.argv.slice(2)],
+    [path.join(root, "../composability/ad/render.mjs"), ...process.argv.slice(2)],
     {
       stdio: "inherit",
     },

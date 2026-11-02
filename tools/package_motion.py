@@ -30,8 +30,8 @@ def package_sources(repository: Path) -> list[Path]:
             if path.is_file()
             and not EXCLUDED.intersection(path.relative_to(repository).parts)
             and not (
-                value == "ad"
-                and {"bundle", "out", "review", ".cache"}.intersection(
+                value == "composability"
+                and {"bundle", "out", "output", "review", ".cache"}.intersection(
                     path.relative_to(directory).parts
                 )
             )

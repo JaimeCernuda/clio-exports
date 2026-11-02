@@ -172,9 +172,17 @@ export function PluginNode({
 }
 
 /** The connected tree persists while branches are added, removed and reused. */
-export function AdCapabilities({ frame }: { frame: number }) {
+export function AdCapabilities({
+  frame,
+  offerOverride,
+  controlFor,
+}: {
+  frame: number;
+  offerOverride?: ReturnType<typeof adAddition>;
+  controlFor?: (id: string) => ReturnType<typeof adPluginControl>;
+}) {
   const poses = adTreePoses(frame),
-    offer = adAddition(frame),
+    offer = offerOverride === undefined ? adAddition(frame) : offerOverride,
     pending = offer && frame < offer.change.at ? offer : null,
     visible = poses.filter((pose) => pose.opacity > 0.001),
     anchors = [
@@ -220,7 +228,10 @@ export function AdCapabilities({ frame }: { frame: number }) {
         <PluginNode
           module={pending.module}
           frame={frame}
-          control={adPluginControl(frame, pending.module.id)}
+          control={
+            controlFor?.(pending.module.id) ??
+            adPluginControl(frame, pending.module.id)
+          }
           style={{
             position: "absolute",
             left: pending.x,
@@ -238,7 +249,10 @@ export function AdCapabilities({ frame }: { frame: number }) {
           frame={frame}
           open={pose.open}
           rowOpacity={pose.rows.map((row) => row.opacity)}
-          control={adPluginControl(frame, pose.module.id)}
+          control={
+            controlFor?.(pose.module.id) ??
+            adPluginControl(frame, pose.module.id)
+          }
           style={{
             position: "absolute",
             left: pose.x,

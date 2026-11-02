@@ -1,0 +1,37 @@
+{
+  "id": "OneComposableAgent",
+  "folder": "one-composable-agent",
+  "width": 1440,
+  "height": 280,
+  "fps": 60,
+  "frames": 636,
+  "gifWidth": 1152,
+  "gifFps": 30,
+  "poster": 564,
+  "duration": 10.6,
+  "audio": false,
+  "background": "white",
+  "brandingOverlay": false,
+  "files": [
+    {
+      "name": "loop.mp4",
+      "bytes": 794272,
+      "sha256": "328d17a272d30f71f7fc5d633bb1c171519e1ba37465acb051e1f3e0b8b7fb9c"
+    },
+    {
+      "name": "loop.webm",
+      "bytes": 737726,
+      "sha256": "28589113b6017121063734498a953c2b95f9a54e20cc2c0fe9cd5fb50fca1825"
+    },
+    {
+      "name": "loop.gif",
+      "bytes": 4936324,
+      "sha256": "30da3cafde4a85396897be5b7c7f853a600dccd2084cd56127243b3ddea8b6e7"
+    },
+    {
+      "name": "poster.png",
+      "bytes": 93863,
+      "sha256": "071d527c9fa81fba69e720f934ced48371af7da4e79a1f16c09cf0fecc4c63f7"
+    }
+  ]
+}

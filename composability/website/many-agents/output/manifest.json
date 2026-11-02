@@ -1,0 +1,37 @@
+{
+  "id": "ManyAgents",
+  "folder": "many-agents",
+  "width": 1440,
+  "height": 280,
+  "fps": 60,
+  "frames": 864,
+  "gifWidth": 1152,
+  "gifFps": 30,
+  "poster": 0,
+  "duration": 14.4,
+  "audio": false,
+  "background": "white",
+  "brandingOverlay": false,
+  "files": [
+    {
+      "name": "loop.mp4",
+      "bytes": 664061,
+      "sha256": "5f987abc0a371c2f49e71151f9a07f91a81139e653816e1c88e366f2750580b8"
+    },
+    {
+      "name": "loop.webm",
+      "bytes": 706958,
+      "sha256": "4b3a66957498b605b30d2e6074037e47fbb18ea6f580ab44b9100f7974336c4d"
+    },
+    {
+      "name": "loop.gif",
+      "bytes": 3119152,
+      "sha256": "53e17e44e5ee13f35268a39f96155a96094a1d1c547c29849149bb5b945befba"
+    },
+    {
+      "name": "poster.png",
+      "bytes": 81324,
+      "sha256": "e1ba3594e82fe8031239f3a484d3f01cd5f760d7ff87f1ab42a2d1843d411cbd"
+    }
+  ]
+}

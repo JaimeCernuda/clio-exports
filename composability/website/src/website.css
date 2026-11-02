@@ -1,0 +1,73 @@
+.website-film {
+  background: #fff;
+  color: #15364a;
+  font-family: "Inter Variable", sans-serif;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+.website-film * {
+  box-sizing: border-box;
+}
+.web-heading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 96px;
+  font-weight: 500;
+  letter-spacing: -3.6px;
+  line-height: 124px;
+  white-space: nowrap;
+}
+.web-prefix {
+  width: 70px;
+  text-align: center;
+}
+.web-suffix {
+  width: 260px;
+  text-align: center;
+}
+.web-word-slot {
+  position: relative;
+  width: 820px;
+  height: 190px;
+  flex-shrink: 0;
+}
+.web-word-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 30%,
+    #000 70%,
+    transparent
+  );
+}
+.web-wheel-row {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 33px;
+  height: 124px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.web-wheel-row span {
+  display: inline-flex;
+  align-items: center;
+  height: 120px;
+  padding: 0 18px 6px;
+  border-radius: 8px;
+}
+.web-composition-world {
+  position: absolute;
+  left: -100px;
+  top: -200px;
+  width: 1920px;
+  height: 1080px;
+}

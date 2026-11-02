@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import "../../ad/tests/prompt-morph.test";
+import "../../composability/ad/tests/prompt-morph.test";
 import {
   COMPOSABLE_FRAMES,
   byId,

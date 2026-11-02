@@ -10,7 +10,7 @@
     "ndp/SHA256SUMS"
   ],
   "directories": [
-    "ad",
+    "composability",
     "videos",
     ".agents/skills",
     "tools",

@@ -1,0 +1,39 @@
+{
+  "name": "clio-composability-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "render": "node --import tsx render.mjs",
+    "encode:gifs": "node --import tsx scripts/encode-gifs.mjs",
+    "embeds": "node --import tsx scripts/write-embeds.mjs",
+    "review": "tsx scripts/review.ts",
+    "serve": "tsx scripts/serve.ts",
+    "test": "tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "format:check": "prettier --check src scripts tests many-agents one-composable-agent plugin-composition render.mjs package.json tsconfig.json --ignore-path .prettierignore"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "5.3.0",
+    "@fontsource-variable/jetbrains-mono": "5.3.0",
+    "@remotion/bundler": "4.0.521",
+    "@remotion/renderer": "4.0.521",
+    "lucide-react": "1.33.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "remotion": "4.0.521"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "@types/pngjs": "6.0.5",
+    "@types/react": "19.2.0",
+    "@types/react-dom": "19.2.0",
+    "pngjs": "7.0.0",
+    "prettier": "3.6.2",
+    "tsx": "4.23.15",
+    "typescript": "5.6.3"
+  }
+}

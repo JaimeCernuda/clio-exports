@@ -1,4 +1,4 @@
 export {
   parseRenderArgs,
   renderHelp,
-} from "../../ad/scripts/render-options.mjs";
+} from "../../composability/ad/scripts/render-options.mjs";

@@ -20,3 +20,6 @@ motion/.native-ui/
 *.mkv
 *.m4v
 *.avi
+# Small finished website loops belong beside their editable scene sources.
+!composability/website/*/output/*.mp4
+!composability/website/*/output/*.webm

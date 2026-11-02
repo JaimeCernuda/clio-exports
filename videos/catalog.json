@@ -44,12 +44,50 @@
     },
     {
       "id": "composable",
-      "guide": "ad/README.md",
-      "profile": "standalone-remotion",
-      "entrypoint": "ad/src/index.tsx",
-      "compositions": ["ClioComposableAd", "ClioComposable"],
-      "files": ["ad/HANDOFF.md", "ad/CLAUDE.md", "ad/ART-DIRECTION.md", "ad/references/ui-sources.json", "ad/story/composable-ad.json", "ad/src/AdOpening.tsx", "ad/src/ComposableAd.tsx", "ad/src/AdCapabilities.tsx", "ad/src/AdPrompt.tsx", "ad/src/composable-ad-plan.ts", "ad/src/composable-ad.css", "ad/src/prompt-morph.ts", "ad/src/wheel-timing.mjs", "ad/src/wheel-timing.d.mts", "ad/render.mjs", "ad/scripts/finish.mjs", "ad/scripts/review.ts", "ad/scripts/prepare-qr.mjs", "ad/tests/composable-ad.test.ts", "ad/skills/clio-composable-ad/SKILL.md"],
-      "reviewStatus": "v12-continuity-pacing-awaiting-creative-review"
+      "guide": "composability/README.md",
+      "profile": "remotion-ad-and-website",
+      "entrypoint": "composability/ad/src/index.tsx",
+      "compositions": [
+        "ClioComposableAd",
+        "ClioComposable",
+        "ManyAgents",
+        "OneComposableAgent",
+        "PluginComposition"
+      ],
+      "files": [
+        "composability/ad/HANDOFF.md",
+        "composability/ad/CLAUDE.md",
+        "composability/ad/ART-DIRECTION.md",
+        "composability/ad/references/ui-sources.json",
+        "composability/ad/story/composable-ad.json",
+        "composability/ad/src/AdOpening.tsx",
+        "composability/ad/src/ComposableAd.tsx",
+        "composability/ad/src/AdCapabilities.tsx",
+        "composability/ad/src/AdPrompt.tsx",
+        "composability/ad/src/composable-ad-plan.ts",
+        "composability/ad/src/composable-ad.css",
+        "composability/ad/src/prompt-morph.ts",
+        "composability/ad/src/wheel-timing.mjs",
+        "composability/ad/src/wheel-timing.d.mts",
+        "composability/ad/render.mjs",
+        "composability/ad/scripts/finish.mjs",
+        "composability/ad/scripts/review.ts",
+        "composability/ad/scripts/prepare-qr.mjs",
+        "composability/ad/tests/composable-ad.test.ts",
+        "composability/ad/skills/clio-composable-ad/SKILL.md",
+        "composability/README.md",
+        "composability/website/README.md",
+        "composability/website/src/index.tsx",
+        "composability/website/many-agents/Scene.tsx",
+        "composability/website/many-agents/plan.ts",
+        "composability/website/one-composable-agent/Scene.tsx",
+        "composability/website/one-composable-agent/plan.ts",
+        "composability/website/plugin-composition/Scene.tsx",
+        "composability/website/plugin-composition/plan.ts",
+        "composability/website/render.mjs",
+        "composability/website/scripts/review.ts"
+      ],
+      "reviewStatus": "v12-ad-and-website-loops-awaiting-user-review"
     }
   ]
 }

@@ -31,7 +31,10 @@ def test_catalog_points_to_real_guides_sources_and_compositions() -> None:
             "motion/src/engineering-index.tsx",
             "motion/src/composable-index.tsx",
             "motion/src/composable-ad-index.tsx",
-            "ad/src/index.tsx",
+            "composability/ad/src/index.tsx",
+            "composability/website/many-agents/plan.ts",
+            "composability/website/one-composable-agent/plan.ts",
+            "composability/website/plugin-composition/plan.ts",
         )
     )
     for project in projects:
@@ -56,16 +59,23 @@ def test_portable_package_contains_guides_and_launch_tools_without_runtime_asset
         "videos/wordle/README.md",
         "videos/engineering/README.md",
         "videos/composable/README.md",
-        "ad/README.md",
-        "ad/HANDOFF.md",
-        "ad/CLAUDE.md",
-        "ad/ART-DIRECTION.md",
-        "ad/references/ui-sources.json",
-        "ad/skills/clio-composable-ad/SKILL.md",
-        "ad/package.json",
-        "ad/package-lock.json",
-        "ad/src/index.tsx",
-        "ad/render.mjs",
+        "composability/ad/README.md",
+        "composability/ad/HANDOFF.md",
+        "composability/ad/CLAUDE.md",
+        "composability/ad/ART-DIRECTION.md",
+        "composability/ad/references/ui-sources.json",
+        "composability/ad/skills/clio-composable-ad/SKILL.md",
+        "composability/ad/package.json",
+        "composability/ad/package-lock.json",
+        "composability/ad/src/index.tsx",
+        "composability/ad/render.mjs",
+        "composability/README.md",
+        "composability/website/README.md",
+        "composability/website/package.json",
+        "composability/website/render.mjs",
+        "composability/website/many-agents/Scene.tsx",
+        "composability/website/one-composable-agent/Scene.tsx",
+        "composability/website/plugin-composition/Scene.tsx",
         "motion/src/composable-ad-index.tsx",
         "motion/scripts/finish-composable-ad.mjs",
         "motion/native/EMULATOR.md",
@@ -77,6 +87,19 @@ def test_portable_package_contains_guides_and_launch_tools_without_runtime_asset
     assert not any(name.startswith("work/") for name in files)
     assert not any(Path(name).suffix in {".mp4", ".safetensors"} for name in files)
     assert not any(
-        name.startswith(("ad/node_modules/", "ad/.cache/", "ad/bundle/", "ad/out/", "ad/review/"))
+        name.startswith(
+            (
+                "composability/ad/node_modules/",
+                "composability/ad/.cache/",
+                "composability/ad/bundle/",
+                "composability/ad/out/",
+                "composability/ad/review/",
+            )
+        )
+        for name in files
+    )
+    assert not any(
+        name.startswith("composability/website/")
+        and {"node_modules", ".cache", "review", "output"}.intersection(Path(name).parts)
         for name in files
     )

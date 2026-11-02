@@ -1,13 +1,20 @@
 ---
 name: clio-videos
-description: Plan, build or revise CLIO session demos and motion graphics advertisements using editable native-derived elements. Use for story, art direction and the full film workflow; route runtime and review to the motion skills.
+description: Plan, build or revise CLIO session demos, motion advertisements and website loops using editable native-derived elements. Use for story, art direction and the media workflow; route runtime and review to the motion skills.
 ---
 
 # CLIO product videos
 
-For short composition/PR films, use the [standalone ad project](../../../ad/README.md)
-and [creative handoff](../../../ad/HANDOFF.md). Its complete source and focused
-skill are grouped in `ad/` for independent use by another agent.
+For website material use the [composability website project](../../../composability/website/README.md).
+Its independent word-cycle, accelerated resolution and plugin-build loops have
+their own scene, plan and finished files per folder. Omit advertisement branding
+when the host page already carries it. Render the editable elements directly;
+do not crop the encoded ad. Provide GIF plus smaller silent WebM/MP4 and a poster.
+Check the wrap, reduced-motion poster and browser playback before delivery.
+
+For short composition/PR films, use the [standalone ad project](../../../composability/ad/README.md)
+and [creative handoff](../../../composability/ad/HANDOFF.md). Its complete source and focused
+skill are grouped in `composability/ad/` for independent use by another agent.
 The current v12 treatment uses a fixed prompt, owner-colored text edits and a
 persistent capability tree. Skills, hooks, tools and MCP leaves enter and leave
 with their plugin; no dotted count summaries or repeated prompt zoom/refocus.
@@ -17,7 +24,7 @@ The v5–v9 extraction/inspection notes below are historical lessons. Follow the
 current ad skill and handoff where that earlier choreography has been replaced.
 The initial UI-based composability cut and the floating two-column revision were
 both rejected as slides/demos. Advertising uses the separate `composable-ad-index`
-and [art direction](../../../ad/ART-DIRECTION.md). Read the original
+and [art direction](../../../composability/ad/ART-DIRECTION.md). Read the original
 [motion scenes](../../../motion/references/motion-video-scenes.md),
 [stack](../../../motion/references/motion-video-stack.md) and
 [review](../../../motion/references/motion-video-review.md) skills. One visual

@@ -43,9 +43,11 @@ approved creative direction.
 
 ## Reusable toolkit and skills
 
-The independently runnable composable-agent advertisement is grouped in `ad/`.
-For that project read `ad/HANDOFF.md`, `ad/README.md` and its focused skill first.
+The independently runnable composable-agent advertisement is grouped in `composability/ad/`.
+For that project read `composability/ad/HANDOFF.md`, `composability/ad/README.md` and its focused skill first.
 Keep its advertising treatment separate from transcript-based technical demos.
+The related website loops live in `composability/website/`, with source, timing
+and compact finished files grouped per asset. Keep ad bookends out of those loops.
 
 For motion work, read the relevant repo-local skill before making changes:
 

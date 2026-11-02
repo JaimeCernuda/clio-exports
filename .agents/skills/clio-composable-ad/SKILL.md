@@ -4,5 +4,5 @@ description: Revise or render the CLIO composable-agent motion advertisement, di
 ---
 
 The maintained, portable skill and its project live in
-[ad/skills/clio-composable-ad/SKILL.md](../../../ad/skills/clio-composable-ad/SKILL.md).
-Read it and [the creative handoff](../../../ad/HANDOFF.md) before acting.
+[composability/ad/skills/clio-composable-ad/SKILL.md](../../../composability/ad/skills/clio-composable-ad/SKILL.md).
+Read it and [the creative handoff](../../../composability/ad/HANDOFF.md) before acting.

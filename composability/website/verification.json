@@ -1,0 +1,116 @@
+{
+  "assets": [
+    {
+      "id": "ManyAgents",
+      "formats": [
+        {
+          "file": "many-agents\\output\\loop.mp4",
+          "bytes": 664061,
+          "frames": 864,
+          "duration": 14.4,
+          "seamMeanDifference": 0.24833333333333332,
+          "minFrameLuminance": 236.98115079365078,
+          "decode": "passed"
+        },
+        {
+          "file": "many-agents\\output\\loop.webm",
+          "bytes": 706958,
+          "frames": 864,
+          "duration": 14.4,
+          "seamMeanDifference": 0.2844047619047619,
+          "minFrameLuminance": 237.02142857142857,
+          "decode": "passed"
+        },
+        {
+          "file": "many-agents\\output\\loop.gif",
+          "bytes": 3119152,
+          "frames": 432,
+          "duration": 14.4,
+          "seamMeanDifference": 0.25746031746031744,
+          "minFrameLuminance": 236.42924603174603,
+          "gifBackgroundMin": 255,
+          "decode": "passed"
+        }
+      ],
+      "poster": {
+        "width": 1440,
+        "height": 280
+      }
+    },
+    {
+      "id": "OneComposableAgent",
+      "formats": [
+        {
+          "file": "one-composable-agent\\output\\loop.mp4",
+          "bytes": 794272,
+          "frames": 636,
+          "duration": 10.6,
+          "seamMeanDifference": 0.24654761904761904,
+          "minFrameLuminance": 237.05130952380952,
+          "decode": "passed"
+        },
+        {
+          "file": "one-composable-agent\\output\\loop.webm",
+          "bytes": 737726,
+          "frames": 636,
+          "duration": 10.6,
+          "seamMeanDifference": 0.28809523809523807,
+          "minFrameLuminance": 237.06436507936507,
+          "decode": "passed"
+        },
+        {
+          "file": "one-composable-agent\\output\\loop.gif",
+          "bytes": 4936324,
+          "frames": 318,
+          "duration": 10.6,
+          "seamMeanDifference": 0.28,
+          "minFrameLuminance": 236.54666666666665,
+          "gifBackgroundMin": 255,
+          "decode": "passed"
+        }
+      ],
+      "poster": {
+        "width": 1440,
+        "height": 280
+      }
+    },
+    {
+      "id": "PluginComposition",
+      "formats": [
+        {
+          "file": "plugin-composition\\output\\loop.mp4",
+          "bytes": 1356491,
+          "frames": 978,
+          "duration": 16.3,
+          "seamMeanDifference": 0.00003759398496240601,
+          "minFrameLuminance": 243.1772305764411,
+          "decode": "passed"
+        },
+        {
+          "file": "plugin-composition\\output\\loop.webm",
+          "bytes": 1703157,
+          "frames": 978,
+          "duration": 16.3,
+          "seamMeanDifference": 0.0003007518796992481,
+          "minFrameLuminance": 243.19894736842105,
+          "decode": "passed"
+        },
+        {
+          "file": "plugin-composition\\output\\loop.gif",
+          "bytes": 4333042,
+          "frames": 326,
+          "duration": 16.3,
+          "seamMeanDifference": 0.029285714285714286,
+          "minFrameLuminance": 242.60127819548873,
+          "gifBackgroundMin": 255,
+          "decode": "passed"
+        }
+      ],
+      "poster": {
+        "width": 1680,
+        "height": 760
+      }
+    }
+  ],
+  "reviewBoundary": "Full media decode and seam/frame checks; sampled visual review remains separate."
+}

@@ -52,6 +52,12 @@ No failed or skipped tests count as a passing result.
 
 ## Visual and motion checks
 
+For website loops, inspect the encoded first/last join, not only the middle of
+the original advertisement. Continue a word wheel forward across the wrap; hold
+the resolved word cleanly. A compact composition can reset while hidden after
+its final reading beat. Verify the GIF and web-video encodes independently,
+including frame counts, duration, silent playback, file size and poster framing.
+
 For the current composability ad, verify the actual prompt rectangle remains
 fixed across measured frames. Review both the text edits and owned capability
 leaves: v12 keeps a persistent tree instead of the older disclosure/refocus loop.

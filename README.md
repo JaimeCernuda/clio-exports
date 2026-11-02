@@ -15,10 +15,14 @@ into the build, so a changed file never reaches the site unnoticed.
 
 ## Promotional authoring
 
-The standalone [composable-agent advertisement](ad/README.md) includes all source,
-assets, scripts, checks and review history in `ad/`. Its [Claude handoff](ad/HANDOFF.md)
+The standalone [composable-agent advertisement](composability/ad/README.md) includes all source,
+assets, scripts, checks and review history in `composability/ad/`. Its [Claude handoff](composability/ad/HANDOFF.md)
 captures the goal, aim, user ideas and creative constraints. It is separate from
 the technical presentation demos below.
+
+The [composability campaign](composability/README.md) also includes three
+[website loops](composability/website/README.md), with editable sources and
+finished GIF/video/poster files grouped per asset.
 
 Start with the [video catalog](videos/README.md): NDP, SPOTTER/OPAL, Wordle and
 engineering each have a source map, launch recipe and review status. The shared

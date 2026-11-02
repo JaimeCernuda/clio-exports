@@ -1,7 +1,7 @@
 # Composable-agent advertisement
 
-The complete, independently runnable project now lives in [`ad/`](../../ad/README.md).
-Start with [the creative handoff](../../ad/HANDOFF.md): goal, aim, user-message
+The complete, independently runnable project now lives in [`composability/ad/`](../../composability/ad/README.md).
+Start with [the creative handoff](../../composability/ad/HANDOFF.md): goal, aim, user-message
 summary, settled direction, rejected approaches and current review limits.
 
 Components, assets, copy/timing, render and review scripts, tests, a focused skill,

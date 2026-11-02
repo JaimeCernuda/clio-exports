@@ -1,1 +1,1 @@
-import "../../ad/tests/composable-ad.test";
+import "../../composability/ad/tests/composable-ad.test";

@@ -1,6 +1,6 @@
 # Follow-up review: pointer continuity, brand clearance and settled time
 
-Local movie: `ad/out/composable/clio-composable-ad-v12.mp4` (not committed).
+Local movie: `composability/ad/out/composable/clio-composable-ad-v12.mp4` (not committed).
 1920 × 1080, 60 fps, 2,474 frames, 41.233 seconds, 4,802,447 bytes.
 The exact hash and machine checks are in [verification-v12.json](../verification-v12.json).
 

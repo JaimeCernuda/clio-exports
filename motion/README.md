@@ -1,7 +1,7 @@
 # Reusable CLIO UI motion toolkit
 
-The composable-agent **advertisement** is an independent project in [`ad/`](../ad/README.md).
-Its [Claude handoff](../ad/HANDOFF.md) records the goal, user ideas and creative
+The composable-agent **advertisement** is an independent project in [`composability/ad/`](../composability/ad/README.md).
+Its [Claude handoff](../composability/ad/HANDOFF.md) records the goal, user ideas and creative
 constraints. Its actual components, assets, scripts, tests and focused skill live
 there. The `motion/` composability commands are compatibility launchers.
 

@@ -1,1 +1,1 @@
-import "../../ad/tests/render-options.test.mjs";
+import "../../composability/ad/tests/render-options.test.mjs";
