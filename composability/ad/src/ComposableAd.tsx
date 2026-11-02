@@ -21,6 +21,7 @@ import { phase } from "./prompt-morph";
 import { AdMeasures, AdPromptInk, useAdLayouts } from "./AdPrompt";
 import { AdOpening } from "./AdOpening";
 import { AdCapabilities, PluginNode } from "./AdCapabilities";
+import { AdPluginChooser } from "./AdPluginChooser";
 import "./composable-ad.css";
 
 function PluginPicker({ frame }: { frame: number }) {
@@ -138,6 +139,7 @@ export function ComposableAd({
         />
       </div>
       <AdCapabilities frame={frame} />
+      <AdPluginChooser frame={frame} />
       {frame >= copy.staging.menuAt + 10 && logo ? (
         <Img
           src={staticFile("clio-mark.svg")}

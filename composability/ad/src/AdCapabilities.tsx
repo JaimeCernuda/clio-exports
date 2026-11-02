@@ -4,7 +4,6 @@ import {
   ChevronRight,
   Check,
   Database,
-  Plus,
   Sparkles,
   Wrench,
   X,
@@ -86,9 +85,7 @@ export function PluginNode({
             }}
           >
             {control ? (
-              control.kind === "add" ? (
-                <Plus size={19} style={{ opacity: control.opacity }} />
-              ) : control.kind === "added" ? (
+              control.kind === "added" ? (
                 <Check size={19} style={{ opacity: control.opacity }} />
               ) : (
                 <X

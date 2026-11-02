@@ -2,16 +2,18 @@
 
 Three separate animations for a site that already carries CLIO branding:
 
-| Folder | Suggested surrounding copy | Motion | Length |
-| --- | --- | --- | --- |
-| [many-agents](many-agents/README.md) | So many agents. | A steady cycle through twelve domains | 14.4 s |
-| [one-composable-agent](one-composable-agent/README.md) | Why not one? | The keywords accelerate into “composable” | 10.6 s |
-| [plugin-composition](plugin-composition/README.md) | Build the agent you need. | Manufacturing + Simulation + Reports, then Genomics | 16.3 s |
+| Folder                                                 | Suggested surrounding copy | Motion                                              | Length |
+| ------------------------------------------------------ | -------------------------- | --------------------------------------------------- | ------ |
+| [many-agents](many-agents/README.md)                   | So many agents.            | A steady cycle through twelve domains               | 14.4 s |
+| [one-composable-agent](one-composable-agent/README.md) | Why not one?               | The keywords accelerate into “composable”           | 5.8 s  |
+| [plugin-composition](plugin-composition/README.md)     | Build the agent you need.  | Manufacturing + Simulation + Reports, then Genomics | 18.7 s |
 
 The headings above are placement suggestions, not burned into the assets. There
 is no owl, CLIO wordmark, QR, URL or advertising end card in these loops. The word
 animations keep “A” and “agent” fixed. The first two wrap by rolling forward; the
-composition uses a brief soft reset after its final hold.
+composition uses a brief soft reset after its final hold. The accelerated hook
+reaches composable at four seconds. Every build-loop addition follows global
+plus → chooser → select → insert, including the first Manufacturing plugin.
 
 Each folder contains its editable `Scene.tsx`, frame plan, `embed.html` and finished
 GIF, WebM, MP4 and full-size poster in `output/`. WebM/MP4 are silent and generally

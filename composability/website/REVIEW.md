@@ -1,64 +1,52 @@
 # Website loop delivery review
 
-The requested campaign layout is `composability/ad/` and `composability/website/`.
-The ad project and its existing local renders moved together. Compatibility
-launchers, source packaging, skill links and the video catalogue use the new path.
-The old root `ad/README.md` is a pointer, not a second source copy.
+Updated with the V13 ad feedback: a four-second hook and a global plugin chooser.
+The folder structure and earlier source consolidation remain in place.
 
 ## Finished assets
 
-| Asset | Duration | Video / poster size | GIF size | MP4 | WebM | GIF |
-| --- | --- | --- | --- | --- | --- | --- |
-| Many agents | 14.4 s | 1440 × 280 | 1152 × 224 | 0.66 MB | 0.71 MB | 3.12 MB |
-| One composable agent | 10.6 s | 1440 × 280 | 1152 × 224 | 0.79 MB | 0.74 MB | 4.94 MB |
-| Plugin composition | 16.3 s | 1680 × 760 | 1260 × 570 | 1.36 MB | 1.70 MB | 4.33 MB |
+| Asset                | Duration | Video / poster size | GIF size   | MP4     | WebM    | GIF     |
+| -------------------- | -------- | ------------------- | ---------- | ------- | ------- | ------- |
+| Many agents          | 14.4 s   | 1440 × 280          | 1152 × 224 | 0.66 MB | 0.71 MB | 3.12 MB |
+| One composable agent | 5.8 s    | 1440 × 280          | 1152 × 224 | 0.46 MB | 0.47 MB | 2.57 MB |
+| Plugin composition   | 18.7 s   | 1680 × 880          | 1260 × 660 | 1.76 MB | 2.17 MB | 5.57 MB |
 
 Video is 60 fps and silent. Keyword GIFs are 30 fps; composition GIF is 20 fps.
-Use the video embeds for the smaller, smoother website delivery; GIFs remain
-available for image-only placements. Ordered GIF dithering reduced size without
-changing timing or dimensions. Every asset folder includes source, plan, embed
-example, finished files, poster and checksums. Compact website outputs are tracked;
-full ad movies remain local.
-
-The GIF inspection caught a faint pattern in the nominally white background:
-small near-white differences from the video encode were being dithered. The GIF
-encoder now snaps channel values of 250–255 to white before quantization. The
-background is clean and the reduced GIF sizes above include that correction.
+Use video for smaller, smoother website delivery; GIFs serve image-only slots.
+Each folder includes editable source, plan, embed, finished files, poster and hashes.
+Small website outputs are tracked; full ad movies remain local.
 
 ## Motion and semantics
 
-- Many agents cycles through twelve domains at an even cadence and wraps forward.
-- One composable agent reuses the ad's gradual acceleration. Neighboring words
-  fade during the composable hold so it resolves to one clean phrase. The final
-  roll returns to the initial domain without a cut.
-- Plugin composition has a visible first Manufacturing plus click, followed by
-  Simulation and Reports. Their owned prompt fragments and capability leaves
-  appear together. Two X clicks remove Simulation and Manufacturing; Genomics
-  is then added while Reports stays. Later domains and ad bookends are omitted.
-  A final hold and short soft reset close the loop. It is rendered from editable
-  components, not cropped from the movie.
-- No owl, wordmark, QR or URL overlay appears in the website assets.
+- Many agents still cycles through twelve domains evenly and wraps forward.
+- One composable agent reaches composable in four seconds, already fast by
+  Materials/Chemistry. The final phrase holds sharp before rolling forward to restart.
+- Every build-loop addition clicks the persistent global plus, opens a chooser,
+  selects a plugin and dismisses the menu before inserting it. This includes
+  Manufacturing, Simulation, Reports and Genomics. No unselected plugin row
+  appears in advance. Installed menu choices are disabled. Two X clicks remove
+  Simulation and Manufacturing while Reports stays for the Genomics change.
+  The taller canvas retains the global control and expanded capability tree.
+- Owned instruction edits and capability branches remain linked. No brand
+  bookend, owl, QR, URL or ad closing appears in website assets.
+- The GIF encoder retains its near-white normalization before palette quantization,
+  avoiding a faint dither pattern in the nominally white background.
 
 ## Validation
 
-Seven website tests, 31 ad tests, 109 motion compatibility tests and all 120 Python
-tests pass with zero skips. Counts overlap and are not additive. Website/ad/motion
-type checks, website/ad formatting, focused Ruff and Python type checks pass.
-Source-package tests verify that code is included and dependencies, caches,
-ad renders and generated website media are excluded from the source-only ZIP.
+Seven website tests, 31 ad tests and 109 motion compatibility tests pass with zero
+skips. Counts overlap. Both projects pass type checks and formatting. No Python
+code or source-package configuration changed in this revision; the earlier
+120-test Python baseline is historical rather than a new run.
 
-All nine animation files fully decode with expected frame counts, dimensions,
-duration and no audio. Their first/last joins have mean luminance differences
-below 1 on a 0–255 scale. No unexpectedly dark frames occur. Posters have the
-expected dimensions; per-file hashes match the manifests. Exact technical results
-are in [verification.json](verification.json).
+All nine media variants fully decode with expected counts, dimensions and duration,
+no audio, matching manifest hashes, clean white GIF margins, no unexpectedly dark
+frames and first/last loop-join differences below 1 on a 0–255 luminance scale.
+Posters have the expected dimensions. Exact results: [verification.json](verification.json).
 
-Visual inspection covered initial/mid/final UI states, the resolved keyword,
-sampled GIF frames and the browser gallery. The browser check exercised the
-poster/play switch and checked full composition framing. Native player overlays
-were removed from the small gallery loops after they obscured the artwork.
-The gallery is available at `http://127.0.0.1:3380/` while its local server runs.
+Visual review covers the encoded hook, chooser/insert/unfold samples and browser
+gallery framing. The gallery's pause/poster and play controls were exercised.
+Open http://127.0.0.1:3380/ while the local server is running.
 
-These are technical, sampled visual and browser interaction checks, not
-human-equivalent uninterrupted playback or user creative approval. No website
-deployment or modification of the CLIO production site was performed.
+This records technical, sampled-frame and browser checks, not human-equivalent
+uninterrupted playback or user creative approval. No production website was deployed.

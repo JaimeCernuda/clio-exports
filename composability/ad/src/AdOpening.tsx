@@ -18,8 +18,8 @@ export function AdOpening({
   measure?: boolean;
   geometry?: OpeningGeometry | null;
 }) {
-  const brand = phase(frame, copy.staging.brandAt, 58),
-    plus = phase(frame, copy.staging.plusAt, 26),
+  const brand = phase(frame, copy.staging.brandAt, copy.staging.brandFrames),
+    plus = phase(frame, copy.staging.plusAt, copy.staging.plusFrames),
     wheel = adWheel(frame);
   const filterId = measure ? "ad-wheel-motion-measure" : "ad-wheel-motion";
   const font = 96 - 20 * brand;

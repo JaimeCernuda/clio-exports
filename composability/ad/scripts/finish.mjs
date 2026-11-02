@@ -3,11 +3,12 @@ import { readFile, writeFile, unlink } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import path from "node:path";
 import { wheelTiming } from "../src/wheel-timing.mjs";
+import { pluginChoiceTiming } from "../src/plugin-choice-timing.mjs";
 const root = path.resolve(import.meta.dirname, "..");
 process.chdir(root);
 const source =
-  process.argv[2] ?? "out/composable/clio-composable-ad-v12-clean.mp4";
-const output = process.argv[3] ?? "out/composable/clio-composable-ad-v12.mp4";
+  process.argv[2] ?? "out/composable/clio-composable-ad-v13-clean.mp4";
+const output = process.argv[3] ?? "out/composable/clio-composable-ad-v13.mp4";
 const score = JSON.parse(await readFile("story/composable-ad.json", "utf8"));
 const rate = 48000,
   seconds = score.frames / score.fps,
@@ -89,6 +90,8 @@ for (const frame of [
 ])
   sweep(frame / 60, 0.4, 0.055);
 for (const [i, change] of score.changes.entries()) {
+  if (change.bundle && change.from !== "base")
+    tick(pluginChoiceTiming(change, score).openClick / score.fps, 0.07);
   tick(
     (change.action === "remove"
       ? change.at - score.removal.clickBefore

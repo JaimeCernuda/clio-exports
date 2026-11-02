@@ -17,7 +17,8 @@ import {
   sourceStart,
   sourceEnd,
   firstEffect,
-  firstOffer,
+  offer,
+  choice,
   control,
   pointer,
   pointerStops,
@@ -64,7 +65,7 @@ test("the compact composition shows three additions, two removals and the Genomi
   assert.equal(sourceFrame(firstEffect), sourceStart);
   assert.equal(sourceFrame(config.frames - 1), sourceEnd);
   assert.equal(adState(sourceFrame(config.poster)).to.id, "genomics");
-  assert.equal(clicks.length, 6);
+  assert.equal(clicks.length, 10);
   const seen = new Set(
     Array.from(
       { length: config.frames },
@@ -89,14 +90,15 @@ test("the compact composition shows three additions, two removals and the Genomi
     ["genomics", "reports"],
   );
 });
-test("the first plugin is offered with plus before its prompt or leaves change", () => {
-  const f = firstEffect - 8;
-  assert.ok(firstOffer(f));
-  assert.equal(control(f, "manufacturing").kind, "add");
+test("the first plugin is selected from the global chooser before its prompt or leaves change", () => {
+  const f = firstEffect - 26;
+  assert.ok(choice(f));
+  assert.equal(choice(f)!.opacity, 1);
+  assert.equal(offer(f)!.opacity, 0);
   assert.equal(pointer(f).press, 1);
   assert.equal(adState(sourceFrame(f)).to.id, "base");
   assert.equal(control(firstEffect + 16, "manufacturing").kind, "added");
-  assert.equal(firstOffer(firstEffect), undefined);
+  assert.equal(offer(firstEffect)!.opacity, 1);
 });
 test("cursor routes stay continuous and the loop resets while hidden", () => {
   for (let i = 1; i < pointerStops.length; i++)

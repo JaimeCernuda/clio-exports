@@ -6,6 +6,8 @@ import { PNG } from "pngjs";
 import jsQR from "jsqr";
 import {
   adAddition,
+  adChooser,
+  chooser,
   adContributions,
   adEditMarks,
   adPromptBounds,
@@ -132,26 +134,58 @@ const controls: Array<{
   width: number;
   height: number;
 }> = read("controls");
+const chooserControls: Array<{
+  frame: number;
+  id: string;
+  disabled: boolean;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}> = read("chooser");
 const clickChecks = copy.changes
   .filter((c) => (c.bundle && c.from !== "base") || c.action === "remove")
-  .map((change) => {
+  .flatMap((change) => {
     const removing = change.action === "remove",
-      frame =
-        change.at -
-        (removing ? copy.removal.clickBefore : copy.addition.clickBefore),
-      id = removing ? change.controlId : change.to,
-      control = controls.find((c) => c.frame === frame && c.id === id),
-      cursor = adPointer(frame, opening);
-    assert.ok(control, `Missing measured control at ${frame}: ${id}`);
-    assert.equal(control.action, removing ? "remove" : "add");
-    assert.equal(cursor.press, 1);
-    assert.ok(
-      cursor.x + 4 >= control.x && cursor.x + 4 <= control.x + control.width,
-    );
-    assert.ok(
-      cursor.y + 3 >= control.y && cursor.y + 3 <= control.y + control.height,
-    );
-    return { frame, id, action: control.action };
+      choice = adChooser(change.at - 1),
+      checks = removing
+        ? [
+            {
+              frame: change.at - copy.removal.clickBefore,
+              id: change.controlId,
+              action: "remove",
+            },
+          ]
+        : [
+            { frame: choice!.openClick, id: "global-plus", action: "open" },
+            {
+              frame: choice!.selectClick,
+              id: choice!.target.module.id,
+              action: "choose",
+            },
+          ];
+    return checks.map(({ frame, id, action }) => {
+      const control = removing
+          ? controls.find((c) => c.frame === frame && c.id === id)
+          : chooserControls.find((c) => c.frame === frame && c.id === id),
+        cursor = adPointer(frame, opening);
+      assert.ok(control, "Missing measured control at " + frame + ": " + id);
+      if (removing)
+        assert.equal((control as (typeof controls)[number]).action, "remove");
+      else
+        assert.equal(
+          (control as (typeof chooserControls)[number]).disabled,
+          false,
+        );
+      assert.equal(cursor.press, 1);
+      assert.ok(
+        cursor.x + 4 >= control.x && cursor.x + 4 <= control.x + control.width,
+      );
+      assert.ok(
+        cursor.y + 3 >= control.y && cursor.y + 3 <= control.y + control.height,
+      );
+      return { frame, id, action };
+    });
   });
 const closing = read("closing");
 assert.ok(closing.url.fontSize >= 40);
@@ -266,7 +300,7 @@ if (process.argv.includes("--geometry-only")) {
   );
   process.exit(0);
 }
-const video = process.argv[2] ?? "out/composable/clio-composable-ad-v12.mp4";
+const video = process.argv[2] ?? "out/composable/clio-composable-ad-v13.mp4";
 const auditFrames = Array.from(
     { length: copy.closing.at - copy.staging.selectAt },
     (_, i) => copy.staging.selectAt + i,
@@ -299,6 +333,22 @@ for (const [index, frame] of auditFrames.entries()) {
     logo = adBrandPose(frame, opening);
   const boxes = [
     expectedPaper,
+    {
+      x: chooser.x,
+      y: chooser.y,
+      width: chooser.width,
+      height: chooser.height,
+    },
+    ...(adChooser(frame)?.opacity
+      ? [
+          {
+            x: chooser.x,
+            y: chooser.menuY,
+            width: chooser.width,
+            height: chooser.menuHeight,
+          },
+        ]
+      : []),
     { x: 1152, y: 238, width: 125, height: 710 },
     logo,
     { x: pointer.x, y: pointer.y, width: 34, height: 43 },

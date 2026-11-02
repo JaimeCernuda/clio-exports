@@ -1,8 +1,9 @@
 import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { adState, paper } from "../../ad/src/composable-ad-plan";
+import { AdPluginChooser } from "../../ad/src/AdPluginChooser";
 import { AdCapabilities } from "../../ad/src/AdCapabilities";
 import { AdMeasures, AdPromptInk, useAdLayouts } from "../../ad/src/AdPrompt";
-import { sourceFrame, opacity, firstOffer, control, pointer } from "./plan";
+import { sourceFrame, opacity, offer, control, pointer } from "./plan";
 
 /** Native-derived prompt and plugin pieces, framed for the page without ad bookends. */
 export function PluginComposition() {
@@ -40,9 +41,10 @@ export function PluginComposition() {
         </div>
         <AdCapabilities
           frame={source}
-          offerOverride={firstOffer(frame)}
+          offerOverride={offer(frame)}
           controlFor={(id) => control(frame, id)}
         />
+        <AdPluginChooser frame={source} includeBase />
         <svg
           className="ad-cursor"
           width={34}

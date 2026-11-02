@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   adAddition,
+  adChooser,
   adContributions,
   adEditMarks,
   adMenu,
@@ -36,11 +37,19 @@ const overlap = (
   Math.max(0, Math.min(a.y + a.height, b.y + b.height) - Math.max(a.y, b.y));
 
 test("the wheel smoothly shortens each change and derives blur from cadence and motion", () => {
-  assert.equal(wheelDurations[0], 72);
-  assert.equal(wheelDurations.at(-1), 12);
+  assert.equal(wheelDurations[0], 48);
+  assert.equal(wheelDurations.at(-1), 8);
+  assert.ok(
+    copy.wheel.end <= 4 * copy.fps,
+    "the hook must resolve in four seconds",
+  );
+  assert.ok(
+    wheelDurations[4] <= 18,
+    "Materials/Chemistry must already be moving quickly",
+  );
   assert.ok(Math.abs(wheelStops.at(-1)! - copy.wheel.end) < 1e-7);
   for (let i = 1; i < wheelDurations.length; i++)
-    assert.ok(wheelDurations[i] < wheelDurations[i - 1]);
+    assert.ok(wheelDurations[i] <= wheelDurations[i - 1]);
   for (const [i, frame] of wheelStops.entries()) {
     assert.ok(Math.abs(adWheel(frame).position - i) < 1e-7);
     const before = adWheel(frame - 0.00001),
@@ -224,12 +233,19 @@ test("the opaque pointer follows one continuous route and exits through the fram
   assert.ok(adPointer(copy.closing.at).x > 1920);
 });
 
-test("add clicks use plus, then a check, and expose X only after the cursor has left", () => {
+test("global plus opens the menu, choosing precedes insertion, and X waits until the cursor leaves", () => {
   for (const change of copy.changes.filter(
     (c) => c.bundle && c.from !== "base",
   )) {
-    const offer = adAddition(change.at - 1)!;
-    assert.equal(adPluginControl(offer.clickAt, offer.module.id).kind, "add");
+    const offer = adAddition(change.at - 1)!,
+      choice = adChooser(change.at - 1)!;
+    assert.equal(adPointer(choice.openClick).press, 1);
+    assert.equal(adChooser(choice.openAt - 1)!.opacity, 0);
+    assert.equal(adChooser(choice.selectClick)!.opacity, 1);
+    assert.equal(adAddition(choice.selectClick)!.opacity, 0);
+    assert.ok(
+      !choice.choices.find((c) => c.module.id === offer.module.id)!.installed,
+    );
     assert.equal(
       adPluginControl(change.at + 16, offer.module.id).kind,
       "added",

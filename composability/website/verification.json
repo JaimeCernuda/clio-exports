@@ -42,29 +42,29 @@
       "formats": [
         {
           "file": "one-composable-agent\\output\\loop.mp4",
-          "bytes": 794272,
-          "frames": 636,
-          "duration": 10.6,
-          "seamMeanDifference": 0.24654761904761904,
-          "minFrameLuminance": 237.05130952380952,
+          "bytes": 461920,
+          "frames": 348,
+          "duration": 5.8,
+          "seamMeanDifference": 0.2342063492063492,
+          "minFrameLuminance": 237.09948412698412,
           "decode": "passed"
         },
         {
           "file": "one-composable-agent\\output\\loop.webm",
-          "bytes": 737726,
-          "frames": 636,
-          "duration": 10.6,
-          "seamMeanDifference": 0.28809523809523807,
-          "minFrameLuminance": 237.06436507936507,
+          "bytes": 466325,
+          "frames": 348,
+          "duration": 5.8,
+          "seamMeanDifference": 0.25583333333333336,
+          "minFrameLuminance": 237.11678571428573,
           "decode": "passed"
         },
         {
           "file": "one-composable-agent\\output\\loop.gif",
-          "bytes": 4936324,
-          "frames": 318,
-          "duration": 10.6,
-          "seamMeanDifference": 0.28,
-          "minFrameLuminance": 236.54666666666665,
+          "bytes": 2566503,
+          "frames": 174,
+          "duration": 5.8,
+          "seamMeanDifference": 0.27404761904761904,
+          "minFrameLuminance": 236.52349206349206,
           "gifBackgroundMin": 255,
           "decode": "passed"
         }
@@ -79,36 +79,36 @@
       "formats": [
         {
           "file": "plugin-composition\\output\\loop.mp4",
-          "bytes": 1356491,
-          "frames": 978,
-          "duration": 16.3,
-          "seamMeanDifference": 0.00003759398496240601,
-          "minFrameLuminance": 243.1772305764411,
+          "bytes": 1756123,
+          "frames": 1122,
+          "duration": 18.7,
+          "seamMeanDifference": 0,
+          "minFrameLuminance": 244.67150432900434,
           "decode": "passed"
         },
         {
           "file": "plugin-composition\\output\\loop.webm",
-          "bytes": 1703157,
-          "frames": 978,
-          "duration": 16.3,
-          "seamMeanDifference": 0.0003007518796992481,
-          "minFrameLuminance": 243.19894736842105,
+          "bytes": 2173065,
+          "frames": 1122,
+          "duration": 18.7,
+          "seamMeanDifference": 0,
+          "minFrameLuminance": 244.70530303030304,
           "decode": "passed"
         },
         {
           "file": "plugin-composition\\output\\loop.gif",
-          "bytes": 4333042,
-          "frames": 326,
-          "duration": 16.3,
-          "seamMeanDifference": 0.029285714285714286,
-          "minFrameLuminance": 242.60127819548873,
+          "bytes": 5565368,
+          "frames": 374,
+          "duration": 18.7,
+          "seamMeanDifference": 0.01369047619047619,
+          "minFrameLuminance": 244.15939393939394,
           "gifBackgroundMin": 255,
           "decode": "passed"
         }
       ],
       "poster": {
         "width": 1680,
-        "height": 760
+        "height": 880
       }
     }
   ],

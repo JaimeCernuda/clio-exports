@@ -1,5 +1,6 @@
 import copy from "../story/composable-ad.json";
 import { wheelTiming } from "./wheel-timing.mjs";
+import { pluginChoiceTiming } from "./plugin-choice-timing.mjs";
 import {
   ease,
   phase,
@@ -277,12 +278,24 @@ export function adBrandPose(frame: number, geometry: OpeningGeometry) {
   };
 }
 
-/** A workflow addition is offered at its eventual tree position before the click. */
-export function adAddition(frame: number) {
+export const chooser = {
+  x: tree.x,
+  y: 156,
+  width: tree.width,
+  height: 48,
+  menuY: 212,
+  menuHeight: 292,
+  rowTop: 64,
+  rowHeight: 54,
+  ids: ["manufacturing", "simulation", "reports", "genomics"],
+};
+
+/** A global chooser precedes insertion; installed choices remain visible but disabled. */
+export function adChooser(frame: number, includeBase = false) {
   const change = copy.changes.find(
     (entry) =>
       entry.bundle &&
-      entry.from !== "base" &&
+      (includeBase || entry.from !== "base") &&
       frame >= entry.at - copy.addition.leadFrames &&
       frame <= entry.at + 48,
   );
@@ -294,18 +307,36 @@ export function adAddition(frame: number) {
       ),
   );
   if (!target) throw Error("Missing offered plugin at " + change.at);
+  const cue = pluginChoiceTiming(change, copy);
   return {
-    ...target,
-    height: tree.header,
+    ...cue,
+    target,
     change,
-    opacity: phase(
-      frame,
-      change.at - copy.addition.leadFrames,
-      copy.addition.showFrames,
-    ),
-    hover: phase(frame, change.at - 20, 8),
-    added: phase(frame, change.at, copy.addition.controlFrames),
-    clickAt: change.at - copy.addition.clickBefore,
+    opacity:
+      phase(frame, cue.openAt, 12) *
+      (1 - phase(frame, cue.selectAt, copy.chooser.dismissFrames)),
+    hover: phase(frame, cue.selectAt - 12, 8),
+    choices: chooser.ids.map((id) => ({
+      module: copy.modules.find((module) => module.id === id)!,
+      installed: profiles[change.from].modules.some(
+        (module) => module.id === id,
+      ),
+    })),
+  };
+}
+
+/** The chosen plugin enters only after the chooser dismisses, then opens its leaves. */
+export function adAddition(frame: number, includeBase = false) {
+  const choice = adChooser(frame, includeBase);
+  if (!choice) return null;
+  return {
+    ...choice.target,
+    height: tree.header,
+    change: choice.change,
+    opacity: phase(frame, choice.revealAt, copy.chooser.revealFrames),
+    hover: 0,
+    added: phase(frame, choice.change.at, copy.addition.controlFrames),
+    clickAt: choice.selectClick,
   };
 }
 
@@ -331,21 +362,18 @@ export function adRemoval(frame: number) {
 }
 
 /** Add, applied and remove are separate states; X appears after the add cursor leaves. */
-export function adPluginControl(frame: number, id: string) {
-  const addition = adAddition(frame);
+export function adPluginControl(
+  frame: number,
+  id: string,
+  includeBase = false,
+) {
+  const addition = adAddition(frame, includeBase);
   if (addition?.module.id === id) {
     const r = frame - addition.change.at;
-    if (r < 4)
-      return {
-        kind: "add" as const,
-        opacity: 1 - phase(r, 0, 4),
-        hover: addition.hover,
-        adding: true,
-      };
     if (r < 34)
       return {
         kind: "added" as const,
-        opacity: phase(r, 4, 6) * (1 - phase(r, 30, 4)),
+        opacity: 1 - phase(r, 30, 4),
         hover: 0,
         adding: true,
       };
@@ -469,7 +497,10 @@ export function adEditMarks(a: PromptLayout, b: PromptLayout, frame: number) {
 }
 
 /** All gestures share a continuous route; idle portions stay beyond the frame edge. */
-export function adPointerStops(geometry?: OpeningGeometry | null) {
+export function adPointerStops(
+  geometry?: OpeningGeometry | null,
+  includeBase = false,
+) {
   const plus = geometry
       ? {
           x:
@@ -480,18 +511,46 @@ export function adPointerStops(geometry?: OpeningGeometry | null) {
           y: 540,
         }
       : { x: 1600, y: 540 },
-    points = [
-      { f: 0, x: 1968, y: 755 },
-      { f: copy.staging.plusAt + 2, x: 1968, y: 755 },
-      { f: copy.staging.menuAt - 12, ...plus },
-      { f: copy.staging.menuAt + 10, ...plus },
-      { f: copy.staging.selectAt - 6, x: 1450, y: 694 },
-      { f: copy.staging.selectAt + 2, x: 1450, y: 694 },
-      { f: copy.staging.selectAt + 48, x: 1968, y: 900 },
-    ];
+    points = includeBase
+      ? [{ f: 0, x: 1968, y: 308 }]
+      : [
+          { f: 0, x: 1968, y: 755 },
+          { f: copy.staging.pointerAt, x: 1968, y: 755 },
+          { f: copy.staging.menuAt - 12, ...plus },
+          { f: copy.staging.menuAt + 10, ...plus },
+          { f: copy.staging.selectAt - 6, x: 1450, y: 694 },
+          { f: copy.staging.selectAt + 2, x: 1450, y: 694 },
+          { f: copy.staging.selectAt + 48, x: 1968, y: 900 },
+        ];
   for (const change of copy.changes) {
     const removing = change.action === "remove";
-    if (!removing && !(change.bundle && change.from !== "base")) continue;
+    if (
+      !removing &&
+      !(change.bundle && (includeBase || change.from !== "base"))
+    )
+      continue;
+    if (!removing) {
+      const cue = pluginChoiceTiming(change, copy),
+        target = profiles[change.to].modules.find(
+          (m) => !profiles[change.from].modules.some((a) => a.id === m.id),
+        )!,
+        row = chooser.ids.indexOf(target.id),
+        y =
+          chooser.menuY +
+          chooser.rowTop +
+          row * chooser.rowHeight +
+          chooser.rowHeight / 2 -
+          3;
+      points.push(
+        { f: cue.enterAt, x: 1968, y: 308 },
+        { f: cue.openAt - 10, x: 1741, y: 178 },
+        { f: cue.openAt + 6, x: 1741, y: 178 },
+        { f: cue.selectAt - 8, x: 1440, y },
+        { f: cue.selectAt + 2, x: 1440, y },
+        { f: change.at + 24, x: 1968, y: y + 130 },
+      );
+      continue;
+    }
     const profile = profiles[removing ? change.from : change.to],
       target = adTreeLayout(profile).find((p) =>
         removing
@@ -518,8 +577,12 @@ export function adPointerStops(geometry?: OpeningGeometry | null) {
 }
 
 /** Pointer opacity stays constant: it leaves through the edge instead of dissolving. */
-export function adPointer(frame: number, geometry?: OpeningGeometry | null) {
-  const points = adPointerStops(geometry),
+export function adPointer(
+  frame: number,
+  geometry?: OpeningGeometry | null,
+  includeBase = false,
+) {
+  const points = adPointerStops(geometry, includeBase),
     b = points.find((point) => frame <= point.f) ?? points.at(-1)!,
     i = points.indexOf(b),
     a = points[Math.max(0, i - 1)],
@@ -535,22 +598,23 @@ export function adPointer(frame: number, geometry?: OpeningGeometry | null) {
     opacity: 1,
     press: Math.max(
       0,
-      1 - Math.abs(frame - (copy.staging.menuAt - 6)) / 5,
-      1 - Math.abs(frame - (copy.staging.selectAt - 1)) / 5,
+      includeBase ? 0 : 1 - Math.abs(frame - (copy.staging.menuAt - 6)) / 5,
+      includeBase ? 0 : 1 - Math.abs(frame - (copy.staging.selectAt - 1)) / 5,
       ...copy.changes
-        .filter((c) => c.action === "remove" || (c.bundle && c.from !== "base"))
-        .map(
+        .filter(
           (c) =>
-            1 -
-            Math.abs(
-              frame -
-                (c.at -
-                  (c.action === "remove"
-                    ? copy.removal.clickBefore
-                    : copy.addition.clickBefore)),
-            ) /
-              5,
-        ),
+            c.action === "remove" ||
+            (c.bundle && (includeBase || c.from !== "base")),
+        )
+        .flatMap((c) =>
+          c.action === "remove"
+            ? [c.at - copy.removal.clickBefore]
+            : [
+                pluginChoiceTiming(c, copy).openClick,
+                pluginChoiceTiming(c, copy).selectClick,
+              ],
+        )
+        .map((click) => 1 - Math.abs(frame - click) / 5),
     ),
   };
 }

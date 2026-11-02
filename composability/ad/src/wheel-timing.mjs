@@ -4,9 +4,15 @@ export function wheelTiming(wheel) {
   const durations = Array.from(
     { length: wheel.words.length - 1 },
     (_, index) =>
-      wheel.firstChangeFrames +
-      (wheel.lastChangeFrames - wheel.firstChangeFrames) *
-        ease(index / (wheel.words.length - 2)),
+      wheel.rampPower
+        ? Math.round(
+            wheel.lastChangeFrames +
+              (wheel.firstChangeFrames - wheel.lastChangeFrames) *
+                (1 - index / (wheel.words.length - 2)) ** wheel.rampPower,
+          )
+        : wheel.firstChangeFrames +
+          (wheel.lastChangeFrames - wheel.firstChangeFrames) *
+            ease(index / (wheel.words.length - 2)),
   );
   const stops = durations.reduce(
     (values, duration) => [...values, values.at(-1) + duration],

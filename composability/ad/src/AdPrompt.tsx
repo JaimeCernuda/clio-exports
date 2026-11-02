@@ -174,6 +174,23 @@ export function useAdLayouts(record = false) {
             };
           });
           console.log(`__CLIO_AD_CONTROLS__${JSON.stringify(controls)}`);
+          const chooserControls = Array.from(
+            document.querySelectorAll<HTMLElement>(
+              "[data-ad-global-plus], [data-ad-global-choice]",
+            ),
+          ).map((element) => {
+            const box = element.getBoundingClientRect();
+            return {
+              frame: Number(paper?.dataset.adPaperFrame),
+              id: element.dataset.adGlobalChoice ?? "global-plus",
+              disabled: element.dataset.adChoiceDisabled === "true",
+              x: box.x,
+              y: box.y,
+              width: box.width,
+              height: box.height,
+            };
+          });
+          console.log(`__CLIO_AD_CHOOSER__${JSON.stringify(chooserControls)}`);
           const url = document.querySelector<HTMLElement>("[data-ad-url]"),
             qr = document.querySelector<HTMLElement>("[data-ad-close-qr]");
           if (url && qr) {

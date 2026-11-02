@@ -2,36 +2,36 @@
   "id": "PluginComposition",
   "folder": "plugin-composition",
   "width": 1680,
-  "height": 760,
+  "height": 880,
   "fps": 60,
-  "frames": 978,
+  "frames": 1122,
   "gifWidth": 1260,
   "gifFps": 20,
-  "poster": 910,
-  "duration": 16.3,
+  "poster": 1054,
+  "duration": 18.7,
   "audio": false,
   "background": "white",
   "brandingOverlay": false,
   "files": [
     {
       "name": "loop.mp4",
-      "bytes": 1356491,
-      "sha256": "48c55f5dfbb3fe92dfe12f5b6fb6b3c45d67011417633aec176e0ad4a6a1e3f5"
+      "bytes": 1756123,
+      "sha256": "7fb7c4979999b0be299b3c090a4fc902e54072f88deba56265d9c5e3001c7087"
     },
     {
       "name": "loop.webm",
-      "bytes": 1703157,
-      "sha256": "409cb81f2b1580f7439ca0147758febb339622eac59e346969e79d837244d00c"
+      "bytes": 2173065,
+      "sha256": "c61886ca544a8956850a9a4fb6aee2ead2095bda686b8a6a74f6fa5fa96f0cf2"
     },
     {
       "name": "loop.gif",
-      "bytes": 4333042,
-      "sha256": "91e371d2636c8c71a2b1017b0374003dfecdb10ed47a91107a3352a5c4ce7b5b"
+      "bytes": 5565368,
+      "sha256": "b430d25cd5875cee60bf4bb0e906591194c7f49de15fbc07fa386eb1a45f4618"
     },
     {
       "name": "poster.png",
-      "bytes": 423619,
-      "sha256": "ba68e25cd842be1f970bdda7eaf39efa312b6c26440fdca71ea365545acb3a07"
+      "bytes": 430030,
+      "sha256": "bb35c9e497367db0c77cc2355ffbec4620e12542d64e53e4dab2379d75f8c24f"
     }
   ]
 }

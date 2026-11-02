@@ -77,7 +77,7 @@ These points summarize the conversation; they are not a verbatim transcript.
 12. **Accelerate the changes themselves.** Shorten successive word intervals
     along a smooth curve and derive blur from that cadence and movement. Avoid
     either early full blur or removing blur entirely. The user's 3-to-0.5-second
-    example described the ramp; the current editable choice is 1.2 to 0.2 seconds.
+    example described the ramp; the current editable choice is 0.8 to 0.133 seconds.
 13. **Keep the call to action clear.** The link needs no arrow. Enlarge both the
     URL and QR without adding more closing copy.
 
@@ -98,41 +98,35 @@ These points summarize the conversation; they are not a verbatim transcript.
   disappearing/teleporting cursors, unreadably brief bundles and unexplained
   plugin arrivals. Technical checks did not excuse these problems.
 
-## Current implementation: v12
+## Current implementation: v13
 
-The opening keeps the vertical domain wheel and aligned CLIO/plus lockup. Twelve
-successive changes smoothly shorten from 72 to 12 frames at 60 fps. Continuous
-motion crosses the word centers; directional blur derives from the effective
-change period and actual motion, then clears when the wheel settles.
+The keyword wheel resolves to composable at **4 seconds**. The twelve intervals
+are 48, 38, 30, 23, 18, 14, 12, 10, 9, 8, 8 and 8 frames at 60 fps, after a
+14-frame initial hold. This front-loaded ramp addresses the user's and Izzet's
+feedback that a ten-second hook is too long. Materials/Chemistry are already fast.
+The CLIO/plus lockup follows, then the first chooser.
 
-The prompt now holds one fixed position, scale and rectangle on the left.
-Manufacturing, Simulation and Reports form a persistent capability tree on the
-right. Matching plugin colors mark actual changed prompt fragments. Skills, MCP
-servers, tools and hooks visibly grow beneath their owner and leave when that
-plugin is removed. Reports persists across the later domain changes. There are
-no dotted capability-count summaries or repeated prompt zoom/refocus cycles.
+The prompt holds one fixed position, scale and rectangle on the left. Matching
+owner colors mark its actual edits. Plugins and owned skills, MCP servers,
+tools and hooks form the tree on the right. Reports persists across domains.
 
-Simulation and Reports use plus clicks, then confirmation checks. X appears only
-after the cursor leaves. Explicit X clicks first remove Simulation, then
-Manufacturing, leaving Reports. A plus click adds Genomics in the vacant slot
-before the remaining domain transformations. The fixed prompt does not refocus.
-The film ends with Build your own, CLIO, a 42 px URL without an arrow and a 288 px
-QR with a five-second settled hold. V12 is 41.23 seconds, 1080p, 60 fps with
-original procedural sound. Copy and timing remain in story/composable-ad.json.
+Every later addition now begins at the **global plus above the tree**, opens a
+chooser, and selects the plugin. Installed options remain visible but disabled.
+The menu dismisses before the new plugin enters; its branches open afterward.
+Do not reintroduce pending rows with their own plus before the user has selected
+them. Explicit X clicks remove Simulation and Manufacturing. The global chooser
+then adds Genomics; Climate, Robotics, Materials and Medical follow in the montage.
+The website build loop uses the same chooser for its first Manufacturing addition.
 
-The follow-up review found the cursor dissolving between gestures, the owl
-crossing the fading prompt, and insufficient settled time in the final domain
-montage. The cursor now follows one continuous route into and out of the frame;
-idle portions stay outside it. Prompt entrance waits for the owl to clear, and
-the closing owl begins its travel later. Faster domain morphs create 0.6–1.3
-seconds of settled time without extending the film. These holds register the
-changed identity/fragments; they are not time to read the entire prompt.
+The full ad is 36 seconds, 1080p, 60 fps with original procedural audio. The close
+keeps the 42 px URL without an arrow, 288 px QR and five-second settled hold.
+Cursor routes stay continuous and opaque; the owl clears the prompt before it
+appears. Later domain edits retain 0.6–1.3 seconds of settled time. These brief
+beats register changes, not time to read an entire document.
 
-This is a **working baseline awaiting creative approval**. The user's latest
-direction adds a gradual cadence-driven blur ramp, correct add/remove controls
-and a clearer closing CTA to the fixed prompt and owned capability tree. Do not
-interpret successful rendering, passing tests or this handoff as approval of
-the art direction or proof that no further visual defects exist.
+This is a **revision awaiting creative approval**. Read the current
+[v13 receipt](docs/reviews/review-ad-v13.md) for exact checks and limits. Prior
+renders and review receipts remain preserved. Passing tests does not approve taste.
 
 ## Implementation and evidence boundaries
 
@@ -153,7 +147,7 @@ receipt records validation after that move.
 The historical [v10 review](docs/reviews/review-ad-v10.md) records the fixed prompt
 and capability tree; its control and wheel treatment was subsequently corrected.
 The [v11 review](docs/reviews/review-ad-v11.md) records those corrections.
-The current [v12 review](docs/reviews/review-ad-v12.md) records the follow-up fixes.
+The historical [v12 review](docs/reviews/review-ad-v12.md) records the follow-up fixes.
 
 ## Continuing the work
 

@@ -1,12 +1,12 @@
 {
-  "schema": "clio.composable-ad.v12",
+  "schema": "clio.composable-ad.v13",
   "fps": 60,
-  "frames": 2474,
+  "frames": 2160,
   "treatment": "One agent. Different domains. Plugins bring the instructions and capabilities together.",
   "copyMode": "Native-derived CLIO composition elements with illustrative domain plugins and uniform editorial prompt text; not an installed catalogue, complete resolved backend prompt, or recorded run.",
   "wheel": {
     "at": 0,
-    "end": 528,
+    "end": 240,
     "words": [
       "genomic",
       "manufacturing",
@@ -28,21 +28,25 @@
       "fastPixels": 10,
       "maxPixels": 12
     },
-    "holdFrames": 24,
-    "firstChangeFrames": 72,
-    "lastChangeFrames": 12
+    "holdFrames": 14,
+    "firstChangeFrames": 48,
+    "lastChangeFrames": 8,
+    "rampPower": 3
   },
   "staging": {
-    "brandAt": 550,
-    "plusAt": 620,
-    "menuAt": 688,
-    "selectAt": 758,
-    "promptAt": 778,
-    "dockAt": 818,
-    "promptEnterFrames": 36
+    "brandAt": 244,
+    "plusAt": 286,
+    "menuAt": 320,
+    "selectAt": 382,
+    "promptAt": 410,
+    "dockAt": 442,
+    "promptEnterFrames": 36,
+    "brandFrames": 40,
+    "plusFrames": 20,
+    "pointerAt": 254
   },
   "selection": {
-    "hoverAt": 740,
+    "hoverAt": 364,
     "hoverFrames": 8,
     "retireFrames": 14,
     "morphFrames": 12,
@@ -54,10 +58,10 @@
     }
   },
   "addition": {
-    "leadFrames": 48,
+    "leadFrames": 120,
     "focusFrames": 16,
     "showFrames": 12,
-    "clickBefore": 8,
+    "clickBefore": 26,
     "controlFrames": 10
   },
   "baseLines": [
@@ -293,7 +297,7 @@
   ],
   "changes": [
     {
-      "at": 818,
+      "at": 442,
       "duration": 84,
       "from": "base",
       "to": "manufacturing",
@@ -303,7 +307,7 @@
       "controlId": ""
     },
     {
-      "at": 1026,
+      "at": 650,
       "duration": 84,
       "from": "manufacturing",
       "to": "simulation",
@@ -313,7 +317,7 @@
       "controlId": ""
     },
     {
-      "at": 1184,
+      "at": 844,
       "duration": 78,
       "from": "simulation",
       "to": "reports",
@@ -323,7 +327,7 @@
       "controlId": ""
     },
     {
-      "at": 1342,
+      "at": 1002,
       "duration": 54,
       "from": "reports",
       "to": "without-simulation",
@@ -333,7 +337,7 @@
       "controlId": "simulation"
     },
     {
-      "at": 1424,
+      "at": 1084,
       "duration": 54,
       "from": "without-simulation",
       "to": "reports-only",
@@ -343,7 +347,7 @@
       "controlId": "manufacturing"
     },
     {
-      "at": 1554,
+      "at": 1238,
       "duration": 90,
       "from": "reports-only",
       "to": "genomics",
@@ -353,7 +357,7 @@
       "controlId": ""
     },
     {
-      "at": 1700,
+      "at": 1384,
       "duration": 60,
       "from": "genomics",
       "to": "climate",
@@ -363,7 +367,7 @@
       "controlId": ""
     },
     {
-      "at": 1796,
+      "at": 1480,
       "duration": 54,
       "from": "climate",
       "to": "robotics",
@@ -373,7 +377,7 @@
       "controlId": ""
     },
     {
-      "at": 1892,
+      "at": 1576,
       "duration": 48,
       "from": "robotics",
       "to": "materials",
@@ -383,7 +387,7 @@
       "controlId": ""
     },
     {
-      "at": 1988,
+      "at": 1672,
       "duration": 48,
       "from": "materials",
       "to": "medical",
@@ -394,13 +398,19 @@
     }
   ],
   "closing": {
-    "at": 2114,
-    "settled": 2174,
+    "at": 1800,
+    "settled": 1860,
     "line": "Build your own.",
     "url": "https://clio.iowarp.ai/"
   },
   "removal": {
     "leadFrames": 42,
     "clickBefore": 2
+  },
+  "chooser": {
+    "menuLeadFrames": 84,
+    "selectBefore": 24,
+    "dismissFrames": 10,
+    "revealFrames": 12
   }
 }

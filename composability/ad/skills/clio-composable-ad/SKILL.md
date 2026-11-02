@@ -13,13 +13,15 @@ Make the viewer understand “build the agent you need.” Show both plugins ext
 an existing agent and specialization across many fields. The bookends are PR;
 the middle reshapes recognizable CLIO elements for motion. Keep the real owl,
 uniform prompt text and matching domain identity. Avoid reconstructing a whole
-app, technical catalogue or slide layout. V12 is a baseline, not an approved final.
+app, technical catalogue or slide layout. V13 is a baseline, not an approved final.
 
 Choose one opening mechanism. The current decision is a vertical wheel with the
 surrounding words fixed; do not mix it with typing/backspacing. Shorten successive
 change intervals along a smooth curve. Derive directional blur from cadence and
 actual movement: early words readable, late movement blurred, settled words sharp.
-The current 72-to-12-frame ramp is an editable film choice, not a global rule.
+The current hook resolves in four seconds. Its front-loaded 48-to-8-frame ramp
+must already move quickly by Materials/Chemistry. Do not spend ten seconds on
+keyword changes before showing composition.
 Use the shared wheel clock for visual and sound cues. Keep the brand,
 phrase and plus on one measured center line. Core, filesystem and case-specific
 names from other demo campaigns do not serve this concept.
@@ -43,8 +45,11 @@ with the owning plugin's tint; leave stable instructions unmarked.
 
 Plan motion through occupied space. Menu-row extraction must preserve the source
 rectangle and label on the selection frame. Retire neighbors before growing the
-row. Later plugin additions also need a visible cause: offer the row, press its
-plus, then extend the prompt. Confirm with a check and reveal X after the cursor
+row. Later additions use a persistent global plus above the plugin tree: open
+the chooser, select a plugin, dismiss the menu, then insert its row and extend
+the prompt. Do not offer an unselected plugin with its own plus. Keep installed
+choices visible but disabled. Use the same clock for menu, cursor, insertion and
+audio; measure both clicks. Confirm with a check and reveal X after the cursor
 leaves; rotating plus into X underneath it reads as a removal click. Show the
 first actual removal by clicking its existing X before its owned text/leaves
 withdraw. Measure control identity and cursor hotspot at each click, as well as

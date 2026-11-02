@@ -53,6 +53,7 @@ test("the handoff includes the creative brief, commands, assets, skill and revie
     "docs/reviews/review-ad-v10.md",
     "docs/reviews/review-ad-v11.md",
     "docs/reviews/review-ad-v12.md",
+    "docs/reviews/review-ad-v13.md",
     "examples/composable-measure.json",
   ])
     assert.ok(
