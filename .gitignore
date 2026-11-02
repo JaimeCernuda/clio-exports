@@ -8,6 +8,7 @@ motion/native/node_modules/
 motion/bundle/
 motion/out/
 motion/review/
+/ad/out/
 motion/.native-ui/
 .cache/
 # Machine-specific release-profile inventories; unrelated to portable video sources.
