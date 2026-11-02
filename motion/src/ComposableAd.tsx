@@ -25,6 +25,8 @@ import {
   adInspection,
   adSelection,
   adMenu,
+  adAddition,
+  adFocus,
   adContributionOpacity,
   adState,
   copy,
@@ -46,6 +48,8 @@ function PluginPiece({
   frame,
   inspectionAt,
   selectionProgress,
+  additionProgress,
+  additionHover = 0,
   style = {},
 }: {
   module: AdModule;
@@ -54,6 +58,8 @@ function PluginPiece({
   frame?: number;
   inspectionAt?: number;
   selectionProgress?: number;
+  additionProgress?: number;
+  additionHover?: number;
   style?: React.CSSProperties;
 }) {
   const morph = selectionProgress ?? 1,
@@ -85,6 +91,7 @@ function PluginPiece({
       data-ad-selection-frame={
         selectionProgress !== undefined ? frame : undefined
       }
+      data-ad-add-frame={additionProgress !== undefined ? frame : undefined}
       style={{
         ...style,
         height: headerHeight + (rows.length * 43 + 15) * expand,
@@ -120,17 +127,35 @@ function PluginPiece({
           </strong>
           <span
             className="ad-plugin-control"
-            style={{ right: 17 + 3 * morph, top: 18.5 - 0.5 * morph }}
+            style={{
+              right: 17 + 3 * morph,
+              top: 18.5 - 0.5 * morph,
+              background: `rgba(255,255,255,${0.75 * additionHover * (1 - (additionProgress ?? 1))})`,
+              boxShadow: `0 0 0 6px rgba(255,255,255,${0.75 * additionHover * (1 - (additionProgress ?? 1))})`,
+            }}
           >
             <ChevronRight
               size={19}
-              style={{ opacity: 1 - phase(morph, 0, 0.4) }}
+              style={{
+                opacity:
+                  additionProgress === undefined ? 1 - phase(morph, 0, 0.4) : 0,
+              }}
             />
-            <X
-              data-ad-plugin-remove
-              size={17}
-              style={{ left: 1, top: 1, opacity: phase(morph, 0.6, 0.4) }}
-            />
+            {additionProgress !== undefined ? (
+              <Plus
+                data-ad-plugin-remove
+                size={19}
+                style={{
+                  transform: `rotate(${45 * additionProgress}deg) scale(${1 - 0.1 * additionProgress})`,
+                }}
+              />
+            ) : (
+              <X
+                data-ad-plugin-remove
+                size={17}
+                style={{ left: 1, top: 1, opacity: phase(morph, 0.6, 0.4) }}
+              />
+            )}
           </span>
           {meta > 0.001 ? (
             <small style={{ opacity: meta }}>
@@ -230,21 +255,35 @@ function PluginPicker({ frame }: { frame: number }) {
 function Composition({ frame }: { frame: number }) {
   const state = adState(frame),
     p = state.p,
-    poses = adPluginPoses(state.from, state.to, p);
+    poses = adPluginPoses(state.from, state.to, p),
+    addition = adAddition(frame);
   return (
     <>
+      {addition && frame < addition.change.at ? (
+        <PluginPiece
+          key={`offer-${addition.module.id}`}
+          module={addition.module}
+          expand={0}
+          frame={frame}
+          additionProgress={0}
+          additionHover={addition.hover}
+          style={{
+            position: "absolute",
+            left: addition.x,
+            top: addition.y,
+            width: addition.width,
+            opacity: addition.opacity,
+            zIndex: 8,
+          }}
+        />
+      ) : null}
       {poses.map((pose) => {
         const inspected = pose.added && state.change?.bundle;
         if (inspected) {
           const target = adPluginPoses(state.from, state.to, 1).find(
             (item) => item.name === pose.name,
           )!;
-          const actor = adInspection(
-            frame,
-            state.change!.at,
-            target.x,
-            state.from.id === "base",
-          );
+          const actor = adInspection(frame, state.change!.at, target.x, true);
           return (
             <PluginPiece
               key={pose.name}
@@ -253,6 +292,12 @@ function Composition({ frame }: { frame: number }) {
               bodyOpacity={actor.bodyOpacity}
               frame={frame}
               inspectionAt={state.change!.at}
+              additionProgress={
+                state.from.id !== "base"
+                  ? phase(frame, state.change!.at, copy.addition.controlFrames)
+                  : undefined
+              }
+              additionHover={addition?.hover}
               style={{
                 position: "absolute",
                 left: actor.x,
@@ -300,12 +345,7 @@ export function ComposableAd({
     retire = phase(frame, copy.closing.at, 32),
     brandClose = phase(frame, copy.closing.at + 14, 46),
     end = phase(frame, copy.closing.at + 46, 14);
-  const inspected = Boolean(state.change?.bundle);
-  const focus = inspected
-    ? adInspection(frame, state.change!.at, 805, state.from.id === "base").focus
-    : !state.change
-      ? adSelection(frame).focus
-      : 0;
+  const focus = adFocus(frame);
   const height = layouts
     ? mix(layouts[state.from.id].height, layouts[state.to.id].height, t) + 96
     : 316;

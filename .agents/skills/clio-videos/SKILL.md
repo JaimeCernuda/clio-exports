@@ -65,6 +65,13 @@ the filmed pointer's timeline; CSS hover will not follow an SVG cursor. Audit
 selectors against their actual siblings: a search div prevented first-of-type
 from matching the first plugin row in v7. Keep domain-color changes aligned with
 the changing identity rather than switching them on the first transition frame.
+Repeat the causal check for later additions, not only the first menu click. V8
+showed Simulation and Reports arriving without a selection action. Offer each
+workflow plugin before it affects the prompt, visibly press its add control, then
+open its contributions without replacing or relocating the row. Reserve that
+preparation before the edit starts and after the preceding inspection has ended.
+Keep a single glyph through plus-to-removal rotation rather than overlapping two
+readable controls. Derive click sound and pointer timing from the same cue.
 For source-bound demos, source real identities and contributed prompt fragments. Scope text matches
 by fragment and ordered phrases; isolated repeated words should not fly across
 unrelated prose. Measure destination wrapping after fonts load. Open insertion

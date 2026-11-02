@@ -24,6 +24,9 @@ reuse: add a Reports plugin, then retain it while the agent changes domain.
    Rows arrive in sequence, then the complete bundle has 1.8 seconds of reading
    time. The disclosure docks as the same plugin piece beneath the prompt.
 4. Simulation and Reports bring their own bundles and extend the current work.
+   Each appears as an offered plugin row. Hover and press its plus before its
+   contribution disclosure opens or its instructions enter the prompt. Hold the
+   same row geometry across the click and rotate the plus into removal.
    Their contributions are owned by those plugins, never independently added.
    Give each completed list 1.1 seconds before closing it.
 5. Replace the domain with Genomics and Climate, then move more briskly through

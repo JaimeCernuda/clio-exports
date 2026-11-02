@@ -208,6 +208,50 @@ export function adMenu(frame: number) {
   };
 }
 
+/** A workflow plugin is offered and clicked before it changes the agent. */
+export function adAddition(frame: number) {
+  const change = copy.changes.find(
+    (entry) =>
+      entry.bundle &&
+      entry.from !== "base" &&
+      frame >= entry.at - copy.addition.leadFrames &&
+      frame <= entry.at + 36,
+  );
+  if (!change) return null;
+  const module = profiles[change.to].modules.find(
+    (entry) => !profiles[change.from].pieces.includes(entry.name),
+  );
+  if (!module) throw new Error(`Missing offered plugin at ${change.at}`);
+  const start = change.at - copy.addition.leadFrames;
+  return {
+    change,
+    module,
+    x: 1300,
+    y: 300,
+    width: 470,
+    height: 76,
+    opacity: phase(
+      frame,
+      start + copy.addition.focusFrames,
+      copy.addition.showFrames,
+    ),
+    focus: phase(frame, start, copy.addition.focusFrames),
+    hover: phase(frame, change.at - 20, 8),
+    added: phase(frame, change.at, copy.addition.controlFrames),
+    clickAt: change.at - copy.addition.clickBefore,
+  };
+}
+
+/** Make room before offering a plugin and retain that framing through its handoff. */
+export function adFocus(frame: number) {
+  const pending = adAddition(frame);
+  if (pending && frame < pending.change.at) return pending.focus;
+  const state = adState(frame);
+  if (state.change?.bundle)
+    return adInspection(frame, state.change.at, 805, true).focus;
+  return state.change ? 0 : adSelection(frame).focus;
+}
+
 interface RoutePoint {
   x: number;
   y: number;
@@ -407,6 +451,18 @@ export function adWords(
 
 /** A continuous pointer operates the plus and the real-style plugin picker. */
 export function adPointer(frame: number, geometry?: OpeningGeometry | null) {
+  const addition = adAddition(frame);
+  if (addition) {
+    const relative = frame - addition.change.at,
+      approach = phase(relative, -36, 22),
+      depart = phase(relative, 6, 22);
+    return {
+      x: 1840 + (1739 - 1840) * approach + 71 * depart,
+      y: 475 + (327 - 475) * approach + 103 * depart,
+      opacity: phase(relative, -36, 8) * (1 - phase(relative, 16, 16)),
+      press: Math.max(0, 1 - Math.abs(frame - addition.clickAt) / 5),
+    };
+  }
   const plus = geometry
     ? {
         x: 960 - geometry.width / 2 + geometry.plus.x + geometry.plus.width / 2,

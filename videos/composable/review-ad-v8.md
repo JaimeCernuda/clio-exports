@@ -1,5 +1,9 @@
 # Repeated review: menu selection continuity
 
+Superseded by [v9](review-ad-v9.md). V8 corrected the initial picker handoff;
+further review found later workflow additions had no visible selection action.
+The checks below did not establish that causal step. Creative approval was not given.
+
 - Local movie: `motion/out/composable/clio-composable-ad-v8.mp4` (not committed).
 - SHA-256: `605abd2a65cda8a02bf93afff4195480fb9970b46c28f5893ea9250f5305fc58`.
 - 1920 × 1080, 60 fps, 2240 frames, 37⅓ seconds, 8,082,720 bytes.

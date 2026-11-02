@@ -1,7 +1,7 @@
 {
-  "schema": "clio.composable-ad.v8",
+  "schema": "clio.composable-ad.v9",
   "fps": 60,
-  "frames": 2240,
+  "frames": 2336,
   "treatment": "One agent. Different domains. Plugins bring the instructions and capabilities together.",
   "copyMode": "Native-derived CLIO composition elements with illustrative domain plugins and uniform editorial prompt text; not an installed catalogue, complete resolved backend prompt, or recorded run.",
   "wheel": {
@@ -44,6 +44,13 @@
     "retireFrames": 14,
     "morphFrames": 12,
     "source": { "x": 1053, "y": 666, "width": 574, "height": 58 }
+  },
+  "addition": {
+    "leadFrames": 48,
+    "focusFrames": 16,
+    "showFrames": 12,
+    "clickBefore": 8,
+    "controlFrames": 10
   },
   "inspection": {
     "expandFrames": 16,
@@ -255,7 +262,7 @@
       "bundle": true
     },
     {
-      "at": 886,
+      "at": 934,
       "duration": 84,
       "from": "manufacturing",
       "to": "simulation",
@@ -263,7 +270,7 @@
       "bundle": true
     },
     {
-      "at": 1104,
+      "at": 1200,
       "duration": 78,
       "from": "simulation",
       "to": "reports",
@@ -271,7 +278,7 @@
       "bundle": true
     },
     {
-      "at": 1322,
+      "at": 1418,
       "duration": 90,
       "from": "reports",
       "to": "genomics",
@@ -279,7 +286,7 @@
       "bundle": false
     },
     {
-      "at": 1466,
+      "at": 1562,
       "duration": 90,
       "from": "genomics",
       "to": "climate",
@@ -287,7 +294,7 @@
       "bundle": false
     },
     {
-      "at": 1562,
+      "at": 1658,
       "duration": 72,
       "from": "climate",
       "to": "robotics",
@@ -295,7 +302,7 @@
       "bundle": false
     },
     {
-      "at": 1658,
+      "at": 1754,
       "duration": 66,
       "from": "robotics",
       "to": "materials",
@@ -303,7 +310,7 @@
       "bundle": false
     },
     {
-      "at": 1754,
+      "at": 1850,
       "duration": 60,
       "from": "materials",
       "to": "medical",
@@ -312,8 +319,8 @@
     }
   ],
   "closing": {
-    "at": 1880,
-    "settled": 1940,
+    "at": 1976,
+    "settled": 2036,
     "line": "Build your own.",
     "url": "https://clio.iowarp.ai/"
   }

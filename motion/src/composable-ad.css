@@ -261,6 +261,7 @@
   position: absolute;
   width: 19px;
   height: 19px;
+  border-radius: 5px;
 }
 .ad-plugin-control > svg {
   position: absolute;

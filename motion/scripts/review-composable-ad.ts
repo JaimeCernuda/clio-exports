@@ -9,6 +9,8 @@ import {
   adSelection,
   adState,
   adPointer,
+  adAddition,
+  adFocus,
   adInspection,
   adInspectionTiming,
   adPluginPoses,
@@ -104,6 +106,37 @@ for (const key of ["x", "y", "width", "height"] as const) {
     `Selected label jumps in ${key}`,
   );
 }
+const additions: Array<Record<string, number | string>> = JSON.parse(
+  readFileSync("review/composable-ad-additions.json", "utf8"),
+);
+for (const change of copy.changes.filter(
+  (entry) => entry.bundle && entry.from !== "base",
+)) {
+  const before = additions.find(
+    (entry) => entry.id === change.to && entry.frame === change.at - 1,
+  );
+  const after = additions.find(
+    (entry) => entry.id === change.to && entry.frame === change.at,
+  );
+  assert.ok(
+    before && after,
+    `Measure both sides of the ${change.to} add click`,
+  );
+  for (const key of [
+    "x",
+    "y",
+    "width",
+    "height",
+    "labelX",
+    "labelY",
+    "labelWidth",
+    "labelHeight",
+  ])
+    assert.ok(
+      Math.abs(Number(before[key]) - Number(after[key])) < 0.1,
+      `${change.to} add handoff jumps in ${key}`,
+    );
+}
 assert.deepEqual(
   [
     ...new Set(
@@ -162,6 +195,24 @@ for (let frame = copy.staging.selectAt; frame < copy.staging.dockAt; frame++) {
   if (overlap(actor, paper) > 0)
     componentOcclusions.push({ frame, kind: "menu extraction" });
 }
+for (const change of copy.changes.filter(
+  (entry) => entry.bundle && entry.from !== "base",
+)) {
+  for (
+    let frame = change.at - copy.addition.leadFrames;
+    frame < change.at;
+    frame++
+  ) {
+    const offer = adAddition(frame)!;
+    if (offer.opacity <= 0.2) continue;
+    const paper = adPromptBounds(
+      layouts[change.from].height + 96,
+      adFocus(frame),
+    );
+    if (overlap(offer, paper) > 0)
+      componentOcclusions.push({ frame, kind: "offered plugin covers prompt" });
+  }
+}
 for (const change of copy.changes.filter((change) => change.bundle)) {
   const from = profiles[change.from],
     to = profiles[change.to],
@@ -172,12 +223,7 @@ for (const change of copy.changes.filter((change) => change.bundle)) {
     elapsed++
   ) {
     const p = Math.min(1, elapsed / change.duration),
-      actor = adInspection(
-        change.at + elapsed,
-        change.at,
-        target.x,
-        from.id === "base",
-      );
+      actor = adInspection(change.at + elapsed, change.at, target.x, true);
     const height =
       layouts[from.id].height +
       (layouts[to.id].height - layouts[from.id].height) * ease(p) +
@@ -229,7 +275,7 @@ if (process.argv.includes("--geometry-only")) {
   );
   process.exit(0);
 }
-const video = process.argv[2] ?? "out/composable/clio-composable-ad-v8.mp4";
+const video = process.argv[2] ?? "out/composable/clio-composable-ad-v9.mp4";
 // Inspect every encoded inspection frame, including every render worker. DOM
 // bounds alone cannot detect a browser compositing glyph outside its container.
 const inspectionFrames = copy.changes
@@ -242,20 +288,29 @@ const inspectionFrames = copy.changes
       (_, elapsed) => ({ frame: change.at + elapsed, change, elapsed }),
     ),
   );
+const offerFrames = copy.changes
+  .filter((change) => change.bundle && change.from !== "base")
+  .flatMap((change) =>
+    Array.from(
+      { length: copy.addition.leadFrames },
+      (_, index) => change.at - copy.addition.leadFrames + index,
+    ),
+  );
 const paintFrames = [
   ...Array.from(
     { length: copy.staging.dockAt - copy.staging.selectAt },
     (_, index) => copy.staging.selectAt + index,
   ),
   ...inspectionFrames.map((entry) => entry.frame),
-];
+  ...offerFrames,
+].sort((a, b) => a - b);
 const selection =
   `between(n\\,${copy.staging.selectAt}\\,${copy.staging.dockAt - 1})+` +
   copy.changes
     .filter((change) => change.bundle)
     .map(
       (change) =>
-        `between(n\\,${change.at}\\,${change.at + adInspectionTiming(change.at).end})`,
+        `between(n\\,${change.at - (change.from === "base" ? 0 : copy.addition.leadFrames)}\\,${change.at + adInspectionTiming(change.at).end})`,
     )
     .join("+");
 const paintWidth = 640,
@@ -284,7 +339,7 @@ for (const [index, frame] of paintFrames.entries()) {
   const { from, to, p, change } = adState(frame),
     target = adPluginPoses(from, to, 1).find((pose) => pose.added),
     actor = change
-      ? adInspection(frame, change.at, target!.x, from.id === "base")
+      ? adInspection(frame, change.at, target!.x, true)
       : { ...adSelection(frame), expand: 0 },
     height =
       layouts[from.id].height +
@@ -297,7 +352,7 @@ for (const [index, frame] of paintFrames.entries()) {
       target.module.tools.length +
       target.module.hooks.length
     : 0;
-  const paper = adPromptBounds(height, actor.focus);
+  const paper = adPromptBounds(height, adFocus(frame));
   paper.y += 20 * (1 - phase(frame, copy.staging.promptAt, 70));
   const logoTravel = phase(frame, 500, 100),
     startX = 960 - opening.width / 2 + opening.logo.x,
@@ -312,6 +367,9 @@ for (const [index, frame] of paintFrames.entries()) {
       height: 84 - 12 * logoTravel,
     },
     { x: pointer.x, y: pointer.y, width: 34, height: 43 },
+    ...(adAddition(frame) && frame < adAddition(frame)!.change.at
+      ? [adAddition(frame)!]
+      : []),
     ...(frame < copy.staging.selectAt + copy.selection.retireFrames
       ? [{ x: 1040, y: 602, width: 600, height: 367 }]
       : []),
@@ -443,6 +501,7 @@ const report = {
   wordCollisions: collisions,
   componentOcclusions,
   encodedInspectionFrames: inspectionFrames.length,
+  encodedOfferFrames: offerFrames.length,
   encodedExtractionFrames: copy.staging.dockAt - copy.staging.selectAt,
   paintLeaks,
   qr: qr?.data,

@@ -8,6 +8,8 @@ import {
   adContributionOpacity,
   adSelection,
   adMenu,
+  adAddition,
+  adFocus,
   adPromptBounds,
   adPointer,
   adPluginPoses,
@@ -20,6 +22,48 @@ import {
 } from "../src/composable-ad-plan";
 import type { PromptLayout, WordBox } from "../src/prompt-morph";
 import { phase } from "../src/prompt-morph";
+
+test("workflow additions are offered and clicked before their instructions change", () => {
+  for (const change of copy.changes.filter(
+    (entry) => entry.bundle && entry.from !== "base",
+  )) {
+    const start = change.at - copy.addition.leadFrames,
+      offer = adAddition(change.at - 1)!;
+    assert.equal(offer.module.id, change.to);
+    assert.equal(offer.opacity, 1);
+    assert.equal(offer.added, 0);
+    assert.equal(adFocus(change.at - 1), 1);
+    assert.equal(adPointer(offer.clickAt).press, 1);
+    assert.equal(adPointer(offer.clickAt).opacity, 1);
+    const pointer = adPointer(offer.clickAt);
+    assert.ok(pointer.x >= offer.x + offer.width - 41);
+    assert.ok(pointer.x <= offer.x + offer.width - 20);
+    assert.ok(pointer.y >= offer.y + 17 && pointer.y <= offer.y + 39);
+    for (let frame = start; frame < change.at; frame++) {
+      const state = adState(frame);
+      assert.equal(state.to.id, change.from);
+      assert.equal(state.p, 1);
+      if (adAddition(frame)!.opacity > 0) assert.equal(adFocus(frame), 1);
+    }
+    const target = adPluginPoses(
+      profiles[change.from],
+      profiles[change.to],
+      1,
+    ).find((pose) => pose.added)!;
+    const inspection = adInspection(change.at, change.at, target.x, true);
+    for (const key of ["x", "y", "width", "opacity", "focus"] as const)
+      assert.equal(inspection[key], offer[key], `Addition jumps in ${key}`);
+    assert.equal(inspection.expand, 0);
+    assert.equal(inspection.bodyOpacity, 0);
+    let previous = adPointer(start);
+    for (let frame = start + 1; frame <= change.at + 36; frame++) {
+      const next = adPointer(frame);
+      if (next.opacity > 0 && previous.opacity > 0)
+        assert.ok(Math.hypot(next.x - previous.x, next.y - previous.y) < 18);
+      previous = next;
+    }
+  }
+});
 
 test("selected menu row preserves source geometry and clears neighbors before growing", () => {
   const start = adSelection(copy.staging.selectAt);
@@ -359,24 +403,14 @@ test("a plugin closes before transfer and routes around the prompt and retained 
     const from = profiles[change.from],
       to = profiles[change.to];
     const target = adPluginPoses(from, to, 1).find((pose) => pose.added)!;
-    let previous = adInspection(
-      change.at,
-      change.at,
-      target.x,
-      from.id === "base",
-    );
+    let previous = adInspection(change.at, change.at, target.x, true);
     for (
       let elapsed = 0;
       elapsed <= adInspectionTiming(change.at).end;
       elapsed++
     ) {
       const p = Math.min(1, elapsed / change.duration),
-        state = adInspection(
-          change.at + elapsed,
-          change.at,
-          target.x,
-          from.id === "base",
-        );
+        state = adInspection(change.at + elapsed, change.at, target.x, true);
       const lineCount =
         from.lines.length +
         (to.lines.length - from.lines.length) *

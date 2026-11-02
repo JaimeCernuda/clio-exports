@@ -1,6 +1,6 @@
 # CLIO: a composable agent
 
-The active film is a 37⅓-second, 1920 × 1080 / 60 fps motion advertisement. Its
+The active film is a 38.93-second, 1920 × 1080 / 60 fps motion advertisement. Its
 opening and closing are PR. The middle is a pseudo demo of editable native-derived
 CLIO plugin controls and prompt text, reshaped for the film without app chrome.
 See [ART-DIRECTION.md](ART-DIRECTION.md) for the story and craft references.
@@ -18,6 +18,9 @@ Robotics, Materials and Medical research, retaining Reports to demonstrate reuse
 Only the three additive bundles open. Their contents reveal in sequence and stay
 fully readable for 1.8 seconds for Manufacturing and 1.1 seconds for Simulation
 and Reports. Domain changes then proceed without repeating the inspection loop.
+Each workflow plugin is first offered as a closed row with a plus. The pointer
+hovers and clicks it before its contributions open and the prompt extends. The
+same row stays in place across that handoff; its plus rotates into removal.
 Its displayed identity always follows the active domain. The real CLIO owl remains
 the brand anchor. There is no generic robot, agent reference or inspector header.
 
@@ -34,6 +37,9 @@ that row grows a border, metadata and removal control. `selection.source` is
 checked against the actual DOM at `staging.selectAt`; remeasure it after changing
 the picker layout. The domain marker follows the identity morph instead of
 switching color on its first frame.
+`addition.leadFrames` reserves the workflow selection beats. Finish the preceding
+inspection and refocus before that lead begins. Make room before the offered row
+appears; do not bring it from offscreen while the prompt has already changed.
 
 These are illustrative domain plugins and a uniform editorial representation of
 their prompt. The film does not claim to show a complete backend-resolved prompt,
@@ -78,8 +84,8 @@ node scripts/prepare-composable-qr.mjs
 npm run composable:render
 ```
 
-Outputs: `out/composable/clio-composable-ad-v8-clean.mp4` and
-`out/composable/clio-composable-ad-v8.mp4`. Original synthetic sound is aligned
+Outputs: `out/composable/clio-composable-ad-v9-clean.mp4` and
+`out/composable/clio-composable-ad-v9.mp4`. Original synthetic sound is aligned
 to the cues. No reference-film footage, artwork or soundtrack is reused. Successful
 raw renderer intermediates and the temporary WAV are removed; movies stay local.
 
@@ -89,7 +95,7 @@ the render frame. Do not launch a second bundle into `motion/bundle` during a re
 After changing text or layout, measure again before checking geometry:
 
 ```powershell
-node render.mjs stills --composition ClioComposableAd --scale 1 --frames 480,559,560,574,584,606,700,870,950,1090,1170,1310,1420,1560,1656,1752,1820,2050 --props examples/composable-measure.json > review/composable-ad-v8-measure.log
+node render.mjs stills --composition ClioComposableAd --scale 1 --frames 480,560,700,870,900,918,926,933,934,944,985,1150,1176,1192,1199,1200,1230,1410,1520,1648,1750,1845,1930,2110 --props examples/composable-measure.json > review/composable-ad-v9-measure.log
 npx tsx scripts/review-composable-ad.ts --geometry-only
 npm run composable:review
 ```
@@ -98,11 +104,13 @@ Measure every compact plugin header after changing names, fonts or timing; the
 reviewer checks that each name and removal control fits the actual component.
 Include the exact selection frame so the menu row and extracted row can be
 compared, including the label's position and dimensions.
+Measure both `change.at - 1` and `change.at` for each workflow addition. The
+reviewer compares their actual card and label rectangles across the add action.
 
 Review covers uniform prompt typography, measured opening alignment and gaps, every
 instruction edit frame, whole-card clearance from the prompt and retained rows,
 full movie decode, audio, QR decoding and a settled final five seconds. An encoded
-paint audit covers all 60 menu-extraction frames and all 645 inspection frames,
+paint audit covers all 60 menu-extraction frames, 96 offer frames and 645 inspection frames,
 including every render worker. It flags dark paint outside the expected component
 bounds at 640 × 360 with a small codec-edge allowance; it does not judge animation
 quality or detect every possible defect inside those bounds.
@@ -122,4 +130,4 @@ in `motion/data/composable-prompts.json`; regenerate it only when deliberately
 changing those source pins. Prior movies remain local for comparison.
 
 Current status: revised full cut for user review; creative approval is pending.
-See [the current review receipt](review-ad-v8.md) for checks and review limits.
+See [the current review receipt](review-ad-v9.md) for checks and review limits.

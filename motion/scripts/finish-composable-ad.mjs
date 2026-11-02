@@ -5,8 +5,8 @@ import path from "node:path";
 const root = path.resolve(import.meta.dirname, "..");
 process.chdir(root);
 const source =
-  process.argv[2] ?? "out/composable/clio-composable-ad-v8-clean.mp4";
-const output = process.argv[3] ?? "out/composable/clio-composable-ad-v8.mp4";
+  process.argv[2] ?? "out/composable/clio-composable-ad-v9-clean.mp4";
+const output = process.argv[3] ?? "out/composable/clio-composable-ad-v9.mp4";
 const score = JSON.parse(await readFile("story/composable-ad.json", "utf8"));
 const rate = 48000,
   seconds = score.frames / score.fps,
@@ -86,7 +86,12 @@ for (const frame of [
 ])
   sweep(frame / 60, 0.4, 0.055);
 for (const [i, change] of score.changes.entries()) {
-  tick((change.at + 10) / 60, 0.07);
+  tick(
+    (change.bundle && change.from !== "base"
+      ? change.at - score.addition.clickBefore
+      : change.at + 10) / score.fps,
+    0.07,
+  );
   chime((change.at + 45) / 60, [440, 523.251, 659.255][i % 3], 0.022);
   if (change.bundle) {
     const from = score.stages.find((stage) => stage.id === change.from),

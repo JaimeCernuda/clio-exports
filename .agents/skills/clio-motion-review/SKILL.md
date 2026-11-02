@@ -99,6 +99,11 @@ clipped the next option. Measure the source and extracted row, plus their label
 bounds, on the exact selection frame. Retire neighbors before growing the row;
 reveal metadata only after it has enough vertical room. A filmed SVG cursor does
 not trigger CSS hover, so verify the frame-driven hover feedback in the encode.
+Audit later additive beats for an actual cause as well. In v8 only Manufacturing
+was selected; later workflow cards appeared without an add action. Confirm that
+the old prompt stays intact through each offer and click, and compare measured
+card and label rectangles immediately before and after the add handoff. Check
+the lead-in frames in the encoded paint audit, plus pointer approach and departure.
 Verify source fonts/brand assets finish loading. Use the component lab's alternate
 layout to check a shared-component change without relying only on one film.
 

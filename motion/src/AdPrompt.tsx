@@ -148,6 +148,27 @@ export function useAdLayouts(record = false) {
             };
           });
           console.log(`__CLIO_AD_PLUGINS__${JSON.stringify(pluginGeometry)}`);
+          const additions = Array.from(
+            document.querySelectorAll<HTMLElement>("[data-ad-add-frame]"),
+          ).map((element) => {
+            const card = element.getBoundingClientRect(),
+              label = element
+                .querySelector<HTMLElement>("[data-ad-plugin-name]")!
+                .getBoundingClientRect();
+            return {
+              frame: Number(element.dataset.adAddFrame),
+              id: element.dataset.adPlugin,
+              x: card.x,
+              y: card.y,
+              width: card.width,
+              height: card.height,
+              labelX: label.x,
+              labelY: label.y,
+              labelWidth: label.width,
+              labelHeight: label.height,
+            };
+          });
+          console.log(`__CLIO_AD_ADDITIONS__${JSON.stringify(additions)}`);
           const selected = document.querySelector<HTMLElement>(
             "[data-ad-selection-frame]",
           );
