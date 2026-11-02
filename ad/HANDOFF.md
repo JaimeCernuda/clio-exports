@@ -98,7 +98,7 @@ These points summarize the conversation; they are not a verbatim transcript.
   disappearing/teleporting cursors, unreadably brief bundles and unexplained
   plugin arrivals. Technical checks did not excuse these problems.
 
-## Current implementation: v11
+## Current implementation: v12
 
 The opening keeps the vertical domain wheel and aligned CLIO/plus lockup. Twelve
 successive changes smoothly shorten from 72 to 12 frames at 60 fps. Continuous
@@ -117,8 +117,16 @@ after the cursor leaves. Explicit X clicks first remove Simulation, then
 Manufacturing, leaving Reports. A plus click adds Genomics in the vacant slot
 before the remaining domain transformations. The fixed prompt does not refocus.
 The film ends with Build your own, CLIO, a 42 px URL without an arrow and a 288 px
-QR with a five-second settled hold. V11 is 41.23 seconds, 1080p, 60 fps with
+QR with a five-second settled hold. V12 is 41.23 seconds, 1080p, 60 fps with
 original procedural sound. Copy and timing remain in story/composable-ad.json.
+
+The follow-up review found the cursor dissolving between gestures, the owl
+crossing the fading prompt, and insufficient settled time in the final domain
+montage. The cursor now follows one continuous route into and out of the frame;
+idle portions stay outside it. Prompt entrance waits for the owl to clear, and
+the closing owl begins its travel later. Faster domain morphs create 0.6–1.3
+seconds of settled time without extending the film. These holds register the
+changed identity/fragments; they are not time to read the entire prompt.
 
 This is a **working baseline awaiting creative approval**. The user's latest
 direction adds a gradual cadence-driven blur ramp, correct add/remove controls
@@ -144,7 +152,8 @@ receipt records validation after that move.
 
 The historical [v10 review](docs/reviews/review-ad-v10.md) records the fixed prompt
 and capability tree; its control and wheel treatment was subsequently corrected.
-The current [v11 review](docs/reviews/review-ad-v11.md) records those corrections.
+The [v11 review](docs/reviews/review-ad-v11.md) records those corrections.
+The current [v12 review](docs/reviews/review-ad-v12.md) records the follow-up fixes.
 
 ## Continuing the work
 

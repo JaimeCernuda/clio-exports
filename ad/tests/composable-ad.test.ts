@@ -8,6 +8,7 @@ import {
   adModuleRows,
   adOpeningCase,
   adPointer,
+  adPointerStops,
   adPluginControl,
   adRemoval,
   adPromptBounds,
@@ -206,16 +207,21 @@ test("each tree leaf reveals after its parent opens and remains readable", () =>
   }
 });
 
-test("the pointer stays continuous while visible and operates the initial chooser", () => {
+test("the opaque pointer follows one continuous route and exits through the frame edge", () => {
   assert.equal(adPointer(copy.staging.menuAt - 6).press, 1);
   assert.equal(adPointer(copy.staging.selectAt - 1).press, 1);
-  let previous = adPointer(copy.staging.plusAt + 18);
-  for (let frame = copy.staging.plusAt + 19; frame < copy.closing.at; frame++) {
+  let previous = adPointer(0);
+  for (let frame = 1; frame < copy.closing.at; frame++) {
     const point = adPointer(frame);
-    if (point.opacity > 0 && previous.opacity > 0)
-      assert.ok(Math.hypot(point.x - previous.x, point.y - previous.y) < 22);
+    assert.equal(point.opacity, 1);
+    assert.ok(Math.hypot(point.x - previous.x, point.y - previous.y) < 24);
     previous = point;
   }
+  const stops = adPointerStops();
+  for (let i = 1; i < stops.length; i++) assert.ok(stops[i].f > stops[i - 1].f);
+  for (const stop of stops.filter((s) => s.x > 1920))
+    assert.ok(adPointer(stop.f).x > 1920);
+  assert.ok(adPointer(copy.closing.at).x > 1920);
 });
 
 test("add clicks use plus, then a check, and expose X only after the cursor has left", () => {
@@ -230,8 +236,25 @@ test("add clicks use plus, then a check, and expose X only after the cursor has 
     );
     for (let f = offer.clickAt - 4; f <= change.at + 45; f++) {
       const control = adPluginControl(f, offer.module.id);
-      if (control.kind === "remove") assert.equal(adPointer(f).opacity, 0);
+      if (control.kind === "remove") assert.ok(adPointer(f).x > 1920);
     }
+  }
+});
+
+test("each rapid domain change has a settled reading beat before the next transformation", () => {
+  for (const change of copy.changes.filter((c) => c.action === "transform")) {
+    const nextAt =
+      copy.changes.find((c) => c.at > change.at)?.at ?? copy.closing.at;
+    assert.ok(
+      nextAt - change.at - change.duration >= 36,
+      change.to + " has no reading beat",
+    );
+    const final = adTreePoses(change.at + change.duration);
+    assert.ok(
+      final
+        .filter((p) => p.opacity === 1)
+        .every((p) => p.rows.every((row) => row.opacity === 1)),
+    );
   }
 });
 

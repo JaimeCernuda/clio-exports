@@ -49,7 +49,7 @@
       "entrypoint": "ad/src/index.tsx",
       "compositions": ["ClioComposableAd", "ClioComposable"],
       "files": ["ad/HANDOFF.md", "ad/CLAUDE.md", "ad/ART-DIRECTION.md", "ad/references/ui-sources.json", "ad/story/composable-ad.json", "ad/src/AdOpening.tsx", "ad/src/ComposableAd.tsx", "ad/src/AdCapabilities.tsx", "ad/src/AdPrompt.tsx", "ad/src/composable-ad-plan.ts", "ad/src/composable-ad.css", "ad/src/prompt-morph.ts", "ad/src/wheel-timing.mjs", "ad/src/wheel-timing.d.mts", "ad/render.mjs", "ad/scripts/finish.mjs", "ad/scripts/review.ts", "ad/scripts/prepare-qr.mjs", "ad/tests/composable-ad.test.ts", "ad/skills/clio-composable-ad/SKILL.md"],
-      "reviewStatus": "v11-control-cadence-cta-awaiting-creative-review"
+      "reviewStatus": "v12-continuity-pacing-awaiting-creative-review"
     }
   ]
 }

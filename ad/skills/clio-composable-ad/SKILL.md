@@ -13,7 +13,7 @@ Make the viewer understand “build the agent you need.” Show both plugins ext
 an existing agent and specialization across many fields. The bookends are PR;
 the middle reshapes recognizable CLIO elements for motion. Keep the real owl,
 uniform prompt text and matching domain identity. Avoid reconstructing a whole
-app, technical catalogue or slide layout. V11 is a baseline, not an approved final.
+app, technical catalogue or slide layout. V12 is a baseline, not an approved final.
 
 Choose one opening mechanism. The current decision is a vertical wheel with the
 surrounding words fixed; do not mix it with typing/backspacing. Shorten successive
@@ -50,12 +50,21 @@ first actual removal by clicking its existing X before its owned text/leaves
 withdraw. Measure control identity and cursor hotspot at each click, as well as
 both sides of the handoff. A filmed cursor
 does not trigger CSS hover; derive feedback from the same cues as pointer/audio.
+Keep the pointer route continuous between gestures. If it should leave the scene,
+move it past the frame edge instead of dissolving it over the work. Include entry
+and exit legs when measuring speed, not only the approach to each click.
 
 Unmount hidden contribution text and clip/contain its paint. Keep persistent
 subtrees connected; a retained plugin and its leaves move together. Whole nodes
-must clear the fixed prompt and other branches.
+must clear the fixed prompt and other branches. Check the traveling brand against
+the prompt at low opacity too: the owl previously crossed the document as it
+faded in and out. Delay prompt entrance or logo travel until their paths are clear.
 Allow reading time after the last row is fully visible, rather than counting its
 fade-in as a hold. Avoid repeating an expanded inspection for every domain.
+In the final montage, budget settled time after the prompt morph as well as after
+the last capability leaf. A 90-frame morph in a 96-frame interval leaves only
+0.1 seconds of settled prompt, despite clean geometry. Keep these brief beats
+distinct from time needed to read an entire document.
 
 Every pixel follows the frame. Render fonts and actual DOM measurements first.
 Run tests, typecheck, formatting, geometry review, then inspect the encode around

@@ -54,12 +54,17 @@ No failed or skipped tests count as a passing result.
 
 For the current composability ad, verify the actual prompt rectangle remains
 fixed across measured frames. Review both the text edits and owned capability
-leaves: v11 keeps a persistent tree instead of the older disclosure/refocus loop.
+leaves: v12 keeps a persistent tree instead of the older disclosure/refocus loop.
 Check owner-colored edit marks, retained subtrees, outgoing/replacement leaves,
 early wheel legibility, smoothly shortening word intervals, cadence-driven late
 blur and a sharp settled word. Check the actual control beneath every click:
 plus for adds, X for removes. A geometrically correct click on the wrong symbol
 still fails. Verify the larger closing URL and QR without a link arrow.
+Check the owl's whole route against the prompt during both fades, down to low
+visible opacity. Follow the pointer through entrances, departures and intervals
+between clicks; a test that ignores zero-opacity intervals can miss dissolves
+and resets. Count settled prompt time separately from transition time in the
+final domain montage.
 Dotted count summaries
 do not show which skills, hooks or MCPs changed.
 

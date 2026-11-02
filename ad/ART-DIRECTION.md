@@ -6,7 +6,7 @@ The opening and closing are PR; the middle is a stylized composition of real
 CLIO elements. Demonstrate both specialization across many fields and additive
 capabilities. Retain Reports across domain changes to make reuse visible.
 
-## Current story: v11
+## Current story: v12
 
 1. Keep A and agent fixed while whole domain words roll vertically. Start readably,
    accelerate through many fields, and settle on composable. Each change shortens
@@ -16,6 +16,7 @@ capabilities. Retain Reports across domain changes to make reuse visible.
 2. Form one measured CLIO/phrase/plus lockup. Use the real owl. Press plus and
    select Manufacturing from a recognizable plugin chooser. Preserve the selected
    row's rectangle and label as it leaves; retire neighboring choices first.
+   Let the owl clear the future prompt before revealing the document.
 3. The row connects to a persistent capability tree on the right. Its owned skills,
    MCP servers, tools and hooks branch out beneath it. Matching warm color marks
    the actual identity/instruction edits inside the prompt on the left.
@@ -29,6 +30,9 @@ capabilities. Retain Reports across domain changes to make reuse visible.
    and Medical research. Old capability branches leave; new names and branches
    arrive. Reports stays connected and moves as a complete subtree. Identity and
    domain instructions change with their owning plugin.
+   Give each new state a settled beat; the morph duration must not consume the
+   entire interval before its successor. Move the cursor out through the edge
+   between authored gestures rather than fading it away in the frame.
 6. Resolve to Build your own / CLIO, a larger URL without an arrow and a stationary
    larger QR for five seconds.
 

@@ -9,9 +9,9 @@ It contains the editable components, copy, timing, assets, renderer, sound gener
 tests, review scripts and review history. It needs no CLIO backend or transcript server.
 The technical presentation demos elsewhere in this repository are separate projects.
 
-Current baseline: **v11, 41.23 seconds, 1920 × 1080, 60 fps, original procedural audio**.
+Current baseline: **v12, 41.23 seconds, 1920 × 1080, 60 fps, original procedural audio**.
 It is a revision for user review, **not a creatively approved final**. The latest
-[review receipt](docs/reviews/review-ad-v11.md) distinguishes checks from approval.
+[review receipt](docs/reviews/review-ad-v12.md) distinguishes checks from approval.
 Rendered movies remain local and are excluded from Git.
 
 The prompt stays at a fixed size and position. Owner-colored marks identify its
@@ -20,6 +20,9 @@ and MCP servers entering or leaving with their plugin. The wheel smoothly shorte
 each change from 1.2 to 0.2 seconds; directional blur follows cadence and motion.
 Additions use plus then confirmation; removals visibly click X. The closing URL
 and QR are larger, with no arrow beside the URL.
+The cursor follows a continuous route through the frame edge between gestures.
+The traveling owl clears the prompt before it appears, and later domain edits
+settle for 0.6–1.3 seconds before the next change.
 
 ## Run
 
@@ -51,8 +54,8 @@ compatible Chrome executable. Otherwise Remotion obtains its supported browser.
 --frames 1018,1025,1026,1340` renders selected frames. `npm run qr` regenerates the
 included QR assets if the destination changes. The complete render command writes:
 
-- `out/composable/clio-composable-ad-v11-clean.mp4`
-- `out/composable/clio-composable-ad-v11.mp4`
+- `out/composable/clio-composable-ad-v12-clean.mp4`
+- `out/composable/clio-composable-ad-v12.mp4`
 
 Measurements, extracted review images and reports go in `review/`; bundles and
 temporary files are also ignored. Do not run two bundles/renders against the same

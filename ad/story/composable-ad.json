@@ -1,5 +1,5 @@
 {
-  "schema": "clio.composable-ad.v11",
+  "schema": "clio.composable-ad.v12",
   "fps": 60,
   "frames": 2474,
   "treatment": "One agent. Different domains. Plugins bring the instructions and capabilities together.",
@@ -37,8 +37,9 @@
     "plusAt": 620,
     "menuAt": 688,
     "selectAt": 758,
-    "promptAt": 738,
-    "dockAt": 818
+    "promptAt": 778,
+    "dockAt": 818,
+    "promptEnterFrames": 36
   },
   "selection": {
     "hoverAt": 740,
@@ -353,7 +354,7 @@
     },
     {
       "at": 1700,
-      "duration": 90,
+      "duration": 60,
       "from": "genomics",
       "to": "climate",
       "readFrames": 0,
@@ -363,7 +364,7 @@
     },
     {
       "at": 1796,
-      "duration": 72,
+      "duration": 54,
       "from": "climate",
       "to": "robotics",
       "readFrames": 0,
@@ -373,7 +374,7 @@
     },
     {
       "at": 1892,
-      "duration": 66,
+      "duration": 48,
       "from": "robotics",
       "to": "materials",
       "readFrames": 0,
@@ -383,7 +384,7 @@
     },
     {
       "at": 1988,
-      "duration": 60,
+      "duration": 48,
       "from": "materials",
       "to": "medical",
       "readFrames": 0,

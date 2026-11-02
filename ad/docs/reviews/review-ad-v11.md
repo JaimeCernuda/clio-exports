@@ -1,5 +1,9 @@
 # Clear controls, gradual wheel cadence and a larger closing CTA
 
+Historical receipt. A closer v12 review found pointer dissolves, brand/prompt
+overlap during fades and a short settled Climate beat. Preserve this receipt as
+evidence for the v11 file; it did not establish the absence of those issues.
+
 - Local movie: `ad/out/composable/clio-composable-ad-v11.mp4` (not committed).
 - SHA-256: `50bd8e221906b9eed34f40e840889327ed813d9c80f8ffa6176ef88e81d04256`.
 - 1920 × 1080, 60 fps, 2,474 frames, 41.233 seconds, 4,863,175 bytes.

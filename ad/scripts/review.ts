@@ -13,6 +13,8 @@ import {
   adState,
   adTreePoses,
   adPointer,
+  adBrandPose,
+  adPromptOpacity,
   adWords,
   copy,
   tree,
@@ -20,7 +22,6 @@ import {
   type OpeningGeometry,
 } from "../src/composable-ad-plan";
 import type { PromptLayout } from "../src/prompt-morph";
-import { phase } from "../src/prompt-morph";
 const read = (name: string) =>
   JSON.parse(readFileSync("review/composable-ad-" + name + ".json", "utf8"));
 const layouts: Record<string, PromptLayout> = read("layouts"),
@@ -194,6 +195,32 @@ const overlap = (
 ) =>
   Math.max(0, Math.min(a.x + a.width, b.x + b.width) - Math.max(a.x, b.x)) *
   Math.max(0, Math.min(a.y + a.height, b.y + b.height) - Math.max(a.y, b.y));
+const logoOcclusions: unknown[] = [];
+let cursorPeakSpeed = 0;
+for (let frame = copy.staging.menuAt + 10; frame < copy.frames; frame++) {
+  const logo = adBrandPose(frame, opening);
+  if (adPromptOpacity(frame) > 0.01 && overlap(logo, expectedPaper) > 1)
+    logoOcclusions.push({ frame, opacity: adPromptOpacity(frame) });
+  const cursor = adPointer(frame, opening),
+    previous = adPointer(frame - 1, opening);
+  assert.equal(cursor.opacity, 1);
+  cursorPeakSpeed = Math.max(
+    cursorPeakSpeed,
+    Math.hypot(cursor.x - previous.x, cursor.y - previous.y),
+  );
+}
+assert.deepEqual(logoOcclusions, []);
+assert.ok(cursorPeakSpeed < 24);
+const domainHolds = copy.changes
+  .filter((c) => c.action === "transform")
+  .map((change) => ({
+    id: change.to,
+    frames:
+      (copy.changes.find((c) => c.at > change.at)?.at ?? copy.closing.at) -
+      change.at -
+      change.duration,
+  }));
+assert.ok(domainHolds.every((hold) => hold.frames >= 36));
 for (const change of copy.changes)
   for (let f = 0; f <= change.duration; f++) {
     const words = adWords(
@@ -239,7 +266,7 @@ if (process.argv.includes("--geometry-only")) {
   );
   process.exit(0);
 }
-const video = process.argv[2] ?? "out/composable/clio-composable-ad-v11.mp4";
+const video = process.argv[2] ?? "out/composable/clio-composable-ad-v12.mp4";
 const auditFrames = Array.from(
     { length: copy.closing.at - copy.staging.selectAt },
     (_, i) => copy.staging.selectAt + i,
@@ -269,18 +296,11 @@ const paintLeaks: Array<{ frame: number; darkPixels: number }> = [];
 for (const [index, frame] of auditFrames.entries()) {
   const pointer = adPointer(frame, opening),
     addition = adAddition(frame),
-    logoTravel = phase(frame, copy.staging.menuAt + 10, 100),
-    startX = 960 - opening.width / 2 + opening.logo.x,
-    startY = 540 - opening.height / 2 + opening.logo.y;
+    logo = adBrandPose(frame, opening);
   const boxes = [
     expectedPaper,
     { x: 1152, y: 238, width: 125, height: 710 },
-    {
-      x: startX + (140 - startX) * logoTravel,
-      y: startY + (135 - startY) * logoTravel,
-      width: 84 - 12 * logoTravel,
-      height: 84 - 12 * logoTravel,
-    },
+    logo,
     { x: pointer.x, y: pointer.y, width: 34, height: 43 },
     ...adTreePoses(frame),
     ...(addition && frame < addition.change.at ? [addition] : []),
@@ -397,6 +417,9 @@ const report = {
   promptBounds: expectedPaper,
   wordCollisions: collisions,
   componentOcclusions,
+  logoOcclusions,
+  cursorPeakSpeed,
+  domainHolds,
   encodedCompositionFrames: auditFrames.length,
   paintLeaks,
   qr: qr?.data,

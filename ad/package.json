@@ -28,8 +28,8 @@
   "scripts": {
     "studio": "remotion studio src/index.tsx --port=3370 --no-open",
     "stills": "node render.mjs stills",
-    "measure": "node render.mjs stills --scale 1 --frames 0,24,60,96,166,235,300,355,405,440,470,490,510,528,678,758,900,1018,1025,1026,1040,1070,1120,1176,1183,1184,1196,1280,1340,1342,1400,1422,1424,1490,1546,1553,1554,1566,1660,1790,1880,1970,2070,2300 --props examples/composable-measure.json",
-    "render": "node render.mjs video --scale 1 --concurrency 4 --output out/composable/clio-composable-ad-v11-clean.mp4 && node scripts/finish.mjs",
+    "measure": "node render.mjs stills --scale 1 --frames 0,24,60,96,166,235,300,355,405,440,470,490,510,528,678,758,770,778,786,806,900,1018,1025,1026,1040,1070,1120,1176,1183,1184,1196,1280,1340,1342,1400,1422,1424,1490,1546,1553,1554,1566,1660,1790,1880,1970,2070,2300 --props examples/composable-measure.json",
+    "render": "node render.mjs video --scale 1 --concurrency 4 --output out/composable/clio-composable-ad-v12-clean.mp4 && node scripts/finish.mjs",
     "qr": "node scripts/prepare-qr.mjs",
     "review": "tsx scripts/review.ts",
     "review:geometry": "tsx scripts/review.ts --geometry-only",

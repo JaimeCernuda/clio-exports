@@ -8,6 +8,8 @@ import {
 import { Box, ChevronRight, Plus, Search } from "lucide-react";
 import {
   adPointer,
+  adBrandPose,
+  adPromptOpacity,
   adSelection,
   adMenu,
   adState,
@@ -20,7 +22,6 @@ import { AdMeasures, AdPromptInk, useAdLayouts } from "./AdPrompt";
 import { AdOpening } from "./AdOpening";
 import { AdCapabilities, PluginNode } from "./AdCapabilities";
 import "./composable-ad.css";
-const mix = (a: number, b: number, p: number) => a + (b - a) * p;
 
 function PluginPicker({ frame }: { frame: number }) {
   const open = phase(frame, copy.staging.menuAt, 18),
@@ -89,18 +90,9 @@ export function ComposableAd({
   const frame = useCurrentFrame(),
     { layouts, opening } = useAdLayouts(auditLayouts),
     state = adState(frame),
-    body = phase(frame, copy.staging.promptAt, 70),
-    retire = phase(frame, copy.closing.at, 32),
-    brandClose = phase(frame, copy.closing.at + 14, 46),
     end = phase(frame, copy.closing.at + 46, 14),
     pointer = adPointer(frame, opening),
-    logoTravel = phase(frame, copy.staging.menuAt + 10, 100);
-  const startLogo = opening
-    ? {
-        x: 960 - opening.width / 2 + opening.logo.x,
-        y: 540 - opening.height / 2 + opening.logo.y,
-      }
-    : { x: 260, y: 498 };
+    logo = opening ? adBrandPose(frame, opening) : null;
   return (
     <AbsoluteFill className="ad-film">
       <AdMeasures />
@@ -114,7 +106,7 @@ export function ComposableAd({
           top: paper.y,
           width: paper.width,
           height: paper.height,
-          opacity: body * (1 - retire),
+          opacity: adPromptOpacity(frame),
           transform: `scale(${paper.scale})`,
         }}
       >
@@ -146,15 +138,15 @@ export function ComposableAd({
         />
       </div>
       <AdCapabilities frame={frame} />
-      {frame >= copy.staging.menuAt + 10 ? (
+      {frame >= copy.staging.menuAt + 10 && logo ? (
         <Img
           src={staticFile("clio-mark.svg")}
           className="ad-brand-owl"
           style={{
-            left: mix(mix(startLogo.x, 140, logoTravel), 530, brandClose),
-            top: mix(mix(startLogo.y, 135, logoTravel), 490, brandClose),
-            width: mix(mix(84, 72, logoTravel), 148, brandClose),
-            height: mix(mix(84, 72, logoTravel), 148, brandClose),
+            left: logo.x,
+            top: logo.y,
+            width: logo.width,
+            height: logo.height,
           }}
         />
       ) : null}

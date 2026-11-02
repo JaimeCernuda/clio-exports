@@ -7,5 +7,5 @@ before revising the film.
 
 This is a motion-graphics advertisement about composability, separate from the
 technical demos elsewhere in clio-exports. This folder is independently runnable.
-Current baseline is v11, awaiting creative approval. Keep all generated work on D:
+Current baseline is v12, awaiting creative approval. Keep all generated work on D:
 on the user's machine. Do not commit movies. Direct source pushes to main are authorized.

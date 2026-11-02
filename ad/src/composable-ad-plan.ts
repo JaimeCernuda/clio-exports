@@ -252,6 +252,31 @@ export function adPromptBounds() {
   };
 }
 
+/** The prompt enters only after the traveling owl has cleared its rectangle. */
+export function adPromptOpacity(frame: number): number {
+  return (
+    phase(frame, copy.staging.promptAt, copy.staging.promptEnterFrames) *
+    (1 - phase(frame, copy.closing.at, 32))
+  );
+}
+
+/** One owl moves between the measured opening, composition anchor and closing logo. */
+export function adBrandPose(frame: number, geometry: OpeningGeometry) {
+  const travel = phase(frame, copy.staging.menuAt + 10, 100),
+    close = phase(frame, copy.closing.at + 24, 36),
+    startX = 960 - geometry.width / 2 + geometry.logo.x,
+    startY = 540 - geometry.height / 2 + geometry.logo.y,
+    dockX = startX + (140 - startX) * travel,
+    dockY = startY + (135 - startY) * travel,
+    size = 84 - 12 * travel;
+  return {
+    x: dockX + (530 - dockX) * close,
+    y: dockY + (490 - dockY) * close,
+    width: size + (148 - size) * close,
+    height: size + (148 - size) * close,
+  };
+}
+
 /** A workflow addition is offered at its eventual tree position before the click. */
 export function adAddition(frame: number) {
   const change = copy.changes.find(
@@ -443,36 +468,8 @@ export function adEditMarks(a: PromptLayout, b: PromptLayout, frame: number) {
   return [...groups.values()];
 }
 
-/** One continuous cursor approaches each actual add control, then clears the tree. */
-export function adPointer(frame: number, geometry?: OpeningGeometry | null) {
-  const removal = adRemoval(frame);
-  if (removal) {
-    const r = frame - removal.change.at,
-      approach = phase(r, -36, 24),
-      depart = phase(r, 1, 18),
-      targetX = removal.x + removal.width - 31,
-      targetY = removal.y + tree.header / 2 - 2;
-    return {
-      x: targetX + 101 * (1 - approach) + 71 * depart,
-      y: targetY + 148 * (1 - approach) + 103 * depart,
-      opacity: phase(r, -36, 8) * (1 - phase(r, 10, 12)),
-      press: Math.max(0, 1 - Math.abs(frame - removal.clickAt) / 5),
-    };
-  }
-  const addition = adAddition(frame);
-  if (addition) {
-    const r = frame - addition.change.at,
-      approach = phase(r, -36, 22),
-      depart = phase(r, -5, 16),
-      targetX = addition.x + addition.width - 31,
-      targetY = addition.y + tree.header / 2 - 2;
-    return {
-      x: targetX + 101 * (1 - approach) + 71 * depart,
-      y: targetY + 148 * (1 - approach) + 103 * depart,
-      opacity: phase(r, -36, 8) * (1 - phase(r, 10, 10)),
-      press: Math.max(0, 1 - Math.abs(frame - addition.clickAt) / 5),
-    };
-  }
+/** All gestures share a continuous route; idle portions stay beyond the frame edge. */
+export function adPointerStops(geometry?: OpeningGeometry | null) {
   const plus = geometry
       ? {
           x:
@@ -484,27 +481,76 @@ export function adPointer(frame: number, geometry?: OpeningGeometry | null) {
         }
       : { x: 1600, y: 540 },
     points = [
-      { f: copy.staging.plusAt + 18, x: 1790, y: 755 },
-      { f: copy.staging.menuAt - 10, ...plus },
+      { f: 0, x: 1968, y: 755 },
+      { f: copy.staging.plusAt + 2, x: 1968, y: 755 },
+      { f: copy.staging.menuAt - 12, ...plus },
       { f: copy.staging.menuAt + 10, ...plus },
       { f: copy.staging.selectAt - 6, x: 1450, y: 694 },
-      { f: copy.staging.selectAt + 8, x: 1450, y: 694 },
-      { f: copy.staging.dockAt - 16, x: 1810, y: 900 },
-    ],
+      { f: copy.staging.selectAt + 2, x: 1450, y: 694 },
+      { f: copy.staging.selectAt + 48, x: 1968, y: 900 },
+    ];
+  for (const change of copy.changes) {
+    const removing = change.action === "remove";
+    if (!removing && !(change.bundle && change.from !== "base")) continue;
+    const profile = profiles[removing ? change.from : change.to],
+      target = adTreeLayout(profile).find((p) =>
+        removing
+          ? p.module.id === change.controlId
+          : !profiles[change.from].modules.some((m) => m.id === p.module.id),
+      );
+    if (!target) throw new Error(`Missing cursor target at ${change.at}`);
+    const x = target.x + target.width - 31,
+      y = target.y + tree.header / 2 - 2;
+    points.push(
+      {
+        f:
+          change.at -
+          (removing ? copy.removal.leadFrames : copy.addition.leadFrames),
+        x: 1968,
+        y: y + 130,
+      },
+      { f: change.at - 16, x, y },
+      { f: change.at + (removing ? 1 : -6), x, y },
+      { f: change.at + (removing ? 26 : 30), x: 1968, y: y + 130 },
+    );
+  }
+  return points;
+}
+
+/** Pointer opacity stays constant: it leaves through the edge instead of dissolving. */
+export function adPointer(frame: number, geometry?: OpeningGeometry | null) {
+  const points = adPointerStops(geometry),
     b = points.find((point) => frame <= point.f) ?? points.at(-1)!,
     i = points.indexOf(b),
     a = points[Math.max(0, i - 1)],
-    p = a.f === b.f ? 1 : phase(frame, a.f, b.f - a.f);
+    p =
+      a.f === b.f
+        ? 1
+        : a.x > 1920 && b.x > 1920
+          ? Math.max(0, Math.min(1, (frame - a.f) / (b.f - a.f)))
+          : phase(frame, a.f, b.f - a.f);
   return {
     x: a.x + (b.x - a.x) * p,
     y: a.y + (b.y - a.y) * p,
-    opacity:
-      phase(frame, copy.staging.plusAt + 18, 16) *
-      (1 - phase(frame, copy.staging.selectAt + 25, 20)),
+    opacity: 1,
     press: Math.max(
       0,
       1 - Math.abs(frame - (copy.staging.menuAt - 6)) / 5,
       1 - Math.abs(frame - (copy.staging.selectAt - 1)) / 5,
+      ...copy.changes
+        .filter((c) => c.action === "remove" || (c.bundle && c.from !== "base"))
+        .map(
+          (c) =>
+            1 -
+            Math.abs(
+              frame -
+                (c.at -
+                  (c.action === "remove"
+                    ? copy.removal.clickBefore
+                    : copy.addition.clickBefore)),
+            ) /
+              5,
+        ),
     ),
   };
 }
