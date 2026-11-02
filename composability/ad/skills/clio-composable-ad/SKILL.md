@@ -85,3 +85,7 @@ with the supplied transparent GRC logo. Use the original asset directly without
 a backing card, measure separation from URL/QR, and leave website loops unbranded.
 Keep all generated work on the project
 volume (D: on the user's machine), source and lessons in Git, and movies local.
+Keep the latest delivered ad final; after verifying its checksum, remove superseded
+local ad cuts and redundant clean encodes under the user's cleanup authorization.
+Keep committed review history, original exports and current website deliverables.
+Report blocked cleanup actions without treating them as completed or bypassing them.

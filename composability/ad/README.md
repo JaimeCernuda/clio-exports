@@ -18,6 +18,11 @@ It is a revision for user review, **not a creatively approved final**. The lates
 [review receipt](docs/reviews/review-ad-v14.md) distinguishes checks from approval.
 Rendered movies remain local and are excluded from Git.
 
+Local retention: the user requested cleanup on November 2, 2026. V14 is the retained
+ad movie; superseded local ad versions and redundant clean renders were removed.
+Historical review receipts remain in Git, but their older movie paths no longer exist.
+Original session exports and all website deliverables were retained.
+
 The GRC closing-credit artwork is the unmodified PNG supplied by the user.
 [Its source and checksum](references/grc-logo.json) accompany the bundled asset.
 
