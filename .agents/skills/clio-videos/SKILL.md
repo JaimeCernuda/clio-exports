@@ -12,94 +12,20 @@ when the host page already carries it. Render the editable elements directly;
 do not crop the encoded ad. Provide GIF plus smaller silent WebM/MP4 and a poster.
 Check the wrap, reduced-motion poster and browser playback before delivery.
 
-For short composition/PR films, use the [standalone ad project](../../../composability/ad/README.md)
-and [creative handoff](../../../composability/ad/HANDOFF.md). Its complete source and focused
-skill are grouped in `composability/ad/` for independent use by another agent.
-The current v12 treatment uses a fixed prompt, owner-colored text edits and a
-persistent capability tree. Skills, hooks, tools and MCP leaves enter and leave
-with their plugin; no dotted count summaries or repeated prompt zoom/refocus.
-V12 clears the traveling owl before prompt fades, routes the cursor through the
-frame edge and adds settled beats after the final prompt transformations.
-The v5–v9 extraction/inspection notes below are historical lessons. Follow the
-current ad skill and handoff where that earlier choreography has been replaced.
-The initial UI-based composability cut and the floating two-column revision were
-both rejected as slides/demos. Advertising uses the separate `composable-ad-index`
-and [art direction](../../../composability/ad/ART-DIRECTION.md). Read the original
-[motion scenes](../../../motion/references/motion-video-scenes.md),
-[stack](../../../motion/references/motion-video-stack.md) and
-[review](../../../motion/references/motion-video-review.md) skills. One visual
-material carries the concept across type, control, capability and prompt; do not
-rebuild a whole app or hold a documentation layout for the advertisement. Use
-understandable domains, white space, color continuity, purposeful object handoffs
-and sound design. Omit core, filesystem, dependency trees and scientific case names.
-For this ad, the opening/closing are PR; the middle is a pseudo demo of real CLIO
-elements reshaped for the film. Show many possible domains, not just three presets.
-Choose one opening device. The current cut uses only a vertical domain wheel:
-keep A and agent fixed while whole words rotate, accelerate and settle on composable.
-Do not combine that with typing/backspacing or a second horizontal wheel.
-Use one measured flex lockup for CLIO, the phrase and plus. Remove inspector chrome,
-the large header, grey System prompt label and clio/standard reference. Use the real
-CLIO owl, not the generic robot. Keep the prompt uniformly typeset and make its
-identity match the active domain. The middle needs both building and transformations
-across several domains, rather than only one build or a set of identity presets.
-Skills, MCP servers, tools and hooks are brought by plugins. Inspect a plugin's
-multiple contributions, then dock that same plugin row. Never depict standalone
-Add skill or Add MCP actions. Adding a workflow plugin extends the current domain;
-changing the domain updates identity and domain instructions. Keep a reusable
-Reports plugin through those switches so composition and reuse are visible.
-Shortened illustrative domain instructions are allowed when requested; document
-them as editorial examples rather than asserting an installed catalogue or run.
-Plan transitions as paths through occupied space. Move the agent card clear before
-unfolding plugin choices, retire neighboring choices before extracting a selection,
-and keep the selected piece above the menu. Incoming plugins must wait for retained
-plugins to vacate their destination. Clear the prompt before the closing brand
-travels through its text, then reveal the CTA after the brand clears that area.
-Inspect these passages in the encode; clean held frames missed the collisions.
-The v5 composability re-review also found whole plugin cards crossing the prompt
-despite passing word-collision checks. Audit complete card bounds through menu
-extraction, inspection, closure, transfer and docking. Make room before a selected
-row rises; fade contents and close before moving it. Route below the prompt and
-above retained rows, with rounded turns, then restore the prompt after docking.
-Keep that choreography independent of the text-edit duration. Hidden contribution
-DOM painted outside a moving card in the encode: unmount hidden contents, remove
-unnecessary nested transforms and use explicit paint containment and clipping.
-Check all workers and consecutive encoded frames, not only the intended DOM boxes.
-Technical clearance did not fix the v6 pacing: full contribution lists were readable
-for under half a second, and five identical inspections became repetitive. Budget
-reading time after the last row is completely visible, stagger contribution rows
-inside their owning plugin, and reserve the expanded treatment for the additive
-build. Reuse that vocabulary for brisk domain changes. The current cut holds its
-first complete bundle for 1.8 seconds and the next two for 1.1 seconds; these are
-film-specific choices, not a global duration rule. Measure all opening words and
-their gaps, not only the owl and plus. Reveal the full brand in its allocated
-space and clear A before introducing a, avoiding a doubled glyph during a fade.
-For menu extraction, preserve the exact source-row rectangle, type and controls
-on the first selected frame. A safe travel route does not excuse an instantaneous
-replacement by a taller card. Fade neighboring options before growing metadata
-space, and reveal metadata after it clears the title. Animate hover feedback from
-the filmed pointer's timeline; CSS hover will not follow an SVG cursor. Audit
-selectors against their actual siblings: a search div prevented first-of-type
-from matching the first plugin row in v7. Keep domain-color changes aligned with
-the changing identity rather than switching them on the first transition frame.
-Repeat the causal check for later additions, not only the first menu click. V8
-showed Simulation and Reports arriving without a selection action. Offer each
-workflow plugin before it affects the prompt, visibly press its add control, then
-open its contributions without replacing or relocating the row. Reserve that
-preparation before the edit starts and after the preceding inspection has ended.
-The v10 plus-to-X rotation under the cursor made additions look like removals.
-Use plus for addition, a confirmation check, then expose X after the cursor leaves.
-Show initial removals through explicit X clicks. Check the rendered control's
-identity and hotspot, not only its rectangle. Derive sound and pointer timing
-from the same cue. For the opening wheel, smoothly shorten per-word intervals and
-derive blur from cadence plus actual motion; do not jump to full blur or remove it.
-For source-bound demos, source real identities and contributed prompt fragments. Scope text matches
-by fragment and ordered phrases; isolated repeated words should not fly across
-unrelated prose. Measure destination wrapping after fonts load. Open insertion
-space first, clip text to its growing card, and keep retained plugin chips clear
-of arriving chips. Do not crossfade two readable paragraphs on top of each other.
-Switching an agent and adding a plugin are distinct actions. Check what the agent
-already carries before portraying a new addition. A configured MCP declaration
-is not a successful connection. Leave a stationary, decodable QR at the end.
+For PR and social-media motion advertisements, read the
+[general motion-ad skill](../clio-motion-ads/SKILL.md) and its lessons. It covers
+visual argument, hook timing, product-driven choreography and encoded review.
+For the existing composability film, use its
+[standalone project](../../../composability/ad/README.md),
+[focused skill](../../../composability/ad/skills/clio-composable-ad/SKILL.md) and
+[creative handoff](../../../composability/ad/HANDOFF.md). The current V14 film has
+a four-second keyword hook, global plugin chooser, fixed prompt and persistent
+owned capability tree. Older offers with per-row plus controls are superseded.
+The broader ad skill preserves transferable lessons without prescribing this
+film's wheel, palette or layout for every new subject.
+
+The session-demo guidance below concerns source-linked conversations, native
+views and recorded work. Choose that workflow when the brief is a walkthrough.
 
 Start with the [video catalog](../../../videos/README.md) and the selected film's
 guide. Shared runtime architecture is in

@@ -72,6 +72,7 @@ rendering, verification and source-packaging scripts live in this repository.
 Other agents can start with [AGENTS.md](AGENTS.md) and the repo-local skills:
 
 - [CLIO videos and lessons learned](.agents/skills/clio-videos/SKILL.md)
+- [PR/social motion ads and transferable lessons](.agents/skills/clio-motion-ads/SKILL.md)
 - [Motion infrastructure](.agents/skills/clio-motion-stack/SKILL.md)
 - [Scene authoring](.agents/skills/clio-motion-scenes/SKILL.md)
 - [Source, visual and encoding review](.agents/skills/clio-motion-review/SKILL.md)

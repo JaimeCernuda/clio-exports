@@ -51,6 +51,7 @@ and compact finished files grouped per asset. Keep ad bookends out of those loop
 
 For motion work, read the relevant repo-local skill before making changes:
 
+- `.agents/skills/clio-motion-ads/SKILL.md`: new PR/social motion ads and transferable art-direction lessons; use the focused composability skill when revising that film.
 - `.agents/skills/clio-videos/SKILL.md`: story, shot purpose and lessons from rejected cuts.
 - `.agents/skills/clio-motion-stack/SKILL.md`: setup, data pipeline, shared kit and packaging.
 - `.agents/skills/clio-motion-scenes/SKILL.md`: editable UI scenes and choreography.
