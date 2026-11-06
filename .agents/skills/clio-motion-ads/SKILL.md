@@ -18,6 +18,12 @@ and plugin tree are one treatment, not the required layout for future ads.
 
 ## Establish a visual argument
 
+For the eight-film capability campaign, use its [entrypoint](../../../ads/capabilities/README.md)
+and [source/review contract](../../../ads/capabilities/REPRODUCE.md). Read the relevant
+film's own storyboard before changing its timing. Its editable pieces are deliberately
+not constrained to CLIO's app window. See [capability campaign lessons](references/capability-lessons.md)
+when adapting those compositions or addressing idle controls and map distortion.
+
 State the audience, claim, visible proof and desired next action before arranging
 screens. Turn the user's rough examples into a coherent concept; they are useful
 direction, not a requirement to animate every suggested gesture. Choose the

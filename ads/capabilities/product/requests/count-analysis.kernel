@@ -1,0 +1,19 @@
+"""Program executed inside CLIO's real run_code kernel (tools is its native binding)."""
+
+from statistics import median
+
+shape = await tools.read_count_component(component="shape")
+ptr = await tools.read_count_component(component="indptr")
+data = await tools.read_count_component(component="data")
+meta = await tools.read_dataset_record()
+values = data["values"]
+boundaries = ptr["values"]
+totals = [sum(values[a:b]) for a, b in zip(boundaries[:-1], boundaries[1:])]
+print(
+    {
+        "cells": shape["values"][1],
+        "median_counts": float(median(totals)),
+        "total_counts": sum(totals),
+        "source": meta["doi"],
+    }
+)

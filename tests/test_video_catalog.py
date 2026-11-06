@@ -22,6 +22,7 @@ def test_catalog_points_to_real_guides_sources_and_compositions() -> None:
         "wordle",
         "engineering",
         "composable",
+        "capabilities",
     }
     registrations = "\n".join(
         (ROOT / filename).read_text("utf-8")
@@ -44,6 +45,13 @@ def test_catalog_points_to_real_guides_sources_and_compositions() -> None:
             assert path.is_relative_to(ROOT), name
             assert path.is_file(), name
         for composition in cast(list[str], project["compositions"]):
+            if project["id"] == "capabilities":
+                registry = (ROOT / "ads/capabilities/src/registry.ts").read_text("utf-8")
+                film_id = composition.removeprefix("Clio-")
+                assert f'id: "{film_id}"' in registry, composition
+                entrypoint = (ROOT / project["entrypoint"]).read_text("utf-8")
+                assert "id={`Clio-${f.id}`}" in entrypoint
+                continue
             assert f'"{composition}"' in registrations, composition
     assert (ROOT / catalog["emulatorGuide"]).is_file()
 
@@ -60,6 +68,10 @@ def test_portable_package_contains_guides_and_launch_tools_without_runtime_asset
         "videos/engineering/README.md",
         "videos/composable/README.md",
         "composability/ad/README.md",
+        "ads/capabilities/README.md",
+        "ads/capabilities/src/index.tsx",
+        "ads/capabilities/evidence/execution/stream-snapshots.json",
+        "ads/capabilities/films/07-selection/storyboard.json",
         "composability/ad/HANDOFF.md",
         "composability/ad/CLAUDE.md",
         "composability/ad/ART-DIRECTION.md",

@@ -1,0 +1,20 @@
+[project]
+name = "clio-capability-evidence"
+version = "1.0.0"
+requires-python = ">=3.12"
+dependencies = ["h5py>=3.12,<4", "numpy>=2,<3", "pyproj>=3.7,<4"]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.11", "pyright>=1.1.400"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.pyright]
+pythonVersion = "3.12"
+typeCheckingMode = "standard"
+include = ["scripts", "tests"]

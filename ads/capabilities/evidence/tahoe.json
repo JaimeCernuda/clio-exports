@@ -1,0 +1,541 @@
+{
+  "session": "sess_9cca40f4085e",
+  "archive": {
+    "archive": "tahoe-original.html",
+    "sha256": "e5f762a73eaa749738780b095a24133cec08d8d125c81bd24ecfc8c3bda0dbf4"
+  },
+  "tables": [
+    {
+      "artifact_id": "artifact_a5003b83127f4d239017ac63ab12cbf8",
+      "name": "shoreline_resolution.csv",
+      "schema": [
+        {
+          "name": "tolerance_m",
+          "type": "int64"
+        },
+        {
+          "name": "shoreline_km",
+          "type": "double"
+        },
+        {
+          "name": "shoreline_miles",
+          "type": "double"
+        },
+        {
+          "name": "shorter_pct",
+          "type": "double"
+        },
+        {
+          "name": "vertices",
+          "type": "int64"
+        },
+        {
+          "name": "area_km2",
+          "type": "double"
+        },
+        {
+          "name": "area_change_pct",
+          "type": "double"
+        },
+        {
+          "name": "method",
+          "type": "string"
+        },
+        {
+          "name": "detail_label",
+          "type": "string"
+        },
+        {
+          "name": "length_display",
+          "type": "double"
+        },
+        {
+          "name": "reduction_display",
+          "type": "double"
+        }
+      ],
+      "columns": {
+        "tolerance_m": [
+          0,
+          1,
+          5,
+          10,
+          25,
+          50,
+          100,
+          250,
+          500,
+          1000
+        ],
+        "shoreline_km": [
+          123.04962296030477,
+          122.70238971144038,
+          121.62880991523014,
+          120.58226526678274,
+          118.13719900123218,
+          115.89840243187315,
+          112.67160095737718,
+          109.21358803850747,
+          105.33994298354196,
+          101.99983434938564
+        ],
+        "shoreline_miles": [
+          76.459490923199,
+          76.24373018536768,
+          75.5766386274346,
+          74.92634593149926,
+          73.40705219097481,
+          72.01592849749535,
+          70.01088701817459,
+          67.86217740800443,
+          65.45520596189625,
+          63.37975867768832
+        ],
+        "shorter_pct": [
+          0,
+          0.28218960815215477,
+          1.1546667197289886,
+          2.005172900300549,
+          3.9922299970454334,
+          5.811655782755682,
+          8.434013655023955,
+          11.244272504809492,
+          14.392307388439434,
+          17.10674775306682
+        ],
+        "vertices": [
+          20471,
+          5219,
+          1790,
+          1101,
+          515,
+          288,
+          146,
+          68,
+          38,
+          22
+        ],
+        "area_km2": [
+          497.72786108309987,
+          497.72381742280203,
+          497.7038275657622,
+          497.6563744223972,
+          497.4649656052165,
+          497.1019276706909,
+          496.8789906711011,
+          495.7104589452205,
+          492.0790817109765,
+          484.81848387384747
+        ],
+        "area_change_pct": [
+          0,
+          -0.0008124239396628649,
+          -0.004828646177314888,
+          -0.014362599784364992,
+          -0.05281912033440425,
+          -0.12575816251211283,
+          -0.17054910491679764,
+          -0.40532232483214153,
+          -1.1349132354839686,
+          -2.593661761501639
+        ],
+        "method": [
+          "Topology-preserving simplification",
+          "Topology-preserving simplification",
+          "Topology-preserving simplification",
+          "Topology-preserving simplification",
+          "Topology-preserving simplification",
+          "Topology-preserving simplification",
+          "Topology-preserving simplification",
+          "Topology-preserving simplification",
+          "Topology-preserving simplification",
+          "Topology-preserving simplification"
+        ],
+        "detail_label": [
+          "Original",
+          "1 m",
+          "5 m",
+          "10 m",
+          "25 m",
+          "50 m",
+          "100 m",
+          "250 m",
+          "500 m",
+          "1,000 m"
+        ],
+        "length_display": [
+          123.05,
+          122.7,
+          121.63,
+          120.58,
+          118.14,
+          115.9,
+          112.67,
+          109.21,
+          105.34,
+          102
+        ],
+        "reduction_display": [
+          0,
+          0.3,
+          1.2,
+          2,
+          4,
+          5.8,
+          8.4,
+          11.2,
+          14.4,
+          17.1
+        ]
+      },
+      "totalRows": 10,
+      "matchedRows": 10,
+      "returnedRows": 10,
+      "truncated": false,
+      "offset": 0,
+      "downsample": {
+        "mode": "none",
+        "inputRows": 10,
+        "outputRows": 10
+      },
+      "rowKey": {
+        "column": "__row",
+        "values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "cached": false
+    }
+  ],
+  "surfaces": [
+    {
+      "id": "tahoe-boundary-map",
+      "session_id": "sess_9cca40f4085e",
+      "catalog_id": "https://iowarp.ai/a2ui/catalogs/clio-workspace/v1",
+      "protocol_version": "0.9.1",
+      "revision": 2,
+      "state": "ready",
+      "messages": [
+        {
+          "version": "v0.9.1",
+          "createSurface": {
+            "surfaceId": "tahoe-boundary-map",
+            "catalogId": "https://iowarp.ai/a2ui/catalogs/clio-workspace/v1"
+          }
+        },
+        {
+          "version": "v0.9.1",
+          "updateComponents": {
+            "surfaceId": "tahoe-boundary-map",
+            "components": [
+              {
+                "id": "root",
+                "component": "clio.map.v1",
+                "title": "Lake Tahoe — measured TRPA boundary",
+                "geojsonUri": "artifact://artifact_47ed32665c174a5daf93ef98517023fc",
+                "labelField": "name",
+                "detailField": "detail"
+              }
+            ]
+          }
+        }
+      ],
+      "message_revisions": [
+        1,
+        2
+      ],
+      "part_id": "live_a2ui_d5075ed1cdf7",
+      "evicted_messages": 0,
+      "created_at": "2026-10-19T06:59:22.045389+00:00",
+      "updated_at": "2026-10-19T06:59:22.045389+00:00",
+      "actions": []
+    },
+    {
+      "id": "tahoe-area-method-figure",
+      "session_id": "sess_9cca40f4085e",
+      "catalog_id": "https://iowarp.ai/a2ui/catalogs/clio-workspace/v1",
+      "protocol_version": "0.9.1",
+      "revision": 3,
+      "state": "ready",
+      "messages": [
+        {
+          "version": "v0.9.1",
+          "createSurface": {
+            "surfaceId": "tahoe-area-method-figure",
+            "catalogId": "https://iowarp.ai/a2ui/catalogs/clio-workspace/v1"
+          }
+        },
+        {
+          "version": "v0.9.1",
+          "updateComponents": {
+            "surfaceId": "tahoe-area-method-figure",
+            "components": [
+              {
+                "id": "root",
+                "component": "Image",
+                "url": "artifact://artifact_3a09385d009c4dcb9e1155fc044a5924",
+                "description": "Equal-area measurement map: Lake Tahoe boundary with 1 km² grid, 497.7 km² result and three measurement steps.",
+                "fit": "contain",
+                "variant": "largeFeature"
+              }
+            ]
+          }
+        }
+      ],
+      "message_revisions": [
+        1,
+        3
+      ],
+      "part_id": "live_a2ui_9b42982eafe1",
+      "evicted_messages": 0,
+      "created_at": "2026-10-19T06:59:34.292122+00:00",
+      "updated_at": "2026-10-19T07:01:12.658692+00:00",
+      "actions": []
+    },
+    {
+      "id": "tahoe-shoreline-resolution",
+      "session_id": "sess_9cca40f4085e",
+      "catalog_id": "https://iowarp.ai/a2ui/catalogs/clio-workspace/v1",
+      "protocol_version": "0.9.1",
+      "revision": 3,
+      "state": "ready",
+      "messages": [
+        {
+          "version": "v0.9.1",
+          "createSurface": {
+            "surfaceId": "tahoe-shoreline-resolution",
+            "catalogId": "https://iowarp.ai/a2ui/catalogs/clio-workspace/v1"
+          }
+        },
+        {
+          "version": "v0.9.1",
+          "updateComponents": {
+            "surfaceId": "tahoe-shoreline-resolution",
+            "components": [
+              {
+                "id": "root",
+                "component": "Column",
+                "children": [
+                  "length",
+                  "table"
+                ]
+              },
+              {
+                "title": "Shoreline length vs detail (dashed = original)",
+                "spec": {
+                  "config": {
+                    "view": {
+                      "continuousWidth": 300,
+                      "continuousHeight": 300
+                    }
+                  },
+                  "layer": [
+                    {
+                      "mark": {
+                        "type": "rule",
+                        "color": "#89969f",
+                        "strokeDash": [
+                          6,
+                          4
+                        ]
+                      },
+                      "encoding": {
+                        "tooltip": [
+                          {
+                            "field": "shoreline_km",
+                            "format": ".3f",
+                            "title": "Original boundary (km)",
+                            "type": "quantitative"
+                          }
+                        ],
+                        "y": {
+                          "field": "shoreline_km",
+                          "type": "quantitative"
+                        }
+                      },
+                      "transform": [
+                        {
+                          "filter": "(datum.tolerance_m === 0)"
+                        }
+                      ]
+                    },
+                    {
+                      "mark": {
+                        "type": "line",
+                        "color": "#1496bf",
+                        "point": true
+                      },
+                      "encoding": {
+                        "tooltip": [
+                          {
+                            "field": "tolerance_m",
+                            "title": "Tolerance (m)",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "shoreline_km",
+                            "format": ".3f",
+                            "title": "Length (km)",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "shorter_pct",
+                            "format": ".2f",
+                            "title": "Shorter (%)",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "vertices",
+                            "title": "Vertices",
+                            "type": "quantitative"
+                          }
+                        ],
+                        "x": {
+                          "axis": {
+                            "values": [
+                              1,
+                              10,
+                              100,
+                              1000
+                            ]
+                          },
+                          "field": "tolerance_m",
+                          "scale": {
+                            "type": "log"
+                          },
+                          "title": "Simplification tolerance (m; logarithmic)",
+                          "type": "quantitative"
+                        },
+                        "y": {
+                          "field": "shoreline_km",
+                          "scale": {
+                            "domain": [
+                              100,
+                              125
+                            ],
+                            "zero": false
+                          },
+                          "title": "Shoreline length (km)",
+                          "type": "quantitative"
+                        }
+                      },
+                      "transform": [
+                        {
+                          "filter": "(datum.tolerance_m > 0)"
+                        }
+                      ]
+                    }
+                  ],
+                  "data": {
+                    "name": "source"
+                  },
+                  "height": 260,
+                  "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json"
+                },
+                "dataUri": "artifact://artifact_a5003b83127f4d239017ac63ab12cbf8",
+                "component": "clio.chart.v1",
+                "height": 260,
+                "id": "length"
+              },
+              {
+                "component": "clio.data-table.v1",
+                "columns": [
+                  {
+                    "key": "detail_label",
+                    "label": "Tolerance"
+                  },
+                  {
+                    "key": "length_display",
+                    "label": "Length (km)"
+                  },
+                  {
+                    "key": "reduction_display",
+                    "label": "Shorter (%)"
+                  },
+                  {
+                    "key": "vertices",
+                    "label": "Vertices"
+                  }
+                ],
+                "dataQuery": {
+                  "columns": [
+                    "detail_label",
+                    "length_display",
+                    "reduction_display",
+                    "vertices",
+                    "tolerance_m",
+                    "shoreline_km",
+                    "shorter_pct"
+                  ],
+                  "limit": 20
+                },
+                "id": "table",
+                "dataUri": "artifact://artifact_a5003b83127f4d239017ac63ab12cbf8"
+              }
+            ]
+          }
+        }
+      ],
+      "message_revisions": [
+        1,
+        3
+      ],
+      "part_id": "live_a2ui_d6c07f59c87c",
+      "evicted_messages": 0,
+      "created_at": "2026-10-19T07:13:01.080370+00:00",
+      "updated_at": "2026-10-19T07:15:16.394772+00:00",
+      "actions": []
+    },
+    {
+      "id": "tahoe-shoreline-detail-figure",
+      "session_id": "sess_9cca40f4085e",
+      "catalog_id": "https://iowarp.ai/a2ui/catalogs/clio-workspace/v1",
+      "protocol_version": "0.9.1",
+      "revision": 2,
+      "state": "ready",
+      "messages": [
+        {
+          "version": "v0.9.1",
+          "createSurface": {
+            "surfaceId": "tahoe-shoreline-detail-figure",
+            "catalogId": "https://iowarp.ai/a2ui/catalogs/clio-workspace/v1"
+          }
+        },
+        {
+          "version": "v0.9.1",
+          "updateComponents": {
+            "surfaceId": "tahoe-shoreline-detail-figure",
+            "components": [
+              {
+                "id": "root",
+                "component": "Image",
+                "url": "artifact://artifact_a2c52694c3ba4084b7d91e32722870db",
+                "description": "Matched southwest-shore views: 10 m, 100 m and 1,000 m simplification. Grey is the original mapped shoreline; labels give whole-lake lengths.",
+                "variant": "largeFeature",
+                "fit": "contain"
+              }
+            ]
+          }
+        }
+      ],
+      "message_revisions": [
+        1,
+        2
+      ],
+      "part_id": "live_a2ui_ca0176177960",
+      "evicted_messages": 0,
+      "created_at": "2026-10-19T07:13:45.471119+00:00",
+      "updated_at": "2026-10-19T07:13:45.471119+00:00",
+      "actions": []
+    }
+  ]
+}

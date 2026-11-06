@@ -1,0 +1,59 @@
+{
+  "id": "tools",
+  "title": "Your tools. Your sources. Your science.",
+  "seconds": 32,
+  "takeaway": "Your scientific tools and sources can work together in a program.",
+  "proof": "A genuine PTC program performs four source reads and produces a concise count summary with source references.",
+  "evidence": "genomics.json; execution/tools-*.json; product/requests/count-analysis.kernel",
+  "limits": "CSC cells are columns; data vector entries are not cells. Displayed program is a condensed excerpt.",
+  "hardest": "Clear surrounding source/tool cards before the result expands; no idle toolbar.",
+  "shots": [
+    {
+      "at": 0,
+      "label": "Your workbench",
+      "until": 4
+    },
+    {
+      "at": 4,
+      "label": "Connect sources",
+      "until": 10
+    },
+    {
+      "at": 10,
+      "label": "A program calls the tools",
+      "until": 17
+    },
+    {
+      "at": 17,
+      "label": "Compute the summary",
+      "until": 22
+    },
+    {
+      "at": 22,
+      "label": "An inspectable result",
+      "until": 27
+    },
+    {
+      "at": 27,
+      "label": "Build with us",
+      "until": 32
+    }
+  ],
+  "copy": [
+    {
+      "at": 5.8,
+      "until": 9,
+      "text": "Bring the sources and tools your work needs."
+    },
+    {
+      "at": 13,
+      "until": 18.2,
+      "text": "One program handles the reads, checks and calculation."
+    },
+    {
+      "at": 22,
+      "until": 26,
+      "text": "Keep the useful result—and where it came from."
+    }
+  ]
+}

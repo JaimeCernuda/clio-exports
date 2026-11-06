@@ -1,0 +1,36 @@
+{
+  "id": "sess_53a1849459c4",
+  "workspace_id": "ws_de799980ff25",
+  "title": "Campaign: tools",
+  "status": "idle",
+  "created_at": "2026-11-05T23:33:54.924505+00:00",
+  "updated_at": "2026-11-05T23:33:54.924505+00:00",
+  "last_interaction_at": "2026-11-05T23:33:54.924505+00:00",
+  "message_count": 0,
+  "parent_session_id": "",
+  "model": {
+    "provider_id": "codex",
+    "model_id": "gpt-6-luna",
+    "variant": ""
+  },
+  "agent": {
+    "id": "count-analysis",
+    "mode": ""
+  },
+  "tokens_input": 0,
+  "tokens_output": 0,
+  "cost_usd": null,
+  "mode": "edit",
+  "edit_mode": "diff",
+  "routing_mode": "auto",
+  "approval_mode": "bypass",
+  "metadata": {
+    "agent_ref": "capability-campaign/count-analysis",
+    "agent_delta": {
+      "add": [],
+      "remove": []
+    },
+    "agent_resolution": "c1d906f2be56caaf10342245fa97d86e15b476d8946f940e82878875dfad6663"
+  },
+  "archived": false
+}

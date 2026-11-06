@@ -1,0 +1,73 @@
+{
+  "tasks": [
+    {
+      "task_id": "task_4664b70dcf58aa1d1fa7982c3eb166cbd17db645674616b9d7527825a1474e4c",
+      "child_session_id": "sess_ea5d35dd1a028e69de20b27167229e52",
+      "parent_session_id": "sess_f2467690bfff",
+      "parent_turn_id": "flowrun_092d3592da281fb2981431ff:subagent:key=particles:e0e45a8af997507b:0",
+      "status": "completed",
+      "live_state": "completed",
+      "created_at": "2026-11-05T23:28:56.925559+00:00",
+      "updated_at": "2026-11-05T23:29:08.938106+00:00",
+      "run_label": "Particles",
+      "error_reason": "",
+      "model_choice": {
+        "asked": "",
+        "ran": {
+          "provider_id": "codex",
+          "model_id": "gpt-6-luna"
+        },
+        "source": "inherited",
+        "reasons": [],
+        "effort": ""
+      }
+    },
+    {
+      "task_id": "task_2a3fa5b6c58b018893773e74246d9bb1dbb338d7993f0cf82fbcc1677239eb3b",
+      "child_session_id": "sess_e3bdab1a691860ac2d1375d20c6f6774",
+      "parent_session_id": "sess_f2467690bfff",
+      "parent_turn_id": "flowrun_092d3592da281fb2981431ff:subagent:key=carbon:58a8f388a67fdfde:0",
+      "status": "completed",
+      "live_state": "completed",
+      "created_at": "2026-11-05T23:28:56.954760+00:00",
+      "updated_at": "2026-11-05T23:29:09.018235+00:00",
+      "run_label": "CO₂",
+      "error_reason": "",
+      "model_choice": {
+        "asked": "",
+        "ran": {
+          "provider_id": "codex",
+          "model_id": "gpt-6-luna"
+        },
+        "source": "inherited",
+        "reasons": [],
+        "effort": ""
+      }
+    },
+    {
+      "task_id": "task_faca52c2307f67245136ddcdbec81d9246901ba96c9c422b6b3baf4982b222a7",
+      "child_session_id": "sess_072cd1e3fb9c3085116252b815a5409e",
+      "parent_session_id": "sess_f2467690bfff",
+      "parent_turn_id": "flowrun_092d3592da281fb2981431ff:subagent:key=wind:baf7b307ccd29fcf:0",
+      "status": "completed",
+      "live_state": "completed",
+      "created_at": "2026-11-05T23:28:56.974681+00:00",
+      "updated_at": "2026-11-05T23:29:09.030141+00:00",
+      "run_label": "Wind / quality",
+      "error_reason": "",
+      "model_choice": {
+        "asked": "",
+        "ran": {
+          "provider_id": "codex",
+          "model_id": "gpt-6-luna"
+        },
+        "source": "inherited",
+        "reasons": [],
+        "effort": ""
+      }
+    }
+  ],
+  "total": 3,
+  "cursor": null,
+  "revision": 195
+}

@@ -1,0 +1,77 @@
+/** Local-only review server, including range requests and downloadable final movies. */
+import http from "node:http";
+import path from "node:path";
+import fs from "node:fs/promises";
+import { createReadStream } from "node:fs";
+const root = path.resolve(import.meta.dirname, ".."),
+  port = Number(process.env.PORT ?? 3381);
+const server = http.createServer(async (req, res) => {
+  try {
+    const url = new URL(req.url ?? "/", "http://localhost");
+    const relative = decodeURIComponent(
+      url.pathname === "/" ? "/gallery.html" : url.pathname,
+    );
+    const file = path.resolve(root, "." + relative);
+    if (!file.startsWith(root + path.sep)) {
+      res.writeHead(403);
+      res.end();
+      return;
+    }
+    if (
+      !["gallery.html", "output/", "public/"].some((s) =>
+        relative.slice(1).startsWith(s),
+      )
+    ) {
+      res.writeHead(403);
+      res.end();
+      return;
+    }
+    const stat = await fs.stat(file);
+    if (!stat.isFile())
+      throw Object.assign(new Error("Not a file"), { code: "ENOENT" });
+    const types = {
+      ".html": "text/html; charset=utf-8",
+      ".json": "application/json",
+      ".mp4": "video/mp4",
+      ".jpg": "image/jpeg",
+      ".png": "image/png",
+      ".svg": "image/svg+xml",
+    };
+    const headers = {
+      "content-type": types[path.extname(file)] ?? "application/octet-stream",
+      "accept-ranges": "bytes",
+      "cache-control": "no-cache",
+    };
+    if (url.searchParams.has("download"))
+      headers["content-disposition"] =
+        `attachment; filename="${path.basename(file)}"`;
+    const range = req.headers.range?.match(/^bytes=(\d+)-(\d*)$/);
+    if (range) {
+      const start = Number(range[1]),
+        end = Math.min(
+          stat.size - 1,
+          range[2] ? Number(range[2]) : stat.size - 1,
+        );
+      if (start > end || start >= stat.size) {
+        res.writeHead(416, { "content-range": `bytes */${stat.size}` });
+        res.end();
+        return;
+      }
+      res.writeHead(206, {
+        ...headers,
+        "content-range": `bytes ${start}-${end}/${stat.size}`,
+        "content-length": end - start + 1,
+      });
+      createReadStream(file, { start, end }).pipe(res);
+    } else {
+      res.writeHead(200, { ...headers, "content-length": stat.size });
+      createReadStream(file).pipe(res);
+    }
+  } catch (error) {
+    res.writeHead(error.code === "ENOENT" ? 404 : 500);
+    res.end("File unavailable");
+  }
+});
+server.listen(port, "127.0.0.1", () =>
+  console.log(`REVIEW http://127.0.0.1:${port}/`),
+);

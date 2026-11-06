@@ -1,0 +1,60 @@
+{
+  "id": "sess_f2467690bfff",
+  "workspace_id": "ws_de799980ff25",
+  "title": "Campaign: team",
+  "status": "idle",
+  "created_at": "2026-11-05T23:28:55.927888+00:00",
+  "updated_at": "2026-11-05T23:29:09.151886+00:00",
+  "last_interaction_at": "2026-11-05T23:29:09.133250+00:00",
+  "message_count": 2,
+  "parent_session_id": "",
+  "model": {
+    "provider_id": "codex",
+    "model_id": "gpt-6-luna",
+    "variant": ""
+  },
+  "agent": {
+    "id": "burn-team",
+    "mode": ""
+  },
+  "tokens_input": 0,
+  "tokens_output": 0,
+  "cost_usd": null,
+  "mode": "edit",
+  "edit_mode": "diff",
+  "routing_mode": "auto",
+  "approval_mode": "bypass",
+  "metadata": {
+    "agent_ref": "capability-campaign/burn-team",
+    "agent_delta": {
+      "add": [],
+      "remove": []
+    },
+    "agent_resolution": "4c7f86c5e2b7b159f0a73cdb6c442bed0fdb7598ef34c2c429b2df254cdc94b1",
+    "composer_queue_paused": false,
+    "memory_snapshot": {
+      "text": "",
+      "loaded": [],
+      "indexed": [],
+      "omitted": 0
+    },
+    "context_usage_by_scope": {
+      "burn-team": {
+        "used_tokens": 17,
+        "source": "estimated",
+        "model": "codex/gpt-6-luna",
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0,
+        "cache_tokens_measured": false,
+        "turn_id": "msg_user_61dd33d5ca9b",
+        "recorded_at": "2026-11-05T23:29:09.116620+00:00",
+        "window_tokens": 922000
+      }
+    },
+    "stop_loop": {
+      "count": 0,
+      "per_hook": {}
+    }
+  },
+  "archived": false
+}

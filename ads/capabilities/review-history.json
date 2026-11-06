@@ -1,0 +1,317 @@
+{
+  "schema": "clio.capability-review.v1",
+  "entries": [
+    {
+      "id": "method",
+      "file": "01-method-draft.mp4",
+      "sha256": "3e2476a9076e967c4e6066ceb97dd8b881ebfd9ff14885de8f484028e2585b7d",
+      "stage": "complete-draft",
+      "technical": {
+        "id": "method",
+        "file": "01-method-draft.mp4",
+        "sha256": "3e2476a9076e967c4e6066ceb97dd8b881ebfd9ff14885de8f484028e2585b7d",
+        "frames": 1920,
+        "duration": 32,
+        "width": 960,
+        "height": 540,
+        "fullDecode": "passed",
+        "audio": "present",
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 2585,
+        "closeStructuralSimilarity": 0.99518,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "inspection": {
+        "wholeFilm": "Time-ordered 1 fps encoded sheets",
+        "transitions": "12 fps encoded sheets around authored markers",
+        "sourceFrames": "1080p component geometry and click frames",
+        "playback": "Browser playback exercised; continuous human audiovisual review is not claimed"
+      },
+      "findings": [
+        {
+          "at": "9.8–11.5",
+          "kind": "readability",
+          "finding": "Procedure text overlapped the arriving beam result.",
+          "correction": "Retire the procedure line before the result enters."
+        }
+      ],
+      "status": "source-revised-final-render-pending"
+    },
+    {
+      "id": "hypothesis",
+      "file": "02-hypothesis-draft.mp4",
+      "sha256": "3bebc4b16e980cc1f38bc1a78644b2d2a245e370e9b2aa1f13f02ed26650e5ba",
+      "stage": "complete-draft",
+      "technical": {
+        "id": "hypothesis",
+        "file": "02-hypothesis-draft.mp4",
+        "sha256": "3bebc4b16e980cc1f38bc1a78644b2d2a245e370e9b2aa1f13f02ed26650e5ba",
+        "frames": 2040,
+        "duration": 34,
+        "width": 960,
+        "height": 540,
+        "fullDecode": "passed",
+        "audio": "present",
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 46,
+        "closeStructuralSimilarity": 0.999411,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "inspection": {
+        "wholeFilm": "Time-ordered 1 fps encoded sheets",
+        "transitions": "12 fps encoded sheets around authored markers",
+        "sourceFrames": "1080p component geometry and click frames",
+        "playback": "Not yet exercised in browser"
+      },
+      "findings": [
+        {
+          "at": "4–16",
+          "kind": "framing",
+          "finding": "The original pendulum canvas clipped large-angle swings.",
+          "correction": "Widen the canvas and preserve the physical angle."
+        },
+        {
+          "at": "23–24",
+          "kind": "continuity",
+          "finding": "A connector floated below the observation.",
+          "correction": "Attach the observation directly to the revised conclusion."
+        }
+      ],
+      "status": "source-revised-final-render-pending"
+    },
+    {
+      "id": "team",
+      "file": "03-team-draft.mp4",
+      "sha256": "a8b882832fa8dae292245e8c7f2e629a848f846b040a485775eb4d03e852f2a8",
+      "stage": "complete-draft",
+      "technical": {
+        "id": "team",
+        "file": "03-team-draft.mp4",
+        "sha256": "a8b882832fa8dae292245e8c7f2e629a848f846b040a485775eb4d03e852f2a8",
+        "frames": 1920,
+        "duration": 32,
+        "width": 960,
+        "height": 540,
+        "fullDecode": "passed",
+        "audio": "present",
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 2778,
+        "closeStructuralSimilarity": 0.995148,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "inspection": {
+        "wholeFilm": "Time-ordered 1 fps encoded sheets",
+        "transitions": "12 fps encoded sheets around authored markers",
+        "sourceFrames": "1080p component geometry and click frames",
+        "playback": "Not yet exercised in browser"
+      },
+      "findings": [
+        {
+          "at": "12.9–15.3",
+          "kind": "motion",
+          "finding": "Peers occupied the inspector expansion route.",
+          "correction": "Compact, spread and dock peers before expanding."
+        },
+        {
+          "at": "21.7–23",
+          "kind": "continuity",
+          "finding": "Crossfade doubled the plots during convergence.",
+          "correction": "Retire the separate plots before revealing combined findings."
+        }
+      ],
+      "status": "source-revised-final-render-pending"
+    },
+    {
+      "id": "interface",
+      "file": "04-interface-draft.mp4",
+      "sha256": "8560aa7cfb49959efaac220d4339ff5abe376a24f156a3f8fd1bb55779800d4c",
+      "stage": "complete-draft",
+      "technical": {
+        "id": "interface",
+        "file": "04-interface-draft.mp4",
+        "sha256": "8560aa7cfb49959efaac220d4339ff5abe376a24f156a3f8fd1bb55779800d4c",
+        "frames": 1800,
+        "duration": 30,
+        "width": 960,
+        "height": 540,
+        "fullDecode": "passed",
+        "audio": "present",
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 0,
+        "closeStructuralSimilarity": 0.999947,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "inspection": {
+        "wholeFilm": "Time-ordered 1 fps encoded sheets",
+        "transitions": "12 fps encoded sheets around authored markers",
+        "sourceFrames": "1080p component geometry and click frames",
+        "playback": "Not yet exercised in browser"
+      },
+      "findings": [
+        {
+          "at": "10.2–11.1",
+          "kind": "product truth",
+          "finding": "A baseline change must update the range and table as well as the mean.",
+          "correction": "All distribution fields and deltas now follow the selected cohort."
+        }
+      ],
+      "status": "source-revised-final-render-pending"
+    },
+    {
+      "id": "provenance",
+      "file": "05-provenance-draft.mp4",
+      "sha256": "706e88b6cd5bf8d89491d333f0e1583a9846b48e72e9aad33cc04ae39676d4e7",
+      "stage": "complete-draft",
+      "technical": {
+        "id": "provenance",
+        "file": "05-provenance-draft.mp4",
+        "sha256": "706e88b6cd5bf8d89491d333f0e1583a9846b48e72e9aad33cc04ae39676d4e7",
+        "frames": 1800,
+        "duration": 30,
+        "width": 960,
+        "height": 540,
+        "fullDecode": "passed",
+        "audio": "present",
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 0,
+        "closeStructuralSimilarity": 1,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "inspection": {
+        "wholeFilm": "Time-ordered 1 fps encoded sheets",
+        "transitions": "12 fps encoded sheets around authored markers",
+        "sourceFrames": "1080p component geometry and click frames",
+        "playback": "Not yet exercised in browser"
+      },
+      "findings": [
+        {
+          "at": "20–23",
+          "kind": "product truth",
+          "finding": "Return to Result left Source selected; source reading time was too short.",
+          "correction": "Correct the selection and allow a longer source hold."
+        },
+        {
+          "at": "8.7–21.7",
+          "kind": "pacing",
+          "finding": "Cursor drifted slowly between tabs.",
+          "correction": "Brisk approaches with continuous departures through the top edge."
+        }
+      ],
+      "status": "source-revised-final-render-pending"
+    },
+    {
+      "id": "tools",
+      "file": "06-tools-draft.mp4",
+      "sha256": "30ba72f6d855ccfb4b62821323dab235c07d2254c9f5a52742cb07f9f2accd91",
+      "stage": "complete-draft",
+      "technical": {
+        "id": "tools",
+        "file": "06-tools-draft.mp4",
+        "sha256": "30ba72f6d855ccfb4b62821323dab235c07d2254c9f5a52742cb07f9f2accd91",
+        "frames": 1920,
+        "duration": 32,
+        "width": 960,
+        "height": 540,
+        "fullDecode": "passed",
+        "audio": "present",
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 2623,
+        "closeStructuralSimilarity": 0.995373,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "inspection": {
+        "wholeFilm": "Time-ordered 1 fps encoded sheets",
+        "transitions": "12 fps encoded sheets around authored markers",
+        "sourceFrames": "1080p component geometry and click frames",
+        "playback": "Not yet exercised in browser"
+      },
+      "findings": [
+        {
+          "at": "20–24",
+          "kind": "composition",
+          "finding": "Unused copy/download/caret actions remained on the result.",
+          "correction": "Remove the toolbar and confirm with a fresh render and DOM regression check."
+        }
+      ],
+      "status": "source-revised-final-render-pending"
+    },
+    {
+      "id": "selection",
+      "file": "07-selection-draft.mp4",
+      "sha256": "abf770ffc2b0b2e9f8a6ffd213a5299853dbaac70a8a86b696afff3d9aecb668",
+      "stage": "complete-draft",
+      "technical": {
+        "id": "selection",
+        "file": "07-selection-draft.mp4",
+        "sha256": "abf770ffc2b0b2e9f8a6ffd213a5299853dbaac70a8a86b696afff3d9aecb668",
+        "frames": 1800,
+        "duration": 30,
+        "width": 960,
+        "height": 540,
+        "fullDecode": "passed",
+        "audio": "present",
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 0,
+        "closeStructuralSimilarity": 0.999949,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "inspection": {
+        "wholeFilm": "Time-ordered 1 fps encoded sheets",
+        "transitions": "12 fps encoded sheets around authored markers",
+        "sourceFrames": "1080p component geometry and click frames",
+        "playback": "Not yet exercised in browser"
+      },
+      "findings": [
+        {
+          "at": "4–24",
+          "kind": "geography",
+          "finding": "The original bare track compressed latitude during reflow.",
+          "correction": "Pinned Natural Earth basemap and fixed equal-scale regional projection."
+        }
+      ],
+      "status": "source-revised-final-render-pending"
+    },
+    {
+      "id": "streams",
+      "file": "08-streams-draft.mp4",
+      "sha256": "0a7693f98e95f54f9ef97c3d1750fc8a345c8b37fc010ddd0430b52df280b91a",
+      "stage": "complete-draft",
+      "technical": {
+        "id": "streams",
+        "file": "08-streams-draft.mp4",
+        "sha256": "0a7693f98e95f54f9ef97c3d1750fc8a345c8b37fc010ddd0430b52df280b91a",
+        "frames": 2400,
+        "duration": 40,
+        "width": 960,
+        "height": 540,
+        "fullDecode": "passed",
+        "audio": "present",
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 2815,
+        "closeStructuralSimilarity": 0.995052,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "inspection": {
+        "wholeFilm": "Time-ordered 1 fps encoded sheets",
+        "transitions": "12 fps encoded sheets around authored markers",
+        "sourceFrames": "1080p component geometry and click frames",
+        "playback": "Browser playback exercised; continuous human audiovisual review is not claimed"
+      },
+      "findings": [
+        {
+          "at": "19–20",
+          "kind": "synchronization",
+          "finding": "Generic query instruction did not demonstrate the returned reading.",
+          "correction": "Show the recorded 16:16 reading; anchor source row 17 to its arrival."
+        },
+        {
+          "at": "29–34",
+          "kind": "product truth",
+          "finding": "Simulation plot retained 20 rows while the backend window is 18.",
+          "correction": "Both live views use the same retained window."
+        }
+      ],
+      "status": "source-revised-final-render-pending"
+    }
+  ]
+}

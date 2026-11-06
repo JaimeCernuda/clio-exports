@@ -1,0 +1,231 @@
+{
+  "id": "sess_9d5c84fc7527",
+  "workspace_id": "ws_de799980ff25",
+  "title": "Campaign: streams",
+  "status": "idle",
+  "created_at": "2026-11-05T23:45:51.649211+00:00",
+  "updated_at": "2026-11-05T23:46:03.023768+00:00",
+  "last_interaction_at": "2026-11-05T23:46:03.009527+00:00",
+  "message_count": 2,
+  "parent_session_id": "",
+  "model": {
+    "provider_id": "codex",
+    "model_id": "gpt-6-luna",
+    "variant": ""
+  },
+  "agent": {
+    "id": "watch-experiment",
+    "mode": ""
+  },
+  "tokens_input": 29175,
+  "tokens_output": 436,
+  "cost_usd": 0.0031354999999999994,
+  "mode": "edit",
+  "edit_mode": "diff",
+  "routing_mode": "auto",
+  "approval_mode": "bypass",
+  "metadata": {
+    "agent_ref": "capability-campaign/watch-experiment",
+    "agent_delta": {
+      "add": [],
+      "remove": []
+    },
+    "agent_resolution": "333d034d095857baaafbdcc96ee4d7383ed737de34ef83be33e002c11619879d",
+    "composer_queue_paused": false,
+    "memory_snapshot": {
+      "text": "",
+      "loaded": [],
+      "indexed": [],
+      "omitted": 0
+    },
+    "loaded_tools": {
+      "pending": [
+        "open_stream",
+        "read_stream",
+        "stop_stream",
+        "observe_tasks",
+        "list_models",
+        "goal_status",
+        "cron_create",
+        "workspace_resource_wait"
+      ],
+      "listed": []
+    },
+    "artifacts": {
+      "count": 1,
+      "names": {
+        "burn-observations.parquet": {
+          "v": 5,
+          "id": "artifact_21ef4fac8b9b413e9b5d8724842e0e54",
+          "kind": "dataset"
+        }
+      },
+      "names_truncated": false
+    },
+    "context_usage_by_scope": {
+      "watch-experiment": {
+        "used_tokens": 10647,
+        "source": "provider",
+        "model": "codex_direct/gpt-6-luna",
+        "cache_read_tokens": 9984,
+        "cache_write_tokens": 0,
+        "cache_tokens_measured": true,
+        "prompt_breakdown": {
+          "method": "characters_div_4",
+          "tokens_estimated": 12650,
+          "media_items": 0,
+          "sections": [
+            {
+              "id": "system",
+              "label": "System prompt",
+              "tokens_estimated": 3583,
+              "count": 2,
+              "items": [
+                {
+                  "label": "Agent instructions",
+                  "tokens_estimated": 3147
+                },
+                {
+                  "label": "Tools you load when needed",
+                  "tokens_estimated": 436
+                }
+              ]
+            },
+            {
+              "id": "tools",
+              "label": "Tool definitions",
+              "tokens_estimated": 5847,
+              "count": 18,
+              "items": [
+                {
+                  "label": "spawn_agent_task",
+                  "tokens_estimated": 802
+                },
+                {
+                  "label": "spawn_agents_parallel",
+                  "tokens_estimated": 748
+                },
+                {
+                  "label": "run_code",
+                  "tokens_estimated": 508
+                },
+                {
+                  "label": "fs_search_text",
+                  "tokens_estimated": 416
+                },
+                {
+                  "label": "ask_user",
+                  "tokens_estimated": 388
+                },
+                {
+                  "label": "load_skill",
+                  "tokens_estimated": 326
+                },
+                {
+                  "label": "fs_read_file",
+                  "tokens_estimated": 315
+                },
+                {
+                  "label": "fs_edit_file",
+                  "tokens_estimated": 291
+                },
+                {
+                  "label": "plan_exit",
+                  "tokens_estimated": 270
+                },
+                {
+                  "label": "fs_write_file",
+                  "tokens_estimated": 260
+                },
+                {
+                  "label": "wait_tasks",
+                  "tokens_estimated": 258
+                },
+                {
+                  "label": "write_todos",
+                  "tokens_estimated": 244
+                },
+                {
+                  "label": "plan_update",
+                  "tokens_estimated": 203
+                },
+                {
+                  "label": "fs_glob",
+                  "tokens_estimated": 195
+                },
+                {
+                  "label": "fs_list_directory",
+                  "tokens_estimated": 189
+                },
+                {
+                  "label": "search_tools",
+                  "tokens_estimated": 185
+                },
+                {
+                  "label": "plan_enter",
+                  "tokens_estimated": 127
+                },
+                {
+                  "label": "submit",
+                  "tokens_estimated": 122
+                }
+              ]
+            },
+            {
+              "id": "skills",
+              "label": "Skills",
+              "tokens_estimated": 287,
+              "count": 1,
+              "items": [
+                {
+                  "label": "Skill descriptions",
+                  "tokens_estimated": 287
+                }
+              ]
+            },
+            {
+              "id": "messages",
+              "label": "Messages",
+              "tokens_estimated": 1003,
+              "count": 4,
+              "items": [
+                {
+                  "label": "User messages",
+                  "tokens_estimated": 634
+                },
+                {
+                  "label": "Tool calls",
+                  "tokens_estimated": 369
+                }
+              ]
+            },
+            {
+              "id": "results",
+              "label": "Tool results",
+              "tokens_estimated": 1930,
+              "count": 2,
+              "items": [
+                {
+                  "label": "search_tools",
+                  "tokens_estimated": 1851
+                },
+                {
+                  "label": "run_code",
+                  "tokens_estimated": 79
+                }
+              ]
+            }
+          ]
+        },
+        "turn_id": "msg_user_e540cd268be1",
+        "recorded_at": "2026-11-05T23:46:02.989649+00:00",
+        "window_tokens": 922000
+      }
+    },
+    "stop_loop": {
+      "count": 0,
+      "per_hook": {}
+    }
+  },
+  "archived": false
+}

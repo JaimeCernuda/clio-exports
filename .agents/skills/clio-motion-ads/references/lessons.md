@@ -4,7 +4,7 @@ These are observations from the user's feedback and the V1–V14 revisions, not 
 universal visual template. The complete
 [creative brief and message summary](../../../../composability/ad/HANDOFF.md),
 [art direction](../../../../composability/ad/ART-DIRECTION.md) and
-[review history](../../../../composability/ad/docs/reviews/) retain the detail.
+[latest review](../../../../composability/ad/docs/reviews/review-ad-v14.md) retain the detail.
 The current retained movie is V14: 36 seconds, 1080p60. Historical movie files were
 pruned at the user's request; their source history and review receipts remain.
 
@@ -54,7 +54,7 @@ different effect.
 - [Render entrypoint](../../../../composability/ad/render.mjs),
   [sound generator](../../../../composability/ad/scripts/finish.mjs)
   and [encoded/geometry reviewer](../../../../composability/ad/scripts/review.ts)
-- [Source-ledger files and craft references](../../../../composability/ad/references/)
+- [Source-ledger files and craft references](../../../../composability/ad/references/README.md)
 - [Independent website loops](../../../../composability/website/README.md)
 
 These helpers are available to adapt. Their current story timings, selectors and

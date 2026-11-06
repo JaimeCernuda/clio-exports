@@ -1,0 +1,45 @@
+{
+  "schema": "clio.capability-evidence.v1",
+  "product": {
+    "commit": "a0a17006a01492be526b96c39d9c842e95aa07a7",
+    "submodules": "91c38d413f07cf256682d3306d58de1c4798cc83 external/clio-agent-marketplace (v0.6.13-58-g91c38d4)\n a67c399e8f5abfe18c8b95e98a099fe2fbb2530f external/gact-tui (v0.11.3-beta.11-181-ga67c399e)"
+  },
+  "sources": [
+    {
+      "name": "alta",
+      "path": "motion/native/public/alta.native.json",
+      "sha256": "5d3139d2e45437501e8ae7ba86d8832ef133231a74f275bab9fa483071d87288",
+      "session": "sess_4e74d38f7a9d",
+      "original": {
+        "archive": "Alta-snowfall-session-maps-v2.html",
+        "sha256": "84e3de064bd91e453463f45c0179f34116c658bea5e90c7b088fa27a5a30e69f"
+      }
+    },
+    {
+      "name": "konza",
+      "path": "motion/native/public/konza.native.json",
+      "sha256": "3de223a70978ec7d6407846087da82af2c643f1da9448744783dd9baf3d6208b",
+      "session": "sess_b1bbf58c66a5",
+      "original": {
+        "archive": "Konza-session-maps-v2.html",
+        "sha256": "d9653d6835153479e2395f0eae082c8b8b07388cfd93ba22e349a901c0104f93"
+      }
+    },
+    {
+      "name": "tahoe",
+      "path": "motion/native/public/tahoe.native.json",
+      "sha256": "ea27356c687d52935fe01ebdb45408bb378887e040d0f425d5de8c0b97b82267",
+      "session": "sess_9cca40f4085e",
+      "original": {
+        "archive": "tahoe-original.html",
+        "sha256": "e5f762a73eaa749738780b095a24133cec08d8d125c81bd24ecfc8c3bda0dbf4"
+      }
+    },
+    {
+      "name": "hurricane",
+      "path": "clio-agent/site/public/datasets/atlantic-hurricanes-noaa.csv",
+      "sha256": "2c95a7d999cc50d4102f83a9d08ec3d5654276a39fd7814f443360db40328be7",
+      "origin": "NOAA hurricane observations; retained CLIO documentation data"
+    }
+  ]
+}

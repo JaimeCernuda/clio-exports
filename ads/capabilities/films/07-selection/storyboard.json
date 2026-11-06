@@ -1,0 +1,54 @@
+{
+  "id": "selection",
+  "title": "Point at the data you mean.",
+  "seconds": 30,
+  "takeaway": "Point at the records you want to ask about.",
+  "proof": "The same 12 geographic observations become highlighted rows, a composer reference and a source-backed answer.",
+  "evidence": "hurricane.json; atlantic-basemap.json",
+  "limits": "Authored reference gesture; actual NOAA rows and Natural Earth coastline geometry.",
+  "hardest": "Preserve equal map scale and selection identity across reference handoff; align both clicks.",
+  "shots": [
+    {
+      "at": 0,
+      "label": "Point to evidence",
+      "until": 4
+    },
+    {
+      "at": 4,
+      "label": "Select observations",
+      "until": 10
+    },
+    {
+      "at": 10,
+      "label": "Reference this",
+      "until": 15
+    },
+    {
+      "at": 15,
+      "label": "Ask a precise question",
+      "until": 20
+    },
+    {
+      "at": 20,
+      "label": "Answer from selected rows",
+      "until": 25
+    },
+    {
+      "at": 25,
+      "label": "Build with us",
+      "until": 30
+    }
+  ],
+  "copy": [
+    {
+      "at": 7.6,
+      "until": 10.6,
+      "text": "A selection carries the actual observations."
+    },
+    {
+      "at": 21.5,
+      "until": 24.4,
+      "text": "Ask about this—not everything."
+    }
+  ]
+}

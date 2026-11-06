@@ -1,0 +1,107 @@
+/** Keep shot/copy handoffs synchronized with the actual registry and scene captions. */
+import { readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { films } from "../src/registry.ts";
+const root = path.resolve(import.meta.dirname, "..");
+const notes = {
+  method: [
+    "Your procedure can run, review its result and revise the relevant step.",
+    "A deflecting beam travels through the flow and returns through simulation after review.",
+    "beam.json; execution/method-*.json",
+    "Euler–Bernoulli analytical beam, not a Slurm/finite-element run.",
+    "Unfolding text into nodes, then routing the same result around the revision loop.",
+  ],
+  hypothesis: [
+    "A useful scientific agent tests and revises a claim.",
+    "The nonlinear period diverges from the small-angle prediction; linked graph entries preserve why the claim changed.",
+    "science.json; science-log.json; execution/hypothesis-*.json",
+    "Ideal numerical pendulum, not physical measurements. 60° result is +7.3182%.",
+    "Shrinking the plot while graph nodes grow without collisions or clipping the pendulum.",
+  ],
+  team: [
+    "One research question can become coordinated specialist work.",
+    "Three real concurrent child tasks analyze separate signals, one opens briefly, then their findings rejoin.",
+    "konza.json; science.json; execution/team-*.json",
+    "Deterministic SDK specialist procedures; bootstrap is illustrative, not a causal finding.",
+    "Peer cards must clear before the particle inspector expands, while other work stays visible.",
+  ],
+  interface: [
+    "An answer can be a tool you can use.",
+    "Changing baseline updates quartiles and deltas; month choices focus the comparison; export retains that view.",
+    "alta.json; science.json; exports/",
+    "Reconstructed control gestures using archived scientific data; unselected months remain faint chart context.",
+    "Controls, pointer and linked values must agree while rows collapse smoothly.",
+  ],
+  provenance: [
+    "You can inspect where a result came from.",
+    "Follow one boundary-area result through its measurement and polygon to its dataset, then return.",
+    "boundary.geojson; tahoe.json; science.json",
+    "Mapped boundary area is not current water extent.",
+    "Keep the result identity continuous through the backward and forward inspection.",
+  ],
+  tools: [
+    "Your scientific tools and sources can work together in a program.",
+    "A genuine PTC program performs four source reads and produces a concise count summary with source references.",
+    "genomics.json; execution/tools-*.json; product/requests/count-analysis.kernel",
+    "CSC cells are columns; data vector entries are not cells. Displayed program is a condensed excerpt.",
+    "Clear surrounding source/tool cards before the result expands; no idle toolbar.",
+  ],
+  selection: [
+    "Point at the records you want to ask about.",
+    "The same 12 geographic observations become highlighted rows, a composer reference and a source-backed answer.",
+    "hurricane.json; atlantic-basemap.json",
+    "Authored reference gesture; actual NOAA rows and Natural Earth coastline geometry.",
+    "Preserve equal map scale and selection identity across reference handoff; align both clicks.",
+  ],
+  streams: [
+    "A running experiment can feed both an agent and a live view.",
+    "Background PTC writes a rolling window; another question reads it while it runs; a simulation uses the same stream path.",
+    "science.json; execution/stream-snapshots.json; execution/*-final.json; execution/streams-*.json",
+    "Sensor replay and numerical simulation. Memory window is 18 rows; snapshots are versioned; task stops on completion.",
+    "Keep stream/task clocks consistent and separate a one-time answer from changing dashboard values.",
+  ],
+};
+for (const film of films) {
+  const folder = path.join(
+    root,
+    "films",
+    `${String(film.number).padStart(2, "0")}-${film.id}`,
+  );
+  const source = await readFile(path.join(folder, "scene.tsx"), "utf8");
+  const copy = [...source.matchAll(/<Caption\s[\s\S]*?\/>/g)].map(([tag]) => ({
+    at: Number(tag.match(/at=\{([\d.]+)\}/)?.[1]),
+    until: Number(tag.match(/until=\{([\d.]+)\}/)?.[1]),
+    text: tag.match(/text="([^"]+)"/)?.[1],
+  }));
+  if (
+    copy.some(
+      (c) => !Number.isFinite(c.at) || !Number.isFinite(c.until) || !c.text,
+    )
+  )
+    throw new Error(`Unparsed copy: ${film.id}`);
+  const [takeaway, proof, evidence, limits, hardest] = notes[film.id];
+  const story = {
+    id: film.id,
+    title: film.title,
+    seconds: film.seconds,
+    takeaway,
+    proof,
+    evidence,
+    limits,
+    hardest,
+    shots: film.markers.map((m, i) => ({
+      ...m,
+      until: film.markers[i + 1]?.at ?? film.seconds,
+    })),
+    copy,
+  };
+  await writeFile(
+    path.join(folder, "storyboard.json"),
+    JSON.stringify(story, null, 2) + "\n",
+  );
+  await writeFile(
+    path.join(folder, "README.md"),
+    `# ${film.number}. ${film.title}\n\n${takeaway}\n\n**Visible proof:** ${proof}\n\n**Evidence:** \`${evidence}\`. See [campaign source ledger](../../SOURCES.md).\n\n**Presentation limits:** ${limits}\n\n**Difficult mechanic:** ${hardest}\n\n## Timed shots\n\n| Time | Beat |\n| --- | --- |\n${story.shots.map((s) => `| ${s.at}–${s.until} s | ${s.label} |`).join("\n")}\n\n## On-screen copy\n\n${copy.map((c) => `- ${c.at}–${c.until} s: ${c.text}`).join("\n")}\n\n## Edit and render\n\n\`scene.tsx\` is the editable composition; \`storyboard.json\` is its shot/copy handoff.\nFrom the campaign root, run \`node render.mjs ${film.id} --draft\`, inspect, revise,\nthen \`node render.mjs ${film.id}\` and \`node scripts/review.mjs ${film.id}\`.\nThe latest local output is \`../../output/${String(film.number).padStart(2, "0")}-${film.id}.mp4\`.\nReview findings belong in [the campaign review history](../../REVIEW.md).\n`,
+  );
+}
+console.log("Synchronized eight film guides and storyboards");

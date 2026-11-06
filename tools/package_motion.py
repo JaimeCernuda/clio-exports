@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import tempfile
 import zipfile
 from pathlib import Path
@@ -24,19 +25,18 @@ def package_sources(repository: Path) -> list[Path]:
         directory = repository / value
         if not directory.is_dir():
             raise FileNotFoundError(directory)
-        files.extend(
-            path
-            for path in directory.rglob("*")
-            if path.is_file()
-            and not EXCLUDED.intersection(path.relative_to(repository).parts)
-            and not (
-                value == "composability"
-                and {"bundle", "out", "output", "review", ".cache"}.intersection(
-                    path.relative_to(directory).parts
-                )
-            )
-            and path.suffix.lower() not in MOVIE_SUFFIXES
+        excluded = EXCLUDED | (
+            {"bundle", "out", "output", "review", ".cache"}
+            if value in {"composability", "ads"}
+            else set[str]()
         )
+        for parent, children, names in os.walk(directory):
+            children[:] = [name for name in children if name not in excluded]
+            files.extend(
+                Path(parent) / name
+                for name in names
+                if Path(name).suffix.lower() not in MOVIE_SUFFIXES
+            )
     for path in files:
         path.resolve().relative_to(repository)
         if not path.is_file():

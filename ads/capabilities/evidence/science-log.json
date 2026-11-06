@@ -1,0 +1,206 @@
+{
+  "session_id": "sess_ba0e7fdb69f1",
+  "in_study": true,
+  "study": "e_a9f054a7101b",
+  "root_session_id": "sess_ba0e7fdb69f1",
+  "branches": [
+    {
+      "session_id": "sess_ba0e7fdb69f1",
+      "title": "Campaign: hypothesis",
+      "agent": "pendulum-study",
+      "relation": "root",
+      "parent_session_id": "",
+      "fork_of_session_id": "",
+      "workflow_step": "",
+      "node_folder": "",
+      "handle": "task_9e162a11d38e4000a51ddf955a2409e5",
+      "task_status": "completed",
+      "note": ""
+    }
+  ],
+  "entries": [
+    {
+      "id": "e_a9f054a7101b",
+      "study": "e_a9f054a7101b",
+      "branch": "sess_ba0e7fdb69f1",
+      "session": "sess_ba0e7fdb69f1",
+      "type": "question",
+      "fields": {
+        "statement": "Does release amplitude change pendulum period?",
+        "scope": "Ideal 1 m pendulum, g=9.80665 m/s²; numerical simulation."
+      },
+      "links": [],
+      "status": "answered",
+      "created_at": "2026-11-06T00:07:55.202880+00:00",
+      "invocation": "call_bbd890f84002",
+      "status_reason": "The linked numerical evidence supports a qualified conclusion."
+    },
+    {
+      "id": "e_07684cfa7e11",
+      "study": "e_a9f054a7101b",
+      "branch": "sess_ba0e7fdb69f1",
+      "session": "sess_ba0e7fdb69f1",
+      "type": "hypothesis",
+      "fields": {
+        "claim": "Amplitude does not change the period.",
+        "refuting_prediction": "A larger angle yields a different period.",
+        "formula": ""
+      },
+      "links": [
+        {
+          "relation": "question",
+          "to": "e_a9f054a7101b"
+        }
+      ],
+      "status": "refuted",
+      "created_at": "2026-11-06T00:07:55.261946+00:00",
+      "invocation": "call_811a16b537b0",
+      "status_reason": "The 60-degree simulation differs by more than numerical integration error."
+    },
+    {
+      "id": "e_6483029f7af2",
+      "study": "e_a9f054a7101b",
+      "branch": "sess_ba0e7fdb69f1",
+      "session": "sess_ba0e7fdb69f1",
+      "type": "experiment",
+      "fields": {
+        "method": "Integrate the nonlinear pendulum period across release angles; cross-check with velocity-Verlet trajectories.",
+        "sample_size": 46
+      },
+      "links": [
+        {
+          "relation": "hypothesis",
+          "to": "e_07684cfa7e11"
+        }
+      ],
+      "status": "done",
+      "created_at": "2026-11-06T00:07:55.300783+00:00",
+      "invocation": "call_fd7c7f1efe09",
+      "status_reason": "The numerical calculation and sourced observation are recorded."
+    },
+    {
+      "id": "e_b96718e57bb4",
+      "study": "e_a9f054a7101b",
+      "branch": "sess_ba0e7fdb69f1",
+      "session": "sess_ba0e7fdb69f1",
+      "type": "observation",
+      "fields": {
+        "from_calls": [
+          "call:sess_ba0e7fdb69f1/call_39cf5c2ede2a"
+        ],
+        "result": "At 60 degrees, period is 2.153242 s, 7.3182% above the small-angle prediction.",
+        "measurements": [
+          {
+            "metric": "period",
+            "source": {
+              "call": "call:sess_ba0e7fdb69f1/call_39cf5c2ede2a",
+              "field": "period"
+            },
+            "unit": "s",
+            "conditions": {
+              "amplitude_deg": 60
+            },
+            "value": 2.153242351783843
+          },
+          {
+            "metric": "small_angle_prediction",
+            "source": {
+              "call": "call:sess_ba0e7fdb69f1/call_39cf5c2ede2a",
+              "field": "prediction"
+            },
+            "unit": "s",
+            "conditions": {},
+            "value": 2.0064092925890407
+          }
+        ],
+        "derived_from": "",
+        "environment": "",
+        "lineage": [
+          {
+            "call_id": "call_39cf5c2ede2a",
+            "tool": "compute_pendulum",
+            "args": {
+              "angle_deg": 60
+            },
+            "started_at": "2026-11-06T00:07:55.371676+00:00",
+            "completed_at": "2026-11-06T00:07:55.386791+00:00",
+            "result_sha256": "effa998d19f860c2e2b7ceccbf01b9f5f3d068c2c6990b0c0b4469972a1f9ada",
+            "reference": "call:sess_ba0e7fdb69f1/call_39cf5c2ede2a",
+            "session": "sess_ba0e7fdb69f1",
+            "agent": "pendulum-study",
+            "model": "codex_direct/gpt-6-luna"
+          }
+        ],
+        "artifacts": []
+      },
+      "links": [
+        {
+          "relation": "experiment",
+          "to": "e_6483029f7af2"
+        }
+      ],
+      "status": "recorded",
+      "created_at": "2026-11-06T00:07:55.453684+00:00",
+      "invocation": "call_e3196c13f048"
+    },
+    {
+      "id": "e_357a343519f5",
+      "study": "e_a9f054a7101b",
+      "branch": "sess_ba0e7fdb69f1",
+      "session": "sess_ba0e7fdb69f1",
+      "type": "evidence",
+      "fields": {
+        "interpretation": "The amplitude-independent claim fails for large release angles.",
+        "strength": "strong",
+        "analysis_call": ""
+      },
+      "links": [
+        {
+          "relation": "observation",
+          "to": "e_b96718e57bb4"
+        },
+        {
+          "relation": "refutes",
+          "to": "e_07684cfa7e11"
+        }
+      ],
+      "status": "recorded",
+      "created_at": "2026-11-06T00:07:55.601072+00:00",
+      "invocation": "call_4d218fd52e61"
+    },
+    {
+      "id": "e_2e873931b509",
+      "study": "e_a9f054a7101b",
+      "branch": "sess_ba0e7fdb69f1",
+      "session": "sess_ba0e7fdb69f1",
+      "type": "conclusion",
+      "fields": {
+        "claims": [
+          {
+            "text": "Amplitude independence is a small-angle approximation.",
+            "cites": [
+              "e_b96718e57bb4",
+              "e_357a343519f5"
+            ],
+            "analysis_call": ""
+          }
+        ],
+        "confidence": "high",
+        "caveats": [
+          "Ideal numerical pendulum, not a physical measurement."
+        ],
+        "relation": "answers"
+      },
+      "links": [
+        {
+          "relation": "question",
+          "to": "e_a9f054a7101b"
+        }
+      ],
+      "status": "recorded",
+      "created_at": "2026-11-06T00:07:55.867847+00:00",
+      "invocation": "call_a2ac5c3e323d"
+    }
+  ],
+  "views": []
+}

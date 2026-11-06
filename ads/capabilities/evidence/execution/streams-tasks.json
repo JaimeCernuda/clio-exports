@@ -1,0 +1,181 @@
+{
+  "tasks": [
+    {
+      "schema_version": 1,
+      "handle": "task_75e0bf9f61004d5e92283c1e3871c8d8",
+      "kind": "Session",
+      "owner": {
+        "schema_version": 1,
+        "human_id": "human:clio_06840babdd864642b51f2000b5ff25f1",
+        "session_id": "sess_9d5c84fc7527",
+        "assignment_id": "task_75e0bf9f61004d5e92283c1e3871c8d8",
+        "parent_handle": null
+      },
+      "description": "Execute the following exact Python program using run_code with background=True and label=\"Watch the experiment\". Do not substitute shell execution. The tools/stream/task names are CLIO kernel bindings. Keep outputs in the workspace. Report only the genuine result or launch handle.\n\n\"\"\"Background kernel program: sensor replay, then a numerical source on the same path.\"\"\"\nimport asyncio\nimport json\nimport math\n\nrows = json.loads(open(\"burn.json\", encoding=\"utf-8\").read())\nsensor = await stream.open(\"burn-observations\", columns=[\"local_label\", \"particle_mean_ug_m3\"],\n                           window=18, flush_s=30)\nsimulation = None\ntheta, velocity, simulation_time = 0.1, 0.0, 0.0\nfor i, row in enumerate(rows):\n    await sensor.write(local_label=row[\"local_label\"], particle_mean_ug_m3=row[\"particle_mean_ug_m3\"])\n    if i == 40:\n        simulation = await stream.open(\"pendulum-simulation\", columns=[\"time_s\", \"angle_rad\"],\n                                       window=18, flush_s=30)\n    if simulation is not None:\n        for _ in range(30):\n            acceleration = -9.80665 * math.sin(theta)\n            theta += velocity * 0.01 + 0.5 * acceleration * 0.01**2\n            velocity += 0.5 * (acceleration - 9.80665 * math.sin(theta)) * 0.01\n            simulation_time += 0.01\n        await simulation.write(time_s=round(simulation_time, 3), angle_rad=theta)\n    await task.progress(\"Replaying recorded observations\", done=i+1, total=len(rows))\n    await asyncio.sleep(0.6)\nawait task.notify(\"Sensor replay complete\")\nprint(\"Sensor replay complete\")",
+      "description_reference": {
+        "schema_version": 1,
+        "session_id": "sess_9d5c84fc7527",
+        "scope": "_events/t/content/8de400a90d87ebf2f0b5175f34b1215a40bbfe0fdfa42b706d0d69c3eabe8192",
+        "content_id": "8de400a90d87ebf2f0b5175f34b1215a40bbfe0fdfa42b706d0d69c3eabe8192",
+        "sha256": "8de400a90d87ebf2f0b5175f34b1215a40bbfe0fdfa42b706d0d69c3eabe8192"
+      },
+      "description_missing": false,
+      "label": "Campaign: streams",
+      "invocation_id": "msg_user_e540cd268be1",
+      "tool": "conversation",
+      "created_at": "2026-11-05T23:45:51.669325+00:00",
+      "updated_at": "2026-11-05T23:46:42.319257+00:00",
+      "backend": {
+        "schema_version": 1,
+        "owner": "conversation",
+        "server": "clio",
+        "auth_scope": "",
+        "session": "sess_9d5c84fc7527",
+        "task_id": "task_75e0bf9f61004d5e92283c1e3871c8d8",
+        "queue": "",
+        "execution_key": "",
+        "transport": "",
+        "placement": "local"
+      },
+      "raw_status": "completed",
+      "status": "completed",
+      "activity": "",
+      "progress": {
+        "schema_version": 1,
+        "message": "Working",
+        "completed": 1,
+        "total": null,
+        "unit": "iterations",
+        "output": {
+          "schema_version": 1,
+          "session_id": "sess_9d5c84fc7527",
+          "scope": "_events/t/output/2e7705d7d0eb7fc9bcfbdf71252f986bf0c2734eef9bb194ea43cf009bcf4b71/d4fff3098633b8f5476d3a5fd106682b3c2e325c24b0e88f4227f87dd46651a0",
+          "content_id": "d4fff3098633b8f5476d3a5fd106682b3c2e325c24b0e88f4227f87dd46651a0",
+          "sha256": "d4fff3098633b8f5476d3a5fd106682b3c2e325c24b0e88f4227f87dd46651a0"
+        }
+      },
+      "supported_actions": [
+        "get_result",
+        "message",
+        "restart"
+      ],
+      "cancellation_requested_at": null,
+      "connection_freshness": "unknown",
+      "settlement": "confirmed",
+      "recording": "confirmed",
+      "terminal_at": "2026-11-05T23:46:42.319257+00:00",
+      "result": {
+        "schema_version": 1,
+        "session_id": "sess_9d5c84fc7527",
+        "scope": "_events/t/content/723f7756a4d2366f279f72826bbe9aeeacea8e24e9b684a93592378291ba363b",
+        "content_id": "723f7756a4d2366f279f72826bbe9aeeacea8e24e9b684a93592378291ba363b",
+        "sha256": "723f7756a4d2366f279f72826bbe9aeeacea8e24e9b684a93592378291ba363b"
+      },
+      "details": {
+        "schema_version": 1,
+        "session_id": "sess_9d5c84fc7527",
+        "scope": "_events/t/content/0b91f5e43fbc69fbebf36e8f77793072c7143c415c53bac2d40e6daa8d17808f",
+        "content_id": "0b91f5e43fbc69fbebf36e8f77793072c7143c415c53bac2d40e6daa8d17808f",
+        "sha256": "0b91f5e43fbc69fbebf36e8f77793072c7143c415c53bac2d40e6daa8d17808f"
+      },
+      "submission": null,
+      "backend_observation": null,
+      "deduplication_key": null,
+      "attention_episode": null,
+      "resource_id": null,
+      "fork_of": null
+    },
+    {
+      "schema_version": 1,
+      "handle": "task_9fab0393c5d54b9aa969810b639e6069",
+      "kind": "Code",
+      "owner": {
+        "schema_version": 1,
+        "human_id": "human:clio_06840babdd864642b51f2000b5ff25f1",
+        "session_id": "sess_9d5c84fc7527",
+        "assignment_id": "task_75e0bf9f61004d5e92283c1e3871c8d8",
+        "parent_handle": "task_75e0bf9f61004d5e92283c1e3871c8d8"
+      },
+      "description": "Background script: Watch the experiment",
+      "description_reference": {
+        "schema_version": 1,
+        "session_id": "sess_9d5c84fc7527",
+        "scope": "_events/t/content/9a8975560b8be9815d74b4967cdcc0c6e14b10c64d171541c361cb412221e68b",
+        "content_id": "9a8975560b8be9815d74b4967cdcc0c6e14b10c64d171541c361cb412221e68b",
+        "sha256": "9a8975560b8be9815d74b4967cdcc0c6e14b10c64d171541c361cb412221e68b"
+      },
+      "description_missing": false,
+      "label": "Watch the experiment",
+      "invocation_id": "67292427290347db9f44b20eb05860c3",
+      "tool": "run_code_task",
+      "created_at": "2026-11-05T23:46:01.416267+00:00",
+      "updated_at": "2026-11-05T23:46:40.735933+00:00",
+      "backend": {
+        "schema_version": 1,
+        "owner": "native",
+        "server": "clio-code",
+        "auth_scope": "",
+        "session": "e806dff6ecb68db9e59c05941c4697ed59e0cc5eb364ab2e9d8380326e39262d",
+        "task_id": "lqJXiZn9Oz-hIw1-O7hitnzvJEQCEsb4FG9TWZjEukU",
+        "queue": "clio-code-74dc9993831544ed9e9e892481ddabda",
+        "execution_key": "",
+        "transport": "in_process",
+        "placement": "local"
+      },
+      "raw_status": "completed",
+      "status": "completed",
+      "activity": "",
+      "progress": {
+        "schema_version": 1,
+        "message": "35 s, 2 calls, 98 MB, 55 of 60: Replaying recorded observations",
+        "completed": null,
+        "total": null,
+        "unit": "",
+        "output": {
+          "schema_version": 1,
+          "session_id": "sess_9d5c84fc7527",
+          "scope": "_events/t/output/6e9ce8d0ea1025d056d61041427a312cca1b9f65197c19f15f3000947838f117/06f38eb648c2c1fa1391de31a87ed02e25ffb90e92fd33c50600469d12dfa792",
+          "content_id": "06f38eb648c2c1fa1391de31a87ed02e25ffb90e92fd33c50600469d12dfa792",
+          "sha256": "06f38eb648c2c1fa1391de31a87ed02e25ffb90e92fd33c50600469d12dfa792"
+        }
+      },
+      "supported_actions": [
+        "get_result"
+      ],
+      "cancellation_requested_at": null,
+      "connection_freshness": "fresh",
+      "settlement": "confirmed",
+      "recording": "confirmed",
+      "terminal_at": "2026-11-05T23:46:40.735933+00:00",
+      "result": {
+        "schema_version": 1,
+        "session_id": "sess_9d5c84fc7527",
+        "scope": "_events/t/content/af0607ce655830c67893e3bd503185f44386a09f910a81b1239ac04855d6ba02",
+        "content_id": "af0607ce655830c67893e3bd503185f44386a09f910a81b1239ac04855d6ba02",
+        "sha256": "af0607ce655830c67893e3bd503185f44386a09f910a81b1239ac04855d6ba02"
+      },
+      "details": null,
+      "submission": {
+        "schema_version": 1,
+        "session_id": "sess_9d5c84fc7527",
+        "scope": "_events/t/content/9fd1360e5f5c16e0db9f7948d9d64716d2c26a5560d272a330376b6a0badf59e",
+        "content_id": "9fd1360e5f5c16e0db9f7948d9d64716d2c26a5560d272a330376b6a0badf59e",
+        "sha256": "9fd1360e5f5c16e0db9f7948d9d64716d2c26a5560d272a330376b6a0badf59e"
+      },
+      "backend_observation": {
+        "schema_version": 1,
+        "session_id": "sess_9d5c84fc7527",
+        "scope": "_events/t/content/af0607ce655830c67893e3bd503185f44386a09f910a81b1239ac04855d6ba02",
+        "content_id": "af0607ce655830c67893e3bd503185f44386a09f910a81b1239ac04855d6ba02",
+        "sha256": "af0607ce655830c67893e3bd503185f44386a09f910a81b1239ac04855d6ba02"
+      },
+      "deduplication_key": null,
+      "attention_episode": null,
+      "resource_id": null,
+      "fork_of": null
+    }
+  ],
+  "total": 2,
+  "cursor": null,
+  "revision": 598
+}

@@ -1,0 +1,49 @@
+{
+  "id": "team",
+  "title": "One question. A research team.",
+  "seconds": 32,
+  "takeaway": "One research question can become coordinated specialist work.",
+  "proof": "Three real concurrent child tasks analyze separate signals, one opens briefly, then their findings rejoin.",
+  "evidence": "konza.json; science.json; execution/team-*.json",
+  "limits": "Deterministic SDK specialist procedures; bootstrap is illustrative, not a causal finding.",
+  "hardest": "Peer cards must clear before the particle inspector expands, while other work stays visible.",
+  "shots": [
+    {
+      "at": 0,
+      "label": "The question",
+      "until": 4
+    },
+    {
+      "at": 4,
+      "label": "Delegate",
+      "until": 9
+    },
+    {
+      "at": 9,
+      "label": "Specialists at work",
+      "until": 14
+    },
+    {
+      "at": 14,
+      "label": "Inside a subagent",
+      "until": 22
+    },
+    {
+      "at": 22,
+      "label": "Bring findings together",
+      "until": 27
+    },
+    {
+      "at": 27,
+      "label": "Build with us",
+      "until": 32
+    }
+  ],
+  "copy": [
+    {
+      "at": 8,
+      "until": 12.5,
+      "text": "Specialists work together, with distinct assignments."
+    }
+  ]
+}

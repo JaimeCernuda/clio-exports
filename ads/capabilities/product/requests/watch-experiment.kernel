@@ -1,0 +1,31 @@
+"""Background kernel program: sensor replay, then a numerical source on the same path."""
+
+import asyncio
+import json
+import math
+
+rows = json.loads(open("burn.json", encoding="utf-8").read())
+sensor = await stream.open(
+    "burn-observations", columns=["local_label", "particle_mean_ug_m3"], window=18, flush_s=30
+)
+simulation = None
+theta, velocity, simulation_time = 0.1, 0.0, 0.0
+for i, row in enumerate(rows):
+    await sensor.write(
+        local_label=row["local_label"], particle_mean_ug_m3=row["particle_mean_ug_m3"]
+    )
+    if i == 40:
+        simulation = await stream.open(
+            "pendulum-simulation", columns=["time_s", "angle_rad"], window=18, flush_s=30
+        )
+    if simulation is not None:
+        for _ in range(30):
+            acceleration = -9.80665 * math.sin(theta)
+            theta += velocity * 0.01 + 0.5 * acceleration * 0.01**2
+            velocity += 0.5 * (acceleration - 9.80665 * math.sin(theta)) * 0.01
+            simulation_time += 0.01
+        await simulation.write(time_s=round(simulation_time, 3), angle_rad=theta)
+    await task.progress("Replaying recorded observations", done=i + 1, total=len(rows))
+    await asyncio.sleep(0.6)
+await task.notify("Sensor replay complete")
+print("Sensor replay complete")

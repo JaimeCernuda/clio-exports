@@ -1,0 +1,128 @@
+{
+  "reference": {
+    "uri": "artifact://ws_de799980ff25/burn-observations.parquet@latest",
+    "kind": "artifact",
+    "workspace_id": "ws_de799980ff25",
+    "name": "burn-observations.parquet",
+    "media_type": "application/vnd.apache.parquet",
+    "size_bytes": 1101,
+    "artifact_id": "artifact_3d067be7c2c04704a8249d93880c6f69",
+    "version": 7,
+    "custody": "cas",
+    "fetch_path": "/v1/artifacts/artifact_3d067be7c2c04704a8249d93880c6f69/bytes",
+    "stream": {
+      "stream_id": "stream_98719a8a8e70",
+      "state": "stopped",
+      "window": 18,
+      "updated_at": "2026-11-05T23:46:39.937006+00:00"
+    }
+  },
+  "table": {
+    "schema": [
+      {
+        "name": "local_label",
+        "type": "string"
+      },
+      {
+        "name": "particle_mean_ug_m3",
+        "type": "double"
+      }
+    ],
+    "columns": {
+      "local_label": [
+        "Apr 15 16:42 CDT",
+        "Apr 15 16:43 CDT",
+        "Apr 15 16:44 CDT",
+        "Apr 15 16:45 CDT",
+        "Apr 15 16:46 CDT",
+        "Apr 15 16:47 CDT",
+        "Apr 15 16:48 CDT",
+        "Apr 15 16:49 CDT",
+        "Apr 15 16:50 CDT",
+        "Apr 15 16:51 CDT",
+        "Apr 15 16:52 CDT",
+        "Apr 15 16:53 CDT",
+        "Apr 15 16:54 CDT",
+        "Apr 15 16:55 CDT",
+        "Apr 15 16:56 CDT",
+        "Apr 15 16:57 CDT",
+        "Apr 15 16:58 CDT",
+        "Apr 15 16:59 CDT"
+      ],
+      "particle_mean_ug_m3": [
+        2374.7818181818184,
+        1712.3818181818183,
+        1250.142857142857,
+        195.87272727272727,
+        283,
+        21.527272727272727,
+        4.267857142857143,
+        4.218181818181818,
+        460.9818181818182,
+        341.7857142857143,
+        27.696428571428573,
+        140.65454545454546,
+        224.9636363636364,
+        189.38181818181812,
+        72.10714285714286,
+        217.03636363636363,
+        45.23636363636364,
+        27.63636363636364
+      ]
+    },
+    "totalRows": 18,
+    "matchedRows": 18,
+    "returnedRows": 18,
+    "truncated": false,
+    "offset": 0,
+    "downsample": {
+      "mode": "none"
+    },
+    "rowKey": {
+      "column": "__row",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ]
+    },
+    "cached": false,
+    "stream": {
+      "stream_id": "stream_98719a8a8e70",
+      "name": "burn-observations",
+      "workspace_id": "ws_de799980ff25",
+      "session_id": "sess_9d5c84fc7527",
+      "state": "stopped",
+      "window": 18,
+      "rows": 18,
+      "writes": 120,
+      "columns": [
+        "local_label",
+        "particle_mean_ug_m3"
+      ],
+      "opened_at": "2026-11-05T23:33:23.720508+00:00",
+      "updated_at": "2026-11-05T23:46:39.937006+00:00",
+      "stopped_at": "2026-11-05T23:46:40.606091+00:00",
+      "flush_s": 30,
+      "artifact_name": "burn-observations.parquet",
+      "artifact_id": "artifact_3d067be7c2c04704a8249d93880c6f69",
+      "view_uri": "artifact://ws_de799980ff25/burn-observations.parquet@latest",
+      "flush_error": null
+    }
+  }
+}

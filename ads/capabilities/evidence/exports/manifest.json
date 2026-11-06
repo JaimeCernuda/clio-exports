@@ -1,0 +1,18 @@
+{
+  "cohort": "available",
+  "months": [
+    "Jan",
+    "Feb",
+    "Mar"
+  ],
+  "exports": [
+    {
+      "name": "snowfall-comparison.csv",
+      "sha256": "e451905839a605e8834e2d0fce91be2093d37f84c61134e4085fe067039bc2e4"
+    },
+    {
+      "name": "snowfall-comparison.svg",
+      "sha256": "25394c109bcbbf1691bb3872f6a2101e0f0f1e687821ae20af30201336816007"
+    }
+  ]
+}

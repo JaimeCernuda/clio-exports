@@ -1,0 +1,1 @@
+{"$schema":"https://agent-plugins.org/schemas/1.0.0/plugin.schema.json","name":"campaign-methods","version":"1.0.0","description":"Executable, data-backed scientific ad examples.","extensions":{"ai.iowarp.clio":{"requires":["delegation","streaming"]}}}

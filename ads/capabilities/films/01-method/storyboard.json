@@ -1,0 +1,54 @@
+{
+  "id": "method",
+  "title": "Bring your method.",
+  "seconds": 32,
+  "takeaway": "Your procedure can run, review its result and revise the relevant step.",
+  "proof": "A deflecting beam travels through the flow and returns through simulation after review.",
+  "evidence": "beam.json; execution/method-*.json",
+  "limits": "Euler–Bernoulli analytical beam, not a Slurm/finite-element run.",
+  "hardest": "Unfolding text into nodes, then routing the same result around the revision loop.",
+  "shots": [
+    {
+      "at": 0,
+      "label": "The method",
+      "until": 4
+    },
+    {
+      "at": 4,
+      "label": "A flow takes shape",
+      "until": 10
+    },
+    {
+      "at": 10,
+      "label": "Execute",
+      "until": 17
+    },
+    {
+      "at": 17,
+      "label": "Review and revise",
+      "until": 23
+    },
+    {
+      "at": 23,
+      "label": "Updated result",
+      "until": 27
+    },
+    {
+      "at": 27,
+      "label": "Build with us",
+      "until": 32
+    }
+  ],
+  "copy": [
+    {
+      "at": 7.7,
+      "until": 15.5,
+      "text": "Your procedure. Executed as connected work."
+    },
+    {
+      "at": 20.8,
+      "until": 26,
+      "text": "Review changes the next step."
+    }
+  ]
+}

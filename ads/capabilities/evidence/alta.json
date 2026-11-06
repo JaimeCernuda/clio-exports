@@ -1,0 +1,1769 @@
+{
+  "session": "sess_4e74d38f7a9d",
+  "archive": {
+    "archive": "Alta-snowfall-session-maps-v2.html",
+    "sha256": "84e3de064bd91e453463f45c0179f34116c658bea5e90c7b088fa27a5a30e69f"
+  },
+  "tables": [
+    {
+      "artifact_id": "artifact_0aa3909d91fe4c8b872de87800dc4853",
+      "name": "Alta seasonal comparison",
+      "schema": [
+        {
+          "name": "end_year",
+          "type": "int64"
+        },
+        {
+          "name": "winter",
+          "type": "string"
+        },
+        {
+          "name": "snowfall_in",
+          "type": "double"
+        },
+        {
+          "name": "rows",
+          "type": "int64"
+        },
+        {
+          "name": "expected",
+          "type": "int64"
+        },
+        {
+          "name": "missing",
+          "type": "int64"
+        },
+        {
+          "name": "duplicates",
+          "type": "int64"
+        },
+        {
+          "name": "extra",
+          "type": "int64"
+        },
+        {
+          "name": "minimum",
+          "type": "double"
+        },
+        {
+          "name": "nov_apr_in",
+          "type": "double"
+        },
+        {
+          "name": "oct_in",
+          "type": "double"
+        },
+        {
+          "name": "coverage",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        }
+      ],
+      "columns": {
+        "end_year": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "winter": [
+          "1999-00",
+          "2000-01",
+          "2001-02",
+          "2002-03",
+          "2003-04",
+          "2004-05",
+          "2005-06",
+          "2006-07",
+          "2007-08",
+          "2008-09",
+          "2009-10",
+          "2010-11",
+          "2011-12",
+          "2012-13",
+          "2013-14",
+          "2014-15",
+          "2015-16",
+          "2016-17",
+          "2017-18",
+          "2018-19",
+          "2019-20",
+          "2020-21",
+          "2021-22",
+          "2022-23",
+          "2023-24"
+        ],
+        "snowfall_in": [
+          493.5,
+          549,
+          555,
+          443,
+          609,
+          695.5,
+          641.5,
+          401.5,
+          702,
+          696.5,
+          560,
+          724,
+          390.5,
+          449,
+          432,
+          323.5,
+          438.5,
+          596.5,
+          388,
+          626,
+          496.5,
+          486.5,
+          440,
+          903,
+          635.5
+        ],
+        "rows": [
+          364,
+          406,
+          420,
+          424,
+          402,
+          424,
+          408,
+          424,
+          426,
+          424,
+          424,
+          424,
+          426,
+          424,
+          424,
+          424,
+          426,
+          424,
+          424,
+          424,
+          364,
+          362,
+          424,
+          424,
+          426
+        ],
+        "expected": [
+          426,
+          424,
+          424,
+          424,
+          426,
+          424,
+          424,
+          424,
+          426,
+          424,
+          424,
+          424,
+          426,
+          424,
+          424,
+          424,
+          426,
+          424,
+          424,
+          424,
+          426,
+          424,
+          424,
+          424,
+          426
+        ],
+        "missing": [
+          62,
+          18,
+          4,
+          0,
+          24,
+          0,
+          16,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          62,
+          62,
+          0,
+          0,
+          0
+        ],
+        "duplicates": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "extra": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "minimum": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "nov_apr_in": [
+          493.5,
+          485,
+          535,
+          400,
+          593,
+          577.5,
+          631,
+          377.5,
+          649,
+          696.5,
+          518,
+          682,
+          372.5,
+          433,
+          392.5,
+          323.5,
+          434.5,
+          594.5,
+          381,
+          595.5,
+          496.5,
+          486.5,
+          373,
+          865.5,
+          606.5
+        ],
+        "oct_in": [
+          0,
+          64,
+          20,
+          43,
+          16,
+          118,
+          10.5,
+          24,
+          53,
+          0,
+          42,
+          42,
+          18,
+          16,
+          39.5,
+          0,
+          4,
+          2,
+          7,
+          30.5,
+          0,
+          0,
+          67,
+          37.5,
+          29
+        ],
+        "coverage": [
+          "Historical: missing October data",
+          "Historical: missing October data",
+          "Historical: missing October data",
+          "Historical: complete",
+          "Historical: missing October data",
+          "Historical: complete",
+          "Historical: missing October data",
+          "Historical: complete",
+          "Historical: complete",
+          "Historical: complete",
+          "Historical: complete",
+          "Historical: complete",
+          "Historical: complete",
+          "Historical: complete",
+          "Historical: complete",
+          "Historical: complete",
+          "Historical: complete",
+          "Historical: complete",
+          "Historical: complete",
+          "Historical: complete",
+          "Historical: missing October data",
+          "Historical: missing October data",
+          "Historical: complete",
+          "Historical: complete",
+          "2023-24"
+        ],
+        "label": [
+          "1999-00 *",
+          "2000-01 *",
+          "2001-02 *",
+          "2002-03",
+          "2003-04 *",
+          "2004-05",
+          "2005-06 *",
+          "2006-07",
+          "2007-08",
+          "2008-09",
+          "2009-10",
+          "2010-11",
+          "2011-12",
+          "2012-13",
+          "2013-14",
+          "2014-15",
+          "2015-16",
+          "2016-17",
+          "2017-18",
+          "2018-19",
+          "2019-20 *",
+          "2020-21 *",
+          "2021-22",
+          "2022-23",
+          "2023-24"
+        ]
+      },
+      "totalRows": 25,
+      "matchedRows": 25,
+      "returnedRows": 25,
+      "truncated": false,
+      "offset": 0,
+      "downsample": {
+        "mode": "none",
+        "inputRows": 25,
+        "outputRows": 25
+      },
+      "rowKey": {
+        "column": "__row",
+        "values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ]
+      },
+      "cached": false
+    },
+    {
+      "artifact_id": "artifact_734bca454e7c4a01bda5a4a9be8d1fdd",
+      "name": "Alta monthly comparison",
+      "schema": [
+        {
+          "name": "cohort",
+          "type": "string"
+        },
+        {
+          "name": "month",
+          "type": "string"
+        },
+        {
+          "name": "month_order",
+          "type": "int64"
+        },
+        {
+          "name": "target_in",
+          "type": "double"
+        },
+        {
+          "name": "mean_in",
+          "type": "double"
+        },
+        {
+          "name": "median_in",
+          "type": "double"
+        },
+        {
+          "name": "q25_in",
+          "type": "double"
+        },
+        {
+          "name": "q75_in",
+          "type": "double"
+        },
+        {
+          "name": "min_in",
+          "type": "double"
+        },
+        {
+          "name": "max_in",
+          "type": "double"
+        },
+        {
+          "name": "anomaly_in",
+          "type": "double"
+        },
+        {
+          "name": "anomaly_pct",
+          "type": "double"
+        },
+        {
+          "name": "n_history",
+          "type": "int64"
+        },
+        {
+          "name": "rank",
+          "type": "int64"
+        },
+        {
+          "name": "rank_of",
+          "type": "int64"
+        },
+        {
+          "name": "direction",
+          "type": "string"
+        }
+      ],
+      "columns": {
+        "cohort": [
+          "matched17",
+          "matched17",
+          "matched17",
+          "matched17",
+          "matched17",
+          "matched17",
+          "matched17",
+          "available",
+          "available",
+          "available",
+          "available",
+          "available",
+          "available",
+          "available"
+        ],
+        "month": [
+          "Oct",
+          "Nov",
+          "Dec",
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "Oct",
+          "Nov",
+          "Dec",
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr"
+        ],
+        "month_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "target_in": [
+          29,
+          44.5,
+          88,
+          140.5,
+          154.5,
+          131,
+          48,
+          29,
+          44.5,
+          88,
+          140.5,
+          154.5,
+          131,
+          48
+        ],
+        "mean_in": [
+          31.9706,
+          54.2353,
+          93.7647,
+          88.9118,
+          86.2941,
+          99.6176,
+          86.9412,
+          31.9706,
+          62.5417,
+          95.625,
+          90.9375,
+          90.4375,
+          97.3125,
+          79.25
+        ],
+        "median_in": [
+          30.5,
+          61.5,
+          93,
+          70.5,
+          86,
+          89,
+          75,
+          30.5,
+          64.25,
+          87.5,
+          73.75,
+          86,
+          86,
+          70.75
+        ],
+        "q25_in": [
+          7,
+          37,
+          72.5,
+          57.5,
+          64,
+          78.5,
+          64,
+          7,
+          39.25,
+          74,
+          61.125,
+          67.375,
+          66.625,
+          55.625
+        ],
+        "q75_in": [
+          42,
+          68,
+          117,
+          111.5,
+          115,
+          129,
+          93,
+          42,
+          73.875,
+          120.625,
+          119,
+          116.875,
+          127.875,
+          92.25
+        ],
+        "min_in": [
+          0,
+          21,
+          20,
+          29.5,
+          26,
+          31.5,
+          46,
+          0,
+          21,
+          20,
+          29.5,
+          26,
+          31.5,
+          12.5
+        ],
+        "max_in": [
+          118,
+          90.5,
+          163,
+          186,
+          131,
+          229,
+          158.5,
+          118,
+          145,
+          163,
+          186,
+          162.5,
+          229,
+          158.5
+        ],
+        "anomaly_in": [
+          -2.9706,
+          -9.7353,
+          -5.7647,
+          51.5882,
+          68.2059,
+          31.3824,
+          -38.9412,
+          -2.9706,
+          -18.0417,
+          -7.625,
+          49.5625,
+          64.0625,
+          33.6875,
+          -31.25
+        ],
+        "anomaly_pct": [
+          -9.29,
+          -17.95,
+          -6.15,
+          58.02,
+          79.04,
+          31.5,
+          -44.79,
+          -9.29,
+          -28.85,
+          -7.97,
+          54.5,
+          70.84,
+          34.62,
+          -39.43
+        ],
+        "n_history": [
+          17,
+          17,
+          17,
+          17,
+          17,
+          17,
+          17,
+          17,
+          24,
+          24,
+          24,
+          24,
+          24,
+          24
+        ],
+        "rank": [
+          10,
+          12,
+          10,
+          4,
+          1,
+          5,
+          17,
+          10,
+          18,
+          13,
+          5,
+          2,
+          6,
+          22
+        ],
+        "rank_of": [
+          18,
+          18,
+          18,
+          18,
+          18,
+          18,
+          18,
+          18,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25
+        ],
+        "direction": [
+          "Below mean",
+          "Below mean",
+          "Below mean",
+          "Above mean",
+          "Above mean",
+          "Above mean",
+          "Below mean",
+          "Below mean",
+          "Below mean",
+          "Below mean",
+          "Above mean",
+          "Above mean",
+          "Above mean",
+          "Below mean"
+        ]
+      },
+      "totalRows": 14,
+      "matchedRows": 14,
+      "returnedRows": 14,
+      "truncated": false,
+      "offset": 0,
+      "downsample": {
+        "mode": "none",
+        "inputRows": 14,
+        "outputRows": 14
+      },
+      "rowKey": {
+        "column": "__row",
+        "values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ]
+      },
+      "cached": false
+    }
+  ],
+  "surfaces": [
+    {
+      "id": "alta-winter-comparison",
+      "session_id": "sess_4e74d38f7a9d",
+      "catalog_id": "https://iowarp.ai/a2ui/catalogs/clio-workspace/v1",
+      "protocol_version": "0.9.1",
+      "revision": 3,
+      "state": "ready",
+      "messages": [
+        {
+          "createSurface": {
+            "catalogId": "https://iowarp.ai/a2ui/catalogs/clio-workspace/v1",
+            "surfaceId": "alta-winter-comparison"
+          },
+          "version": "v0.9.1"
+        },
+        {
+          "version": "v0.9.1",
+          "updateComponents": {
+            "surfaceId": "alta-winter-comparison",
+            "components": [
+              {
+                "children": [
+                  "title",
+                  "chart",
+                  "note"
+                ],
+                "component": "Column",
+                "id": "root"
+              },
+              {
+                "component": "Text",
+                "id": "title",
+                "text": "Alta-Collins: October–April snowfall",
+                "variant": "h3"
+              },
+              {
+                "component": "clio.chart.v1",
+                "dataUri": "artifact://artifact_0aa3909d91fe4c8b872de87800dc4853",
+                "height": 620,
+                "id": "chart",
+                "spec": {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json",
+                  "config": {
+                    "axis": {
+                      "gridOpacity": 0.15
+                    },
+                    "view": {
+                      "continuousHeight": 300,
+                      "continuousWidth": 300,
+                      "stroke": null
+                    }
+                  },
+                  "data": {
+                    "name": "source"
+                  },
+                  "height": 620,
+                  "layer": [
+                    {
+                      "encoding": {
+                        "color": {
+                          "field": "coverage",
+                          "legend": {
+                            "columns": 1,
+                            "labelLimit": 300,
+                            "orient": "top",
+                            "title": null
+                          },
+                          "scale": {
+                            "domain": [
+                              "Historical: complete",
+                              "Historical: missing October data",
+                              "2023-24"
+                            ],
+                            "range": [
+                              "#5d80ad",
+                              "#dca34b",
+                              "#22a599"
+                            ]
+                          },
+                          "type": "nominal"
+                        },
+                        "tooltip": [
+                          {
+                            "field": "winter",
+                            "title": "Winter",
+                            "type": "nominal"
+                          },
+                          {
+                            "field": "snowfall_in",
+                            "format": ".1f",
+                            "title": "Available snowfall (in.)",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "missing",
+                            "title": "Missing 12-hour periods",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "nov_apr_in",
+                            "format": ".1f",
+                            "title": "Nov-Apr (in.)",
+                            "type": "quantitative"
+                          }
+                        ],
+                        "x": {
+                          "field": "snowfall_in",
+                          "scale": {
+                            "domain": [
+                              0,
+                              1000
+                            ]
+                          },
+                          "title": "New snowfall (inches)",
+                          "type": "quantitative"
+                        },
+                        "y": {
+                          "axis": {
+                            "labelFontSize": 12
+                          },
+                          "field": "label",
+                          "sort": {
+                            "field": "snowfall_in",
+                            "order": "descending"
+                          },
+                          "title": null,
+                          "type": "nominal"
+                        }
+                      },
+                      "mark": {
+                        "cornerRadiusEnd": 2,
+                        "type": "bar"
+                      }
+                    },
+                    {
+                      "encoding": {
+                        "x": {
+                          "datum": 541.7352941176471
+                        }
+                      },
+                      "mark": {
+                        "color": "#838b98",
+                        "strokeDash": [
+                          5,
+                          4
+                        ],
+                        "type": "rule"
+                      }
+                    },
+                    {
+                      "encoding": {
+                        "text": {
+                          "field": "snowfall_in",
+                          "format": ".1f",
+                          "type": "quantitative"
+                        },
+                        "x": {
+                          "field": "snowfall_in",
+                          "type": "quantitative"
+                        },
+                        "y": {
+                          "axis": {
+                            "labelFontSize": 12
+                          },
+                          "field": "label",
+                          "sort": {
+                            "field": "snowfall_in",
+                            "order": "descending"
+                          },
+                          "title": null,
+                          "type": "nominal"
+                        }
+                      },
+                      "mark": {
+                        "align": "left",
+                        "dx": 5,
+                        "fontSize": 11,
+                        "type": "text"
+                      }
+                    }
+                  ],
+                  "width": "container"
+                },
+                "title": "Available sums by winter"
+              },
+              {
+                "component": "Text",
+                "id": "note",
+                "text": "Dashed line: 541.7 in., the mean of 17 complete historical winters. Gold bars and * labels are partial sums with missing October observations—not complete seasonal totals. No missing values were filled.",
+                "variant": "caption"
+              }
+            ]
+          }
+        }
+      ],
+      "message_revisions": [
+        1,
+        3
+      ],
+      "part_id": "live_a2ui_d362197b8b33",
+      "evicted_messages": 0,
+      "created_at": "2026-10-19T06:58:21.803679+00:00",
+      "updated_at": "2026-10-19T06:58:54.644441+00:00",
+      "actions": []
+    },
+    {
+      "id": "alta-monthly-comparison",
+      "session_id": "sess_4e74d38f7a9d",
+      "catalog_id": "https://iowarp.ai/a2ui/catalogs/clio-workspace/v1",
+      "protocol_version": "0.9.1",
+      "revision": 7,
+      "state": "ready",
+      "messages": [
+        {
+          "createSurface": {
+            "catalogId": "https://iowarp.ai/a2ui/catalogs/clio-workspace/v1",
+            "surfaceId": "alta-monthly-comparison"
+          },
+          "version": "v0.9.1"
+        },
+        {
+          "version": "v0.9.1",
+          "updateComponents": {
+            "surfaceId": "alta-monthly-comparison",
+            "components": [
+              {
+                "children": [
+                  "title",
+                  "baseline",
+                  "monthpick",
+                  "key",
+                  "totals",
+                  "anomaly",
+                  "tabletitle",
+                  "table",
+                  "coverage"
+                ],
+                "component": "Column",
+                "id": "root"
+              },
+              {
+                "component": "Text",
+                "id": "title",
+                "text": "Snowy January-March, not an elevated winter throughout",
+                "variant": "h3"
+              },
+              {
+                "component": "ChoicePicker",
+                "displayStyle": "chips",
+                "id": "baseline",
+                "label": "Historical baseline",
+                "options": [
+                  {
+                    "label": "Same 17 complete winters",
+                    "value": "matched17"
+                  },
+                  {
+                    "label": "All complete months (17 Oct; 24 Nov-Apr)",
+                    "value": "available"
+                  }
+                ],
+                "value": {
+                  "path": "/controls/baseline"
+                },
+                "variant": "mutuallyExclusive"
+              },
+              {
+                "component": "ChoicePicker",
+                "displayStyle": "chips",
+                "id": "monthpick",
+                "label": "Months to compare",
+                "options": [
+                  {
+                    "label": "Oct",
+                    "value": "Oct"
+                  },
+                  {
+                    "label": "Nov",
+                    "value": "Nov"
+                  },
+                  {
+                    "label": "Dec",
+                    "value": "Dec"
+                  },
+                  {
+                    "label": "Jan",
+                    "value": "Jan"
+                  },
+                  {
+                    "label": "Feb",
+                    "value": "Feb"
+                  },
+                  {
+                    "label": "Mar",
+                    "value": "Mar"
+                  },
+                  {
+                    "label": "Apr",
+                    "value": "Apr"
+                  }
+                ],
+                "value": {
+                  "path": "/controls/months"
+                },
+                "variant": "multipleSelection"
+              },
+              {
+                "component": "Text",
+                "id": "key",
+                "text": "Teal line: 2023-24. Gold dashed line: historical mean. Blue blocks: historical middle 50%; thin gray lines: historical min-max (not confidence intervals).",
+                "variant": "caption"
+              },
+              {
+                "component": "clio.chart.v1",
+                "dataQuery": {
+                  "filter": [
+                    {
+                      "column": "cohort",
+                      "op": "in",
+                      "value": {
+                        "path": "/controls/baseline"
+                      }
+                    },
+                    {
+                      "column": "month",
+                      "op": "in",
+                      "value": {
+                        "path": "/controls/months"
+                      }
+                    }
+                  ],
+                  "limit": 20,
+                  "sort": [
+                    {
+                      "column": "month_order",
+                      "desc": false
+                    }
+                  ]
+                },
+                "dataUri": "artifact://artifact_734bca454e7c4a01bda5a4a9be8d1fdd",
+                "height": 255,
+                "id": "totals",
+                "spec": {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json",
+                  "config": {
+                    "view": {
+                      "continuousHeight": 300,
+                      "continuousWidth": 300,
+                      "stroke": null
+                    }
+                  },
+                  "data": {
+                    "name": "source"
+                  },
+                  "height": 255,
+                  "layer": [
+                    {
+                      "encoding": {
+                        "x": {
+                          "axis": {
+                            "labelAngle": 0,
+                            "labelFontSize": 12
+                          },
+                          "field": "month",
+                          "sort": [
+                            "Oct",
+                            "Nov",
+                            "Dec",
+                            "Jan",
+                            "Feb",
+                            "Mar",
+                            "Apr"
+                          ],
+                          "title": null,
+                          "type": "nominal"
+                        },
+                        "y": {
+                          "field": "min_in",
+                          "title": "Monthly snowfall (inches)",
+                          "type": "quantitative"
+                        },
+                        "y2": {
+                          "field": "max_in"
+                        }
+                      },
+                      "mark": {
+                        "color": "#7e8999",
+                        "opacity": 0.7,
+                        "type": "rule"
+                      }
+                    },
+                    {
+                      "encoding": {
+                        "x": {
+                          "axis": {
+                            "labelAngle": 0,
+                            "labelFontSize": 12
+                          },
+                          "field": "month",
+                          "sort": [
+                            "Oct",
+                            "Nov",
+                            "Dec",
+                            "Jan",
+                            "Feb",
+                            "Mar",
+                            "Apr"
+                          ],
+                          "title": null,
+                          "type": "nominal"
+                        },
+                        "y": {
+                          "field": "q25_in",
+                          "title": "Monthly snowfall (inches)",
+                          "type": "quantitative"
+                        },
+                        "y2": {
+                          "field": "q75_in"
+                        }
+                      },
+                      "mark": {
+                        "color": "#5d80ad",
+                        "opacity": 0.35,
+                        "size": 25,
+                        "type": "bar"
+                      }
+                    },
+                    {
+                      "encoding": {
+                        "tooltip": [
+                          {
+                            "field": "month",
+                            "title": "Month",
+                            "type": "nominal"
+                          },
+                          {
+                            "field": "target_in",
+                            "format": ".1f",
+                            "title": "2023-24 (in.)",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "mean_in",
+                            "format": ".1f",
+                            "title": "Historical mean (in.)",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "anomaly_in",
+                            "format": "+.1f",
+                            "title": "Difference (in.)",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "anomaly_pct",
+                            "format": "+.1f",
+                            "title": "Difference (%)",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "n_history",
+                            "title": "Earlier winters",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "rank",
+                            "title": "Descending rank",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "rank_of",
+                            "title": "Rank denominator",
+                            "type": "quantitative"
+                          }
+                        ],
+                        "x": {
+                          "axis": {
+                            "labelAngle": 0,
+                            "labelFontSize": 12
+                          },
+                          "field": "month",
+                          "sort": [
+                            "Oct",
+                            "Nov",
+                            "Dec",
+                            "Jan",
+                            "Feb",
+                            "Mar",
+                            "Apr"
+                          ],
+                          "title": null,
+                          "type": "nominal"
+                        },
+                        "y": {
+                          "field": "mean_in",
+                          "title": "Monthly snowfall (inches)",
+                          "type": "quantitative"
+                        }
+                      },
+                      "mark": {
+                        "color": "#dba64d",
+                        "point": {
+                          "color": "#dba64d",
+                          "fill": "#dba64d"
+                        },
+                        "strokeDash": [
+                          5,
+                          3
+                        ],
+                        "type": "line"
+                      }
+                    },
+                    {
+                      "encoding": {
+                        "tooltip": [
+                          {
+                            "field": "month",
+                            "title": "Month",
+                            "type": "nominal"
+                          },
+                          {
+                            "field": "target_in",
+                            "format": ".1f",
+                            "title": "2023-24 (in.)",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "mean_in",
+                            "format": ".1f",
+                            "title": "Historical mean (in.)",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "anomaly_in",
+                            "format": "+.1f",
+                            "title": "Difference (in.)",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "anomaly_pct",
+                            "format": "+.1f",
+                            "title": "Difference (%)",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "n_history",
+                            "title": "Earlier winters",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "rank",
+                            "title": "Descending rank",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "rank_of",
+                            "title": "Rank denominator",
+                            "type": "quantitative"
+                          }
+                        ],
+                        "x": {
+                          "axis": {
+                            "labelAngle": 0,
+                            "labelFontSize": 12
+                          },
+                          "field": "month",
+                          "sort": [
+                            "Oct",
+                            "Nov",
+                            "Dec",
+                            "Jan",
+                            "Feb",
+                            "Mar",
+                            "Apr"
+                          ],
+                          "title": null,
+                          "type": "nominal"
+                        },
+                        "y": {
+                          "field": "target_in",
+                          "scale": {
+                            "domain": [
+                              0,
+                              250
+                            ]
+                          },
+                          "title": "Monthly snowfall (inches)",
+                          "type": "quantitative"
+                        }
+                      },
+                      "mark": {
+                        "color": "#22a599",
+                        "point": {
+                          "color": "#22a599",
+                          "fill": "#22a599",
+                          "size": 85
+                        },
+                        "strokeWidth": 3,
+                        "type": "line"
+                      }
+                    }
+                  ],
+                  "width": "container"
+                },
+                "title": "Monthly snowfall and historical spread"
+              },
+              {
+                "component": "clio.chart.v1",
+                "dataQuery": {
+                  "filter": [
+                    {
+                      "column": "cohort",
+                      "op": "in",
+                      "value": {
+                        "path": "/controls/baseline"
+                      }
+                    },
+                    {
+                      "column": "month",
+                      "op": "in",
+                      "value": {
+                        "path": "/controls/months"
+                      }
+                    }
+                  ],
+                  "limit": 20,
+                  "sort": [
+                    {
+                      "column": "month_order",
+                      "desc": false
+                    }
+                  ]
+                },
+                "dataUri": "artifact://artifact_734bca454e7c4a01bda5a4a9be8d1fdd",
+                "height": 175,
+                "id": "anomaly",
+                "spec": {
+                  "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json",
+                  "config": {
+                    "view": {
+                      "continuousHeight": 300,
+                      "continuousWidth": 300,
+                      "stroke": null
+                    }
+                  },
+                  "data": {
+                    "name": "source"
+                  },
+                  "height": 175,
+                  "layer": [
+                    {
+                      "encoding": {
+                        "y": {
+                          "datum": 0
+                        }
+                      },
+                      "mark": {
+                        "color": "#87919e",
+                        "type": "rule"
+                      }
+                    },
+                    {
+                      "encoding": {
+                        "color": {
+                          "field": "direction",
+                          "legend": null,
+                          "scale": {
+                            "domain": [
+                              "Above mean",
+                              "Below mean"
+                            ],
+                            "range": [
+                              "#22a599",
+                              "#c1845e"
+                            ]
+                          },
+                          "type": "nominal"
+                        },
+                        "tooltip": [
+                          {
+                            "field": "month",
+                            "title": "Month",
+                            "type": "nominal"
+                          },
+                          {
+                            "field": "target_in",
+                            "format": ".1f",
+                            "title": "2023-24 (in.)",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "mean_in",
+                            "format": ".1f",
+                            "title": "Historical mean (in.)",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "anomaly_in",
+                            "format": "+.1f",
+                            "title": "Difference (in.)",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "anomaly_pct",
+                            "format": "+.1f",
+                            "title": "Difference (%)",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "n_history",
+                            "title": "Earlier winters",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "rank",
+                            "title": "Descending rank",
+                            "type": "quantitative"
+                          },
+                          {
+                            "field": "rank_of",
+                            "title": "Rank denominator",
+                            "type": "quantitative"
+                          }
+                        ],
+                        "x": {
+                          "axis": {
+                            "labelAngle": 0,
+                            "labelFontSize": 12
+                          },
+                          "field": "month",
+                          "sort": [
+                            "Oct",
+                            "Nov",
+                            "Dec",
+                            "Jan",
+                            "Feb",
+                            "Mar",
+                            "Apr"
+                          ],
+                          "title": null,
+                          "type": "nominal"
+                        },
+                        "y": {
+                          "field": "anomaly_in",
+                          "scale": {
+                            "domain": [
+                              -50,
+                              80
+                            ]
+                          },
+                          "title": "Surplus / deficit (in.)",
+                          "type": "quantitative"
+                        }
+                      },
+                      "mark": {
+                        "size": 38,
+                        "type": "bar"
+                      }
+                    },
+                    {
+                      "encoding": {
+                        "text": {
+                          "field": "anomaly_in",
+                          "format": "+.1f",
+                          "type": "quantitative"
+                        },
+                        "x": {
+                          "axis": {
+                            "labelAngle": 0,
+                            "labelFontSize": 12
+                          },
+                          "field": "month",
+                          "sort": [
+                            "Oct",
+                            "Nov",
+                            "Dec",
+                            "Jan",
+                            "Feb",
+                            "Mar",
+                            "Apr"
+                          ],
+                          "title": null,
+                          "type": "nominal"
+                        },
+                        "y": {
+                          "field": "anomaly_in",
+                          "type": "quantitative"
+                        }
+                      },
+                      "mark": {
+                        "dy": -9,
+                        "fontSize": 12,
+                        "type": "text"
+                      }
+                    }
+                  ],
+                  "width": "container"
+                },
+                "title": "Which months added to or offset the surplus?"
+              },
+              {
+                "component": "Text",
+                "id": "tabletitle",
+                "text": "Monthly detail (snowfall in inches; rank includes 2023-24)",
+                "variant": "h5"
+              },
+              {
+                "columns": [
+                  {
+                    "key": "month",
+                    "label": "Month"
+                  },
+                  {
+                    "key": "target_in",
+                    "label": "2023-24"
+                  },
+                  {
+                    "key": "mean_in",
+                    "label": "Mean"
+                  },
+                  {
+                    "key": "anomaly_in",
+                    "label": "Diff. in."
+                  },
+                  {
+                    "key": "anomaly_pct",
+                    "label": "Diff. %"
+                  },
+                  {
+                    "key": "n_history",
+                    "label": "N earlier"
+                  },
+                  {
+                    "key": "rank",
+                    "label": "Rank"
+                  }
+                ],
+                "component": "clio.data-table.v1",
+                "dataQuery": {
+                  "filter": [
+                    {
+                      "column": "cohort",
+                      "op": "in",
+                      "value": {
+                        "path": "/controls/baseline"
+                      }
+                    },
+                    {
+                      "column": "month",
+                      "op": "in",
+                      "value": {
+                        "path": "/controls/months"
+                      }
+                    }
+                  ],
+                  "limit": 20,
+                  "sort": [
+                    {
+                      "column": "month_order",
+                      "desc": false
+                    }
+                  ]
+                },
+                "dataUri": "artifact://artifact_734bca454e7c4a01bda5a4a9be8d1fdd",
+                "id": "table"
+              },
+              {
+                "component": "Text",
+                "id": "coverage",
+                "text": "Default: the 17 complete historical October-April winters, so monthly differences add to the +93.8-inch seasonal surplus. Alternative: 17 complete Octobers and 24 complete observations for each other month; its monthly means do not form a single matched-winter seasonal baseline. Missing months are excluded, never zero-filled. Totals use 12-hour period-start dates in local standard time; February totals include leap days and are not normalized per day.",
+                "variant": "caption"
+              }
+            ]
+          }
+        },
+        {
+          "updateDataModel": {
+            "path": "/",
+            "surfaceId": "alta-monthly-comparison",
+            "value": {
+              "controls": {
+                "baseline": [
+                  "matched17"
+                ],
+                "months": [
+                  "Oct",
+                  "Nov",
+                  "Dec",
+                  "Jan",
+                  "Feb",
+                  "Mar",
+                  "Apr"
+                ]
+              }
+            }
+          },
+          "version": "v0.9.1"
+        },
+        {
+          "updateDataModel": {
+            "path": "/controls",
+            "surfaceId": "alta-monthly-comparison",
+            "value": {
+              "baseline": [
+                "available"
+              ],
+              "months": [
+                "Feb"
+              ]
+            }
+          },
+          "version": "v0.9.1"
+        },
+        {
+          "updateDataModel": {
+            "path": "/controls",
+            "surfaceId": "alta-monthly-comparison",
+            "value": {
+              "baseline": [
+                "matched17"
+              ],
+              "months": [
+                "Oct",
+                "Nov",
+                "Dec",
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr"
+              ]
+            }
+          },
+          "version": "v0.9.1"
+        }
+      ],
+      "message_revisions": [
+        1,
+        6,
+        3,
+        5,
+        7
+      ],
+      "part_id": "live_a2ui_835ead3757e0",
+      "evicted_messages": 0,
+      "created_at": "2026-10-19T07:12:17.003873+00:00",
+      "updated_at": "2026-10-19T07:13:54.068521+00:00",
+      "actions": []
+    }
+  ]
+}

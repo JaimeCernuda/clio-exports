@@ -1,0 +1,69 @@
+{
+  "id": "streams",
+  "title": "Tap into your experiment.",
+  "seconds": 40,
+  "takeaway": "A running experiment can feed both an agent and a live view.",
+  "proof": "Background PTC writes a rolling window; another question reads it while it runs; a simulation uses the same stream path.",
+  "evidence": "science.json; execution/stream-snapshots.json; execution/*-final.json; execution/streams-*.json",
+  "limits": "Sensor replay and numerical simulation. Memory window is 18 rows; snapshots are versioned; task stops on completion.",
+  "hardest": "Keep stream/task clocks consistent and separate a one-time answer from changing dashboard values.",
+  "shots": [
+    {
+      "at": 0,
+      "label": "A changing signal",
+      "until": 4
+    },
+    {
+      "at": 4,
+      "label": "Start background work",
+      "until": 10
+    },
+    {
+      "at": 10,
+      "label": "Live context",
+      "until": 17
+    },
+    {
+      "at": 17,
+      "label": "Ask without restarting",
+      "until": 23
+    },
+    {
+      "at": 23,
+      "label": "A live dashboard",
+      "until": 28
+    },
+    {
+      "at": 28,
+      "label": "Simulation source",
+      "until": 32
+    },
+    {
+      "at": 32,
+      "label": "A meaningful notification",
+      "until": 35
+    },
+    {
+      "at": 35,
+      "label": "Build with us",
+      "until": 40
+    }
+  ],
+  "copy": [
+    {
+      "at": 9,
+      "until": 13.4,
+      "text": "Tap the signal once. Keep its recent context."
+    },
+    {
+      "at": 23.3,
+      "until": 27,
+      "text": "One stream. An agent and a dashboard."
+    },
+    {
+      "at": 29,
+      "until": 32,
+      "text": "Instruments and simulations, connected to the same work."
+    }
+  ]
+}

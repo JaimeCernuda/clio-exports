@@ -1,0 +1,54 @@
+{
+  "id": "hypothesis",
+  "title": "What if we’re wrong?",
+  "seconds": 34,
+  "takeaway": "A useful scientific agent tests and revises a claim.",
+  "proof": "The nonlinear period diverges from the small-angle prediction; linked graph entries preserve why the claim changed.",
+  "evidence": "science.json; science-log.json; execution/hypothesis-*.json",
+  "limits": "Ideal numerical pendulum, not physical measurements. 60° result is +7.3182%.",
+  "hardest": "Shrinking the plot while graph nodes grow without collisions or clipping the pendulum.",
+  "shots": [
+    {
+      "at": 0,
+      "label": "The claim",
+      "until": 4
+    },
+    {
+      "at": 4,
+      "label": "Numerical experiment",
+      "until": 11
+    },
+    {
+      "at": 11,
+      "label": "Where it breaks",
+      "until": 17
+    },
+    {
+      "at": 17,
+      "label": "Science log grows",
+      "until": 24
+    },
+    {
+      "at": 24,
+      "label": "A better claim",
+      "until": 29
+    },
+    {
+      "at": 29,
+      "label": "Build with us",
+      "until": 34
+    }
+  ],
+  "copy": [
+    {
+      "at": 11.4,
+      "until": 16,
+      "text": "A useful agent tests the assumption."
+    },
+    {
+      "at": 25.3,
+      "until": 28,
+      "text": "Keep the evidence. Follow the next question."
+    }
+  ]
+}

@@ -15,6 +15,11 @@ into the build, so a changed file never reaches the site unnoticed.
 
 ## Promotional authoring
 
+The [eight capability advertisements](ads/capabilities/README.md) use independent
+motion stories for flows, scientific revision, subagents, interactive answers,
+provenance, programmatic tools, selection and streams. Source, reproducible evidence,
+storyboards and review tools live together under `ads/capabilities/`.
+
 The standalone [composable-agent advertisement](composability/ad/README.md) includes all source,
 assets, scripts, checks and review history in `composability/ad/`. Its [Claude handoff](composability/ad/HANDOFF.md)
 captures the goal, aim, user ideas and creative constraints. It is separate from
