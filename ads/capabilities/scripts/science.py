@@ -80,16 +80,18 @@ def prepare() -> dict[str, Any]:
         "burn": minute_rows,
         "burn_summary": {"paired_minutes": len(pairs), "correlation": correlation},
     }
-    theta, velocity, elapsed = 0.1, 0.0, 0.0
-    simulation = []
-    for _ in range(20):
-        for _ in range(30):
-            acceleration = -9.80665 * math.sin(theta)
-            theta += velocity * 0.01 + 0.5 * acceleration * 0.01**2
-            velocity += 0.5 * (acceleration - 9.80665 * math.sin(theta)) * 0.01
-            elapsed += 0.01
-        simulation.append({"time_s": round(elapsed, 3), "angle_rad": theta})
-    result["simulation"] = simulation
+    travelled_m = 0.0
+    transport = []
+    for index, row in enumerate(minute_rows[40:]):
+        travelled_m += float(row["horizontal_speed_mean"]) * 60.0
+        transport.append(
+            {
+                "local_label": row["local_label"],
+                "model_time_min": index + 1,
+                "travelled_km": travelled_m / 1000.0,
+            }
+        )
+    result["transport"] = transport
     (EVIDENCE / "science.json").write_text(json.dumps(result, indent=2) + "\n")
     return result
 

@@ -1,11 +1,11 @@
 {
-  "id": "sess_9d5c84fc7527",
-  "workspace_id": "ws_de799980ff25",
+  "id": "sess_6ec5484ff65e",
+  "workspace_id": "ws_3ec08f5f4f9b",
   "title": "Campaign: streams",
   "status": "idle",
-  "created_at": "2026-11-05T23:45:51.649211+00:00",
-  "updated_at": "2026-11-05T23:46:03.023768+00:00",
-  "last_interaction_at": "2026-11-05T23:46:03.009527+00:00",
+  "created_at": "2026-11-06T02:28:19.713922+00:00",
+  "updated_at": "2026-11-06T02:28:33.013041+00:00",
+  "last_interaction_at": "2026-11-06T02:28:32.999345+00:00",
   "message_count": 2,
   "parent_session_id": "",
   "model": {
@@ -17,9 +17,9 @@
     "id": "watch-experiment",
     "mode": ""
   },
-  "tokens_input": 29175,
-  "tokens_output": 436,
-  "cost_usd": 0.0031354999999999994,
+  "tokens_input": 26712,
+  "tokens_output": 455,
+  "cost_usd": 0.0028986999999999997,
   "mode": "edit",
   "edit_mode": "diff",
   "routing_mode": "auto",
@@ -30,7 +30,7 @@
       "add": [],
       "remove": []
     },
-    "agent_resolution": "333d034d095857baaafbdcc96ee4d7383ed737de34ef83be33e002c11619879d",
+    "agent_resolution": "38a95070b8da85ab4e08c685839730f19d7cb1382ae5d961c38778178669f829",
     "composer_queue_paused": false,
     "memory_snapshot": {
       "text": "",
@@ -42,12 +42,7 @@
       "pending": [
         "open_stream",
         "read_stream",
-        "stop_stream",
-        "observe_tasks",
-        "list_models",
-        "goal_status",
-        "cron_create",
-        "workspace_resource_wait"
+        "stop_stream"
       ],
       "listed": []
     },
@@ -55,8 +50,8 @@
       "count": 1,
       "names": {
         "burn-observations.parquet": {
-          "v": 5,
-          "id": "artifact_21ef4fac8b9b413e9b5d8724842e0e54",
+          "v": 1,
+          "id": "artifact_4999659346604b6fbcb7de43b3a63432",
           "kind": "dataset"
         }
       },
@@ -64,21 +59,21 @@
     },
     "context_usage_by_scope": {
       "watch-experiment": {
-        "used_tokens": 10647,
+        "used_tokens": 9416,
         "source": "provider",
         "model": "codex_direct/gpt-6-luna",
-        "cache_read_tokens": 9984,
+        "cache_read_tokens": 8192,
         "cache_write_tokens": 0,
         "cache_tokens_measured": true,
         "prompt_breakdown": {
           "method": "characters_div_4",
-          "tokens_estimated": 12650,
+          "tokens_estimated": 11387,
           "media_items": 0,
           "sections": [
             {
               "id": "system",
               "label": "System prompt",
-              "tokens_estimated": 3583,
+              "tokens_estimated": 3590,
               "count": 2,
               "items": [
                 {
@@ -87,27 +82,27 @@
                 },
                 {
                   "label": "Tools you load when needed",
-                  "tokens_estimated": 436
+                  "tokens_estimated": 443
                 }
               ]
             },
             {
               "id": "tools",
               "label": "Tool definitions",
-              "tokens_estimated": 5847,
+              "tokens_estimated": 5860,
               "count": 18,
               "items": [
                 {
                   "label": "spawn_agent_task",
-                  "tokens_estimated": 802
+                  "tokens_estimated": 808
                 },
                 {
                   "label": "spawn_agents_parallel",
-                  "tokens_estimated": 748
+                  "tokens_estimated": 754
                 },
                 {
                   "label": "run_code",
-                  "tokens_estimated": 508
+                  "tokens_estimated": 509
                 },
                 {
                   "label": "fs_search_text",
@@ -186,28 +181,28 @@
             {
               "id": "messages",
               "label": "Messages",
-              "tokens_estimated": 1003,
+              "tokens_estimated": 1055,
               "count": 4,
               "items": [
                 {
                   "label": "User messages",
-                  "tokens_estimated": 634
+                  "tokens_estimated": 658
                 },
                 {
                   "label": "Tool calls",
-                  "tokens_estimated": 369
+                  "tokens_estimated": 397
                 }
               ]
             },
             {
               "id": "results",
               "label": "Tool results",
-              "tokens_estimated": 1930,
+              "tokens_estimated": 595,
               "count": 2,
               "items": [
                 {
                   "label": "search_tools",
-                  "tokens_estimated": 1851
+                  "tokens_estimated": 516
                 },
                 {
                   "label": "run_code",
@@ -217,8 +212,8 @@
             }
           ]
         },
-        "turn_id": "msg_user_e540cd268be1",
-        "recorded_at": "2026-11-05T23:46:02.989649+00:00",
+        "turn_id": "msg_user_6816ab378ec3",
+        "recorded_at": "2026-11-06T02:28:32.978601+00:00",
         "window_tokens": 922000
       }
     },

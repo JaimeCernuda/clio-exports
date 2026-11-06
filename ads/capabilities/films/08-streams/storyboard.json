@@ -3,10 +3,10 @@
   "title": "Tap into your experiment.",
   "seconds": 40,
   "takeaway": "A running experiment can feed both an agent and a live view.",
-  "proof": "Background PTC writes a rolling window; another question reads it while it runs; a simulation uses the same stream path.",
-  "evidence": "science.json; execution/stream-snapshots.json; execution/*-final.json; execution/streams-*.json",
-  "limits": "Sensor replay and numerical simulation. Memory window is 18 rows; snapshots are versioned; task stops on completion.",
-  "hardest": "Keep stream/task clocks consistent and separate a one-time answer from changing dashboard values.",
+  "proof": "A background script replays the burn observations; the agent queries them while a dashboard updates. The same recorded wind readings then drive an illustrative parcel-transport model whose output enters context and the view alongside its inputs.",
+  "evidence": "science.json; stream-query.json; execution/stream-snapshots.json; execution/burn-*-final.json; execution/streams-*.json",
+  "limits": "Recorded observations and a kinematic model, not live physical sensors or a dispersion forecast. Minute-mean horizontal speed is held spatially uniform for each minute; travelled distance integrates speed × 60 s. No mixing, deposition or geographic displacement is inferred. Each stream keeps 18 rows; saved snapshots are versioned; the task stops on completion.",
+  "hardest": "Keep the original observations visible while wind feeds the model; align model output, live dashboard and retained query to the same source rows.",
   "shots": [
     {
       "at": 0,
@@ -35,7 +35,7 @@
     },
     {
       "at": 28,
-      "label": "Simulation source",
+      "label": "Wind readings drive a transport model",
       "until": 32
     },
     {
@@ -62,8 +62,8 @@
     },
     {
       "at": 29,
-      "until": 32,
-      "text": "Instruments and simulations, connected to the same work."
+      "until": 32.5,
+      "text": "Use the wind readings to drive a model."
     }
   ]
 }

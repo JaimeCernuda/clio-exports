@@ -33,6 +33,13 @@ def bootstrap_mean(rows: list[dict[str, Any]], field: str) -> dict[str, float]:
     }
 
 
+def locate_peak(rows: list[dict[str, Any]], field: str) -> dict[str, Any]:
+    """Retain a source row at the maximum, rejecting an empty scientific input."""
+    if not rows:
+        raise ValueError("A peak requires observations")
+    return max(rows, key=lambda row: row[field])
+
+
 class BeamReview(Flow):
     """Compare candidates, calculate, check, and refine an unsuccessful design."""
 
@@ -65,29 +72,6 @@ class BeamReview(Flow):
         }
 
 
-class BurnTeam(Flow):
-    """Dispatch three real child assignments and combine only after all finish."""
-
-    id = "burn-team"
-    description = "Parallel particle, carbon dioxide, and wind analysis."
-
-    async def forward(self, task: Any, ctx: Any) -> dict[str, Any]:
-        """Start the three scientific assignments concurrently and join their results."""
-        results = await ctx.gather(
-            [
-                ctx.call(name, "Analyze burn.json", key=name, label=label)
-                for name, label in [
-                    ("particles", "Particles"),
-                    ("carbon", "CO₂"),
-                    ("wind", "Wind / quality"),
-                ]
-            ]
-        )
-        report = {"answers": [r.answer for r in results], "handles": [r.handle for r in results]}
-        await ctx.step(ctx.workspace.write, "team-result.json", json.dumps(report))
-        return {"answer": "\n".join(report["answers"]), **report}
-
-
 class Particles(Flow):
     """Read the actual minute rows and compute their particle maximum."""
 
@@ -95,17 +79,19 @@ class Particles(Flow):
 
     async def forward(self, task: Any, ctx: Any) -> dict[str, Any]:
         """Return the particle maximum and the retained uncertainty calculation."""
-        rows = json.loads(await ctx.step(ctx.workspace.read, "burn.json"))
+        rows = json.loads(await ctx.step(ctx.workspace.read, "aligned-burn.json"))
         valid = [r for r in rows if isinstance(r.get("particle_mean_ug_m3"), (int, float))]
-        peak = max(valid, key=lambda r: r["particle_mean_ug_m3"])
+        peak = await ctx.step(locate_peak, valid, "particle_mean_ug_m3")
         uncertainty = await ctx.step(bootstrap_mean, valid, "particle_mean_ug_m3")
-        return {
+        report = {
             "answer": f"Particle mean peaks at {peak['particle_mean_ug_m3']:.2f} µg/m³ "
             f"at {peak['local_label']}.",
             "rows": len(valid),
             "peak": peak,
             "illustrative_bootstrap": uncertainty,
         }
+        await ctx.step(ctx.workspace.write, "particles-result.json", json.dumps(report))
+        return report
 
 
 class Carbon(Flow):
@@ -115,17 +101,19 @@ class Carbon(Flow):
 
     async def forward(self, task: Any, ctx: Any) -> dict[str, Any]:
         """Analyze CO₂ separately so distinct signals retain their own evidence."""
-        rows = json.loads(await ctx.step(ctx.workspace.read, "burn.json"))
+        rows = json.loads(await ctx.step(ctx.workspace.read, "aligned-burn.json"))
         valid = [r for r in rows if isinstance(r.get("CO2MFd_mean"), (int, float))]
-        peak = max(valid, key=lambda r: r["CO2MFd_mean"])
+        peak = await ctx.step(locate_peak, valid, "CO2MFd_mean")
         uncertainty = await ctx.step(bootstrap_mean, valid, "CO2MFd_mean")
-        return {
+        report = {
             "answer": f"CO₂ mean peaks at {peak['CO2MFd_mean']:.2f} µmol/mol "
             f"at {peak['local_label']}.",
             "rows": len(valid),
             "peak": peak,
             "illustrative_bootstrap": uncertainty,
         }
+        await ctx.step(ctx.workspace.write, "carbon-result.json", json.dumps(report))
+        return report
 
 
 class Wind(Flow):
@@ -135,17 +123,19 @@ class Wind(Flow):
 
     async def forward(self, task: Any, ctx: Any) -> dict[str, Any]:
         """Summarize wind observations with their recorded quality exclusions."""
-        rows = json.loads(await ctx.step(ctx.workspace.read, "burn.json"))
+        rows = json.loads(await ctx.step(ctx.workspace.read, "aligned-burn.json"))
         valid = [r for r in rows if isinstance(r.get("horizontal_speed_mean"), (int, float))]
         flags = sum(int(r.get("wind_flagged") or 0) for r in rows)
         uncertainty = await ctx.step(bootstrap_mean, valid, "horizontal_speed_mean")
-        return {
+        report = {
             "answer": f"Wind has {len(valid)} minute means; {flags} flagged records "
             "are excluded in the source summary.",
             "rows": len(valid),
             "flagged": flags,
             "illustrative_bootstrap": uncertainty,
         }
+        await ctx.step(ctx.workspace.write, "wind-result.json", json.dumps(report))
+        return report
 
 
 class PendulumStudy(Flow):
@@ -183,7 +173,7 @@ class PendulumStudy(Flow):
         e = await entry(
             "experiment",
             {
-                "method": "Integrate the nonlinear pendulum period across release angles; cross-check with velocity-Verlet trajectories.",
+                "method": "Integrate the nonlinear pendulum period over 46 release angles from 0 to 90 degrees.",
                 "sample_size": 46,
             },
             {"hypothesis": h},

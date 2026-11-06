@@ -312,6 +312,395 @@
         }
       ],
       "status": "source-revised-final-render-pending"
+    },
+    {
+      "id": "method",
+      "file": "01-method.mp4",
+      "sha256": "9c826ae0b66cef3095028f26f4df849e08032a8b3b5e618dba71178cf7b1851b",
+      "stage": "delivery",
+      "technical": {
+        "id": "method",
+        "file": "01-method.mp4",
+        "sha256": "9c826ae0b66cef3095028f26f4df849e08032a8b3b5e618dba71178cf7b1851b",
+        "frames": 1920,
+        "duration": 32,
+        "width": 1920,
+        "height": 1080,
+        "fullDecode": "passed",
+        "audio": "present",
+        "audioMetrics": {
+          "meanDb": -25.4,
+          "peakDb": -3.1
+        },
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 317,
+        "closeStructuralSimilarity": 0.996549,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "coverage": "Full-file decode, frame count, audio-level, QR and stationary-close checks; time-ordered 1 fps whole-film and 12 fps transition inspection; source geometry and authored-control checks. Browser playback exercised separately. Continuous human audiovisual viewing and subjective sound-mix approval are not claimed.",
+      "findings": [
+        {
+          "at": "9.8–11.5",
+          "kind": "readability",
+          "finding": "The procedure line overlapped the incoming result in the first assembly.",
+          "correction": "The line clears before the beam result enters; the same result then follows the revision loop.",
+          "state": "corrected"
+        }
+      ],
+      "sourceChecks": {
+        "campaignPythonTests": 20,
+        "campaignNodeTests": 11,
+        "repositoryPythonTests": 121,
+        "skipped": 0
+      },
+      "status": "ready-for-editorial-review"
+    },
+    {
+      "id": "interface",
+      "file": "04-interface.mp4",
+      "sha256": "6df24222f0e22281d7bc9361e9b976c3f1a73797dfae4adf67df59e5125903c8",
+      "stage": "delivery",
+      "technical": {
+        "id": "interface",
+        "file": "04-interface.mp4",
+        "sha256": "6df24222f0e22281d7bc9361e9b976c3f1a73797dfae4adf67df59e5125903c8",
+        "frames": 1800,
+        "duration": 30,
+        "width": 1920,
+        "height": 1080,
+        "fullDecode": "passed",
+        "audio": "present",
+        "audioMetrics": {
+          "meanDb": -25.7,
+          "peakDb": -2.5
+        },
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 17,
+        "closeStructuralSimilarity": 0.999988,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "coverage": "Full-file decode, frame count, audio-level, QR and stationary-close checks; time-ordered 1 fps whole-film and 12 fps transition inspection; source geometry and authored-control checks. Browser playback exercised separately. Continuous human audiovisual viewing and subjective sound-mix approval are not claimed.",
+      "findings": [
+        {
+          "at": "9–22",
+          "kind": "interaction",
+          "finding": "Baseline, selected months and exported comparison must agree.",
+          "correction": "Inspected the changing distributions/deltas, smooth row removals and matching retained CSV/SVG export.",
+          "state": "verified"
+        }
+      ],
+      "sourceChecks": {
+        "campaignPythonTests": 20,
+        "campaignNodeTests": 11,
+        "repositoryPythonTests": 121,
+        "skipped": 0
+      },
+      "status": "ready-for-editorial-review"
+    },
+    {
+      "id": "provenance",
+      "file": "05-provenance.mp4",
+      "sha256": "362b759fd208fa595598beff5bc8427e32ff0ca193b839a727e9786e2b200e66",
+      "stage": "delivery",
+      "technical": {
+        "id": "provenance",
+        "file": "05-provenance.mp4",
+        "sha256": "362b759fd208fa595598beff5bc8427e32ff0ca193b839a727e9786e2b200e66",
+        "frames": 1800,
+        "duration": 30,
+        "width": 1920,
+        "height": 1080,
+        "fullDecode": "passed",
+        "audio": "present",
+        "audioMetrics": {
+          "meanDb": -25.5,
+          "peakDb": -2.8
+        },
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 18,
+        "closeStructuralSimilarity": 0.999982,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "coverage": "Full-file decode, frame count, audio-level, QR and stationary-close checks; time-ordered 1 fps whole-film and 12 fps transition inspection; source geometry and authored-control checks. Browser playback exercised separately. Continuous human audiovisual viewing and subjective sound-mix approval are not claimed.",
+      "findings": [
+        {
+          "at": "16–23",
+          "kind": "continuity",
+          "finding": "Source inspection and return needed a clear hold and matching active breadcrumb.",
+          "correction": "The source holds, then Result activates on return; the same geometry and mapped-area distinction persist.",
+          "state": "corrected"
+        }
+      ],
+      "sourceChecks": {
+        "campaignPythonTests": 20,
+        "campaignNodeTests": 11,
+        "repositoryPythonTests": 121,
+        "skipped": 0
+      },
+      "status": "ready-for-editorial-review"
+    },
+    {
+      "id": "streams",
+      "file": "08-streams.mp4",
+      "sha256": "80241e8fc13f08bd15f3282aca9713adf7c1216b44e427fe1c4a1bc88f0afee5",
+      "stage": "delivery",
+      "technical": {
+        "id": "streams",
+        "file": "08-streams.mp4",
+        "sha256": "80241e8fc13f08bd15f3282aca9713adf7c1216b44e427fe1c4a1bc88f0afee5",
+        "frames": 2400,
+        "duration": 40,
+        "width": 1920,
+        "height": 1080,
+        "fullDecode": "passed",
+        "audio": "present",
+        "audioMetrics": {
+          "meanDb": -25.3,
+          "peakDb": -3
+        },
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 405,
+        "closeStructuralSimilarity": 0.996581,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "coverage": "Full-file decode, frame count, audio-level, QR and stationary-close checks; time-ordered 1 fps whole-film and 12 fps transition inspection; source geometry and authored-control checks. Browser playback exercised separately. Continuous human audiovisual viewing and subjective sound-mix approval are not claimed.",
+      "findings": [
+        {
+          "at": "17–33",
+          "kind": "source fidelity",
+          "finding": "Query time, rolling window and simulation view must share the source clock.",
+          "correction": "Anchored the answer to 16:16, kept both plots on the same 18-row window, and verified native background completion and notification.",
+          "state": "corrected"
+        }
+      ],
+      "sourceChecks": {
+        "campaignPythonTests": 20,
+        "campaignNodeTests": 11,
+        "repositoryPythonTests": 121,
+        "skipped": 0
+      },
+      "status": "ready-for-editorial-review"
+    },
+    {
+      "id": "hypothesis",
+      "file": "02-hypothesis.mp4",
+      "sha256": "22d16580f7fce797b3a45e2c67ebbe09b40c0edb09e8ed768fcc57f8a46ef177",
+      "stage": "delivery",
+      "technical": {
+        "id": "hypothesis",
+        "file": "02-hypothesis.mp4",
+        "sha256": "22d16580f7fce797b3a45e2c67ebbe09b40c0edb09e8ed768fcc57f8a46ef177",
+        "frames": 2040,
+        "duration": 34,
+        "width": 1920,
+        "height": 1080,
+        "fullDecode": "passed",
+        "audio": "present",
+        "audioMetrics": {
+          "meanDb": -25.6,
+          "peakDb": -3
+        },
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 15,
+        "closeStructuralSimilarity": 0.999109,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "coverage": "Full-file decode, frame count, audio-level, QR and stationary-close checks; time-ordered 1 fps whole-film and 12 fps transition inspection; source geometry and authored-control checks. Browser playback exercised separately. Continuous human audiovisual viewing and subjective sound-mix approval are not claimed.",
+      "findings": [
+        {
+          "at": "17–24",
+          "kind": "source fidelity",
+          "finding": "The native receipt originally established one period rather than the entire plotted sweep.",
+          "correction": "Re-executed all 46 angles, compared them numerically, and marked the native experiment done and hypothesis refuted.",
+          "state": "corrected"
+        }
+      ],
+      "sourceChecks": {
+        "campaignPythonTests": 20,
+        "campaignNodeTests": 11,
+        "repositoryPythonTests": 121,
+        "skipped": 0
+      },
+      "status": "ready-for-editorial-review"
+    },
+    {
+      "id": "team",
+      "file": "03-team.mp4",
+      "sha256": "2ef7ac2206b383e07f1449e361b5150f23d22a571a5326546328f52f65db1326",
+      "stage": "delivery",
+      "technical": {
+        "id": "team",
+        "file": "03-team.mp4",
+        "sha256": "2ef7ac2206b383e07f1449e361b5150f23d22a571a5326546328f52f65db1326",
+        "frames": 2400,
+        "duration": 40,
+        "width": 1920,
+        "height": 1080,
+        "fullDecode": "passed",
+        "audio": "present",
+        "audioMetrics": {
+          "meanDb": -26.3,
+          "peakDb": -3
+        },
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 301,
+        "closeStructuralSimilarity": 0.996474,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "coverage": "Full-file decode, frame count, audio-level, QR and stationary-close checks; time-ordered 1 fps whole-film and 12 fps transition inspection; source geometry and authored-control checks. Browser playback exercised separately. Continuous human audiovisual viewing and subjective sound-mix approval are not claimed.",
+      "findings": [
+        {
+          "at": "10–17",
+          "kind": "motion",
+          "finding": "Inspector reflow and close needed continuous connections and more compact readable content.",
+          "correction": "The whole connected graph reframes; peers continue; compact labels and card heights were corrected.",
+          "state": "corrected"
+        },
+        {
+          "at": "18–30",
+          "kind": "story",
+          "finding": "The former 22–23 s layout replacement read as a generic subagent short.",
+          "correction": "A fresh composed SDK run now backs preparation, three concurrent specialists, a join, a conditional fourth specialist and the finding. The graph persists.",
+          "state": "corrected"
+        }
+      ],
+      "sourceChecks": {
+        "campaignPythonTests": 20,
+        "campaignNodeTests": 11,
+        "repositoryPythonTests": 121,
+        "skipped": 0
+      },
+      "status": "ready-for-editorial-review"
+    },
+    {
+      "id": "tools",
+      "file": "06-tools.mp4",
+      "sha256": "d5210010e05c94b19c263b71fad38b19c70f44987f5a9eb037f956c2166bf0f8",
+      "stage": "delivery",
+      "technical": {
+        "id": "tools",
+        "file": "06-tools.mp4",
+        "sha256": "d5210010e05c94b19c263b71fad38b19c70f44987f5a9eb037f956c2166bf0f8",
+        "frames": 1920,
+        "duration": 32,
+        "width": 1920,
+        "height": 1080,
+        "fullDecode": "passed",
+        "audio": "present",
+        "audioMetrics": {
+          "meanDb": -25.3,
+          "peakDb": -3
+        },
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 391,
+        "closeStructuralSimilarity": 0.996571,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "coverage": "Full-file decode, frame count, audio-level, QR and stationary-close checks; time-ordered 1 fps whole-film and 12 fps transition inspection; source geometry and authored-control checks. Browser playback exercised separately. Continuous human audiovisual viewing and subjective sound-mix approval are not claimed.",
+      "findings": [
+        {
+          "at": "4–23",
+          "kind": "causality",
+          "finding": "Tools looked busy before execution; unused controls distracted from the result.",
+          "correction": "Neutral available state precedes actual program activity; result toolbar is removed; source cards clear before expansion.",
+          "state": "corrected"
+        }
+      ],
+      "sourceChecks": {
+        "campaignPythonTests": 20,
+        "campaignNodeTests": 11,
+        "repositoryPythonTests": 121,
+        "skipped": 0
+      },
+      "status": "ready-for-editorial-review"
+    },
+    {
+      "id": "selection",
+      "file": "07-selection.mp4",
+      "sha256": "eae9014d64e69bd50638e8a1fdc4176f396258fedb6f4d01423acf04b594bc18",
+      "stage": "delivery",
+      "technical": {
+        "id": "selection",
+        "file": "07-selection.mp4",
+        "sha256": "eae9014d64e69bd50638e8a1fdc4176f396258fedb6f4d01423acf04b594bc18",
+        "frames": 2040,
+        "duration": 34,
+        "width": 1920,
+        "height": 1080,
+        "fullDecode": "passed",
+        "audio": "present",
+        "audioMetrics": {
+          "meanDb": -25.6,
+          "peakDb": -2.8
+        },
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 15,
+        "closeStructuralSimilarity": 0.999141,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "coverage": "Full-file decode, frame count, audio-level, QR and stationary-close checks; time-ordered 1 fps whole-film and 12 fps transition inspection; source geometry and authored-control checks. Browser playback exercised separately. Continuous human audiovisual viewing and subjective sound-mix approval are not claimed.",
+      "findings": [
+        {
+          "at": "8.5–27.5",
+          "kind": "rendering",
+          "finding": "SVG place names flickered.",
+          "correction": "DOM text replaces SVG names; all four labels checked in every encoded frame of the settled interval.",
+          "state": "corrected"
+        },
+        {
+          "at": "18.8–24.1",
+          "kind": "story",
+          "finding": "The answer arrived without visible analysis; introductory copy was vague.",
+          "correction": "Ask with selected data; read records, compute the maximum, animate the collapse, then show the answer. Real PTC receipt retained.",
+          "state": "corrected"
+        }
+      ],
+      "sourceChecks": {
+        "campaignPythonTests": 20,
+        "campaignNodeTests": 11,
+        "repositoryPythonTests": 121,
+        "skipped": 0
+      },
+      "encodedLabelCheck": {
+        "file": "07-selection.mp4",
+        "sha256": "eae9014d64e69bd50638e8a1fdc4176f396258fedb6f4d01423acf04b594bc18",
+        "interval": [
+          8.5,
+          27.5
+        ],
+        "framesPerLabel": 1140,
+        "records": [
+          {
+            "name": "FLORIDA",
+            "frames": 1140,
+            "minInk": 440,
+            "medianInk": 441,
+            "maxInk": 444
+          },
+          {
+            "name": "CUBA",
+            "frames": 1140,
+            "minInk": 303,
+            "medianInk": 304,
+            "maxInk": 306
+          },
+          {
+            "name": "THE BAHAMAS",
+            "frames": 1140,
+            "minInk": 735,
+            "medianInk": 737,
+            "maxInk": 739
+          },
+          {
+            "name": "ATLANTIC",
+            "frames": 1140,
+            "minInk": 469,
+            "medianInk": 470,
+            "maxInk": 471
+          }
+        ]
+      },
+      "status": "ready-for-editorial-review"
     }
   ]
 }

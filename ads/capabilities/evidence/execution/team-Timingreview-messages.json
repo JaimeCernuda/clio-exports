@@ -1,0 +1,229 @@
+{
+  "messages": [
+    {
+      "id": "msg_asst_cd616ce5ce9d",
+      "session_id": "sess_c846534f227d3325dfd07ca76062c83c",
+      "turn_id": "turn_bc6554cfd0e9475ba4c7d8b35275a056",
+      "role": "assistant",
+      "created_at": "2026-11-06T01:45:25.954230+00:00",
+      "updated_at": "2026-11-06T01:45:25.954241+00:00",
+      "parts": [
+        {
+          "id": "live_injection_44fac663b58f",
+          "type": "injection",
+          "metadata": {
+            "actor": "algorithm"
+          },
+          "agent_id": "timing",
+          "sequence": 1,
+          "text": "Active workspace root: D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities\\.cache\\workspace\nWrite generated artifacts (files, charts, exports) inside the active workspace root using absolute paths so they stay with the session. Read inputs from wherever the user points you.\nWrites are only permitted under: D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities\\.cache\\workspace, D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities\\.cache\\runtime-home\\state\\scratch\\Desktop\\sess_c846534f227d3325dfd07ca76062c83c, D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities, D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities\\.cache.\nMachine: Desktop\nScratch folder for this session: D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities\\.cache\\runtime-home\\state\\scratch\\Desktop\\sess_c846534f227d3325dfd07ca76062c83c. Use it for temporary files (extracted copies, intermediate results); it is yours alone and is removed after the session.",
+          "source": "session_facts"
+        },
+        {
+          "id": "live_injection_51504f182548",
+          "type": "injection",
+          "metadata": {
+            "actor": "algorithm"
+          },
+          "agent_id": "timing",
+          "sequence": 2,
+          "text": "Your final answer reaches the agent that started you as written, whole. Be clear and succinct, and write at length only when the task needs it.",
+          "source": "child_report"
+        },
+        {
+          "id": "live_injection_dd85040f986b",
+          "type": "injection",
+          "metadata": {
+            "actor": "algorithm"
+          },
+          "agent_id": "timing",
+          "sequence": 3,
+          "text": "Compare aligned channels jointly",
+          "source": "delegation"
+        },
+        {
+          "id": "part_e6e98cfda167",
+          "type": "text",
+          "metadata": {
+            "stream_source": "batch",
+            "signature_field_name": "answer",
+            "stream_fallback": {
+              "reason": "sync_execution_path",
+              "category": "non_streamed_execution",
+              "synthetic_posthoc": true,
+              "live_streaming": false,
+              "recovery_actions": [
+                "continue_without_live_streaming",
+                "reconfigure"
+              ],
+              "description": "The answer arrived as one batch part: no live answer deltas this turn."
+            }
+          },
+          "agent_id": "timing",
+          "sequence": 4,
+          "text": "Paired-minute correlation is 0.438; 4 of the ten highest minutes overlap. Distinct signals do not establish a single causal mechanism."
+        }
+      ],
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "cache_read": 0,
+        "cache_write": 0
+      },
+      "stop_reason": "end_turn",
+      "metadata": {
+        "stream_source": "batch",
+        "stream_fallback": {
+          "reason": "sync_execution_path",
+          "category": "non_streamed_execution",
+          "synthetic_posthoc": true,
+          "live_streaming": false,
+          "recovery_actions": [
+            "continue_without_live_streaming",
+            "reconfigure"
+          ],
+          "description": "The answer arrived as one batch part: no live answer deltas this turn."
+        },
+        "agent_runtime": {
+          "kind": "dynamic_agent",
+          "agent_id": "timing",
+          "source": "plugin",
+          "title": "timing",
+          "execution_mode": "flow_timing-review",
+          "module": {
+            "kind": "react"
+          },
+          "tools": [
+            "query_tasks",
+            "observe_tasks",
+            "wait_tasks",
+            "cancel_tasks",
+            "get_task_result",
+            "send_agent_message",
+            "pause_agent",
+            "resume_agent",
+            "restart_agent",
+            "ask_user",
+            "plan_enter",
+            "plan_update",
+            "plan_exit",
+            "write_todos",
+            "create_artifact",
+            "raise_alert_card",
+            "recall_context",
+            "load_skill",
+            "search_tools",
+            "run_code",
+            "set_goal",
+            "wait_for",
+            "goal_status",
+            "set_loop",
+            "loop_wakeup",
+            "cron_create",
+            "cron_list",
+            "cron_delete",
+            "workspace_resource_list",
+            "workspace_resource_inspect",
+            "workspace_resource_wait",
+            "workspace_resource_read",
+            "workspace_resource_search",
+            "workspace_resource_structure",
+            "read_count_component",
+            "read_dataset_record",
+            "read_selected_observations",
+            "compute_pendulum",
+            "list_models",
+            "usage",
+            "refresh_provider_models",
+            "open_stream",
+            "read_stream",
+            "stop_stream",
+            "spawn_agent_task",
+            "spawn_agents_parallel",
+            "spawn_skill_task",
+            "fork"
+          ],
+          "structured_outputs": {},
+          "fanout": {},
+          "prompt": {
+            "source": "agent_definition",
+            "has_system_prompt": true
+          },
+          "model": {
+            "provider_id": "codex",
+            "model_id": "gpt-6-luna",
+            "provider_source": "session_pinned",
+            "model_source": "session_pinned",
+            "fallback_to_global": false
+          },
+          "reasoning": {
+            "requested_level": "",
+            "source": "provider_default",
+            "provider": "codex",
+            "effective_level": "default",
+            "lm_kwargs": {}
+          },
+          "agent_resolution": {
+            "ref": "capability-campaign/burn-team#timing",
+            "kind": "subagent",
+            "digest": "f1e3555fc999c7b4cd6d5fe0abd83018b7f035c0f2a53054acb206378d45c900",
+            "plugins": [
+              "core",
+              "campaign-methods",
+              "fleet",
+              "streaming",
+              "delegation"
+            ],
+            "flow": {
+              "id": "timing-review",
+              "options": {}
+            }
+          },
+          "resolved_skills": {
+            "planning": {
+              "id": "planning",
+              "status": "resolved",
+              "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\src\\clio_agent\\plugins\\builtin\\core\\skills\\planning\\SKILL.md",
+              "scope": "plugin",
+              "source": "core",
+              "checksum": "0ab0dc1c16f802a3448e2acf0d234bf60020f62181946eac4074f568244ea8ff"
+            },
+            "task-protocol": {
+              "id": "task-protocol",
+              "status": "resolved",
+              "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\src\\clio_agent\\plugins\\builtin\\core\\skills\\task-protocol\\SKILL.md",
+              "scope": "plugin",
+              "source": "core",
+              "checksum": "33eb9258df307ea8ac29583a68db27d9c2a22e2c2ef597af9c6865814ed64c63"
+            },
+            "update-models": {
+              "id": "update-models",
+              "status": "resolved",
+              "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\src\\clio_agent\\plugins\\builtin\\fleet\\skills\\update-models\\SKILL.md",
+              "scope": "plugin",
+              "source": "fleet",
+              "checksum": "25ce6f388fbc40f9af40be68ed0768b48593df4f5bb4db7a14b63740b1ff046e"
+            },
+            "live-status": {
+              "id": "live-status",
+              "status": "resolved",
+              "path": "D:\\Libraries\\Documents\\projects\\clio-agent\\src\\clio_agent\\plugins\\builtin\\streaming\\skills\\live-status\\SKILL.md",
+              "scope": "plugin",
+              "source": "streaming",
+              "checksum": "1f5c17f638ed4c19abe3bb4bad9f4452a1be358b631628117ed6b0cb7b6f0d8c"
+            }
+          },
+          "parent_id": "capability-campaign/burn-team",
+          "skills": [
+            "planning",
+            "task-protocol",
+            "update-models",
+            "live-status"
+          ],
+          "commands": []
+        }
+      }
+    }
+  ],
+  "next_cursor": null
+}

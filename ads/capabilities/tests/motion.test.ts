@@ -4,16 +4,18 @@ import { phase, pointerAt, linePath } from "../src/motion";
 import { films, getFilm } from "../src/registry";
 import { mercator, fitOutline, simplifyPolyline } from "../src/maps";
 import science from "../evidence/science.json";
-import { sensorRowCount } from "../films/08-streams/timing";
+import { sensorRowCount, sourceTimeForRow } from "../films/08-streams/timing";
+import recordedQuery from "../evidence/stream-query.json";
 
 test("stream editing preserves query, simulation and completion dependencies", () => {
-  assert.equal(sensorRowCount(19), 17);
+  assert.equal(sensorRowCount(19), recordedQuery.sourceIndex + 1);
   assert.equal(
     science.burn[sensorRowCount(19) - 1].local_label,
-    "Apr 15 16:16 CDT",
+    recordedQuery.latest.local_label,
   );
   assert.equal(sensorRowCount(31), 60);
-  assert.ok(sensorRowCount(27) <= 41);
+  assert.equal(sensorRowCount(sourceTimeForRow(41)), 41);
+  assert.ok(sourceTimeForRow(41) > 19);
   let previous = 0;
   for (let frame = 0; frame < 40 * 60; frame++) {
     const now = sensorRowCount(frame / 60);

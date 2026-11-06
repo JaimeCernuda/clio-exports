@@ -21,7 +21,7 @@ class BurnTeam(DesignReview):
 
     id = "burn-team"
     name = "CLIO Burn Team"
-    flow = Flow("burn-team")
+    flow = Flow("burn-workflow")
 
 
 class WatchExperiment(DesignReview):
@@ -49,3 +49,10 @@ class PendulumStudy(DesignReview):
     name = "CLIO Pendulum Study"
     plugins = DesignReview.plugins + ["science-log"]
     flow = Flow("pendulum-study")
+
+
+class SelectionAnalysis(CountAnalysis):
+    """Answer from the exact selected hurricane observations through genuine PTC."""
+
+    id = "selection-analysis"
+    name = "CLIO Selected Records"

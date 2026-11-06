@@ -1,11 +1,11 @@
 {
-  "session_id": "sess_ba0e7fdb69f1",
+  "session_id": "sess_6f2818520acf",
   "in_study": true,
-  "study": "e_a9f054a7101b",
-  "root_session_id": "sess_ba0e7fdb69f1",
+  "study": "e_f0e9f105133d",
+  "root_session_id": "sess_6f2818520acf",
   "branches": [
     {
-      "session_id": "sess_ba0e7fdb69f1",
+      "session_id": "sess_6f2818520acf",
       "title": "Campaign: hypothesis",
       "agent": "pendulum-study",
       "relation": "root",
@@ -13,17 +13,17 @@
       "fork_of_session_id": "",
       "workflow_step": "",
       "node_folder": "",
-      "handle": "task_9e162a11d38e4000a51ddf955a2409e5",
+      "handle": "task_4db0d6f385b94f79909fb5da5bf89f1a",
       "task_status": "completed",
       "note": ""
     }
   ],
   "entries": [
     {
-      "id": "e_a9f054a7101b",
-      "study": "e_a9f054a7101b",
-      "branch": "sess_ba0e7fdb69f1",
-      "session": "sess_ba0e7fdb69f1",
+      "id": "e_f0e9f105133d",
+      "study": "e_f0e9f105133d",
+      "branch": "sess_6f2818520acf",
+      "session": "sess_6f2818520acf",
       "type": "question",
       "fields": {
         "statement": "Does release amplitude change pendulum period?",
@@ -31,15 +31,15 @@
       },
       "links": [],
       "status": "answered",
-      "created_at": "2026-11-06T00:07:55.202880+00:00",
-      "invocation": "call_bbd890f84002",
+      "created_at": "2026-11-06T00:43:56.638464+00:00",
+      "invocation": "call_238003322213",
       "status_reason": "The linked numerical evidence supports a qualified conclusion."
     },
     {
-      "id": "e_07684cfa7e11",
-      "study": "e_a9f054a7101b",
-      "branch": "sess_ba0e7fdb69f1",
-      "session": "sess_ba0e7fdb69f1",
+      "id": "e_93837776d10a",
+      "study": "e_f0e9f105133d",
+      "branch": "sess_6f2818520acf",
+      "session": "sess_6f2818520acf",
       "type": "hypothesis",
       "fields": {
         "claim": "Amplitude does not change the period.",
@@ -49,51 +49,51 @@
       "links": [
         {
           "relation": "question",
-          "to": "e_a9f054a7101b"
+          "to": "e_f0e9f105133d"
         }
       ],
       "status": "refuted",
-      "created_at": "2026-11-06T00:07:55.261946+00:00",
-      "invocation": "call_811a16b537b0",
+      "created_at": "2026-11-06T00:43:56.712207+00:00",
+      "invocation": "call_0790a72d5a9d",
       "status_reason": "The 60-degree simulation differs by more than numerical integration error."
     },
     {
-      "id": "e_6483029f7af2",
-      "study": "e_a9f054a7101b",
-      "branch": "sess_ba0e7fdb69f1",
-      "session": "sess_ba0e7fdb69f1",
+      "id": "e_fa57fe2859ea",
+      "study": "e_f0e9f105133d",
+      "branch": "sess_6f2818520acf",
+      "session": "sess_6f2818520acf",
       "type": "experiment",
       "fields": {
-        "method": "Integrate the nonlinear pendulum period across release angles; cross-check with velocity-Verlet trajectories.",
+        "method": "Integrate the nonlinear pendulum period over 46 release angles from 0 to 90 degrees.",
         "sample_size": 46
       },
       "links": [
         {
           "relation": "hypothesis",
-          "to": "e_07684cfa7e11"
+          "to": "e_93837776d10a"
         }
       ],
       "status": "done",
-      "created_at": "2026-11-06T00:07:55.300783+00:00",
-      "invocation": "call_fd7c7f1efe09",
+      "created_at": "2026-11-06T00:43:56.761325+00:00",
+      "invocation": "call_6198620a79c6",
       "status_reason": "The numerical calculation and sourced observation are recorded."
     },
     {
-      "id": "e_b96718e57bb4",
-      "study": "e_a9f054a7101b",
-      "branch": "sess_ba0e7fdb69f1",
-      "session": "sess_ba0e7fdb69f1",
+      "id": "e_b774aad626fc",
+      "study": "e_f0e9f105133d",
+      "branch": "sess_6f2818520acf",
+      "session": "sess_6f2818520acf",
       "type": "observation",
       "fields": {
         "from_calls": [
-          "call:sess_ba0e7fdb69f1/call_39cf5c2ede2a"
+          "call:sess_6f2818520acf/call_4c4af3b15655"
         ],
         "result": "At 60 degrees, period is 2.153242 s, 7.3182% above the small-angle prediction.",
         "measurements": [
           {
             "metric": "period",
             "source": {
-              "call": "call:sess_ba0e7fdb69f1/call_39cf5c2ede2a",
+              "call": "call:sess_6f2818520acf/call_4c4af3b15655",
               "field": "period"
             },
             "unit": "s",
@@ -105,7 +105,7 @@
           {
             "metric": "small_angle_prediction",
             "source": {
-              "call": "call:sess_ba0e7fdb69f1/call_39cf5c2ede2a",
+              "call": "call:sess_6f2818520acf/call_4c4af3b15655",
               "field": "prediction"
             },
             "unit": "s",
@@ -117,16 +117,16 @@
         "environment": "",
         "lineage": [
           {
-            "call_id": "call_39cf5c2ede2a",
+            "call_id": "call_4c4af3b15655",
             "tool": "compute_pendulum",
             "args": {
               "angle_deg": 60
             },
-            "started_at": "2026-11-06T00:07:55.371676+00:00",
-            "completed_at": "2026-11-06T00:07:55.386791+00:00",
-            "result_sha256": "effa998d19f860c2e2b7ceccbf01b9f5f3d068c2c6990b0c0b4469972a1f9ada",
-            "reference": "call:sess_ba0e7fdb69f1/call_39cf5c2ede2a",
-            "session": "sess_ba0e7fdb69f1",
+            "started_at": "2026-11-06T00:43:56.813008+00:00",
+            "completed_at": "2026-11-06T00:43:56.953876+00:00",
+            "result_sha256": "6be47c8f46a14ef02c986eaede3fa396d90b8af5eff718ee2b8a25160fab3932",
+            "reference": "call:sess_6f2818520acf/call_4c4af3b15655",
+            "session": "sess_6f2818520acf",
             "agent": "pendulum-study",
             "model": "codex_direct/gpt-6-luna"
           }
@@ -136,18 +136,18 @@
       "links": [
         {
           "relation": "experiment",
-          "to": "e_6483029f7af2"
+          "to": "e_fa57fe2859ea"
         }
       ],
       "status": "recorded",
-      "created_at": "2026-11-06T00:07:55.453684+00:00",
-      "invocation": "call_e3196c13f048"
+      "created_at": "2026-11-06T00:43:56.976825+00:00",
+      "invocation": "call_67d7fefb3c1d"
     },
     {
-      "id": "e_357a343519f5",
-      "study": "e_a9f054a7101b",
-      "branch": "sess_ba0e7fdb69f1",
-      "session": "sess_ba0e7fdb69f1",
+      "id": "e_fc32cc9262a3",
+      "study": "e_f0e9f105133d",
+      "branch": "sess_6f2818520acf",
+      "session": "sess_6f2818520acf",
       "type": "evidence",
       "fields": {
         "interpretation": "The amplitude-independent claim fails for large release angles.",
@@ -157,30 +157,30 @@
       "links": [
         {
           "relation": "observation",
-          "to": "e_b96718e57bb4"
+          "to": "e_b774aad626fc"
         },
         {
           "relation": "refutes",
-          "to": "e_07684cfa7e11"
+          "to": "e_93837776d10a"
         }
       ],
       "status": "recorded",
-      "created_at": "2026-11-06T00:07:55.601072+00:00",
-      "invocation": "call_4d218fd52e61"
+      "created_at": "2026-11-06T00:43:57.024023+00:00",
+      "invocation": "call_c61b357a4fd6"
     },
     {
-      "id": "e_2e873931b509",
-      "study": "e_a9f054a7101b",
-      "branch": "sess_ba0e7fdb69f1",
-      "session": "sess_ba0e7fdb69f1",
+      "id": "e_a84c9352f03a",
+      "study": "e_f0e9f105133d",
+      "branch": "sess_6f2818520acf",
+      "session": "sess_6f2818520acf",
       "type": "conclusion",
       "fields": {
         "claims": [
           {
             "text": "Amplitude independence is a small-angle approximation.",
             "cites": [
-              "e_b96718e57bb4",
-              "e_357a343519f5"
+              "e_b774aad626fc",
+              "e_fc32cc9262a3"
             ],
             "analysis_call": ""
           }
@@ -194,12 +194,12 @@
       "links": [
         {
           "relation": "question",
-          "to": "e_a9f054a7101b"
+          "to": "e_f0e9f105133d"
         }
       ],
       "status": "recorded",
-      "created_at": "2026-11-06T00:07:55.867847+00:00",
-      "invocation": "call_a2ac5c3e323d"
+      "created_at": "2026-11-06T00:43:57.211798+00:00",
+      "invocation": "call_e42b6e761dc8"
     }
   ],
   "views": []

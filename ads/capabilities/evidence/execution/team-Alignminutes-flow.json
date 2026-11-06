@@ -1,0 +1,47 @@
+{
+  "run_id": "flowrun_3ee9f7bf4e73fe94d842948c",
+  "flow": "burn-alignment",
+  "status": "completed",
+  "depth": 1,
+  "max_concurrency": 0,
+  "root_handle": "task_a57cfbdcd7f753d7b32d2cbf68fa32a4a9a8ce5fe1609542153308616100f148",
+  "entries": 3,
+  "view": null,
+  "calls": [],
+  "questions": [],
+  "events": [],
+  "outcome": null,
+  "result": {
+    "answer": "Aligned 60 complete minute records.",
+    "aligned_minutes": 60
+  },
+  "execution": [
+    {
+      "id": "run:start",
+      "label": "Started",
+      "status": "completed",
+      "after": []
+    },
+    {
+      "id": "run:result",
+      "label": "Result",
+      "status": "completed",
+      "after": [
+        "run:start"
+      ]
+    }
+  ],
+  "usage": {
+    "calls": {},
+    "models": [],
+    "windows": [],
+    "estimated_sessions": 0
+  },
+  "timings": {
+    "task_a57cfbdcd7f753d7b32d2cbf68fa32a4a9a8ce5fe1609542153308616100f148": {
+      "created_at": "2026-11-06T01:45:01.896137+00:00",
+      "updated_at": "2026-11-06T01:45:03.151282+00:00",
+      "terminal_at": "2026-11-06T01:45:03.151282+00:00"
+    }
+  }
+}

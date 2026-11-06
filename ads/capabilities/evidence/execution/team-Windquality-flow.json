@@ -1,0 +1,54 @@
+{
+  "run_id": "flowrun_72925029fa9b08b3c64cc595",
+  "flow": "wind",
+  "status": "completed",
+  "depth": 0,
+  "max_concurrency": 0,
+  "root_handle": "task_4035f5949a9ce961e6e5749e074bdb6ade4950087bdd0aca396a8429be0cba7d",
+  "entries": 3,
+  "view": null,
+  "calls": [],
+  "questions": [],
+  "events": [],
+  "outcome": null,
+  "result": {
+    "answer": "Wind has 60 minute means; 256 flagged records are excluded in the source summary.",
+    "rows": 60,
+    "flagged": 256,
+    "illustrative_bootstrap": {
+      "mean": 6.313361386851261,
+      "p025": 6.085776649556077,
+      "p975": 6.534616600754391,
+      "replicates": 500000
+    }
+  },
+  "execution": [
+    {
+      "id": "run:start",
+      "label": "Started",
+      "status": "completed",
+      "after": []
+    },
+    {
+      "id": "run:result",
+      "label": "Result",
+      "status": "completed",
+      "after": [
+        "run:start"
+      ]
+    }
+  ],
+  "usage": {
+    "calls": {},
+    "models": [],
+    "windows": [],
+    "estimated_sessions": 0
+  },
+  "timings": {
+    "task_4035f5949a9ce961e6e5749e074bdb6ade4950087bdd0aca396a8429be0cba7d": {
+      "created_at": "2026-11-06T01:45:04.290965+00:00",
+      "updated_at": "2026-11-06T01:45:24.735116+00:00",
+      "terminal_at": "2026-11-06T01:45:24.735116+00:00"
+    }
+  }
+}

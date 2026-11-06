@@ -46,6 +46,7 @@ const server = http.createServer(async (req, res) => {
       headers["content-disposition"] =
         `attachment; filename="${path.basename(file)}"`;
     const range = req.headers.range?.match(/^bytes=(\d+)-(\d*)$/);
+    let stream;
     if (range) {
       const start = Number(range[1]),
         end = Math.min(
@@ -62,11 +63,16 @@ const server = http.createServer(async (req, res) => {
         "content-range": `bytes ${start}-${end}/${stat.size}`,
         "content-length": end - start + 1,
       });
-      createReadStream(file, { start, end }).pipe(res);
+      stream = createReadStream(file, { start, end });
     } else {
       res.writeHead(200, { ...headers, "content-length": stat.size });
-      createReadStream(file).pipe(res);
+      stream = createReadStream(file);
     }
+    // Seeking/closing a video aborts its HTTP response. Release the Windows file
+    // handle as well, so a validated replacement can be published while reviewing.
+    res.on("close", () => stream.destroy());
+    stream.on("error", () => res.destroy());
+    stream.pipe(res);
   } catch (error) {
     res.writeHead(error.code === "ENOENT" ? 404 : 500);
     res.end("File unavailable");

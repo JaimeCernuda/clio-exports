@@ -12,14 +12,14 @@ You can inspect where a result came from.
 
 ## Timed shots
 
-| Time    | Beat                 |
-| ------- | -------------------- |
-| 0–4 s   | A result             |
-| 4–10 s  | Inspect evidence     |
-| 10–16 s | The geometry         |
-| 16–21 s | The source           |
+| Time | Beat |
+| --- | --- |
+| 0–4 s | A result |
+| 4–10 s | Inspect evidence |
+| 10–16 s | The geometry |
+| 16–21 s | The source |
 | 21–25 s | Return to the result |
-| 25–30 s | Build with us        |
+| 25–30 s | Build with us |
 
 ## On-screen copy
 

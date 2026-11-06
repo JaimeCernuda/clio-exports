@@ -1,0 +1,320 @@
+{
+  "run_id": "flowrun_9464ecf8cafa686032b486ff",
+  "flow": "burn-workflow",
+  "status": "completed",
+  "depth": 0,
+  "max_concurrency": 0,
+  "root_handle": "task_63ac8a28612c47a8907fa913c71ea76b",
+  "entries": 19,
+  "view": null,
+  "calls": [
+    {
+      "invocation": "flowrun_9464ecf8cafa686032b486ff:flow:key=coverage:78dbee3f4a72be81:0",
+      "kind": "flow",
+      "target": "burn-coverage",
+      "handle": "task_4491c7b8d943827574ab80bcfade85782bc0d0b17ad6c36b2bb32eb934e65ac4",
+      "status": "completed",
+      "together": "flowrun_9464ecf8cafa686032b486ff:flow:key=coverage:78dbee3f4a72be81:0"
+    },
+    {
+      "invocation": "flowrun_9464ecf8cafa686032b486ff:flow:key=alignment:fd7f1bb15a74b3f5:0",
+      "kind": "flow",
+      "target": "burn-alignment",
+      "handle": "task_a57cfbdcd7f753d7b32d2cbf68fa32a4a9a8ce5fe1609542153308616100f148",
+      "status": "completed",
+      "together": "flowrun_9464ecf8cafa686032b486ff:flow:key=coverage:78dbee3f4a72be81:0"
+    },
+    {
+      "invocation": "flowrun_9464ecf8cafa686032b486ff:subagent:key=particles:d95956127630cb12:0",
+      "kind": "subagent",
+      "target": "particles",
+      "handle": "task_4ac94267a76386e9c82d89569720d6763c26840d7280d80fd9effa930cd4779a",
+      "status": "completed",
+      "together": "flowrun_9464ecf8cafa686032b486ff:subagent:key=particles:d95956127630cb12:0"
+    },
+    {
+      "invocation": "flowrun_9464ecf8cafa686032b486ff:subagent:key=carbon:208800dcd948b708:0",
+      "kind": "subagent",
+      "target": "carbon",
+      "handle": "task_a30296f4a33e84badbfb11dbfe571e976100dddf26d817d7af861e4088c967d5",
+      "status": "completed",
+      "together": "flowrun_9464ecf8cafa686032b486ff:subagent:key=particles:d95956127630cb12:0"
+    },
+    {
+      "invocation": "flowrun_9464ecf8cafa686032b486ff:subagent:key=wind:19abad395d2381ab:0",
+      "kind": "subagent",
+      "target": "wind",
+      "handle": "task_4035f5949a9ce961e6e5749e074bdb6ade4950087bdd0aca396a8429be0cba7d",
+      "status": "completed",
+      "together": "flowrun_9464ecf8cafa686032b486ff:subagent:key=particles:d95956127630cb12:0"
+    },
+    {
+      "invocation": "flowrun_9464ecf8cafa686032b486ff:subagent:key=timing:b13d4ea80de5d7a7:0",
+      "kind": "subagent",
+      "target": "timing",
+      "handle": "task_751bbe561e93ad41ca2f43c4ad09008c2a19035b4d8334812a5ec98bfec1578e",
+      "status": "completed"
+    }
+  ],
+  "questions": [],
+  "events": [],
+  "outcome": null,
+  "result": {
+    "answer": "The channel peaks are 2 minutes apart. The workflow retains preparation, specialist results and the requested follow-up.",
+    "coverage": {
+      "source_minutes": 60,
+      "valid_minutes": {
+        "particle_mean_ug_m3": 60,
+        "CO2MFd_mean": 60,
+        "horizontal_speed_mean": 60
+      },
+      "excluded_wind_records": 256
+    },
+    "aligned_minutes": 60,
+    "comparison": {
+      "particle_peak": "Apr 15 16:41 CDT",
+      "co2_peak": "Apr 15 16:43 CDT",
+      "separation_minutes": 2,
+      "needs_review": true,
+      "rule": "Review when the channel peaks are more than one minute apart"
+    },
+    "followup": {
+      "paired_minutes": 60,
+      "correlation": 0.4377377282670324,
+      "top_ten_overlap": 4
+    },
+    "answers": [
+      "Particle mean peaks at 3538.36 µg/m³ at Apr 15 16:41 CDT.",
+      "CO₂ mean peaks at 455.79 µmol/mol at Apr 15 16:43 CDT.",
+      "Wind has 60 minute means; 256 flagged records are excluded in the source summary.",
+      "Paired-minute correlation is 0.438; 4 of the ten highest minutes overlap. Distinct signals do not establish a single causal mechanism."
+    ],
+    "handles": [
+      "task_4ac94267a76386e9c82d89569720d6763c26840d7280d80fd9effa930cd4779a",
+      "task_a30296f4a33e84badbfb11dbfe571e976100dddf26d817d7af861e4088c967d5",
+      "task_4035f5949a9ce961e6e5749e074bdb6ade4950087bdd0aca396a8429be0cba7d",
+      "task_751bbe561e93ad41ca2f43c4ad09008c2a19035b4d8334812a5ec98bfec1578e"
+    ]
+  },
+  "execution": [
+    {
+      "id": "run:start",
+      "label": "Started",
+      "status": "completed",
+      "after": []
+    },
+    {
+      "id": "flowrun_9464ecf8cafa686032b486ff:flow:key=coverage:78dbee3f4a72be81:0",
+      "label": "burn-coverage",
+      "status": "returned",
+      "after": [
+        "run:start"
+      ],
+      "handle": "task_4491c7b8d943827574ab80bcfade85782bc0d0b17ad6c36b2bb32eb934e65ac4",
+      "target": "burn-coverage",
+      "invocation": "flowrun_9464ecf8cafa686032b486ff:flow:key=coverage:78dbee3f4a72be81:0",
+      "kind": "flow",
+      "detail": "The child returned. Its output still requires the flow's review."
+    },
+    {
+      "id": "flowrun_9464ecf8cafa686032b486ff:flow:key=alignment:fd7f1bb15a74b3f5:0",
+      "label": "burn-alignment",
+      "status": "returned",
+      "after": [
+        "run:start"
+      ],
+      "handle": "task_a57cfbdcd7f753d7b32d2cbf68fa32a4a9a8ce5fe1609542153308616100f148",
+      "target": "burn-alignment",
+      "invocation": "flowrun_9464ecf8cafa686032b486ff:flow:key=alignment:fd7f1bb15a74b3f5:0",
+      "kind": "flow",
+      "detail": "The child returned. Its output still requires the flow's review."
+    },
+    {
+      "id": "flowrun_9464ecf8cafa686032b486ff:subagent:key=particles:d95956127630cb12:0",
+      "label": "particles",
+      "status": "returned",
+      "after": [
+        "flowrun_9464ecf8cafa686032b486ff:flow:key=coverage:78dbee3f4a72be81:0",
+        "flowrun_9464ecf8cafa686032b486ff:flow:key=alignment:fd7f1bb15a74b3f5:0"
+      ],
+      "handle": "task_4ac94267a76386e9c82d89569720d6763c26840d7280d80fd9effa930cd4779a",
+      "target": "particles",
+      "invocation": "flowrun_9464ecf8cafa686032b486ff:subagent:key=particles:d95956127630cb12:0",
+      "kind": "subagent",
+      "detail": "The child returned. Its output still requires the flow's review."
+    },
+    {
+      "id": "flowrun_9464ecf8cafa686032b486ff:subagent:key=carbon:208800dcd948b708:0",
+      "label": "carbon",
+      "status": "returned",
+      "after": [
+        "flowrun_9464ecf8cafa686032b486ff:flow:key=coverage:78dbee3f4a72be81:0",
+        "flowrun_9464ecf8cafa686032b486ff:flow:key=alignment:fd7f1bb15a74b3f5:0"
+      ],
+      "handle": "task_a30296f4a33e84badbfb11dbfe571e976100dddf26d817d7af861e4088c967d5",
+      "target": "carbon",
+      "invocation": "flowrun_9464ecf8cafa686032b486ff:subagent:key=carbon:208800dcd948b708:0",
+      "kind": "subagent",
+      "detail": "The child returned. Its output still requires the flow's review."
+    },
+    {
+      "id": "flowrun_9464ecf8cafa686032b486ff:subagent:key=wind:19abad395d2381ab:0",
+      "label": "wind",
+      "status": "returned",
+      "after": [
+        "flowrun_9464ecf8cafa686032b486ff:flow:key=coverage:78dbee3f4a72be81:0",
+        "flowrun_9464ecf8cafa686032b486ff:flow:key=alignment:fd7f1bb15a74b3f5:0"
+      ],
+      "handle": "task_4035f5949a9ce961e6e5749e074bdb6ade4950087bdd0aca396a8429be0cba7d",
+      "target": "wind",
+      "invocation": "flowrun_9464ecf8cafa686032b486ff:subagent:key=wind:19abad395d2381ab:0",
+      "kind": "subagent",
+      "detail": "The child returned. Its output still requires the flow's review."
+    },
+    {
+      "id": "flowrun_9464ecf8cafa686032b486ff:subagent:key=timing:b13d4ea80de5d7a7:0",
+      "label": "timing",
+      "status": "returned",
+      "after": [
+        "flowrun_9464ecf8cafa686032b486ff:subagent:key=particles:d95956127630cb12:0",
+        "flowrun_9464ecf8cafa686032b486ff:subagent:key=carbon:208800dcd948b708:0",
+        "flowrun_9464ecf8cafa686032b486ff:subagent:key=wind:19abad395d2381ab:0"
+      ],
+      "handle": "task_751bbe561e93ad41ca2f43c4ad09008c2a19035b4d8334812a5ec98bfec1578e",
+      "target": "timing",
+      "invocation": "flowrun_9464ecf8cafa686032b486ff:subagent:key=timing:b13d4ea80de5d7a7:0",
+      "kind": "subagent",
+      "detail": "The child returned. Its output still requires the flow's review."
+    },
+    {
+      "id": "run:result",
+      "label": "Result",
+      "status": "completed",
+      "after": [
+        "flowrun_9464ecf8cafa686032b486ff:subagent:key=timing:b13d4ea80de5d7a7:0"
+      ]
+    }
+  ],
+  "usage": {
+    "calls": {
+      "task_4491c7b8d943827574ab80bcfade85782bc0d0b17ad6c36b2bb32eb934e65ac4": {
+        "model": "codex/gpt-6-luna",
+        "choice": {
+          "asked": "",
+          "ran": {
+            "provider_id": "codex",
+            "model_id": "gpt-6-luna"
+          },
+          "source": "inherited",
+          "reasons": [],
+          "effort": ""
+        }
+      },
+      "task_a57cfbdcd7f753d7b32d2cbf68fa32a4a9a8ce5fe1609542153308616100f148": {
+        "model": "codex/gpt-6-luna",
+        "choice": {
+          "asked": "",
+          "ran": {
+            "provider_id": "codex",
+            "model_id": "gpt-6-luna"
+          },
+          "source": "inherited",
+          "reasons": [],
+          "effort": ""
+        }
+      },
+      "task_4ac94267a76386e9c82d89569720d6763c26840d7280d80fd9effa930cd4779a": {
+        "model": "codex/gpt-6-luna",
+        "choice": {
+          "asked": "",
+          "ran": {
+            "provider_id": "codex",
+            "model_id": "gpt-6-luna"
+          },
+          "source": "inherited",
+          "reasons": [],
+          "effort": ""
+        }
+      },
+      "task_a30296f4a33e84badbfb11dbfe571e976100dddf26d817d7af861e4088c967d5": {
+        "model": "codex/gpt-6-luna",
+        "choice": {
+          "asked": "",
+          "ran": {
+            "provider_id": "codex",
+            "model_id": "gpt-6-luna"
+          },
+          "source": "inherited",
+          "reasons": [],
+          "effort": ""
+        }
+      },
+      "task_4035f5949a9ce961e6e5749e074bdb6ade4950087bdd0aca396a8429be0cba7d": {
+        "model": "codex/gpt-6-luna",
+        "choice": {
+          "asked": "",
+          "ran": {
+            "provider_id": "codex",
+            "model_id": "gpt-6-luna"
+          },
+          "source": "inherited",
+          "reasons": [],
+          "effort": ""
+        }
+      },
+      "task_751bbe561e93ad41ca2f43c4ad09008c2a19035b4d8334812a5ec98bfec1578e": {
+        "model": "codex/gpt-6-luna",
+        "choice": {
+          "asked": "",
+          "ran": {
+            "provider_id": "codex",
+            "model_id": "gpt-6-luna"
+          },
+          "source": "inherited",
+          "reasons": [],
+          "effort": ""
+        }
+      }
+    },
+    "models": [],
+    "windows": [],
+    "estimated_sessions": 0
+  },
+  "timings": {
+    "task_4491c7b8d943827574ab80bcfade85782bc0d0b17ad6c36b2bb32eb934e65ac4": {
+      "created_at": "2026-11-06T01:45:01.806618+00:00",
+      "updated_at": "2026-11-06T01:45:03.237487+00:00",
+      "terminal_at": "2026-11-06T01:45:03.237487+00:00"
+    },
+    "task_a57cfbdcd7f753d7b32d2cbf68fa32a4a9a8ce5fe1609542153308616100f148": {
+      "created_at": "2026-11-06T01:45:01.896137+00:00",
+      "updated_at": "2026-11-06T01:45:03.151282+00:00",
+      "terminal_at": "2026-11-06T01:45:03.151282+00:00"
+    },
+    "task_751bbe561e93ad41ca2f43c4ad09008c2a19035b4d8334812a5ec98bfec1578e": {
+      "created_at": "2026-11-06T01:45:25.456029+00:00",
+      "updated_at": "2026-11-06T01:45:26.034613+00:00",
+      "terminal_at": "2026-11-06T01:45:26.034613+00:00"
+    },
+    "task_63ac8a28612c47a8907fa913c71ea76b": {
+      "created_at": "2026-11-06T01:44:59.521453+00:00",
+      "updated_at": "2026-11-06T01:45:26.248052+00:00",
+      "terminal_at": "2026-11-06T01:45:26.248052+00:00"
+    },
+    "task_4ac94267a76386e9c82d89569720d6763c26840d7280d80fd9effa930cd4779a": {
+      "created_at": "2026-11-06T01:45:04.181815+00:00",
+      "updated_at": "2026-11-06T01:45:24.775874+00:00",
+      "terminal_at": "2026-11-06T01:45:24.775874+00:00"
+    },
+    "task_4035f5949a9ce961e6e5749e074bdb6ade4950087bdd0aca396a8429be0cba7d": {
+      "created_at": "2026-11-06T01:45:04.290965+00:00",
+      "updated_at": "2026-11-06T01:45:24.735116+00:00",
+      "terminal_at": "2026-11-06T01:45:24.735116+00:00"
+    },
+    "task_a30296f4a33e84badbfb11dbfe571e976100dddf26d817d7af861e4088c967d5": {
+      "created_at": "2026-11-06T01:45:04.405271+00:00",
+      "updated_at": "2026-11-06T01:45:24.923526+00:00",
+      "terminal_at": "2026-11-06T01:45:24.923526+00:00"
+    }
+  }
+}

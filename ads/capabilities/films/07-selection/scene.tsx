@@ -1,6 +1,15 @@
 import React from "react";
 import { Activity, Check, Link, Send, Table2 } from "lucide-react";
-import { abs, Button, Caption, Chip, Cursor, mono, muted } from "../../src/kit";
+import {
+  abs,
+  Button,
+  Caption,
+  Chip,
+  Cursor,
+  mono,
+  muted,
+  ToolRow,
+} from "../../src/kit";
 import { clamp, mix, phase } from "../../src/motion";
 import { mercator } from "../../src/maps";
 import hurricanes from "../../evidence/hurricane.json";
@@ -41,7 +50,9 @@ export function SelectionScene({ t }: { t: number }) {
     ref = phase(t, 11.4, 0.8),
     fly = phase(t, 12.2, 0.8),
     ask = phase(t, 15, 0.8),
-    answer = phase(t, 20, 0.7);
+    answer = phase(t, 23.4, 0.7),
+    work = phase(t, 18.8, 0.45),
+    collapse = phase(t, 22.8, 0.6);
   const rows =
     select > 0.99 ? selectedStorm.slice(0, 5) : hurricanes.slice(33, 38);
   return (
@@ -102,27 +113,6 @@ export function SelectionScene({ t }: { t: number }) {
               fillRule="evenodd"
             />
           ))}
-          {(
-            [
-              [-82, 28, "FLORIDA"],
-              [-79.7, 22, "CUBA"],
-              [-76.6, 23.7, "THE BAHAMAS"],
-              [-69.6, 30, "ATLANTIC"],
-            ] as const
-          ).map(([lon, lat, name]) => (
-            <text
-              key={name}
-              x={project(lon, lat)[0]}
-              y={project(lon, lat)[1]}
-              textAnchor="middle"
-              fontSize={17}
-              fontWeight={550}
-              letterSpacing={2}
-              fill="#6d898b"
-            >
-              {name}
-            </text>
-          ))}
           <path d={route} fill="none" stroke="#769eb4" strokeWidth={3} />
           {hurricanes.map((r) => {
             const chosen = selectedStorm.some(
@@ -155,6 +145,38 @@ export function SelectionScene({ t }: { t: number }) {
           />
         </g>
       </svg>
+      <div
+        style={{
+          ...abs(145, 310, 940, 490),
+          overflow: "hidden",
+          pointerEvents: "none",
+        }}
+      >
+        {(
+          [
+            [-82, 28, "FLORIDA"],
+            [-79.7, 22, "CUBA"],
+            [-76.6, 23.7, "THE BAHAMAS"],
+            [-69.6, 30, "ATLANTIC"],
+          ] as const
+        ).map(([lon, lat, name]) => (
+          <div
+            key={name}
+            data-map-label={name}
+            style={{
+              ...abs(project(lon, lat)[0], project(lon, lat)[1] - 19),
+              transform: "translateX(-50%)",
+              whiteSpace: "nowrap",
+              fontSize: 20,
+              fontWeight: 600,
+              letterSpacing: 1.5,
+              color: "#55747b",
+            }}
+          >
+            {name}
+          </div>
+        ))}
+      </div>
       <div
         style={{
           ...abs(1150, 310, 610),
@@ -232,9 +254,9 @@ export function SelectionScene({ t }: { t: number }) {
               opacity: ask,
             }}
           >
-            {"When were winds strongest here?".slice(
+            {"When did winds peak in the selected region?".slice(
               0,
-              Math.floor(clamp((t - 15.5) / 1.5) * 32),
+              Math.floor(clamp((t - 15.2) / 2.2) * 43),
             )}
           </div>
           <div
@@ -252,9 +274,29 @@ export function SelectionScene({ t }: { t: number }) {
           </div>
         </div>
       </div>
+      <div style={{ ...abs(1240, 598, 550), opacity: work }}>
+        <ToolRow t={t} text="Analyse 12 observations" done={t >= 22.8} />
+        <div
+          style={{
+            height: 150 * (1 - collapse),
+            opacity: 1 - collapse,
+            overflow: "hidden",
+            borderLeft: "1px solid #bcd2da",
+            marginLeft: 12,
+            paddingLeft: 20,
+          }}
+        >
+          <div style={{ opacity: phase(t, 19.5, 0.35) }}>
+            <ToolRow t={t} text="Read selected records" done={t >= 20.8} />
+          </div>
+          <div style={{ opacity: phase(t, 20.9, 0.35) }}>
+            <ToolRow t={t} text="Python: find maximum wind" done={t >= 22.6} />
+          </div>
+        </div>
+      </div>
       <div
         style={{
-          ...abs(1240, 620, 550),
+          ...abs(1240, 700, 550),
           opacity: answer,
           transform: `translateY(${(1 - answer) * 25}px)`,
         }}
@@ -286,13 +328,13 @@ export function SelectionScene({ t }: { t: number }) {
         t={t}
         at={7.6}
         until={10.6}
-        text="A selection carries the actual observations."
+        text="Carry the selected observations into the conversation."
       />
       <Caption
         t={t}
-        at={21.5}
-        until={24.4}
-        text="Ask about this—not everything."
+        at={25}
+        until={28}
+        text="Answers linked to the records you selected."
       />
       <Cursor
         t={t}

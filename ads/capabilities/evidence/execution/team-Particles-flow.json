@@ -1,0 +1,92 @@
+{
+  "run_id": "flowrun_7a6cd0bb54c17d2d41b03c04",
+  "flow": "particles",
+  "status": "completed",
+  "depth": 0,
+  "max_concurrency": 0,
+  "root_handle": "task_4ac94267a76386e9c82d89569720d6763c26840d7280d80fd9effa930cd4779a",
+  "entries": 4,
+  "view": null,
+  "calls": [],
+  "questions": [],
+  "events": [],
+  "outcome": null,
+  "result": {
+    "answer": "Particle mean peaks at 3538.36 µg/m³ at Apr 15 16:41 CDT.",
+    "rows": 60,
+    "peak": {
+      "timestamp_utc": "2022-04-15T21:41:00+00:00",
+      "date_local": "2022-04-15",
+      "local_hour": 16.683333333333334,
+      "hour_end": 16.7,
+      "bucket_mid_hour": 16.691666666666666,
+      "local_label": "Apr 15 16:41 CDT",
+      "particle_mean_ug_m3": 3538.3636363636365,
+      "particle_median_ug_m3": 3469,
+      "particle_min_ug_m3": 28,
+      "particle_max_ug_m3": 12758,
+      "particle_n": 55,
+      "particle_status": "Observed",
+      "gap_seconds": 0,
+      "wind_records": 1200,
+      "wind_flagged": 128,
+      "horizontal_speed_n": 1072,
+      "horizontal_speed_mean": 7.354257959247972,
+      "horizontal_speed_min": 3.3887660873990533,
+      "horizontal_speed_max": 11.987011110170805,
+      "ux_wind_speed_mean": 0.7745781259319342,
+      "uy_wind_speed_mean": 6.932185161247182,
+      "uz_wind_speed_mean": 0.0149626865837055,
+      "co2_packets": 1200,
+      "CO2MFd_n": 1200,
+      "CO2MFd_mean": 455.0975483333331,
+      "CO2MFd_min": 454.535,
+      "CO2MFd_max": 455.692,
+      "CO2SS_mean": 101.13757333333312,
+      "DiagVal_min": 8191,
+      "DiagVal_max": 8191,
+      "DiagVal2_min": 0,
+      "DiagVal2_max": 0,
+      "co2_review": "Not fully quality approved",
+      "co2_archive_records_by_readout_time": 1199,
+      "Particles": "Records present",
+      "Wind": "Flagged excluded",
+      "CO2": "Records present"
+    },
+    "illustrative_bootstrap": {
+      "mean": 248.17906816177648,
+      "p025": 119.89618356180856,
+      "p975": 414.24584555876226,
+      "replicates": 500000
+    }
+  },
+  "execution": [
+    {
+      "id": "run:start",
+      "label": "Started",
+      "status": "completed",
+      "after": []
+    },
+    {
+      "id": "run:result",
+      "label": "Result",
+      "status": "completed",
+      "after": [
+        "run:start"
+      ]
+    }
+  ],
+  "usage": {
+    "calls": {},
+    "models": [],
+    "windows": [],
+    "estimated_sessions": 0
+  },
+  "timings": {
+    "task_4ac94267a76386e9c82d89569720d6763c26840d7280d80fd9effa930cd4779a": {
+      "created_at": "2026-11-06T01:45:04.181815+00:00",
+      "updated_at": "2026-11-06T01:45:24.775874+00:00",
+      "terminal_at": "2026-11-06T01:45:24.775874+00:00"
+    }
+  }
+}

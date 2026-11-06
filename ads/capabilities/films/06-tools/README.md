@@ -12,14 +12,14 @@ Your scientific tools and sources can work together in a program.
 
 ## Timed shots
 
-| Time    | Beat                      |
-| ------- | ------------------------- |
-| 0–4 s   | Your workbench            |
-| 4–10 s  | Connect sources           |
+| Time | Beat |
+| --- | --- |
+| 0–4 s | Your workbench |
+| 4–10 s | Connect sources |
 | 10–17 s | A program calls the tools |
-| 17–22 s | Compute the summary       |
-| 22–27 s | An inspectable result     |
-| 27–32 s | Build with us             |
+| 17–22 s | Compute the summary |
+| 22–27 s | An inspectable result |
+| 27–32 s | Build with us |
 
 ## On-screen copy
 

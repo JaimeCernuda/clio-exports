@@ -13,16 +13,20 @@ half-speed and direct downloads. Final movies are in `output/01-method.mp4` thro
 `output/08-streams.mp4`; draft movies have `-draft` in the filename. All are 60 fps;
 finals are 1920 × 1080. `output/manifest.json` identifies the exact file by SHA-256.
 Movies, posters and transient review sheets stay local and are not pushed.
+After delivery preparation, `output/` contains only the eight latest movies,
+posters, checksummed manifests and a read-me. Superseded previews move to
+`review/drafts/`. The gallery's version notes identify the exact reviewed hash and
+its scientific/editorial limits.
 
 | Film | Story and source entrypoint | Duration |
 | --- | --- | --- |
 | 1 | [Bring your method](films/01-method/README.md): engineering flow and revision | 32 s |
 | 2 | [What if we’re wrong?](films/02-hypothesis/README.md): evidence changes a hypothesis | 34 s |
-| 3 | [One question. A research team](films/03-team/README.md): concurrent specialists | 32 s |
+| 3 | [Workflows as complex as your science](films/03-team/README.md): nested flows, concurrency and conditional follow-up | 40 s |
 | 4 | [The answer is an interface](films/04-interface/README.md): an interactive snowfall comparison | 30 s |
 | 5 | [Show me where that came from](films/05-provenance/README.md): trace a boundary-area result | 30 s |
 | 6 | [Your tools. Your sources. Your science](films/06-tools/README.md): a program reads scientific data | 32 s |
-| 7 | [Point at the data you mean](films/07-selection/README.md): selection becomes a reference | 30 s |
+| 7 | [Ask your data](films/07-selection/README.md): selection becomes a reference, analysis and answer | 34 s |
 | 8 | [Tap into your experiment](films/08-streams/README.md): background work supplies live context | 40 s |
 
 Read [ART-DIRECTION.md](ART-DIRECTION.md), [SOURCES.md](SOURCES.md),
@@ -53,6 +57,7 @@ node render.mjs all --draft
 node scripts/review.mjs --draft
 node render.mjs all
 node scripts/review.mjs
+node scripts/check-map-labels.mjs
 node scripts/serve.mjs
 ```
 
@@ -84,3 +89,8 @@ context and equal projection scale when the surrounding composition reflows.
 
 Review reports distinguish source execution, technical verification, sampled
 visual inspection and browser playback. Passing one does not prove the others.
+After recording the actual delivery findings in `review-history.json`, run
+`node scripts/prepare-delivery.mjs`. It refuses missing or mismatched review hashes.
+Do not copy a prior editorial judgment onto a new render. `scripts/finalize-audio.mjs`
+can rebuild the procedural soundtrack while verifying unchanged video packets;
+ordinary renders already use the same 2 dB headroom setting.

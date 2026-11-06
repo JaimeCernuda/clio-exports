@@ -7,7 +7,7 @@ Use the README commands to install, check and render.
 ## Recompute scientific derivatives
 
 `uv run python scripts/science.py` checks the public PBMC file checksum, recomputes
-CSC per-cell counts, pendulum periods, numerical trajectory and geodesic area.
+CSC per-cell counts, pendulum periods, wind-driven transport and geodesic area.
 It downloads the 5.2 MB HDF5 into `.cache/datasets/` if absent. Dependencies are
 declared in `pyproject.toml` and resolved in `uv.lock`.
 
@@ -45,7 +45,7 @@ uv run --project $productRepo --python 3.13 --no-sync clio-agent serve --host 12
 In another terminal, from the campaign directory:
 
 ```powershell
-node scripts/record-product.mjs method hypothesis team tools streams
+node scripts/record-product.mjs method hypothesis team tools selection streams
 uv run pytest -q
 ```
 
@@ -57,11 +57,29 @@ recording. `product/requests/*.kernel` are Python kernel submissions with top-le
 await and injected `tools`, `stream`, `task` bindings, not standalone Python modules.
 Tests compile them with the same top-level-await contract.
 
+The team procedure composes two preparation flows with `ctx.call`/`ctx.gather`,
+then three concurrent specialists, then a conditional timing-review specialist.
+`ctx.gather` requires FlowCall objects; passing `ctx.step` coroutines is invalid.
+The collector saves each native `/tasks/{handle}/flow` projection alongside its
+messages and task times. Step labels in the inspector summarize real source code;
+the native task projection exposes its result and child calls, not a fabricated
+tool transcript. The one-minute review threshold is an illustrative policy.
+
+The selection program performs a genuine `read_selected_observations` tool call
+inside PTC and computes the maximum from exactly twelve retained NOAA records.
+The filmed brush/reference gesture remains an authored reconstruction.
+
 The stream collector records live reads while the task runs, a second agent query,
 final retained windows, snapshots and task completion. `/tasks/query` is the unified
 task endpoint; the older `/tasks` listing does not establish absence of Code work.
 Source messages are cursor-ordered API results; use their timestamps and sequence
 fields rather than assuming array order is chronological.
+Each stream proof gets a fresh workspace, avoiding old rows under a reused name.
+`stream-query.json` pins the actual retained agent read. The editorial source clock
+uses a monotone interpolation through that read and the final row. The model uses
+the burn's own last twenty minute-mean wind speeds, not a separate scientific case.
+Integrating speed × 60 seconds gives illustrative travelled distance; it is not a
+dispersion forecast or a geographic displacement estimate.
 
 On this Windows machine, importing NumPy inside the isolated PTC worker stalled
 in an early attempt. The final program uses standard-library sums/statistics and

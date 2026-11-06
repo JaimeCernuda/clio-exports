@@ -30,6 +30,8 @@ export async function buildKey(root) {
     "evidence/genomics.json",
     "evidence/hurricane.json",
     "evidence/atlantic-basemap.json",
+    "evidence/workflow.json",
+    "evidence/stream-query.json",
   ])
     files.push(path.join(root, file));
   const hash = createHash("sha256");

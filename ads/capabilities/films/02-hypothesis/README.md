@@ -12,14 +12,14 @@ A useful scientific agent tests and revises a claim.
 
 ## Timed shots
 
-| Time    | Beat                 |
-| ------- | -------------------- |
-| 0–4 s   | The claim            |
-| 4–11 s  | Numerical experiment |
-| 11–17 s | Where it breaks      |
-| 17–24 s | Science log grows    |
-| 24–29 s | A better claim       |
-| 29–34 s | Build with us        |
+| Time | Beat |
+| --- | --- |
+| 0–4 s | The claim |
+| 4–11 s | Numerical experiment |
+| 11–17 s | Where it breaks |
+| 17–24 s | Science log grows |
+| 24–29 s | A better claim |
+| 29–34 s | Build with us |
 
 ## On-screen copy
 

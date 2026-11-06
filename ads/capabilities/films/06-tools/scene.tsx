@@ -93,7 +93,13 @@ export function ToolsScene({ t }: { t: number }) {
         <Panel title="Your tools" icon={<Microscope size={25} />}>
           <div style={{ padding: 30 }}>
             {["Read HDF5", "Inspect schema", "Analyze counts"].map((s, i) => (
-              <ToolRow key={s} t={t} text={s} done={t > 13 + i * 1.3} />
+              <ToolRow
+                key={s}
+                t={t}
+                text={s}
+                ready={t < 11 + i * 1.3}
+                done={t > 13 + i * 1.3}
+              />
             ))}
           </div>
         </Panel>
@@ -153,7 +159,14 @@ export function ToolsScene({ t }: { t: number }) {
                 <ToolRow
                   t={t}
                   done={t > 18}
-                  text={t > 18 ? "Analysis complete" : "Running"}
+                  ready={t < 10}
+                  text={
+                    t < 10
+                      ? "Ready to run"
+                      : t > 18
+                        ? "Analysis complete"
+                        : "Running"
+                  }
                   sub="5 operations"
                 />
               </div>

@@ -1,0 +1,153 @@
+{
+  "reference": {
+    "uri": "artifact://ws_3ec08f5f4f9b/burn-transport.parquet@latest",
+    "kind": "artifact",
+    "workspace_id": "ws_3ec08f5f4f9b",
+    "name": "burn-transport.parquet",
+    "media_type": "application/vnd.apache.parquet",
+    "size_bytes": 1497,
+    "artifact_id": "artifact_d9257d63829140f8bc1f751dcf5fca5f",
+    "version": 2,
+    "custody": "cas",
+    "fetch_path": "/v1/artifacts/artifact_d9257d63829140f8bc1f751dcf5fca5f/bytes",
+    "stream": {
+      "stream_id": "stream_7024b8c81aec",
+      "state": "stopped",
+      "window": 18,
+      "updated_at": "2026-11-06T02:29:09.686522+00:00"
+    }
+  },
+  "table": {
+    "schema": [
+      {
+        "name": "local_label",
+        "type": "string"
+      },
+      {
+        "name": "model_time_min",
+        "type": "double"
+      },
+      {
+        "name": "travelled_km",
+        "type": "double"
+      }
+    ],
+    "columns": {
+      "local_label": [
+        "Apr 15 16:42 CDT",
+        "Apr 15 16:43 CDT",
+        "Apr 15 16:44 CDT",
+        "Apr 15 16:45 CDT",
+        "Apr 15 16:46 CDT",
+        "Apr 15 16:47 CDT",
+        "Apr 15 16:48 CDT",
+        "Apr 15 16:49 CDT",
+        "Apr 15 16:50 CDT",
+        "Apr 15 16:51 CDT",
+        "Apr 15 16:52 CDT",
+        "Apr 15 16:53 CDT",
+        "Apr 15 16:54 CDT",
+        "Apr 15 16:55 CDT",
+        "Apr 15 16:56 CDT",
+        "Apr 15 16:57 CDT",
+        "Apr 15 16:58 CDT",
+        "Apr 15 16:59 CDT"
+      ],
+      "model_time_min": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "travelled_km": [
+        1.2521562013119758,
+        1.6253541984510969,
+        1.9015947670428877,
+        2.191696319299577,
+        2.476981272348716,
+        2.895362290879391,
+        3.3030848964292545,
+        3.7522670903190622,
+        4.126401809462943,
+        4.540944092203704,
+        4.928077268883531,
+        5.297912777253308,
+        5.746880300593236,
+        6.144997188648635,
+        6.504946221544998,
+        6.816689008260063,
+        7.238370463049869,
+        7.6762647009238485
+      ]
+    },
+    "totalRows": 18,
+    "matchedRows": 18,
+    "returnedRows": 18,
+    "truncated": false,
+    "offset": 0,
+    "downsample": {
+      "mode": "none"
+    },
+    "rowKey": {
+      "column": "__row",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ]
+    },
+    "cached": false,
+    "stream": {
+      "stream_id": "stream_7024b8c81aec",
+      "name": "burn-transport",
+      "workspace_id": "ws_3ec08f5f4f9b",
+      "session_id": "sess_6ec5484ff65e",
+      "state": "stopped",
+      "window": 18,
+      "rows": 18,
+      "writes": 20,
+      "columns": [
+        "local_label",
+        "model_time_min",
+        "travelled_km"
+      ],
+      "opened_at": "2026-11-06T02:28:57.599406+00:00",
+      "updated_at": "2026-11-06T02:29:09.686522+00:00",
+      "stopped_at": "2026-11-06T02:29:10.399131+00:00",
+      "flush_s": 30,
+      "artifact_name": "burn-transport.parquet",
+      "artifact_id": "artifact_d9257d63829140f8bc1f751dcf5fca5f",
+      "view_uri": "artifact://ws_3ec08f5f4f9b/burn-transport.parquet@latest",
+      "flush_error": null
+    }
+  }
+}

@@ -1,12 +1,12 @@
 {
   "id": "selection",
-  "title": "Point at the data you mean.",
-  "seconds": 30,
-  "takeaway": "Point at the records you want to ask about.",
-  "proof": "The same 12 geographic observations become highlighted rows, a composer reference and a source-backed answer.",
-  "evidence": "hurricane.json; atlantic-basemap.json",
-  "limits": "Authored reference gesture; actual NOAA rows and Natural Earth coastline geometry.",
-  "hardest": "Preserve equal map scale and selection identity across reference handoff; align both clicks.",
+  "title": "Ask your data.",
+  "seconds": 34,
+  "takeaway": "Ask a question scoped to selected scientific records.",
+  "proof": "The same 12 geographic observations become highlighted rows and a composer reference. A genuine PTC program reads those records and computes the peak before the answer appears.",
+  "evidence": "hurricane.json; atlantic-basemap.json; execution/selection-*.json; product/requests/selection-analysis.kernel",
+  "limits": "Authored reference gesture using actual NOAA rows and Natural Earth geometry. The read/maximum calculation is retained native execution; public activity labels condense it and do not invent model reasoning.",
+  "hardest": "Keep map labels as stable DOM text and preserve the selection through the reference handoff, record read, computation and answer.",
   "shots": [
     {
       "at": 0,
@@ -30,25 +30,30 @@
     },
     {
       "at": 20,
-      "label": "Answer from selected rows",
-      "until": 25
+      "label": "Read and analyse the selection",
+      "until": 24
     },
     {
-      "at": 25,
+      "at": 24,
+      "label": "An answer grounded in the records",
+      "until": 29
+    },
+    {
+      "at": 29,
       "label": "Build with us",
-      "until": 30
+      "until": 34
     }
   ],
   "copy": [
     {
       "at": 7.6,
       "until": 10.6,
-      "text": "A selection carries the actual observations."
+      "text": "Carry the selected observations into the conversation."
     },
     {
-      "at": 21.5,
-      "until": 24.4,
-      "text": "Ask about this—not everything."
+      "at": 25,
+      "until": 28,
+      "text": "Answers linked to the records you selected."
     }
   ]
 }

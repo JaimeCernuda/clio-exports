@@ -1,0 +1,49 @@
+{
+  "run_id": "flowrun_a7b05fffb1158ed060c9f9e2",
+  "flow": "timing-review",
+  "status": "completed",
+  "depth": 0,
+  "max_concurrency": 0,
+  "root_handle": "task_751bbe561e93ad41ca2f43c4ad09008c2a19035b4d8334812a5ec98bfec1578e",
+  "entries": 3,
+  "view": null,
+  "calls": [],
+  "questions": [],
+  "events": [],
+  "outcome": null,
+  "result": {
+    "answer": "Paired-minute correlation is 0.438; 4 of the ten highest minutes overlap. Distinct signals do not establish a single causal mechanism.",
+    "paired_minutes": 60,
+    "correlation": 0.4377377282670324,
+    "top_ten_overlap": 4
+  },
+  "execution": [
+    {
+      "id": "run:start",
+      "label": "Started",
+      "status": "completed",
+      "after": []
+    },
+    {
+      "id": "run:result",
+      "label": "Result",
+      "status": "completed",
+      "after": [
+        "run:start"
+      ]
+    }
+  ],
+  "usage": {
+    "calls": {},
+    "models": [],
+    "windows": [],
+    "estimated_sessions": 0
+  },
+  "timings": {
+    "task_751bbe561e93ad41ca2f43c4ad09008c2a19035b4d8334812a5ec98bfec1578e": {
+      "created_at": "2026-11-06T01:45:25.456029+00:00",
+      "updated_at": "2026-11-06T01:45:26.034613+00:00",
+      "terminal_at": "2026-11-06T01:45:26.034613+00:00"
+    }
+  }
+}

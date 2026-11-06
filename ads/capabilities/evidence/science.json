@@ -84731,86 +84731,106 @@
     "paired_minutes": 958,
     "correlation": 0.19558590710286508
   },
-  "simulation": [
+  "transport": [
     {
-      "time_s": 0.3,
-      "angle_rad": 0.05907414287065593
+      "local_label": "Apr 15 16:40 CDT",
+      "model_time_min": 1,
+      "travelled_km": 0.46228763945444984
     },
     {
-      "time_s": 0.6,
-      "angle_rad": -0.030229599052659224
+      "local_label": "Apr 15 16:41 CDT",
+      "model_time_min": 2,
+      "travelled_km": 0.9035431170093282
     },
     {
-      "time_s": 0.9,
-      "angle_rad": -0.09477226729611865
+      "local_label": "Apr 15 16:42 CDT",
+      "model_time_min": 3,
+      "travelled_km": 1.2521562013119758
     },
     {
-      "time_s": 1.2,
-      "angle_rad": -0.08173601435718772
+      "local_label": "Apr 15 16:43 CDT",
+      "model_time_min": 4,
+      "travelled_km": 1.6253541984510969
     },
     {
-      "time_s": 1.5,
-      "angle_rad": -0.001780015431576997
+      "local_label": "Apr 15 16:44 CDT",
+      "model_time_min": 5,
+      "travelled_km": 1.9015947670428877
     },
     {
-      "time_s": 1.8,
-      "angle_rad": 0.07963409865648732
+      "local_label": "Apr 15 16:45 CDT",
+      "model_time_min": 6,
+      "travelled_km": 2.191696319299577
     },
     {
-      "time_s": 2.1,
-      "angle_rad": 0.0958476349359764
+      "local_label": "Apr 15 16:46 CDT",
+      "model_time_min": 7,
+      "travelled_km": 2.476981272348716
     },
     {
-      "time_s": 2.4,
-      "angle_rad": 0.03360323431091679
+      "local_label": "Apr 15 16:47 CDT",
+      "model_time_min": 8,
+      "travelled_km": 2.895362290879391
     },
     {
-      "time_s": 2.7,
-      "angle_rad": -0.05616512140652462
+      "local_label": "Apr 15 16:48 CDT",
+      "model_time_min": 9,
+      "travelled_km": 3.3030848964292545
     },
     {
-      "time_s": 3.0,
-      "angle_rad": -0.09993668372299495
+      "local_label": "Apr 15 16:49 CDT",
+      "model_time_min": 10,
+      "travelled_km": 3.7522670903190622
     },
     {
-      "time_s": 3.3,
-      "angle_rad": -0.06190827600705832
+      "local_label": "Apr 15 16:50 CDT",
+      "model_time_min": 11,
+      "travelled_km": 4.126401809462943
     },
     {
-      "time_s": 3.6,
-      "angle_rad": 0.02681762525797638
+      "local_label": "Apr 15 16:51 CDT",
+      "model_time_min": 12,
+      "travelled_km": 4.540944092203704
     },
     {
-      "time_s": 3.9,
-      "angle_rad": 0.09357686673697754
+      "local_label": "Apr 15 16:52 CDT",
+      "model_time_min": 13,
+      "travelled_km": 4.928077268883531
     },
     {
-      "time_s": 4.2,
-      "angle_rad": 0.08373436836094343
+      "local_label": "Apr 15 16:53 CDT",
+      "model_time_min": 14,
+      "travelled_km": 5.297912777253308
     },
     {
-      "time_s": 4.5,
-      "angle_rad": 0.00533778845654621
+      "local_label": "Apr 15 16:54 CDT",
+      "model_time_min": 15,
+      "travelled_km": 5.746880300593236
     },
     {
-      "time_s": 4.8,
-      "angle_rad": -0.07743127873644616
+      "local_label": "Apr 15 16:55 CDT",
+      "model_time_min": 16,
+      "travelled_km": 6.144997188648635
     },
     {
-      "time_s": 5.1,
-      "angle_rad": -0.09680161180876651
+      "local_label": "Apr 15 16:56 CDT",
+      "model_time_min": 17,
+      "travelled_km": 6.504946221544998
     },
     {
-      "time_s": 5.4,
-      "angle_rad": -0.03693425396619716
+      "local_label": "Apr 15 16:57 CDT",
+      "model_time_min": 18,
+      "travelled_km": 6.816689008260063
     },
     {
-      "time_s": 5.7,
-      "angle_rad": 0.05318489540471779
+      "local_label": "Apr 15 16:58 CDT",
+      "model_time_min": 19,
+      "travelled_km": 7.238370463049869
     },
     {
-      "time_s": 6.0,
-      "angle_rad": 0.09974681480386792
+      "local_label": "Apr 15 16:59 CDT",
+      "model_time_min": 20,
+      "travelled_km": 7.6762647009238485
     }
   ]
 }

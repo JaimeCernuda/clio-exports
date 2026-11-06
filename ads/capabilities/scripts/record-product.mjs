@@ -1,6 +1,7 @@
 /** Run genuine SDK procedures against an isolated current CLIO backend and save receipts. */
 import fs from "node:fs/promises";
 import path from "node:path";
+import { captureFlows } from "./capture-flows.mjs";
 const root = path.resolve(import.meta.dirname, ".."),
   base = process.env.CLIO_URL ?? "http://127.0.0.1:8788";
 const api = async (method, route, body) => {
@@ -44,6 +45,22 @@ await fs.writeFile(
     sha256: genomics.sha256,
   }),
 );
+const storm = JSON.parse(
+  await fs.readFile(path.join(root, "evidence/hurricane.json"), "utf8"),
+);
+const sources = JSON.parse(
+  await fs.readFile(path.join(root, "evidence/sources.json"), "utf8"),
+);
+await fs.writeFile(
+  path.join(workspace, "selected-storm.json"),
+  JSON.stringify({
+    rows: storm.filter(
+      (r) => r.lon >= -79 && r.lon <= -76 && r.lat >= 25 && r.lat <= 28,
+    ),
+    selection: { west: -79, east: -76, south: 25, north: 28 },
+    source_sha256: sources.sources.find((s) => s.name === "hurricane").sha256,
+  }),
+);
 const market = await api("POST", "/v1/plugins/marketplaces", {
   source: path.join(root, "product"),
   name: "capability-campaign",
@@ -67,14 +84,28 @@ const selected = process.argv.slice(2),
     ["hypothesis", "pendulum-study"],
     ["team", "burn-team"],
     ["tools", "count-analysis"],
+    ["selection", "selection-analysis"],
     ["streams", "watch-experiment"],
   ].filter(([id]) => !selected.length || selected.includes(id));
 const directory = path.join(root, "evidence/execution");
 await fs.mkdir(directory, { recursive: true });
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 for (const [id, agent] of all) {
+  let runWorkspace = w;
+  if (id === "streams") {
+    const runRoot = path.join(root, ".cache", `stream-run-${Date.now()}`);
+    await fs.mkdir(runRoot, { recursive: true });
+    await fs.copyFile(
+      path.join(workspace, "burn.json"),
+      path.join(runRoot, "burn.json"),
+    );
+    runWorkspace = await api("POST", "/v1/workspaces", {
+      name: "Burn stream proof",
+      root_path: runRoot,
+    });
+  }
   const session = await api("POST", "/v1/sessions", {
-    workspace_id: w.id,
+    workspace_id: runWorkspace.id,
     title: `Campaign: ${id}`,
     model,
     agent: { id: `capability-campaign/${agent}` },
@@ -85,12 +116,16 @@ for (const [id, agent] of all) {
     JSON.stringify(session, null, 2),
   );
   console.log("SESSION", id, session.id);
-  const program = ["tools", "streams"].includes(id)
+  const program = ["tools", "streams", "selection"].includes(id)
     ? await fs.readFile(
         path.join(
           root,
           "product/requests",
-          id === "tools" ? "count-analysis.kernel" : "watch-experiment.kernel",
+          id === "tools"
+            ? "count-analysis.kernel"
+            : id === "selection"
+              ? "selection-analysis.kernel"
+              : "watch-experiment.kernel",
         ),
         "utf8",
       )
@@ -126,7 +161,9 @@ for (const [id, agent] of all) {
       : (messages.messages ?? messages.items ?? []);
     if (
       rows.some((m) => m.role === "assistant") &&
-      ["idle", "completed", "failed"].includes(current.status)
+      ["idle", "completed", "failed", "error", "cancelled"].includes(
+        current.status,
+      )
     )
       break;
   }
@@ -155,7 +192,14 @@ for (const [id, agent] of all) {
       JSON.stringify(log, null, 2),
     );
   }
+  if (id === "team")
+    await fs.copyFile(
+      path.join(workspace, "team-result.json"),
+      path.join(root, "evidence/workflow.json"),
+    );
   const related = await api("GET", `/v1/sessions/${session.id}/agent-tasks`);
+  if (id === "team")
+    await captureFlows(base, directory, id, session, taskView, related);
   await fs.writeFile(
     path.join(directory, `${id}-children.json`),
     JSON.stringify(related, null, 2),
@@ -179,7 +223,7 @@ for (const [id, agent] of all) {
       await sleep(650);
       const reference = await api(
         "GET",
-        `/v1/sessions/${session.id}/references/resolve?uri=${encodeURIComponent(`artifact://${w.id}/burn-observations.parquet@latest`)}`,
+        `/v1/sessions/${session.id}/references/resolve?uri=${encodeURIComponent(`artifact://${runWorkspace.id}/burn-observations.parquet@latest`)}`,
       );
       const stream = reference.stream;
       if (!stream) throw new Error("The launched task has no actual stream");
@@ -213,10 +257,10 @@ for (const [id, agent] of all) {
       path.join(directory, "stream-snapshots.json"),
       JSON.stringify(snapshots, null, 2),
     );
-    for (const name of ["burn-observations", "pendulum-simulation"]) {
+    for (const name of ["burn-observations", "burn-transport"]) {
       const reference = await api(
         "GET",
-        `/v1/sessions/${session.id}/references/resolve?uri=${encodeURIComponent(`artifact://${w.id}/${name}.parquet@latest`)}`,
+        `/v1/sessions/${session.id}/references/resolve?uri=${encodeURIComponent(`artifact://${runWorkspace.id}/${name}.parquet@latest`)}`,
       );
       const table = await api(
         "POST",
@@ -231,6 +275,30 @@ for (const [id, agent] of all) {
     const finalMessages = await api(
       "GET",
       `/v1/sessions/${session.id}/messages`,
+    );
+    const streamRead = finalMessages.messages
+      .flatMap((m) => m.parts)
+      .find((p) => p.type === "tool_result" && p.tool_name === "read_stream");
+    if (!streamRead?.metadata?.result?.latest)
+      throw new Error("No recorded stream query result");
+    const latest = streamRead.metadata.result.latest;
+    const sourceIndex = science.burn.findIndex(
+      (r) => r.local_label === latest.local_label,
+    );
+    if (sourceIndex < 1)
+      throw new Error("The query cannot be joined to source observations");
+    await fs.writeFile(
+      path.join(root, "evidence/stream-query.json"),
+      JSON.stringify(
+        {
+          sourceIndex,
+          latest,
+          streamState: streamRead.metadata.result.state,
+          streamWrites: streamRead.metadata.result.writes,
+        },
+        null,
+        2,
+      ),
     );
     await fs.writeFile(
       path.join(directory, "streams-messages.json"),

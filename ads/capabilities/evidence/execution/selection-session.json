@@ -1,0 +1,36 @@
+{
+  "id": "sess_0decf614d197",
+  "workspace_id": "ws_de799980ff25",
+  "title": "Campaign: selection",
+  "status": "idle",
+  "created_at": "2026-11-06T01:07:01.888828+00:00",
+  "updated_at": "2026-11-06T01:07:01.888828+00:00",
+  "last_interaction_at": "2026-11-06T01:07:01.888828+00:00",
+  "message_count": 0,
+  "parent_session_id": "",
+  "model": {
+    "provider_id": "codex",
+    "model_id": "gpt-6-luna",
+    "variant": ""
+  },
+  "agent": {
+    "id": "selection-analysis",
+    "mode": ""
+  },
+  "tokens_input": 0,
+  "tokens_output": 0,
+  "cost_usd": null,
+  "mode": "edit",
+  "edit_mode": "diff",
+  "routing_mode": "auto",
+  "approval_mode": "bypass",
+  "metadata": {
+    "agent_ref": "capability-campaign/selection-analysis",
+    "agent_delta": {
+      "add": [],
+      "remove": []
+    },
+    "agent_resolution": "0ea57876e2f5a12c25749f7ba1dda68d9f62478563d80b83d27af7497fab2fb6"
+  },
+  "archived": false
+}

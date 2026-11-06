@@ -2,36 +2,36 @@
   "tasks": [
     {
       "schema_version": 1,
-      "handle": "task_75e0bf9f61004d5e92283c1e3871c8d8",
+      "handle": "task_2d251263d91e4e30a8e9664b749e52da",
       "kind": "Session",
       "owner": {
         "schema_version": 1,
         "human_id": "human:clio_06840babdd864642b51f2000b5ff25f1",
-        "session_id": "sess_9d5c84fc7527",
-        "assignment_id": "task_75e0bf9f61004d5e92283c1e3871c8d8",
+        "session_id": "sess_6ec5484ff65e",
+        "assignment_id": "task_2d251263d91e4e30a8e9664b749e52da",
         "parent_handle": null
       },
-      "description": "Execute the following exact Python program using run_code with background=True and label=\"Watch the experiment\". Do not substitute shell execution. The tools/stream/task names are CLIO kernel bindings. Keep outputs in the workspace. Report only the genuine result or launch handle.\n\n\"\"\"Background kernel program: sensor replay, then a numerical source on the same path.\"\"\"\nimport asyncio\nimport json\nimport math\n\nrows = json.loads(open(\"burn.json\", encoding=\"utf-8\").read())\nsensor = await stream.open(\"burn-observations\", columns=[\"local_label\", \"particle_mean_ug_m3\"],\n                           window=18, flush_s=30)\nsimulation = None\ntheta, velocity, simulation_time = 0.1, 0.0, 0.0\nfor i, row in enumerate(rows):\n    await sensor.write(local_label=row[\"local_label\"], particle_mean_ug_m3=row[\"particle_mean_ug_m3\"])\n    if i == 40:\n        simulation = await stream.open(\"pendulum-simulation\", columns=[\"time_s\", \"angle_rad\"],\n                                       window=18, flush_s=30)\n    if simulation is not None:\n        for _ in range(30):\n            acceleration = -9.80665 * math.sin(theta)\n            theta += velocity * 0.01 + 0.5 * acceleration * 0.01**2\n            velocity += 0.5 * (acceleration - 9.80665 * math.sin(theta)) * 0.01\n            simulation_time += 0.01\n        await simulation.write(time_s=round(simulation_time, 3), angle_rad=theta)\n    await task.progress(\"Replaying recorded observations\", done=i+1, total=len(rows))\n    await asyncio.sleep(0.6)\nawait task.notify(\"Sensor replay complete\")\nprint(\"Sensor replay complete\")",
+      "description": "Execute the following exact Python program using run_code with background=True and label=\"Watch the experiment\". Do not substitute shell execution. The tools/stream/task names are CLIO kernel bindings. Keep outputs in the workspace. Report only the genuine result or launch handle.\n\n\"\"\"Replay the burn observations and drive an illustrative transport model with their wind.\"\"\"\n\nimport asyncio\nimport json\n\nrows = json.loads(open(\"burn.json\", encoding=\"utf-8\").read())\nsensor = await stream.open(\n    \"burn-observations\", columns=[\"local_label\", \"particle_mean_ug_m3\", \"horizontal_speed_mean\"], window=18, flush_s=30\n)\nsimulation = None\ntravelled_m = 0.0\nfor i, row in enumerate(rows):\n    await sensor.write(\n        local_label=row[\"local_label\"], particle_mean_ug_m3=row[\"particle_mean_ug_m3\"],\n        horizontal_speed_mean=row[\"horizontal_speed_mean\"]\n    )\n    if i == 40:\n        simulation = await stream.open(\n            \"burn-transport\", columns=[\"local_label\", \"model_time_min\", \"travelled_km\"], window=18, flush_s=30\n        )\n    if simulation is not None:\n        # Piecewise constant, spatially uniform minute-mean wind. This is an\n        # illustrative travelled-distance model, not a dispersion prediction.\n        travelled_m += float(row[\"horizontal_speed_mean\"]) * 60.0\n        await simulation.write(local_label=row[\"local_label\"], model_time_min=i-39,\n                               travelled_km=travelled_m/1000.0)\n    await task.progress(\"Replaying recorded observations\", done=i + 1, total=len(rows))\n    await asyncio.sleep(0.6)\nawait task.notify(\"Sensor replay complete\")\nprint(\"Sensor replay complete\")",
       "description_reference": {
         "schema_version": 1,
-        "session_id": "sess_9d5c84fc7527",
-        "scope": "_events/t/content/8de400a90d87ebf2f0b5175f34b1215a40bbfe0fdfa42b706d0d69c3eabe8192",
-        "content_id": "8de400a90d87ebf2f0b5175f34b1215a40bbfe0fdfa42b706d0d69c3eabe8192",
-        "sha256": "8de400a90d87ebf2f0b5175f34b1215a40bbfe0fdfa42b706d0d69c3eabe8192"
+        "session_id": "sess_6ec5484ff65e",
+        "scope": "_events/t/content/a740a2e107610d6397621bb83853773565996040fd1978be1a35f6c4ead8ac3b",
+        "content_id": "a740a2e107610d6397621bb83853773565996040fd1978be1a35f6c4ead8ac3b",
+        "sha256": "a740a2e107610d6397621bb83853773565996040fd1978be1a35f6c4ead8ac3b"
       },
       "description_missing": false,
       "label": "Campaign: streams",
-      "invocation_id": "msg_user_e540cd268be1",
+      "invocation_id": "msg_user_6816ab378ec3",
       "tool": "conversation",
-      "created_at": "2026-11-05T23:45:51.669325+00:00",
-      "updated_at": "2026-11-05T23:46:42.319257+00:00",
+      "created_at": "2026-11-06T02:28:19.735506+00:00",
+      "updated_at": "2026-11-06T02:29:13.228818+00:00",
       "backend": {
         "schema_version": 1,
         "owner": "conversation",
         "server": "clio",
         "auth_scope": "",
-        "session": "sess_9d5c84fc7527",
-        "task_id": "task_75e0bf9f61004d5e92283c1e3871c8d8",
+        "session": "sess_6ec5484ff65e",
+        "task_id": "task_2d251263d91e4e30a8e9664b749e52da",
         "queue": "",
         "execution_key": "",
         "transport": "",
@@ -48,10 +48,10 @@
         "unit": "iterations",
         "output": {
           "schema_version": 1,
-          "session_id": "sess_9d5c84fc7527",
-          "scope": "_events/t/output/2e7705d7d0eb7fc9bcfbdf71252f986bf0c2734eef9bb194ea43cf009bcf4b71/d4fff3098633b8f5476d3a5fd106682b3c2e325c24b0e88f4227f87dd46651a0",
-          "content_id": "d4fff3098633b8f5476d3a5fd106682b3c2e325c24b0e88f4227f87dd46651a0",
-          "sha256": "d4fff3098633b8f5476d3a5fd106682b3c2e325c24b0e88f4227f87dd46651a0"
+          "session_id": "sess_6ec5484ff65e",
+          "scope": "_events/t/output/253385c08c05cda6d947354da85ee672234a1e998dc9080184f5f82154501e73/3aa81e38694ab7de59284ddbe52b6faea3145f6455c6b5c919b45b164b7f2e03",
+          "content_id": "3aa81e38694ab7de59284ddbe52b6faea3145f6455c6b5c919b45b164b7f2e03",
+          "sha256": "3aa81e38694ab7de59284ddbe52b6faea3145f6455c6b5c919b45b164b7f2e03"
         }
       },
       "supported_actions": [
@@ -63,20 +63,20 @@
       "connection_freshness": "unknown",
       "settlement": "confirmed",
       "recording": "confirmed",
-      "terminal_at": "2026-11-05T23:46:42.319257+00:00",
+      "terminal_at": "2026-11-06T02:29:13.228818+00:00",
       "result": {
         "schema_version": 1,
-        "session_id": "sess_9d5c84fc7527",
-        "scope": "_events/t/content/723f7756a4d2366f279f72826bbe9aeeacea8e24e9b684a93592378291ba363b",
-        "content_id": "723f7756a4d2366f279f72826bbe9aeeacea8e24e9b684a93592378291ba363b",
-        "sha256": "723f7756a4d2366f279f72826bbe9aeeacea8e24e9b684a93592378291ba363b"
+        "session_id": "sess_6ec5484ff65e",
+        "scope": "_events/t/content/472c9dd78919762526f9ded7d272a4bfc509e5e7a01ac93de1b24ef0c320c4e9",
+        "content_id": "472c9dd78919762526f9ded7d272a4bfc509e5e7a01ac93de1b24ef0c320c4e9",
+        "sha256": "472c9dd78919762526f9ded7d272a4bfc509e5e7a01ac93de1b24ef0c320c4e9"
       },
       "details": {
         "schema_version": 1,
-        "session_id": "sess_9d5c84fc7527",
-        "scope": "_events/t/content/0b91f5e43fbc69fbebf36e8f77793072c7143c415c53bac2d40e6daa8d17808f",
-        "content_id": "0b91f5e43fbc69fbebf36e8f77793072c7143c415c53bac2d40e6daa8d17808f",
-        "sha256": "0b91f5e43fbc69fbebf36e8f77793072c7143c415c53bac2d40e6daa8d17808f"
+        "session_id": "sess_6ec5484ff65e",
+        "scope": "_events/t/content/92e9dde679dbc7bd1802b491217348a03d4ec8db3016263b6c6c270da9fe01c8",
+        "content_id": "92e9dde679dbc7bd1802b491217348a03d4ec8db3016263b6c6c270da9fe01c8",
+        "sha256": "92e9dde679dbc7bd1802b491217348a03d4ec8db3016263b6c6c270da9fe01c8"
       },
       "submission": null,
       "backend_observation": null,
@@ -87,36 +87,36 @@
     },
     {
       "schema_version": 1,
-      "handle": "task_9fab0393c5d54b9aa969810b639e6069",
+      "handle": "task_fbe77f8af88d4db9a8b3f67d7df39078",
       "kind": "Code",
       "owner": {
         "schema_version": 1,
         "human_id": "human:clio_06840babdd864642b51f2000b5ff25f1",
-        "session_id": "sess_9d5c84fc7527",
-        "assignment_id": "task_75e0bf9f61004d5e92283c1e3871c8d8",
-        "parent_handle": "task_75e0bf9f61004d5e92283c1e3871c8d8"
+        "session_id": "sess_6ec5484ff65e",
+        "assignment_id": "task_2d251263d91e4e30a8e9664b749e52da",
+        "parent_handle": "task_2d251263d91e4e30a8e9664b749e52da"
       },
       "description": "Background script: Watch the experiment",
       "description_reference": {
         "schema_version": 1,
-        "session_id": "sess_9d5c84fc7527",
+        "session_id": "sess_6ec5484ff65e",
         "scope": "_events/t/content/9a8975560b8be9815d74b4967cdcc0c6e14b10c64d171541c361cb412221e68b",
         "content_id": "9a8975560b8be9815d74b4967cdcc0c6e14b10c64d171541c361cb412221e68b",
         "sha256": "9a8975560b8be9815d74b4967cdcc0c6e14b10c64d171541c361cb412221e68b"
       },
       "description_missing": false,
       "label": "Watch the experiment",
-      "invocation_id": "67292427290347db9f44b20eb05860c3",
+      "invocation_id": "b2b049d226b64d61886e8d954c2c373e",
       "tool": "run_code_task",
-      "created_at": "2026-11-05T23:46:01.416267+00:00",
-      "updated_at": "2026-11-05T23:46:40.735933+00:00",
+      "created_at": "2026-11-06T02:28:31.209303+00:00",
+      "updated_at": "2026-11-06T02:29:10.564002+00:00",
       "backend": {
         "schema_version": 1,
         "owner": "native",
         "server": "clio-code",
         "auth_scope": "",
         "session": "e806dff6ecb68db9e59c05941c4697ed59e0cc5eb364ab2e9d8380326e39262d",
-        "task_id": "lqJXiZn9Oz-hIw1-O7hitnzvJEQCEsb4FG9TWZjEukU",
+        "task_id": "EfEXlCm84fyHrgN00LuyvuJb8FWn40IcIBdBU3IXMYw",
         "queue": "clio-code-74dc9993831544ed9e9e892481ddabda",
         "execution_key": "",
         "transport": "in_process",
@@ -127,16 +127,16 @@
       "activity": "",
       "progress": {
         "schema_version": 1,
-        "message": "35 s, 2 calls, 98 MB, 55 of 60: Replaying recorded observations",
+        "message": "35 s, 2 calls, 95 MB, 54 of 60: Replaying recorded observations",
         "completed": null,
         "total": null,
         "unit": "",
         "output": {
           "schema_version": 1,
-          "session_id": "sess_9d5c84fc7527",
-          "scope": "_events/t/output/6e9ce8d0ea1025d056d61041427a312cca1b9f65197c19f15f3000947838f117/06f38eb648c2c1fa1391de31a87ed02e25ffb90e92fd33c50600469d12dfa792",
-          "content_id": "06f38eb648c2c1fa1391de31a87ed02e25ffb90e92fd33c50600469d12dfa792",
-          "sha256": "06f38eb648c2c1fa1391de31a87ed02e25ffb90e92fd33c50600469d12dfa792"
+          "session_id": "sess_6ec5484ff65e",
+          "scope": "_events/t/output/fc0fffac009b032b458457c46fbe758a5d95acaf77128163940580226d9123a3/39b2655c5d6d51340b1507e405b86f0c699c02fb6e219e78a3ff61e427ba5e73",
+          "content_id": "39b2655c5d6d51340b1507e405b86f0c699c02fb6e219e78a3ff61e427ba5e73",
+          "sha256": "39b2655c5d6d51340b1507e405b86f0c699c02fb6e219e78a3ff61e427ba5e73"
         }
       },
       "supported_actions": [
@@ -146,28 +146,28 @@
       "connection_freshness": "fresh",
       "settlement": "confirmed",
       "recording": "confirmed",
-      "terminal_at": "2026-11-05T23:46:40.735933+00:00",
+      "terminal_at": "2026-11-06T02:29:10.564002+00:00",
       "result": {
         "schema_version": 1,
-        "session_id": "sess_9d5c84fc7527",
-        "scope": "_events/t/content/af0607ce655830c67893e3bd503185f44386a09f910a81b1239ac04855d6ba02",
-        "content_id": "af0607ce655830c67893e3bd503185f44386a09f910a81b1239ac04855d6ba02",
-        "sha256": "af0607ce655830c67893e3bd503185f44386a09f910a81b1239ac04855d6ba02"
+        "session_id": "sess_6ec5484ff65e",
+        "scope": "_events/t/content/891533634096cc4ce9f9ae4e87d725e421236974b4c287156f649d22272bdbea",
+        "content_id": "891533634096cc4ce9f9ae4e87d725e421236974b4c287156f649d22272bdbea",
+        "sha256": "891533634096cc4ce9f9ae4e87d725e421236974b4c287156f649d22272bdbea"
       },
       "details": null,
       "submission": {
         "schema_version": 1,
-        "session_id": "sess_9d5c84fc7527",
-        "scope": "_events/t/content/9fd1360e5f5c16e0db9f7948d9d64716d2c26a5560d272a330376b6a0badf59e",
-        "content_id": "9fd1360e5f5c16e0db9f7948d9d64716d2c26a5560d272a330376b6a0badf59e",
-        "sha256": "9fd1360e5f5c16e0db9f7948d9d64716d2c26a5560d272a330376b6a0badf59e"
+        "session_id": "sess_6ec5484ff65e",
+        "scope": "_events/t/content/dc208ec19d073df6a92c6c6f0a68aaf357e2899e1ce614d12e9fd85bee4a7e44",
+        "content_id": "dc208ec19d073df6a92c6c6f0a68aaf357e2899e1ce614d12e9fd85bee4a7e44",
+        "sha256": "dc208ec19d073df6a92c6c6f0a68aaf357e2899e1ce614d12e9fd85bee4a7e44"
       },
       "backend_observation": {
         "schema_version": 1,
-        "session_id": "sess_9d5c84fc7527",
-        "scope": "_events/t/content/af0607ce655830c67893e3bd503185f44386a09f910a81b1239ac04855d6ba02",
-        "content_id": "af0607ce655830c67893e3bd503185f44386a09f910a81b1239ac04855d6ba02",
-        "sha256": "af0607ce655830c67893e3bd503185f44386a09f910a81b1239ac04855d6ba02"
+        "session_id": "sess_6ec5484ff65e",
+        "scope": "_events/t/content/891533634096cc4ce9f9ae4e87d725e421236974b4c287156f649d22272bdbea",
+        "content_id": "891533634096cc4ce9f9ae4e87d725e421236974b4c287156f649d22272bdbea",
+        "sha256": "891533634096cc4ce9f9ae4e87d725e421236974b4c287156f649d22272bdbea"
       },
       "deduplication_key": null,
       "attention_episode": null,
@@ -177,5 +177,5 @@
   ],
   "total": 2,
   "cursor": null,
-  "revision": 598
+  "revision": 1438
 }

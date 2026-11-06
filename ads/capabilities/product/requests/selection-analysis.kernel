@@ -1,0 +1,9 @@
+"""Answer the user's question using only the selected source records."""
+selected = await tools.read_selected_observations()
+records = selected["rows"]
+peak = max(row["wind_kt"] for row in records)
+matches = [row for row in records if row["wind_kt"] == peak]
+print({"selected_records": len(records), "peak_wind_kt": peak,
+       "times": [row["time"] for row in matches],
+       "observation_ids": [row["observation_id"] for row in matches],
+       "source_sha256": selected["source_sha256"]})

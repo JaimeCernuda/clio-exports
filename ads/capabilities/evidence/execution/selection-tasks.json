@@ -1,0 +1,92 @@
+{
+  "tasks": [
+    {
+      "schema_version": 1,
+      "handle": "task_8ef18c59ea7b4890a86700c05c5a3f6f",
+      "kind": "Session",
+      "owner": {
+        "schema_version": 1,
+        "human_id": "human:clio_06840babdd864642b51f2000b5ff25f1",
+        "session_id": "sess_0decf614d197",
+        "assignment_id": "task_8ef18c59ea7b4890a86700c05c5a3f6f",
+        "parent_handle": null
+      },
+      "description": "Execute the following exact Python program using run_code. Do not substitute shell execution. The tools/stream/task names are CLIO kernel bindings. Keep outputs in the workspace. Report only the genuine result or launch handle.\n\n\"\"\"Answer the user's question using only the selected source records.\"\"\"\nselected = await tools.read_selected_observations()\nrecords = selected[\"rows\"]\npeak = max(row[\"wind_kt\"] for row in records)\nmatches = [row for row in records if row[\"wind_kt\"] == peak]\nprint({\"selected_records\": len(records), \"peak_wind_kt\": peak,\n       \"times\": [row[\"time\"] for row in matches],\n       \"observation_ids\": [row[\"observation_id\"] for row in matches],\n       \"source_sha256\": selected[\"source_sha256\"]})",
+      "description_reference": {
+        "schema_version": 1,
+        "session_id": "sess_0decf614d197",
+        "scope": "_events/t/content/c42d82a1268e643f5d66bada4b25ff8f56da2b00df5569d20775bcc71f5837a8",
+        "content_id": "c42d82a1268e643f5d66bada4b25ff8f56da2b00df5569d20775bcc71f5837a8",
+        "sha256": "c42d82a1268e643f5d66bada4b25ff8f56da2b00df5569d20775bcc71f5837a8"
+      },
+      "description_missing": false,
+      "label": "Campaign: selection",
+      "invocation_id": "msg_user_544792e520a2",
+      "tool": "conversation",
+      "created_at": "2026-11-06T01:07:02.049281+00:00",
+      "updated_at": "2026-11-06T01:07:14.305264+00:00",
+      "backend": {
+        "schema_version": 1,
+        "owner": "conversation",
+        "server": "clio",
+        "auth_scope": "",
+        "session": "sess_0decf614d197",
+        "task_id": "task_8ef18c59ea7b4890a86700c05c5a3f6f",
+        "queue": "",
+        "execution_key": "",
+        "transport": "",
+        "placement": "local"
+      },
+      "raw_status": "completed",
+      "status": "completed",
+      "activity": "",
+      "progress": {
+        "schema_version": 1,
+        "message": "Working",
+        "completed": 3,
+        "total": null,
+        "unit": "iterations",
+        "output": {
+          "schema_version": 1,
+          "session_id": "sess_0decf614d197",
+          "scope": "_events/t/output/2589b345f2c484b8f6b2437789592ff01b09267e980b3910cd6abe71e7332f55/079280ba6d3a5fcab5f527907543798d78e4374c643cadfaa039b3fc7e043e63",
+          "content_id": "079280ba6d3a5fcab5f527907543798d78e4374c643cadfaa039b3fc7e043e63",
+          "sha256": "079280ba6d3a5fcab5f527907543798d78e4374c643cadfaa039b3fc7e043e63"
+        }
+      },
+      "supported_actions": [
+        "get_result",
+        "message",
+        "restart"
+      ],
+      "cancellation_requested_at": null,
+      "connection_freshness": "unknown",
+      "settlement": "confirmed",
+      "recording": "confirmed",
+      "terminal_at": "2026-11-06T01:07:14.305264+00:00",
+      "result": {
+        "schema_version": 1,
+        "session_id": "sess_0decf614d197",
+        "scope": "_events/t/content/2371a68232f6cb976d6f781c53ff244ddfaea342db2fb12aa751b5375d99d564",
+        "content_id": "2371a68232f6cb976d6f781c53ff244ddfaea342db2fb12aa751b5375d99d564",
+        "sha256": "2371a68232f6cb976d6f781c53ff244ddfaea342db2fb12aa751b5375d99d564"
+      },
+      "details": {
+        "schema_version": 1,
+        "session_id": "sess_0decf614d197",
+        "scope": "_events/t/content/416b26004955959240f6688ddd6cca7ad9a6c5477c42e869523782a1e9527edd",
+        "content_id": "416b26004955959240f6688ddd6cca7ad9a6c5477c42e869523782a1e9527edd",
+        "sha256": "416b26004955959240f6688ddd6cca7ad9a6c5477c42e869523782a1e9527edd"
+      },
+      "submission": null,
+      "backend_observation": null,
+      "deduplication_key": null,
+      "attention_episode": null,
+      "resource_id": null,
+      "fork_of": null
+    }
+  ],
+  "total": 1,
+  "cursor": null,
+  "revision": 674
+}

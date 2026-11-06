@@ -17,8 +17,9 @@ are inherited merely because a component can draw them.
    an unsuccessful review sends it back through the relevant calculation.
 2. Two curves agree, then separate. The discrepancy creates linked scientific
    evidence and changes the claim in the graph.
-3. One question fans out. A specialist opens while its peers continue; their
-   separate signals return to one comparison.
+3. A connected investigation grows through preparation, concurrent specialists,
+   a join and a conditional follow-up. One nested flow opens while its peers
+   continue. The same graph persists through the finding, without a layout swap.
 4. An answer becomes an instrument. Baseline and month choices visibly update
    a chart and its linked numeric comparison before export.
 5. A result can be followed backward, through a calculation and geometry to its
@@ -26,9 +27,12 @@ are inherited merely because a component can draw them.
 6. Sources and tools assemble around a program. Neighbors clear before its useful
    result expands. Source references remain with the result.
 7. Geographic observations remain the same selected records across a map, table,
-   reference card and answer. The map never squashes to accommodate another view.
-8. The signal keeps arriving. A task supplies a rolling context window consumed by
-   both an agent query and a dashboard; a numerical simulation uses the same path.
+   reference card, actual record read, computation and answer. The map never
+   squashes to accommodate another view; place names remain stable DOM text.
+8. The signal keeps arriving. A task supplies burn observations to both an agent
+   query and a dashboard. Those same wind readings drive an illustrative parcel
+   transport model; its output joins its inputs in context. The rejected unrelated
+   pendulum switch is removed. Multiple data sources must belong to one visible story.
 
 The neutral background, Inter typography, navy brand, controlled accent palette,
 light borders and close connect the campaign. Subject-specific motion supplies

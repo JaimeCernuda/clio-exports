@@ -1,12 +1,12 @@
 {
   "id": "team",
-  "title": "One question. A research team.",
-  "seconds": 32,
-  "takeaway": "One research question can become coordinated specialist work.",
-  "proof": "Three real concurrent child tasks analyze separate signals, one opens briefly, then their findings rejoin.",
-  "evidence": "konza.json; science.json; execution/team-*.json",
-  "limits": "Deterministic SDK specialist procedures; bootstrap is illustrative, not a causal finding.",
-  "hardest": "Peer cards must clear before the particle inspector expands, while other work stays visible.",
+  "title": "Workflows as complex as your science.",
+  "seconds": 40,
+  "takeaway": "An investigation can compose flows, concurrent specialists and evidence-dependent follow-up.",
+  "proof": "Two preparation flows feed three concurrent specialists. Their joined results trigger a fourth specialist when peak times differ by more than one minute. The same graph persists through the finding.",
+  "evidence": "konza.json; science.json; workflow.json; execution/team-*.json; product/plugins/campaign-methods/ai.iowarp.clio/flows/burn_workflow.py",
+  "limits": "Real deterministic SDK execution, not LLM-generated planning. The one-minute review threshold is an authored example policy. Bootstrap is illustrative; correlation and overlapping extremes do not establish causation. Native flow projections expose task calls/results, while the inspector's step labels condense the retained procedure source.",
+  "hardest": "Reframe the entire connected graph to inspect one nested flow; return without replacing nodes, then animate the join, decision and conditional branch continuously.",
   "shots": [
     {
       "at": 0,
@@ -15,35 +15,60 @@
     },
     {
       "at": 4,
-      "label": "Delegate",
-      "until": 9
+      "label": "Start the investigation flow",
+      "until": 5
     },
     {
-      "at": 9,
-      "label": "Specialists at work",
-      "until": 14
+      "at": 5,
+      "label": "Parallel preparation flows",
+      "until": 8
     },
     {
-      "at": 14,
-      "label": "Inside a subagent",
+      "at": 8,
+      "label": "Concurrent specialists",
+      "until": 10
+    },
+    {
+      "at": 10,
+      "label": "Inside a subagent flow",
+      "until": 18
+    },
+    {
+      "at": 18,
+      "label": "Join the results",
       "until": 22
     },
     {
       "at": 22,
-      "label": "Bring findings together",
-      "until": 27
+      "label": "Evidence triggers a follow-up",
+      "until": 29
     },
     {
-      "at": 27,
+      "at": 29,
+      "label": "Combined finding",
+      "until": 35
+    },
+    {
+      "at": 35,
       "label": "Build with us",
-      "until": 32
+      "until": 40
     }
   ],
   "copy": [
     {
-      "at": 8,
-      "until": 12.5,
-      "text": "Specialists work together, with distinct assignments."
+      "at": 7.7,
+      "until": 9.4,
+      "text": "Parallel work. Shared dependencies."
+    },
+    {
+      "at": 22.4,
+      "until": 26.6,
+      "text": "A timing mismatch starts a deeper comparison."
+    },
+    {
+      "at": 31.1,
+      "until": 34.1,
+      "text": "Coordinate the whole investigation."
     }
   ]
 }

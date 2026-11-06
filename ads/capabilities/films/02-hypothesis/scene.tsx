@@ -191,7 +191,7 @@ export function HypothesisScene({ t }: { t: number }) {
           title="Sweep release angles"
           detail="Numerical experiment"
           kind="Experiment"
-          state={t > 21 ? "done" : "running"}
+          state="done"
           color="#7257bf"
           style={{ opacity: phase(t, 18, 0.6) }}
         />

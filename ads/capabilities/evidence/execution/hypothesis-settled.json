@@ -1,11 +1,11 @@
 {
-  "id": "sess_ba0e7fdb69f1",
+  "id": "sess_6f2818520acf",
   "workspace_id": "ws_de799980ff25",
   "title": "Campaign: hypothesis",
   "status": "idle",
-  "created_at": "2026-11-06T00:07:53.267451+00:00",
-  "updated_at": "2026-11-06T00:07:56.269941+00:00",
-  "last_interaction_at": "2026-11-06T00:07:56.198843+00:00",
+  "created_at": "2026-11-06T00:43:55.123356+00:00",
+  "updated_at": "2026-11-06T00:43:57.443420+00:00",
+  "last_interaction_at": "2026-11-06T00:43:57.403251+00:00",
   "message_count": 2,
   "parent_session_id": "",
   "model": {
@@ -30,7 +30,7 @@
       "add": [],
       "remove": []
     },
-    "agent_resolution": "bedb145ddcab5866c73ffc56ac85bd8e56305fee17c4d0a52de7ac1d9f238338",
+    "agent_resolution": "d7a8e7a9f861e0db77404da09fb24fe791e80fd11451a0f93caef8ac4d7a592f",
     "composer_queue_paused": false,
     "memory_snapshot": {
       "text": "",
@@ -46,8 +46,8 @@
         "cache_read_tokens": 0,
         "cache_write_tokens": 0,
         "cache_tokens_measured": false,
-        "turn_id": "msg_user_cb02631987de",
-        "recorded_at": "2026-11-06T00:07:56.115289+00:00",
+        "turn_id": "msg_user_96fcae1da5aa",
+        "recorded_at": "2026-11-06T00:43:57.362182+00:00",
         "window_tokens": 922000
       }
     },

@@ -1,0 +1,213 @@
+{
+  "id": "sess_0decf614d197",
+  "workspace_id": "ws_de799980ff25",
+  "title": "Campaign: selection",
+  "status": "idle",
+  "created_at": "2026-11-06T01:07:01.888828+00:00",
+  "updated_at": "2026-11-06T01:07:14.309647+00:00",
+  "last_interaction_at": "2026-11-06T01:07:14.293884+00:00",
+  "message_count": 2,
+  "parent_session_id": "",
+  "model": {
+    "provider_id": "codex",
+    "model_id": "gpt-6-luna",
+    "variant": ""
+  },
+  "agent": {
+    "id": "selection-analysis",
+    "mode": ""
+  },
+  "tokens_input": 24998,
+  "tokens_output": 317,
+  "cost_usd": 0.0026582999999999997,
+  "mode": "edit",
+  "edit_mode": "diff",
+  "routing_mode": "auto",
+  "approval_mode": "bypass",
+  "metadata": {
+    "agent_ref": "capability-campaign/selection-analysis",
+    "agent_delta": {
+      "add": [],
+      "remove": []
+    },
+    "agent_resolution": "0ea57876e2f5a12c25749f7ba1dda68d9f62478563d80b83d27af7497fab2fb6",
+    "composer_queue_paused": false,
+    "memory_snapshot": {
+      "text": "",
+      "loaded": [],
+      "indexed": [],
+      "omitted": 0
+    },
+    "loaded_tools": {
+      "pending": [
+        "read_selected_observations"
+      ],
+      "listed": []
+    },
+    "context_usage_by_scope": {
+      "selection-analysis": {
+        "used_tokens": 8589,
+        "source": "provider",
+        "model": "codex_direct/gpt-6-luna",
+        "cache_read_tokens": 8064,
+        "cache_write_tokens": 0,
+        "cache_tokens_measured": true,
+        "prompt_breakdown": {
+          "method": "characters_div_4",
+          "tokens_estimated": 10491,
+          "media_items": 0,
+          "sections": [
+            {
+              "id": "system",
+              "label": "System prompt",
+              "tokens_estimated": 3589,
+              "count": 2,
+              "items": [
+                {
+                  "label": "Agent instructions",
+                  "tokens_estimated": 3146
+                },
+                {
+                  "label": "Tools you load when needed",
+                  "tokens_estimated": 443
+                }
+              ]
+            },
+            {
+              "id": "tools",
+              "label": "Tool definitions",
+              "tokens_estimated": 5848,
+              "count": 18,
+              "items": [
+                {
+                  "label": "spawn_agent_task",
+                  "tokens_estimated": 802
+                },
+                {
+                  "label": "spawn_agents_parallel",
+                  "tokens_estimated": 748
+                },
+                {
+                  "label": "run_code",
+                  "tokens_estimated": 509
+                },
+                {
+                  "label": "fs_search_text",
+                  "tokens_estimated": 416
+                },
+                {
+                  "label": "ask_user",
+                  "tokens_estimated": 388
+                },
+                {
+                  "label": "load_skill",
+                  "tokens_estimated": 326
+                },
+                {
+                  "label": "fs_read_file",
+                  "tokens_estimated": 315
+                },
+                {
+                  "label": "fs_edit_file",
+                  "tokens_estimated": 291
+                },
+                {
+                  "label": "plan_exit",
+                  "tokens_estimated": 270
+                },
+                {
+                  "label": "fs_write_file",
+                  "tokens_estimated": 260
+                },
+                {
+                  "label": "wait_tasks",
+                  "tokens_estimated": 258
+                },
+                {
+                  "label": "write_todos",
+                  "tokens_estimated": 244
+                },
+                {
+                  "label": "plan_update",
+                  "tokens_estimated": 203
+                },
+                {
+                  "label": "fs_glob",
+                  "tokens_estimated": 195
+                },
+                {
+                  "label": "fs_list_directory",
+                  "tokens_estimated": 189
+                },
+                {
+                  "label": "search_tools",
+                  "tokens_estimated": 185
+                },
+                {
+                  "label": "plan_enter",
+                  "tokens_estimated": 127
+                },
+                {
+                  "label": "submit",
+                  "tokens_estimated": 122
+                }
+              ]
+            },
+            {
+              "id": "skills",
+              "label": "Skills",
+              "tokens_estimated": 287,
+              "count": 1,
+              "items": [
+                {
+                  "label": "Skill descriptions",
+                  "tokens_estimated": 287
+                }
+              ]
+            },
+            {
+              "id": "messages",
+              "label": "Messages",
+              "tokens_estimated": 606,
+              "count": 4,
+              "items": [
+                {
+                  "label": "User messages",
+                  "tokens_estimated": 424
+                },
+                {
+                  "label": "Tool calls",
+                  "tokens_estimated": 182
+                }
+              ]
+            },
+            {
+              "id": "results",
+              "label": "Tool results",
+              "tokens_estimated": 161,
+              "count": 2,
+              "items": [
+                {
+                  "label": "search_tools",
+                  "tokens_estimated": 82
+                },
+                {
+                  "label": "run_code",
+                  "tokens_estimated": 79
+                }
+              ]
+            }
+          ]
+        },
+        "turn_id": "msg_user_544792e520a2",
+        "recorded_at": "2026-11-06T01:07:14.270288+00:00",
+        "window_tokens": 922000
+      }
+    },
+    "stop_loop": {
+      "count": 0,
+      "per_hook": {}
+    }
+  },
+  "archived": false
+}

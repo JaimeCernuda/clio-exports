@@ -1,11 +1,11 @@
 {
-  "id": "sess_f2467690bfff",
+  "id": "sess_c7ccc20f1146",
   "workspace_id": "ws_de799980ff25",
   "title": "Campaign: team",
   "status": "idle",
-  "created_at": "2026-11-05T23:28:55.927888+00:00",
-  "updated_at": "2026-11-05T23:29:09.151886+00:00",
-  "last_interaction_at": "2026-11-05T23:29:09.133250+00:00",
+  "created_at": "2026-11-06T01:44:59.465363+00:00",
+  "updated_at": "2026-11-06T01:45:26.265319+00:00",
+  "last_interaction_at": "2026-11-06T01:45:26.227630+00:00",
   "message_count": 2,
   "parent_session_id": "",
   "model": {
@@ -30,7 +30,7 @@
       "add": [],
       "remove": []
     },
-    "agent_resolution": "4c7f86c5e2b7b159f0a73cdb6c442bed0fdb7598ef34c2c429b2df254cdc94b1",
+    "agent_resolution": "1148ca90849f6a8e7a90bfc9a8f75e3fd0f90800b3fef355faff0d8d8d70758b",
     "composer_queue_paused": false,
     "memory_snapshot": {
       "text": "",
@@ -46,8 +46,8 @@
         "cache_read_tokens": 0,
         "cache_write_tokens": 0,
         "cache_tokens_measured": false,
-        "turn_id": "msg_user_61dd33d5ca9b",
-        "recorded_at": "2026-11-05T23:29:09.116620+00:00",
+        "turn_id": "msg_user_2a5c21ca954f",
+        "recorded_at": "2026-11-06T01:45:26.198050+00:00",
         "window_tokens": 922000
       }
     },

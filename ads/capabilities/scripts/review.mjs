@@ -4,6 +4,7 @@ import path from "node:path";
 import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { createRequire } from "node:module";
+import { reviewTransitions } from "./review-transitions.mjs";
 const root = path.resolve(import.meta.dirname, ".."),
   require = createRequire(import.meta.url);
 const { PNG } = require("pngjs"),
@@ -50,6 +51,34 @@ for (const film of chosen) {
   )
     throw new Error(`Wrong video parameters: ${film.id}`);
   if (!audio) throw new Error(`Missing audio: ${film.id}`);
+  const volume = spawnSync(
+    "ffmpeg",
+    [
+      "-v",
+      "info",
+      "-i",
+      input,
+      "-vn",
+      "-af",
+      "volumedetect",
+      "-f",
+      "null",
+      "-",
+    ],
+    { encoding: "utf8" },
+  );
+  if (volume.status !== 0) throw new Error(volume.stderr);
+  const meanDb = Number(volume.stderr.match(/mean_volume: ([-\d.]+) dB/)?.[1]);
+  const peakDb = Number(volume.stderr.match(/max_volume: ([-\d.]+) dB/)?.[1]);
+  if (
+    !Number.isFinite(meanDb) ||
+    !Number.isFinite(peakDb) ||
+    meanDb < -40 ||
+    peakDb > -1
+  )
+    throw new Error(
+      `Silent or clipping audio: ${film.id} (${meanDb},${peakDb} dB)`,
+    );
   if (Math.abs(Number(probe.format.duration) - film.seconds) > 0.05)
     throw new Error(`Duration drift: ${film.id}`);
   execFileSync("ffmpeg", ["-v", "error", "-i", input, "-f", "null", "-"], {
@@ -68,22 +97,7 @@ for (const film of chosen) {
     "2",
     path.join(directory, "timeline-%02d.jpg"),
   ]);
-  for (const m of film.markers.slice(1, -1))
-    ff([
-      "-ss",
-      String(Math.max(0, m.at - 0.6)),
-      "-i",
-      input,
-      "-t",
-      "1.2",
-      "-vf",
-      "fps=12,scale=480:270,tile=5x3",
-      "-frames:v",
-      "1",
-      "-q:v",
-      "2",
-      path.join(directory, `transition-${m.at}.jpg`),
-    ]);
+  await reviewTransitions(film, input, directory);
   const qr = path.join(directory, "close.png");
   ff(["-ss", String(film.seconds - 3), "-i", input, "-frames:v", "1", qr]);
   const image = PNG.sync.read(await fs.readFile(qr));
@@ -129,6 +143,7 @@ for (const film of chosen) {
     height: video.height,
     fullDecode: "passed",
     audio: "present",
+    audioMetrics: { meanDb, peakDb },
     qr: code.data,
     closeChangedPixels: pixels,
     closeStructuralSimilarity: similarity,

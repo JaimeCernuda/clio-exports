@@ -37,22 +37,43 @@ def read_dataset_record() -> dict[str, Any]:
 
 
 @tool(read_only=True)
-def compute_pendulum(angle_deg: float) -> dict[str, Any]:
-    """Integrate the nonlinear period and return its actual recorded tool-call reference."""
-    from clio_agent.gact import context
-    from clio_agent.gact.artifacts.observer_bridge import current_call_id
+def read_selected_observations() -> dict[str, Any]:
+    """Read the retained NOAA records identified by the user's geographic selection."""
+    root = Path(get_active_tool_workspace_root() or ".")
+    data = json.loads((root / "selected-storm.json").read_text())
+    if not data.get("rows"):
+        raise ValueError("The selected record set is empty")
+    return data
 
+
+def _period(angle_deg: float) -> float:
+    """Compute the nonlinear period by complete elliptic-integral quadrature."""
     k2 = math.sin(math.radians(angle_deg) / 2) ** 2
     n, step = 4096, math.pi / 8192
     values = [1 / math.sqrt(1 - k2 * math.sin(i * step) ** 2) for i in range(n + 1)]
     integral = (
         step / 3 * (values[0] + values[-1] + 4 * sum(values[1:-1:2]) + 2 * sum(values[2:-1:2]))
     )
-    period = 4 * math.sqrt(1 / 9.80665) * integral
+    return 4 * math.sqrt(1 / 9.80665) * integral
+
+
+@tool(read_only=True)
+def compute_pendulum(angle_deg: float) -> dict[str, Any]:
+    """Record the complete angle sweep and requested result in one real tool call."""
+    from clio_agent.gact import context
+    from clio_agent.gact.artifacts.observer_bridge import current_call_id
+
+    if not 0 <= angle_deg <= 90:
+        raise ValueError("The campaign experiment covers release angles from 0 to 90 degrees")
+    period = _period(angle_deg)
     prediction = 2 * math.pi * math.sqrt(1 / 9.80665)
     return {
         "period": period,
         "prediction": prediction,
         "difference_pct": (period / prediction - 1) * 100,
+        "curve": [
+            {"angle": angle, "period": _period(angle), "prediction": prediction}
+            for angle in range(0, 91, 2)
+        ],
         "source_call": f"call:{context.active_session_id()}/{current_call_id()}",
     }

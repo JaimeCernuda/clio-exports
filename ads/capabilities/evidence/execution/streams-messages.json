@@ -1,88 +1,90 @@
 {
   "messages": [
     {
-      "id": "msg_asst_a0d12b4a6673",
-      "session_id": "sess_9d5c84fc7527",
-      "turn_id": "turn_aac5bb9117af401aaaa3ea2cee381907",
+      "id": "msg_asst_5abfa19e8f95",
+      "session_id": "sess_6ec5484ff65e",
+      "turn_id": "turn_11a580285a4940a6b347ef8aaafb6e38",
       "role": "assistant",
-      "created_at": "2026-11-05T23:46:42.280846+00:00",
-      "updated_at": "2026-11-05T23:46:42.280858+00:00",
+      "created_at": "2026-11-06T02:29:13.181716+00:00",
+      "updated_at": "2026-11-06T02:29:13.181727+00:00",
       "parts": [
         {
-          "id": "live_call_f425d320821e_call",
+          "id": "live_call_f2c3dfc397c2_call",
           "type": "tool_call",
           "metadata": {
-            "started_at": "2026-11-05T23:46:40.577568+00:00",
+            "started_at": "2026-11-06T02:29:10.331848+00:00",
             "stream_source": "live",
             "telemetry_source": "live_observer",
-            "thought_step_id": "590bc0ab42e0469a",
-            "parent_call_id": "call_b47e5e0dc9e2"
+            "thought_step_id": "8827c6e54400490e",
+            "parent_call_id": "call_c2b0d091ed02"
           },
           "agent_id": "watch-experiment",
           "sequence": 1,
-          "call_id": "call_f425d320821e",
+          "call_id": "call_f2c3dfc397c2",
           "tool_name": "open_stream",
           "tool_title": "Open stream",
           "input": {
-            "name": "pendulum-simulation",
+            "name": "burn-transport",
             "columns": [
-              "time_s",
-              "angle_rad"
+              "local_label",
+              "model_time_min",
+              "travelled_km"
             ],
             "window": 18,
             "flush_s": 30,
             "_clio_repeat": {
               "count": 2,
-              "first_at": "2026-11-05T23:46:02.603630+00:00",
-              "last_at": "2026-11-05T23:46:27.928809+00:00"
+              "first_at": "2026-11-06T02:28:32.176363+00:00",
+              "last_at": "2026-11-06T02:28:57.623338+00:00"
             }
           }
         },
         {
-          "id": "live_call_f425d320821e_result",
+          "id": "live_call_f2c3dfc397c2_result",
           "type": "tool_result",
           "metadata": {
             "stream_source": "live",
-            "completed_at": "2026-11-05T23:46:40.578646+00:00",
+            "completed_at": "2026-11-06T02:29:10.335505+00:00",
             "telemetry_source": "live_observer",
             "result": {
               "ok": true,
-              "stream_id": "stream_25fbc3e820e3",
-              "name": "pendulum-simulation",
-              "workspace_id": "ws_de799980ff25",
-              "session_id": "sess_9d5c84fc7527",
+              "stream_id": "stream_7024b8c81aec",
+              "name": "burn-transport",
+              "workspace_id": "ws_3ec08f5f4f9b",
+              "session_id": "sess_6ec5484ff65e",
               "state": "open",
               "window": 18,
-              "rows": 18,
-              "writes": 20,
+              "rows": 0,
+              "writes": 0,
               "columns": [
-                "time_s",
-                "angle_rad"
+                "local_label",
+                "model_time_min",
+                "travelled_km"
               ],
-              "opened_at": "2026-11-05T23:34:04.499110+00:00",
-              "updated_at": "2026-11-05T23:34:27.876275+00:00",
+              "opened_at": "2026-11-06T02:28:57.599406+00:00",
+              "updated_at": "",
               "stopped_at": "",
               "flush_s": 30,
-              "artifact_name": "pendulum-simulation.parquet",
-              "artifact_id": "artifact_7e7e4b49146d46dc8aff889ad19106e5",
-              "view_uri": "artifact://ws_de799980ff25/pendulum-simulation.parquet@latest",
+              "artifact_name": "burn-transport.parquet",
+              "artifact_id": "artifact_73cd499cd065414a8e312c4e9d47f6dc",
+              "view_uri": "artifact://ws_3ec08f5f4f9b/burn-transport.parquet@latest",
               "flush_error": null,
-              "write_key": "w7mjjQNGX3Ix9whQUrOKSA"
+              "write_key": "gfH85aiR9hQV5Rg3pmCKKg"
             }
           },
           "agent_id": "watch-experiment",
           "sequence": 2,
-          "call_id": "call_f425d320821e",
+          "call_id": "call_f2c3dfc397c2",
           "tool_name": "open_stream",
           "content": [
             {
-              "id": "live_call_f425d320821e_result_final_text",
+              "id": "live_call_f2c3dfc397c2_result_final_text",
               "type": "text",
-              "text": "{\"artifact_id\": \"artifact_7e7e4b49146d46dc8aff889ad19106e5\", \"artifact_name\": \"pendulum-simulation.parquet\", \"columns\": [\"time_s\", \"angle_rad\"], \"flush_error\": null, \"flush_s\": 30.0, \"name\": \"pendulum-simulation\", \"ok\": true, \"opened_at\": \"2026-11-05T23:34:04.499110+00:00\", \"rows\": 18, \"session_id\": \"sess_9d5c84fc7527\", \"state\": \"open\", \"stopped_at\": \"\", \"stream_id\": \"stream_25fbc3e820e3\", \"updated_at\": \"2026-11-05T23:34:27.876275+00:00\", \"view_uri\": \"artifact://ws_de799980ff25/pendulum-simulation.parquet@latest\", \"window\": 18, \"workspace_id\": \"ws_de799980ff25\", \"write_key\": \"w7mjjQNGX3Ix9whQUrOKSA\", \"writes\": 20}",
+              "text": "{\"artifact_id\": \"artifact_73cd499cd065414a8e312c4e9d47f6dc\", \"artifact_name\": \"burn-transport.parquet\", \"columns\": [\"local_label\", \"model_time_min\", \"travelled_km\"], \"flush_error\": null, \"flush_s\": 30.0, \"name\": \"burn-transport\", \"ok\": true, \"opened_at\": \"2026-11-06T02:28:57.599406+00:00\", \"rows\": 0, \"session_id\": \"sess_6ec5484ff65e\", \"state\": \"open\", \"stopped_at\": \"\", \"stream_id\": \"stream_7024b8c81aec\", \"updated_at\": \"\", \"view_uri\": \"artifact://ws_3ec08f5f4f9b/burn-transport.parquet@latest\", \"window\": 18, \"workspace_id\": \"ws_3ec08f5f4f9b\", \"write_key\": \"gfH85aiR9hQV5Rg3pmCKKg\", \"writes\": 0}",
               "agent_id": ""
             }
           ],
-          "duration_ms": 1.0783672332763672,
+          "duration_ms": 3.6563873291015625,
           "presentation": {
             "summary": "",
             "blocks": [
@@ -90,7 +92,7 @@
                 "id": "name",
                 "type": "text",
                 "media_type": "",
-                "text": "Name: pendulum-simulation",
+                "text": "Name: burn-transport",
                 "label": "",
                 "language": "",
                 "workspace_id": "",
@@ -128,7 +130,7 @@
                 "id": "view_uri",
                 "type": "text",
                 "media_type": "",
-                "text": "View uri: artifact://ws_de799980ff25/pendulum-simulation.parquet@latest",
+                "text": "View uri: artifact://ws_3ec08f5f4f9b/burn-transport.parquet@latest",
                 "label": "",
                 "language": "",
                 "workspace_id": "",
@@ -185,29 +187,29 @@
           }
         },
         {
-          "id": "live_injection_582dd23e49ae",
+          "id": "live_injection_50e8694e94d7",
           "type": "injection",
           "metadata": {
             "actor": "algorithm"
           },
           "agent_id": "watch-experiment",
           "sequence": 3,
-          "text": "[CLIO; attention; Code task_9fab0393c5d54b9aa969810b639e6069: completed; notification mail_b8a87a9d72b3405c8fb4ff18fe935419]\n{\"type\": \"clio.code.notify\", \"tasks\": [{\"handle\": \"task_9fab0393c5d54b9aa969810b639e6069\", \"label\": \"Watch the experiment\", \"notifies\": [{\"message\": \"Sensor replay complete\", \"data\": null, \"at\": \"2026-11-05T23:46:40.572167+00:00\"}]}]}",
+          "text": "[CLIO; attention; Code task_fbe77f8af88d4db9a8b3f67d7df39078: completed; notification mail_ebb67a2c941c495582865552df6e6473]\n{\"type\": \"clio.code.notify\", \"tasks\": [{\"handle\": \"task_fbe77f8af88d4db9a8b3f67d7df39078\", \"label\": \"Watch the experiment\", \"notifies\": [{\"message\": \"Sensor replay complete\", \"data\": null, \"at\": \"2026-11-06T02:29:10.326139+00:00\"}]}]}",
           "source": "attention"
         },
         {
-          "id": "live_injection_7963e9c167a4",
+          "id": "live_injection_016597ede193",
           "type": "injection",
           "metadata": {
             "actor": "algorithm"
           },
           "agent_id": "watch-experiment",
           "sequence": 4,
-          "text": "[CLIO; task_result; Code task_9fab0393c5d54b9aa969810b639e6069: completed; notification outcome:task_9fab0393c5d54b9aa969810b639e6069:sess_9d5c84fc7527]\n{\"meta\": {\"io.modelcontextprotocol/serverInfo\": {\"name\": \"CLIO code\", \"version\": \"4.1.2\"}}, \"task_id\": \"lqJXiZn9Oz-hIw1-O7hitnzvJEQCEsb4FG9TWZjEukU\", \"status\": \"completed\", \"created_at\": \"2026-11-05T23:46:01.437230+00:00\", \"last_updated_at\": \"2026-11-05T23:46:40.730069+00:00\", \"ttl_ms\": 900000, \"status_message\": null, \"poll_interval_ms\": 200, \"result_type\": \"complete\", \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\":\\\"completed\\\",\\\"label\\\":\\\"Watch the experiment\\\",\\\"calls\\\":2,\\\"failed_calls\\\":0,\\\"notifies_coalesced\\\":0,\\\"output_path\\\":\\\"D:\\\\\\\\Libraries\\\\\\\\Documents\\\\\\\\projects\\\\\\\\clio-exports\\\\\\\\ads\\\\\\\\capabilities\\\\\\\\.cache\\\\\\\\runtime-home\\\\\\\\state\\\\\\\\scratch\\\\\\\\Desktop\\\\\\\\sess_9d5c84fc7527\\\\\\\\code-task-task_9fab0393c5d54b9aa969810b639e6069.log\\\",\\\"text\\\":\\\"Sensor replay complete\\\\n\\\\n(Script finished; 2 tool calls.)\\\"}\"}], \"structuredContent\": {\"status\": \"completed\", \"label\": \"Watch the experiment\", \"calls\": 2, \"failed_calls\": 0, \"notifies_coalesced\": 0, \"output_path\": \"D:\\\\Libraries\\\\Documents\\\\projects\\\\clio-exports\\\\ads\\\\capabilities\\\\.cache\\\\runtime-home\\\\state\\\\scratch\\\\Desktop\\\\sess_9d5c84fc7527\\\\code-task-task_9fab0393c5d54b9aa969810b639e6069.log\", \"text\": \"Sensor replay complete\\n\\n(Script finished; 2 tool calls.)\"}, \"isError\": false, \"resultType\": \"complete\"}, \"error\": null, \"input_requests\": null}",
+          "text": "[CLIO; task_result; Code task_fbe77f8af88d4db9a8b3f67d7df39078: completed; notification outcome:task_fbe77f8af88d4db9a8b3f67d7df39078:sess_6ec5484ff65e]\n{\"meta\": {\"io.modelcontextprotocol/serverInfo\": {\"name\": \"CLIO code\", \"version\": \"4.1.2\"}}, \"task_id\": \"EfEXlCm84fyHrgN00LuyvuJb8FWn40IcIBdBU3IXMYw\", \"status\": \"completed\", \"created_at\": \"2026-11-06T02:28:31.216217+00:00\", \"last_updated_at\": \"2026-11-06T02:29:10.558477+00:00\", \"ttl_ms\": 900000, \"status_message\": null, \"poll_interval_ms\": 200, \"result_type\": \"complete\", \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\":\\\"completed\\\",\\\"label\\\":\\\"Watch the experiment\\\",\\\"calls\\\":2,\\\"failed_calls\\\":0,\\\"notifies_coalesced\\\":0,\\\"output_path\\\":\\\"D:\\\\\\\\Libraries\\\\\\\\Documents\\\\\\\\projects\\\\\\\\clio-exports\\\\\\\\ads\\\\\\\\capabilities\\\\\\\\.cache\\\\\\\\runtime-home\\\\\\\\state\\\\\\\\scratch\\\\\\\\Desktop\\\\\\\\sess_6ec5484ff65e\\\\\\\\code-task-task_fbe77f8af88d4db9a8b3f67d7df39078.log\\\",\\\"text\\\":\\\"Sensor replay complete\\\\n\\\\n(Script finished; 2 tool calls.)\\\"}\"}], \"structuredContent\": {\"status\": \"completed\", \"label\": \"Watch the experiment\", \"calls\": 2, \"failed_calls\": 0, \"notifies_coalesced\": 0, \"output_path\": \"D:\\\\Libraries\\\\Documents\\\\projects\\\\clio-exports\\\\ads\\\\capabilities\\\\.cache\\\\runtime-home\\\\state\\\\scratch\\\\Desktop\\\\sess_6ec5484ff65e\\\\code-task-task_fbe77f8af88d4db9a8b3f67d7df39078.log\", \"text\": \"Sensor replay complete\\n\\n(Script finished; 2 tool calls.)\"}, \"isError\": false, \"resultType\": \"complete\"}, \"error\": null, \"input_requests\": null}",
           "source": "task_result"
         },
         {
-          "id": "part_7e06937a7048",
+          "id": "part_7c0d421519db",
           "type": "text",
           "metadata": {
             "stream_source": "live",
@@ -215,64 +217,66 @@
           },
           "agent_id": "watch-experiment",
           "sequence": 5,
-          "text": "The watcher completed successfully. Its output was `Sensor replay complete`."
+          "text": "The watcher completed successfully: it replayed the observations and reported **“Sensor replay complete.”**"
         }
       ],
       "tokens": {
-        "input": 12026,
-        "output": 17,
-        "cache_read": 11136,
+        "input": 10841,
+        "output": 23,
+        "cache_read": 9984,
         "cache_write": 0
       },
-      "cost_usd": 0.0012111,
+      "cost_usd": 0.0010956,
       "stop_reason": "end_turn",
       "metadata": {
         "stream_source": "live",
         "tools_called": [
           {
-            "call_id": "call_f425d320821e",
+            "call_id": "call_f2c3dfc397c2",
             "name": "open_stream",
             "args": {
-              "name": "pendulum-simulation",
+              "name": "burn-transport",
               "columns": [
-                "time_s",
-                "angle_rad"
+                "local_label",
+                "model_time_min",
+                "travelled_km"
               ],
               "window": 18,
               "flush_s": 30,
               "_clio_repeat": {
                 "count": 2,
-                "first_at": "2026-11-05T23:46:02.603630+00:00",
-                "last_at": "2026-11-05T23:46:27.928809+00:00"
+                "first_at": "2026-11-06T02:28:32.176363+00:00",
+                "last_at": "2026-11-06T02:28:57.623338+00:00"
               }
             },
             "ok": true,
-            "duration_ms": 1.0783672332763672,
+            "duration_ms": 3.6563873291015625,
             "cached": false,
             "telemetry_source": "live_observer",
             "result": {
               "ok": true,
-              "stream_id": "stream_25fbc3e820e3",
-              "name": "pendulum-simulation",
-              "workspace_id": "ws_de799980ff25",
-              "session_id": "sess_9d5c84fc7527",
+              "stream_id": "stream_7024b8c81aec",
+              "name": "burn-transport",
+              "workspace_id": "ws_3ec08f5f4f9b",
+              "session_id": "sess_6ec5484ff65e",
               "state": "open",
               "window": 18,
-              "rows": 18,
-              "writes": 20,
+              "rows": 0,
+              "writes": 0,
               "columns": [
-                "time_s",
-                "angle_rad"
+                "local_label",
+                "model_time_min",
+                "travelled_km"
               ],
-              "opened_at": "2026-11-05T23:34:04.499110+00:00",
-              "updated_at": "2026-11-05T23:34:27.876275+00:00",
+              "opened_at": "2026-11-06T02:28:57.599406+00:00",
+              "updated_at": "",
               "stopped_at": "",
               "flush_s": 30,
-              "artifact_name": "pendulum-simulation.parquet",
-              "artifact_id": "artifact_7e7e4b49146d46dc8aff889ad19106e5",
-              "view_uri": "artifact://ws_de799980ff25/pendulum-simulation.parquet@latest",
+              "artifact_name": "burn-transport.parquet",
+              "artifact_id": "artifact_73cd499cd065414a8e312c4e9d47f6dc",
+              "view_uri": "artifact://ws_3ec08f5f4f9b/burn-transport.parquet@latest",
               "flush_error": null,
-              "write_key": "w7mjjQNGX3Ix9whQUrOKSA"
+              "write_key": "gfH85aiR9hQV5Rg3pmCKKg"
             }
           }
         ],
@@ -322,6 +326,7 @@
             "workspace_resource_structure",
             "read_count_component",
             "read_dataset_record",
+            "read_selected_observations",
             "compute_pendulum",
             "spawn_agent_task",
             "spawn_agents_parallel",
@@ -364,7 +369,7 @@
           "agent_resolution": {
             "ref": "capability-campaign/watch-experiment",
             "kind": "agent",
-            "digest": "333d034d095857baaafbdcc96ee4d7383ed737de34ef83be33e002c11619879d",
+            "digest": "38a95070b8da85ab4e08c685839730f19d7cb1382ae5d961c38778178669f829",
             "plugins": [
               "core",
               "campaign-methods",
@@ -424,25 +429,25 @@
       }
     },
     {
-      "id": "msg_asst_d380ee46b4b7",
-      "session_id": "sess_9d5c84fc7527",
-      "turn_id": "msg_user_92f0070bd28a",
+      "id": "msg_asst_bc31a7f93ea1",
+      "session_id": "sess_6ec5484ff65e",
+      "turn_id": "msg_user_a393d77b8bae",
       "role": "assistant",
-      "created_at": "2026-11-05T23:46:14.517171+00:00",
-      "updated_at": "2026-11-05T23:46:14.517184+00:00",
+      "created_at": "2026-11-06T02:28:43.998018+00:00",
+      "updated_at": "2026-11-06T02:28:43.998035+00:00",
       "parts": [
         {
-          "id": "live_call_d1a4b139d517_call",
+          "id": "live_call_031f9b7569a7_call",
           "type": "tool_call",
           "metadata": {
-            "started_at": "2026-11-05T23:46:10.578925+00:00",
+            "started_at": "2026-11-06T02:28:39.935709+00:00",
             "stream_source": "live",
             "telemetry_source": "live_observer",
-            "thought_step_id": "609dc3d987834fa0"
+            "thought_step_id": "e180e03756dc4acd"
           },
           "agent_id": "watch-experiment",
           "sequence": 1,
-          "call_id": "call_d1a4b139d517",
+          "call_id": "call_031f9b7569a7",
           "tool_name": "search_tools",
           "tool_title": "Load tools",
           "input": {
@@ -476,27 +481,27 @@
           }
         },
         {
-          "id": "live_call_d1a4b139d517_result",
+          "id": "live_call_031f9b7569a7_result",
           "type": "tool_result",
           "metadata": {
             "stream_source": "live",
-            "completed_at": "2026-11-05T23:46:10.582835+00:00",
+            "completed_at": "2026-11-06T02:28:39.939796+00:00",
             "telemetry_source": "live_observer",
             "result": "Loaded 1 tool; call them from your next step with the arguments their schemas give.\n\n## read_stream  (streaming)\nRead a stream's latest rows (newest last) and its state: open with the time of the\nlast write, or stopped. For a stream this server no longer holds (it restarted), the\nrows are in its artifact's last version (read it as a file or table).\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"},\"limit\":{\"type\":\"integer\",\"minimum\":1,\"default\":50}},\"required\":[\"name\"]}"
           },
           "agent_id": "watch-experiment",
           "sequence": 2,
-          "call_id": "call_d1a4b139d517",
+          "call_id": "call_031f9b7569a7",
           "tool_name": "search_tools",
           "content": [
             {
-              "id": "live_call_d1a4b139d517_result_final_text",
+              "id": "live_call_031f9b7569a7_result_final_text",
               "type": "text",
               "text": "Loaded 1 tool; call them from your next step with the arguments their schemas give.\n\n## read_stream  (streaming)\nRead a stream's latest rows (newest last) and its state: open with the time of the\nlast write, or stopped. For a stream this server no longer holds (it restarted), the\nrows are in its artifact's last version (read it as a file or table).\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"},\"limit\":{\"type\":\"integer\",\"minimum\":1,\"default\":50}},\"required\":[\"name\"]}",
               "agent_id": ""
             }
           ],
-          "duration_ms": 3.9093494415283203,
+          "duration_ms": 4.087924957275391,
           "structured_content": {
             "query": "select:read_stream",
             "tools": [
@@ -508,7 +513,7 @@
               }
             ],
             "missing": [],
-            "deferred_total": 39,
+            "deferred_total": 40,
             "servers": []
           },
           "presentation": {
@@ -557,17 +562,17 @@
           }
         },
         {
-          "id": "live_call_4c98b74b7bfb_call",
+          "id": "live_call_5095296d75da_call",
           "type": "tool_call",
           "metadata": {
-            "started_at": "2026-11-05T23:46:12.162600+00:00",
+            "started_at": "2026-11-06T02:28:41.657279+00:00",
             "stream_source": "live",
             "telemetry_source": "live_observer",
-            "thought_step_id": "1c95df1c14fd4fc0"
+            "thought_step_id": "a83868e96fce4c40"
           },
           "agent_id": "watch-experiment",
           "sequence": 3,
-          "call_id": "call_4c98b74b7bfb",
+          "call_id": "call_5095296d75da",
           "tool_name": "run_code",
           "tool_title": "Run code",
           "input": {
@@ -602,18 +607,18 @@
           }
         },
         {
-          "id": "live_call_78dfa5cb1351_call",
+          "id": "live_call_6a629dcebb73_call",
           "type": "tool_call",
           "metadata": {
-            "started_at": "2026-11-05T23:46:13.037625+00:00",
+            "started_at": "2026-11-06T02:28:42.481719+00:00",
             "stream_source": "live",
             "telemetry_source": "live_observer",
-            "thought_step_id": "1c95df1c14fd4fc0",
-            "parent_call_id": "call_4c98b74b7bfb"
+            "thought_step_id": "a83868e96fce4c40",
+            "parent_call_id": "call_5095296d75da"
           },
           "agent_id": "watch-experiment",
           "sequence": 4,
-          "call_id": "call_78dfa5cb1351",
+          "call_id": "call_6a629dcebb73",
           "tool_name": "read_stream",
           "tool_title": "Read stream",
           "input": {
@@ -622,59 +627,62 @@
           }
         },
         {
-          "id": "live_call_78dfa5cb1351_result",
+          "id": "live_call_6a629dcebb73_result",
           "type": "tool_result",
           "metadata": {
             "stream_source": "live",
-            "completed_at": "2026-11-05T23:46:13.041114+00:00",
+            "completed_at": "2026-11-06T02:28:42.485260+00:00",
             "telemetry_source": "live_observer",
             "result": {
               "ok": true,
-              "stream_id": "stream_98719a8a8e70",
+              "stream_id": "stream_475cfe44cd08",
               "name": "burn-observations",
-              "workspace_id": "ws_de799980ff25",
-              "session_id": "sess_9d5c84fc7527",
+              "workspace_id": "ws_3ec08f5f4f9b",
+              "session_id": "sess_6ec5484ff65e",
               "state": "open",
               "window": 18,
-              "rows": 18,
-              "writes": 77,
+              "rows": 17,
+              "writes": 17,
               "columns": [
                 "local_label",
-                "particle_mean_ug_m3"
+                "particle_mean_ug_m3",
+                "horizontal_speed_mean"
               ],
-              "opened_at": "2026-11-05T23:33:23.720508+00:00",
-              "updated_at": "2026-11-05T23:46:12.744668+00:00",
+              "opened_at": "2026-11-06T02:28:32.141137+00:00",
+              "updated_at": "2026-11-06T02:28:42.360992+00:00",
               "stopped_at": "",
               "flush_s": 30,
               "artifact_name": "burn-observations.parquet",
-              "artifact_id": "artifact_21ef4fac8b9b413e9b5d8724842e0e54",
-              "view_uri": "artifact://ws_de799980ff25/burn-observations.parquet@latest",
+              "artifact_id": "artifact_4999659346604b6fbcb7de43b3a63432",
+              "view_uri": "artifact://ws_3ec08f5f4f9b/burn-observations.parquet@latest",
               "flush_error": null,
               "latest": {
                 "local_label": "Apr 15 16:16 CDT",
-                "particle_mean_ug_m3": 2.8035714285714284
+                "particle_mean_ug_m3": 2.8035714285714284,
+                "horizontal_speed_mean": 6.169863161668106
               },
               "rows_read": [
                 {
                   "local_label": "Apr 15 16:16 CDT",
-                  "particle_mean_ug_m3": 2.8035714285714284
+                  "particle_mean_ug_m3": 2.8035714285714284,
+                  "horizontal_speed_mean": 6.169863161668106
                 }
               ]
             }
           },
           "agent_id": "watch-experiment",
           "sequence": 5,
-          "call_id": "call_78dfa5cb1351",
+          "call_id": "call_6a629dcebb73",
           "tool_name": "read_stream",
           "content": [
             {
-              "id": "live_call_78dfa5cb1351_result_final_text",
+              "id": "live_call_6a629dcebb73_result_final_text",
               "type": "text",
-              "text": "{\"artifact_id\": \"artifact_21ef4fac8b9b413e9b5d8724842e0e54\", \"artifact_name\": \"burn-observations.parquet\", \"columns\": [\"local_label\", \"particle_mean_ug_m3\"], \"flush_error\": null, \"flush_s\": 30.0, \"latest\": {\"local_label\": \"Apr 15 16:16 CDT\", \"particle_mean_ug_m3\": 2.8035714285714284}, \"name\": \"burn-observations\", \"ok\": true, \"opened_at\": \"2026-11-05T23:33:23.720508+00:00\", \"rows\": 18, \"rows_read\": [{\"local_label\": \"Apr 15 16:16 CDT\", \"particle_mean_ug_m3\": 2.8035714285714284}], \"session_id\": \"sess_9d5c84fc7527\", \"state\": \"open\", \"stopped_at\": \"\", \"stream_id\": \"stream_98719a8a8e70\", \"updated_at\": \"2026-11-05T23:46:12.744668+00:00\", \"view_uri\": \"artifact://ws_de799980ff25/burn-observations.parquet@latest\", \"window\": 18, \"workspace_id\": \"ws_de799980ff25\", \"writes\": 77}",
+              "text": "{\"artifact_id\": \"artifact_4999659346604b6fbcb7de43b3a63432\", \"artifact_name\": \"burn-observations.parquet\", \"columns\": [\"local_label\", \"particle_mean_ug_m3\", \"horizontal_speed_mean\"], \"flush_error\": null, \"flush_s\": 30.0, \"latest\": {\"horizontal_speed_mean\": 6.169863161668106, \"local_label\": \"Apr 15 16:16 CDT\", \"particle_mean_ug_m3\": 2.8035714285714284}, \"name\": \"burn-observations\", \"ok\": true, \"opened_at\": \"2026-11-06T02:28:32.141137+00:00\", \"rows\": 17, \"rows_read\": [{\"horizontal_speed_mean\": 6.169863161668106, \"local_label\": \"Apr 15 16:16 CDT\", \"particle_mean_ug_m3\": 2.8035714285714284}], \"session_id\": \"sess_6ec5484ff65e\", \"state\": \"open\", \"stopped_at\": \"\", \"stream_id\": \"stream_475cfe44cd08\", \"updated_at\": \"2026-11-06T02:28:42.360992+00:00\", \"view_uri\": \"artifact://ws_3ec08f5f4f9b/burn-observations.parquet@latest\", \"window\": 18, \"workspace_id\": \"ws_3ec08f5f4f9b\", \"writes\": 17}",
               "agent_id": ""
             }
           ],
-          "duration_ms": 3.488779067993164,
+          "duration_ms": 3.5409927368164062,
           "presentation": {
             "summary": "",
             "blocks": [
@@ -720,7 +728,7 @@
                 "id": "rows",
                 "type": "text",
                 "media_type": "",
-                "text": "Rows: 18",
+                "text": "Rows: 17",
                 "label": "",
                 "language": "",
                 "workspace_id": "",
@@ -739,7 +747,7 @@
                 "id": "writes",
                 "type": "text",
                 "media_type": "",
-                "text": "Writes: 77",
+                "text": "Writes: 17",
                 "label": "",
                 "language": "",
                 "workspace_id": "",
@@ -758,7 +766,7 @@
                 "id": "updated_at",
                 "type": "text",
                 "media_type": "",
-                "text": "Updated at: 2026-11-05T23:46:12.744668+00:00",
+                "text": "Updated at: 2026-11-06T02:28:42.360992+00:00",
                 "label": "",
                 "language": "",
                 "workspace_id": "",
@@ -777,30 +785,30 @@
           }
         },
         {
-          "id": "live_call_4c98b74b7bfb_result",
+          "id": "live_call_5095296d75da_result",
           "type": "tool_result",
           "metadata": {
             "stream_source": "live",
-            "completed_at": "2026-11-05T23:46:13.050672+00:00",
+            "completed_at": "2026-11-06T02:28:42.493394+00:00",
             "telemetry_source": "live_observer",
-            "result": "{'ok': True, 'stream_id': 'stream_98719a8a8e70', 'name': 'burn-observations', 'workspace_id': 'ws_de799980ff25', 'session_id': 'sess_9d5c84fc7527', 'state': 'open', 'window': 18, 'rows': 18, 'writes': 77, 'columns': ['local_label', 'particle_mean_ug_m3'], 'opened_at': '2026-11-05T23:33:23.720508+00:00', 'updated_at': '2026-11-05T23:46:12.744668+00:00', 'stopped_at': '', 'flush_s': 30.0, 'artifact_name': 'burn-observations.parquet', 'artifact_id': 'artifact_21ef4fac8b9b413e9b5d8724842e0e54', 'view_uri': 'artifact://ws_de799980ff25/burn-observations.parquet@latest', 'flush_error': None, 'latest': {'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284}, 'rows_read': [{'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284}]}\n\n(Script finished; 1 tool call.)"
+            "result": "{'ok': True, 'stream_id': 'stream_475cfe44cd08', 'name': 'burn-observations', 'workspace_id': 'ws_3ec08f5f4f9b', 'session_id': 'sess_6ec5484ff65e', 'state': 'open', 'window': 18, 'rows': 17, 'writes': 17, 'columns': ['local_label', 'particle_mean_ug_m3', 'horizontal_speed_mean'], 'opened_at': '2026-11-06T02:28:32.141137+00:00', 'updated_at': '2026-11-06T02:28:42.360992+00:00', 'stopped_at': '', 'flush_s': 30.0, 'artifact_name': 'burn-observations.parquet', 'artifact_id': 'artifact_4999659346604b6fbcb7de43b3a63432', 'view_uri': 'artifact://ws_3ec08f5f4f9b/burn-observations.parquet@latest', 'flush_error': None, 'latest': {'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284, 'horizontal_speed_mean': 6.169863161668106}, 'rows_read': [{'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284, 'horizontal_speed_mean': 6.169863161668106}]}\n\n(Script finished; 1 tool call.)"
           },
           "agent_id": "watch-experiment",
           "sequence": 6,
-          "call_id": "call_4c98b74b7bfb",
+          "call_id": "call_5095296d75da",
           "tool_name": "run_code",
           "content": [
             {
-              "id": "live_call_4c98b74b7bfb_result_final_text",
+              "id": "live_call_5095296d75da_result_final_text",
               "type": "text",
-              "text": "{'ok': True, 'stream_id': 'stream_98719a8a8e70', 'name': 'burn-observations', 'workspace_id': 'ws_de799980ff25', 'session_id': 'sess_9d5c84fc7527', 'state': 'open', 'window': 18, 'rows': 18, 'writes': 77, 'columns': ['local_label', 'particle_mean_ug_m3'], 'opened_at': '2026-11-05T23:33:23.720508+00:00', 'updated_at': '2026-11-05T23:46:12.744668+00:00', 'stopped_at': '', 'flush_s': 30.0, 'artifact_name': 'burn-observations.parquet', 'artifact_id': 'artifact_21ef4fac8b9b413e9b5d8724842e0e54', 'view_uri': 'artifact://ws_de799980ff25/burn-observations.parquet@latest', 'flush_error': None, 'latest': {'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284}, 'rows_read': [{'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284}]}\n\n(Script finished; 1 tool call.)",
+              "text": "{'ok': True, 'stream_id': 'stream_475cfe44cd08', 'name': 'burn-observations', 'workspace_id': 'ws_3ec08f5f4f9b', 'session_id': 'sess_6ec5484ff65e', 'state': 'open', 'window': 18, 'rows': 17, 'writes': 17, 'columns': ['local_label', 'particle_mean_ug_m3', 'horizontal_speed_mean'], 'opened_at': '2026-11-06T02:28:32.141137+00:00', 'updated_at': '2026-11-06T02:28:42.360992+00:00', 'stopped_at': '', 'flush_s': 30.0, 'artifact_name': 'burn-observations.parquet', 'artifact_id': 'artifact_4999659346604b6fbcb7de43b3a63432', 'view_uri': 'artifact://ws_3ec08f5f4f9b/burn-observations.parquet@latest', 'flush_error': None, 'latest': {'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284, 'horizontal_speed_mean': 6.169863161668106}, 'rows_read': [{'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284, 'horizontal_speed_mean': 6.169863161668106}]}\n\n(Script finished; 1 tool call.)",
               "agent_id": ""
             }
           ],
-          "duration_ms": 888.0717754364014,
+          "duration_ms": 836.1148834228516,
           "structured_content": {
             "status": "completed",
-            "output": "{'ok': True, 'stream_id': 'stream_98719a8a8e70', 'name': 'burn-observations', 'workspace_id': 'ws_de799980ff25', 'session_id': 'sess_9d5c84fc7527', 'state': 'open', 'window': 18, 'rows': 18, 'writes': 77, 'columns': ['local_label', 'particle_mean_ug_m3'], 'opened_at': '2026-11-05T23:33:23.720508+00:00', 'updated_at': '2026-11-05T23:46:12.744668+00:00', 'stopped_at': '', 'flush_s': 30.0, 'artifact_name': 'burn-observations.parquet', 'artifact_id': 'artifact_21ef4fac8b9b413e9b5d8724842e0e54', 'view_uri': 'artifact://ws_de799980ff25/burn-observations.parquet@latest', 'flush_error': None, 'latest': {'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284}, 'rows_read': [{'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284}]}\r\n",
+            "output": "{'ok': True, 'stream_id': 'stream_475cfe44cd08', 'name': 'burn-observations', 'workspace_id': 'ws_3ec08f5f4f9b', 'session_id': 'sess_6ec5484ff65e', 'state': 'open', 'window': 18, 'rows': 17, 'writes': 17, 'columns': ['local_label', 'particle_mean_ug_m3', 'horizontal_speed_mean'], 'opened_at': '2026-11-06T02:28:32.141137+00:00', 'updated_at': '2026-11-06T02:28:42.360992+00:00', 'stopped_at': '', 'flush_s': 30.0, 'artifact_name': 'burn-observations.parquet', 'artifact_id': 'artifact_4999659346604b6fbcb7de43b3a63432', 'view_uri': 'artifact://ws_3ec08f5f4f9b/burn-observations.parquet@latest', 'flush_error': None, 'latest': {'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284, 'horizontal_speed_mean': 6.169863161668106}, 'rows_read': [{'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284, 'horizontal_speed_mean': 6.169863161668106}]}\r\n",
             "value": null,
             "error": "",
             "code": "r = await tools.read_stream(name=\"burn-observations\", limit=1)\nprint(r)",
@@ -809,7 +817,7 @@
             "call_tools": [
               "read_stream"
             ],
-            "duration_ms": 18,
+            "duration_ms": 16,
             "python": "D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities\\.cache\\clio-runtime\\Scripts\\python.exe"
           },
           "presentation": {
@@ -839,7 +847,7 @@
                 "id": "output",
                 "type": "text",
                 "media_type": "",
-                "text": "{'ok': True, 'stream_id': 'stream_98719a8a8e70', 'name': 'burn-observations', 'workspace_id': 'ws_de799980ff25', 'session_id': 'sess_9d5c84fc7527', 'state': 'open', 'window': 18, 'rows': 18, 'writes': 77, 'columns': ['local_label', 'particle_mean_ug_m3'], 'opened_at': '2026-11-05T23:33:23.720508+00:00', 'updated_at': '2026-11-05T23:46:12.744668+00:00', 'stopped_at': '', 'flush_s': 30.0, 'artifact_name': 'burn-observations.parquet', 'artifact_id': 'artifact_21ef4fac8b9b413e9b5d8724842e0e54', 'view_uri': 'artifact://ws_de799980ff25/burn-observations.parquet@latest', 'flush_error': None, 'latest': {'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284}, 'rows_read': [{'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284}]}\r\n",
+                "text": "{'ok': True, 'stream_id': 'stream_475cfe44cd08', 'name': 'burn-observations', 'workspace_id': 'ws_3ec08f5f4f9b', 'session_id': 'sess_6ec5484ff65e', 'state': 'open', 'window': 18, 'rows': 17, 'writes': 17, 'columns': ['local_label', 'particle_mean_ug_m3', 'horizontal_speed_mean'], 'opened_at': '2026-11-06T02:28:32.141137+00:00', 'updated_at': '2026-11-06T02:28:42.360992+00:00', 'stopped_at': '', 'flush_s': 30.0, 'artifact_name': 'burn-observations.parquet', 'artifact_id': 'artifact_4999659346604b6fbcb7de43b3a63432', 'view_uri': 'artifact://ws_3ec08f5f4f9b/burn-observations.parquet@latest', 'flush_error': None, 'latest': {'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284, 'horizontal_speed_mean': 6.169863161668106}, 'rows_read': [{'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284, 'horizontal_speed_mean': 6.169863161668106}]}\r\n",
                 "label": "Output",
                 "language": "",
                 "workspace_id": "",
@@ -858,7 +866,7 @@
           }
         },
         {
-          "id": "part_ae65bf906ea8",
+          "id": "part_134611180c3e",
           "type": "text",
           "metadata": {
             "stream_source": "live",
@@ -866,16 +874,16 @@
           },
           "agent_id": "watch-experiment",
           "sequence": 7,
-          "text": "Latest particle reading: **2.8035714285714284 µg/m³** at **Apr 15 16:16 CDT**. The stream is still open; I left the watcher running."
+          "text": "Latest particle reading: **2.8035714285714284 µg/m³** at **Apr 15 16:16 CDT**. The watcher remains open."
         }
       ],
       "tokens": {
-        "input": 32944,
-        "output": 120,
-        "cache_read": 31872,
+        "input": 29306,
+        "output": 113,
+        "cache_read": 27776,
         "cache_write": 0
       },
-      "cost_usd": 0.0033543999999999996,
+      "cost_usd": 0.0029871,
       "stop_reason": "end_turn",
       "metadata": {
         "stream_source": "live",
@@ -887,10 +895,10 @@
               "limit": 1
             },
             "ok": true,
-            "duration_ms": 3.9093494415283203,
+            "duration_ms": 4.087924957275391,
             "telemetry_source": "live_observer",
             "result": "Loaded 1 tool; call them from your next step with the arguments their schemas give.\n\n## read_stream  (streaming)\nRead a stream's latest rows (newest last) and its state: open with the time of the\nlast write, or stopped. For a stream this server no longer holds (it restarted), the\nrows are in its artifact's last version (read it as a file or table).\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"},\"limit\":{\"type\":\"integer\",\"minimum\":1,\"default\":50}},\"required\":[\"name\"]}",
-            "call_id": "call_d1a4b139d517",
+            "call_id": "call_031f9b7569a7",
             "cached": false
           },
           {
@@ -900,42 +908,45 @@
               "limit": 1
             },
             "ok": true,
-            "duration_ms": 3.488779067993164,
+            "duration_ms": 3.5409927368164062,
             "telemetry_source": "live_observer",
             "result": {
               "ok": true,
-              "stream_id": "stream_98719a8a8e70",
+              "stream_id": "stream_475cfe44cd08",
               "name": "burn-observations",
-              "workspace_id": "ws_de799980ff25",
-              "session_id": "sess_9d5c84fc7527",
+              "workspace_id": "ws_3ec08f5f4f9b",
+              "session_id": "sess_6ec5484ff65e",
               "state": "open",
               "window": 18,
-              "rows": 18,
-              "writes": 77,
+              "rows": 17,
+              "writes": 17,
               "columns": [
                 "local_label",
-                "particle_mean_ug_m3"
+                "particle_mean_ug_m3",
+                "horizontal_speed_mean"
               ],
-              "opened_at": "2026-11-05T23:33:23.720508+00:00",
-              "updated_at": "2026-11-05T23:46:12.744668+00:00",
+              "opened_at": "2026-11-06T02:28:32.141137+00:00",
+              "updated_at": "2026-11-06T02:28:42.360992+00:00",
               "stopped_at": "",
               "flush_s": 30,
               "artifact_name": "burn-observations.parquet",
-              "artifact_id": "artifact_21ef4fac8b9b413e9b5d8724842e0e54",
-              "view_uri": "artifact://ws_de799980ff25/burn-observations.parquet@latest",
+              "artifact_id": "artifact_4999659346604b6fbcb7de43b3a63432",
+              "view_uri": "artifact://ws_3ec08f5f4f9b/burn-observations.parquet@latest",
               "flush_error": null,
               "latest": {
                 "local_label": "Apr 15 16:16 CDT",
-                "particle_mean_ug_m3": 2.8035714285714284
+                "particle_mean_ug_m3": 2.8035714285714284,
+                "horizontal_speed_mean": 6.169863161668106
               },
               "rows_read": [
                 {
                   "local_label": "Apr 15 16:16 CDT",
-                  "particle_mean_ug_m3": 2.8035714285714284
+                  "particle_mean_ug_m3": 2.8035714285714284,
+                  "horizontal_speed_mean": 6.169863161668106
                 }
               ]
             },
-            "call_id": "call_78dfa5cb1351",
+            "call_id": "call_6a629dcebb73",
             "cached": false
           },
           {
@@ -946,10 +957,10 @@
               "label": "Read latest burn observation"
             },
             "ok": true,
-            "duration_ms": 888.0717754364014,
+            "duration_ms": 836.1148834228516,
             "telemetry_source": "live_observer",
-            "result": "{'ok': True, 'stream_id': 'stream_98719a8a8e70', 'name': 'burn-observations', 'workspace_id': 'ws_de799980ff25', 'session_id': 'sess_9d5c84fc7527', 'state': 'open', 'window': 18, 'rows': 18, 'writes': 77, 'columns': ['local_label', 'particle_mean_ug_m3'], 'opened_at': '2026-11-05T23:33:23.720508+00:00', 'updated_at': '2026-11-05T23:46:12.744668+00:00', 'stopped_at': '', 'flush_s': 30.0, 'artifact_name': 'burn-observations.parquet', 'artifact_id': 'artifact_21ef4fac8b9b413e9b5d8724842e0e54', 'view_uri': 'artifact://ws_de799980ff25/burn-observations.parquet@latest', 'flush_error': None, 'latest': {'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284}, 'rows_read': [{'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284}]}\n\n(Script finished; 1 tool call.)",
-            "call_id": "call_4c98b74b7bfb",
+            "result": "{'ok': True, 'stream_id': 'stream_475cfe44cd08', 'name': 'burn-observations', 'workspace_id': 'ws_3ec08f5f4f9b', 'session_id': 'sess_6ec5484ff65e', 'state': 'open', 'window': 18, 'rows': 17, 'writes': 17, 'columns': ['local_label', 'particle_mean_ug_m3', 'horizontal_speed_mean'], 'opened_at': '2026-11-06T02:28:32.141137+00:00', 'updated_at': '2026-11-06T02:28:42.360992+00:00', 'stopped_at': '', 'flush_s': 30.0, 'artifact_name': 'burn-observations.parquet', 'artifact_id': 'artifact_4999659346604b6fbcb7de43b3a63432', 'view_uri': 'artifact://ws_3ec08f5f4f9b/burn-observations.parquet@latest', 'flush_error': None, 'latest': {'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284, 'horizontal_speed_mean': 6.169863161668106}, 'rows_read': [{'local_label': 'Apr 15 16:16 CDT', 'particle_mean_ug_m3': 2.8035714285714284, 'horizontal_speed_mean': 6.169863161668106}]}\n\n(Script finished; 1 tool call.)",
+            "call_id": "call_5095296d75da",
             "cached": false
           }
         ],
@@ -999,6 +1010,7 @@
             "workspace_resource_structure",
             "read_count_component",
             "read_dataset_record",
+            "read_selected_observations",
             "compute_pendulum",
             "spawn_agent_task",
             "spawn_agents_parallel",
@@ -1041,7 +1053,7 @@
           "agent_resolution": {
             "ref": "capability-campaign/watch-experiment",
             "kind": "agent",
-            "digest": "333d034d095857baaafbdcc96ee4d7383ed737de34ef83be33e002c11619879d",
+            "digest": "38a95070b8da85ab4e08c685839730f19d7cb1382ae5d961c38778178669f829",
             "plugins": [
               "core",
               "campaign-methods",
@@ -1101,15 +1113,15 @@
       }
     },
     {
-      "id": "msg_user_92f0070bd28a",
-      "session_id": "sess_9d5c84fc7527",
-      "turn_id": "msg_user_92f0070bd28a",
+      "id": "msg_user_a393d77b8bae",
+      "session_id": "sess_6ec5484ff65e",
+      "turn_id": "msg_user_a393d77b8bae",
       "role": "user",
-      "created_at": "2026-11-05T23:46:09.292091+00:00",
-      "updated_at": "2026-11-05T23:46:09.292091+00:00",
+      "created_at": "2026-11-06T02:28:38.273073+00:00",
+      "updated_at": "2026-11-06T02:28:38.273073+00:00",
       "parts": [
         {
-          "id": "part_80f3136ae9b7",
+          "id": "part_f3cc2df10a9b",
           "type": "text",
           "text": "Use read_stream to tell me the latest particle reading and its local time. Keep the existing watcher running. Do not launch anything new.",
           "agent_id": ""
@@ -1138,41 +1150,41 @@
       }
     },
     {
-      "id": "msg_asst_d54f5645da8b",
-      "session_id": "sess_9d5c84fc7527",
-      "turn_id": "msg_user_e540cd268be1",
+      "id": "msg_asst_5c4ac196ce4f",
+      "session_id": "sess_6ec5484ff65e",
+      "turn_id": "msg_user_6816ab378ec3",
       "role": "assistant",
-      "created_at": "2026-11-05T23:46:02.989636+00:00",
-      "updated_at": "2026-11-05T23:46:02.989649+00:00",
+      "created_at": "2026-11-06T02:28:32.978590+00:00",
+      "updated_at": "2026-11-06T02:28:32.978601+00:00",
       "parts": [
         {
-          "id": "live_injection_5fc82f1e1975",
+          "id": "live_injection_d3bcb241180b",
           "type": "injection",
           "metadata": {
             "actor": "algorithm"
           },
           "agent_id": "watch-experiment",
           "sequence": 1,
-          "text": "Active workspace root: D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities\\.cache\\workspace\nWrite generated artifacts (files, charts, exports) inside the active workspace root using absolute paths so they stay with the session. Read inputs from wherever the user points you.\nWrites are only permitted under: D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities\\.cache\\workspace, D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities\\.cache\\runtime-home\\state\\scratch\\Desktop\\sess_9d5c84fc7527, D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities, D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities\\.cache.\nMachine: Desktop\nScratch folder for this session: D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities\\.cache\\runtime-home\\state\\scratch\\Desktop\\sess_9d5c84fc7527. Use it for temporary files (extracted copies, intermediate results); it is yours alone and is removed after the session.",
+          "text": "Active workspace root: D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities\\.cache\\stream-run-1793932099503\nWrite generated artifacts (files, charts, exports) inside the active workspace root using absolute paths so they stay with the session. Read inputs from wherever the user points you.\nWrites are only permitted under: D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities\\.cache\\stream-run-1793932099503, D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities\\.cache\\runtime-home\\state\\scratch\\Desktop\\sess_6ec5484ff65e, D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities, D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities\\.cache.\nMachine: Desktop\nScratch folder for this session: D:\\Libraries\\Documents\\projects\\clio-exports\\ads\\capabilities\\.cache\\runtime-home\\state\\scratch\\Desktop\\sess_6ec5484ff65e. Use it for temporary files (extracted copies, intermediate results); it is yours alone and is removed after the session.",
           "source": "session_facts"
         },
         {
-          "id": "live_call_6d3bcb86578d_call",
+          "id": "live_call_db3c84b904a6_call",
           "type": "tool_call",
           "metadata": {
-            "started_at": "2026-11-05T23:45:54.125369+00:00",
+            "started_at": "2026-11-06T02:28:22.437514+00:00",
             "stream_source": "live",
             "telemetry_source": "live_observer",
-            "thought_step_id": "609276e57e534544"
+            "thought_step_id": "53c92b84203b4dfc"
           },
           "agent_id": "watch-experiment",
           "sequence": 2,
-          "call_id": "call_6d3bcb86578d",
+          "call_id": "call_db3c84b904a6",
           "tool_name": "search_tools",
           "tool_title": "Load tools",
           "input": {
-            "query": "stream open_stream task progress notify background run_code kernel bindings",
-            "limit": 8
+            "query": "open_stream",
+            "limit": 5
           },
           "presentation": {
             "subject": "query",
@@ -1182,7 +1194,7 @@
                 "id": "query",
                 "type": "text",
                 "media_type": "",
-                "text": "stream open_stream task progress notify background run_code kernel bindings",
+                "text": "open_stream",
                 "label": "Search",
                 "language": "",
                 "workspace_id": "",
@@ -1201,29 +1213,29 @@
           }
         },
         {
-          "id": "live_call_6d3bcb86578d_result",
+          "id": "live_call_db3c84b904a6_result",
           "type": "tool_result",
           "metadata": {
             "stream_source": "live",
-            "completed_at": "2026-11-05T23:45:54.135469+00:00",
+            "completed_at": "2026-11-06T02:28:22.446082+00:00",
             "telemetry_source": "live_observer",
-            "result": "Loaded 8 tools; call them from your next step with the arguments their schemas give.\n\n## open_stream  (streaming)\nOpen a stream: a named table whose latest rows live in memory, written many times a\nsecond by a script (``s = await stream.open(name)`` then ``await s.write(row)`` in\nrun_code) with no tool call per write. A dashboard's chart or table bound to the\nreturned view_uri updates by itself, only while someone is looking. window keeps the\nlast N rows (1: the latest only; at most as many rows as one view reads); the rows are\nsaved as the artifact's next version every flush_s seconds while they change and when\nthe stream stops. columns names the columns a view can bind to before the first write.\nA background script's streams stop when it ends; their last rows stay readable and\nshow as stopped.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"},\"columns\":{\"anyOf\":[{\"type\":\"array\",\"items\":{\"type\":\"string\"}},{\"type\":\"null\"}],\"default\":[]},\"window\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":50000,\"default\":1},\"flush_s\":{\"type\":\"number\",\"minimum\":0,\"default\":30.0}},\"required\":[\"name\"]}\n\n## read_stream  (streaming)\nRead a stream's latest rows (newest last) and its state: open with the time of the\nlast write, or stopped. For a stream this server no longer holds (it restarted), the\nrows are in its artifact's last version (read it as a file or table).\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"},\"limit\":{\"type\":\"integer\",\"minimum\":1,\"default\":50}},\"required\":[\"name\"]}\n\n## stop_stream  (streaming)\nStop a stream this conversation writes: writes end, the last rows are saved as the\nartifact's version and stay shown, marked stopped.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"}},\"required\":[\"name\"]}\n\n## observe_tasks  (core)\nPeek without consuming completion: view progress (default), transcript, recorded summary, or linked artifacts. Transcript preserves typed source rows, IDs and resumable JSON fragments for large rows. history=session requires stable session read rights; assignment stays on the selected run. Content views return immediately; patterns/subscriptions use progress. Follow cursor while has_more. timeout_s ends only a progress wait; tasks continue.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"tasks\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"array\",\"items\":{\"type\":\"string\"},\"minItems\":1}]},\"cursor\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null},\"pattern\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null},\"timeout_s\":{\"anyOf\":[{\"type\":\"number\",\"minimum\":0},{\"type\":\"null\"}],\"default\":null},\"notify\":{\"anyOf\":[{\"type\":\"boolean\"},{\"type\":\"null\"}],\"default\":null},\"view\":{\"type\":\"string\",\"enum\":[\"progress\",\"transcript\",\"summary\",\"artifacts\"],\"default\":\"progress\"},\"artifact_id\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null},\"history\":{\"type\":\"string\",\"enum\":[\"assignment\",\"session\"],\"default\":\"assignment\"},\"limit\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":200,\"default\":50}},\"required\":[\"tasks\"]}\n\n## list_models  (fleet)\nList the models you can run work on: each as ``account/model`` (pass it as\n``model`` to spawn_agent_task, spawn_agents_parallel, run_flow, run_workflow or a\nworkflow step), with tool calling and vision, context size, price and the\naccount's usage. Filter by what the work needs, an account or a billing kind\n(subscription, credit, metered, free). A model marked ``fast`` is its provider's\nfast, cheap family. Prefer a smaller, fast or free model for simple subtasks; check\nusage before a long fan-out.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"vision\":{\"type\":\"boolean\",\"default\":false},\"tool_calling\":{\"type\":\"boolean\",\"default\":false},\"min_context_tokens\":{\"type\":\"integer\",\"minimum\":0,\"default\":0},\"account\":{\"type\":\"string\",\"default\":\"\"},\"billing\":{\"type\":\"string\",\"enum\":[\"\",\"subscription\",\"credit\",\"metered\",\"free\"],\"default\":\"\"},\"include_unavailable\":{\"type\":\"boolean\",\"default\":false}},\"required\":[]}\n\n## goal_status  (core)\nRead this session's active goal condition and progress (read-only).\n\nReturns ``{active, condition, iters_elapsed, max_goal_iters, budget_spent}``. This is\narmed state only: it runs no evaluation, does not settle the goal, and does not end the turn. You\ncan use set_goal to start an objective and wait_for to await owned tasks.\nCompletion belongs to the independent judge; explicit user stops are authoritative.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{},\"required\":[]}\n\n## cron_create  (core)\nSchedule a future turn for THIS session (recurring cron or one-shot).\n\nGive exactly ONE trigger:\n- ``cron``: a 5-field expression (\"min hour day-of-month month day-of-week\",\n  e.g. \"0 9 * * *\" = 9am daily, \"*/15 * * * *\" = every 15 min, \"0 9 * * 1-5\" =\n  weekdays 9am). Evaluated in the session's LOCAL timezone.\n- ``run_at``: an ISO-8601 instant to fire ONCE (\"2026-08-01T09:00\").\n- ``delay_s``: fire ONCE after this many seconds.\n\n``prompt`` is the question the scheduled turn will run. ``recurring=False`` (or any\n``run_at``/``delay_s``) makes it a one-shot that deletes itself after firing.\n``timezone`` overrides the session default (an IANA name like \"America/Chicago\").\nmax_fires and until are optional explicit user limits; zero/empty are unlimited.\n\nReturns a dict with the server-generated ``schedule_id`` (use it with cron_delete),\nthe resolved ``cron``/``timezone``, ``recurring``, and the ``next_fire_at`` UTC\ninstant. Call cron_list first if unsure whether you already armed this — do not\ndouble-arm. A bad cron or an anti-runaway clamp trip raises a typed error to repair.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"max_fires\":{\"type\":\"integer\",\"description\":\"Explicit user run limit; zero means unlimited.\"},\"until\":{\"type\":\"string\",\"description\":\"Explicit user ISO-8601 deadline, or empty for unlimited.\"},\"cron\":{\"type\":\"string\",\"description\":\"5-field cron in the session's local tz (or omit for a one-shot).\"},\"prompt\":{\"type\":\"string\",\"description\":\"The question the scheduled turn runs.\"},\"recurring\":{\"type\":\"boolean\",\"description\":\"False = one-shot, auto-deletes after firing once.\"},\"run_at\":{\"type\":\"string\",\"description\":\"ISO-8601 instant to fire ONCE (mutually exclusive with cron/delay_s).\"},\"delay_s\":{\"type\":\"integer\",\"description\":\"Fire ONCE after this many seconds (mutually exclusive with cron/run_at).\"},\"timezone\":{\"type\":\"string\",\"description\":\"IANA tz override (e.g. 'America/Chicago'); defaults to the session/system local zone.\"}},\"required\":[]}\n\n## workspace_resource_wait  (core)\nWait once for a workspace resource conversion task to complete, fail, or be cancelled. A timeout returns the latest durable state without cancelling work. Use the stable task id supplied in attachment context instead of repeatedly polling workspace_resource_inspect.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"task_id\":{\"type\":\"string\",\"description\":\"Stable resource-processing task id from attachment context.\"},\"timeout_s\":{\"type\":\"number\",\"description\":\"Positive caller-selected wait budget in seconds.\"}},\"required\":[\"task_id\",\"timeout_s\"]}"
+            "result": "Loaded 3 tools; call them from your next step with the arguments their schemas give.\n\n## open_stream  (streaming)\nOpen a stream: a named table whose latest rows live in memory, written many times a\nsecond by a script (``s = await stream.open(name)`` then ``await s.write(row)`` in\nrun_code) with no tool call per write. A dashboard's chart or table bound to the\nreturned view_uri updates by itself, only while someone is looking. window keeps the\nlast N rows (1: the latest only; at most as many rows as one view reads); the rows are\nsaved as the artifact's next version every flush_s seconds while they change and when\nthe stream stops. columns names the columns a view can bind to before the first write.\nA background script's streams stop when it ends; their last rows stay readable and\nshow as stopped.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"},\"columns\":{\"anyOf\":[{\"type\":\"array\",\"items\":{\"type\":\"string\"}},{\"type\":\"null\"}],\"default\":[]},\"window\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":50000,\"default\":1},\"flush_s\":{\"type\":\"number\",\"minimum\":0,\"default\":30.0}},\"required\":[\"name\"]}\n\n## read_stream  (streaming)\nRead a stream's latest rows (newest last) and its state: open with the time of the\nlast write, or stopped. For a stream this server no longer holds (it restarted), the\nrows are in its artifact's last version (read it as a file or table).\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"},\"limit\":{\"type\":\"integer\",\"minimum\":1,\"default\":50}},\"required\":[\"name\"]}\n\n## stop_stream  (streaming)\nStop a stream this conversation writes: writes end, the last rows are saved as the\nartifact's version and stay shown, marked stopped.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"}},\"required\":[\"name\"]}"
           },
           "agent_id": "watch-experiment",
           "sequence": 3,
-          "call_id": "call_6d3bcb86578d",
+          "call_id": "call_db3c84b904a6",
           "tool_name": "search_tools",
           "content": [
             {
-              "id": "live_call_6d3bcb86578d_result_final_text",
+              "id": "live_call_db3c84b904a6_result_final_text",
               "type": "text",
-              "text": "Loaded 8 tools; call them from your next step with the arguments their schemas give.\n\n## open_stream  (streaming)\nOpen a stream: a named table whose latest rows live in memory, written many times a\nsecond by a script (``s = await stream.open(name)`` then ``await s.write(row)`` in\nrun_code) with no tool call per write. A dashboard's chart or table bound to the\nreturned view_uri updates by itself, only while someone is looking. window keeps the\nlast N rows (1: the latest only; at most as many rows as one view reads); the rows are\nsaved as the artifact's next version every flush_s seconds while they change and when\nthe stream stops. columns names the columns a view can bind to before the first write.\nA background script's streams stop when it ends; their last rows stay readable and\nshow as stopped.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"},\"columns\":{\"anyOf\":[{\"type\":\"array\",\"items\":{\"type\":\"string\"}},{\"type\":\"null\"}],\"default\":[]},\"window\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":50000,\"default\":1},\"flush_s\":{\"type\":\"number\",\"minimum\":0,\"default\":30.0}},\"required\":[\"name\"]}\n\n## read_stream  (streaming)\nRead a stream's latest rows (newest last) and its state: open with the time of the\nlast write, or stopped. For a stream this server no longer holds (it restarted), the\nrows are in its artifact's last version (read it as a file or table).\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"},\"limit\":{\"type\":\"integer\",\"minimum\":1,\"default\":50}},\"required\":[\"name\"]}\n\n## stop_stream  (streaming)\nStop a stream this conversation writes: writes end, the last rows are saved as the\nartifact's version and stay shown, marked stopped.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"}},\"required\":[\"name\"]}\n\n## observe_tasks  (core)\nPeek without consuming completion: view progress (default), transcript, recorded summary, or linked artifacts. Transcript preserves typed source rows, IDs and resumable JSON fragments for large rows. history=session requires stable session read rights; assignment stays on the selected run. Content views return immediately; patterns/subscriptions use progress. Follow cursor while has_more. timeout_s ends only a progress wait; tasks continue.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"tasks\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"array\",\"items\":{\"type\":\"string\"},\"minItems\":1}]},\"cursor\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null},\"pattern\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null},\"timeout_s\":{\"anyOf\":[{\"type\":\"number\",\"minimum\":0},{\"type\":\"null\"}],\"default\":null},\"notify\":{\"anyOf\":[{\"type\":\"boolean\"},{\"type\":\"null\"}],\"default\":null},\"view\":{\"type\":\"string\",\"enum\":[\"progress\",\"transcript\",\"summary\",\"artifacts\"],\"default\":\"progress\"},\"artifact_id\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null},\"history\":{\"type\":\"string\",\"enum\":[\"assignment\",\"session\"],\"default\":\"assignment\"},\"limit\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":200,\"default\":50}},\"required\":[\"tasks\"]}\n\n## list_models  (fleet)\nList the models you can run work on: each as ``account/model`` (pass it as\n``model`` to spawn_agent_task, spawn_agents_parallel, run_flow, run_workflow or a\nworkflow step), with tool calling and vision, context size, price and the\naccount's usage. Filter by what the work needs, an account or a billing kind\n(subscription, credit, metered, free). A model marked ``fast`` is its provider's\nfast, cheap family. Prefer a smaller, fast or free model for simple subtasks; check\nusage before a long fan-out.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"vision\":{\"type\":\"boolean\",\"default\":false},\"tool_calling\":{\"type\":\"boolean\",\"default\":false},\"min_context_tokens\":{\"type\":\"integer\",\"minimum\":0,\"default\":0},\"account\":{\"type\":\"string\",\"default\":\"\"},\"billing\":{\"type\":\"string\",\"enum\":[\"\",\"subscription\",\"credit\",\"metered\",\"free\"],\"default\":\"\"},\"include_unavailable\":{\"type\":\"boolean\",\"default\":false}},\"required\":[]}\n\n## goal_status  (core)\nRead this session's active goal condition and progress (read-only).\n\nReturns ``{active, condition, iters_elapsed, max_goal_iters, budget_spent}``. This is\narmed state only: it runs no evaluation, does not settle the goal, and does not end the turn. You\ncan use set_goal to start an objective and wait_for to await owned tasks.\nCompletion belongs to the independent judge; explicit user stops are authoritative.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{},\"required\":[]}\n\n## cron_create  (core)\nSchedule a future turn for THIS session (recurring cron or one-shot).\n\nGive exactly ONE trigger:\n- ``cron``: a 5-field expression (\"min hour day-of-month month day-of-week\",\n  e.g. \"0 9 * * *\" = 9am daily, \"*/15 * * * *\" = every 15 min, \"0 9 * * 1-5\" =\n  weekdays 9am). Evaluated in the session's LOCAL timezone.\n- ``run_at``: an ISO-8601 instant to fire ONCE (\"2026-08-01T09:00\").\n- ``delay_s``: fire ONCE after this many seconds.\n\n``prompt`` is the question the scheduled turn will run. ``recurring=False`` (or any\n``run_at``/``delay_s``) makes it a one-shot that deletes itself after firing.\n``timezone`` overrides the session default (an IANA name like \"America/Chicago\").\nmax_fires and until are optional explicit user limits; zero/empty are unlimited.\n\nReturns a dict with the server-generated ``schedule_id`` (use it with cron_delete),\nthe resolved ``cron``/``timezone``, ``recurring``, and the ``next_fire_at`` UTC\ninstant. Call cron_list first if unsure whether you already armed this — do not\ndouble-arm. A bad cron or an anti-runaway clamp trip raises a typed error to repair.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"max_fires\":{\"type\":\"integer\",\"description\":\"Explicit user run limit; zero means unlimited.\"},\"until\":{\"type\":\"string\",\"description\":\"Explicit user ISO-8601 deadline, or empty for unlimited.\"},\"cron\":{\"type\":\"string\",\"description\":\"5-field cron in the session's local tz (or omit for a one-shot).\"},\"prompt\":{\"type\":\"string\",\"description\":\"The question the scheduled turn runs.\"},\"recurring\":{\"type\":\"boolean\",\"description\":\"False = one-shot, auto-deletes after firing once.\"},\"run_at\":{\"type\":\"string\",\"description\":\"ISO-8601 instant to fire ONCE (mutually exclusive with cron/delay_s).\"},\"delay_s\":{\"type\":\"integer\",\"description\":\"Fire ONCE after this many seconds (mutually exclusive with cron/run_at).\"},\"timezone\":{\"type\":\"string\",\"description\":\"IANA tz override (e.g. 'America/Chicago'); defaults to the session/system local zone.\"}},\"required\":[]}\n\n## workspace_resource_wait  (core)\nWait once for a workspace resource conversion task to complete, fail, or be cancelled. A timeout returns the latest durable state without cancelling work. Use the stable task id supplied in attachment context instead of repeatedly polling workspace_resource_inspect.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"task_id\":{\"type\":\"string\",\"description\":\"Stable resource-processing task id from attachment context.\"},\"timeout_s\":{\"type\":\"number\",\"description\":\"Positive caller-selected wait budget in seconds.\"}},\"required\":[\"task_id\",\"timeout_s\"]}",
+              "text": "Loaded 3 tools; call them from your next step with the arguments their schemas give.\n\n## open_stream  (streaming)\nOpen a stream: a named table whose latest rows live in memory, written many times a\nsecond by a script (``s = await stream.open(name)`` then ``await s.write(row)`` in\nrun_code) with no tool call per write. A dashboard's chart or table bound to the\nreturned view_uri updates by itself, only while someone is looking. window keeps the\nlast N rows (1: the latest only; at most as many rows as one view reads); the rows are\nsaved as the artifact's next version every flush_s seconds while they change and when\nthe stream stops. columns names the columns a view can bind to before the first write.\nA background script's streams stop when it ends; their last rows stay readable and\nshow as stopped.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"},\"columns\":{\"anyOf\":[{\"type\":\"array\",\"items\":{\"type\":\"string\"}},{\"type\":\"null\"}],\"default\":[]},\"window\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":50000,\"default\":1},\"flush_s\":{\"type\":\"number\",\"minimum\":0,\"default\":30.0}},\"required\":[\"name\"]}\n\n## read_stream  (streaming)\nRead a stream's latest rows (newest last) and its state: open with the time of the\nlast write, or stopped. For a stream this server no longer holds (it restarted), the\nrows are in its artifact's last version (read it as a file or table).\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"},\"limit\":{\"type\":\"integer\",\"minimum\":1,\"default\":50}},\"required\":[\"name\"]}\n\n## stop_stream  (streaming)\nStop a stream this conversation writes: writes end, the last rows are saved as the\nartifact's version and stay shown, marked stopped.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"}},\"required\":[\"name\"]}",
               "agent_id": ""
             }
           ],
-          "duration_ms": 10.100126266479492,
+          "duration_ms": 8.567571640014648,
           "structured_content": {
-            "query": "stream open_stream task progress notify background run_code kernel bindings",
+            "query": "open_stream",
             "tools": [
               {
                 "name": "open_stream",
@@ -1242,51 +1254,21 @@
                 "owner": "streaming",
                 "description": "Stop a stream this conversation writes: writes end, the last rows are saved as the\nartifact's version and stay shown, marked stopped.",
                 "signature": "stop_stream(name: string)"
-              },
-              {
-                "name": "observe_tasks",
-                "owner": "core",
-                "description": "Peek without consuming completion: view progress (default), transcript, recorded summary, or linked artifacts. Transcript preserves typed source rows, IDs and resumable JSON fragments for large rows. history=session requires stable session read rights; assignment stays on the selected run. Content views return immediately; patterns/subscriptions use progress. Follow cursor while has_more. timeout_s ends only a progress wait; tasks continue.",
-                "signature": "observe_tasks(tasks: any, cursor?: any, pattern?: any, timeout_s?: any, notify?: any, view?: string, artifact_id?: any, history?: string, limit?: integer)"
-              },
-              {
-                "name": "list_models",
-                "owner": "fleet",
-                "description": "List the models you can run work on: each as ``account/model`` (pass it as\n``model`` to spawn_agent_task, spawn_agents_parallel, run_flow, run_workflow or a\nworkflow step), with tool calling and vision, context size, price and the\naccount's usage. Filter by what the work needs, an account or a billing kind\n(subscription, credit, metered, free). A model marked ``fast`` is its provider's\nfast, cheap family. Prefer a smaller, fast or free model for simple subtasks; check\nusage before a long fan-out.",
-                "signature": "list_models(vision?: boolean, tool_calling?: boolean, min_context_tokens?: integer, account?: string, billing?: string, include_unavailable?: boolean)"
-              },
-              {
-                "name": "goal_status",
-                "owner": "core",
-                "description": "Read this session's active goal condition and progress (read-only).\n\nReturns ``{active, condition, iters_elapsed, max_goal_iters, budget_spent}``. This is\narmed state only: it runs no evaluation, does not settle the goal, and does not end the turn. You\ncan use set_goal to start an objective and wait_for to await owned tasks.\nCompletion belongs to the independent judge; explicit user stops are authoritative.",
-                "signature": "goal_status()"
-              },
-              {
-                "name": "cron_create",
-                "owner": "core",
-                "description": "Schedule a future turn for THIS session (recurring cron or one-shot).\n\nGive exactly ONE trigger:\n- ``cron``: a 5-field expression (\"min hour day-of-month month day-of-week\",\n  e.g. \"0 9 * * *\" = 9am daily, \"*/15 * * * *\" = every 15 min, \"0 9 * * 1-5\" =\n  weekdays 9am). Evaluated in the session's LOCAL timezone.\n- ``run_at``: an ISO-8601 instant to fire ONCE (\"2026-08-01T09:00\").\n- ``delay_s``: fire ONCE after this many seconds.\n\n``prompt`` is the question the scheduled turn will run. ``recurring=False`` (or any\n``run_at``/``delay_s``) makes it a one-shot that deletes itself after firing.\n``timezone`` overrides the session default (an IANA name like \"America/Chicago\").\nmax_fires and until are optional explicit user limits; zero/empty are unlimited.\n\nReturns a dict with the server-generated ``schedule_id`` (use it with cron_delete),\nthe resolved ``cron``/``timezone``, ``recurring``, and the ``next_fire_at`` UTC\ninstant. Call cron_list first if unsure whether you already armed this — do not\ndouble-arm. A bad cron or an anti-runaway clamp trip raises a typed error to repair.",
-                "signature": "cron_create(max_fires?: integer, until?: string, cron?: string, prompt?: string, recurring?: boolean, run_at?: string, delay_s?: integer, timezone?: string)"
-              },
-              {
-                "name": "workspace_resource_wait",
-                "owner": "core",
-                "description": "Wait once for a workspace resource conversion task to complete, fail, or be cancelled. A timeout returns the latest durable state without cancelling work. Use the stable task id supplied in attachment context instead of repeatedly polling workspace_resource_inspect.",
-                "signature": "workspace_resource_wait(task_id: string, timeout_s: number)"
               }
             ],
             "missing": [],
-            "deferred_total": 39,
+            "deferred_total": 40,
             "servers": []
           },
           "presentation": {
             "subject": "query",
-            "summary": "Loaded 8 tools",
+            "summary": "Loaded 3 tools",
             "blocks": [
               {
                 "id": "query",
                 "type": "text",
                 "media_type": "",
-                "text": "stream open_stream task progress notify background run_code kernel bindings",
+                "text": "open_stream",
                 "label": "Search",
                 "language": "",
                 "workspace_id": "",
@@ -1357,121 +1339,26 @@
                 "detail": "",
                 "items": [],
                 "action_label": ""
-              },
-              {
-                "id": "tool-3",
-                "type": "text",
-                "media_type": "",
-                "text": "observe_tasks(tasks: any, cursor?: any, pattern?: any, timeout_s?: any, notify?: any, view?: string, artifact_id?: any, history?: string, limit?: integer)\nPeek without consuming completion: view progress (default), transcript, recorded summary, or linked artifacts. Transcript preserves typed source rows, IDs and resumable JSON fragments for large rows. history=session requires stable session read rights; assignment stays on the selected run. Content views return immediately; patterns/subscriptions use progress. Follow cursor while has_more. timeout_s ends only a progress wait; tasks continue.",
-                "label": "observe_tasks (core)",
-                "language": "",
-                "workspace_id": "",
-                "path": "",
-                "sha256": "",
-                "pages": [],
-                "uri": "",
-                "command": "",
-                "timed_out": false,
-                "status": "",
-                "detail": "",
-                "items": [],
-                "action_label": ""
-              },
-              {
-                "id": "tool-4",
-                "type": "text",
-                "media_type": "",
-                "text": "list_models(vision?: boolean, tool_calling?: boolean, min_context_tokens?: integer, account?: string, billing?: string, include_unavailable?: boolean)\nList the models you can run work on: each as ``account/model`` (pass it as\n``model`` to spawn_agent_task, spawn_agents_parallel, run_flow, run_workflow or a\nworkflow step), with tool calling and vision, context size, price and the\naccount's usage. Filter by what the work needs, an account or a billing kind\n(subscription, credit, metered, free). A model marked ``fast`` is its provider's\nfast, cheap family. Prefer a smaller, fast or free model for simple subtasks; check\nusage before a long fan-out.",
-                "label": "list_models (fleet)",
-                "language": "",
-                "workspace_id": "",
-                "path": "",
-                "sha256": "",
-                "pages": [],
-                "uri": "",
-                "command": "",
-                "timed_out": false,
-                "status": "",
-                "detail": "",
-                "items": [],
-                "action_label": ""
-              },
-              {
-                "id": "tool-5",
-                "type": "text",
-                "media_type": "",
-                "text": "goal_status()\nRead this session's active goal condition and progress (read-only).\n\nReturns ``{active, condition, iters_elapsed, max_goal_iters, budget_spent}``. This is\narmed state only: it runs no evaluation, does not settle the goal, and does not end the turn. You\ncan use set_goal to start an objective and wait_for to await owned tasks.\nCompletion belongs to the independent judge; explicit user stops are authoritative.",
-                "label": "goal_status (core)",
-                "language": "",
-                "workspace_id": "",
-                "path": "",
-                "sha256": "",
-                "pages": [],
-                "uri": "",
-                "command": "",
-                "timed_out": false,
-                "status": "",
-                "detail": "",
-                "items": [],
-                "action_label": ""
-              },
-              {
-                "id": "tool-6",
-                "type": "text",
-                "media_type": "",
-                "text": "cron_create(max_fires?: integer, until?: string, cron?: string, prompt?: string, recurring?: boolean, run_at?: string, delay_s?: integer, timezone?: string)\nSchedule a future turn for THIS session (recurring cron or one-shot).\n\nGive exactly ONE trigger:\n- ``cron``: a 5-field expression (\"min hour day-of-month month day-of-week\",\n  e.g. \"0 9 * * *\" = 9am daily, \"*/15 * * * *\" = every 15 min, \"0 9 * * 1-5\" =\n  weekdays 9am). Evaluated in the session's LOCAL timezone.\n- ``run_at``: an ISO-8601 instant to fire ONCE (\"2026-08-01T09:00\").\n- ``delay_s``: fire ONCE after this many seconds.\n\n``prompt`` is the question the scheduled turn will run. ``recurring=False`` (or any\n``run_at``/``delay_s``) makes it a one-shot that deletes itself after firing.\n``timezone`` overrides the session default (an IANA name like \"America/Chicago\").\nmax_fires and until are optional explicit user limits; zero/empty are unlimited.\n\nReturns a dict with the server-generated ``schedule_id`` (use it with cron_delete),\nthe resolved ``cron``/``timezone``, ``recurring``, and the ``next_fire_at`` UTC\ninstant. Call cron_list first if unsure whether you already armed this — do not\ndouble-arm. A bad cron or an anti-runaway clamp trip raises a typed error to repair.",
-                "label": "cron_create (core)",
-                "language": "",
-                "workspace_id": "",
-                "path": "",
-                "sha256": "",
-                "pages": [],
-                "uri": "",
-                "command": "",
-                "timed_out": false,
-                "status": "",
-                "detail": "",
-                "items": [],
-                "action_label": ""
-              },
-              {
-                "id": "tool-7",
-                "type": "text",
-                "media_type": "",
-                "text": "workspace_resource_wait(task_id: string, timeout_s: number)\nWait once for a workspace resource conversion task to complete, fail, or be cancelled. A timeout returns the latest durable state without cancelling work. Use the stable task id supplied in attachment context instead of repeatedly polling workspace_resource_inspect.",
-                "label": "workspace_resource_wait (core)",
-                "language": "",
-                "workspace_id": "",
-                "path": "",
-                "sha256": "",
-                "pages": [],
-                "uri": "",
-                "command": "",
-                "timed_out": false,
-                "status": "",
-                "detail": "",
-                "items": [],
-                "action_label": ""
               }
             ]
           }
         },
         {
-          "id": "live_call_b47e5e0dc9e2_call",
+          "id": "live_call_c2b0d091ed02_call",
           "type": "tool_call",
           "metadata": {
-            "started_at": "2026-11-05T23:46:01.400331+00:00",
+            "started_at": "2026-11-06T02:28:31.193910+00:00",
             "stream_source": "live",
             "telemetry_source": "live_observer",
-            "thought_step_id": "590bc0ab42e0469a"
+            "thought_step_id": "8827c6e54400490e"
           },
           "agent_id": "watch-experiment",
           "sequence": 4,
-          "call_id": "call_b47e5e0dc9e2",
+          "call_id": "call_c2b0d091ed02",
           "tool_name": "run_code",
           "tool_title": "Run code",
           "input": {
-            "code": "import asyncio\nimport json\nimport math\n\nrows = json.loads(open(\"burn.json\", encoding=\"utf-8\").read())\nsensor = await stream.open(\"burn-observations\", columns=[\"local_label\", \"particle_mean_ug_m3\"],\n                           window=18, flush_s=30)\nsimulation = None\ntheta, velocity, simulation_time = 0.1, 0.0, 0.0\nfor i, row in enumerate(rows):\n    await sensor.write(local_label=row[\"local_label\"], particle_mean_ug_m3=row[\"particle_mean_ug_m3\"])\n    if i == 40:\n        simulation = await stream.open(\"pendulum-simulation\", columns=[\"time_s\", \"angle_rad\"],\n                                       window=18, flush_s=30)\n    if simulation is not None:\n        for _ in range(30):\n            acceleration = -9.80665 * math.sin(theta)\n            theta += velocity * 0.01 + 0.5 * acceleration * 0.01**2\n            velocity += 0.5 * (acceleration - 9.80665 * math.sin(theta)) * 0.01\n            simulation_time += 0.01\n        await simulation.write(time_s=round(simulation_time, 3), angle_rad=theta)\n    await task.progress(\"Replaying recorded observations\", done=i+1, total=len(rows))\n    await asyncio.sleep(0.6)\nawait task.notify(\"Sensor replay complete\")\nprint(\"Sensor replay complete\")",
+            "code": "\"\"\"Replay the burn observations and drive an illustrative transport model with their wind.\"\"\"\n\nimport asyncio\nimport json\n\nrows = json.loads(open(\"burn.json\", encoding=\"utf-8\").read())\nsensor = await stream.open(\n    \"burn-observations\", columns=[\"local_label\", \"particle_mean_ug_m3\", \"horizontal_speed_mean\"], window=18, flush_s=30\n)\nsimulation = None\ntravelled_m = 0.0\nfor i, row in enumerate(rows):\n    await sensor.write(\n        local_label=row[\"local_label\"], particle_mean_ug_m3=row[\"particle_mean_ug_m3\"],\n        horizontal_speed_mean=row[\"horizontal_speed_mean\"]\n    )\n    if i == 40:\n        simulation = await stream.open(\n            \"burn-transport\", columns=[\"local_label\", \"model_time_min\", \"travelled_km\"], window=18, flush_s=30\n        )\n    if simulation is not None:\n        # Piecewise constant, spatially uniform minute-mean wind. This is an\n        # illustrative travelled-distance model, not a dispersion prediction.\n        travelled_m += float(row[\"horizontal_speed_mean\"]) * 60.0\n        await simulation.write(local_label=row[\"local_label\"], model_time_min=i-39,\n                               travelled_km=travelled_m/1000.0)\n    await task.progress(\"Replaying recorded observations\", done=i + 1, total=len(rows))\n    await asyncio.sleep(0.6)\nawait task.notify(\"Sensor replay complete\")\nprint(\"Sensor replay complete\")",
             "background": true,
             "label": "Watch the experiment"
           },
@@ -1483,7 +1370,7 @@
                 "id": "script",
                 "type": "code",
                 "media_type": "",
-                "text": "import asyncio\nimport json\nimport math\n\nrows = json.loads(open(\"burn.json\", encoding=\"utf-8\").read())\nsensor = await stream.open(\"burn-observations\", columns=[\"local_label\", \"particle_mean_ug_m3\"],\n                           window=18, flush_s=30)\nsimulation = None\ntheta, velocity, simulation_time = 0.1, 0.0, 0.0\nfor i, row in enumerate(rows):\n    await sensor.write(local_label=row[\"local_label\"], particle_mean_ug_m3=row[\"particle_mean_ug_m3\"])\n    if i == 40:\n        simulation = await stream.open(\"pendulum-simulation\", columns=[\"time_s\", \"angle_rad\"],\n                                       window=18, flush_s=30)\n    if simulation is not None:\n        for _ in range(30):\n            acceleration = -9.80665 * math.sin(theta)\n            theta += velocity * 0.01 + 0.5 * acceleration * 0.01**2\n            velocity += 0.5 * (acceleration - 9.80665 * math.sin(theta)) * 0.01\n            simulation_time += 0.01\n        await simulation.write(time_s=round(simulation_time, 3), angle_rad=theta)\n    await task.progress(\"Replaying recorded observations\", done=i+1, total=len(rows))\n    await asyncio.sleep(0.6)\nawait task.notify(\"Sensor replay complete\")\nprint(\"Sensor replay complete\")",
+                "text": "\"\"\"Replay the burn observations and drive an illustrative transport model with their wind.\"\"\"\n\nimport asyncio\nimport json\n\nrows = json.loads(open(\"burn.json\", encoding=\"utf-8\").read())\nsensor = await stream.open(\n    \"burn-observations\", columns=[\"local_label\", \"particle_mean_ug_m3\", \"horizontal_speed_mean\"], window=18, flush_s=30\n)\nsimulation = None\ntravelled_m = 0.0\nfor i, row in enumerate(rows):\n    await sensor.write(\n        local_label=row[\"local_label\"], particle_mean_ug_m3=row[\"particle_mean_ug_m3\"],\n        horizontal_speed_mean=row[\"horizontal_speed_mean\"]\n    )\n    if i == 40:\n        simulation = await stream.open(\n            \"burn-transport\", columns=[\"local_label\", \"model_time_min\", \"travelled_km\"], window=18, flush_s=30\n        )\n    if simulation is not None:\n        # Piecewise constant, spatially uniform minute-mean wind. This is an\n        # illustrative travelled-distance model, not a dispersion prediction.\n        travelled_m += float(row[\"horizontal_speed_mean\"]) * 60.0\n        await simulation.write(local_label=row[\"local_label\"], model_time_min=i-39,\n                               travelled_km=travelled_m/1000.0)\n    await task.progress(\"Replaying recorded observations\", done=i + 1, total=len(rows))\n    await asyncio.sleep(0.6)\nawait task.notify(\"Sensor replay complete\")\nprint(\"Sensor replay complete\")",
                 "label": "Script",
                 "language": "python",
                 "workspace_id": "",
@@ -1502,29 +1389,29 @@
           }
         },
         {
-          "id": "live_call_b47e5e0dc9e2_result",
+          "id": "live_call_c2b0d091ed02_result",
           "type": "tool_result",
           "metadata": {
             "stream_source": "live",
-            "completed_at": "2026-11-05T23:46:01.593539+00:00",
+            "completed_at": "2026-11-06T02:28:31.243147+00:00",
             "telemetry_source": "live_observer",
-            "result": "Started in the background as task task_9fab0393c5d54b9aa969810b639e6069 (Watch the experiment). It runs in its own kernel until it finishes or is cancelled; wait_tasks, observe_tasks, get_task_result and cancel_tasks take its handle, and its result arrives when it settles."
+            "result": "Started in the background as task task_fbe77f8af88d4db9a8b3f67d7df39078 (Watch the experiment). It runs in its own kernel until it finishes or is cancelled; wait_tasks, observe_tasks, get_task_result and cancel_tasks take its handle, and its result arrives when it settles."
           },
           "agent_id": "watch-experiment",
           "sequence": 5,
-          "call_id": "call_b47e5e0dc9e2",
+          "call_id": "call_c2b0d091ed02",
           "tool_name": "run_code",
           "content": [
             {
-              "id": "live_call_b47e5e0dc9e2_result_final_text",
+              "id": "live_call_c2b0d091ed02_result_final_text",
               "type": "text",
-              "text": "Started in the background as task task_9fab0393c5d54b9aa969810b639e6069 (Watch the experiment). It runs in its own kernel until it finishes or is cancelled; wait_tasks, observe_tasks, get_task_result and cancel_tasks take its handle, and its result arrives when it settles.",
+              "text": "Started in the background as task task_fbe77f8af88d4db9a8b3f67d7df39078 (Watch the experiment). It runs in its own kernel until it finishes or is cancelled; wait_tasks, observe_tasks, get_task_result and cancel_tasks take its handle, and its result arrives when it settles.",
               "agent_id": ""
             }
           ],
-          "duration_ms": 193.2077407836914,
+          "duration_ms": 49.23653602600098,
           "structured_content": {
-            "handle": "task_9fab0393c5d54b9aa969810b639e6069",
+            "handle": "task_fbe77f8af88d4db9a8b3f67d7df39078",
             "kind": "Code",
             "accepted": true,
             "status": "running",
@@ -1538,7 +1425,7 @@
                 "id": "script",
                 "type": "code",
                 "media_type": "",
-                "text": "import asyncio\nimport json\nimport math\n\nrows = json.loads(open(\"burn.json\", encoding=\"utf-8\").read())\nsensor = await stream.open(\"burn-observations\", columns=[\"local_label\", \"particle_mean_ug_m3\"],\n                           window=18, flush_s=30)\nsimulation = None\ntheta, velocity, simulation_time = 0.1, 0.0, 0.0\nfor i, row in enumerate(rows):\n    await sensor.write(local_label=row[\"local_label\"], particle_mean_ug_m3=row[\"particle_mean_ug_m3\"])\n    if i == 40:\n        simulation = await stream.open(\"pendulum-simulation\", columns=[\"time_s\", \"angle_rad\"],\n                                       window=18, flush_s=30)\n    if simulation is not None:\n        for _ in range(30):\n            acceleration = -9.80665 * math.sin(theta)\n            theta += velocity * 0.01 + 0.5 * acceleration * 0.01**2\n            velocity += 0.5 * (acceleration - 9.80665 * math.sin(theta)) * 0.01\n            simulation_time += 0.01\n        await simulation.write(time_s=round(simulation_time, 3), angle_rad=theta)\n    await task.progress(\"Replaying recorded observations\", done=i+1, total=len(rows))\n    await asyncio.sleep(0.6)\nawait task.notify(\"Sensor replay complete\")\nprint(\"Sensor replay complete\")",
+                "text": "\"\"\"Replay the burn observations and drive an illustrative transport model with their wind.\"\"\"\n\nimport asyncio\nimport json\n\nrows = json.loads(open(\"burn.json\", encoding=\"utf-8\").read())\nsensor = await stream.open(\n    \"burn-observations\", columns=[\"local_label\", \"particle_mean_ug_m3\", \"horizontal_speed_mean\"], window=18, flush_s=30\n)\nsimulation = None\ntravelled_m = 0.0\nfor i, row in enumerate(rows):\n    await sensor.write(\n        local_label=row[\"local_label\"], particle_mean_ug_m3=row[\"particle_mean_ug_m3\"],\n        horizontal_speed_mean=row[\"horizontal_speed_mean\"]\n    )\n    if i == 40:\n        simulation = await stream.open(\n            \"burn-transport\", columns=[\"local_label\", \"model_time_min\", \"travelled_km\"], window=18, flush_s=30\n        )\n    if simulation is not None:\n        # Piecewise constant, spatially uniform minute-mean wind. This is an\n        # illustrative travelled-distance model, not a dispersion prediction.\n        travelled_m += float(row[\"horizontal_speed_mean\"]) * 60.0\n        await simulation.write(local_label=row[\"local_label\"], model_time_min=i-39,\n                               travelled_km=travelled_m/1000.0)\n    await task.progress(\"Replaying recorded observations\", done=i + 1, total=len(rows))\n    await asyncio.sleep(0.6)\nawait task.notify(\"Sensor replay complete\")\nprint(\"Sensor replay complete\")",
                 "label": "Script",
                 "language": "python",
                 "workspace_id": "",
@@ -1557,7 +1444,7 @@
                 "id": "task",
                 "type": "text",
                 "media_type": "",
-                "text": "Runs in the background as task task_9fab0393c5d54b9aa969810b639e6069; its progress and a cancel control are in Work, under Background tasks.",
+                "text": "Runs in the background as task task_fbe77f8af88d4db9a8b3f67d7df39078; its progress and a cancel control are in Work, under Background tasks.",
                 "label": "",
                 "language": "",
                 "workspace_id": "",
@@ -1584,7 +1471,7 @@
                 "sha256": "",
                 "pages": [],
                 "target": "task",
-                "uri": "task_9fab0393c5d54b9aa969810b639e6069",
+                "uri": "task_fbe77f8af88d4db9a8b3f67d7df39078",
                 "command": "",
                 "timed_out": false,
                 "status": "",
@@ -1596,7 +1483,7 @@
           }
         },
         {
-          "id": "part_582da292f461",
+          "id": "part_ccee01aece41",
           "type": "text",
           "metadata": {
             "stream_source": "live",
@@ -1604,16 +1491,16 @@
           },
           "agent_id": "watch-experiment",
           "sequence": 6,
-          "text": "Launched as task `task_9fab0393c5d54b9aa969810b639e6069` (“Watch the experiment”)."
+          "text": "Launched **“Watch the experiment”** in the background: `task_fbe77f8af88d4db9a8b3f67d7df39078`."
         }
       ],
       "tokens": {
-        "input": 29175,
-        "output": 436,
-        "cache_read": 18176,
+        "input": 26712,
+        "output": 455,
+        "cache_read": 8192,
         "cache_write": 0
       },
-      "cost_usd": 0.0031354999999999994,
+      "cost_usd": 0.0028986999999999997,
       "stop_reason": "end_turn",
       "metadata": {
         "stream_source": "live",
@@ -1621,28 +1508,28 @@
           {
             "name": "search_tools",
             "args": {
-              "query": "stream open_stream task progress notify background run_code kernel bindings",
-              "limit": 8
+              "query": "open_stream",
+              "limit": 5
             },
             "ok": true,
-            "duration_ms": 10.100126266479492,
+            "duration_ms": 8.567571640014648,
             "telemetry_source": "live_observer",
-            "result": "Loaded 8 tools; call them from your next step with the arguments their schemas give.\n\n## open_stream  (streaming)\nOpen a stream: a named table whose latest rows live in memory, written many times a\nsecond by a script (``s = await stream.open(name)`` then ``await s.write(row)`` in\nrun_code) with no tool call per write. A dashboard's chart or table bound to the\nreturned view_uri updates by itself, only while someone is looking. window keeps the\nlast N rows (1: the latest only; at most as many rows as one view reads); the rows are\nsaved as the artifact's next version every flush_s seconds while they change and when\nthe stream stops. columns names the columns a view can bind to before the first write.\nA background script's streams stop when it ends; their last rows stay readable and\nshow as stopped.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"},\"columns\":{\"anyOf\":[{\"type\":\"array\",\"items\":{\"type\":\"string\"}},{\"type\":\"null\"}],\"default\":[]},\"window\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":50000,\"default\":1},\"flush_s\":{\"type\":\"number\",\"minimum\":0,\"default\":30.0}},\"required\":[\"name\"]}\n\n## read_stream  (streaming)\nRead a stream's latest rows (newest last) and its state: open with the time of the\nlast write, or stopped. For a stream this server no longer holds (it restarted), the\nrows are in its artifact's last version (read it as a file or table).\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"},\"limit\":{\"type\":\"integer\",\"minimum\":1,\"default\":50}},\"required\":[\"name\"]}\n\n## stop_stream  (streaming)\nStop a stream this conversation writes: writes end, the last rows are saved as the\nartifact's version and stay shown, marked stopped.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"}},\"required\":[\"name\"]}\n\n## observe_tasks  (core)\nPeek without consuming completion: view progress (default), transcript, recorded summary, or linked artifacts. Transcript preserves typed source rows, IDs and resumable JSON fragments for large rows. history=session requires stable session read rights; assignment stays on the selected run. Content views return immediately; patterns/subscriptions use progress. Follow cursor while has_more. timeout_s ends only a progress wait; tasks continue.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"tasks\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"array\",\"items\":{\"type\":\"string\"},\"minItems\":1}]},\"cursor\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null},\"pattern\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null},\"timeout_s\":{\"anyOf\":[{\"type\":\"number\",\"minimum\":0},{\"type\":\"null\"}],\"default\":null},\"notify\":{\"anyOf\":[{\"type\":\"boolean\"},{\"type\":\"null\"}],\"default\":null},\"view\":{\"type\":\"string\",\"enum\":[\"progress\",\"transcript\",\"summary\",\"artifacts\"],\"default\":\"progress\"},\"artifact_id\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"null\"}],\"default\":null},\"history\":{\"type\":\"string\",\"enum\":[\"assignment\",\"session\"],\"default\":\"assignment\"},\"limit\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":200,\"default\":50}},\"required\":[\"tasks\"]}\n\n## list_models  (fleet)\nList the models you can run work on: each as ``account/model`` (pass it as\n``model`` to spawn_agent_task, spawn_agents_parallel, run_flow, run_workflow or a\nworkflow step), with tool calling and vision, context size, price and the\naccount's usage. Filter by what the work needs, an account or a billing kind\n(subscription, credit, metered, free). A model marked ``fast`` is its provider's\nfast, cheap family. Prefer a smaller, fast or free model for simple subtasks; check\nusage before a long fan-out.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"vision\":{\"type\":\"boolean\",\"default\":false},\"tool_calling\":{\"type\":\"boolean\",\"default\":false},\"min_context_tokens\":{\"type\":\"integer\",\"minimum\":0,\"default\":0},\"account\":{\"type\":\"string\",\"default\":\"\"},\"billing\":{\"type\":\"string\",\"enum\":[\"\",\"subscription\",\"credit\",\"metered\",\"free\"],\"default\":\"\"},\"include_unavailable\":{\"type\":\"boolean\",\"default\":false}},\"required\":[]}\n\n## goal_status  (core)\nRead this session's active goal condition and progress (read-only).\n\nReturns ``{active, condition, iters_elapsed, max_goal_iters, budget_spent}``. This is\narmed state only: it runs no evaluation, does not settle the goal, and does not end the turn. You\ncan use set_goal to start an objective and wait_for to await owned tasks.\nCompletion belongs to the independent judge; explicit user stops are authoritative.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{},\"required\":[]}\n\n## cron_create  (core)\nSchedule a future turn for THIS session (recurring cron or one-shot).\n\nGive exactly ONE trigger:\n- ``cron``: a 5-field expression (\"min hour day-of-month month day-of-week\",\n  e.g. \"0 9 * * *\" = 9am daily, \"*/15 * * * *\" = every 15 min, \"0 9 * * 1-5\" =\n  weekdays 9am). Evaluated in the session's LOCAL timezone.\n- ``run_at``: an ISO-8601 instant to fire ONCE (\"2026-08-01T09:00\").\n- ``delay_s``: fire ONCE after this many seconds.\n\n``prompt`` is the question the scheduled turn will run. ``recurring=False`` (or any\n``run_at``/``delay_s``) makes it a one-shot that deletes itself after firing.\n``timezone`` overrides the session default (an IANA name like \"America/Chicago\").\nmax_fires and until are optional explicit user limits; zero/empty are unlimited.\n\nReturns a dict with the server-generated ``schedule_id`` (use it with cron_delete),\nthe resolved ``cron``/``timezone``, ``recurring``, and the ``next_fire_at`` UTC\ninstant. Call cron_list first if unsure whether you already armed this — do not\ndouble-arm. A bad cron or an anti-runaway clamp trip raises a typed error to repair.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"max_fires\":{\"type\":\"integer\",\"description\":\"Explicit user run limit; zero means unlimited.\"},\"until\":{\"type\":\"string\",\"description\":\"Explicit user ISO-8601 deadline, or empty for unlimited.\"},\"cron\":{\"type\":\"string\",\"description\":\"5-field cron in the session's local tz (or omit for a one-shot).\"},\"prompt\":{\"type\":\"string\",\"description\":\"The question the scheduled turn runs.\"},\"recurring\":{\"type\":\"boolean\",\"description\":\"False = one-shot, auto-deletes after firing once.\"},\"run_at\":{\"type\":\"string\",\"description\":\"ISO-8601 instant to fire ONCE (mutually exclusive with cron/delay_s).\"},\"delay_s\":{\"type\":\"integer\",\"description\":\"Fire ONCE after this many seconds (mutually exclusive with cron/run_at).\"},\"timezone\":{\"type\":\"string\",\"description\":\"IANA tz override (e.g. 'America/Chicago'); defaults to the session/system local zone.\"}},\"required\":[]}\n\n## workspace_resource_wait  (core)\nWait once for a workspace resource conversion task to complete, fail, or be cancelled. A timeout returns the latest durable state without cancelling work. Use the stable task id supplied in attachment context instead of repeatedly polling workspace_resource_inspect.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"task_id\":{\"type\":\"string\",\"description\":\"Stable resource-processing task id from attachment context.\"},\"timeout_s\":{\"type\":\"number\",\"description\":\"Positive caller-selected wait budget in seconds.\"}},\"required\":[\"task_id\",\"timeout_s\"]}",
-            "call_id": "call_6d3bcb86578d",
+            "result": "Loaded 3 tools; call them from your next step with the arguments their schemas give.\n\n## open_stream  (streaming)\nOpen a stream: a named table whose latest rows live in memory, written many times a\nsecond by a script (``s = await stream.open(name)`` then ``await s.write(row)`` in\nrun_code) with no tool call per write. A dashboard's chart or table bound to the\nreturned view_uri updates by itself, only while someone is looking. window keeps the\nlast N rows (1: the latest only; at most as many rows as one view reads); the rows are\nsaved as the artifact's next version every flush_s seconds while they change and when\nthe stream stops. columns names the columns a view can bind to before the first write.\nA background script's streams stop when it ends; their last rows stay readable and\nshow as stopped.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"},\"columns\":{\"anyOf\":[{\"type\":\"array\",\"items\":{\"type\":\"string\"}},{\"type\":\"null\"}],\"default\":[]},\"window\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":50000,\"default\":1},\"flush_s\":{\"type\":\"number\",\"minimum\":0,\"default\":30.0}},\"required\":[\"name\"]}\n\n## read_stream  (streaming)\nRead a stream's latest rows (newest last) and its state: open with the time of the\nlast write, or stopped. For a stream this server no longer holds (it restarted), the\nrows are in its artifact's last version (read it as a file or table).\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"},\"limit\":{\"type\":\"integer\",\"minimum\":1,\"default\":50}},\"required\":[\"name\"]}\n\n## stop_stream  (streaming)\nStop a stream this conversation writes: writes end, the last rows are saved as the\nartifact's version and stay shown, marked stopped.\nArguments (JSON schema): {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"description\":\"The stream's name (its artifact is <name>.parquet).\"}},\"required\":[\"name\"]}",
+            "call_id": "call_db3c84b904a6",
             "cached": false
           },
           {
             "name": "run_code",
             "args": {
-              "code": "import asyncio\nimport json\nimport math\n\nrows = json.loads(open(\"burn.json\", encoding=\"utf-8\").read())\nsensor = await stream.open(\"burn-observations\", columns=[\"local_label\", \"particle_mean_ug_m3\"],\n                           window=18, flush_s=30)\nsimulation = None\ntheta, velocity, simulation_time = 0.1, 0.0, 0.0\nfor i, row in enumerate(rows):\n    await sensor.write(local_label=row[\"local_label\"], particle_mean_ug_m3=row[\"particle_mean_ug_m3\"])\n    if i == 40:\n        simulation = await stream.open(\"pendulum-simulation\", columns=[\"time_s\", \"angle_rad\"],\n                                       window=18, flush_s=30)\n    if simulation is not None:\n        for _ in range(30):\n            acceleration = -9.80665 * math.sin(theta)\n            theta += velocity * 0.01 + 0.5 * acceleration * 0.01**2\n            velocity += 0.5 * (acceleration - 9.80665 * math.sin(theta)) * 0.01\n            simulation_time += 0.01\n        await simulation.write(time_s=round(simulation_time, 3), angle_rad=theta)\n    await task.progress(\"Replaying recorded observations\", done=i+1, total=len(rows))\n    await asyncio.sleep(0.6)\nawait task.notify(\"Sensor replay complete\")\nprint(\"Sensor replay complete\")",
+              "code": "\"\"\"Replay the burn observations and drive an illustrative transport model with their wind.\"\"\"\n\nimport asyncio\nimport json\n\nrows = json.loads(open(\"burn.json\", encoding=\"utf-8\").read())\nsensor = await stream.open(\n    \"burn-observations\", columns=[\"local_label\", \"particle_mean_ug_m3\", \"horizontal_speed_mean\"], window=18, flush_s=30\n)\nsimulation = None\ntravelled_m = 0.0\nfor i, row in enumerate(rows):\n    await sensor.write(\n        local_label=row[\"local_label\"], particle_mean_ug_m3=row[\"particle_mean_ug_m3\"],\n        horizontal_speed_mean=row[\"horizontal_speed_mean\"]\n    )\n    if i == 40:\n        simulation = await stream.open(\n            \"burn-transport\", columns=[\"local_label\", \"model_time_min\", \"travelled_km\"], window=18, flush_s=30\n        )\n    if simulation is not None:\n        # Piecewise constant, spatially uniform minute-mean wind. This is an\n        # illustrative travelled-distance model, not a dispersion prediction.\n        travelled_m += float(row[\"horizontal_speed_mean\"]) * 60.0\n        await simulation.write(local_label=row[\"local_label\"], model_time_min=i-39,\n                               travelled_km=travelled_m/1000.0)\n    await task.progress(\"Replaying recorded observations\", done=i + 1, total=len(rows))\n    await asyncio.sleep(0.6)\nawait task.notify(\"Sensor replay complete\")\nprint(\"Sensor replay complete\")",
               "background": true,
               "label": "Watch the experiment"
             },
             "ok": true,
-            "duration_ms": 193.2077407836914,
+            "duration_ms": 49.23653602600098,
             "telemetry_source": "live_observer",
-            "result": "Started in the background as task task_9fab0393c5d54b9aa969810b639e6069 (Watch the experiment). It runs in its own kernel until it finishes or is cancelled; wait_tasks, observe_tasks, get_task_result and cancel_tasks take its handle, and its result arrives when it settles.",
-            "call_id": "call_b47e5e0dc9e2",
+            "result": "Started in the background as task task_fbe77f8af88d4db9a8b3f67d7df39078 (Watch the experiment). It runs in its own kernel until it finishes or is cancelled; wait_tasks, observe_tasks, get_task_result and cancel_tasks take its handle, and its result arrives when it settles.",
+            "call_id": "call_c2b0d091ed02",
             "cached": false
           },
           {
@@ -1651,37 +1538,39 @@
               "name": "burn-observations",
               "columns": [
                 "local_label",
-                "particle_mean_ug_m3"
+                "particle_mean_ug_m3",
+                "horizontal_speed_mean"
               ],
               "window": 18,
               "flush_s": 30
             },
             "ok": true,
-            "duration_ms": 3.935299930162728,
+            "duration_ms": 38.974500028416514,
             "telemetry_source": "agent_react_tool_wrapper",
             "result": {
               "ok": true,
-              "stream_id": "stream_98719a8a8e70",
+              "stream_id": "stream_475cfe44cd08",
               "name": "burn-observations",
-              "workspace_id": "ws_de799980ff25",
-              "session_id": "sess_9d5c84fc7527",
+              "workspace_id": "ws_3ec08f5f4f9b",
+              "session_id": "sess_6ec5484ff65e",
               "state": "open",
               "window": 18,
-              "rows": 18,
-              "writes": 60,
+              "rows": 0,
+              "writes": 0,
               "columns": [
                 "local_label",
-                "particle_mean_ug_m3"
+                "particle_mean_ug_m3",
+                "horizontal_speed_mean"
               ],
-              "opened_at": "2026-11-05T23:33:23.720508+00:00",
-              "updated_at": "2026-11-05T23:34:27.781148+00:00",
+              "opened_at": "2026-11-06T02:28:32.141137+00:00",
+              "updated_at": "",
               "stopped_at": "",
               "flush_s": 30,
               "artifact_name": "burn-observations.parquet",
-              "artifact_id": "artifact_07fe67fd40cb41e381ec75dc7f9020aa",
-              "view_uri": "artifact://ws_de799980ff25/burn-observations.parquet@latest",
+              "artifact_id": "artifact_4999659346604b6fbcb7de43b3a63432",
+              "view_uri": "artifact://ws_3ec08f5f4f9b/burn-observations.parquet@latest",
               "flush_error": null,
-              "write_key": "QylkgSkyVd7gGh3h4X8Xag"
+              "write_key": "dGsiGKECv6htMQs6_c5lFg"
             }
           }
         ],
@@ -1731,6 +1620,7 @@
             "workspace_resource_structure",
             "read_count_component",
             "read_dataset_record",
+            "read_selected_observations",
             "compute_pendulum",
             "spawn_agent_task",
             "spawn_agents_parallel",
@@ -1773,7 +1663,7 @@
           "agent_resolution": {
             "ref": "capability-campaign/watch-experiment",
             "kind": "agent",
-            "digest": "333d034d095857baaafbdcc96ee4d7383ed737de34ef83be33e002c11619879d",
+            "digest": "38a95070b8da85ab4e08c685839730f19d7cb1382ae5d961c38778178669f829",
             "plugins": [
               "core",
               "campaign-methods",
@@ -1833,17 +1723,17 @@
       }
     },
     {
-      "id": "msg_user_e540cd268be1",
-      "session_id": "sess_9d5c84fc7527",
-      "turn_id": "msg_user_e540cd268be1",
+      "id": "msg_user_6816ab378ec3",
+      "session_id": "sess_6ec5484ff65e",
+      "turn_id": "msg_user_6816ab378ec3",
       "role": "user",
-      "created_at": "2026-11-05T23:45:51.677539+00:00",
-      "updated_at": "2026-11-05T23:45:51.677539+00:00",
+      "created_at": "2026-11-06T02:28:19.753803+00:00",
+      "updated_at": "2026-11-06T02:28:19.753803+00:00",
       "parts": [
         {
-          "id": "part_e24d330904ea",
+          "id": "part_4b531758fe6d",
           "type": "text",
-          "text": "Execute the following exact Python program using run_code with background=True and label=\"Watch the experiment\". Do not substitute shell execution. The tools/stream/task names are CLIO kernel bindings. Keep outputs in the workspace. Report only the genuine result or launch handle.\n\n\"\"\"Background kernel program: sensor replay, then a numerical source on the same path.\"\"\"\nimport asyncio\nimport json\nimport math\n\nrows = json.loads(open(\"burn.json\", encoding=\"utf-8\").read())\nsensor = await stream.open(\"burn-observations\", columns=[\"local_label\", \"particle_mean_ug_m3\"],\n                           window=18, flush_s=30)\nsimulation = None\ntheta, velocity, simulation_time = 0.1, 0.0, 0.0\nfor i, row in enumerate(rows):\n    await sensor.write(local_label=row[\"local_label\"], particle_mean_ug_m3=row[\"particle_mean_ug_m3\"])\n    if i == 40:\n        simulation = await stream.open(\"pendulum-simulation\", columns=[\"time_s\", \"angle_rad\"],\n                                       window=18, flush_s=30)\n    if simulation is not None:\n        for _ in range(30):\n            acceleration = -9.80665 * math.sin(theta)\n            theta += velocity * 0.01 + 0.5 * acceleration * 0.01**2\n            velocity += 0.5 * (acceleration - 9.80665 * math.sin(theta)) * 0.01\n            simulation_time += 0.01\n        await simulation.write(time_s=round(simulation_time, 3), angle_rad=theta)\n    await task.progress(\"Replaying recorded observations\", done=i+1, total=len(rows))\n    await asyncio.sleep(0.6)\nawait task.notify(\"Sensor replay complete\")\nprint(\"Sensor replay complete\")\n",
+          "text": "Execute the following exact Python program using run_code with background=True and label=\"Watch the experiment\". Do not substitute shell execution. The tools/stream/task names are CLIO kernel bindings. Keep outputs in the workspace. Report only the genuine result or launch handle.\n\n\"\"\"Replay the burn observations and drive an illustrative transport model with their wind.\"\"\"\n\nimport asyncio\nimport json\n\nrows = json.loads(open(\"burn.json\", encoding=\"utf-8\").read())\nsensor = await stream.open(\n    \"burn-observations\", columns=[\"local_label\", \"particle_mean_ug_m3\", \"horizontal_speed_mean\"], window=18, flush_s=30\n)\nsimulation = None\ntravelled_m = 0.0\nfor i, row in enumerate(rows):\n    await sensor.write(\n        local_label=row[\"local_label\"], particle_mean_ug_m3=row[\"particle_mean_ug_m3\"],\n        horizontal_speed_mean=row[\"horizontal_speed_mean\"]\n    )\n    if i == 40:\n        simulation = await stream.open(\n            \"burn-transport\", columns=[\"local_label\", \"model_time_min\", \"travelled_km\"], window=18, flush_s=30\n        )\n    if simulation is not None:\n        # Piecewise constant, spatially uniform minute-mean wind. This is an\n        # illustrative travelled-distance model, not a dispersion prediction.\n        travelled_m += float(row[\"horizontal_speed_mean\"]) * 60.0\n        await simulation.write(local_label=row[\"local_label\"], model_time_min=i-39,\n                               travelled_km=travelled_m/1000.0)\n    await task.progress(\"Replaying recorded observations\", done=i + 1, total=len(rows))\n    await asyncio.sleep(0.6)\nawait task.notify(\"Sensor replay complete\")\nprint(\"Sensor replay complete\")\n",
           "agent_id": ""
         }
       ],

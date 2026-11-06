@@ -1,0 +1,560 @@
+{
+  "tasks": [
+    {
+      "schema_version": 1,
+      "handle": "task_63ac8a28612c47a8907fa913c71ea76b",
+      "kind": "Session",
+      "owner": {
+        "schema_version": 1,
+        "human_id": "human:clio_06840babdd864642b51f2000b5ff25f1",
+        "session_id": "sess_c7ccc20f1146",
+        "assignment_id": "task_63ac8a28612c47a8907fa913c71ea76b",
+        "parent_handle": null
+      },
+      "description": "Execute your scientific procedure on the retained workspace data. Keep all outputs inside this workspace.",
+      "description_reference": {
+        "schema_version": 1,
+        "session_id": "sess_c7ccc20f1146",
+        "scope": "_events/t/content/0f5545ca881b1f05bcf81296ecfb6dcb5c24cbd13ee62391703cb75a1dbbf8e8",
+        "content_id": "0f5545ca881b1f05bcf81296ecfb6dcb5c24cbd13ee62391703cb75a1dbbf8e8",
+        "sha256": "0f5545ca881b1f05bcf81296ecfb6dcb5c24cbd13ee62391703cb75a1dbbf8e8"
+      },
+      "description_missing": false,
+      "label": "Campaign: team",
+      "invocation_id": "msg_user_2a5c21ca954f",
+      "tool": "conversation",
+      "created_at": "2026-11-06T01:44:59.521453+00:00",
+      "updated_at": "2026-11-06T01:45:26.248052+00:00",
+      "backend": {
+        "schema_version": 1,
+        "owner": "conversation",
+        "server": "clio",
+        "auth_scope": "",
+        "session": "sess_c7ccc20f1146",
+        "task_id": "task_63ac8a28612c47a8907fa913c71ea76b",
+        "queue": "",
+        "execution_key": "",
+        "transport": "",
+        "placement": "local"
+      },
+      "raw_status": "completed",
+      "status": "completed",
+      "activity": "",
+      "progress": {
+        "schema_version": 1,
+        "message": "",
+        "completed": null,
+        "total": null,
+        "unit": "",
+        "output": null
+      },
+      "supported_actions": [
+        "get_result",
+        "message",
+        "restart"
+      ],
+      "cancellation_requested_at": null,
+      "connection_freshness": "unknown",
+      "settlement": "confirmed",
+      "recording": "confirmed",
+      "terminal_at": "2026-11-06T01:45:26.248052+00:00",
+      "result": {
+        "schema_version": 1,
+        "session_id": "sess_c7ccc20f1146",
+        "scope": "_events/t/content/b426da54da5e8afedc3efe71923279a0f88516e191ca622bcd72cd0ae880e87b",
+        "content_id": "b426da54da5e8afedc3efe71923279a0f88516e191ca622bcd72cd0ae880e87b",
+        "sha256": "b426da54da5e8afedc3efe71923279a0f88516e191ca622bcd72cd0ae880e87b"
+      },
+      "details": {
+        "schema_version": 1,
+        "session_id": "sess_c7ccc20f1146",
+        "scope": "_events/t/content/d936a3095cdc62f5820cd21fa8f59dc84b5a4f16d74fcd8201a6d93c9de46940",
+        "content_id": "d936a3095cdc62f5820cd21fa8f59dc84b5a4f16d74fcd8201a6d93c9de46940",
+        "sha256": "d936a3095cdc62f5820cd21fa8f59dc84b5a4f16d74fcd8201a6d93c9de46940"
+      },
+      "submission": null,
+      "backend_observation": null,
+      "deduplication_key": null,
+      "attention_episode": null,
+      "resource_id": null,
+      "fork_of": null
+    },
+    {
+      "schema_version": 1,
+      "handle": "task_4491c7b8d943827574ab80bcfade85782bc0d0b17ad6c36b2bb32eb934e65ac4",
+      "kind": "Subagent",
+      "owner": {
+        "schema_version": 1,
+        "human_id": "human:clio_06840babdd864642b51f2000b5ff25f1",
+        "session_id": "sess_719ed33bceaba533913cb0625017d376",
+        "assignment_id": "task_4491c7b8d943827574ab80bcfade85782bc0d0b17ad6c36b2bb32eb934e65ac4",
+        "parent_handle": "task_63ac8a28612c47a8907fa913c71ea76b"
+      },
+      "description": "Input:\n```json\n{}\n```",
+      "description_reference": {
+        "schema_version": 1,
+        "session_id": "sess_719ed33bceaba533913cb0625017d376",
+        "scope": "_events/t/content/8246a24d09853f0e573c15945a51f51b03e1a7275f95b45b0b33b8cc0179e39a",
+        "content_id": "8246a24d09853f0e573c15945a51f51b03e1a7275f95b45b0b33b8cc0179e39a",
+        "sha256": "8246a24d09853f0e573c15945a51f51b03e1a7275f95b45b0b33b8cc0179e39a"
+      },
+      "description_missing": false,
+      "label": "Check coverage",
+      "invocation_id": "flowrun_9464ecf8cafa686032b486ff:flow:key=coverage:78dbee3f4a72be81:0",
+      "tool": "conversation",
+      "created_at": "2026-11-06T01:45:01.806618+00:00",
+      "updated_at": "2026-11-06T01:45:03.237487+00:00",
+      "backend": {
+        "schema_version": 1,
+        "owner": "conversation",
+        "server": "clio",
+        "auth_scope": "",
+        "session": "sess_719ed33bceaba533913cb0625017d376",
+        "task_id": "task_4491c7b8d943827574ab80bcfade85782bc0d0b17ad6c36b2bb32eb934e65ac4",
+        "queue": "",
+        "execution_key": "",
+        "transport": "",
+        "placement": "local"
+      },
+      "raw_status": "completed",
+      "status": "completed",
+      "activity": "",
+      "progress": {
+        "schema_version": 1,
+        "message": "",
+        "completed": null,
+        "total": null,
+        "unit": "",
+        "output": null
+      },
+      "supported_actions": [
+        "get_result",
+        "message",
+        "restart"
+      ],
+      "cancellation_requested_at": null,
+      "connection_freshness": "unknown",
+      "settlement": "confirmed",
+      "recording": "confirmed",
+      "terminal_at": "2026-11-06T01:45:03.237487+00:00",
+      "result": {
+        "schema_version": 1,
+        "session_id": "sess_719ed33bceaba533913cb0625017d376",
+        "scope": "_events/t/content/d0c93a1b713dbaa0e309364da49264bfe1e375e319d4a621884bbb9286afa5c5",
+        "content_id": "d0c93a1b713dbaa0e309364da49264bfe1e375e319d4a621884bbb9286afa5c5",
+        "sha256": "d0c93a1b713dbaa0e309364da49264bfe1e375e319d4a621884bbb9286afa5c5"
+      },
+      "details": {
+        "schema_version": 1,
+        "session_id": "sess_719ed33bceaba533913cb0625017d376",
+        "scope": "_events/t/content/abf36628bf04cdeccc6180b43daebaa92c22a0c9e68e393e36e6559e4b5efa15",
+        "content_id": "abf36628bf04cdeccc6180b43daebaa92c22a0c9e68e393e36e6559e4b5efa15",
+        "sha256": "abf36628bf04cdeccc6180b43daebaa92c22a0c9e68e393e36e6559e4b5efa15"
+      },
+      "submission": null,
+      "backend_observation": null,
+      "deduplication_key": null,
+      "attention_episode": null,
+      "resource_id": null,
+      "fork_of": null
+    },
+    {
+      "schema_version": 1,
+      "handle": "task_a57cfbdcd7f753d7b32d2cbf68fa32a4a9a8ce5fe1609542153308616100f148",
+      "kind": "Subagent",
+      "owner": {
+        "schema_version": 1,
+        "human_id": "human:clio_06840babdd864642b51f2000b5ff25f1",
+        "session_id": "sess_d3ab5483cbaeec1ab7c5973390190677",
+        "assignment_id": "task_a57cfbdcd7f753d7b32d2cbf68fa32a4a9a8ce5fe1609542153308616100f148",
+        "parent_handle": "task_63ac8a28612c47a8907fa913c71ea76b"
+      },
+      "description": "Input:\n```json\n{}\n```",
+      "description_reference": {
+        "schema_version": 1,
+        "session_id": "sess_d3ab5483cbaeec1ab7c5973390190677",
+        "scope": "_events/t/content/8246a24d09853f0e573c15945a51f51b03e1a7275f95b45b0b33b8cc0179e39a",
+        "content_id": "8246a24d09853f0e573c15945a51f51b03e1a7275f95b45b0b33b8cc0179e39a",
+        "sha256": "8246a24d09853f0e573c15945a51f51b03e1a7275f95b45b0b33b8cc0179e39a"
+      },
+      "description_missing": false,
+      "label": "Align minutes",
+      "invocation_id": "flowrun_9464ecf8cafa686032b486ff:flow:key=alignment:fd7f1bb15a74b3f5:0",
+      "tool": "conversation",
+      "created_at": "2026-11-06T01:45:01.896137+00:00",
+      "updated_at": "2026-11-06T01:45:03.151282+00:00",
+      "backend": {
+        "schema_version": 1,
+        "owner": "conversation",
+        "server": "clio",
+        "auth_scope": "",
+        "session": "sess_d3ab5483cbaeec1ab7c5973390190677",
+        "task_id": "task_a57cfbdcd7f753d7b32d2cbf68fa32a4a9a8ce5fe1609542153308616100f148",
+        "queue": "",
+        "execution_key": "",
+        "transport": "",
+        "placement": "local"
+      },
+      "raw_status": "completed",
+      "status": "completed",
+      "activity": "",
+      "progress": {
+        "schema_version": 1,
+        "message": "",
+        "completed": null,
+        "total": null,
+        "unit": "",
+        "output": null
+      },
+      "supported_actions": [
+        "get_result",
+        "message",
+        "restart"
+      ],
+      "cancellation_requested_at": null,
+      "connection_freshness": "unknown",
+      "settlement": "confirmed",
+      "recording": "confirmed",
+      "terminal_at": "2026-11-06T01:45:03.151282+00:00",
+      "result": {
+        "schema_version": 1,
+        "session_id": "sess_d3ab5483cbaeec1ab7c5973390190677",
+        "scope": "_events/t/content/9bc820748dd615e9bd107295cd71fdd5a521aa8659622dc71f53cbf4b8d7b429",
+        "content_id": "9bc820748dd615e9bd107295cd71fdd5a521aa8659622dc71f53cbf4b8d7b429",
+        "sha256": "9bc820748dd615e9bd107295cd71fdd5a521aa8659622dc71f53cbf4b8d7b429"
+      },
+      "details": {
+        "schema_version": 1,
+        "session_id": "sess_d3ab5483cbaeec1ab7c5973390190677",
+        "scope": "_events/t/content/73f7ad515d468253d28d0f3990b3b44e4d1a4120a9add41d6c7a5528c21de6e7",
+        "content_id": "73f7ad515d468253d28d0f3990b3b44e4d1a4120a9add41d6c7a5528c21de6e7",
+        "sha256": "73f7ad515d468253d28d0f3990b3b44e4d1a4120a9add41d6c7a5528c21de6e7"
+      },
+      "submission": null,
+      "backend_observation": null,
+      "deduplication_key": null,
+      "attention_episode": null,
+      "resource_id": null,
+      "fork_of": null
+    },
+    {
+      "schema_version": 1,
+      "handle": "task_4ac94267a76386e9c82d89569720d6763c26840d7280d80fd9effa930cd4779a",
+      "kind": "Subagent",
+      "owner": {
+        "schema_version": 1,
+        "human_id": "human:clio_06840babdd864642b51f2000b5ff25f1",
+        "session_id": "sess_a962b9e824dcd31f16b5af0d3d51fad0",
+        "assignment_id": "task_4ac94267a76386e9c82d89569720d6763c26840d7280d80fd9effa930cd4779a",
+        "parent_handle": "task_63ac8a28612c47a8907fa913c71ea76b"
+      },
+      "description": "Analyze aligned-burn.json",
+      "description_reference": {
+        "schema_version": 1,
+        "session_id": "sess_a962b9e824dcd31f16b5af0d3d51fad0",
+        "scope": "_events/t/content/c22b2ddb61c6e8610ed44a6abb2baa6df9021d87acdbb29cd3308ce39424bdc8",
+        "content_id": "c22b2ddb61c6e8610ed44a6abb2baa6df9021d87acdbb29cd3308ce39424bdc8",
+        "sha256": "c22b2ddb61c6e8610ed44a6abb2baa6df9021d87acdbb29cd3308ce39424bdc8"
+      },
+      "description_missing": false,
+      "label": "Particles",
+      "invocation_id": "flowrun_9464ecf8cafa686032b486ff:subagent:key=particles:d95956127630cb12:0",
+      "tool": "conversation",
+      "created_at": "2026-11-06T01:45:04.181815+00:00",
+      "updated_at": "2026-11-06T01:45:24.775874+00:00",
+      "backend": {
+        "schema_version": 1,
+        "owner": "conversation",
+        "server": "clio",
+        "auth_scope": "",
+        "session": "sess_a962b9e824dcd31f16b5af0d3d51fad0",
+        "task_id": "task_4ac94267a76386e9c82d89569720d6763c26840d7280d80fd9effa930cd4779a",
+        "queue": "",
+        "execution_key": "",
+        "transport": "",
+        "placement": "local"
+      },
+      "raw_status": "completed",
+      "status": "completed",
+      "activity": "",
+      "progress": {
+        "schema_version": 1,
+        "message": "",
+        "completed": null,
+        "total": null,
+        "unit": "",
+        "output": null
+      },
+      "supported_actions": [
+        "get_result",
+        "message",
+        "restart"
+      ],
+      "cancellation_requested_at": null,
+      "connection_freshness": "unknown",
+      "settlement": "confirmed",
+      "recording": "confirmed",
+      "terminal_at": "2026-11-06T01:45:24.775874+00:00",
+      "result": {
+        "schema_version": 1,
+        "session_id": "sess_a962b9e824dcd31f16b5af0d3d51fad0",
+        "scope": "_events/t/content/843c845c443fd388e5d3ebcef85837ad4338a7b675ee2855a5c417b8b347da5b",
+        "content_id": "843c845c443fd388e5d3ebcef85837ad4338a7b675ee2855a5c417b8b347da5b",
+        "sha256": "843c845c443fd388e5d3ebcef85837ad4338a7b675ee2855a5c417b8b347da5b"
+      },
+      "details": {
+        "schema_version": 1,
+        "session_id": "sess_a962b9e824dcd31f16b5af0d3d51fad0",
+        "scope": "_events/t/content/a91d61000df8841d612aa73ce818ec7429c5496e8c8ce544b97d97bc99aaafe9",
+        "content_id": "a91d61000df8841d612aa73ce818ec7429c5496e8c8ce544b97d97bc99aaafe9",
+        "sha256": "a91d61000df8841d612aa73ce818ec7429c5496e8c8ce544b97d97bc99aaafe9"
+      },
+      "submission": null,
+      "backend_observation": null,
+      "deduplication_key": null,
+      "attention_episode": null,
+      "resource_id": null,
+      "fork_of": null
+    },
+    {
+      "schema_version": 1,
+      "handle": "task_4035f5949a9ce961e6e5749e074bdb6ade4950087bdd0aca396a8429be0cba7d",
+      "kind": "Subagent",
+      "owner": {
+        "schema_version": 1,
+        "human_id": "human:clio_06840babdd864642b51f2000b5ff25f1",
+        "session_id": "sess_7cfc5f1a3f27c96ec88babb89cfbbc7c",
+        "assignment_id": "task_4035f5949a9ce961e6e5749e074bdb6ade4950087bdd0aca396a8429be0cba7d",
+        "parent_handle": "task_63ac8a28612c47a8907fa913c71ea76b"
+      },
+      "description": "Analyze aligned-burn.json",
+      "description_reference": {
+        "schema_version": 1,
+        "session_id": "sess_7cfc5f1a3f27c96ec88babb89cfbbc7c",
+        "scope": "_events/t/content/c22b2ddb61c6e8610ed44a6abb2baa6df9021d87acdbb29cd3308ce39424bdc8",
+        "content_id": "c22b2ddb61c6e8610ed44a6abb2baa6df9021d87acdbb29cd3308ce39424bdc8",
+        "sha256": "c22b2ddb61c6e8610ed44a6abb2baa6df9021d87acdbb29cd3308ce39424bdc8"
+      },
+      "description_missing": false,
+      "label": "Wind / quality",
+      "invocation_id": "flowrun_9464ecf8cafa686032b486ff:subagent:key=wind:19abad395d2381ab:0",
+      "tool": "conversation",
+      "created_at": "2026-11-06T01:45:04.290965+00:00",
+      "updated_at": "2026-11-06T01:45:24.735116+00:00",
+      "backend": {
+        "schema_version": 1,
+        "owner": "conversation",
+        "server": "clio",
+        "auth_scope": "",
+        "session": "sess_7cfc5f1a3f27c96ec88babb89cfbbc7c",
+        "task_id": "task_4035f5949a9ce961e6e5749e074bdb6ade4950087bdd0aca396a8429be0cba7d",
+        "queue": "",
+        "execution_key": "",
+        "transport": "",
+        "placement": "local"
+      },
+      "raw_status": "completed",
+      "status": "completed",
+      "activity": "",
+      "progress": {
+        "schema_version": 1,
+        "message": "",
+        "completed": null,
+        "total": null,
+        "unit": "",
+        "output": null
+      },
+      "supported_actions": [
+        "get_result",
+        "message",
+        "restart"
+      ],
+      "cancellation_requested_at": null,
+      "connection_freshness": "unknown",
+      "settlement": "confirmed",
+      "recording": "confirmed",
+      "terminal_at": "2026-11-06T01:45:24.735116+00:00",
+      "result": {
+        "schema_version": 1,
+        "session_id": "sess_7cfc5f1a3f27c96ec88babb89cfbbc7c",
+        "scope": "_events/t/content/c9980ab1e0e1a0ed79ac6bd0c647423ce9f86affc3ed5f936d06160f34c71382",
+        "content_id": "c9980ab1e0e1a0ed79ac6bd0c647423ce9f86affc3ed5f936d06160f34c71382",
+        "sha256": "c9980ab1e0e1a0ed79ac6bd0c647423ce9f86affc3ed5f936d06160f34c71382"
+      },
+      "details": {
+        "schema_version": 1,
+        "session_id": "sess_7cfc5f1a3f27c96ec88babb89cfbbc7c",
+        "scope": "_events/t/content/af981b9338f4a10d491c59a335cbc2e2038719ea1088aaf1e1d7b39345951835",
+        "content_id": "af981b9338f4a10d491c59a335cbc2e2038719ea1088aaf1e1d7b39345951835",
+        "sha256": "af981b9338f4a10d491c59a335cbc2e2038719ea1088aaf1e1d7b39345951835"
+      },
+      "submission": null,
+      "backend_observation": null,
+      "deduplication_key": null,
+      "attention_episode": null,
+      "resource_id": null,
+      "fork_of": null
+    },
+    {
+      "schema_version": 1,
+      "handle": "task_a30296f4a33e84badbfb11dbfe571e976100dddf26d817d7af861e4088c967d5",
+      "kind": "Subagent",
+      "owner": {
+        "schema_version": 1,
+        "human_id": "human:clio_06840babdd864642b51f2000b5ff25f1",
+        "session_id": "sess_73c920fdb45b857f43454ac8600931dd",
+        "assignment_id": "task_a30296f4a33e84badbfb11dbfe571e976100dddf26d817d7af861e4088c967d5",
+        "parent_handle": "task_63ac8a28612c47a8907fa913c71ea76b"
+      },
+      "description": "Analyze aligned-burn.json",
+      "description_reference": {
+        "schema_version": 1,
+        "session_id": "sess_73c920fdb45b857f43454ac8600931dd",
+        "scope": "_events/t/content/c22b2ddb61c6e8610ed44a6abb2baa6df9021d87acdbb29cd3308ce39424bdc8",
+        "content_id": "c22b2ddb61c6e8610ed44a6abb2baa6df9021d87acdbb29cd3308ce39424bdc8",
+        "sha256": "c22b2ddb61c6e8610ed44a6abb2baa6df9021d87acdbb29cd3308ce39424bdc8"
+      },
+      "description_missing": false,
+      "label": "CO₂",
+      "invocation_id": "flowrun_9464ecf8cafa686032b486ff:subagent:key=carbon:208800dcd948b708:0",
+      "tool": "conversation",
+      "created_at": "2026-11-06T01:45:04.405271+00:00",
+      "updated_at": "2026-11-06T01:45:24.923526+00:00",
+      "backend": {
+        "schema_version": 1,
+        "owner": "conversation",
+        "server": "clio",
+        "auth_scope": "",
+        "session": "sess_73c920fdb45b857f43454ac8600931dd",
+        "task_id": "task_a30296f4a33e84badbfb11dbfe571e976100dddf26d817d7af861e4088c967d5",
+        "queue": "",
+        "execution_key": "",
+        "transport": "",
+        "placement": "local"
+      },
+      "raw_status": "completed",
+      "status": "completed",
+      "activity": "",
+      "progress": {
+        "schema_version": 1,
+        "message": "",
+        "completed": null,
+        "total": null,
+        "unit": "",
+        "output": null
+      },
+      "supported_actions": [
+        "get_result",
+        "message",
+        "restart"
+      ],
+      "cancellation_requested_at": null,
+      "connection_freshness": "unknown",
+      "settlement": "confirmed",
+      "recording": "confirmed",
+      "terminal_at": "2026-11-06T01:45:24.923526+00:00",
+      "result": {
+        "schema_version": 1,
+        "session_id": "sess_73c920fdb45b857f43454ac8600931dd",
+        "scope": "_events/t/content/87a6163cfd3623158b27ad3ed834e41d5b97ed8d06366a59a7ae1a6518baeab5",
+        "content_id": "87a6163cfd3623158b27ad3ed834e41d5b97ed8d06366a59a7ae1a6518baeab5",
+        "sha256": "87a6163cfd3623158b27ad3ed834e41d5b97ed8d06366a59a7ae1a6518baeab5"
+      },
+      "details": {
+        "schema_version": 1,
+        "session_id": "sess_73c920fdb45b857f43454ac8600931dd",
+        "scope": "_events/t/content/1d132dcd99799bdc8cb1bb56daf9749f5b65ca4703f8edbd30c94102a2d4d982",
+        "content_id": "1d132dcd99799bdc8cb1bb56daf9749f5b65ca4703f8edbd30c94102a2d4d982",
+        "sha256": "1d132dcd99799bdc8cb1bb56daf9749f5b65ca4703f8edbd30c94102a2d4d982"
+      },
+      "submission": null,
+      "backend_observation": null,
+      "deduplication_key": null,
+      "attention_episode": null,
+      "resource_id": null,
+      "fork_of": null
+    },
+    {
+      "schema_version": 1,
+      "handle": "task_751bbe561e93ad41ca2f43c4ad09008c2a19035b4d8334812a5ec98bfec1578e",
+      "kind": "Subagent",
+      "owner": {
+        "schema_version": 1,
+        "human_id": "human:clio_06840babdd864642b51f2000b5ff25f1",
+        "session_id": "sess_c846534f227d3325dfd07ca76062c83c",
+        "assignment_id": "task_751bbe561e93ad41ca2f43c4ad09008c2a19035b4d8334812a5ec98bfec1578e",
+        "parent_handle": "task_63ac8a28612c47a8907fa913c71ea76b"
+      },
+      "description": "Compare aligned channels jointly",
+      "description_reference": {
+        "schema_version": 1,
+        "session_id": "sess_c846534f227d3325dfd07ca76062c83c",
+        "scope": "_events/t/content/8d40f49e188bdf4e0cb96fedddb98ae95c1bb95904c920074e577861941a3201",
+        "content_id": "8d40f49e188bdf4e0cb96fedddb98ae95c1bb95904c920074e577861941a3201",
+        "sha256": "8d40f49e188bdf4e0cb96fedddb98ae95c1bb95904c920074e577861941a3201"
+      },
+      "description_missing": false,
+      "label": "Timing review",
+      "invocation_id": "flowrun_9464ecf8cafa686032b486ff:subagent:key=timing:b13d4ea80de5d7a7:0",
+      "tool": "conversation",
+      "created_at": "2026-11-06T01:45:25.456029+00:00",
+      "updated_at": "2026-11-06T01:45:26.034613+00:00",
+      "backend": {
+        "schema_version": 1,
+        "owner": "conversation",
+        "server": "clio",
+        "auth_scope": "",
+        "session": "sess_c846534f227d3325dfd07ca76062c83c",
+        "task_id": "task_751bbe561e93ad41ca2f43c4ad09008c2a19035b4d8334812a5ec98bfec1578e",
+        "queue": "",
+        "execution_key": "",
+        "transport": "",
+        "placement": "local"
+      },
+      "raw_status": "completed",
+      "status": "completed",
+      "activity": "",
+      "progress": {
+        "schema_version": 1,
+        "message": "",
+        "completed": null,
+        "total": null,
+        "unit": "",
+        "output": null
+      },
+      "supported_actions": [
+        "get_result",
+        "message",
+        "restart"
+      ],
+      "cancellation_requested_at": null,
+      "connection_freshness": "unknown",
+      "settlement": "confirmed",
+      "recording": "confirmed",
+      "terminal_at": "2026-11-06T01:45:26.034613+00:00",
+      "result": {
+        "schema_version": 1,
+        "session_id": "sess_c846534f227d3325dfd07ca76062c83c",
+        "scope": "_events/t/content/0ad76be4c3f21907867f1e0bf1c469f27edad2de3414ae6dd3289e66a546ee32",
+        "content_id": "0ad76be4c3f21907867f1e0bf1c469f27edad2de3414ae6dd3289e66a546ee32",
+        "sha256": "0ad76be4c3f21907867f1e0bf1c469f27edad2de3414ae6dd3289e66a546ee32"
+      },
+      "details": {
+        "schema_version": 1,
+        "session_id": "sess_c846534f227d3325dfd07ca76062c83c",
+        "scope": "_events/t/content/7ab61bf827c6718db0e3a13dac21c1fc76d1dec46360e944ee11e5b0de2e4202",
+        "content_id": "7ab61bf827c6718db0e3a13dac21c1fc76d1dec46360e944ee11e5b0de2e4202",
+        "sha256": "7ab61bf827c6718db0e3a13dac21c1fc76d1dec46360e944ee11e5b0de2e4202"
+      },
+      "submission": null,
+      "backend_observation": null,
+      "deduplication_key": null,
+      "attention_episode": null,
+      "resource_id": null,
+      "fork_of": null
+    }
+  ],
+  "total": 7,
+  "cursor": null,
+  "revision": 1274
+}

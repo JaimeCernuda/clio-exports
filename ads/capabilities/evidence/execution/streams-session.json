@@ -1,11 +1,11 @@
 {
-  "id": "sess_9d5c84fc7527",
-  "workspace_id": "ws_de799980ff25",
+  "id": "sess_6ec5484ff65e",
+  "workspace_id": "ws_3ec08f5f4f9b",
   "title": "Campaign: streams",
   "status": "idle",
-  "created_at": "2026-11-05T23:45:51.649211+00:00",
-  "updated_at": "2026-11-05T23:45:51.649211+00:00",
-  "last_interaction_at": "2026-11-05T23:45:51.649211+00:00",
+  "created_at": "2026-11-06T02:28:19.713922+00:00",
+  "updated_at": "2026-11-06T02:28:19.713922+00:00",
+  "last_interaction_at": "2026-11-06T02:28:19.713922+00:00",
   "message_count": 0,
   "parent_session_id": "",
   "model": {
@@ -30,7 +30,7 @@
       "add": [],
       "remove": []
     },
-    "agent_resolution": "333d034d095857baaafbdcc96ee4d7383ed737de34ef83be33e002c11619879d"
+    "agent_resolution": "38a95070b8da85ab4e08c685839730f19d7cb1382ae5d961c38778178669f829"
   },
   "archived": false
 }

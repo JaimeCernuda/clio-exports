@@ -1,29 +1,34 @@
-# 3. One question. A research team.
+# 3. Workflows as complex as your science.
 
-One research question can become coordinated specialist work.
+An investigation can compose flows, concurrent specialists and evidence-dependent follow-up.
 
-**Visible proof:** Three real concurrent child tasks analyze separate signals, one opens briefly, then their findings rejoin.
+**Visible proof:** Two preparation flows feed three concurrent specialists. Their joined results trigger a fourth specialist when peak times differ by more than one minute. The same graph persists through the finding.
 
-**Evidence:** `konza.json; science.json; execution/team-*.json`. See [campaign source ledger](../../SOURCES.md).
+**Evidence:** `konza.json; science.json; workflow.json; execution/team-*.json; product/plugins/campaign-methods/ai.iowarp.clio/flows/burn_workflow.py`. See [campaign source ledger](../../SOURCES.md).
 
-**Presentation limits:** Deterministic SDK specialist procedures; bootstrap is illustrative, not a causal finding.
+**Presentation limits:** Real deterministic SDK execution, not LLM-generated planning. The one-minute review threshold is an authored example policy. Bootstrap is illustrative; correlation and overlapping extremes do not establish causation. Native flow projections expose task calls/results, while the inspector's step labels condense the retained procedure source.
 
-**Difficult mechanic:** Peer cards must clear before the particle inspector expands, while other work stays visible.
+**Difficult mechanic:** Reframe the entire connected graph to inspect one nested flow; return without replacing nodes, then animate the join, decision and conditional branch continuously.
 
 ## Timed shots
 
-| Time    | Beat                    |
-| ------- | ----------------------- |
-| 0–4 s   | The question            |
-| 4–9 s   | Delegate                |
-| 9–14 s  | Specialists at work     |
-| 14–22 s | Inside a subagent       |
-| 22–27 s | Bring findings together |
-| 27–32 s | Build with us           |
+| Time | Beat |
+| --- | --- |
+| 0–4 s | The question |
+| 4–5 s | Start the investigation flow |
+| 5–8 s | Parallel preparation flows |
+| 8–10 s | Concurrent specialists |
+| 10–18 s | Inside a subagent flow |
+| 18–22 s | Join the results |
+| 22–29 s | Evidence triggers a follow-up |
+| 29–35 s | Combined finding |
+| 35–40 s | Build with us |
 
 ## On-screen copy
 
-- 8–12.5 s: Specialists work together, with distinct assignments.
+- 7.7–9.4 s: Parallel work. Shared dependencies.
+- 22.4–26.6 s: A timing mismatch starts a deeper comparison.
+- 31.1–34.1 s: Coordinate the whole investigation.
 
 ## Edit and render
 

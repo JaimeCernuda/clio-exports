@@ -210,7 +210,7 @@ try {
       "-b:a",
       "192k",
       "-af",
-      "loudnorm=I=-19:TP=-1.5:LRA=7",
+      "loudnorm=I=-19:TP=-1.5:LRA=7,volume=-2dB",
       "-color_range",
       "tv",
       "-colorspace",
@@ -274,6 +274,8 @@ try {
       fps: 60,
       frames: film.seconds * 60,
       status: "rendered-awaiting-review",
+      audioMastering:
+        "Original procedural source, loudnorm -19 LUFS then -2 dB headroom",
       sourceKey: currentKey,
     };
     manifest = manifest.filter(

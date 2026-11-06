@@ -20,3 +20,10 @@ wind = Subagent(
     plugins=["core", "campaign-methods"],
     flow="wind",
 )
+
+timing = Subagent(
+    "timing",
+    prompt="Compare aligned signals when the investigation requests a timing review.",
+    plugins=["core", "campaign-methods"],
+    flow="timing-review",
+)

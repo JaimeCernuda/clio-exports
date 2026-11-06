@@ -1,0 +1,53 @@
+{
+  "run_id": "flowrun_33560b5d84cd7e2af46bbab9",
+  "flow": "burn-coverage",
+  "status": "completed",
+  "depth": 1,
+  "max_concurrency": 0,
+  "root_handle": "task_4491c7b8d943827574ab80bcfade85782bc0d0b17ad6c36b2bb32eb934e65ac4",
+  "entries": 3,
+  "view": null,
+  "calls": [],
+  "questions": [],
+  "events": [],
+  "outcome": null,
+  "result": {
+    "answer": "Checked 60 minute records.",
+    "source_minutes": 60,
+    "valid_minutes": {
+      "particle_mean_ug_m3": 60,
+      "CO2MFd_mean": 60,
+      "horizontal_speed_mean": 60
+    },
+    "excluded_wind_records": 256
+  },
+  "execution": [
+    {
+      "id": "run:start",
+      "label": "Started",
+      "status": "completed",
+      "after": []
+    },
+    {
+      "id": "run:result",
+      "label": "Result",
+      "status": "completed",
+      "after": [
+        "run:start"
+      ]
+    }
+  ],
+  "usage": {
+    "calls": {},
+    "models": [],
+    "windows": [],
+    "estimated_sessions": 0
+  },
+  "timings": {
+    "task_4491c7b8d943827574ab80bcfade85782bc0d0b17ad6c36b2bb32eb934e65ac4": {
+      "created_at": "2026-11-06T01:45:01.806618+00:00",
+      "updated_at": "2026-11-06T01:45:03.237487+00:00",
+      "terminal_at": "2026-11-06T01:45:03.237487+00:00"
+    }
+  }
+}

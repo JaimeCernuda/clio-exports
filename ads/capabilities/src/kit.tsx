@@ -11,6 +11,7 @@ import {
   Maximize2,
   Plus,
   Workflow,
+  Wrench,
 } from "lucide-react";
 import type { Film } from "./registry";
 import { mix, phase, pointerAt, type PointerKey } from "./motion";
@@ -397,12 +398,14 @@ export function Button({
 export function ToolRow({
   text,
   done = false,
+  ready = false,
   t,
   sub,
   style = {},
 }: {
   text: string;
   done?: boolean;
+  ready?: boolean;
   t: number;
   sub?: string;
   style?: CSSProperties;
@@ -418,7 +421,9 @@ export function ToolRow({
         ...style,
       }}
     >
-      {done ? (
+      {ready ? (
+        <Wrench size={24} color={muted} />
+      ) : done ? (
         <Check size={24} color="#248a72" />
       ) : (
         <LoaderCircle

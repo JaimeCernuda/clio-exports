@@ -23,12 +23,12 @@ replay remains a separate system under `motion/native/` in the parent repo.
 | --- | --- | --- |
 | Method | `beam.json`, `execution/method-*.json`, campaign BeamReview flow | Real Euler–Bernoulli comparison and review. The original 4 mm candidate deflects 3.571 mm; 6.5 mm gives 0.832 mm under a 1 mm limit. This is an analytical beam model, not a finite-element solver or Slurm run. |
 | Hypothesis | `science.json`, `science-log.json`, `execution/hypothesis-*.json` | Ideal nonlinear pendulum period; sourced native science-log entries and refuted hypothesis. Quadrature is independently cross-checked against velocity-Verlet trajectories. At 60°, 2.153242 s vs 2.006409 s small-angle prediction, +7.3182%. |
-| Team | `konza.json`, `science.json`, `execution/team-*.json` | Actual April 15, 2022 minute means and three completed CLIO child tasks whose execution intervals overlap. The uncertainty calculation is an illustrative seeded bootstrap of minute means, not an autocorrelation-aware scientific confidence claim. |
+| Team | `konza.json`, `science.json`, `workflow.json`, `execution/team-*.json` | Two completed preparation flows, three overlapping specialist tasks and a fourth conditional timing review. Peaks at 16:41 and 16:43 CDT trigger the authored >1 minute policy; 4 of the top 10 minutes overlap and paired correlation is 0.437738. Native flow projections and task timestamps retain dependencies. The bootstrap is illustrative, not an autocorrelation-aware confidence claim. |
 | Interface | `alta.json`, `science.json`, saved Alta native export | Target winter 2023–24 vs matched 17 complete winters and all available complete months. Means, quartiles and ranges all follow the selected cohort. Unselected months remain faint context in the chart and leave the table. |
 | Provenance | `boundary.geojson`, `tahoe.json`, `science.json` | The archived TRPA polygon discovered through NDP. Independent WGS84 geodesic area 497.727861 km². It is an area enclosed by a mapped boundary, not a measurement of current water extent. |
 | Tools | `genomics.json`, `execution/tools-*.json`, count-analysis kernel | Public CSC HDF5, actual programmatic dispatch of three matrix-component reads plus metadata read. 2,753 cell columns, 7,441,273 counts, median 2,538 counts/cell. Histogram is independently derived from all cell totals. |
-| Selection | `hurricane.json`, `atlantic-basemap.json` | Retained NOAA Dorian observations from CLIO's documentation dataset. Geographic selection contains 12 rows; peak 160 kt at Sept 1 16:40 and 18:00 UTC. Natural Earth source is pinned by immutable commit and SHA-256; regional clipping retains real coastlines. |
-| Streams | `execution/stream-snapshots.json`, `execution/*-final.json`, `streams-*.json` | A real Code task launched in background, rolling 18-row stream windows, live table queries and a second agent request that reads the same open stream. 60 sensor-replay writes and 20 numerical-simulation writes; both stop when the script finishes. |
+| Selection | `hurricane.json`, `atlantic-basemap.json`, `execution/selection-*.json` | NOAA Dorian geographic selection contains 12 rows; a real PTC program reads them through the scientific tool and computes 160 kt at Sept 1 16:40 and 18:00 UTC. Natural Earth source is pinned by immutable commit and SHA-256; regional clipping retains real coastlines. |
+| Streams | `science.json`, `stream-query.json`, `execution/stream-snapshots.json`, `execution/burn-*-final.json`, `streams-*.json` | A fresh isolated workspace prevents prior stream rows leaking into the proof. Real background Code writes 60 burn observations and 20 wind-driven model rows. A second agent request reads the still-open observation stream. Each retains 18 rows and stops at completion. The model integrates the last twenty minute-mean wind speeds × 60 s: final travelled distance 7.676265 km. This is illustrative kinematics, not a dispersion forecast or geographic displacement. |
 
 Original exported archives and their hashes remain unchanged. Bounded derivatives
 are committed here, with original session/archive identities in `sources.json`.
@@ -67,4 +67,7 @@ API receipts establish its live data access, not a separate live-browser test.
 Recent rows live in backend memory. Saved snapshots are versioned artifacts.
 The film does not claim unlimited retention, restart-surviving tasks, or a separate
 persistent context-engine storage tier. Sensor data is explicitly a replay;
-the simulation is a numerical source, not physical sensor measurements.
+the simulation uses those same recorded wind observations. It assumes uniform
+speed over each minute and space; mixing, deposition and geographic trajectories
+are outside this illustrative model. The former unrelated pendulum stream was
+rejected by the user and is not part of the delivered story.
