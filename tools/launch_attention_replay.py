@@ -15,8 +15,10 @@ from typing import Any, cast
 
 from audit_attention_bundle import audit_bundle
 
-UI_REVISION = "f333d67d490174d2f2b82d7c0671e08ee0943ceb"
-# The same boundary-trimming fix was published on epic-hopper as 2ff404f.
+# gact-tui ccr-f3f98215-lvwhes: heat painted per source line on the conversation (default),
+# without the answer-item chips. The film emulator keeps its own f333d67d pin.
+UI_REVISION = "55264acd3814f78681785093c83b16d389ddc7c0"
+# The boundary-trimming fix 2ff404f is in clio-agent develop (#1927).
 # c0d2557 is the equivalent isolated checkout used for the original local demo.
 BACKEND_FIXES = (
     "2ff404fbe376d0fc39dc34e79ff569c9dfeb3c60",
@@ -94,8 +96,8 @@ def checkout_revision(root: Path, *, frontend: bool) -> str:
         for fix in BACKEND_FIXES
     ):
         raise ValueError(
-            "Backend needs the transcript-offset fix 2ff404f from "
-            "claude/epic-hopper-6s2vhn; fetch its history or use a qualified checkout"
+            "Backend needs the transcript-offset fix 2ff404f, in clio-agent develop; "
+            "fetch its history or use a qualified checkout"
         )
     return revision
 
