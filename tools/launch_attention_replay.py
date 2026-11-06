@@ -15,9 +15,9 @@ from typing import Any, cast
 
 from audit_attention_bundle import audit_bundle
 
-# gact-tui ccr-f3f98215-lvwhes: heat painted per source line on the conversation (default),
-# without the answer-item chips. The film emulator keeps its own f333d67d pin.
-UI_REVISION = "55264acd3814f78681785093c83b16d389ddc7c0"
+# gact-tui ccr-f3f98215-lvwhes: heat painted per source line (default), per first-level
+# word or per token on the conversation, without the answer-item chips. The film emulator keeps its own f333d67d pin.
+UI_REVISION = "939b5ed4ad247d62681701aecc696495b9cc390c"
 # The boundary-trimming fix 2ff404f is in clio-agent develop (#1927).
 # c0d2557 is the equivalent isolated checkout used for the original local demo.
 BACKEND_FIXES = (

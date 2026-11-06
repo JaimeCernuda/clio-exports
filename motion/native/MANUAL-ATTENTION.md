@@ -17,7 +17,7 @@ Use isolated, clean checkouts rather than changing an active development branch:
 | Component | Required source | Setup |
 | --- | --- | --- |
 | clio-agent backend | Contains `2ff404fbe376d0fc39dc34e79ff569c9dfeb3c60`: branch `develop` (#1927) or `ccr-f3f98215-lvwhes` | Python 3.12, `uv sync --frozen --extra dev` |
-| gact-tui frontend | Exactly `55264acd3814f78681785093c83b16d389ddc7c0` (branch `ccr-f3f98215-lvwhes`: heat per source line on the conversation) | In `web/`: `pnpm install --frozen-lockfile --ignore-scripts` |
+| gact-tui frontend | Exactly `939b5ed4ad247d62681701aecc696495b9cc390c` (branch `ccr-f3f98215-lvwhes`: heat per source line on the conversation) | In `web/`: `pnpm install --frozen-lockfile --ignore-scripts` |
 | clio-exports launcher | This repository | `uv sync --frozen`; Node.js on PATH |
 | CLIO branding | Directory containing `clio/brand.json` | Normally the backend checkout's `branding/` |
 
@@ -26,7 +26,7 @@ For example, from this repository on D:, if dedicated checkouts do not exist:
 ```powershell
 git clone --branch ccr-f3f98215-lvwhes https://github.com/iowarp/clio-agent.git motion/.native-ui/manual-agent
 git clone --branch ccr-f3f98215-lvwhes https://github.com/iowarp/gact-tui.git motion/.native-ui/manual-ui
-git -C motion/.native-ui/manual-ui switch --detach 55264acd3814f78681785093c83b16d389ddc7c0
+git -C motion/.native-ui/manual-ui switch --detach 939b5ed4ad247d62681701aecc696495b9cc390c
 ```
 
 Run dependency setup in each checkout. Set TEMP, TMP and TMPDIR to D: first;
