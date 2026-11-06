@@ -68,7 +68,7 @@ function manualAttentionProjection() {
         return (
           `import { RecordedOpalPrompt } from ${JSON.stringify(path.join(here, "recorded-prompt.tsx").replaceAll("\\", "/"))};\n` +
           replaceRequired(
-            "<SentReferenceMessage text={block.text} />",
+            "<SentReferenceMessage\n          inlineReferences={inlineReferences}\n          onOpenReference={onOpenReference}\n          text={block.text}\n        />",
             "<RecordedOpalPrompt text={block.text} />",
           )
         );
