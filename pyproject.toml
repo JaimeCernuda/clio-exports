@@ -3,7 +3,7 @@ name = "clio-exports-motion"
 version = "0.1.0"
 description = "Source-linked session selection for editable CLIO product films"
 requires-python = ">=3.11"
-dependencies = ["ijson>=3.4,<4"]
+dependencies = ["ijson>=3.4,<4", "tokenizers>=0.21,<1"]
 
 [dependency-groups]
 dev = [
