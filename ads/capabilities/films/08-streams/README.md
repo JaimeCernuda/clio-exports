@@ -12,16 +12,16 @@ A running experiment can feed both an agent and a live view.
 
 ## Timed shots
 
-| Time | Beat |
-| --- | --- |
-| 0–4 s | A changing signal |
-| 4–10 s | Start background work |
-| 10–17 s | Live context |
-| 17–23 s | Ask without restarting |
-| 23–28 s | A live dashboard |
+| Time    | Beat                                  |
+| ------- | ------------------------------------- |
+| 0–4 s   | A changing signal                     |
+| 4–10 s  | Start background work                 |
+| 10–17 s | Live context                          |
+| 17–23 s | Ask without restarting                |
+| 23–28 s | A live dashboard                      |
 | 28–32 s | Wind readings drive a transport model |
-| 32–35 s | A meaningful notification |
-| 35–40 s | Build with us |
+| 32–35 s | A meaningful notification             |
+| 35–40 s | Build with us                         |
 
 ## On-screen copy
 

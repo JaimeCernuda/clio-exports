@@ -12,14 +12,14 @@ An answer can be a tool you can use.
 
 ## Timed shots
 
-| Time | Beat |
-| --- | --- |
-| 0–4 s | A usable answer |
-| 4–9 s | Build the view |
-| 9–15 s | Change baseline |
+| Time    | Beat            |
+| ------- | --------------- |
+| 0–4 s   | A usable answer |
+| 4–9 s   | Build the view  |
+| 9–15 s  | Change baseline |
 | 15–21 s | Focus on months |
-| 21–25 s | Export |
-| 25–30 s | Build with us |
+| 21–25 s | Export          |
+| 25–30 s | Build with us   |
 
 ## On-screen copy
 

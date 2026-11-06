@@ -12,15 +12,15 @@ Ask a question scoped to selected scientific records.
 
 ## Timed shots
 
-| Time | Beat |
-| --- | --- |
-| 0–4 s | Point to evidence |
-| 4–10 s | Select observations |
-| 10–15 s | Reference this |
-| 15–20 s | Ask a precise question |
-| 20–24 s | Read and analyse the selection |
+| Time    | Beat                              |
+| ------- | --------------------------------- |
+| 0–4 s   | Point to evidence                 |
+| 4–10 s  | Select observations               |
+| 10–15 s | Reference this                    |
+| 15–20 s | Ask a precise question            |
+| 20–24 s | Read and analyse the selection    |
 | 24–29 s | An answer grounded in the records |
-| 29–34 s | Build with us |
+| 29–34 s | Build with us                     |
 
 ## On-screen copy
 

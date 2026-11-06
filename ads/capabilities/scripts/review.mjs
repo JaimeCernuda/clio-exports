@@ -152,11 +152,27 @@ for (const film of chosen) {
   });
   console.log("ENCODE CHECKS", film.id);
 }
-await fs.writeFile(
-  path.join(
-    root,
-    "review",
-    draft ? "draft-technical.json" : "final-technical.json",
-  ),
-  JSON.stringify(records, null, 2) + "\n",
+const report = path.join(
+  root,
+  "review",
+  draft ? "draft-technical.json" : "final-technical.json",
 );
+let previous = [];
+try {
+  previous = JSON.parse(await fs.readFile(report, "utf8"));
+} catch (error) {
+  if (error.code !== "ENOENT") throw error;
+}
+const retained = previous.filter(
+  (r) =>
+    !records.some((n) => n.id === r.id) &&
+    manifest.some(
+      (f) => f.id === r.id && f.width === r.width && f.sha256 === r.sha256,
+    ),
+);
+const combined = [...retained, ...records].sort(
+  (a, b) =>
+    manifest.find((f) => f.id === a.id).number -
+    manifest.find((f) => f.id === b.id).number,
+);
+await fs.writeFile(report, JSON.stringify(combined, null, 2) + "\n");

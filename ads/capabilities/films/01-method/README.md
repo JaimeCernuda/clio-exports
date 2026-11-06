@@ -12,14 +12,14 @@ Your procedure can run, review its result and revise the relevant step.
 
 ## Timed shots
 
-| Time | Beat |
-| --- | --- |
-| 0–4 s | The method |
-| 4–10 s | A flow takes shape |
-| 10–17 s | Execute |
-| 17–23 s | Review and revise |
-| 23–27 s | Updated result |
-| 27–32 s | Build with us |
+| Time    | Beat               |
+| ------- | ------------------ |
+| 0–4 s   | The method         |
+| 4–10 s  | A flow takes shape |
+| 10–17 s | Execute            |
+| 17–23 s | Review and revise  |
+| 23–27 s | Updated result     |
+| 27–32 s | Build with us      |
 
 ## On-screen copy
 

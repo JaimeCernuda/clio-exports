@@ -24,6 +24,7 @@ for (const f of movies) {
     review.status !== "ready-for-editorial-review"
   )
     throw new Error(`No matching delivery review: ${f.id}`);
+  f.status = review.status;
   const story = await read(
     `films/${String(f.number).padStart(2, "0")}-${f.id}/storyboard.json`,
   );

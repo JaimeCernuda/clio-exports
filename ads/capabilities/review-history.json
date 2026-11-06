@@ -701,6 +701,151 @@
         ]
       },
       "status": "ready-for-editorial-review"
+    },
+    {
+      "id": "selection",
+      "file": "07-selection.mp4",
+      "sha256": "4880f00377dc169d30abc094b8bb74fb1c4e9bb369ffd10aa07ab947a8c6cf32",
+      "stage": "delivery",
+      "technical": {
+        "id": "selection",
+        "file": "07-selection.mp4",
+        "sha256": "4880f00377dc169d30abc094b8bb74fb1c4e9bb369ffd10aa07ab947a8c6cf32",
+        "frames": 2040,
+        "duration": 34,
+        "width": 1920,
+        "height": 1080,
+        "fullDecode": "passed",
+        "audio": "present",
+        "audioMetrics": {
+          "meanDb": -25.6,
+          "peakDb": -2.8
+        },
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 15,
+        "closeStructuralSimilarity": 0.999141,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "coverage": "Full-file decode, frame count, audio-level, QR and stationary-close checks; time-ordered 1 fps whole-film and 12 fps transition inspection; source geometry and authored-control checks. Browser playback exercised separately. Continuous human audiovisual viewing and subjective sound-mix approval are not claimed.",
+      "findings": [
+        {
+          "at": "8.5–27.5",
+          "kind": "rendering",
+          "finding": "SVG place names flickered.",
+          "correction": "DOM text replaces SVG names; all four labels checked in every encoded frame of the settled interval.",
+          "state": "corrected"
+        },
+        {
+          "at": "18.8–24.1",
+          "kind": "story",
+          "finding": "The answer arrived without visible analysis; introductory copy was vague.",
+          "correction": "Ask with selected data; read records, compute the maximum, animate the collapse, then show the answer. Real PTC receipt retained.",
+          "state": "corrected"
+        },
+        {
+          "at": "0–5",
+          "kind": "copy",
+          "finding": "User requested the exact headline Ask your data.",
+          "correction": "The headline, registry, storyboard, guide and rendered film now say Ask your data.",
+          "state": "corrected"
+        }
+      ],
+      "sourceChecks": {
+        "campaignPythonTests": 20,
+        "campaignNodeTests": 11,
+        "repositoryPythonTests": 121,
+        "skipped": 0
+      },
+      "encodedLabelCheck": {
+        "file": "07-selection.mp4",
+        "sha256": "4880f00377dc169d30abc094b8bb74fb1c4e9bb369ffd10aa07ab947a8c6cf32",
+        "interval": [
+          8.5,
+          27.5
+        ],
+        "framesPerLabel": 1140,
+        "records": [
+          {
+            "name": "FLORIDA",
+            "frames": 1140,
+            "minInk": 439,
+            "medianInk": 442,
+            "maxInk": 445
+          },
+          {
+            "name": "CUBA",
+            "frames": 1140,
+            "minInk": 303,
+            "medianInk": 304,
+            "maxInk": 305
+          },
+          {
+            "name": "THE BAHAMAS",
+            "frames": 1140,
+            "minInk": 735,
+            "medianInk": 739,
+            "maxInk": 741
+          },
+          {
+            "name": "ATLANTIC",
+            "frames": 1140,
+            "minInk": 469,
+            "medianInk": 469,
+            "maxInk": 471
+          }
+        ]
+      },
+      "status": "ready-for-editorial-review"
+    },
+    {
+      "id": "streams",
+      "file": "08-streams.mp4",
+      "sha256": "354d0df0e6c0481c349c5312611d827d5eed79f6cb7e7036468ffaad425855ec",
+      "stage": "delivery",
+      "technical": {
+        "id": "streams",
+        "file": "08-streams.mp4",
+        "sha256": "354d0df0e6c0481c349c5312611d827d5eed79f6cb7e7036468ffaad425855ec",
+        "frames": 2400,
+        "duration": 40,
+        "width": 1920,
+        "height": 1080,
+        "fullDecode": "passed",
+        "audio": "present",
+        "audioMetrics": {
+          "meanDb": -25.3,
+          "peakDb": -3
+        },
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 348,
+        "closeStructuralSimilarity": 0.996587,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "coverage": "Full-file decode, frame count, audio-level, QR and stationary-close checks; time-ordered 1 fps whole-film and 12 fps transition inspection; source geometry and authored-control checks. Browser playback exercised separately. Continuous human audiovisual viewing and subjective sound-mix approval are not claimed.",
+      "findings": [
+        {
+          "at": "17–33",
+          "kind": "source fidelity",
+          "finding": "Query time, rolling window and simulation view must share the source clock.",
+          "correction": "Anchored the answer to 16:16, kept both plots on the same 18-row window, and verified native background completion and notification.",
+          "state": "corrected"
+        },
+        {
+          "at": "27–33",
+          "kind": "story",
+          "finding": "Switching from burn observations to an unrelated pendulum had no scientific narrative.",
+          "correction": "A fresh background run uses the burn wind to drive an illustrative transport model. Original observations remain visible; model input and output join the same context and dashboard. Dense encoded review confirms the connected transition.",
+          "state": "corrected"
+        }
+      ],
+      "sourceChecks": {
+        "campaignPythonTests": 20,
+        "campaignNodeTests": 11,
+        "repositoryPythonTests": 121,
+        "skipped": 0
+      },
+      "status": "ready-for-editorial-review",
+      "sourceModel": "Minute-mean speed × 60 s, last 20 burn rows; no mixing/deposition/geographic displacement claim."
     }
   ]
 }

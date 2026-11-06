@@ -2,6 +2,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { films } from "../src/registry.ts";
+import { format } from "prettier";
 const root = path.resolve(import.meta.dirname, "..");
 const notes = {
   method: [
@@ -102,6 +103,11 @@ for (const film of films) {
   await writeFile(
     path.join(folder, "README.md"),
     `# ${film.number}. ${film.title}\n\n${takeaway}\n\n**Visible proof:** ${proof}\n\n**Evidence:** \`${evidence}\`. See [campaign source ledger](../../SOURCES.md).\n\n**Presentation limits:** ${limits}\n\n**Difficult mechanic:** ${hardest}\n\n## Timed shots\n\n| Time | Beat |\n| --- | --- |\n${story.shots.map((s) => `| ${s.at}–${s.until} s | ${s.label} |`).join("\n")}\n\n## On-screen copy\n\n${copy.map((c) => `- ${c.at}–${c.until} s: ${c.text}`).join("\n")}\n\n## Edit and render\n\n\`scene.tsx\` is the editable composition; \`storyboard.json\` is its shot/copy handoff.\nFrom the campaign root, run \`node render.mjs ${film.id} --draft\`, inspect, revise,\nthen \`node render.mjs ${film.id}\` and \`node scripts/review.mjs ${film.id}\`.\nThe latest local output is \`../../output/${String(film.number).padStart(2, "0")}-${film.id}.mp4\`.\nReview findings belong in [the campaign review history](../../REVIEW.md).\n`,
+  );
+  const guide = path.join(folder, "README.md");
+  await writeFile(
+    guide,
+    await format(await readFile(guide, "utf8"), { parser: "markdown" }),
   );
 }
 console.log("Synchronized eight film guides and storyboards");

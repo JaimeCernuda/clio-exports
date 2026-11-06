@@ -12,17 +12,17 @@ An investigation can compose flows, concurrent specialists and evidence-dependen
 
 ## Timed shots
 
-| Time | Beat |
-| --- | --- |
-| 0–4 s | The question |
-| 4–5 s | Start the investigation flow |
-| 5–8 s | Parallel preparation flows |
-| 8–10 s | Concurrent specialists |
-| 10–18 s | Inside a subagent flow |
-| 18–22 s | Join the results |
+| Time    | Beat                          |
+| ------- | ----------------------------- |
+| 0–4 s   | The question                  |
+| 4–5 s   | Start the investigation flow  |
+| 5–8 s   | Parallel preparation flows    |
+| 8–10 s  | Concurrent specialists        |
+| 10–18 s | Inside a subagent flow        |
+| 18–22 s | Join the results              |
 | 22–29 s | Evidence triggers a follow-up |
-| 29–35 s | Combined finding |
-| 35–40 s | Build with us |
+| 29–35 s | Combined finding              |
+| 35–40 s | Build with us                 |
 
 ## On-screen copy
 
