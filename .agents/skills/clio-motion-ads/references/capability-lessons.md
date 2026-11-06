@@ -71,3 +71,31 @@ The campaign supplies [source receipts](../../../../ads/capabilities/SOURCES.md)
 [reproduction commands](../../../../ads/capabilities/REPRODUCE.md), independent
 scientific/integration tests, an input-hash-checked renderer, and per-film storyboards.
 Render time must not be confused with the original recorded event clock.
+
+## Website deliverables are separate outputs
+
+The user expects both social ads and website-ready short/long loops. Finishing the
+movies does not finish that handoff. Inventory these outputs explicitly at kickoff.
+The capability campaign uses two website placements per film, grouped under
+`ads/capabilities/website/<capability>/<short|long>/`, each with its own source,
+deployment media, poster and embed. Existing composability loops stay intact.
+
+Render editable product scenes directly; omit the ad's hook, brand overlay, captions
+and close. Reframe for the placement and measure controls after that transform:
+cropping a 16:9 ad can slice UI or hide the cursor's target. A short loop shows a
+complete useful action; a longer one preserves its surrounding causes and results.
+Do not reverse scientific work to produce a seamless repeat. Hold the final state
+and softly reset. Test the actual GIF palette and loop join as well as the MP4.
+
+Supply the requested GIF plus lighter WebM/MP4 and a reduced-motion poster. Keep
+natural aspect ratios in embeds, pause offscreen playback, and retain meaningful
+source labels and scientific caveats. Gallery downloads and a validated handoff ZIP
+are part of delivery; documentation alone is not an output.
+
+Animate a carried result on the same coordinates as its visible route. In the
+method cut, the result used two different vertical positions while the return
+line had one; it detached before and after revision. Share the lane and step
+centers, test the complete route, then measure the rendered result center after
+website scaling. Crop tests that only inspect buttons cannot catch this error.
+Start a short excerpt after obsolete launch controls have completely retired;
+their last faded frames can otherwise linger in an apparently unrelated corner.

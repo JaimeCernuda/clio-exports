@@ -33,6 +33,11 @@ Read [ART-DIRECTION.md](ART-DIRECTION.md), [SOURCES.md](SOURCES.md),
 [REPRODUCE.md](REPRODUCE.md), and [REVIEW.md](REVIEW.md) before revising the campaign.
 The existing composability ad remains separate and unchanged.
 
+The accompanying [website collection](website/README.md) has a short loop and a
+longer showcase per capability: sixteen GIFs, matching lightweight videos, posters,
+editable entrypoints and integration examples. Review at
+<http://127.0.0.1:3381/website/>. These omit the advertisements' branding and bookends.
+
 ## Build
 
 Use Node 22+ with native TypeScript stripping (or a newer compatible Node), npm,

@@ -13,8 +13,9 @@ import {
   Node,
   Panel,
 } from "../../src/kit";
-import { mix, phase, pointerAt } from "../../src/motion";
+import { mix, phase } from "../../src/motion";
 import beam from "../../evidence/beam.json";
+import { executionRail, methodPayload, revisionRail } from "./route";
 
 export function MethodScene({ t }: { t: number }) {
   const unfold = phase(t, 4.2, 1.1),
@@ -25,18 +26,7 @@ export function MethodScene({ t }: { t: number }) {
     ["Check", "Deflection ≤ 1.0 mm"],
     ["Review", "Accept or revise"],
   ];
-  const payload = pointerAt(t, [
-    { at: 10, x: 217, y: 535 },
-    { at: 12.5, x: 622, y: 535 },
-    { at: 14, x: 1027, y: 535 },
-    { at: 16, x: 1432, y: 535 },
-    { at: 17.2, x: 1432, y: 535 },
-    { at: 18, x: 1432, y: 460 },
-    { at: 20, x: 622, y: 460 },
-    { at: 20.6, x: 622, y: 535 },
-    { at: 22.5, x: 1027, y: 535 },
-    { at: 27, x: 1027, y: 535 },
-  ]);
+  const payload = methodPayload(t);
   const valueOpacity =
     t < 22.05 ? 1 - phase(t, 21.7, 0.3) : phase(t, 22.05, 0.35);
   const shown = t < 22.05 ? beam.initial[2] : beam.selected;
@@ -57,13 +47,15 @@ export function MethodScene({ t }: { t: number }) {
         </div>
         <svg width="1650" height="540" style={abs(0, 85)}>
           <Edge d="M240 200 H1400" t={t} at={6.2} />
+          <Edge d={executionRail} t={t} at={10} color="#d9bca6" width={3} />
           <Edge
-            d="M1435 245 V345 Q1435 375 1405 375 H680 Q650 375 650 345 V245"
+            d="M622.5 289 V375 M1027.5 289 V375"
             t={t}
-            at={17}
-            color="#c26d30"
-            width={4}
+            at={10}
+            color="#d9bca6"
+            width={3}
           />
+          <Edge d={revisionRail} t={t} at={17} color="#c26d30" width={4} />
         </svg>
         {items.map(([title, detail], i) => {
           const x = mix(65, 65 + i * 405, unfold),
@@ -120,12 +112,14 @@ export function MethodScene({ t }: { t: number }) {
             compare → simulate → check → review
           </div>
           <div
+            data-review="result-payload"
             style={{
               position: "absolute",
               left: payload.x - 60 - 200,
-              top: payload.y - 542 - 50,
+              top: payload.y - 542 - 52.5,
               width: 400,
               height: 105,
+              boxSizing: "border-box",
               padding: 17,
               border: "1px solid #edc5a2",
               borderRadius: 18,
@@ -179,7 +173,13 @@ export function MethodScene({ t }: { t: number }) {
               Run flow
             </Button>
           </div>
-          <div style={{ position: "absolute", right: 0, opacity: update }}>
+          <div
+            style={{
+              position: "absolute",
+              right: 0,
+              opacity: phase(t, 23, 0.6),
+            }}
+          >
             <Chip color="#237d65" fill="#ddf4e8">
               <Check size={24} />
               Updated design passes

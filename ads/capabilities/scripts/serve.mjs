@@ -3,25 +3,24 @@ import http from "node:http";
 import path from "node:path";
 import fs from "node:fs/promises";
 import { createReadStream } from "node:fs";
+import {
+  reviewPath,
+  reviewTypes,
+  reviewDownloadName,
+} from "./review-paths.mjs";
 const root = path.resolve(import.meta.dirname, ".."),
   port = Number(process.env.PORT ?? 3381);
 const server = http.createServer(async (req, res) => {
   try {
     const url = new URL(req.url ?? "/", "http://localhost");
-    const relative = decodeURIComponent(
-      url.pathname === "/" ? "/gallery.html" : url.pathname,
-    );
-    const file = path.resolve(root, "." + relative);
-    if (!file.startsWith(root + path.sep)) {
+    const relative = reviewPath(decodeURIComponent(url.pathname));
+    if (!relative) {
       res.writeHead(403);
       res.end();
       return;
     }
-    if (
-      !["gallery.html", "output/", "public/"].some((s) =>
-        relative.slice(1).startsWith(s),
-      )
-    ) {
+    const file = path.resolve(root, "." + relative);
+    if (!file.startsWith(root + path.sep)) {
       res.writeHead(403);
       res.end();
       return;
@@ -29,22 +28,15 @@ const server = http.createServer(async (req, res) => {
     const stat = await fs.stat(file);
     if (!stat.isFile())
       throw Object.assign(new Error("Not a file"), { code: "ENOENT" });
-    const types = {
-      ".html": "text/html; charset=utf-8",
-      ".json": "application/json",
-      ".mp4": "video/mp4",
-      ".jpg": "image/jpeg",
-      ".png": "image/png",
-      ".svg": "image/svg+xml",
-    };
     const headers = {
-      "content-type": types[path.extname(file)] ?? "application/octet-stream",
+      "content-type":
+        reviewTypes[path.extname(file)] ?? "application/octet-stream",
       "accept-ranges": "bytes",
       "cache-control": "no-cache",
     };
     if (url.searchParams.has("download"))
       headers["content-disposition"] =
-        `attachment; filename="${path.basename(file)}"`;
+        `attachment; filename="${reviewDownloadName(relative)}"`;
     const range = req.headers.range?.match(/^bytes=(\d+)-(\d*)$/);
     let stream;
     if (range) {

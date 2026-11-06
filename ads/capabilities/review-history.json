@@ -846,6 +846,54 @@
       },
       "status": "ready-for-editorial-review",
       "sourceModel": "Minute-mean speed × 60 s, last 20 burn rows; no mixing/deposition/geographic displacement claim."
+    },
+    {
+      "id": "method",
+      "file": "01-method.mp4",
+      "sha256": "26ca2ef21512b95b98ebaa6caa0771f893c3694a13fb3d971387032a7ff5f66a",
+      "stage": "delivery",
+      "technical": {
+        "id": "method",
+        "file": "01-method.mp4",
+        "sha256": "26ca2ef21512b95b98ebaa6caa0771f893c3694a13fb3d971387032a7ff5f66a",
+        "frames": 1920,
+        "duration": 32,
+        "width": 1920,
+        "height": 1080,
+        "fullDecode": "passed",
+        "audio": "present",
+        "audioMetrics": {
+          "meanDb": -25.4,
+          "peakDb": -3.1
+        },
+        "qr": "https://clio.iowarp.ai",
+        "closeChangedPixels": 301,
+        "closeStructuralSimilarity": 0.996523,
+        "inspection": "Time-ordered 1 fps whole-film sheets and 12 fps cue-transition sheets extracted; requires recorded visual findings."
+      },
+      "coverage": "Full-file decode, 60 fps frame count, audio signal, QR and close checks; 1 fps encoded timeline and 12 fps transition sheets; frame-by-frame source route test and measured result centers at seven revision states. Continuous moving review is pending after computer control was stopped with Escape.",
+      "findings": [
+        {
+          "at": "10.2–25.5",
+          "kind": "continuity",
+          "finding": "The result box left the return line before and after revision.",
+          "correction": "Execution and revision now use one result lane; visible step links connect it to the graph. Both website variants reuse this corrected path.",
+          "state": "corrected"
+        },
+        {
+          "at": "21.7–23.6",
+          "kind": "source presentation",
+          "finding": "The success badge began while the revised check was still running.",
+          "correction": "The badge now waits for the check to complete.",
+          "state": "corrected"
+        }
+      ],
+      "sourceChecks": {
+        "campaignNodeTests": 17,
+        "campaignPythonTests": 23,
+        "skipped": 0
+      },
+      "status": "ready-for-editorial-review"
     }
   ]
 }

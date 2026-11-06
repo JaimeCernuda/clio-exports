@@ -69,3 +69,22 @@ Uninterrupted audiovisual human review cannot be inferred from image sheets.
 The technical checks also reject silent/clipping audio. This is signal-level
 verification, not a subjective sound-mix review. Per-version presentation limits
 are shown in the gallery and retained in the local delivery manifest.
+
+## Website follow-up and result-route correction
+
+The website deliverables were missing from the initial handoff. There are now
+sixteen separate website renders: a short and longer version for every capability.
+Their exact encoded checks and review limits are kept in [website/REVIEW.md](website/REVIEW.md).
+
+The user identified the beam box leaving the method's visible return route before
+and after revision. It had used a second vertical coordinate. The result now stays
+on one shared lane with visible links to each step; its center remains on the line
+through execution, review and the revised check. The success badge waits until the
+revised check completes. The ad and both website variants were rerendered. Source
+tests inspect every authored execution frame; rendered bounds check the real crop.
+
+The end-to-end moving-review promise remains open. Computer control was stopped
+with Escape during the attempt to establish a readable playback window. Offline
+encoded inspection and technical checks continued, but do not constitute
+uninterrupted moving or subjective audio review of all eight films. Do not label
+that review complete based on these newer renders or the website handoff.

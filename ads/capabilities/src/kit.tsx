@@ -1,4 +1,9 @@
-import React, { type CSSProperties, type ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
 import { AbsoluteFill, Img, staticFile, useCurrentFrame } from "remotion";
 import {
   ArrowUpRight,
@@ -19,6 +24,8 @@ export const navy = "#173b4c",
   muted = "#66818a",
   border = "#cbdde2";
 export const mono = '"JetBrains Mono Variable",monospace';
+/** Website placements supply their own headings; keep advertising captions out. */
+export const WebsitePresentation = createContext(false);
 export const abs = (
   x: number,
   y: number,
@@ -637,6 +644,8 @@ export function Caption({
   text: string;
   color?: string;
 }) {
+  const website = useContext(WebsitePresentation);
+  if (website) return null;
   const p = phase(t, at, 0.55) * (1 - phase(t, until, 0.4));
   return (
     <div

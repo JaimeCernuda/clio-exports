@@ -8,10 +8,13 @@
     "render": "node render.mjs",
     "review": "node scripts/review.mjs",
     "serve": "node scripts/serve.mjs",
+    "website:prepare": "node website/prepare.mjs",
+    "website:render": "node website/render.mjs",
+    "website:review": "node website/review.mjs",
     "test": "node scripts/test.mjs",
     "typecheck": "tsc --noEmit",
-    "format": "prettier --write src films scripts tests render.mjs package.json tsconfig.json",
-    "format:check": "prettier --check src films scripts tests render.mjs package.json tsconfig.json"
+    "format": "prettier --write src films scripts tests website render.mjs package.json tsconfig.json",
+    "format:check": "prettier --check src films scripts tests website render.mjs package.json tsconfig.json"
   },
   "dependencies": {
     "@fontsource-variable/inter": "5.3.0",

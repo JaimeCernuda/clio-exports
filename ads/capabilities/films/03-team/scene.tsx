@@ -17,6 +17,7 @@ import {
   Enter,
   muted,
   ToolRow,
+  WebsitePresentation,
 } from "../../src/kit";
 import { linePath, mix, phase } from "../../src/motion";
 import science from "../../evidence/science.json";
@@ -168,6 +169,7 @@ function Link({
 }
 
 export function TeamScene({ t }: { t: number }) {
+  const website = React.useContext(WebsitePresentation);
   const inspect = phase(t, 10, 0.8) * (1 - phase(t, 16, 0.8));
   const scale = mix(1, 0.63, inspect);
   const peaks = ["16:41", "16:43", "60 valid minutes"];
@@ -430,7 +432,7 @@ export function TeamScene({ t }: { t: number }) {
             ...abs(1090, 850, 700),
             fontSize: 23,
             color: muted,
-            opacity: phase(t, 30.4, 0.6),
+            opacity: website ? 0 : phase(t, 30.4, 0.6),
           }}
         >
           The evidence triggers the next step.

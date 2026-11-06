@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>CLIO website motion assets</title
+  ><style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: #f5fafb;
+      color: #173b4c;
+      font:
+        15px/1.5 Inter,
+        system-ui,
+        sans-serif;
+    }
+    main {
+      max-width: 1450px;
+      margin: auto;
+      padding: 32px;
+    }
+    h1 {
+      font-size: 26px;
+    }
+    h2 {
+      margin: 0;
+    }
+    header {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    header a {
+      margin-left: auto;
+    }
+    nav {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin: 28px 0;
+    }
+    button,
+    a {
+      color: #176c83;
+    }
+    button {
+      background: white;
+      border: 1px solid #c6dce3;
+      border-radius: 9px;
+      padding: 9px 13px;
+      font: inherit;
+      cursor: pointer;
+    }
+    button.active {
+      background: #d9f0f4;
+    }
+    .variants {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .asset {
+      border: 1px solid #d0e1e7;
+      border-radius: 16px;
+      background: white;
+      padding: 22px;
+    }
+    video,
+    img.preview {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #fbfdfd;
+      margin: 22px 0;
+      border-radius: 8px;
+    }
+    .download {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .meta {
+      font-size: 13px;
+      color: #66818a;
+    }
+    .controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .controls label {
+      margin-left: auto;
+    }
+    small {
+      display: block;
+      color: #66818a;
+      margin: 16px 0;
+    }
+    .description {
+      min-height: 70px;
+    }
+    a {
+      overflow-wrap: anywhere;
+    }
+    @media (max-width: 850px) {
+      .variants {
+        grid-template-columns: 1fr;
+      }
+      main {
+        padding: 20px;
+      }
+    }
+  </style>
+  <main>
+    <header>
+      <h1>Website motion assets</h1>
+      <a href="../">Full advertisements</a>
+    </header>
+    <p>
+      Short feature loops and longer showcases. Silent, without ad bookends. Web
+      video is the lighter option; GIF is provided for image-only slots.
+    </p>
+    <nav></nav>
+    <div class="variants"></div>
+    <p>
+      <a href="output/clio-capabilities-website.zip?download=1"
+        >Download the complete website handoff</a
+      >
+    </p>
+  </main>
+  <script type="module">
+    const response = await fetch("manifest.json"),
+      assets = response.ok ? await response.json() : [],
+      ids = [...new Set(assets.map((a) => a.id))];
+    let selected;
+    function select(id) {
+      selected = id;
+      document
+        .querySelectorAll("nav button")
+        .forEach((b) => b.classList.toggle("active", b.dataset.id === id));
+      const variants = assets
+        .filter((a) => a.id === id)
+        .sort((a, b) =>
+          a.variant === "short" ? -1 : b.variant === "short" ? 1 : 0,
+        );
+      document.querySelector(".variants").replaceChildren(
+        ...variants.map((a) => {
+          const card = document.createElement("section");
+          card.className = "asset";
+          const h = document.createElement("h2");
+          h.textContent =
+            a.variant === "short" ? "Short loop" : "Longer showcase";
+          const desc = document.createElement("p");
+          desc.className = "description";
+          desc.textContent = a.description;
+          const video = document.createElement("video");
+          video.muted = true;
+          video.loop = true;
+          video.playsInline = true;
+          video.autoplay = true;
+          video.controls = true;
+          video.preload = "metadata";
+          video.poster = `${a.id}/${a.variant}/output/poster.png`;
+          video.setAttribute("aria-label", a.description);
+          video.src = `${a.id}/${a.variant}/output/loop.mp4?v=${a.files.find((f) => f.name === "loop.mp4").sha256.slice(0, 12)}`;
+          const gif = document.createElement("img");
+          gif.className = "preview";
+          gif.alt = a.description;
+          gif.style.display = "none";
+          const controls = document.createElement("div");
+          controls.className = "controls";
+          const play = document.createElement("button");
+          play.textContent = "Pause";
+          play.onclick = () => {
+            if (video.paused) {
+              video.play();
+              play.textContent = "Pause";
+            } else {
+              video.pause();
+              play.textContent = "Play";
+            }
+          };
+          const label = document.createElement("label"),
+            toggle = document.createElement("input");
+          toggle.type = "checkbox";
+          label.append(toggle, " Show actual GIF");
+          toggle.onchange = () => {
+            video.style.display = toggle.checked ? "none" : "block";
+            gif.style.display = toggle.checked ? "block" : "none";
+            if (toggle.checked) {
+              video.pause();
+              play.disabled = true;
+              play.textContent = "GIF looping";
+              gif.src = `${a.id}/${a.variant}/output/loop.gif?v=${a.files.find((f) => f.name === "loop.gif").sha256.slice(0, 12)}`;
+            } else {
+              gif.removeAttribute("src");
+              play.disabled = false;
+              play.textContent = "Pause";
+              video.play();
+            }
+          };
+          controls.append(play, label);
+          const meta = document.createElement("small");
+          meta.textContent = `${a.seconds.toFixed(2)}s · ${a.width} × ${a.height} · ${a.fps}fps video · 25fps GIF`;
+          const links = document.createElement("div");
+          links.className = "download";
+          for (const name of [
+            "loop.gif",
+            "loop.mp4",
+            "loop.webm",
+            "poster.png",
+          ]) {
+            const file = a.files.find((f) => f.name === name),
+              link = document.createElement("a");
+            link.href = `${a.id}/${a.variant}/output/${name}?download=1`;
+            link.download = `${a.key}-${name}`;
+            link.textContent = `${name.split(".")[1].toUpperCase()} ${(file.bytes / 1e6).toFixed(2)} MB`;
+            links.append(link);
+          }
+          const embed = document.createElement("a");
+          embed.href = `${a.id}/${a.variant}/embed.html`;
+          embed.textContent = "Open placement example";
+          links.append(embed);
+          card.append(h, desc, video, gif, controls, meta, links);
+          return card;
+        }),
+      );
+      history.replaceState(null, "", "?film=" + id);
+    }
+    for (const id of ids) {
+      const a = assets.find((a) => a.id === id),
+        b = document.createElement("button");
+      b.dataset.id = id;
+      b.textContent = a.title;
+      b.onclick = () => select(id);
+      document.querySelector("nav").append(b);
+    }
+    if (ids.length)
+      select(
+        ids.includes(new URLSearchParams(location.search).get("film"))
+          ? new URLSearchParams(location.search).get("film")
+          : ids[0],
+      );
+    else
+      document.querySelector(".variants").textContent =
+        "Website assets are being rendered.";
+  </script>
+</html>

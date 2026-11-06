@@ -17,4 +17,4 @@ line-length = 100
 [tool.pyright]
 pythonVersion = "3.12"
 typeCheckingMode = "standard"
-include = ["scripts", "tests"]
+include = ["scripts", "tests", "website/package_site.py"]

@@ -1,0 +1,466 @@
+[
+  {
+    "key": "method-short",
+    "files": [
+      {
+        "name": "loop.mp4",
+        "bytes": 433957,
+        "sha256": "368a0a8bcfcf55e89dd76406fa9835a363dfc61bf6a8fea3e7a9ca2f27d91b88"
+      },
+      {
+        "name": "loop.webm",
+        "bytes": 359855,
+        "sha256": "7c79058e0b1326633af926648d1321ebd07ca74fd19b82c40c38c02b5d4b94bb"
+      },
+      {
+        "name": "loop.gif",
+        "bytes": 2424855,
+        "sha256": "3929f662d1a3258f01d09f91b677977f2798817a9cf30d301459b7b6837fee70"
+      },
+      {
+        "name": "poster.png",
+        "bytes": 127223,
+        "sha256": "01f47018d6ba38ae6c61bc866543acd4fbb0fe0f85b59842656e0241d4816045"
+      }
+    ],
+    "reviewed": "2026-11-05",
+    "coverage": "Full-file decode of MP4, WebM and GIF; frame/duration/format checks; first/last encoded loop-join comparison; whole-GIF time-ordered 1 fps inspection, supplemental 2 fps encoded transition sheets, source framing and authored pointer-target measurements. This is sampled visual inspection, not continuous moving review.",
+    "observation": "Corrected the detached result box: the visible route and result center now share one lane before, during and after revision. Success waits for the revised check. The short cut starts after the launch control retires.",
+    "pending": "Uninterrupted normal-speed moving review is pending. Computer control was stopped with Escape during playback setup; no uninterrupted viewing or subjective sound review is claimed. Website assets are silent."
+  },
+  {
+    "key": "method-long",
+    "files": [
+      {
+        "name": "loop.mp4",
+        "bytes": 702543,
+        "sha256": "48fb4e44de8fc4f97011958f0db5ca7be4e24c966f6004cad4dd9c7d915e3379"
+      },
+      {
+        "name": "loop.webm",
+        "bytes": 628412,
+        "sha256": "e04b9613d15945d63b0bb879f8bffc0185150ee9f4ea7bee6bf6371d5dd80bae"
+      },
+      {
+        "name": "loop.gif",
+        "bytes": 4403283,
+        "sha256": "946b8631c20b5a252069b1bdc52c0598225409a4e5c796921f9192514386cbf8"
+      },
+      {
+        "name": "poster.png",
+        "bytes": 136130,
+        "sha256": "7452bb4d03950fec92738b683e1ee39d9745c785dfd2722fc058d083b3201769"
+      }
+    ],
+    "reviewed": "2026-11-05",
+    "coverage": "Full-file decode of MP4, WebM and GIF; frame/duration/format checks; first/last encoded loop-join comparison; whole-GIF time-ordered 1 fps inspection, supplemental 2 fps encoded transition sheets, source framing and authored pointer-target measurements. This is sampled visual inspection, not continuous moving review.",
+    "observation": "Corrected the detached result box: the visible route and result center now share one lane before, during and after revision. Success waits for the revised check. The short cut starts after the launch control retires.",
+    "pending": "Uninterrupted normal-speed moving review is pending. Computer control was stopped with Escape during playback setup; no uninterrupted viewing or subjective sound review is claimed. Website assets are silent."
+  },
+  {
+    "key": "hypothesis-short",
+    "files": [
+      {
+        "name": "loop.mp4",
+        "bytes": 356569,
+        "sha256": "a2ab0290f684126aa8cf2d909f6e46e97eb8e91007d53733f01794abc5d189d0"
+      },
+      {
+        "name": "loop.webm",
+        "bytes": 323293,
+        "sha256": "c0759a49941c9bfd0fc3386aaf0925ad43717508eb3542f3451e98791e44d5b1"
+      },
+      {
+        "name": "loop.gif",
+        "bytes": 1574942,
+        "sha256": "6f9db74e43061a95ec929b9f0004a589333ffc95863070259f8cc1d9927ed95d"
+      },
+      {
+        "name": "poster.png",
+        "bytes": 197299,
+        "sha256": "bd458130f1f487c4a63238e1fa941eabeba5a2e505ca22edd492b33f41ea0e44"
+      }
+    ],
+    "reviewed": "2026-11-05",
+    "coverage": "Full-file decode of MP4, WebM and GIF; frame/duration/format checks; first/last encoded loop-join comparison; whole-GIF time-ordered 1 fps inspection, supplemental 2 fps encoded transition sheets, source framing and authored pointer-target measurements. This is sampled visual inspection, not continuous moving review.",
+    "observation": "The small-angle prediction and numerical curve remain distinct; the discrepancy introduces evidence and then the revised claim in the science-log graph.",
+    "pending": "Uninterrupted normal-speed moving review is pending. Computer control was stopped with Escape during playback setup; no uninterrupted viewing or subjective sound review is claimed. Website assets are silent."
+  },
+  {
+    "key": "hypothesis-long",
+    "files": [
+      {
+        "name": "loop.mp4",
+        "bytes": 561575,
+        "sha256": "b431feb7737acf2df8d2aeb688619511997284385affcc1c7c282be5507ba8db"
+      },
+      {
+        "name": "loop.webm",
+        "bytes": 549592,
+        "sha256": "d69664b61ce73788f84e85bf5f978c597890bfee624b97ea5a46d06267d3bafd"
+      },
+      {
+        "name": "loop.gif",
+        "bytes": 2607129,
+        "sha256": "d12e33921b3f3a681e7e57570e44210909cfb86f025a4ecf609a5ad976bcbadc"
+      },
+      {
+        "name": "poster.png",
+        "bytes": 182244,
+        "sha256": "f371b550cf2dba810c18db458a444b9a379c9105c5d239908ba6288d998b0324"
+      }
+    ],
+    "reviewed": "2026-11-05",
+    "coverage": "Full-file decode of MP4, WebM and GIF; frame/duration/format checks; first/last encoded loop-join comparison; whole-GIF time-ordered 1 fps inspection, supplemental 2 fps encoded transition sheets, source framing and authored pointer-target measurements. This is sampled visual inspection, not continuous moving review.",
+    "observation": "The small-angle prediction and numerical curve remain distinct; the discrepancy introduces evidence and then the revised claim in the science-log graph.",
+    "pending": "Uninterrupted normal-speed moving review is pending. Computer control was stopped with Escape during playback setup; no uninterrupted viewing or subjective sound review is claimed. Website assets are silent."
+  },
+  {
+    "key": "team-short",
+    "files": [
+      {
+        "name": "loop.mp4",
+        "bytes": 364405,
+        "sha256": "bae547a4c61921e85bf46a7ae618dcec27ce85a0bb3c76c96d6197cccbeb25ee"
+      },
+      {
+        "name": "loop.webm",
+        "bytes": 400846,
+        "sha256": "d60bd99d0869ba07de970be90284e4189be6b2d01632c3cb4ec3ebb460fd52c9"
+      },
+      {
+        "name": "loop.gif",
+        "bytes": 1817097,
+        "sha256": "f7d790600eb83af66dbc66f1ba78caa1a7f5892f3682e4d3613071ec4ccb53ad"
+      },
+      {
+        "name": "poster.png",
+        "bytes": 334951,
+        "sha256": "2a35b8254edf4a46629bf4eedb30c3fce0632ea9bcf86f0359a85935f5b933cb"
+      }
+    ],
+    "reviewed": "2026-11-05",
+    "coverage": "Full-file decode of MP4, WebM and GIF; frame/duration/format checks; first/last encoded loop-join comparison; whole-GIF time-ordered 1 fps inspection, supplemental 2 fps encoded transition sheets, source framing and authored pointer-target measurements. This is sampled visual inspection, not continuous moving review.",
+    "observation": "The short cut follows join, decision and conditional review. The longer cut retains nested preparation and inspector activity without replacing the graph at convergence.",
+    "pending": "Uninterrupted normal-speed moving review is pending. Computer control was stopped with Escape during playback setup; no uninterrupted viewing or subjective sound review is claimed. Website assets are silent."
+  },
+  {
+    "key": "team-long",
+    "files": [
+      {
+        "name": "loop.mp4",
+        "bytes": 715202,
+        "sha256": "e46dc4268d0b4fcc5a56c41851356f14b991b363383de5d0032af4a530bae9ae"
+      },
+      {
+        "name": "loop.webm",
+        "bytes": 709331,
+        "sha256": "2d7b721f156dab875a390d9b06133cb852247b401b236b4a34d4ba81f6cdbf5e"
+      },
+      {
+        "name": "loop.gif",
+        "bytes": 3428540,
+        "sha256": "4fe5588e5a178a9895b3444a33f1cb95fc94004330b4b8bbd01d69a549c80c90"
+      },
+      {
+        "name": "poster.png",
+        "bytes": 235868,
+        "sha256": "ad4bc386ae43665eecf3a10976db7a03b5cc78d23c0e3f4ec45c699833b991b5"
+      }
+    ],
+    "reviewed": "2026-11-05",
+    "coverage": "Full-file decode of MP4, WebM and GIF; frame/duration/format checks; first/last encoded loop-join comparison; whole-GIF time-ordered 1 fps inspection, supplemental 2 fps encoded transition sheets, source framing and authored pointer-target measurements. This is sampled visual inspection, not continuous moving review.",
+    "observation": "The short cut follows join, decision and conditional review. The longer cut retains nested preparation and inspector activity without replacing the graph at convergence.",
+    "pending": "Uninterrupted normal-speed moving review is pending. Computer control was stopped with Escape during playback setup; no uninterrupted viewing or subjective sound review is claimed. Website assets are silent."
+  },
+  {
+    "key": "interface-short",
+    "files": [
+      {
+        "name": "loop.mp4",
+        "bytes": 274167,
+        "sha256": "1fd922bb50fb200b28f21a1fac6b6692fd340b4f725a5ab745cbb85f0f4697d9"
+      },
+      {
+        "name": "loop.webm",
+        "bytes": 295251,
+        "sha256": "79a2f8a85e7a46ee92b427551fb99135d9330408b27b5949a834aab73e31dece"
+      },
+      {
+        "name": "loop.gif",
+        "bytes": 1736491,
+        "sha256": "47c1b776be981a89f1cc27e4857ad1c6effc0f4f828a721d667976d93c218a7c"
+      },
+      {
+        "name": "poster.png",
+        "bytes": 188048,
+        "sha256": "a7ba311bfed6b65507e889edcd0cd08d6c2fca063d484934bf41413345ca5f07"
+      }
+    ],
+    "reviewed": "2026-11-05",
+    "coverage": "Full-file decode of MP4, WebM and GIF; frame/duration/format checks; first/last encoded loop-join comparison; whole-GIF time-ordered 1 fps inspection, supplemental 2 fps encoded transition sheets, source framing and authored pointer-target measurements. This is sampled visual inspection, not continuous moving review.",
+    "observation": "Baseline changes alter distributions and deltas; month selections change both chart emphasis and rows. Only the longer cut includes export confirmation.",
+    "pending": "Uninterrupted normal-speed moving review is pending. Computer control was stopped with Escape during playback setup; no uninterrupted viewing or subjective sound review is claimed. Website assets are silent."
+  },
+  {
+    "key": "interface-long",
+    "files": [
+      {
+        "name": "loop.mp4",
+        "bytes": 366934,
+        "sha256": "007e9c6682dc5d7ec039683248f8a93cf966c887bf3349b43b5b7b5eae25dfbc"
+      },
+      {
+        "name": "loop.webm",
+        "bytes": 412381,
+        "sha256": "80d02ab021d2210f263d73e0a20c18300a5c57864786e05df489d5c4a64bb479"
+      },
+      {
+        "name": "loop.gif",
+        "bytes": 2030493,
+        "sha256": "ac5cb42afe8a8f4a7d14205fc717c6a735111403b46326706f4691c908d6d7e7"
+      },
+      {
+        "name": "poster.png",
+        "bytes": 189844,
+        "sha256": "8e1ccbb54cae8cf14a5f2f08c5c28b42733a2218eb85afc0ae38e968ce8e83ae"
+      }
+    ],
+    "reviewed": "2026-11-05",
+    "coverage": "Full-file decode of MP4, WebM and GIF; frame/duration/format checks; first/last encoded loop-join comparison; whole-GIF time-ordered 1 fps inspection, supplemental 2 fps encoded transition sheets, source framing and authored pointer-target measurements. This is sampled visual inspection, not continuous moving review.",
+    "observation": "Baseline changes alter distributions and deltas; month selections change both chart emphasis and rows. Only the longer cut includes export confirmation.",
+    "pending": "Uninterrupted normal-speed moving review is pending. Computer control was stopped with Escape during playback setup; no uninterrupted viewing or subjective sound review is claimed. Website assets are silent."
+  },
+  {
+    "key": "provenance-short",
+    "files": [
+      {
+        "name": "loop.mp4",
+        "bytes": 407412,
+        "sha256": "dbc89d99d7761f07e910b52b8c14aa30fe16df6078e5c7233b5455cec9c41cf1"
+      },
+      {
+        "name": "loop.webm",
+        "bytes": 315942,
+        "sha256": "d9ac4b67c3ed59f1b4902d53446b9584a01dc0e817a1427a74f69977e194919c"
+      },
+      {
+        "name": "loop.gif",
+        "bytes": 1907562,
+        "sha256": "1d134a9e432d1d9600960bc6f3ef74440a36bd72472a6d059ecf506d4d477f34"
+      },
+      {
+        "name": "poster.png",
+        "bytes": 172635,
+        "sha256": "2e3fd1cb98e81b745fe946babf1e4f8ff29e79b65686e6ca042a2f6c82b5cd75"
+      }
+    ],
+    "reviewed": "2026-11-05",
+    "coverage": "Full-file decode of MP4, WebM and GIF; frame/duration/format checks; first/last encoded loop-join comparison; whole-GIF time-ordered 1 fps inspection, supplemental 2 fps encoded transition sheets, source framing and authored pointer-target measurements. This is sampled visual inspection, not continuous moving review.",
+    "observation": "The same boundary remains identifiable through result, measurement, geometry, source and return. The quantity is mapped boundary area, not current water extent.",
+    "pending": "Uninterrupted normal-speed moving review is pending. Computer control was stopped with Escape during playback setup; no uninterrupted viewing or subjective sound review is claimed. Website assets are silent."
+  },
+  {
+    "key": "provenance-long",
+    "files": [
+      {
+        "name": "loop.mp4",
+        "bytes": 504557,
+        "sha256": "bb817a50c26d302cd1430a9095588bf8190f82439c49b2e298b7aea51069d181"
+      },
+      {
+        "name": "loop.webm",
+        "bytes": 416185,
+        "sha256": "cd35c2d1f88c9816764d030f0fe8e756eea0244e09d563fd39b8a54e52df474e"
+      },
+      {
+        "name": "loop.gif",
+        "bytes": 2682634,
+        "sha256": "7faaf61f5b5bf97a5fd2b08a7b08ea45a3b51f6be353e429194a693b4f6ecfa3"
+      },
+      {
+        "name": "poster.png",
+        "bytes": 175430,
+        "sha256": "0d0d66f15c79fcc104af851854cdca8eb3f201ac77dcf5b674dc491fdcec8ffe"
+      }
+    ],
+    "reviewed": "2026-11-05",
+    "coverage": "Full-file decode of MP4, WebM and GIF; frame/duration/format checks; first/last encoded loop-join comparison; whole-GIF time-ordered 1 fps inspection, supplemental 2 fps encoded transition sheets, source framing and authored pointer-target measurements. This is sampled visual inspection, not continuous moving review.",
+    "observation": "The same boundary remains identifiable through result, measurement, geometry, source and return. The quantity is mapped boundary area, not current water extent.",
+    "pending": "Uninterrupted normal-speed moving review is pending. Computer control was stopped with Escape during playback setup; no uninterrupted viewing or subjective sound review is claimed. Website assets are silent."
+  },
+  {
+    "key": "tools-short",
+    "files": [
+      {
+        "name": "loop.mp4",
+        "bytes": 255632,
+        "sha256": "97892aebb7d47233858052651ea9665c33645d9ce195b94181cfcbb089c59590"
+      },
+      {
+        "name": "loop.webm",
+        "bytes": 239249,
+        "sha256": "c1b3a93bb93fbf40c0e95c6a9130e9439fc4a731b51725ff64d006d98a8deffb"
+      },
+      {
+        "name": "loop.gif",
+        "bytes": 1353782,
+        "sha256": "b6d363638b17af3f2faeac2170967fbe11f26a1919bd06cdee0e55235396560d"
+      },
+      {
+        "name": "poster.png",
+        "bytes": 103714,
+        "sha256": "d8868c550adea892e2cf101f9461bb515b821998adc4f3416fe2c90bd53a1ff3"
+      }
+    ],
+    "reviewed": "2026-11-05",
+    "coverage": "Full-file decode of MP4, WebM and GIF; frame/duration/format checks; first/last encoded loop-join comparison; whole-GIF time-ordered 1 fps inspection, supplemental 2 fps encoded transition sheets, source framing and authored pointer-target measurements. This is sampled visual inspection, not continuous moving review.",
+    "observation": "Source and tool neighbors clear before the sparse-matrix result expands. The summary has no unused copy, download or caret controls.",
+    "pending": "Uninterrupted normal-speed moving review is pending. Computer control was stopped with Escape during playback setup; no uninterrupted viewing or subjective sound review is claimed. Website assets are silent."
+  },
+  {
+    "key": "tools-long",
+    "files": [
+      {
+        "name": "loop.mp4",
+        "bytes": 364619,
+        "sha256": "64529ff7ae3105cdbd6df7662d1c58b349561004551e025d6ed19ec511028526"
+      },
+      {
+        "name": "loop.webm",
+        "bytes": 342197,
+        "sha256": "0be294a1cb2a8a2b1b09c345a260c8647976aed0cd53df809ed94ca63729e3a3"
+      },
+      {
+        "name": "loop.gif",
+        "bytes": 2007692,
+        "sha256": "91b3c070befae1de16505de9466ba46aec92c67b6be97362095266d25eedef51"
+      },
+      {
+        "name": "poster.png",
+        "bytes": 104951,
+        "sha256": "e75295e1b185c5ba0e15623a47862ba748401c739760dce506c8205985afc3fd"
+      }
+    ],
+    "reviewed": "2026-11-05",
+    "coverage": "Full-file decode of MP4, WebM and GIF; frame/duration/format checks; first/last encoded loop-join comparison; whole-GIF time-ordered 1 fps inspection, supplemental 2 fps encoded transition sheets, source framing and authored pointer-target measurements. This is sampled visual inspection, not continuous moving review.",
+    "observation": "Source and tool neighbors clear before the sparse-matrix result expands. The summary has no unused copy, download or caret controls.",
+    "pending": "Uninterrupted normal-speed moving review is pending. Computer control was stopped with Escape during playback setup; no uninterrupted viewing or subjective sound review is claimed. Website assets are silent."
+  },
+  {
+    "key": "selection-short",
+    "files": [
+      {
+        "name": "loop.mp4",
+        "bytes": 255033,
+        "sha256": "133d900cf27e85a80c28a1e924887df1d80375a7f9cdb87010b6db7c31726b13"
+      },
+      {
+        "name": "loop.webm",
+        "bytes": 244353,
+        "sha256": "ea45dee0f494626e8e0b0f7f5f6c029c8e3c89e1ce0c04b6c974bd55e9e6eb12"
+      },
+      {
+        "name": "loop.gif",
+        "bytes": 1548034,
+        "sha256": "fb3e0f2a5c73f0a60ddf9546967f783616e79861ea8751bf89632f68ed7b563e"
+      },
+      {
+        "name": "poster.png",
+        "bytes": 136887,
+        "sha256": "105e56b9bd2d4d6023a8f9e71ccaa75593062d0f5d6f98cdced1c7136339a9a4"
+      }
+    ],
+    "reviewed": "2026-11-05",
+    "coverage": "Full-file decode of MP4, WebM and GIF; frame/duration/format checks; first/last encoded loop-join comparison; whole-GIF time-ordered 1 fps inspection, supplemental 2 fps encoded transition sheets, source framing and authored pointer-target measurements. This is sampled visual inspection, not continuous moving review.",
+    "observation": "The map retains geographic scale and stable DOM labels. Selected records remain identifiable in rows and reference; the longer cut includes read, computation and answer.",
+    "pending": "Uninterrupted normal-speed moving review is pending. Computer control was stopped with Escape during playback setup; no uninterrupted viewing or subjective sound review is claimed. Website assets are silent."
+  },
+  {
+    "key": "selection-long",
+    "files": [
+      {
+        "name": "loop.mp4",
+        "bytes": 400372,
+        "sha256": "8303977bc82e1d44e1a3da57bf2ac2138838abf9c75949cfa405c3e56c87d0ec"
+      },
+      {
+        "name": "loop.webm",
+        "bytes": 392769,
+        "sha256": "a1ab3d17e14af4635c1c1b13a043faa49eea77c9e1c5ab5433b7479463544e9d"
+      },
+      {
+        "name": "loop.gif",
+        "bytes": 2093236,
+        "sha256": "4163803752e41ce784254591177624ff2c20ee79b18181b9f6d9692d1f3e6fcb"
+      },
+      {
+        "name": "poster.png",
+        "bytes": 210194,
+        "sha256": "1e30f6ee9140c3c3da6e680bb016001801d269b8ed6fff36a8d98675b0d0facf"
+      }
+    ],
+    "reviewed": "2026-11-05",
+    "coverage": "Full-file decode of MP4, WebM and GIF; frame/duration/format checks; first/last encoded loop-join comparison; whole-GIF time-ordered 1 fps inspection, supplemental 2 fps encoded transition sheets, source framing and authored pointer-target measurements. This is sampled visual inspection, not continuous moving review.",
+    "observation": "The map retains geographic scale and stable DOM labels. Selected records remain identifiable in rows and reference; the longer cut includes read, computation and answer.",
+    "pending": "Uninterrupted normal-speed moving review is pending. Computer control was stopped with Escape during playback setup; no uninterrupted viewing or subjective sound review is claimed. Website assets are silent."
+  },
+  {
+    "key": "streams-short",
+    "files": [
+      {
+        "name": "loop.mp4",
+        "bytes": 260876,
+        "sha256": "f81e33a780eb93350356fd74f08e98ba3688eb71864dcbb030653733c05188e9"
+      },
+      {
+        "name": "loop.webm",
+        "bytes": 250013,
+        "sha256": "8b74405ee05341817a83c0dfe570f1a152a0262847c75a5373ff370b399ff10e"
+      },
+      {
+        "name": "loop.gif",
+        "bytes": 1586012,
+        "sha256": "2e813f8d28a292903a870593170d3395613ac928759cfb46d74b85103891971c"
+      },
+      {
+        "name": "poster.png",
+        "bytes": 201968,
+        "sha256": "cfbd9890f59440b2efcac4a111b57509703e65c3eb422cd44edd8d305170fea1"
+      }
+    ],
+    "reviewed": "2026-11-05",
+    "coverage": "Full-file decode of MP4, WebM and GIF; frame/duration/format checks; first/last encoded loop-join comparison; whole-GIF time-ordered 1 fps inspection, supplemental 2 fps encoded transition sheets, source framing and authored pointer-target measurements. This is sampled visual inspection, not continuous moving review.",
+    "observation": "Observation time and values remain linked to live context and dashboard. The longer cut keeps the burn observations visible as their wind drives the labelled illustrative model and completion notice.",
+    "pending": "Uninterrupted normal-speed moving review is pending. Computer control was stopped with Escape during playback setup; no uninterrupted viewing or subjective sound review is claimed. Website assets are silent."
+  },
+  {
+    "key": "streams-long",
+    "files": [
+      {
+        "name": "loop.mp4",
+        "bytes": 698602,
+        "sha256": "4d268d8ee920e7af8609c21e44d81235f6b4306c90ff1d8277f0c609787104c8"
+      },
+      {
+        "name": "loop.webm",
+        "bytes": 622646,
+        "sha256": "46808c25d5dd32c15c2c848e9a07e3619467343d49337a4f9b30b798bfdf458d"
+      },
+      {
+        "name": "loop.gif",
+        "bytes": 3238164,
+        "sha256": "d261790285eb489f92af9917705df4c16216f6b2ac1e3f1b74939fd04b28a727"
+      },
+      {
+        "name": "poster.png",
+        "bytes": 217373,
+        "sha256": "4f5c6c3ebb29534589a21104a438007fe2e4f5afe1c5bbb83a06c32e403afc70"
+      }
+    ],
+    "reviewed": "2026-11-05",
+    "coverage": "Full-file decode of MP4, WebM and GIF; frame/duration/format checks; first/last encoded loop-join comparison; whole-GIF time-ordered 1 fps inspection, supplemental 2 fps encoded transition sheets, source framing and authored pointer-target measurements. This is sampled visual inspection, not continuous moving review.",
+    "observation": "Observation time and values remain linked to live context and dashboard. The longer cut keeps the burn observations visible as their wind drives the labelled illustrative model and completion notice.",
+    "pending": "Uninterrupted normal-speed moving review is pending. Computer control was stopped with Escape during playback setup; no uninterrupted viewing or subjective sound review is claimed. Website assets are silent."
+  }
+]

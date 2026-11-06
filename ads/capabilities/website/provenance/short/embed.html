@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>Show me where that came from.</title
+  ><style>
+    body {
+      margin: 0;
+      background: #fbfdfd;
+    }
+    video,
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    img {
+      display: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      video {
+        display: none;
+      }
+      img {
+        display: block;
+      }
+    }</style
+  ><video
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="metadata"
+    width="1280"
+    height="554"
+    poster="output/poster.png"
+    aria-label="Follow the mapped-area result through measurement and geometry to its source, then return."
+  >
+    <source src="output/loop.webm" type="video/webm" />
+    <source src="output/loop.mp4" type="video/mp4" /></video
+  ><img
+    src="output/poster.png"
+    width="1280"
+    height="554"
+    alt="Follow the mapped-area result through measurement and geometry to its source, then return."
+  />
+  <script>
+    const video = document.querySelector("video"),
+      preference = matchMedia("(prefers-reduced-motion:reduce)");
+    const visible = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !preference.matches)
+        video.play().catch(() => {
+          video.controls = true;
+        });
+      else video.pause();
+    });
+    visible.observe(video);
+    preference.addEventListener("change", () => {
+      if (preference.matches) video.pause();
+      else
+        video.play().catch(() => {
+          video.controls = true;
+        });
+    });
+  </script>
+</html>
