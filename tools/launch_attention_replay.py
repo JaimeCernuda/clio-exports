@@ -16,8 +16,11 @@ from typing import Any, cast
 from audit_attention_bundle import audit_bundle
 
 # gact-tui ccr-f3f98215-lvwhes: heat painted per source line (default), per first-level
-# word or per token on the conversation, without the answer-item chips. The film emulator keeps its own f333d67d pin.
-UI_REVISION = "939b5ed4ad247d62681701aecc696495b9cc390c"
+# word or per token on the conversation, all on one 1-9 scale, without the answer-item chips.
+# Its Mean averages every token of a line or word, which needs the backend's token_starts
+# (clio-agent 0f4f2f13d); without them the UI turns Mean off and says why.
+# The film emulator keeps its own f333d67d pin.
+UI_REVISION = "e8918ab134450e25d1c3116ab96436604ca7e7b9"
 # The boundary-trimming fix 2ff404f is in clio-agent develop (#1927).
 # c0d2557 is the equivalent isolated checkout used for the original local demo.
 BACKEND_FIXES = (

@@ -11,7 +11,7 @@ All code links point at fixed commits, so they keep working when branches move. 
 | --- | --- | --- |
 | [iowarp/clio-agent](https://github.com/iowarp/clio-agent) | `develop` | `2ff404fb` |
 | [iowarp/clio-schemas](https://github.com/iowarp/clio-schemas) | `main` | `b0bb27ae` |
-| [iowarp/gact-tui](https://github.com/iowarp/gact-tui) | `ccr-f3f98215-lvwhes` (line shading; PR to `develop` pending) | `939b5ed4` |
+| [iowarp/gact-tui](https://github.com/iowarp/gact-tui) | `ccr-f3f98215-lvwhes` (line shading; PR to `develop` pending) | `e8918ab1` |
 | [JaimeCernuda/clio-exports](https://github.com/JaimeCernuda/clio-exports) | `ccr-f3f98215-lvwhes` (replay launcher, tokenizer study, this guide); the Chain B export is also on `main` | |
 
 ## 1. How CLIO computes the attention
@@ -67,11 +67,11 @@ The remaining files ([`lookup.py`](https://github.com/iowarp/clio-agent/blob/2ff
 
 | File (gact-tui, `ccr-f3f98215-lvwhes`) | What it does |
 | --- | --- |
-| [`hooks/use-attention-mode.ts`](https://github.com/iowarp/gact-tui/blob/939b5ed4ad247d62681701aecc696495b9cc390c/web/src/hooks/use-attention-mode.ts) | "Understand attention" on a selected answer: calls the API and holds the result. |
-| [`components/clio/attention-mode-banner.tsx`](https://github.com/iowarp/gact-tui/blob/939b5ed4ad247d62681701aecc696495b9cc390c/web/src/components/clio/attention-mode-banner.tsx) | The banner: the selection, the source breakdown, the profile editor. |
-| [`hooks/use-attention-highlights.ts`](https://github.com/iowarp/gact-tui/blob/939b5ed4ad247d62681701aecc696495b9cc390c/web/src/hooks/use-attention-highlights.ts), [`lib/attention-highlight-dom.ts`](https://github.com/iowarp/gact-tui/blob/939b5ed4ad247d62681701aecc696495b9cc390c/web/src/lib/attention-highlight-dom.ts), [`lib/attention-highlight-sources.ts`](https://github.com/iowarp/gact-tui/blob/939b5ed4ad247d62681701aecc696495b9cc390c/web/src/lib/attention-highlight-sources.ts), [`lib/attention-text.ts`](https://github.com/iowarp/gact-tui/blob/939b5ed4ad247d62681701aecc696495b9cc390c/web/src/lib/attention-text.ts) | Paint the heat onto the rendered conversation: resolve each block's source text, map source offsets to the rendered text, highlight the ranges. |
+| [`hooks/use-attention-mode.ts`](https://github.com/iowarp/gact-tui/blob/e8918ab134450e25d1c3116ab96436604ca7e7b9/web/src/hooks/use-attention-mode.ts) | "Understand attention" on a selected answer: calls the API and holds the result. |
+| [`components/clio/attention-mode-banner.tsx`](https://github.com/iowarp/gact-tui/blob/e8918ab134450e25d1c3116ab96436604ca7e7b9/web/src/components/clio/attention-mode-banner.tsx) | The banner: the selection, the source breakdown, the profile editor. |
+| [`hooks/use-attention-highlights.ts`](https://github.com/iowarp/gact-tui/blob/e8918ab134450e25d1c3116ab96436604ca7e7b9/web/src/hooks/use-attention-highlights.ts), [`lib/attention-highlight-dom.ts`](https://github.com/iowarp/gact-tui/blob/e8918ab134450e25d1c3116ab96436604ca7e7b9/web/src/lib/attention-highlight-dom.ts), [`lib/attention-highlight-sources.ts`](https://github.com/iowarp/gact-tui/blob/e8918ab134450e25d1c3116ab96436604ca7e7b9/web/src/lib/attention-highlight-sources.ts), [`lib/attention-text.ts`](https://github.com/iowarp/gact-tui/blob/e8918ab134450e25d1c3116ab96436604ca7e7b9/web/src/lib/attention-text.ts) | Paint the heat onto the rendered conversation: resolve each block's source text, map source offsets to the rendered text, highlight the ranges. |
 
-| [`lib/attention-segment-heat.ts`](https://github.com/iowarp/gact-tui/blob/939b5ed4ad247d62681701aecc696495b9cc390c/web/src/lib/attention-segment-heat.ts), [`components/clio/attention-heat-view-controls.tsx`](https://github.com/iowarp/gact-tui/blob/939b5ed4ad247d62681701aecc696495b9cc390c/web/src/components/clio/attention-heat-view-controls.tsx) | **Your text-map line semantics, on the conversation.** Each `\n`-separated line of a message's source is one band, valued by its hottest measured token and scaled to the hottest line on levels 1–9 (as in `render_heatmap.py`). A paragraph written over three source lines carries three bands. This is the default. **Words** follows your `render_pretoken_heatmap.py`: one band per first-level word (the GPT-2 regex, Granite's own pre-tokenizer), valued by its hottest token. The banner also offers per-token heat, and Max or Mean for a line's or word's value. |
+| [`lib/attention-segment-heat.ts`](https://github.com/iowarp/gact-tui/blob/e8918ab134450e25d1c3116ab96436604ca7e7b9/web/src/lib/attention-segment-heat.ts), [`components/clio/attention-heat-view-controls.tsx`](https://github.com/iowarp/gact-tui/blob/e8918ab134450e25d1c3116ab96436604ca7e7b9/web/src/components/clio/attention-heat-view-controls.tsx) | **Your text-map line semantics, on the conversation.** Each `\n`-separated line of a message's source is one band, valued by its hottest measured token and scaled to the hottest line on levels 1–9 (as in `render_heatmap.py`). A paragraph written over three source lines carries three bands. This is the default. **Words** follows your `render_pretoken_heatmap.py`: one band per first-level word (the GPT-2 regex, Granite's own pre-tokenizer), valued by its hottest token. The banner also offers per-token heat, and Max or Mean for a line's or word's value. |
 
 To see the heat of one part of an answer (for example `DIVERGES` in `NIL 373; DIVERGES`),
 select just that part. The scripted split of an answer into `;` items is not part of CLIO.
@@ -114,7 +114,7 @@ answer text in the browser and see its heat.
 | The session as an HTML export, to read the run | [`polaris-2026-10/7795459-chainB/html/`](https://github.com/JaimeCernuda/clio-exports/tree/main/polaris-2026-10/7795459-chainB/html) on clio-exports `main` |
 | The replay server | [`tests/test_gact/test_attention/serve_recorded_bundle.py`](https://github.com/iowarp/clio-agent/blob/2ff404fbe376d0fc39dc34e79ff569c9dfeb3c60/tests/test_gact/test_attention/serve_recorded_bundle.py), clio-agent `develop`. It started as a test fixture for NDP, then OPAL, and serves any collected bundle. |
 | The launcher, which checks the bundle and starts the server and the UI | [`tools/launch_attention_replay.py`](https://github.com/JaimeCernuda/clio-exports/blob/ccr-f3f98215-lvwhes/tools/launch_attention_replay.py) on clio-exports `ccr-f3f98215-lvwhes`, with the full steps in [`motion/native/MANUAL-ATTENTION.md`](https://github.com/JaimeCernuda/clio-exports/blob/ccr-f3f98215-lvwhes/motion/native/MANUAL-ATTENTION.md) |
-| The UI it serves | gact-tui at commit `939b5ed4`, branch `ccr-f3f98215-lvwhes`, with line shading (the launcher requires exactly this commit) |
+| The UI it serves | gact-tui at commit `e8918ab1`, branch `ccr-f3f98215-lvwhes`, with line shading (the launcher requires exactly this commit) |
 
 The bundle layout, as the server reads it:
 
@@ -136,7 +136,7 @@ uv sync --frozen
 git clone --branch ccr-f3f98215-lvwhes https://github.com/iowarp/clio-agent.git motion/.native-ui/manual-agent
 (cd motion/.native-ui/manual-agent && uv sync --frozen --extra dev)
 git clone --branch ccr-f3f98215-lvwhes https://github.com/iowarp/gact-tui.git motion/.native-ui/manual-ui
-git -C motion/.native-ui/manual-ui switch --detach 939b5ed4ad247d62681701aecc696495b9cc390c
+git -C motion/.native-ui/manual-ui switch --detach e8918ab134450e25d1c3116ab96436604ca7e7b9
 (cd motion/.native-ui/manual-ui/web && pnpm install --frozen-lockfile --ignore-scripts)
 
 # 2. Check the bundle: every capture's size, SHA-256 and tensor layout
