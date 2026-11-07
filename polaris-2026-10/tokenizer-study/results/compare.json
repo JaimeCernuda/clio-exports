@@ -1,0 +1,1353 @@
+{
+  "schema": "clio.tokenizer-study.compare.v1",
+  "texts": {
+    "demo": 1379,
+    "science": 518
+  },
+  "sources": {
+    "granite-4.2": {
+      "repo": "ibm-granite/granite-4.2-8b",
+      "requested_revision": "a7042144125ce5ae64f89610e8289647fc000b9a",
+      "resolved_commit": "a7042144125ce5ae64f89610e8289647fc000b9a",
+      "bytes": 7153414
+    },
+    "granite-4.1": {
+      "repo": "ibm-granite/granite-4.1-8b",
+      "requested_revision": "1504002f650e656a0a3789d99574df12e3e94ed0",
+      "resolved_commit": "1504002f650e656a0a3789d99574df12e3e94ed0",
+      "bytes": 7153422
+    },
+    "phi-4": {
+      "repo": "microsoft/phi-4",
+      "requested_revision": "2db69c1c3e91a05d2c64a3185acfbaf36f744e25",
+      "resolved_commit": "2db69c1c3e91a05d2c64a3185acfbaf36f744e25",
+      "bytes": 4253055
+    },
+    "llama-3.1": {
+      "repo": "unsloth/Llama-3.1-8B-Instruct",
+      "requested_revision": "4699cc75b550f9c6f3173fb80f4703b62d946aa5",
+      "resolved_commit": "4699cc75b550f9c6f3173fb80f4703b62d946aa5",
+      "bytes": 17209920
+    },
+    "llama-4": {
+      "repo": "unsloth/Llama-4-Scout-17B-16E-Instruct",
+      "requested_revision": "afd8e498c87bda51c7ea8ec68ea2f7c066e6340b",
+      "resolved_commit": "afd8e498c87bda51c7ea8ec68ea2f7c066e6340b",
+      "bytes": 27948578
+    },
+    "olmo-3": {
+      "repo": "allenai/Olmo-3-7B-Instruct",
+      "requested_revision": "6e5971d9eba42665f5bd5a0fcf047f299ce1dccc",
+      "resolved_commit": "6e5971d9eba42665f5bd5a0fcf047f299ce1dccc",
+      "bytes": 7137175
+    },
+    "qwen3": {
+      "repo": "Qwen/Qwen3-8B",
+      "requested_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+      "resolved_commit": "b968826d9c46dd6066d109eabc6255188de91218",
+      "bytes": 11422654
+    },
+    "qwen3.5": {
+      "repo": "Qwen/Qwen3.5-9B",
+      "requested_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "resolved_commit": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "bytes": 12807982
+    },
+    "gemma-4": {
+      "repo": "google/gemma-4-12b-it",
+      "requested_revision": "43c9d014b231474fa7212dbb48a762566c2b255d",
+      "resolved_commit": "43c9d014b231474fa7212dbb48a762566c2b255d",
+      "bytes": 32157161
+    },
+    "gpt-oss": {
+      "repo": "openai/gpt-oss-20b",
+      "requested_revision": "6cee5e81ee83917806bbde320786a8fb61efebee",
+      "resolved_commit": "6cee5e81ee83917806bbde320786a8fb61efebee",
+      "bytes": 27868174
+    },
+    "deepseek-v3": {
+      "repo": "deepseek-ai/DeepSeek-V3",
+      "requested_revision": "e815299b0bcbac849fa540c768ef21845365c9eb",
+      "resolved_commit": "e815299b0bcbac849fa540c768ef21845365c9eb",
+      "bytes": 7847652
+    },
+    "mistral": {
+      "repo": "mistralai/Ministral-8B-Instruct-2410",
+      "requested_revision": "2f494a194c5b980dfb9772cb92d26cbb671fce5a",
+      "resolved_commit": "2f494a194c5b980dfb9772cb92d26cbb671fce5a",
+      "bytes": 17078136
+    },
+    "lfm2.5": {
+      "repo": "LiquidAI/LFM2.5-8B-A1B",
+      "requested_revision": "dd83f5cb02aa2938b66bba9a9998d38d0517c1f3",
+      "resolved_commit": "dd83f5cb02aa2938b66bba9a9998d38d0517c1f3",
+      "bytes": 17905598
+    }
+  },
+  "tokenizers": [
+    {
+      "tokenizer": "granite-4.2",
+      "vocab": 100352,
+      "demo": {
+        "tokens": 427,
+        "words": {
+          "words": 150,
+          "split": 29,
+          "split_pct": 19,
+          "caps_split": "13/26",
+          "other_split": "16/124",
+          "split_examples": [
+            "ANSWER",
+            "DIVERGES",
+            "Fm",
+            "Fv",
+            "Lss",
+            "MATCHES",
+            "Neighbours",
+            "RIL",
+            "RULES",
+            "accession",
+            "accessions",
+            "analogue",
+            "analogues",
+            "coreOUTPUT",
+            "dose"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 177,
+          "pct": {
+            "alone": 36,
+            "newline": 0,
+            "space": 53,
+            "word": 1,
+            "punct": 11
+          },
+          "sentence_periods": 8,
+          "sentence_periods_alone": 8
+        }
+      },
+      "science": {
+        "tokens": 106,
+        "words": {
+          "words": 61,
+          "split": 20,
+          "split_pct": 33,
+          "caps_split": "5/6",
+          "other_split": "15/55",
+          "split_examples": [
+            "ANSWER",
+            "CURATION",
+            "DIVERGES",
+            "MATCHES",
+            "Provenance",
+            "SPOTTER",
+            "Spectroscopy",
+            "chlorophyll",
+            "cobalt",
+            "conductance",
+            "curation",
+            "germination",
+            "hyperspectral",
+            "multisource",
+            "phenotyped",
+            "photosynthesis",
+            "reflectance",
+            "senescence",
+            "stomatal",
+            "transpiration"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 18,
+          "pct": {
+            "alone": 100,
+            "newline": 0,
+            "space": 0,
+            "word": 0,
+            "punct": 0
+          },
+          "sentence_periods": 7,
+          "sentence_periods_alone": 7
+        }
+      },
+      "probes": {
+        "analogue by": "[anal] [ogue] [ by]",
+        "does that analogue's own": "[does] [ that] [ analogue] ['s] [ own]",
+        "cannot be analogues.\n2.": "[cannot] [ be] [ analog] [ues] [.] [↵] [2] [.]",
+        "this lookup. Report": "[this] [ lookup] [.] [ Report]",
+        "this override.\n\n>>>": "[this] [ override] [.] [↵] [↵] [>>>]",
+        "aspect=\"accession_panel\")\n": "[aspect] [=\"] [access] [ion] [_] [panel] [\")] [↵]",
+        "Fv/Fm_Lss": "[F] [v] [/] [F] [m] [_] [L] [ss]",
+        "round 1?\n\nRULES": "[round] [ ] [1] [?] [↵] [↵] [RULE] [S]",
+        "(0.972) 1000 2026": "[(] [0] [.] [972] [)] [ ] [1] [000] [ ] [20] [26]"
+      }
+    },
+    {
+      "tokenizer": "granite-4.1",
+      "vocab": 100352,
+      "demo": {
+        "tokens": 396,
+        "words": {
+          "words": 150,
+          "split": 30,
+          "split_pct": 20,
+          "caps_split": "13/26",
+          "other_split": "17/124",
+          "split_examples": [
+            "ANSWER",
+            "DIVERGES",
+            "Fm",
+            "Fv",
+            "Lss",
+            "MATCHES",
+            "Neighbours",
+            "RIL",
+            "RULES",
+            "accession",
+            "accessions",
+            "analogue",
+            "analogues",
+            "aspect",
+            "coreOUTPUT",
+            "dose"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 177,
+          "pct": {
+            "alone": 20,
+            "newline": 10,
+            "space": 52,
+            "word": 8,
+            "punct": 10
+          },
+          "sentence_periods": 8,
+          "sentence_periods_alone": 3
+        }
+      },
+      "science": {
+        "tokens": 105,
+        "words": {
+          "words": 61,
+          "split": 20,
+          "split_pct": 33,
+          "caps_split": "5/6",
+          "other_split": "15/55",
+          "split_examples": [
+            "ANSWER",
+            "CURATION",
+            "DIVERGES",
+            "MATCHES",
+            "Provenance",
+            "SPOTTER",
+            "Spectroscopy",
+            "chlorophyll",
+            "cobalt",
+            "conductance",
+            "curation",
+            "germination",
+            "hyperspectral",
+            "multisource",
+            "phenotyped",
+            "photosynthesis",
+            "reflectance",
+            "senescence",
+            "stomatal",
+            "transpiration"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 18,
+          "pct": {
+            "alone": 94,
+            "newline": 0,
+            "space": 0,
+            "word": 6,
+            "punct": 0
+          },
+          "sentence_periods": 7,
+          "sentence_periods_alone": 7
+        }
+      },
+      "probes": {
+        "analogue by": "[anal] [ogue] [ by]",
+        "does that analogue's own": "[does] [ that] [ analogue] ['s] [ own]",
+        "cannot be analogues.\n2.": "[cannot] [ be] [ analog] [ues] [.↵] [2] [.]",
+        "this lookup. Report": "[this] [ lookup] [.] [ Report]",
+        "this override.\n\n>>>": "[this] [ override] [.↵↵] [>>>]",
+        "aspect=\"accession_panel\")\n": "[aspect] [=\"] [access] [ion] [_panel] [\")↵]",
+        "Fv/Fm_Lss": "[F] [v] [/F] [m] [_L] [ss]",
+        "round 1?\n\nRULES": "[round] [ ] [1] [?↵↵] [RULE] [S]",
+        "(0.972) 1000 2026": "[(] [0] [.] [972] [)] [ ] [100] [0] [ ] [202] [6]"
+      }
+    },
+    {
+      "tokenizer": "phi-4",
+      "vocab": 100352,
+      "demo": {
+        "tokens": 396,
+        "words": {
+          "words": 150,
+          "split": 30,
+          "split_pct": 20,
+          "caps_split": "13/26",
+          "other_split": "17/124",
+          "split_examples": [
+            "ANSWER",
+            "DIVERGES",
+            "Fm",
+            "Fv",
+            "Lss",
+            "MATCHES",
+            "Neighbours",
+            "RIL",
+            "RULES",
+            "accession",
+            "accessions",
+            "analogue",
+            "analogues",
+            "aspect",
+            "coreOUTPUT",
+            "dose"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 177,
+          "pct": {
+            "alone": 20,
+            "newline": 10,
+            "space": 52,
+            "word": 8,
+            "punct": 10
+          },
+          "sentence_periods": 8,
+          "sentence_periods_alone": 3
+        }
+      },
+      "science": {
+        "tokens": 105,
+        "words": {
+          "words": 61,
+          "split": 20,
+          "split_pct": 33,
+          "caps_split": "5/6",
+          "other_split": "15/55",
+          "split_examples": [
+            "ANSWER",
+            "CURATION",
+            "DIVERGES",
+            "MATCHES",
+            "Provenance",
+            "SPOTTER",
+            "Spectroscopy",
+            "chlorophyll",
+            "cobalt",
+            "conductance",
+            "curation",
+            "germination",
+            "hyperspectral",
+            "multisource",
+            "phenotyped",
+            "photosynthesis",
+            "reflectance",
+            "senescence",
+            "stomatal",
+            "transpiration"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 18,
+          "pct": {
+            "alone": 94,
+            "newline": 0,
+            "space": 0,
+            "word": 6,
+            "punct": 0
+          },
+          "sentence_periods": 7,
+          "sentence_periods_alone": 7
+        }
+      },
+      "probes": {
+        "analogue by": "[anal] [ogue] [ by]",
+        "does that analogue's own": "[does] [ that] [ analogue] ['s] [ own]",
+        "cannot be analogues.\n2.": "[cannot] [ be] [ analog] [ues] [.↵] [2] [.]",
+        "this lookup. Report": "[this] [ lookup] [.] [ Report]",
+        "this override.\n\n>>>": "[this] [ override] [.↵↵] [>>>]",
+        "aspect=\"accession_panel\")\n": "[aspect] [=\"] [access] [ion] [_panel] [\")↵]",
+        "Fv/Fm_Lss": "[F] [v] [/F] [m] [_L] [ss]",
+        "round 1?\n\nRULES": "[round] [ ] [1] [?↵↵] [RULE] [S]",
+        "(0.972) 1000 2026": "[(] [0] [.] [972] [)] [ ] [100] [0] [ ] [202] [6]"
+      }
+    },
+    {
+      "tokenizer": "llama-3.1",
+      "vocab": 128256,
+      "demo": {
+        "tokens": 396,
+        "words": {
+          "words": 150,
+          "split": 30,
+          "split_pct": 20,
+          "caps_split": "13/26",
+          "other_split": "17/124",
+          "split_examples": [
+            "ANSWER",
+            "DIVERGES",
+            "Fm",
+            "Fv",
+            "Lss",
+            "MATCHES",
+            "Neighbours",
+            "RIL",
+            "RULES",
+            "accession",
+            "accessions",
+            "analogue",
+            "analogues",
+            "aspect",
+            "coreOUTPUT",
+            "dose"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 177,
+          "pct": {
+            "alone": 20,
+            "newline": 10,
+            "space": 52,
+            "word": 8,
+            "punct": 10
+          },
+          "sentence_periods": 8,
+          "sentence_periods_alone": 3
+        }
+      },
+      "science": {
+        "tokens": 105,
+        "words": {
+          "words": 61,
+          "split": 20,
+          "split_pct": 33,
+          "caps_split": "5/6",
+          "other_split": "15/55",
+          "split_examples": [
+            "ANSWER",
+            "CURATION",
+            "DIVERGES",
+            "MATCHES",
+            "Provenance",
+            "SPOTTER",
+            "Spectroscopy",
+            "chlorophyll",
+            "cobalt",
+            "conductance",
+            "curation",
+            "germination",
+            "hyperspectral",
+            "multisource",
+            "phenotyped",
+            "photosynthesis",
+            "reflectance",
+            "senescence",
+            "stomatal",
+            "transpiration"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 18,
+          "pct": {
+            "alone": 94,
+            "newline": 0,
+            "space": 0,
+            "word": 6,
+            "punct": 0
+          },
+          "sentence_periods": 7,
+          "sentence_periods_alone": 7
+        }
+      },
+      "probes": {
+        "analogue by": "[anal] [ogue] [ by]",
+        "does that analogue's own": "[does] [ that] [ analogue] ['s] [ own]",
+        "cannot be analogues.\n2.": "[cannot] [ be] [ analog] [ues] [.↵] [2] [.]",
+        "this lookup. Report": "[this] [ lookup] [.] [ Report]",
+        "this override.\n\n>>>": "[this] [ override] [.↵↵] [>>>]",
+        "aspect=\"accession_panel\")\n": "[aspect] [=\"] [access] [ion] [_panel] [\")↵]",
+        "Fv/Fm_Lss": "[F] [v] [/F] [m] [_L] [ss]",
+        "round 1?\n\nRULES": "[round] [ ] [1] [?↵↵] [RULE] [S]",
+        "(0.972) 1000 2026": "[(] [0] [.] [972] [)] [ ] [100] [0] [ ] [202] [6]"
+      }
+    },
+    {
+      "tokenizer": "llama-4",
+      "vocab": 201135,
+      "demo": {
+        "tokens": 387,
+        "words": {
+          "words": 150,
+          "split": 21,
+          "split_pct": 14,
+          "caps_split": "6/26",
+          "other_split": "15/124",
+          "split_examples": [
+            "DIVERGES",
+            "Fm",
+            "Fv",
+            "Lss",
+            "MATCHES",
+            "Neighbours",
+            "RULES",
+            "accession",
+            "accessions",
+            "analogue",
+            "aspect",
+            "coreOUTPUT"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 177,
+          "pct": {
+            "alone": 20,
+            "newline": 16,
+            "space": 45,
+            "word": 8,
+            "punct": 10
+          },
+          "sentence_periods": 8,
+          "sentence_periods_alone": 3
+        }
+      },
+      "science": {
+        "tokens": 95,
+        "words": {
+          "words": 61,
+          "split": 14,
+          "split_pct": 23,
+          "caps_split": "5/6",
+          "other_split": "9/55",
+          "split_examples": [
+            "CURATION",
+            "DIVERGES",
+            "MATCHES",
+            "OVERRIDE",
+            "Provenance",
+            "SPOTTER",
+            "curation",
+            "germination",
+            "hyperspectral",
+            "multisource",
+            "phenotyped",
+            "senescence",
+            "stomatal",
+            "transpiration"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 18,
+          "pct": {
+            "alone": 94,
+            "newline": 0,
+            "space": 0,
+            "word": 6,
+            "punct": 0
+          },
+          "sentence_periods": 7,
+          "sentence_periods_alone": 7
+        }
+      },
+      "probes": {
+        "analogue by": "[anal] [ogue] [ by]",
+        "does that analogue's own": "[does] [ that] [ analogue] ['s] [ own]",
+        "cannot be analogues.\n2.": "[cannot] [ be] [ analogues] [.↵] [2] [.]",
+        "this lookup. Report": "[this] [ lookup] [.] [ Report]",
+        "this override.\n\n>>>": "[this] [ override] [.↵↵] [>>>]",
+        "aspect=\"accession_panel\")\n": "[aspect] [=\"] [access] [ion] [_panel] [\")↵]",
+        "Fv/Fm_Lss": "[F] [v] [/F] [m] [_L] [ss]",
+        "round 1?\n\nRULES": "[round] [ ] [1] [?↵↵] [R] [ULE] [S]",
+        "(0.972) 1000 2026": "[(] [0] [.] [972] [)] [ ] [100] [0] [ ] [202] [6]"
+      }
+    },
+    {
+      "tokenizer": "olmo-3",
+      "vocab": 100278,
+      "demo": {
+        "tokens": 396,
+        "words": {
+          "words": 150,
+          "split": 30,
+          "split_pct": 20,
+          "caps_split": "13/26",
+          "other_split": "17/124",
+          "split_examples": [
+            "ANSWER",
+            "DIVERGES",
+            "Fm",
+            "Fv",
+            "Lss",
+            "MATCHES",
+            "Neighbours",
+            "RIL",
+            "RULES",
+            "accession",
+            "accessions",
+            "analogue",
+            "analogues",
+            "aspect",
+            "coreOUTPUT",
+            "dose"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 177,
+          "pct": {
+            "alone": 20,
+            "newline": 10,
+            "space": 52,
+            "word": 8,
+            "punct": 10
+          },
+          "sentence_periods": 8,
+          "sentence_periods_alone": 3
+        }
+      },
+      "science": {
+        "tokens": 105,
+        "words": {
+          "words": 61,
+          "split": 20,
+          "split_pct": 33,
+          "caps_split": "5/6",
+          "other_split": "15/55",
+          "split_examples": [
+            "ANSWER",
+            "CURATION",
+            "DIVERGES",
+            "MATCHES",
+            "Provenance",
+            "SPOTTER",
+            "Spectroscopy",
+            "chlorophyll",
+            "cobalt",
+            "conductance",
+            "curation",
+            "germination",
+            "hyperspectral",
+            "multisource",
+            "phenotyped",
+            "photosynthesis",
+            "reflectance",
+            "senescence",
+            "stomatal",
+            "transpiration"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 18,
+          "pct": {
+            "alone": 94,
+            "newline": 0,
+            "space": 0,
+            "word": 6,
+            "punct": 0
+          },
+          "sentence_periods": 7,
+          "sentence_periods_alone": 7
+        }
+      },
+      "probes": {
+        "analogue by": "[anal] [ogue] [ by]",
+        "does that analogue's own": "[does] [ that] [ analogue] ['s] [ own]",
+        "cannot be analogues.\n2.": "[cannot] [ be] [ analog] [ues] [.↵] [2] [.]",
+        "this lookup. Report": "[this] [ lookup] [.] [ Report]",
+        "this override.\n\n>>>": "[this] [ override] [.↵↵] [>>>]",
+        "aspect=\"accession_panel\")\n": "[aspect] [=\"] [access] [ion] [_panel] [\")↵]",
+        "Fv/Fm_Lss": "[F] [v] [/F] [m] [_L] [ss]",
+        "round 1?\n\nRULES": "[round] [ ] [1] [?↵↵] [RULE] [S]",
+        "(0.972) 1000 2026": "[(] [0] [.] [972] [)] [ ] [100] [0] [ ] [202] [6]"
+      }
+    },
+    {
+      "tokenizer": "qwen3",
+      "vocab": 151669,
+      "demo": {
+        "tokens": 451,
+        "words": {
+          "words": 150,
+          "split": 30,
+          "split_pct": 20,
+          "caps_split": "13/26",
+          "other_split": "17/124",
+          "split_examples": [
+            "ANSWER",
+            "DIVERGES",
+            "Fm",
+            "Fv",
+            "Lss",
+            "MATCHES",
+            "Neighbours",
+            "RIL",
+            "RULES",
+            "accession",
+            "accessions",
+            "analogue",
+            "analogues",
+            "aspect",
+            "coreOUTPUT",
+            "dose"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 177,
+          "pct": {
+            "alone": 20,
+            "newline": 10,
+            "space": 52,
+            "word": 8,
+            "punct": 10
+          },
+          "sentence_periods": 8,
+          "sentence_periods_alone": 3
+        }
+      },
+      "science": {
+        "tokens": 105,
+        "words": {
+          "words": 61,
+          "split": 20,
+          "split_pct": 33,
+          "caps_split": "5/6",
+          "other_split": "15/55",
+          "split_examples": [
+            "ANSWER",
+            "CURATION",
+            "DIVERGES",
+            "MATCHES",
+            "Provenance",
+            "SPOTTER",
+            "Spectroscopy",
+            "chlorophyll",
+            "cobalt",
+            "conductance",
+            "curation",
+            "germination",
+            "hyperspectral",
+            "multisource",
+            "phenotyped",
+            "photosynthesis",
+            "reflectance",
+            "senescence",
+            "stomatal",
+            "transpiration"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 18,
+          "pct": {
+            "alone": 94,
+            "newline": 0,
+            "space": 0,
+            "word": 6,
+            "punct": 0
+          },
+          "sentence_periods": 7,
+          "sentence_periods_alone": 7
+        }
+      },
+      "probes": {
+        "analogue by": "[anal] [ogue] [ by]",
+        "does that analogue's own": "[does] [ that] [ analogue] ['s] [ own]",
+        "cannot be analogues.\n2.": "[cannot] [ be] [ analog] [ues] [.↵] [2] [.]",
+        "this lookup. Report": "[this] [ lookup] [.] [ Report]",
+        "this override.\n\n>>>": "[this] [ override] [.↵↵] [>>>]",
+        "aspect=\"accession_panel\")\n": "[aspect] [=\"] [access] [ion] [_panel] [\")↵]",
+        "Fv/Fm_Lss": "[F] [v] [/F] [m] [_L] [ss]",
+        "round 1?\n\nRULES": "[round] [ ] [1] [?↵↵] [RULE] [S]",
+        "(0.972) 1000 2026": "[(] [0] [.] [9] [7] [2] [)] [ ] [1] [0] [0] [0] [ ] [2] [0] [2] [6]"
+      }
+    },
+    {
+      "tokenizer": "qwen3.5",
+      "vocab": 248070,
+      "demo": {
+        "tokens": 465,
+        "words": {
+          "words": 150,
+          "split": 29,
+          "split_pct": 19,
+          "caps_split": "13/26",
+          "other_split": "16/124",
+          "split_examples": [
+            "ANSWER",
+            "DIVERGES",
+            "Fm",
+            "Fv",
+            "Lss",
+            "MATCHES",
+            "Neighbours",
+            "RIL",
+            "RULES",
+            "accession",
+            "accessions",
+            "analogue",
+            "analogues",
+            "aspect",
+            "coreOUTPUT"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 177,
+          "pct": {
+            "alone": 28,
+            "newline": 0,
+            "space": 53,
+            "word": 8,
+            "punct": 11
+          },
+          "sentence_periods": 8,
+          "sentence_periods_alone": 8
+        }
+      },
+      "science": {
+        "tokens": 105,
+        "words": {
+          "words": 61,
+          "split": 20,
+          "split_pct": 33,
+          "caps_split": "5/6",
+          "other_split": "15/55",
+          "split_examples": [
+            "ANSWER",
+            "CURATION",
+            "DIVERGES",
+            "MATCHES",
+            "Provenance",
+            "SPOTTER",
+            "Spectroscopy",
+            "chlorophyll",
+            "cobalt",
+            "conductance",
+            "curation",
+            "germination",
+            "hyperspectral",
+            "multisource",
+            "phenotyped",
+            "photosynthesis",
+            "reflectance",
+            "senescence",
+            "stomatal",
+            "transpiration"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 18,
+          "pct": {
+            "alone": 94,
+            "newline": 0,
+            "space": 0,
+            "word": 6,
+            "punct": 0
+          },
+          "sentence_periods": 7,
+          "sentence_periods_alone": 7
+        }
+      },
+      "probes": {
+        "analogue by": "[anal] [ogue] [ by]",
+        "does that analogue's own": "[does] [ that] [ analogue] ['s] [ own]",
+        "cannot be analogues.\n2.": "[cannot] [ be] [ analog] [ues] [.] [↵] [2] [.]",
+        "this lookup. Report": "[this] [ lookup] [.] [ Report]",
+        "this override.\n\n>>>": "[this] [ override] [.] [↵↵] [>>>]",
+        "aspect=\"accession_panel\")\n": "[aspect] [=\"] [access] [ion] [_panel] [\")] [↵]",
+        "Fv/Fm_Lss": "[F] [v] [/F] [m] [_L] [ss]",
+        "round 1?\n\nRULES": "[round] [ ] [1] [?] [↵↵] [RULE] [S]",
+        "(0.972) 1000 2026": "[(] [0] [.] [9] [7] [2] [)] [ ] [1] [0] [0] [0] [ ] [2] [0] [2] [6]"
+      }
+    },
+    {
+      "tokenizer": "gemma-4",
+      "vocab": 262144,
+      "demo": {
+        "tokens": 478,
+        "words": {
+          "words": 150,
+          "split": 32,
+          "split_pct": 21,
+          "caps_split": "15/26",
+          "other_split": "17/124",
+          "split_examples": [
+            "DIVERGES",
+            "Fm",
+            "Fv",
+            "Lss",
+            "MATCHES",
+            "NIL",
+            "Neighbours",
+            "RIL",
+            "accession",
+            "accessions",
+            "analogue",
+            "coreOUTPUT",
+            "genotype",
+            "observational"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 177,
+          "pct": {
+            "alone": 36,
+            "newline": 0,
+            "space": 9,
+            "word": 0,
+            "punct": 55
+          },
+          "sentence_periods": 8,
+          "sentence_periods_alone": 8
+        }
+      },
+      "science": {
+        "tokens": 92,
+        "words": {
+          "words": 61,
+          "split": 10,
+          "split_pct": 16,
+          "caps_split": "5/6",
+          "other_split": "5/55",
+          "split_examples": [
+            "CURATION",
+            "DIVERGES",
+            "MATCHES",
+            "OVERRIDE",
+            "Provenance",
+            "SPOTTER",
+            "hyperspectral",
+            "multisource",
+            "phenotyped",
+            "stomatal"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 18,
+          "pct": {
+            "alone": 100,
+            "newline": 0,
+            "space": 0,
+            "word": 0,
+            "punct": 0
+          },
+          "sentence_periods": 7,
+          "sentence_periods_alone": 7
+        }
+      },
+      "probes": {
+        "analogue by": "[anal] [ogue] [ by]",
+        "does that analogue's own": "[does] [ that] [ analogue] ['] [s] [ own]",
+        "cannot be analogues.\n2.": "[cannot] [ be] [ analogues] [.] [↵] [2] [.]",
+        "this lookup. Report": "[this] [ lookup] [.] [ Report]",
+        "this override.\n\n>>>": "[this] [ override] [.] [↵↵] [>>>]",
+        "aspect=\"accession_panel\")\n": "[aspect] [=\"] [access] [ion] [_] [panel] [\")] [↵]",
+        "Fv/Fm_Lss": "[F] [v] [/] [F] [m] [_] [L] [ss]",
+        "round 1?\n\nRULES": "[round] [ ] [1] [?] [↵↵] [RULES]",
+        "(0.972) 1000 2026": "[(] [0] [.] [9] [7] [2] [)] [ ] [1] [0] [0] [0] [ ] [2] [0] [2] [6]"
+      }
+    },
+    {
+      "tokenizer": "gpt-oss",
+      "vocab": 200019,
+      "demo": {
+        "tokens": 393,
+        "words": {
+          "words": 150,
+          "split": 27,
+          "split_pct": 18,
+          "caps_split": "11/26",
+          "other_split": "16/124",
+          "split_examples": [
+            "DIVERGES",
+            "Fm",
+            "Fv",
+            "Lss",
+            "MATCHES",
+            "Neighbours",
+            "RIL",
+            "RULES",
+            "accession",
+            "accessions",
+            "analogue",
+            "analogues",
+            "aspect",
+            "coreOUTPUT"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 177,
+          "pct": {
+            "alone": 20,
+            "newline": 16,
+            "space": 45,
+            "word": 8,
+            "punct": 10
+          },
+          "sentence_periods": 8,
+          "sentence_periods_alone": 3
+        }
+      },
+      "science": {
+        "tokens": 101,
+        "words": {
+          "words": 61,
+          "split": 20,
+          "split_pct": 33,
+          "caps_split": "6/6",
+          "other_split": "14/55",
+          "split_examples": [
+            "ANSWER",
+            "CURATION",
+            "DIVERGES",
+            "MATCHES",
+            "OVERRIDE",
+            "Provenance",
+            "SPOTTER",
+            "Spectroscopy",
+            "chlorophyll",
+            "conductance",
+            "curation",
+            "germination",
+            "hyperspectral",
+            "multisource",
+            "phenotyped",
+            "photosynthesis",
+            "reflectance",
+            "senescence",
+            "stomatal",
+            "transpiration"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 18,
+          "pct": {
+            "alone": 94,
+            "newline": 0,
+            "space": 0,
+            "word": 6,
+            "punct": 0
+          },
+          "sentence_periods": 7,
+          "sentence_periods_alone": 7
+        }
+      },
+      "probes": {
+        "analogue by": "[anal] [ogue] [ by]",
+        "does that analogue's own": "[does] [ that] [ analogue] ['s] [ own]",
+        "cannot be analogues.\n2.": "[cannot] [ be] [ analog] [ues] [.↵] [2] [.]",
+        "this lookup. Report": "[this] [ lookup] [.] [ Report]",
+        "this override.\n\n>>>": "[this] [ override] [.↵↵] [>>>]",
+        "aspect=\"accession_panel\")\n": "[aspect] [=\"] [access] [ion] [_panel] [\")↵]",
+        "Fv/Fm_Lss": "[F] [v] [/F] [m] [_L] [ss]",
+        "round 1?\n\nRULES": "[round] [ ] [1] [?↵↵] [RULE] [S]",
+        "(0.972) 1000 2026": "[(] [0] [.] [972] [)] [ ] [100] [0] [ ] [202] [6]"
+      }
+    },
+    {
+      "tokenizer": "deepseek-v3",
+      "vocab": 128815,
+      "demo": {
+        "tokens": 415,
+        "words": {
+          "words": 150,
+          "split": 43,
+          "split_pct": 29,
+          "caps_split": "24/26",
+          "other_split": "19/124",
+          "split_examples": [
+            "DIVERGES",
+            "FORMAT",
+            "Fm",
+            "Fv",
+            "Lss",
+            "MAGIC",
+            "MATCHES",
+            "NIL",
+            "Neighbours",
+            "RIL",
+            "ROUND",
+            "RULES",
+            "TASK",
+            "accession",
+            "accessions",
+            "analogue",
+            "aspect",
+            "coreOUTPUT",
+            "dose",
+            "lookup",
+            "panel"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 177,
+          "pct": {
+            "alone": 21,
+            "newline": 11,
+            "space": 31,
+            "word": 8,
+            "punct": 29
+          },
+          "sentence_periods": 8,
+          "sentence_periods_alone": 3
+        }
+      },
+      "science": {
+        "tokens": 95,
+        "words": {
+          "words": 61,
+          "split": 12,
+          "split_pct": 20,
+          "caps_split": "5/6",
+          "other_split": "7/55",
+          "split_examples": [
+            "CURATION",
+            "DIVERGES",
+            "MATCHES",
+            "OVERRIDE",
+            "Provenance",
+            "SPOTTER",
+            "datasource",
+            "hyperspectral",
+            "multisource",
+            "phenotyped",
+            "stomatal",
+            "transpiration"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 18,
+          "pct": {
+            "alone": 94,
+            "newline": 0,
+            "space": 0,
+            "word": 6,
+            "punct": 0
+          },
+          "sentence_periods": 7,
+          "sentence_periods_alone": 7
+        }
+      },
+      "probes": {
+        "analogue by": "[anal] [ogue] [ by]",
+        "does that analogue's own": "[does] [ that] [ analogue] ['s] [ own]",
+        "cannot be analogues.\n2.": "[cannot] [ be] [ analogues] [.↵] [2] [.]",
+        "this lookup. Report": "[this] [ lookup] [.] [ Report]",
+        "this override.\n\n>>>": "[this] [ override] [.↵↵] [>>>]",
+        "aspect=\"accession_panel\")\n": "[aspect] [=\"] [access] [ion] [_p] [anel] [\")↵]",
+        "Fv/Fm_Lss": "[F] [v] [/F] [m] [_L] [ss]",
+        "round 1?\n\nRULES": "[round] [ ] [1] [?↵↵] [R] [ULES]",
+        "(0.972) 1000 2026": "[(] [0] [.] [972] [)] [ ] [100] [0] [ ] [202] [6]"
+      }
+    },
+    {
+      "tokenizer": "mistral",
+      "vocab": 131072,
+      "demo": {
+        "tokens": 478,
+        "words": {
+          "words": 150,
+          "split": 42,
+          "split_pct": 28,
+          "caps_split": "26/26",
+          "other_split": "16/124",
+          "split_examples": [
+            "ANSWER",
+            "DIVERGES",
+            "FORMAT",
+            "Fm",
+            "Fv",
+            "Lss",
+            "MAGIC",
+            "MATCHES",
+            "NIL",
+            "Neighbours",
+            "RIL",
+            "ROUND",
+            "RULES",
+            "TASK",
+            "accession",
+            "accessions",
+            "analogue",
+            "aspect",
+            "coreOUTPUT",
+            "dose"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 177,
+          "pct": {
+            "alone": 21,
+            "newline": 11,
+            "space": 44,
+            "word": 8,
+            "punct": 16
+          },
+          "sentence_periods": 8,
+          "sentence_periods_alone": 3
+        }
+      },
+      "science": {
+        "tokens": 102,
+        "words": {
+          "words": 61,
+          "split": 15,
+          "split_pct": 25,
+          "caps_split": "6/6",
+          "other_split": "9/55",
+          "split_examples": [
+            "ANSWER",
+            "CURATION",
+            "DIVERGES",
+            "MATCHES",
+            "OVERRIDE",
+            "Provenance",
+            "SPOTTER",
+            "Spectroscopy",
+            "curation",
+            "datasource",
+            "hyperspectral",
+            "multisource",
+            "phenotyped",
+            "stomatal",
+            "transpiration"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 18,
+          "pct": {
+            "alone": 94,
+            "newline": 0,
+            "space": 0,
+            "word": 6,
+            "punct": 0
+          },
+          "sentence_periods": 7,
+          "sentence_periods_alone": 7
+        }
+      },
+      "probes": {
+        "analogue by": "[anal] [ogue] [ by]",
+        "does that analogue's own": "[does] [ that] [ analogue] ['s] [ own]",
+        "cannot be analogues.\n2.": "[cannot] [ be] [ analogues] [.↵] [2] [.]",
+        "this lookup. Report": "[this] [ lookup] [.] [ Report]",
+        "this override.\n\n>>>": "[this] [ override] [.↵↵] [>>>]",
+        "aspect=\"accession_panel\")\n": "[as] [pect] [=\"] [access] [ion] [_panel] [\")↵]",
+        "Fv/Fm_Lss": "[Fv] [/F] [m] [_L] [ss]",
+        "round 1?\n\nRULES": "[round] [ ] [1] [?↵↵] [R] [ULE] [S]",
+        "(0.972) 1000 2026": "[(] [0] [.] [9] [7] [2] [)] [ ] [1] [0] [0] [0] [ ] [2] [0] [2] [6]"
+      }
+    },
+    {
+      "tokenizer": "lfm2.5",
+      "vocab": 125017,
+      "demo": {
+        "tokens": 426,
+        "words": {
+          "words": 150,
+          "split": 43,
+          "split_pct": 29,
+          "caps_split": "24/26",
+          "other_split": "19/124",
+          "split_examples": [
+            "DIVERGES",
+            "FORMAT",
+            "Fm",
+            "Fv",
+            "Lss",
+            "MAGIC",
+            "MATCHES",
+            "NIL",
+            "Neighbours",
+            "RIL",
+            "ROUND",
+            "RULES",
+            "TASK",
+            "accession",
+            "accessions",
+            "analogue",
+            "analogues",
+            "aspect",
+            "coreOUTPUT",
+            "dose",
+            "lookup"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 177,
+          "pct": {
+            "alone": 23,
+            "newline": 11,
+            "space": 12,
+            "word": 7,
+            "punct": 47
+          },
+          "sentence_periods": 8,
+          "sentence_periods_alone": 3
+        }
+      },
+      "science": {
+        "tokens": 110,
+        "words": {
+          "words": 61,
+          "split": 22,
+          "split_pct": 36,
+          "caps_split": "6/6",
+          "other_split": "16/55",
+          "split_examples": [
+            "ANSWER",
+            "CURATION",
+            "DIVERGES",
+            "MATCHES",
+            "OVERRIDE",
+            "Provenance",
+            "SPOTTER",
+            "Spectroscopy",
+            "chlorophyll",
+            "cobalt",
+            "conductance",
+            "curation",
+            "datasource",
+            "hyperspectral",
+            "multisource",
+            "phenotyped",
+            "quarantine",
+            "reflectance",
+            "reviewer",
+            "senescence",
+            "stomatal",
+            "transpiration"
+          ]
+        },
+        "punctuation": {
+          "punctuation_chars": 18,
+          "pct": {
+            "alone": 94,
+            "newline": 0,
+            "space": 0,
+            "word": 6,
+            "punct": 0
+          },
+          "sentence_periods": 7,
+          "sentence_periods_alone": 7
+        }
+      },
+      "probes": {
+        "analogue by": "[anal] [ogue] [ by]",
+        "does that analogue's own": "[does] [ that] [ analogue] ['s] [ own]",
+        "cannot be analogues.\n2.": "[c] [annot] [ be] [ analog] [ues] [.↵] [2] [.]",
+        "this lookup. Report": "[this] [ lookup] [.] [ Report]",
+        "this override.\n\n>>>": "[this] [ override] [.↵↵] [>>>]",
+        "aspect=\"accession_panel\")\n": "[as] [pect] [=\"] [access] [ion] [_] [panel] [\")↵]",
+        "Fv/Fm_Lss": "[Fv] [/F] [m] [_L] [ss]",
+        "round 1?\n\nRULES": "[round] [ ] [1] [?↵↵] [R] [UL] [ES]",
+        "(0.972) 1000 2026": "[(] [0] [.] [972] [)] [ ] [100] [0] [ ] [202] [6]"
+      }
+    }
+  ]
+}

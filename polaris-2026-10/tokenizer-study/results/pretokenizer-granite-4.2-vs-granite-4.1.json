@@ -1,0 +1,189 @@
+{
+  "schema": "clio.tokenizer-study.pretokenizer.v1",
+  "left": "granite-4.2",
+  "right": "granite-4.1",
+  "sources": {
+    "granite-4.2": {
+      "repo": "ibm-granite/granite-4.2-8b",
+      "requested_revision": "a7042144125ce5ae64f89610e8289647fc000b9a",
+      "resolved_commit": "a7042144125ce5ae64f89610e8289647fc000b9a",
+      "bytes": 7153414
+    },
+    "granite-4.1": {
+      "repo": "ibm-granite/granite-4.1-8b",
+      "requested_revision": "1504002f650e656a0a3789d99574df12e3e94ed0",
+      "resolved_commit": "1504002f650e656a0a3789d99574df12e3e94ed0",
+      "bytes": 7153422
+    }
+  },
+  "vocab_sizes": [
+    100352,
+    100352
+  ],
+  "same_token_and_id": 100335,
+  "merges_identical": true,
+  "pretokenizer": {
+    "granite-4.2": [
+      "byte-level:gpt2"
+    ],
+    "granite-4.1": [
+      "(?i:'s|'t|'re|'ve|'m|'ll|'d)|[^\\r\\n\\p{L}\\p{N}]?\\p{L}+|\\p{N}{1,3}| ?[^\\s\\p{L}\\p{N}]+[\\r\\n]*|\\s*[\\r\\n]+|\\s+(?!\\S)|\\s+"
+    ]
+  },
+  "reassigned_special_tokens": {
+    "100256": [
+      "<|pad|>",
+      "<|im_start|>"
+    ],
+    "100257": [
+      "<|end_of_text|>",
+      "<|im_end|>"
+    ],
+    "100264": [
+      "<|start_of_role|>",
+      "<|unused_11|>"
+    ],
+    "100265": [
+      "<|end_of_role|>",
+      "<|unused_12|>"
+    ],
+    "100266": [
+      "<|unused_1|>",
+      "<|unused_13|>"
+    ],
+    "100267": [
+      "<|start_of_plugin|>",
+      "<|unused_14|>"
+    ],
+    "100268": [
+      "<|end_of_plugin|>",
+      "<|unused_15|>"
+    ],
+    "100269": [
+      "<|unk|>",
+      "<unk>"
+    ],
+    "100276": [
+      "<think_on>",
+      "[INST]"
+    ],
+    "100277": [
+      "<think_off>",
+      "[/INST]"
+    ],
+    "100278": [
+      "<schema>",
+      "[AVAILABLE_TOOLS]"
+    ],
+    "100279": [
+      "</schema>",
+      "[/AVAILABLE_TOOLS]"
+    ],
+    "100280": [
+      "<tools>",
+      "[TOOL_RESULTS]"
+    ],
+    "100281": [
+      "</tools>",
+      "[/TOOL_RESULTS]"
+    ],
+    "100282": [
+      "<documents>",
+      "[TOOL_CALLS]"
+    ],
+    "100283": [
+      "</documents>",
+      "<s>"
+    ],
+    "100284": [
+      "<|unused_15|>",
+      "</s>"
+    ]
+  },
+  "tokens": [
+    427,
+    396
+  ],
+  "differences": [
+    {
+      "count": 5,
+      "granite-4.2": ". | \n",
+      "granite-4.1": ".\n"
+    },
+    {
+      "count": 4,
+      "granite-4.2": ") | \n",
+      "granite-4.1": ")\n"
+    },
+    {
+      "count": 2,
+      "granite-4.2": "/ | F",
+      "granite-4.1": "/F"
+    },
+    {
+      "count": 2,
+      "granite-4.2": "_ | L",
+      "granite-4.1": "_L"
+    },
+    {
+      "count": 1,
+      "granite-4.2": "_ | search | ) | \n",
+      "granite-4.1": "_search | )\n"
+    },
+    {
+      "count": 1,
+      "granite-4.2": "- | response",
+      "granite-4.1": "-response"
+    },
+    {
+      "count": 1,
+      "granite-4.2": "? | \n | \n",
+      "granite-4.1": "?\n\n"
+    },
+    {
+      "count": 1,
+      "granite-4.2": "_ | lookup | ( | space",
+      "granite-4.1": "_lookup | (space"
+    },
+    {
+      "count": 1,
+      "granite-4.2": "_ | response | _ | profile",
+      "granite-4.1": "_response | _profile"
+    },
+    {
+      "count": 1,
+      "granite-4.2": ") | \n | \n",
+      "granite-4.1": ")\n\n"
+    },
+    {
+      "count": 1,
+      "granite-4.2": "_ | lookup | ( | aspect",
+      "granite-4.1": "_lookup | (as | pect"
+    },
+    {
+      "count": 1,
+      "granite-4.2": "_ | panel | \") | \n",
+      "granite-4.1": "_panel | \")\n"
+    },
+    {
+      "count": 1,
+      "granite-4.2": "_ | role",
+      "granite-4.1": "_role"
+    },
+    {
+      "count": 1,
+      "granite-4.2": " ------------- | \n",
+      "granite-4.1": " ------------ | -\n"
+    },
+    {
+      "count": 1,
+      "granite-4.2": ": | \n",
+      "granite-4.1": ":\n"
+    },
+    {
+      "count": 1,
+      "granite-4.2": "> | \n | \n",
+      "granite-4.1": ">\n\n"
+    }
+  ]
+}

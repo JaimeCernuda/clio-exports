@@ -1,0 +1,15 @@
+{
+  "schema": "clio.tokenizer-study.heat-alignment.v1",
+  "selections": 11,
+  "runs": 16697,
+  "misaligned": 0,
+  "parts_checked": 7,
+  "parts_missing_text": [],
+  "examples": [],
+  "tokenizer": {
+    "repo": "ibm-granite/granite-4.2-8b",
+    "requested_revision": "a7042144125ce5ae64f89610e8289647fc000b9a",
+    "resolved_commit": "a7042144125ce5ae64f89610e8289647fc000b9a",
+    "bytes": 7153414
+  }
+}

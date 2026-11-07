@@ -292,6 +292,7 @@ def test_skill_references_are_portable_and_resolve() -> None:
     skills = list((ROOT / ".agents/skills").glob("*/SKILL.md"))
     assert {skill.parent.name for skill in skills} == {
         "clio-composable-ad",
+        "clio-motion-ads",
         "clio-videos",
         "clio-motion-stack",
         "clio-motion-scenes",
@@ -302,5 +303,7 @@ def test_skill_references_are_portable_and_resolve() -> None:
         for reference in re.findall(r"\[[^]]+\]\(([^)]+)\)", skill.read_text(encoding="utf-8")):
             if "://" in reference:
                 continue
-            resolved = (skill.parent / reference.split("#")[0]).resolve()
-            assert resolved.is_relative_to(ROOT) and resolved.is_file(), reference
+            target = reference.split("#")[0]
+            resolved = (skill.parent / target).resolve()
+            exists = resolved.is_dir() if target.endswith("/") else resolved.is_file()
+            assert resolved.is_relative_to(ROOT) and exists, reference

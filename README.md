@@ -34,6 +34,9 @@ engineering each have a source map, launch recipe and review status. The shared
 [UI replay emulator](motion/native/EMULATOR.md) is documented separately.
 For interactive CLIO + SPOTTER attention using local captures and tokenizer,
 follow the [manual launch guide](motion/native/MANUAL-ATTENTION.md).
+The [Chain B tokenizer study](polaris-2026-10/tokenizer-study/README.md) explains
+why that heat splits words and lights single periods, and compares Granite 4.2's
+tokenizer with other open-weight models.
 
 The [Wordle technical walkthrough](motion/native/WORDLE.md) follows a branched
 study through its agents, tool-driven boards and evolving Science Log graph,

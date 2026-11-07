@@ -1,0 +1,244 @@
+<title>Granite Token Boundaries</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600&display=swap">
+<style>
+/* Layout: one reading column; a control strip, then one panel per sample with its token stream. */
+:root {
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --fg: #1b2230;
+  --muted: #5d6779;
+  --rule: #dfe3ea;
+  --tok-a: #dbe7fb;
+  --tok-b: #e2e5eb;
+  --tok-a-fg: #15336b;
+  --split: #b45309;
+  --split-bg: #fdecd3;
+  --ws: #9aa3b2;
+  --focus: #2f6fe4;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11151c; --panel: #181e27; --fg: #e3e8f0; --muted: #98a2b3; --rule: #2a3340;
+    --tok-a: #23395f; --tok-b: #262d38; --tok-a-fg: #cfe0ff;
+    --split: #f5a524; --split-bg: #3a2a12; --ws: #6b7586; --focus: #7aa7ff;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11151c; --panel: #181e27; --fg: #e3e8f0; --muted: #98a2b3; --rule: #2a3340;
+  --tok-a: #23395f; --tok-b: #262d38; --tok-a-fg: #cfe0ff;
+  --split: #f5a524; --split-bg: #3a2a12; --ws: #6b7586; --focus: #7aa7ff;
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font-family: var(--body); line-height: 1.5; }
+.wrap {
+  max-width: 980px; margin: 0 auto;
+  padding-block: 28px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 20px;
+}
+header { display: grid; gap: 6px; }
+h1 { font-family: var(--display); font-weight: 600; font-size: 1.9rem; margin: 0; text-wrap: balance; letter-spacing: .01em; }
+.lede { margin: 0; color: var(--muted); max-width: 68ch; }
+.meta { font-family: var(--mono); font-size: .78rem; color: var(--muted); overflow-wrap: anywhere; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; background: var(--panel); }
+.seg button {
+  font: 500 .88rem var(--body); color: var(--muted); background: transparent;
+  border: 0; padding: 7px 14px; cursor: pointer;
+}
+.seg button[aria-pressed="true"] { background: var(--tok-a); color: var(--tok-a-fg); }
+.seg button:focus-visible, .check input:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.check { display: inline-flex; gap: 8px; align-items: center; font-size: .88rem; color: var(--muted); cursor: pointer; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: .82rem; color: var(--muted); align-items: center; }
+.legend .sw { display: inline-block; vertical-align: -2px; margin-right: 6px; }
+
+section.sample { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; display: grid; min-width: 0; }
+.sample-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; padding: 14px 18px 10px; border-bottom: 1px solid var(--rule); }
+.sample-head h2 { font: 600 1rem var(--body); margin: 0; }
+.stats { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.stats b { color: var(--fg); font-weight: 600; }
+.stream { padding: 14px 18px 18px; overflow-x: auto; font-family: var(--mono); font-size: .86rem; line-height: 2.05; white-space: pre-wrap; overflow-wrap: break-word; min-width: 0; }
+
+.t { border-radius: 3px; padding: 1px 0; color: var(--fg); }
+.t.a { background: var(--tok-a); color: var(--tok-a-fg); }
+.t.b { background: var(--tok-b); }
+.t + .t { margin-left: 1px; }
+.ws { color: var(--ws); }
+.w { border-radius: 3px; }
+.w.split { box-shadow: inset 0 -2px 0 var(--split); }
+body.hide-split .w.split { box-shadow: none; }
+.words .t.a, .words .t.b { margin-left: 0; border-radius: 0; }
+.words .w { background: var(--tok-b); padding: 1px 0; }
+.words .w:nth-child(odd) { background: var(--tok-a); color: var(--tok-a-fg); }
+.words .w .t { background: transparent !important; color: inherit; }
+.words .w.split { background: var(--split-bg); color: var(--fg); }
+.n { font: 600 .62rem var(--body); color: var(--split); vertical-align: super; margin-left: 1px; }
+.t:hover, .w:hover { outline: 1px solid var(--focus); }
+
+.splitlist { padding: 0 18px 16px; display: flex; flex-wrap: wrap; gap: 6px; }
+.splitlist span { font-family: var(--mono); font-size: .78rem; background: var(--split-bg); border-radius: 4px; padding: 2px 6px; }
+.splitlist span i { font-style: normal; color: var(--split); padding: 0 2px; }
+
+.tip {
+  position: fixed; pointer-events: none; z-index: 20; background: var(--fg); color: var(--bg);
+  font: .76rem/1.4 var(--mono); padding: 6px 8px; border-radius: 6px; max-width: 280px; white-space: pre-wrap;
+}
+footer { font-size: .82rem; color: var(--muted); max-width: 72ch; display: grid; gap: 6px; }
+footer p { margin: 0; }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>How Granite splits the demo text</h1>
+    <p class="lede">Each coloured block is one token from the Granite 4.2 8B tokenizer. Words underlined in amber were split into two or more tokens. Spaces are shown as · and line breaks as ↵. Hover a token to see its ID.</p>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <div class="controls">
+    <div class="seg" role="group" aria-label="View">
+      <button type="button" id="v-tokens" aria-pressed="true">Tokens</button>
+      <button type="button" id="v-words" aria-pressed="false">Grouped by word</button>
+    </div>
+    <label class="check"><input type="checkbox" id="mark-split" checked> Underline split words</label>
+    <div class="legend">
+      <span><span class="sw t a">&nbsp;tok&nbsp;</span><span class="sw t b">&nbsp;tok&nbsp;</span>neighbouring tokens</span>
+      <span><span class="sw w split">&nbsp;word&nbsp;</span>one word, several tokens</span>
+    </div>
+  </div>
+
+  <div id="samples" style="display:grid; gap:16px;"></div>
+
+  <footer>
+    <p>Source text is from Polaris Chain B (run 7795459), round 5, as recorded in the replay export. The planted instruction line in the tool output is left out of this page.</p>
+    <p>Each sample is tokenized on its own. Inside the full 46,463-token prompt, the same text gets the same tokens except possibly at the first and last token of a sample.</p>
+    <p>"Grouped by word" joins neighbouring pieces made only of letters, digits and underscores, with no space between them. It is a display preview and does not change the tokens.</p>
+  </footer>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+const DATA = __DATA__;
+
+const meta = document.getElementById('meta');
+meta.textContent = DATA.source + ' · tokenizer.json · vocabulary ' + DATA.vocab.toLocaleString() + ' tokens';
+
+function visible(s) {
+  return s.replace(/ /g, '·').replace(/\n/g, '↵\n').replace(/\t/g, '→');
+}
+function wsOnly(s) { return /^\s+$/.test(s); }
+
+function tokenSpan(tok, idx) {
+  const [text, id] = tok;
+  const el = document.createElement('span');
+  el.className = 't ' + (idx % 2 ? 'b' : 'a');
+  if (wsOnly(text)) {
+    const ws = document.createElement('span');
+    ws.className = 'ws';
+    ws.textContent = visible(text);
+    el.appendChild(ws);
+  } else {
+    // keep a leading space visible so token edges read correctly
+    const m = text.match(/^(\s*)([\s\S]*)$/);
+    if (m[1]) { const ws = document.createElement('span'); ws.className = 'ws'; ws.textContent = visible(m[1]); el.appendChild(ws); }
+    el.appendChild(document.createTextNode(m[2]));
+  }
+  el.dataset.tip = 'id ' + id + '\n' + JSON.stringify(text);
+  return el;
+}
+
+function render(mode) {
+  const root = document.getElementById('samples');
+  root.textContent = '';
+  for (const s of DATA.samples) {
+    const groups = new Map();
+    s.tokens.forEach((t, i) => { if (!groups.has(t[2])) groups.set(t[2], []); groups.get(t[2]).push([t, i]); });
+    const splitWords = [...groups.values()].filter(g => g.length > 1);
+
+    const sec = document.createElement('section');
+    sec.className = 'sample';
+    const head = document.createElement('div');
+    head.className = 'sample-head';
+    const h = document.createElement('h2'); h.textContent = s.label; head.appendChild(h);
+    const st = document.createElement('div'); st.className = 'stats';
+    st.innerHTML = '<span><b>' + s.chars.toLocaleString() + '</b> characters</span>'
+      + '<span><b>' + s.tokens.length.toLocaleString() + '</b> tokens</span>'
+      + '<span><b>' + groups.size.toLocaleString() + '</b> words and symbols</span>'
+      + '<span><b>' + splitWords.length + '</b> split words</span>';
+    head.appendChild(st);
+    sec.appendChild(head);
+
+    const stream = document.createElement('div');
+    stream.className = 'stream' + (mode === 'words' ? ' words' : '');
+    for (const g of groups.values()) {
+      const w = document.createElement('span');
+      w.className = 'w' + (g.length > 1 ? ' split' : '');
+      g.forEach(([t, i]) => w.appendChild(tokenSpan(t, i)));
+      if (mode === 'words') {
+        w.dataset.tip = g.map(([t]) => 'id ' + t[1] + '  ' + JSON.stringify(t[0])).join('\n');
+        if (g.length > 1) { const n = document.createElement('span'); n.className = 'n'; n.textContent = g.length; w.appendChild(n); }
+      }
+      stream.appendChild(w);
+    }
+    sec.appendChild(stream);
+
+    if (splitWords.length) {
+      const list = document.createElement('div');
+      list.className = 'splitlist';
+      const seen = new Set();
+      for (const g of splitWords) {
+        const key = g.map(([t]) => t[0].trim()).join('|');
+        if (seen.has(key)) continue;
+        seen.add(key);
+        const sp = document.createElement('span');
+        g.forEach(([t], k) => {
+          if (k) { const sep = document.createElement('i'); sep.textContent = '|'; sp.appendChild(sep); }
+          sp.appendChild(document.createTextNode(t[0].trim()));
+        });
+        list.appendChild(sp);
+      }
+      sec.appendChild(list);
+    }
+    root.appendChild(sec);
+  }
+}
+
+let mode = 'tokens';
+const bT = document.getElementById('v-tokens'), bW = document.getElementById('v-words');
+function setMode(m) {
+  mode = m;
+  bT.setAttribute('aria-pressed', String(m === 'tokens'));
+  bW.setAttribute('aria-pressed', String(m === 'words'));
+  render(m);
+}
+bT.addEventListener('click', () => setMode('tokens'));
+bW.addEventListener('click', () => setMode('words'));
+document.getElementById('mark-split').addEventListener('change', e => {
+  document.body.classList.toggle('hide-split', !e.target.checked);
+});
+
+const tip = document.getElementById('tip');
+document.addEventListener('mouseover', e => {
+  const el = e.target.closest('[data-tip]');
+  if (!el) { tip.hidden = true; return; }
+  const owner = mode === 'words' ? (el.closest('.w') || el) : el;
+  tip.textContent = owner.dataset.tip || el.dataset.tip;
+  tip.hidden = false;
+});
+document.addEventListener('mousemove', e => {
+  if (tip.hidden) return;
+  const x = Math.min(e.clientX + 14, window.innerWidth - tip.offsetWidth - 8);
+  tip.style.left = x + 'px';
+  tip.style.top = (e.clientY + 16) + 'px';
+});
+document.addEventListener('mouseleave', () => { tip.hidden = true; });
+
+render(mode);
+</script>
