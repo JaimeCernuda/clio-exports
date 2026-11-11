@@ -642,7 +642,12 @@ export function buildPairedTimeline(
 
 /** Seek to a recorded event without giving either transcript a separate clock. */
 export function frameForSource(pair: PairedReplay, source: number): number {
-  const { knots } = buildPairedTimeline(pair);
+  let timeline = timelineCache.get(pair);
+  if (!timeline) {
+    timeline = buildPairedTimeline(pair);
+    timelineCache.set(pair, timeline);
+  }
+  const { knots } = timeline;
   const index = knots.findIndex((point) => point[1] >= source);
   if (index < 0) return knots[knots.length - 1][0];
   if (!index) return knots[0][0];

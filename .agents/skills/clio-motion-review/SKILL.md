@@ -10,9 +10,11 @@ Keep evidence fidelity, rendering correctness and creative judgment distinct.
 Apply [clio-videos](../clio-videos/SKILL.md): the final NDP cut was rejected for
 unnecessary full-screen selection, a generic lake zoom and arbitrary highlights.
 Passing a pointer proof did not approve the complete edit.
-The [SPOTTER full cut also needs revision](../clio-videos/references/spotter-lessons.md):
+The [historical SPOTTER v1 cut needs revision](../clio-videos/references/spotter-lessons.md):
 the user reported incorrect reviewer stalls, pointer disappearance and pointer
 occlusion. Existing source-order tests and sampled review did not catch all of them.
+The [v2 review](../../../videos/spotter-opal/REVIEW-V2.md) is a separate receipt;
+retain its inspection limits and full-film one-worker render requirement.
 
 ## Source and component checks
 
@@ -161,6 +163,16 @@ all workers. With six workers, 3fps/6fps can miss alternating workers; 12fps cov
 them. See [story/README.md](../../../motion/story/README.md) for the vector-paint
 and cursor workaround. A frame-difference threshold flags candidates, not approval.
 Never auto-fill human review or test-pass claims from a historical report generator.
+
+For isolated paint flashes, run `tsx scripts/scan-video-flashes.ts <movie> <frames>`
+from `motion/`. It decodes every frame with bounded memory and compares each
+candidate to both neighbours. Inspect its candidates in consecutive encoded
+frames: a low ratio is diagnostic, not proof of a defect. This caught blank native
+code blocks and alternating scroll positions that a clean cursor audit missed.
+Use one worker for the full SPOTTER film; its native adapter uses immediate raw
+code tokens and settles transcript scrolling before acknowledging a frame.
+Check the pointer's measured coordinates against its intended pose as well as
+its frame attribute; either can be stale independently.
 
 Deliver the moving cut, editable sources and a short account of what was actually
 reviewed, including material limitations. Use `tools/package_motion.py` for a

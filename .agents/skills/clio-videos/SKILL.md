@@ -51,9 +51,11 @@ are absent. The engineering guide records the rejected job-grid treatment and
 the verified twelve-case timings.
 
 Read [SPOTTER lessons and open defects](references/spotter-lessons.md) before
-reusing that demo. The full cut remains revision required: the user reported
+reusing that demo. The historical v1 cut remains revision required: the user reported
 incorrect reviewer stalls, disappearing pointers and pointers below UI elements.
-The current code and technical checks do not establish that these are fixed.
+Those findings are not erased by technical checks. The separate
+[v2 review](../../../videos/spotter-opal/REVIEW-V2.md) records its own encoded
+inspection coverage and complete single-worker rendering constraint.
 
 CLIO is the subject. A scientific session gives its capabilities something real
 to act on; explaining the dataset is not the purpose of the promotion. Read the

@@ -28,6 +28,15 @@ body:has(.opal-replay) {
   min-width: 420px;
   border-left: 1px solid var(--border);
 }
+.paired-pocket-content,
+.paired-pocket-view {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+.paired-pocket-view[hidden] {
+  display: none;
+}
 .paired-reviewer {
   display: flex;
   height: 100%;

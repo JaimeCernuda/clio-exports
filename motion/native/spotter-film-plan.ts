@@ -93,7 +93,7 @@ export function spotterFilmAt(pair: PairedReplay, frame: number) {
     inspectionFrame: shot ? frame - shot.start : undefined,
     caption:
       shot?.id === "chainB-alert-number"
-        ? "Trace a single token"
+        ? "Inspect the selected word"
         : shot
           ? "Inspect the flagged answer"
           : held

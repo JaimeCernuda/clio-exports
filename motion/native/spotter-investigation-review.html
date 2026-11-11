@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>SPOTTER · Investigation v2</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      background: #f5f5f1;
+      color: #183f50;
+      font: 15px system-ui;
+    }
+    main {
+      max-width: 1280px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 25px;
+      margin: 0 0 6px;
+    }
+    p {
+      color: #6a8794;
+      line-height: 1.5;
+      margin: 6px 0 18px;
+    }
+    video {
+      width: 100%;
+      background: #f6fbfc;
+      border-radius: 12px;
+      aspect-ratio: 16/9;
+    }
+    nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 15px 0;
+    }
+    button,
+    a {
+      border: 1px solid #c7d9de;
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: white;
+      color: #245568;
+      text-decoration: none;
+      font: inherit;
+      cursor: pointer;
+    }
+    .foot {
+      font-size: 12px;
+    }
+    select {
+      padding: 8px;
+      border: 1px solid #c7d9de;
+      border-radius: 6px;
+      background: white;
+      color: #245568;
+    }
+  </style>
+  <main>
+    <h1>SPOTTER · Follow the investigation</h1>
+    <p>Word attention. Scientific evidence. A growing provenance graph.</p>
+    <video
+      id="film"
+      controls
+      preload="metadata"
+      poster="poster.png"
+      src="spotter-opal-investigation-v2.mp4"
+    ></video>
+    <nav>
+      <button id="play">Play / pause</button><button id="back">−1 frame</button
+      ><button id="forward">+1 frame</button><span id="time"></span
+      ><a id="download" href="spotter-opal-investigation-v2.mp4" download
+        >Download MP4</a
+      >
+    </nav>
+    <nav id="chapters"></nav>
+    <p class="foot">
+      The provenance graph reconstructs the lookup results supplied in the
+      prompts. SPOTTER activity and attention come from the recording.
+      <a
+        href="http://127.0.0.1:3359/?mode=spotter&pair=opal-chainB-7795459.native.json&attention=chainB-7795459-attention.json&spotterFilm=1"
+        >Editable replay</a
+      >
+    </p>
+  </main>
+  <script>
+    const video = document.querySelector("#film"),
+      time = document.querySelector("#time");
+    document.querySelector("#play").onclick = () =>
+      video.paused ? video.play() : video.pause();
+    for (const [id, d] of [
+      ["back", -1],
+      ["forward", 1],
+    ])
+      document.querySelector("#" + id).onclick = () => {
+        video.pause();
+        video.currentTime = Math.max(
+          0,
+          Math.min(video.duration, video.currentTime + d / 60),
+        );
+      };
+    video.ontimeupdate = () =>
+      (time.textContent = `${video.currentTime.toFixed(2)} s · frame ${Math.round(video.currentTime * 60)}`);
+    fetch("review-markers.json")
+      .then((r) => r.json())
+      .then((markers) => {
+        for (const m of markers) {
+          const b = document.createElement("button");
+          b.textContent = m.label;
+          b.onclick = () => {
+            video.pause();
+            video.currentTime = m.frame / 60;
+          };
+          document.querySelector("#chapters").append(b);
+        }
+      })
+      .catch(() => {});
+  </script>
+</html>

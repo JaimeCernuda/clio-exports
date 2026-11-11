@@ -10,7 +10,10 @@ if (
 ) {
   execFileSync(
     process.execPath,
-    [path.join(root, "../composability/ad/render.mjs"), ...process.argv.slice(2)],
+    [
+      path.join(root, "../composability/ad/render.mjs"),
+      ...process.argv.slice(2),
+    ],
     {
       stdio: "inherit",
     },
@@ -266,5 +269,7 @@ try {
       JSON.stringify(adOpening, null, 2) + "\n",
     );
 } finally {
-  await browser.close({ silent: true });
+  await browser
+    .close({ silent: true })
+    .catch((error) => console.error(`Browser cleanup: ${String(error)}`));
 }

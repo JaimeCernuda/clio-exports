@@ -35,7 +35,18 @@ import { TranscriptDisclosureContext } from "@clio-ui/components/clio/transcript
 import { AttentionModeBanner } from "@clio-ui/components/clio/attention-mode-banner";
 import { ClioTranscriptMinimap } from "@clio-ui/components/clio/transcript-minimap";
 import { useAttentionMode } from "@clio-ui/hooks/use-attention-mode";
-import { useAttentionHighlights } from "@clio-ui/hooks/use-attention-highlights";
+import { useAttentionHighlights } from "./word-attention/use-attention-highlights";
+import {
+  DEFAULT_ATTENTION_HEAT_VIEW,
+  type AttentionHeatView,
+} from "./word-attention/attention-segment-heat";
+import { ScenarioProvenance, ScenarioEvidence } from "./spotter-pocket";
+import {
+  pocketAt,
+  OPAL_SCENARIO_SHA,
+  type PocketTab,
+} from "./spotter-pocket-plan";
+import { PocketPointer } from "./spotter-pocket-pointer";
 import { useMoreDetails } from "@clio-ui/hooks/use-more-details";
 import { useAddToChatSelectionAction } from "@clio-ui/hooks/use-add-to-chat-selection-action";
 import type { ComposerAnnotation } from "@clio-ui/lib/composer-annotations";
@@ -130,7 +141,10 @@ function TranscriptPane({
       ),
     [view.tools],
   );
-  useAttentionHighlights(scroll, attention?.heat, messages, tools);
+  const [heatView, setHeatView] = useState<AttentionHeatView>(
+    DEFAULT_ATTENTION_HEAT_VIEW,
+  );
+  useAttentionHighlights(scroll, attention?.heat, messages, tools, heatView);
   const [readerChoices, setReaderChoices] = useState<
     ReadonlyMap<string, boolean>
   >(new Map());
@@ -159,18 +173,27 @@ function TranscriptPane({
           if (readerChoices.has(key)) continue;
           choices.set(
             key,
-            activeBlock?.type !== "text" &&
-              group.some(
-                (iteration) =>
-                  iteration.activity.some(
-                    (entry) =>
-                      entry.id === activeBlock?.tool_id ||
-                      entry.id === activeBlock?.id,
-                  ) ||
-                  iteration.thinking.some(
-                    (entry) => entry.id === activeBlock?.id,
-                  ),
-              ),
+            (!primary &&
+              source >=
+                (pair.sessions.find((s) => s.role === "primary")?.quarantine
+                  ?.at ?? Infinity) &&
+              message.id ===
+                session.view.messages
+                  .filter((m) => m.role === "assistant")
+                  .at(-1)?.id &&
+              group === groups.at(-1)) ||
+              (activeBlock?.type !== "text" &&
+                group.some(
+                  (iteration) =>
+                    iteration.activity.some(
+                      (entry) =>
+                        entry.id === activeBlock?.tool_id ||
+                        entry.id === activeBlock?.id,
+                    ) ||
+                    iteration.thinking.some(
+                      (entry) => entry.id === activeBlock?.id,
+                    ),
+                )),
           );
         }
       }
@@ -209,6 +232,7 @@ function TranscriptPane({
     thinkingMotions,
     primary,
     notificationMotions,
+    pair,
   ]);
   // A paused inspection changes only its pointer, selection and scroll pose.
   // Keep native Markdown mounted without rebuilding either recorded chat.
@@ -285,6 +309,39 @@ function TranscriptPane({
               .focusItem
           }
         />
+      ) : null}
+      {attention?.heat ? (
+        <div className="word-heat-controls" data-attention-unit={heatView.unit}>
+          <span>Heat by</span>
+          {(
+            [
+              ["word", "Words"],
+              ["token", "Tokens"],
+            ] as const
+          ).map(([unit, label]) => (
+            <button
+              key={unit}
+              aria-pressed={heatView.unit === unit}
+              onClick={() => setHeatView({ ...heatView, unit })}
+            >
+              {label}
+            </button>
+          ))}
+          {heatView.unit !== "token" ? (
+            <>
+              <span>Value</span>
+              {(["max", "mean"] as const).map((reduction) => (
+                <button
+                  key={reduction}
+                  aria-pressed={heatView.reduction === reduction}
+                  onClick={() => setHeatView({ ...heatView, reduction })}
+                >
+                  {reduction === "max" ? "Max" : "Mean"}
+                </button>
+              ))}
+            </>
+          ) : null}
+        </div>
       ) : null}
       <div className="paired-log-wrap">
         {primary ? (
@@ -398,6 +455,20 @@ function SpotterStage({
     policy === "spotter-ai" &&
     (clock.watcherOpen || manualPolicy === "spotter-ai");
   const progress = reviewerProgress(pair, clock.source);
+  const scenarioEnabled = pair.source.sha256 === OPAL_SCENARIO_SHA;
+  const pocket = scenarioEnabled
+    ? pocketAt(pair, replayFrame)
+    : { tab: "spotter" as const, round: 1, focus: undefined };
+  const [manualPocket, setManualPocket] = useState<{
+    tab: PocketTab;
+    round: number;
+  }>();
+  useEffect(() => {
+    if (playing || renderMode) setManualPocket(undefined);
+  }, [playing, renderMode, frame]);
+  const activePocket =
+    manualPocket?.tab ?? (inspection ? "spotter" : pocket.tab);
+  const evidenceRound = manualPocket?.round ?? pocket.round;
   const status = progress.state;
   const quarantine =
     primary.quarantine && clock.source >= primary.quarantine.at
@@ -435,7 +506,11 @@ function SpotterStage({
         setAnnotations={setAnnotations}
       />
       {cinematic && !inspection ? (
-        <RecordedSetupPointer frame={replayFrame} />
+        replayFrame < 300 || !scenarioEnabled ? (
+          <RecordedSetupPointer frame={replayFrame} />
+        ) : (
+          <PocketPointer pair={pair} frame={replayFrame} />
+        )
       ) : null}
       {caption ? <div className="spotter-film-caption">{caption}</div> : null}
       <div
@@ -454,13 +529,17 @@ function SpotterStage({
         data-spotter-received={progress.received}
         data-spotter-consumed={progress.consumed}
         data-spotter-queued={progress.queued}
+        data-pocket-tab={activePocket}
       >
         <div className="paired-main">
           <div className="paired-context">
             <RecordedSessionContextBar
-              session={sessionSchema.parse(
-                recordedSessionAt(primary, clock.source),
-              )}
+              session={sessionSchema.parse({
+                ...recordedSessionAt(primary, clock.source),
+                ...(cinematic
+                  ? { title: "OPAL · Six-round investigation" }
+                  : {}),
+              })}
               agentLabel="OPAL"
               onOpenAgent={noFile}
               onExplainComposition={noFile}
@@ -537,6 +616,25 @@ function SpotterStage({
               sessionId={primary.session.id}
               presentation={{
                 tabs: [
+                  ...(scenarioEnabled
+                    ? ([
+                        {
+                          id: "provenance",
+                          kind: "flow",
+                          label: "Provenance",
+                          handle: "supplied-scenario",
+                          sessionId: primary.session.id,
+                          workspaceId: primary.session.workspace_id,
+                        },
+                        {
+                          id: "evidence",
+                          kind: "workspace-file",
+                          label: "Evidence",
+                          path: "supplied-reference-tables.tsv",
+                          workspaceId: primary.session.workspace_id,
+                        },
+                      ] as const)
+                    : []),
                   {
                     id: "spotter",
                     kind: "subagent",
@@ -545,35 +643,81 @@ function SpotterStage({
                     workspaceId: primary.session.workspace_id,
                   },
                 ],
-                activeTabId: "spotter",
+                activeTabId: activePocket,
+                onTabChange: (id) => {
+                  setManualPocket({
+                    tab: id as PocketTab,
+                    round: evidenceRound,
+                  });
+                  setPlaying(false);
+                },
                 content: (
-                  <div className="paired-reviewer">
-                    <header className="paired-reviewer-header">
-                      <BotIcon className="size-4 text-primary" />
-                      <div>
-                        <strong>SPOTTER</strong>{" "}
-                        {status !== "paused" ? (
-                          <ClioStatus value={status} />
+                  <div className="paired-pocket-content">
+                    {scenarioEnabled ? (
+                      <>
+                        <div
+                          hidden={activePocket !== "provenance"}
+                          className="paired-pocket-view"
+                        >
+                          <ScenarioProvenance
+                            pair={pair}
+                            source={clock.source}
+                            frame={replayFrame}
+                            onInspect={(round) => {
+                              setManualPocket({ tab: "evidence", round });
+                              setPlaying(false);
+                            }}
+                          />
+                        </div>
+                        <div
+                          hidden={activePocket !== "evidence"}
+                          className="paired-pocket-view"
+                        >
+                          <ScenarioEvidence
+                            pair={pair}
+                            roundNumber={evidenceRound}
+                            frame={replayFrame}
+                            focus={manualPocket ? undefined : pocket.focus}
+                            source={clock.source}
+                          />
+                        </div>
+                      </>
+                    ) : null}
+                    <div
+                      hidden={activePocket !== "spotter"}
+                      className="paired-pocket-view"
+                    >
+                      <div className="paired-reviewer">
+                        <header className="paired-reviewer-header">
+                          <BotIcon className="size-4 text-primary" />
+                          <div>
+                            <strong>SPOTTER</strong>{" "}
+                            {status !== "paused" ? (
+                              <ClioStatus value={status} />
+                            ) : null}
+                            <p>
+                              {status === "running"
+                                ? "Reviewing this session"
+                                : "Watching this session"}
+                            </p>
+                          </div>
+                          <Button variant="outline" size="sm" disabled>
+                            <ArrowUpLeftIcon />
+                            Make central
+                          </Button>
+                        </header>
+                        {activePocket === "spotter" ? (
+                          <TranscriptPane
+                            pair={pair}
+                            session={reviewer}
+                            source={clock.source}
+                            thinkingOpen={false}
+                            thinkingMotions={clock.reviewerThinkingMotions}
+                            notificationMotions={clock.notificationMotions}
+                          />
                         ) : null}
-                        <p>
-                          {status === "running"
-                            ? "Reviewing this session"
-                            : "Watching this session"}
-                        </p>
                       </div>
-                      <Button variant="outline" size="sm" disabled>
-                        <ArrowUpLeftIcon />
-                        Make central
-                      </Button>
-                    </header>
-                    <TranscriptPane
-                      pair={pair}
-                      session={reviewer}
-                      source={clock.source}
-                      thinkingOpen={false}
-                      thinkingMotions={clock.reviewerThinkingMotions}
-                      notificationMotions={clock.notificationMotions}
-                    />
+                    </div>
                   </div>
                 ),
               }}
@@ -709,6 +853,40 @@ export function SpotterReplayApp() {
           await new Promise<void>((r) => requestAnimationFrame(() => r()));
         }
       if (!active) return;
+      if (cinematic || inspection) {
+        const expectedPointerFrame = inspection
+          ? (filmPose?.inspectionFrame ?? frame)
+          : (filmPose?.replayFrame ?? frame);
+        for (
+          let attempt = 0;
+          document
+            .querySelector('[data-slot="recorded-pointer"]')
+            ?.getAttribute("data-pointer-frame") !==
+            String(expectedPointerFrame) ||
+          (() => {
+            const pointer = document.querySelector<SVGElement>(
+              '[data-slot="recorded-pointer"]',
+            );
+            if (!pointer) return true;
+            const box = pointer.getBoundingClientRect();
+            return (
+              Math.hypot(
+                box.left + 8 - Number(pointer.dataset.pointerX),
+                box.top + 8 - Number(pointer.dataset.pointerY),
+              ) > 0.5
+            );
+          })();
+          attempt++
+        ) {
+          if (attempt >= 120)
+            throw new Error(
+              "The recorded pointer has not painted its current frame",
+            );
+          await new Promise<void>((resolve) =>
+            requestAnimationFrame(() => resolve()),
+          );
+        }
+      }
       const clock = pairedClock(
         pair,
         inspectionReplayFrame ?? filmPose?.replayFrame ?? frame,
@@ -718,7 +896,50 @@ export function SpotterReplayApp() {
         document.querySelectorAll('[role="menuitemradio"]').length !== 5
       )
         throw new Error("Full confirmation policy menu has not painted");
-      window.parent.postMessage({ kind: "clio-film-ready", frame, nonce }, "*");
+      const pointers = Array.from(
+        document.querySelectorAll<SVGElement>('[data-slot="recorded-pointer"]'),
+      );
+      const pointer = pointers[0];
+      if (
+        !inspection &&
+        !document.querySelector('[data-slot="attention-mode-banner"]')
+      ) {
+        for (const host of document.querySelectorAll<HTMLElement>(
+          '.paired-log,[data-slot="transcript-reasoning-text"]',
+        ))
+          host.scrollTop = Math.max(0, host.scrollHeight - host.clientHeight);
+      }
+      const bounds = pointer?.getBoundingClientRect();
+      const cursor = bounds
+        ? {
+            x: bounds.left + 8,
+            y: bounds.top + 8,
+            size: 23,
+            opacity: Number(getComputedStyle(pointer).opacity),
+            pulse: 0,
+            count: pointers.length,
+            paintedFrame: Number(pointer.dataset.pointerFrame),
+            intendedX: Number(pointer.dataset.pointerX),
+            intendedY: Number(pointer.dataset.pointerY),
+          }
+        : {
+            x: 0,
+            y: 0,
+            size: 23,
+            opacity: 0,
+            pulse: 0,
+            count: pointers.length,
+          };
+      if (
+        !active ||
+        pending.current?.frame !== frame ||
+        pending.current?.nonce !== nonce
+      )
+        return;
+      window.parent.postMessage(
+        { kind: "clio-film-ready", frame, nonce, cursor },
+        "*",
+      );
     })().catch((e) =>
       window.parent.postMessage(
         { kind: "clio-film-error", message: String(e) },

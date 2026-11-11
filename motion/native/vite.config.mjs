@@ -304,12 +304,33 @@ export default {
             );
           return (
             `import {RecordedThinkingContent} from ${JSON.stringify(path.join(here, "recorded-thinking.tsx").replaceAll("\\", "/"))};\n` +
+            `import {recordedThinkingMarkdown} from ${JSON.stringify(path.join(here, "recorded-text-format.ts").replaceAll("\\", "/"))};\n` +
             code
+              .replace(
+                "{text.slice(bodyStart)}",
+                "{recordedThinkingMarkdown(text.slice(bodyStart), streaming)}",
+              )
               .replace(
                 "<CollapsibleContent>",
                 "<RecordedThinkingContent disclosureKey={key}>",
               )
               .replace("</CollapsibleContent>", "</RecordedThinkingContent>")
+          );
+        }
+        if (
+          sourcePath ===
+          path
+            .join(web, "src/components/ai-elements/code-block.tsx")
+            .replaceAll("\\", "/")
+        ) {
+          if (!code.includes("const tokenized = asyncTokens ?? syncTokens;"))
+            throw new Error("Native immediate code-token signature changed");
+          return (
+            `import {recordedCodeUsesRawTokens} from ${JSON.stringify(path.join(here, "recorded-text-format.ts").replaceAll("\\", "/"))};\n` +
+            code
+          ).replace(
+            "const tokenized = asyncTokens ?? syncTokens;",
+            "const tokenized = recordedCodeUsesRawTokens(new URLSearchParams(location.search).get('mode')) ? rawTokens : (asyncTokens ?? syncTokens);",
           );
         }
         if (
@@ -335,14 +356,23 @@ export default {
           path
             .join(web, "src/components/clio/transcript-text-block.tsx")
             .replaceAll("\\", "/")
-        )
+        ) {
+          if (!code.includes("{block.streaming ? ("))
+            throw new Error("Native transcript streaming signature changed");
           return (
             `import {RecordedOpalPrompt} from ${JSON.stringify(path.join(here, "recorded-prompt.tsx").replaceAll("\\", "/"))};\n` +
-            code.replace(
-              "<SentReferenceMessage text={block.text} />",
-              "new URLSearchParams(location.search).get('mode') === 'spotter' ? <RecordedOpalPrompt text={block.text} /> : <SentReferenceMessage text={block.text} />",
-            )
+            `import {recordedMarkdownReply} from ${JSON.stringify(path.join(here, "recorded-text-format.ts").replaceAll("\\", "/"))};\n` +
+            code
+              .replace(
+                "{block.streaming ? (",
+                "{block.streaming && !recordedMarkdownReply(block.id, new URLSearchParams(location.search).get('mode')) ? (",
+              )
+              .replace(
+                "<SentReferenceMessage text={block.text} />",
+                "new URLSearchParams(location.search).get('mode') === 'spotter' ? <RecordedOpalPrompt text={block.text} /> : <SentReferenceMessage text={block.text} />",
+              )
           );
+        }
         if (
           sourcePath ===
           path
@@ -599,6 +629,12 @@ export interface ArchiveTranscriptView {`,
   ],
   resolve: {
     alias: [
+      {
+        find: "@noble/hashes",
+        replacement: path.dirname(
+          requireSource.resolve("@noble/hashes/sha2.js"),
+        ),
+      },
       {
         find: /^\.\/map-initial-view$/,
         replacement: path.join(here, "map-context.ts"),

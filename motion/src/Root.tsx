@@ -1,4 +1,6 @@
 import React from "react";
+import { SpotterTextRepairs } from "./SpotterTextRepairs";
+import textRepairs from "../native/spotter-text-repairs.json";
 import { SpotterFilm, spotterFilmFrames, spotterFilmPlan } from "./SpotterFilm";
 import { SpotterIntro, SpotterOpeningProof } from "./SpotterIntro";
 import { NativeFocusShot } from "./NativeFocusShot";
@@ -30,6 +32,14 @@ validatePairedReplay(chainReplay);
 export const RemotionRoot: React.FC = () => (
   <>
     <Composition
+      id="SpotterTextRepairs"
+      component={SpotterTextRepairs}
+      width={1280}
+      height={720}
+      fps={60}
+      durationInFrames={textRepairs.frames.length}
+    />
+    <Composition
       id="WordleStudyProof"
       component={NativeProductFilm}
       width={1280}
@@ -53,6 +63,73 @@ export const RemotionRoot: React.FC = () => (
         nativeServer: "http://127.0.0.1:3361",
         mode: "study",
         cut: "pitch",
+      }}
+    />
+    <Composition
+      id="SpotterPublicReplyRevision"
+      component={NativeProductFilm}
+      width={1280}
+      height={720}
+      fps={60}
+      durationInFrames={712}
+      defaultProps={{
+        nativeServer: "http://127.0.0.1:3359",
+        mode: "spotter",
+        pairFile: "opal-chainB-7795459.native.json",
+        attentionFile: "chainB-7795459-attention.json",
+        spotterFilm: true,
+        recordCursor: true,
+        frameOffset: 8388,
+      }}
+    />
+    <Composition
+      id="SpotterSelectionRevision"
+      component={NativeProductFilm}
+      width={1280}
+      height={720}
+      fps={60}
+      durationInFrames={1626}
+      defaultProps={{
+        nativeServer: "http://127.0.0.1:3359",
+        mode: "spotter",
+        pairFile: "opal-chainB-7795459.native.json",
+        attentionFile: "chainB-7795459-attention.json",
+        spotterFilm: true,
+        recordCursor: true,
+        frameOffset: 12761,
+      }}
+    />
+    <Composition
+      id="SpotterEvidenceRevision"
+      component={NativeProductFilm}
+      width={1280}
+      height={720}
+      fps={60}
+      durationInFrames={1650}
+      defaultProps={{
+        nativeServer: "http://127.0.0.1:3359",
+        mode: "spotter",
+        pairFile: "opal-chainB-7795459.native.json",
+        attentionFile: "chainB-7795459-attention.json",
+        spotterFilm: true,
+        recordCursor: true,
+        frameOffset: 7490,
+      }}
+    />
+    <Composition
+      id="SpotterSetupGeometryProof"
+      component={NativeProductFilm}
+      width={1280}
+      height={720}
+      fps={60}
+      durationInFrames={300}
+      defaultProps={{
+        nativeServer: "http://127.0.0.1:3359",
+        mode: "spotter",
+        pairFile: "opal-chainB-7795459.native.json",
+        attentionFile: "chainB-7795459-attention.json",
+        spotterFilm: true,
+        recordCursor: true,
       }}
     />
     <Composition

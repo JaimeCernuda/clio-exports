@@ -88,6 +88,12 @@ if (command === "check") {
           "react-dom/*": [path.join(reactDomTypes, "*")],
           "@tanstack/react-query": [packageTypes("@tanstack/react-query")],
           "lucide-react": [packageTypes("lucide-react")],
+          "@noble/hashes/*": [
+            path.join(
+              path.dirname(requireSource.resolve("@noble/hashes/sha2.js")),
+              "*",
+            ),
+          ],
           "@clio-ui/*": [path.join(source, "web/src/*")],
           "@/*": [path.join(source, "web/src/*")],
           "@clio/core/v3": [path.join(source, "packages/core/src/v3/index.ts")],

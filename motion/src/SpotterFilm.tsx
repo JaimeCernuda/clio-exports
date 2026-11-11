@@ -20,7 +20,11 @@ export const spotterFilmPlan = buildSpotterFilmPlan(
 export const spotterFilmFrames = 450 + spotterFilmPlan.frames + 240;
 
 /** The full source-ordered campaign: setup, parallel review, alert, user inspection and finding. */
-export function SpotterFilm() {
+export function SpotterFilm({
+  recordCursor = false,
+}: {
+  recordCursor?: boolean;
+}) {
   const frame = useCurrentFrame();
   const ending = 450 + spotterFilmPlan.frames;
   return (
@@ -36,6 +40,7 @@ export function SpotterFilm() {
             pairFile="opal-chainB-7795459.native.json"
             attentionFile="chainB-7795459-attention.json"
             spotterFilm
+            recordCursor={recordCursor}
           />
         </AbsoluteFill>
       </Sequence>

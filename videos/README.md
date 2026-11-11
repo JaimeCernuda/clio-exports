@@ -8,7 +8,7 @@ adapters stay shared in `motion/native/`.
 | Project | What it shows | Start here | Current boundary |
 | --- | --- | --- | --- |
 | NDP + CLIO | Tahoe mapping, Alta snowfall, Konza burn observations; standalone and combined cuts | [NDP](ndp/README.md) | Final campaign's creative treatment was rejected; retain its technical pipeline and lessons |
-| SPOTTER-AI / OPAL | Concurrent primary/reviewer logs, alerts and source-token attention | [SPOTTER / OPAL](spotter-opal/README.md) | Full film needs reviewer/pointer revisions; manual attention is a separate working mode |
+| SPOTTER-AI / OPAL | Concurrent review, reconstructed provenance, scientific evidence and word attention | [SPOTTER / OPAL](spotter-opal/README.md) | Investigation v2 has its own review receipt and rendering constraints; manual attention is separate |
 | Wordle science study | Evolving flow, delegated workers, boards, Science Log graph and attached views | [Wordle](wordle/README.md) | Revised 8:30 technical walkthrough; presenter captions and later speech alignment |
 | Engineering studies | Twelve-case Slurm sweep, linked 3D designs, solver studio and saved history | [Engineering](engineering/README.md) | Revised 5:56 cut; source-linked editorial copy, corrected job timing and native panel sizing |
 | Composable agent | Motion ad plus three independent website loops | [Ad and website assets](../composability/README.md) | V12 ad and website outputs rendered and reviewed; awaiting user feedback |

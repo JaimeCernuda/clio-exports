@@ -14,12 +14,20 @@ rerun cluster jobs or infer missing scientific results. Start with the
 | OPAL/SPOTTER film | `source-opal.json` (`f333d67d…`) | 3359 | Main/reviewer pair on one clock; finite captured attention sidecar |
 | Wordle study | Same f333d67d pin | 3361 | Scientific events, delegated logs, flow, graph and study-view adapters |
 | Engineering film | Same f333d67d pin | 3365 | Native mesh/table reports, captured execution, authored controls |
-| Manual attention exploration | Same f333d67d pin | 4394 + backend 18825 | Full native app; new selections computed against local captures/tokenizer |
+| Manual attention exploration | Separate e8918ab1 UI pin; see MANUAL-ATTENTION.md | 4394 + backend 18825 | Full native app; new selections computed against local captures/tokenizer |
 
 Use [MANUAL-ATTENTION.md](MANUAL-ATTENTION.md) for the last row. A finite film
 response sidecar cannot explain an arbitrary new selection. Manual replay loads
 the saved transcript; film replay supplies animated progression and synchronized
 editing. Neither launches fresh model inference.
+
+The Chain B v2 film adds authored evidence and reconstructed provenance tabs,
+while its hidden reviewer continues on the same source clock. It backports
+upstream word heat from 939b5ed4 without changing the base pin. See
+[the revision plan](../../videos/spotter-opal/REVISION-PLAN.md) and
+[word-heat source notes](word-attention/UPSTREAM.md). The full native manual replay
+is a separate launch mode; the film's finite attention responses cannot serve new
+arbitrary selections.
 
 ## Common setup
 

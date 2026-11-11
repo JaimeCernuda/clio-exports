@@ -69,7 +69,7 @@ export function RecordedAttentionInspection({
   const marker = useRef<HTMLDivElement>(null);
   const geometry = useRef<Geometry | undefined>(undefined);
   const fired = useRef(false);
-  const [pose, setPose] = useState<Pose>();
+  const [pose, setPose] = useState<Pose & { frame: number }>();
   const [error, setError] = useState("");
   const step = attentionInspectionAt(spec, frame);
   useLayoutEffect(() => {
@@ -189,14 +189,8 @@ export function RecordedAttentionInspection({
               ? host.scrollHeight - host.clientHeight
               : host.scrollTop,
             anchors: {
-              start: spec.entryFromExit
-                ? exit
-                : spec.approachScroll
-                  ? { x: viewport.right - 48, y: viewport.bottom - 100 }
-                  : {
-                      x: b.x + 60,
-                      y: Math.min(viewport.bottom - 24, b.y + 65),
-                    },
+              start: { x: innerWidth - 20, y: innerHeight + 55 },
+              parking: { x: innerWidth - 20, y: innerHeight + 55 },
               selectionStart: a,
               selectionEnd: b,
               button: {
@@ -352,14 +346,16 @@ export function RecordedAttentionInspection({
             typeof CSS.highlights === "undefined" ||
             !Array.from(CSS.highlights.entries()).some(
               ([name, value]) =>
-                name.startsWith("clio-attn-heat-") && value.size > 0,
+                (name.startsWith("clio-attn-heat-") ||
+                  name.startsWith("clio-attn-level-")) &&
+                value.size > 0,
             )
           ) {
             schedule();
             return;
           }
         }
-        setPose(nextPose);
+        setPose({ ...nextPose, frame });
         control.dataset.scrollTop = String(host.scrollTop);
         id = requestAnimationFrame(() => {
           if (active) control.dataset.ready = "true";
@@ -387,7 +383,7 @@ export function RecordedAttentionInspection({
         data-phase={step.phase}
         hidden
       />
-      <RecordedPointer pose={pose} />
+      <RecordedPointer pose={pose} frame={pose?.frame} />
     </>
   );
 }

@@ -1,5 +1,71 @@
 # SPOTTER / OPAL lessons and open defects
 
+## Investigation revision: words and purposeful pocket views
+
+- The v2 revision is grouped under `videos/spotter-opal/`; read its revision plan,
+  source ledger and the latest output's review receipt before inheriting an
+  acceptance claim. The historical v1 defects below remain a record of that cut.
+- Default to **Words / Max** for this demonstration. The upstream first-level
+  tokenizer groups measured model pieces; it is not a CSS approximation or a
+  string split on spaces. Preserve Unicode coordinates, unmapped coverage,
+  profile values and optional token inspection. Do not amplify a suspect span.
+- Native readiness checks must recognize both `clio-attn-level-*` (word/line)
+  and `clio-attn-heat-*` (tokens). Waiting only for the old token names can hang a
+  correct word heat render. Require actual nonempty highlight ranges.
+- Right-pocket choices should serve the investigation: compare scientific
+  evidence, follow dependencies, show actual reviewer work, then investigate
+  its finding. Avoid switching a graph on for a fraction of a second between
+  other views. Reserve enough settled reading time for each consequence.
+- Chain B's eighteen lookup outputs are supplied in six prompts. Its primary
+  agent makes zero actual tool calls. Namespace graph sources as `scenario:*`,
+  retain exact prompt spans, and disclose the reconstruction once. Keep the
+  seven real SPOTTER tool IDs distinct. A rule-compliant comparison is a
+  calculation over supplied tables, not a second successful model run.
+- Hidden tabs do not own clocks. Project their content from the current shared
+  source time when opened; do not freeze the reviewer by retaining an old tab
+  snapshot. Heavy offscreen Markdown need not stay mounted to preserve source
+  progress.
+- Paint the pointer through a body portal above native overlays. At ownership
+  changes, use a common off-frame parking coordinate and continuous travel;
+  fading the old pointer does not establish continuity. Inspect the encoded
+  boundaries between setup, tab gestures and both attention selections.
+- Measure setup controls after fonts settle; refresh their geometry before the
+  menu interaction. More importantly, acknowledge each pointer's **painted frame**
+  before taking the screenshot. Two generic animation frames do not prove that
+  an asynchronous pointer state committed. Multi-worker rendering exposed
+  alternating cursor positions that a single-worker proof concealed.
+- Record actual DOM pointer poses during the render, not just the planned path.
+  Check ownership, painted-frame identity, missing poses, large jumps and
+  alternating direction reversals. This supplements encoded visual review;
+  it does not approve the movie's pacing or story.
+- Check explanations at the bottom of an evidence drawer as well as its chart:
+  a readable plot with its quality-gate conclusion clipped below the fold still
+  fails the story. Route graph edges through gutters, not through result cards.
+- Keep reconstructed evidence neutral until a recorded security finding exists.
+  An authored red shield before the alert falsely suggests early detection.
+  Reveal comparisons when the answer line completes, rather than at the same
+  instant the pocket leaves that view; animate their height as well as opacity.
+- Watch the public reply's rendering mode at completion. In the pinned UI its
+  plain streaming text can suddenly become Markdown, moving the whole chat.
+  Use progressive native Markdown for the affected recorded part, keeping the
+  original bytes, completion metadata and source binding. Literal prompt tables
+  must keep their separate renderer. Start a correction after thinking has
+  collapsed and before the first answer character; cut back on a settled view.
+- Scan every decoded frame for large changes and inspect consecutive frames
+  around the candidates. A 12 fps sheet can miss a single-frame heading flash.
+  A streamed dash can temporarily parse the preceding sentence as a Setext
+  heading. Escape that dangling underline only in the thinking presentation;
+  preserve fenced code, original transcript bindings and completed text. Use
+  the pinned native Markdown parser to identify affected source prefixes.
+- Individual thinking-height animation does not control its parent activity
+  group. Keep the recorded final tool history available while SPOTTER writes
+  its conclusion, rather than snapping the entire investigation shut.
+- Audit the completed pointer track, including the second selection. The v2 base
+  audit caught a continuous but excessively fast full-width approach that the
+  earlier partial audit had not yet reached. Give distance enough travel time;
+  do not relax the audit threshold to pass it. Preserve the shot duration by
+  using spare tail time, then re-render the complete affected interaction.
+
 The 2026-10-29 full cut is **revision required**. The user reported SPOTTER
 stopping incorrectly at several points, the pointer disappearing, and the pointer
 passing underneath UI elements. These are unresolved defects in the delivered
@@ -42,7 +108,7 @@ accepted timing, synchronization or pointer template.
   avoid both missing frames and duplicate pointers.
 - Inspect clipping, transformed ancestors, stacking contexts, portal roots and
   iframe boundaries. A large local `z-index` cannot cross an ancestor's stacking
-  context or escape an iframe. The current pointer's `zIndex: 100` is an
+  context or escape an iframe. The v1 pointer's `zIndex: 100` was an
   implementation detail, not proof that it stays above native UI overlays.
 - Measure targets in the same coordinate space in which the pointer is painted.
   Recheck after reflow, banner arrival, drawer expansion and scrolling. Keep the
@@ -85,3 +151,10 @@ with full-size adjacent frames around every questionable hold or overlay.
 When asked to preserve this work, push scripts, reusable components, selected
 source data, manifests, skills and honest review notes to the existing
 `clio-exports` branch. Do not render another film or push movie files by default.
+Sparse correction renders also need state continuity beyond pointer coordinates.
+The v2 join pass found an approval-button focus outline changing and a code block
+temporarily blank on the first seeked frame. Include leading handles, discard
+their unsettled frames, and verify every defect frame remains covered. Preserve
+an unchanged native control from its original frame when it depends on prior
+focus events. Inspect each join independently: a single FFmpeg select expression
+deduplicates overlapping frame windows and can mislabel a contact sheet's rows.

@@ -41,6 +41,7 @@ export type ResolvedAttentionInspection = AttentionInspectionSpec & {
 };
 export type InspectionPoint = { x: number; y: number };
 export type AttentionInspectionAnchors = {
+  parking?: InspectionPoint;
   start: InspectionPoint;
   selectionStart: InspectionPoint;
   selectionEnd: InspectionPoint;
@@ -196,6 +197,9 @@ export function attentionInspectionCursor(
               : []),
           ]
         : []),
+      ...(anchors.parking
+        ? [point(spec.frames - 1, anchors.parking, { travelFrames: 36 })]
+        : []),
     ],
     frame,
     spec.frames,
@@ -206,10 +210,11 @@ export function attentionInspectionCursor(
   };
   return {
     ...pose,
-    opacity:
-      (spec.entryFromExit ? 1 : smooth(frame / 18)) *
-      (spec.exitAt !== undefined && !spec.resumeBottom
-        ? 1
-        : 1 - smooth((frame - spec.frames + 25) / 25)),
+    opacity: anchors.parking
+      ? 1
+      : (spec.entryFromExit ? 1 : smooth(frame / 18)) *
+        (spec.exitAt !== undefined && !spec.resumeBottom
+          ? 1
+          : 1 - smooth((frame - spec.frames + 25) / 25)),
   };
 }
