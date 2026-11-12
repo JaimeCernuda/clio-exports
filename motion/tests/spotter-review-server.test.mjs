@@ -50,6 +50,7 @@ test("the local review gallery supports seeking, direct downloads and read-only 
     });
     const gallery = await fetch(ready);
     assert.equal(gallery.status, 200);
+    assert.equal(gallery.headers.get("cache-control"), "no-store");
     assert.ok((await gallery.text()).includes("−1 frame"));
     const full = await fetch(new URL("example.mp4", ready));
     assert.equal(full.headers.get("content-type"), "video/mp4");
@@ -58,8 +59,14 @@ test("the local review gallery supports seeking, direct downloads and read-only 
       headers: { Range: "bytes=3-6" },
     });
     assert.equal(range.status, 206);
+    assert.equal(range.headers.get("cache-control"), "no-store");
     assert.equal(range.headers.get("content-range"), "bytes 3-6/10");
     assert.equal(await range.text(), "3456");
+    await writeFile(path.join(root, "example.mp4"), Buffer.from("abcdefghij"));
+    const replacement = await fetch(new URL("example.mp4", ready), {
+      headers: { Range: "bytes=3-6" },
+    });
+    assert.equal(await replacement.text(), "defg");
     assert.equal(
       (
         await fetch(new URL("example.mp4", ready), {

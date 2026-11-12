@@ -308,7 +308,7 @@ export default {
             code
               .replace(
                 "{text.slice(bodyStart)}",
-                "{recordedThinkingMarkdown(text.slice(bodyStart), streaming)}",
+                "{recordedThinkingMarkdown(text.slice(bodyStart), streaming, source?.partId)}",
               )
               .replace(
                 "<CollapsibleContent>",

@@ -1,0 +1,112 @@
+{
+  "schema": "clio.spotter-investigation.review.v2",
+  "reviewedOn": "2026-11-11",
+  "status": "ready for user review",
+  "creativeAcceptance": "user decision; not inferred from technical checks",
+  "output": {
+    "path": "motion/out/spotter-v2/spotter-opal-investigation-v2.mp4",
+    "sha256": "ca58f0b0da502cf497337b47f47117b92b0d83e135ac3bbc2587ce9450da3518",
+    "bytes": 54742688,
+    "width": 1280,
+    "height": 720,
+    "fps": 60,
+    "frames": 16406,
+    "seconds": 273.433333,
+    "audio": "absent",
+    "codec": "h264",
+    "pixelFormat": "yuv420p",
+    "color": "tv / bt709"
+  },
+  "sources": {
+    "featureCommit": "a61731c45891a4782ac79d069965c509e916715d",
+    "uiCommit": "f333d67d490174d2f2b82d7c0671e08ee0943ceb",
+    "wordHeatCommit": "939b5ed4ad247d62681701aecc696495b9cc390c",
+    "archiveSha256": "cfdd456f2640519c6a0f715e817927c7fb70e77974d6d9605be12cc903131cd5",
+    "primarySession": "sess_2480c090acbb",
+    "reviewerSession": "sess_675ca5a8918cec66588f34c07a669c6b",
+    "primaryToolCalls": 0,
+    "suppliedLookupPackets": 18,
+    "reviewerToolCalls": 7,
+    "attentionView": "Words / Max",
+    "graph": "Reconstruction of prompt-supplied lookup outputs and dependencies, not captured primary-agent or Flowcept tool telemetry",
+    "alertOrdering": "All six primary answers precede the recorded danger alert. The alert motivates both subsequent user attention inspections."
+  },
+  "visualInspection": {
+    "method": "Ordered encoded frame sequences, consecutive transition strips and full-size encoded keyframes",
+    "uninterruptedRealTimePlaybackReviewed": false,
+    "overviewSheetsReviewed": 18,
+    "overviewSampleRate": "1 fps across the complete delivery",
+    "eventSequencesReviewed": 46,
+    "eventSequenceSampleRate": "12 fps for one second around each indexed event",
+    "repairBoundariesReviewed": 14,
+    "repairBoundarySampleRate": "Four consecutive encoded frames per boundary, extracted independently",
+    "additionalConsecutiveFrames": "Old flash sites 5121, 5424, 8200, 11236 and 11242; reasoning placeholder introduction, hold and collapse; attention return and source-clock resume",
+    "fullSizeKeyframes": [9700, 9200, 13400, 13690, 14155, 14450],
+    "coverageIndex": "motion/out/spotter-v2/encoded-review/manifest.json",
+    "browserPlaybackSmoke": {
+      "duration": 273.433333,
+      "readyState": 4,
+      "decodeError": null,
+      "observedAdvanceSeconds": 35.93,
+      "chapterSeek": "passed",
+      "frameStep": "13997 to 13998 passed",
+      "screenshotCapture": "unavailable in the browser tool; visual inspection uses decoded delivery frames"
+    }
+  },
+  "technicalVerification": {
+    "motionTests": { "passed": 129, "failed": 0, "skipped": 0 },
+    "reviewServerIntegrationAfterCacheFix": "passed",
+    "typescript": "passed",
+    "format": "passed",
+    "nativeCheck": "passed",
+    "nativeBuild": "passed",
+    "fullDecode": "passed",
+    "measuredPointer": {
+      "samples": 15716,
+      "firstBodyFrame": 0,
+      "lastBodyFrame": 15715,
+      "missing": 0,
+      "stale": 0,
+      "ownershipErrors": 0,
+      "jumps": 0,
+      "reversals": 0,
+      "coverageErrors": 0
+    },
+    "decodedFlashDiagnostic": {
+      "framesScanned": 16406,
+      "remainingCandidates": 0,
+      "meaning": "Neighbour-frame change diagnostic, not a proof of artistic quality or an exhaustive motion detector"
+    }
+  },
+  "corrections": [
+    "Compacted evidence views and routed graph connections away from cards.",
+    "Neutral evidence styling before recorded alerts; source-timed security styling afterward.",
+    "Comparison opens after the first Round 5 answer line, with 11.45 seconds before the next tab change.",
+    "Progressive native Markdown removes the Round 5 completion reflow.",
+    "Dangling streamed Markdown underlines no longer create temporary large headings.",
+    "Single body-level pointer, measured painted-frame and coordinate acknowledgement, complete final track audit, and slower second-selection approach.",
+    "Immediate native code tokens plus full code-container paint remove deferred-paint blanks and placeholder-height feedback.",
+    "Literal accession/dose metavariables stay visible in the affected Round 6 reasoning passage instead of being consumed as HTML.",
+    "Final reviewer tool history remains available through its public conclusion.",
+    "Review server disables cached video ranges after replacement renders."
+  ],
+  "assembly": {
+    "base": "Complete single-worker render",
+    "baseSha256": "12c6aa679259c47a25895cb2519752252e4d30df276a382c851905a8306f85d5",
+    "paintRepairManifest": "motion/native/spotter-paint-repairs.json",
+    "paintRepairedSha256": "9103776692aaf97fbaafa2d2846beec98d1cd5b68a3381bd19d1a4e4094e71e8",
+    "placeholderRepairManifest": "motion/native/spotter-placeholder-repairs.json",
+    "seedFramesPerReel": 300,
+    "settlingFramesExcludedPerRange": 3,
+    "sourceFramesAndDurationPreserved": true,
+    "freshReproduction": "Current source contains all fixes; a fresh complete single-worker render needs no historical repair conformation."
+  },
+  "limitations": [
+    "This receipt records encoded frame-sequence inspection and browser playback checks, not uninterrupted real-time human viewing.",
+    "The finite attention sidecar serves the recorded spans. Arbitrary new manual selections require the recorded-bundle backend and local tensors/tokenizer.",
+    "Optional Mean is the legacy captured-run mean, not newer full-token Mean. The film uses Words / Max throughout.",
+    "No SPOTTER-model attention capture is available.",
+    "Attention strength alone establishes neither poisoning nor causality.",
+    "Recorded reasoning contains continuation passages that can begin mid-sentence; the transcript is preserved rather than inventing replacement reasoning."
+  ]
+}

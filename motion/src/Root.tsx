@@ -1,6 +1,7 @@
 import React from "react";
 import { SpotterTextRepairs } from "./SpotterTextRepairs";
 import textRepairs from "../native/spotter-text-repairs.json";
+import paintRepairs from "../native/spotter-paint-repairs.json";
 import { SpotterFilm, spotterFilmFrames, spotterFilmPlan } from "./SpotterFilm";
 import { SpotterIntro, SpotterOpeningProof } from "./SpotterIntro";
 import { NativeFocusShot } from "./NativeFocusShot";
@@ -31,6 +32,18 @@ validatePairedReplay(chainReplay);
 /** Named composition root so Studio can locate and persist editable default props. */
 export const RemotionRoot: React.FC = () => (
   <>
+    <Composition
+      id="SpotterPaintRepairs"
+      component={SpotterTextRepairs}
+      width={1280}
+      height={720}
+      fps={60}
+      durationInFrames={paintRepairs.frames.length}
+      defaultProps={{ frames: paintRepairs.frames }}
+      calculateMetadata={({ props }) => ({
+        durationInFrames: (props.frames as readonly number[]).length,
+      })}
+    />
     <Composition
       id="SpotterTextRepairs"
       component={SpotterTextRepairs}

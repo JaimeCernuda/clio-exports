@@ -171,6 +171,13 @@ frames: a low ratio is diagnostic, not proof of a defect. This caught blank nati
 code blocks and alternating scroll positions that a clean cursor audit missed.
 Use one worker for the full SPOTTER film; its native adapter uses immediate raw
 code tokens and settles transcript scrolling before acknowledging a frame.
+One worker did not eliminate every native paint defect: code containers with
+`content-visibility: auto` and an intrinsic placeholder could still flash blank
+and feed changing heights back into scrolling. Force full code-container paint
+in the capture profile and inspect the actual encode. A clean short proof is
+insufficient. If bounded repairs are used, seed native setup state, discard their
+settling handles without losing any flagged frames, verify the exact base hash,
+and inspect every join independently before scanning the assembled movie again.
 Check the pointer's measured coordinates against its intended pose as well as
 its frame attribute; either can be stale independently.
 

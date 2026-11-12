@@ -176,6 +176,10 @@ body:has(.opal-replay) {
 .opal-replay * {
   caret-color: transparent !important;
 }
+.opal-replay [data-language] {
+  content-visibility: visible !important;
+  contain-intrinsic-size: none !important;
+}
 .opal-replay .animate-spin {
   animation: none;
   rotate: var(--attention-shot-spinner, 0deg);

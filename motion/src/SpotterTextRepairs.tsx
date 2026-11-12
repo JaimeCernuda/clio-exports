@@ -3,9 +3,13 @@ import { NativeProductFilm } from "./NativeProductFilm";
 import manifest from "../native/spotter-text-repairs.json";
 
 /** Render source-linked repair intervals sequentially; the assembly places them on their original film frames. */
-export function SpotterTextRepairs() {
+export function SpotterTextRepairs({
+  frames = manifest.frames,
+}: {
+  frames?: readonly number[];
+}) {
   const frame = useCurrentFrame();
-  const target = manifest.frames[frame];
+  const target = frames[frame];
   if (target === undefined) throw new Error("Unknown text repair frame");
   return (
     <NativeProductFilm

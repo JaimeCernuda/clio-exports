@@ -131,6 +131,38 @@ test("progressive Markdown applies to the recorded explanation, while supplied p
         assert.equal(recordedMarkdownReply(block.id, "spotter"), false);
 });
 
+test("answer-format placeholders stay visible across streamed prefixes and completion without altering code", () => {
+  const partId = "part_cba0f67a7e31";
+  const text = 'Reply "<accession>@<dose>" or "<accession label>".';
+  assert.equal(
+    recordedThinkingMarkdown(text, false, partId),
+    'Reply "\\<accession>@\\<dose>" or "\\<accession label>".',
+  );
+  for (const suffix of [
+    "<access",
+    "<accession",
+    "<accession>",
+    "<d",
+    "<dose",
+    "<dose>",
+  ])
+    assert.equal(
+      recordedThinkingMarkdown(suffix, true, partId).replaceAll("\\<", "<"),
+      suffix,
+    );
+  const code = "Use `<accession>@<dose>`\n```text\n<accession>@<dose>\n```";
+  assert.equal(recordedThinkingMarkdown(code, true, partId), code);
+  assert.equal(
+    recordedThinkingMarkdown("Already \\<dose>", false, partId),
+    "Already \\<dose>",
+  );
+  assert.equal(
+    recordedThinkingMarkdown("A <div> element", false, partId),
+    "A <div> element",
+  );
+  assert.equal(recordedThinkingMarkdown(text, false, "another-part"), text);
+});
+
 test("authored evidence gestures select the row that actually explains the gate", () => {
   const rounds = buildOpalScenario(pair),
     cues = buildPocketCues(pair);

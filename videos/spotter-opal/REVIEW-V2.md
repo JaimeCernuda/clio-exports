@@ -4,6 +4,17 @@ This revision replaces the rejected v1 treatment. The actual delivery receipt is
 `review-v2.json`; the local gallery also keeps `review.json` beside the MP4.
 Creative acceptance remains the user's decision.
 
+The current 4:33 delivery has SHA-256
+`ca58f0b0da502cf497337b47f47117b92b0d83e135ac3bbc2587ce9450da3518`.
+Its eighteen overview sheets, forty-six transition sequences, fourteen final
+repair boundaries and full-size evidence/menu/word-heat frames were inspected.
+The final all-frame diagnostic has zero candidates, the 15716-frame measured
+pointer track passes, and the complete encode decodes successfully. All 129
+motion tests pass with no skips; type, format and native check/build pass too.
+The gallery plays, seeks and advances one frame correctly. This is encoded
+frame-sequence review plus browser playback verification, not uninterrupted
+real-time human viewing. The JSON receipt preserves that distinction.
+
 ## Source fidelity
 
 - Six main prompt/answer pairs, eighteen supplied lookup packets, no main-agent
@@ -45,11 +56,25 @@ Creative acceptance remains the user's decision.
 - A three-worker seeked correction exposed pointer oscillation, although its
   frame identities were current. Later all-frame review also found alternating
   scroll positions and blank code paint in the base itself. A complete serialized
-  render replaces the patched base. The exact multi-worker cause remains
+  render replaces the patched base. That reduced the diagnostic flash candidates
+  from 156 to 41 but did not remove all code-paint defects. The exact multi-worker cause remains
   unestablished; one worker is required for the complete film, not only repairs.
 - Native immediate code tokens preserve the exact code text, line numbers,
   container and controls, while avoiding asynchronous syntax-highlighting paint.
   This adaptation is scoped to Spotter; other native profiles retain highlighting.
+- The pinned native code container also uses `content-visibility: auto` and an
+  intrinsic 200 px placeholder. Consecutive encoded frames exposed blank code
+  and scroll feedback even with one worker and immediate tokens. The film CSS
+  now forces these code containers to paint fully, without a placeholder. Seven
+  bounded native intervals repair the serialized base; their fourteen joins
+  require independent consecutive-frame inspection.
+- The repaired encode's scan then isolated two remaining shifts in Round 6
+  reasoning. Its literal `<accession>` and `<dose>` answer-format placeholders
+  became Markdown HTML as they streamed, making a line disappear and reappear.
+  The adapter escapes these metavariables in that recorded part, outside code,
+  including its completed display. Canonical text and source coordinates stay
+  unchanged. The correction covers the first placeholder through the completed
+  thinking hold and collapse, with stationary handles on both sides.
 - The final full-frame difference scan found temporary large headings that
   sparse sampling had missed. The native parser identified 34 affected frame
   samples from unfinished Markdown underlines. Those intervals and additional
@@ -74,17 +99,28 @@ cursor coverage and final hash must be recorded in `review-v2.json`. Ordered
 encoded frame-sequence inspection is distinct from uninterrupted real-time
 human playback; do not relabel one as the other.
 
-`motion/native/spotter-text-repairs.json` records the source frames and stationary
-pointer handles for the additional text pass. `conform-spotter-text.ts` verifies
+`motion/native/spotter-text-repairs.json` records an earlier text correction.
+The delivery's code-paint correction is indexed by
+`motion/native/spotter-paint-repairs.json`: seven intervals from the serialized
+base with SHA-256 `12c6aa679259c47a25895cb2519752252e4d30df276a382c851905a8306f85d5`.
+`conform-spotter-text.ts` verifies
 the exact predecessor hash, assembles the sequential native repair reel back on
 those original frames, and audits the complete combined pointer track before
 encoding a replacement. It writes a separate reviewed file until validation.
 The retained correction ranges begin three frames after each rendered handle.
 Only the unchanged approval control at the measured 1280 × 720 coordinates is
 restored from the preceding encode; transcript and evidence repairs remain native.
-That repair path is production history, not the final delivery recipe. The final
-file is rendered in one continuous single-worker pass and requires neither
-conformation nor a restored composer region.
+The repair reel first replays 300 setup frames to establish native menu/focus
+history; those seed frames are excluded from the assembled movie. The final
+delivery combines the full single-worker base with these seven native corrections.
+It preserves the same 16406 frame positions and source clock. A fresh full render
+from the current source includes the full-paint CSS and needs no conformation.
+The subsequent placeholder correction is indexed separately in
+`spotter-placeholder-repairs.json` against the first repaired encode's exact hash.
+It uses the same seed, handle, pointer-audit and full-decode checks. Review its two
+joins as well as the earlier paint joins, then scan the complete assembled file.
+The full serialized render took about 107 minutes before its final encode; a
+short proof cannot establish that its later frames are free of painting defects.
 
 ## Reproduction limits
 

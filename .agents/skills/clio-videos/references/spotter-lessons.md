@@ -60,6 +60,23 @@
 - Individual thinking-height animation does not control its parent activity
   group. Keep the recorded final tool history available while SPOTTER writes
   its conclusion, rather than snapping the entire investigation shut.
+- One render worker and synchronous code tokens do not establish stable code
+  paint. The pinned code container deferred offscreen paint with
+  `content-visibility: auto` and a 200 px intrinsic placeholder. The full serialized
+  encode still contained blank bodies and scroll oscillation. Force full paint
+  in the capture profile, scan every final frame, then inspect the candidates.
+  Keep the distinction between a diagnostic candidate and a verified defect.
+- Literal metavariables can trigger Markdown HTML parsing during streaming too.
+  In Round 6, `<accession>` and `<dose>` briefly removed a line and changed the
+  chat scroll position. Escape these answer-format placeholders only in the
+  affected presentation, preserving canonical bytes and code spans. Include the
+  entire first mention, completed thinking hold and collapse in a repair; fixing
+  just the two flashed frames would introduce new boundary discontinuities.
+- A sparse correction reel should replay setup before seeking to repair ranges.
+  Exclude those seed frames from the final timeline. Keep leading handles,
+  discard their unsettled frames, preserve every diagnosed frame, and inspect
+  both boundaries of each interval. Record the assembled file's exact hash;
+  passing review of its predecessor does not approve the replacement.
 - Audit the completed pointer track, including the second selection. The v2 base
   audit caught a continuous but excessively fast full-width approach that the
   earlier partial audit had not yet reached. Give distance enough travel time;
@@ -158,3 +175,6 @@ their unsettled frames, and verify every defect frame remains covered. Preserve
 an unchanged native control from its original frame when it depends on prior
 focus events. Inspect each join independently: a single FFmpeg select expression
 deduplicates overlapping frame windows and can mislabel a contact sheet's rows.
+The local review URL is reused when an encode is replaced. Serve the gallery and
+movie ranges with `Cache-Control: no-store`, and test a second range request after
+replacing its bytes. A working player can otherwise be reviewing an older file.

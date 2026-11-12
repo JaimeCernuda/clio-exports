@@ -12,10 +12,9 @@ import type { PairedReplay } from "../native/paired-replay";
 /** Extract review coverage from the delivery encode; generated sheets never imply that someone inspected them. */
 async function main(): Promise<void> {
   const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-  const video = path.resolve(
-    root,
-    "out/spotter-v2/spotter-opal-investigation-v2.mp4",
-  );
+  const video = process.argv[2]
+    ? path.resolve(process.argv[2])
+    : path.resolve(root, "out/spotter-v2/spotter-opal-investigation-v2.mp4");
   const output = path.resolve(root, "out/spotter-v2/encoded-review");
   await mkdir(output, { recursive: true });
   const pair = filmPair(

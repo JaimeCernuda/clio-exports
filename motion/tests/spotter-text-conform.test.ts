@@ -65,4 +65,15 @@ test("seek settling handles use the original frames and retain all timeline posi
     100,
   );
   assert.throws(() => textRepairParts(100, [], 0, -1), /Invalid/);
+  const seeded = textRepairParts(100, [{ start: 10, end: 20 }], 5, 3, 300);
+  assert.deepEqual(seeded.parts, [
+    { input: 0, start: 0, end: 18 },
+    { input: 1, start: 303, end: 310 },
+    { input: 0, start: 25, end: 100 },
+  ]);
+  assert.equal(seeded.patchFrames, 310);
+  assert.equal(
+    seeded.parts.reduce((sum, p) => sum + p.end - p.start, 0),
+    100,
+  );
 });

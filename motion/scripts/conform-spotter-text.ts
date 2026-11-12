@@ -9,6 +9,7 @@ export function textRepairParts(
   ranges: { start: number; end: number }[],
   intro = 450,
   settleFrames = 0,
+  seedFrames = 0,
 ) {
   if (
     !Number.isInteger(total) ||
@@ -16,12 +17,14 @@ export function textRepairParts(
     !Number.isInteger(intro) ||
     intro < 0 ||
     !Number.isInteger(settleFrames) ||
-    settleFrames < 0
+    settleFrames < 0 ||
+    !Number.isInteger(seedFrames) ||
+    seedFrames < 0
   )
     throw new Error("Invalid text-repair range");
   const parts: { input: number; start: number; end: number }[] = [];
   let previous = 0,
-    offset = 0;
+    offset = seedFrames;
   for (const range of ranges) {
     const start = intro + range.start,
       end = intro + range.end;
@@ -55,9 +58,16 @@ async function main(): Promise<void> {
     "..",
   );
   const root = path.join(motion, "out/spotter-v2");
+  const option = (name: string, fallback: string) => {
+    const at = process.argv.indexOf(name);
+    return at < 0 ? fallback : path.resolve(process.argv[at + 1]);
+  };
   const manifest = JSON.parse(
     await readFile(
-      path.join(motion, "native/spotter-text-repairs.json"),
+      option(
+        "--manifest",
+        path.join(motion, "native/spotter-text-repairs.json"),
+      ),
       "utf8",
     ),
   ) as {
@@ -65,14 +75,18 @@ async function main(): Promise<void> {
     ranges: { start: number; end: number }[];
     frames: number[];
     badFrames: number[];
+    seedFrames?: number;
   };
   const baseArg = process.argv.indexOf("--base");
   const base =
       baseArg >= 0
         ? path.resolve(process.argv[baseArg + 1])
         : path.join(root, "spotter-opal-investigation-v2.mp4"),
-    patch = path.join(root, "text-repairs.mp4"),
-    output = path.join(root, "spotter-opal-investigation-v2.reviewed.mp4");
+    patch = option("--patch", path.join(root, "text-repairs.mp4")),
+    output = option(
+      "--output",
+      path.join(root, "spotter-opal-investigation-v2.reviewed.mp4"),
+    );
   if ((await videoHash(base)) !== manifest.baseSha256)
     throw new Error("Text repairs belong to a different encoded base");
   const settleFrames = 3;
@@ -81,6 +95,7 @@ async function main(): Promise<void> {
     manifest.ranges,
     450,
     settleFrames,
+    manifest.seedFrames ?? 0,
   );
   const retained = manifest.ranges.flatMap(({ start, end }) =>
     Array.from(
@@ -202,6 +217,7 @@ async function main(): Promise<void> {
         patchFrames,
         retainedPatchFrames: retained.length,
         settleFrames,
+        seedFrames: manifest.seedFrames ?? 0,
         preservedControl: {
           x: 338,
           y: 642,

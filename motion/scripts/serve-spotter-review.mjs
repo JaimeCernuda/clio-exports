@@ -23,6 +23,8 @@ const types = {
 };
 /** Local read-only review server with range requests for precise video seeking. */
 const server = http.createServer(async (req, res) => {
+  // A review URL is reused after re-renders; never let cached ranges mix versions.
+  res.setHeader("Cache-Control", "no-store");
   try {
     if (req.method !== "GET" && req.method !== "HEAD") {
       res.writeHead(405, { Allow: "GET, HEAD" });

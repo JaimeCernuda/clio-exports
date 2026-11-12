@@ -45,6 +45,12 @@ async function main(): Promise<void> {
             sourceTextUnchanged: true,
           },
           {
+            scope: "Native code-container paint in the Spotter film adapter",
+            rendering:
+              "Force full content visibility without intrinsic placeholders so code bodies and log heights remain painted during capture",
+            sourceTextAndControlsUnchanged: true,
+          },
+          {
             partId: "part_2174d879dc87",
             rendering:
               "Progressive native Markdown instead of a plain-text-to-Markdown completion switch",
@@ -55,6 +61,12 @@ async function main(): Promise<void> {
             rendering:
               "Escape a dangling Markdown underline until its next characters arrive, preventing temporary Setext headings",
             sourceTextAndCompletedRenderingUnchanged: true,
+          },
+          {
+            partId: "part_cba0f67a7e31",
+            rendering:
+              "Keep literal accession/dose answer-format placeholders visible outside code during streaming and completed reasoning, instead of consuming them as Markdown HTML",
+            canonicalSourceTextAndCoordinatesUnchanged: true,
           },
           {
             scope: "Final SPOTTER activity group after recorded quarantine",
