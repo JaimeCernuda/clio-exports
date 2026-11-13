@@ -133,7 +133,23 @@ export async function awaitSpotterPaint(
     ]);
     stable = valid && layout === prior ? stable + 1 : 0;
     prior = layout;
-    if (stable >= 2) return true;
+    if (stable >= 2) {
+      const extent = log?.scrollHeight;
+      const top = log?.scrollTop;
+      // Macrotask equality can precede a browser paint that settles rich text.
+      // Recheck the real scroll extent after paint before acknowledging pixels.
+      await new Promise<void>((resolve) =>
+        requestAnimationFrame(() => setTimeout(resolve, 0)),
+      );
+      if (!isCurrent()) return false;
+      if (log) reconcileSpotterScroll(log);
+      if (log?.scrollHeight !== extent || log?.scrollTop !== top) {
+        stable = 0;
+        prior = "";
+        continue;
+      }
+      return true;
+    }
   }
   if (!isCurrent()) return false;
   throw new Error(

@@ -29,11 +29,15 @@ views into Flowcept as genuine primary-agent telemetry.
   Drive the actual `data-slot="ring-spinner"` transform from the frame clock.
 - DOM-target caches can make direct seeks disagree with sequential capture.
   Measure immutable pointer profiles; test cold/backward seeks against warmed
-  frames. Use short deliberate travel and edge exits during long idle intervals.
+  frames. Use short deliberate travel and rest at the last action during idle
+  intervals. Repeated screen exits were rejected as unnatural and distracting.
+  Passing speed and pose checks does not qualify choreography; inspect idle
+  behaviour as well as the clicks and drags.
 - Fixed travel durations can still cause speed spikes across a large viewport.
   Budget time from distance and the easing curve's peak velocity; retain measured
-  action times. Audit the complete path, including off-frame exits after the
-  second selection, and verify the actual DOM pointer pose on every captured frame.
+  action times. Audit the complete path and verify the actual DOM pointer pose on
+  every captured frame. Keep it on screen during the interface shot; let it fade
+  with the whole interface at the branded close, rather than choreographing exits.
 - A native reduced-motion rule of **1ms is still a wall-clock transition**.
   A local cursor stylesheet did not override it. The body portal therefore sets
   transition/animation to `none` with inline priority. Frame-owned descendants
@@ -46,6 +50,9 @@ views into Flowcept as genuine primary-agent telemetry.
   the first conform exposed this. Include its exact source frames in cold/warm
   pixel parity. Sparse renders need discarded source-frame lead-in before every
   discontinuous window; leading handles included in the encode are not pre-roll.
+  Stable macrotask measurements can still precede a paint-time text expansion.
+  Cross a browser paint boundary and recheck the log extent/position before
+  acknowledging the frame; retain a real browser regression for this case.
 - Keep changing spinner variables on the spinner nodes, not the transcript root.
   Root inheritance invalidated the growing heat DOM every frame. Memoize
   unchanged heat projections; refresh rail geometry when content extent, record
@@ -103,9 +110,9 @@ views into Flowcept as genuine primary-agent telemetry.
   source time when opened; do not freeze the reviewer by retaining an old tab
   snapshot. Heavy offscreen Markdown need not stay mounted to preserve source
   progress.
-- Paint the pointer through a body portal above native overlays. At ownership
-  changes, use a common off-frame parking coordinate and continuous travel;
-  fading the old pointer does not establish continuity. Inspect the encoded
+- Paint the pointer through one body portal above native overlays. At ownership
+  changes, retain its current on-screen pose and continue from there. Do not add
+  offscreen parking or fade between gestures to hide a discontinuity. Inspect the encoded
   boundaries between setup, tab gestures and both attention selections.
 - Measure setup controls after fonts settle; refresh their geometry before the
   menu interaction. More importantly, acknowledge each pointer's **painted frame**

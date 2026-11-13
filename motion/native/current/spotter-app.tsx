@@ -91,7 +91,11 @@ import { isCaptureViewport, type CaptureViewport } from "./capture-viewport";
 import type { AttentionHeatView } from "../word-attention/attention-segment-heat";
 import "./spotter.css";
 import pointerTrack from "./spotter-pointer.json";
-import { spotterPointerAt, spotterPointerWaypoints } from "./spotter-pointer";
+import {
+  spotterPointerAt,
+  spotterPointerWaypoints,
+  spotterPointerOpacityAt,
+} from "./spotter-pointer";
 const ContentMarkdown = memo(NativeContentMarkdown);
 
 /** Inline priority beats the native reduced-motion layer's still-animated 1ms rule. */
@@ -1147,7 +1151,11 @@ function FilmCursor({ frame }: { frame: number }) {
       ref={freezePointerPortal}
       aria-hidden
       viewBox="0 0 32 40"
-      style={{ left: point.x, top: point.y }}
+      style={{
+        left: point.x,
+        top: point.y,
+        opacity: spotterPointerOpacityAt(frame),
+      }}
     >
       <path d="M3 2 3 30 10 23 16 36 22 33 16 21 27 21Z" />
     </svg>,

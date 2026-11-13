@@ -81,8 +81,10 @@ after the last useful row or text morph has finished, not from the start of its
 reveal. Avoid repeating an elaborate inspection for every item.
 
 When a cursor is part of the story, keep its route continuous and above the content.
-Move it out through the frame edge between gestures. Measure its hotspot against
-the actual rendered control at each press, including entry and exit speed. Animate
+Let it rest near the last action or in nearby clear space between gestures. Avoid
+repeated exits and re-entries: the user found them unnatural and distracting.
+Move directly to the next target, and measure its hotspot against
+the actual rendered control at each press, including travel speed. Animate
 hover explicitly: an SVG cursor does not cause browser CSS hover. Keep add,
 confirmation and remove states distinct under the cursor.
 

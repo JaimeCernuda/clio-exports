@@ -160,6 +160,9 @@ try {
                 x: box?.x,
                 y: box?.y,
                 opacity: cursor ? Number(getComputedStyle(cursor).opacity) : 0,
+                closingOpacity: Number(
+                  document.querySelector(".sv3-close")?.style.opacity ?? 0,
+                ),
                 expectedX: cursor ? Number.parseFloat(cursor.style.left) : null,
                 expectedY: cursor ? Number.parseFloat(cursor.style.top) : null,
               });
@@ -178,8 +181,19 @@ try {
         }),
       { frame, nonce: nonce++ },
     );
-    if (pose.paintedFrame !== frame || pose.count !== 1 || pose.opacity !== 1)
+    const expectedOpacity = frame < 420 ? 0 : 1 - pose.closingOpacity;
+    if (
+      pose.paintedFrame !== frame ||
+      pose.count !== 1 ||
+      Math.abs(pose.opacity - expectedOpacity) > 0.00001
+    )
       throw new Error(`Missing or stale native pointer at ${frame}`);
+    if (
+      frame >= 420 &&
+      frame < 12300 &&
+      (pose.x < 0 || pose.y < 0 || pose.x + 24 > 1920 || pose.y + 30 > 1080)
+    )
+      throw new Error(`Unexpected offscreen pointer at ${frame}`);
     if (
       Math.abs(pose.x - pose.expectedX) > 0.05 ||
       Math.abs(pose.y - pose.expectedY) > 0.05
@@ -210,8 +224,8 @@ try {
   const { PNG } = await import("pngjs");
   const parity = [];
   for (const frame of [
-    420, 421, 424, 3060, 5130, 6270, 6786, 6787, 6788, 9030, 10320, 10470,
-    11010, 11051, 11052, 11053, 11280, 11580,
+    420, 421, 424, 3060, 5100, 5101, 5130, 6270, 6786, 6787, 6788, 9030, 10320,
+    10470, 11010, 11051, 11052, 11053, 11280, 11580, 12270, 12300,
   ]) {
     console.log(JSON.stringify({ checkingPixelParity: frame }));
     await capture(workers[0], Math.max(0, frame - 1), "png");
@@ -462,6 +476,8 @@ try {
           frames: pointerPoses.length,
           maximumPixelsPerFrame: maximumPointerTravel,
           missingOrStale: 0,
+          offscreenDuringInterface: 0,
+          opacityFollowsInterfaceClose: true,
         },
         markers:
           mode === "full"

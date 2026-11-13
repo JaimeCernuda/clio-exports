@@ -99,10 +99,11 @@ Local outputs in **`motion/out/spotter-v3/`**:
 - `spotter-three-steps-proof.mp4`: discontinuous internal mechanics proof.
 - Movie `.json`: source/UI identity, hash, dimensions and verified frame count.
 
-Browser review saves 76 states at 1920×1080 and 1116×970 and measures the pointer
+Browser review saves 78 states at 1920×1080 and 1116×970 and measures the pointer
 into `motion/native/current/spotter-pointer.json`. Immutable paths reproduce
-absolute seeks and sequential capture. The cursor exits through the frame edge
-during long idle intervals. Native spinners share the film clock. Both source
+absolute seeks and sequential capture. The cursor stays at its last action
+during idle intervals and travels directly to the next target. It fades only
+with the interface at the branded close. Native spinners share the film clock. Both source
 clocks freeze during attention inspection.
 
 ## Rebuild attention

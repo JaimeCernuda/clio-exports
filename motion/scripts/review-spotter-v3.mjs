@@ -57,7 +57,7 @@ async function seek(page, seconds) {
 const shots = [
   0, 8.5, 12.5, 18, 20.5, 29.5, 36, 44, 47.2, 50.5, 59, 65.7, 76, 85, 90.5, 100,
   104, 113.5, 121, 134.5, 142, 145, 151, 154, 159.5, 164, 165.5, 168.8, 172,
-  175.5, 180.5, 184, 184.2, 186, 189, 193, 200, 207,
+  175.5, 180.5, 184, 184.2, 186, 189, 193, 200, 204.5, 207,
 ];
 const actions = [
   [8, "policy"],
@@ -149,6 +149,9 @@ try {
             ),
             transition: getComputedStyle(document.querySelector(".sv3-pointer"))
               .transitionDuration,
+            opacity: Number(
+              getComputedStyle(document.querySelector(".sv3-pointer")).opacity,
+            ),
           },
         };
       });
@@ -157,6 +160,18 @@ try {
       assert.ok(Math.abs(report.cursor.x - report.cursorDeclared.x) < 0.05);
       assert.ok(Math.abs(report.cursor.y - report.cursorDeclared.y) < 0.05);
       assert.equal(report.cursorDeclared.transition, "0s");
+      assert.equal(
+        report.cursorDeclared.opacity,
+        second < 7 || second >= 205 ? 0 : second === 204.5 ? 0.5 : 1,
+      );
+      if (second >= 7 && second < 205) {
+        assert.ok(
+          report.cursor.x >= 0 && report.cursor.right <= viewport.width,
+        );
+        assert.ok(
+          report.cursor.y >= 0 && report.cursor.bottom <= viewport.height,
+        );
+      }
       assert.equal(report.frameTransition, "0s");
       assert.ok(report.spinnerFrames.every((frame) => frame === report.frame));
       if (second < 174 || (second >= 184 && second < 191))
@@ -258,6 +273,27 @@ try {
       assert.ok(
         performance.now() - began >= 100,
         "A collapsed native shell must never acknowledge capture",
+      );
+      await seek(page, 84.9);
+      await page.evaluate(() => {
+        requestAnimationFrame(() => {
+          document.querySelector(".sv3-main-content").style.paddingBottom =
+            "161px";
+        });
+      });
+      await seek(page, 85);
+      const gapAfterPaint = await page.evaluate(() => {
+        const log = document.querySelector(".sv3-main-log");
+        return Math.max(0, log.scrollHeight - log.clientHeight) - log.scrollTop;
+      });
+      assert.ok(
+        Math.abs(gapAfterPaint) < 1,
+        "A paint-time content expansion must settle before capture",
+      );
+      await page.evaluate(() =>
+        document
+          .querySelector(".sv3-main-content")
+          .style.removeProperty("padding-bottom"),
       );
     }
     await seek(page, 164);

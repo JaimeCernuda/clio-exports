@@ -23,51 +23,30 @@ function travelFrames(
   );
 }
 
-/** Build continuous off-frame parking and distance-aware travel around measured action times. */
+/** Rest at the last action, then travel directly to the next measured target. */
 export function spotterPointerWaypoints(
   profile: PointerProfile,
 ): PointerPoint[] {
-  const points: PointerPoint[] = [
-    { frame: 0, x: profile.width + 40, y: profile.height * 0.6 },
-  ];
+  const first = profile.points[0];
+  if (!first) throw new Error("A pointer profile needs at least one action");
+  const points: PointerPoint[] = [{ ...first, frame: 0 }];
   for (const [index, point] of profile.points.entries()) {
     const prior = profile.points[index - 1];
-    const entry = { frame: 0, x: profile.width + 40, y: point.y };
-    if (!prior) {
-      points.push({
-        ...entry,
-        frame: point.frame - travelFrames(entry, point, 42),
-      });
-    } else {
-      const exit = { frame: 0, x: profile.width + 40, y: prior.y };
-      const exitTime = prior.frame + 36 + travelFrames(prior, exit, 36);
-      const entryTime = point.frame - travelFrames(entry, point, 42);
-      if (point.frame - prior.frame > 180 && exitTime < entryTime) {
-        points.push(
-          { ...prior, frame: prior.frame + 36 },
-          { ...exit, frame: exitTime },
-          { ...entry, frame: entryTime },
-        );
-      } else {
-        const departure = Math.max(
-          prior.frame,
-          point.frame - travelFrames(prior, point, 36),
-        );
-        if (departure > prior.frame)
-          points.push({ ...prior, frame: departure });
-      }
+    if (prior) {
+      const departure = Math.max(
+        prior.frame,
+        point.frame - travelFrames(prior, point, 36),
+      );
+      if (departure > prior.frame) points.push({ ...prior, frame: departure });
     }
     points.push(point);
   }
-  const last = profile.points.at(-1);
-  if (last) {
-    const exit = { frame: 0, x: profile.width + 40, y: last.y };
-    points.push(
-      { ...last, frame: last.frame + 40 },
-      { ...exit, frame: last.frame + 40 + travelFrames(last, exit, 40) },
-    );
-  }
   return points;
+}
+
+/** The pointer belongs to the interface shot and fades with its closing curtain. */
+export function spotterPointerOpacityAt(frame: number): number {
+  return frame < 7 * 60 ? 0 : 1 - spotterProgress(frame, 204 * 60, 205 * 60);
 }
 
 /** Evaluate the same immutable path for sequential playback, reverse seeks and capture. */

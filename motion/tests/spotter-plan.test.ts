@@ -7,6 +7,7 @@ import {
   spotterPointerAt,
   spotterPointerWaypoints,
   spotterPointerMotionRanges,
+  spotterPointerOpacityAt,
 } from "../native/current/spotter-pointer";
 import { buildSpotterReconstruction } from "../native/current/spotter-scenario";
 import {
@@ -23,6 +24,39 @@ import {
 const pair = JSON.parse(
   readFileSync("native/public/opal-chainB-7795459.native.json", "utf8"),
 ) as PairedReplay;
+test("idle gaps retain an on-screen pointer instead of repeated exits and re-entries", () => {
+  assert.throws(
+    () => spotterPointerWaypoints({ width: 1920, height: 1080, points: [] }),
+    /at least one action/,
+  );
+  for (const profile of pointerTrack.profiles) {
+    const points = spotterPointerWaypoints(profile);
+    for (let frame = 7 * 60; frame < 205 * 60; frame++) {
+      const point = spotterPointerAt(points, frame);
+      assert.ok(point.x >= 0 && point.x + 24 <= profile.width);
+      assert.ok(point.y >= 0 && point.y + 30 <= profile.height);
+    }
+    for (const second of [25, 40, 60, 80, 100, 130, 150, 202]) {
+      const frame = second * 60;
+      const prior = profile.points
+        .filter((point) => point.frame <= frame)
+        .at(-1)!;
+      const pose = spotterPointerAt(points, frame);
+      assert.equal(pose.x, prior.x);
+      assert.equal(pose.y, prior.y);
+    }
+    const last = profile.points.at(-1)!;
+    assert.deepEqual(spotterPointerAt(points, SPOTTER_FRAMES), {
+      ...last,
+      frame: SPOTTER_FRAMES,
+    });
+  }
+  assert.equal(spotterPointerOpacityAt(6 * 60), 0);
+  assert.equal(spotterPointerOpacityAt(7 * 60), 1);
+  assert.equal(spotterPointerOpacityAt(204 * 60), 1);
+  assert.equal(spotterPointerOpacityAt(204.5 * 60), 0.5);
+  assert.equal(spotterPointerOpacityAt(205 * 60), 0);
+});
 test("correction windows cover every visible moving frame and settling handle", () => {
   const profile = pointerTrack.profiles[0],
     points = spotterPointerWaypoints(profile);
