@@ -102,7 +102,9 @@ Local outputs in **`motion/out/spotter-v3/`**:
 Browser review saves 78 states at 1920×1080 and 1116×970 and measures the pointer
 into `motion/native/current/spotter-pointer.json`. Immutable paths reproduce
 absolute seeks and sequential capture. The cursor stays at its last action
-during idle intervals and travels directly to the next target. It fades only
+during idle intervals and travels directly to the next target. The two attention
+clicks have short rests in the nearby gutter so the pointer does not cover the
+highlighted source. It fades only
 with the interface at the branded close. Native spinners share the film clock. Both source
 clocks freeze during attention inspection.
 

@@ -90,6 +90,12 @@
           "y": 364.90625
         },
         {
+          "frame": 10530,
+          "target": "attention-rest",
+          "x": 65,
+          "y": 194
+        },
+        {
           "frame": 10800,
           "target": "tab-lineage",
           "x": 1393.0859375,
@@ -124,6 +130,12 @@
           "target": "understand-attention",
           "x": 233.7109375,
           "y": 364.90625
+        },
+        {
+          "frame": 11550,
+          "target": "attention-rest",
+          "x": 65,
+          "y": 194
         },
         {
           "frame": 11880,
@@ -222,6 +234,12 @@
           "y": 128.28125
         },
         {
+          "frame": 10530,
+          "target": "attention-rest",
+          "x": 65,
+          "y": 234.5
+        },
+        {
           "frame": 10800,
           "target": "tab-lineage",
           "x": 798,
@@ -256,6 +274,12 @@
           "target": "understand-attention",
           "x": 216.7109375,
           "y": 128.28125
+        },
+        {
+          "frame": 11550,
+          "target": "attention-rest",
+          "x": 65,
+          "y": 213
         },
         {
           "frame": 11880,

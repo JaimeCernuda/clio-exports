@@ -74,12 +74,14 @@ const actions = [
   [168, "answer-start"],
   [168.8, "answer-end"],
   [174, "understand-attention"],
+  [175.5, "attention-rest"],
   [180, "tab-lineage"],
   [182, "close-attention"],
   [184.2, "tab-evidence"],
   [185.2, "73-start"],
   [186, "73-end"],
   [191, "understand-attention"],
+  [192.5, "attention-rest"],
   [198, "tab-lineage"],
 ];
 const profiles = [],
@@ -313,6 +315,12 @@ try {
             : seconds;
       await seek(page, at);
       const point = await page.evaluate((target) => {
+        if (target === "attention-rest") {
+          const log = document
+            .querySelector(".sv3-main-log")
+            .getBoundingClientRect();
+          return { x: log.left + 8, y: log.top + 40 };
+        }
         if (/^(?:73|answer)-(?:start|end)$/.test(target)) {
           const el = document.querySelector('[data-target="answer-line"]');
           if (!el?.firstChild) throw new Error("Answer not mounted");

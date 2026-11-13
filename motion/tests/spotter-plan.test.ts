@@ -30,6 +30,18 @@ test("idle gaps retain an on-screen pointer instead of repeated exits and re-ent
     /at least one action/,
   );
   for (const profile of pointerTrack.profiles) {
+    const rests = profile.points.filter(
+      (point) => point.target === "attention-rest",
+    );
+    assert.equal(rests.length, 2);
+    for (const rest of rests) {
+      const prior = profile.points[profile.points.indexOf(rest) - 1];
+      assert.equal(prior.target, "understand-attention");
+      assert.ok(
+        Math.hypot(rest.x - prior.x, rest.y - prior.y) < 300,
+        "Move aside locally instead of parking across the viewport",
+      );
+    }
     const points = spotterPointerWaypoints(profile);
     for (let frame = 7 * 60; frame < 205 * 60; frame++) {
       const point = spotterPointerAt(points, frame);

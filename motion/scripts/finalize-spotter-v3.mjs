@@ -82,7 +82,7 @@ async function main() {
       .split(/\r?\n/)
       .find((line) => line.startsWith('{"pixelParity":')),
   ).pixelParity;
-  assert.equal(parity.length, 22);
+  assert.equal(parity.length, 24);
   assert.ok(parity.every((p) => p.same));
   const ledger = JSON.parse(
     await readFile("../videos/spotter-opal/v3/source-projection.json", "utf8"),
