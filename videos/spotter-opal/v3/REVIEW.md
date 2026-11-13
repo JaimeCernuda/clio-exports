@@ -1,7 +1,12 @@
 # V3 review
 
-Status: implementation and moving review in progress. This is not final creative
-acceptance or a claim that the full delivery encode has been watched.
+Status: **ready for user review**. The clean full encode is delivered; creative
+acceptance remains with the user. Exact coverage is in [review-receipt.json](review-receipt.json).
+
+Final: 211 seconds, 1920×1080, CFR 60fps, 12,660 decoded frames, silent.
+SHA256: `a16b40364554e8dfae1b4fffe91d28574da29aff5d5e21f33ecbd7f5842e7ea3`.
+This is a fresh complete native body with the approved intro, without internal
+correction splices. See [render-receipt.json](render-receipt.json).
 
 ## First-pass corrections
 
@@ -26,7 +31,7 @@ acceptance or a claim that the full delivery encode has been watched.
 
 ## Completed technical checks
 
-- 158 motion and 140 Python tests passed, with no failures or skips.
+- 159 motion and 140 Python tests passed, with no failures or skips.
 - Native strict typecheck passed at the final source freeze.
 - Ruff and strict Pyright passed for relocation and its tests.
 - Eleven real attention selections passed capture/hash/token-ownership checks.
@@ -35,7 +40,7 @@ acceptance or a claim that the full delivery encode has been watched.
   tables before tool completion or entries for future steps.
 - Sequential reasoning-collapse geometry passed at 1920×1080. The capture gate
   rejected an intentionally collapsed 150px shell until its real layout returned.
-- Nine source frames passed exact cold/sequential decoded PNG parity before the
+- Fifteen source frames passed exact cold/sequential decoded PNG parity before the
   complete capture, including both native selection toolbars and attention views.
 - Both full pointer profiles retain their measured targets and identical reverse
   seeks. Their peak travel is bounded to 30px/frame over the entire source clock.
@@ -43,9 +48,8 @@ acceptance or a claim that the full delivery encode has been watched.
 - The generic RC1 transcript and responsive-layout browser regressions both
   passed. The final SPOTTER browser pass also requires zero cursor transition
   duration and agreement between its declared and measured position.
-- Thirty correction windows cover every visible moving frame and its settling
-  handles. A decoded red/blue fixture proved that the conform preserves untouched
-  frames and the exact start/end of each replacement.
+- The historical thirty-window correction experiment and decoded red/blue fixture
+  proved exact replacement boundaries. The delivered body is a clean full render.
 
 ## Rejected first conform
 
@@ -61,9 +65,8 @@ elements, scroll reconciliation after result layout, discarded source lead-in
 for discontinuous windows, and parity checks at source frames 6786/6787/6788.
 All fifteen cold/sequential PNG comparisons passed. Seventy browser states also
 passed with zero disclosure/cursor transition duration, matching spinner frame
-identity and settled normal-flow scroll. The clean full body is being rendered
-and must receive another encoded review. The earlier splice is not approved as
-the delivery.
+identity and settled normal-flow scroll. The clean full body was rerendered and
+received the final encoded review below. The earlier splice is not the delivery.
 - The 31-second internal proof (`23851a7c404a93a6810b519bcc90cd8a0fd757efa3e3e3f1c35a5fa96c9a85a2`)
   contains continuous selection → native toolbar → attention → scroll → return →
   second selection. Its 1,860 decoded frames produced no flash-scan candidates.
@@ -72,10 +75,23 @@ the delivery.
 - Reasoning excerpts round-trip to canonical Unicode spans. Source primary tools
   remain zero; actual reviewer tool IDs are retained.
 
-## Remaining gates
+## Final delivery review
 
-Inspect moving tool transitions, both attention/menu/scroll sequences and
-concurrent reviewer progression. Review the complete delivery after encoding,
-scan every encoded frame, inspect candidates with neighbours, and record the
-delivery hash and actual limits. The discontinuous proof cannot qualify the
-complete cut.
+No known technical defect remains within the recorded inspection coverage.
+The final file completed 1× browser playback from start to end. Visual checks
+included its overview, six full-resolution keyframes, collapse/attention-return
+strips and consecutive frames at the repaired transition and every scanner
+candidate. This is sampled visual coverage, not continuous human viewing.
+
+All 12,660 decoded frames were scanned. The former scroll-jump candidates
+6847–6848 are absent and their neighbours now progress smoothly. Three remaining
+low-amplitude candidates were inspected: busy-indicator changes at 3623/6083
+and closing-fade/compression variation at 12359. Text and layout remain stable;
+no leaking labels or unrelated UI appearance was found.
+
+The final native body also passed all 12,180 measured-pointer checks, with no
+missing/stale pose and a maximum 29.96px/frame travel. Windows held the previous
+movie open at promotion; the new conform was requalified and promoted without
+recapture. The review server now closes aborted streams, and promotion retries
+temporary locks while preserving the previous final. The finite-selection and
+source-reconstruction limits remain documented in the guide.

@@ -1,0 +1,242 @@
+{
+  "schema": "clio.spotter-v3-render.v1",
+  "mode": "full",
+  "sha256": "a16b40364554e8dfae1b4fffe91d28574da29aff5d5e21f33ecbd7f5842e7ea3",
+  "ui": {
+    "repository": "https://github.com/iowarp/gact-tui.git",
+    "branch": "rc1/ui-liftoff",
+    "revision": "47b74250e512358dda6275cd5084e9d4a8d1a376",
+    "checkout": "source-ui-47b74250",
+    "port": 3372
+  },
+  "sourceSha256": "cfdd456f2640519c6a0f715e817927c7fb70e77974d6d9605be12cc903131cd5",
+  "frames": 12660,
+  "bodyFrames": 12180,
+  "fps": 60,
+  "width": 1920,
+  "height": 1080,
+  "ranges": [
+    [
+      7,
+      210
+    ]
+  ],
+  "errors": [],
+  "capturePages": 2,
+  "independentPagePixelParity": [
+    {
+      "frame": 420,
+      "same": true
+    },
+    {
+      "frame": 421,
+      "same": true
+    },
+    {
+      "frame": 424,
+      "same": true
+    },
+    {
+      "frame": 3060,
+      "same": true
+    },
+    {
+      "frame": 5130,
+      "same": true
+    },
+    {
+      "frame": 6270,
+      "same": true
+    },
+    {
+      "frame": 6786,
+      "same": true
+    },
+    {
+      "frame": 6787,
+      "same": true
+    },
+    {
+      "frame": 6788,
+      "same": true
+    },
+    {
+      "frame": 9030,
+      "same": true
+    },
+    {
+      "frame": 10320,
+      "same": true
+    },
+    {
+      "frame": 10470,
+      "same": true
+    },
+    {
+      "frame": 11010,
+      "same": true
+    },
+    {
+      "frame": 11280,
+      "same": true
+    },
+    {
+      "frame": 11580,
+      "same": true
+    }
+  ],
+  "sourcePreroll": {
+    "leadFrames": 24
+  },
+  "pointerAudit": {
+    "frames": 12180,
+    "maximumPixelsPerFrame": 29.958214714936705,
+    "missingOrStale": 0
+  },
+  "markers": [
+    [
+      8,
+      "Enable SPOTTER"
+    ],
+    [
+      15,
+      "Step 1 · Dose response"
+    ],
+    [
+      34.5,
+      "Recorded reasoning"
+    ],
+    [
+      51,
+      "Baseline lineage"
+    ],
+    [
+      56,
+      "Step 2 · Transition"
+    ],
+    [
+      74.5,
+      "Concurrent review"
+    ],
+    [
+      97,
+      "Step 3 · Analogue"
+    ],
+    [
+      103,
+      "Lookup result"
+    ],
+    [
+      117.5,
+      "Recorded reasoning"
+    ],
+    [
+      145,
+      "Later in the recorded review"
+    ],
+    [
+      160,
+      "SPOTTER alert"
+    ],
+    [
+      168,
+      "Select the answer"
+    ],
+    [
+      175,
+      "Word attention"
+    ],
+    [
+      185,
+      "Select 73"
+    ],
+    [
+      192,
+      "Inspect the tool result"
+    ],
+    [
+      205,
+      "Close"
+    ]
+  ],
+  "video": {
+    "index": 0,
+    "codec_name": "h264",
+    "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+    "profile": "High",
+    "codec_type": "video",
+    "codec_tag_string": "avc1",
+    "codec_tag": "0x31637661",
+    "width": 1920,
+    "height": 1080,
+    "coded_width": 1920,
+    "coded_height": 1088,
+    "closed_captions": 0,
+    "film_grain": 0,
+    "has_b_frames": 2,
+    "sample_aspect_ratio": "1:1",
+    "display_aspect_ratio": "16:9",
+    "pix_fmt": "yuv420p",
+    "level": 42,
+    "color_range": "tv",
+    "color_space": "bt709",
+    "chroma_location": "center",
+    "field_order": "progressive",
+    "refs": 4,
+    "is_avc": "true",
+    "nal_length_size": "4",
+    "id": "0x1",
+    "r_frame_rate": "60/1",
+    "avg_frame_rate": "60/1",
+    "time_base": "1/15360",
+    "start_pts": 0,
+    "start_time": "0.000000",
+    "duration_ts": 3240960,
+    "duration": "211.000000",
+    "bit_rate": "675878",
+    "bits_per_raw_sample": "8",
+    "nb_frames": "12660",
+    "nb_read_frames": "12660",
+    "extradata_size": 51,
+    "disposition": {
+      "default": 1,
+      "dub": 0,
+      "original": 0,
+      "comment": 0,
+      "lyrics": 0,
+      "karaoke": 0,
+      "forced": 0,
+      "hearing_impaired": 0,
+      "visual_impaired": 0,
+      "clean_effects": 0,
+      "attached_pic": 0,
+      "timed_thumbnails": 0,
+      "non_diegetic": 0,
+      "captions": 0,
+      "descriptions": 0,
+      "metadata": 0,
+      "dependent": 0,
+      "still_image": 0,
+      "multilayer": 0
+    },
+    "tags": {
+      "language": "und",
+      "handler_name": "VideoHandler",
+      "vendor_id": "[0][0][0][0]",
+      "encoder": "Lavc61.19.101 libx264"
+    },
+    "side_data_list": [
+      {
+        "side_data_type": "ICC Profile"
+      }
+    ]
+  },
+  "approvedIntro": {
+    "file": "out/spotter-intro-v4.mp4",
+    "sha256": "26a60012e52c9b0409296cb8b32ff165a32b57caac23ceff6af8ec83d145543a",
+    "frames": 480,
+    "source": "src/SpotterIntro.tsx",
+    "deliveryOffsetSeconds": 1
+  },
+  "promotionRecovery": "Revalidated the completed clean conform after the prior movie was held open on Windows. No recapture or reencode."
+}

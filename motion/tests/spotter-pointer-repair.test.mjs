@@ -6,7 +6,15 @@ import {
   pointerRepairFilter,
   DELIVERY_FRAME_ARGS,
 } from "../scripts/spotter-pointer-repair.mjs";
-import { mkdir, mkdtemp, rm } from "node:fs/promises";
+import {
+  mkdir,
+  mkdtemp,
+  rm,
+  rename,
+  writeFile,
+  readFile,
+} from "node:fs/promises";
+import { promoteVideo } from "../scripts/finalize-spotter-v3.mjs";
 import path from "node:path";
 
 test("repair intervals reject overlap, noninteger coordinates and extent errors", () => {
@@ -22,6 +30,42 @@ test("repair intervals reject overlap, noninteger coordinates and extent errors"
     [],
   ])
     assert.throws(() => pointerRepairFilter({ first: 10, end: 60, ranges }));
+});
+
+test("promotion retries temporary Windows locks and preserves the previous file on other errors", async () => {
+  const root = path.resolve(".native-ui");
+  await mkdir(root, { recursive: true });
+  const dir = await mkdtemp(path.join(root, "promotion-test-"));
+  try {
+    const pending = path.join(dir, "pending.mp4"),
+      target = path.join(dir, "final.mp4");
+    await writeFile(pending, "new");
+    await writeFile(target, "old");
+    await assert.rejects(
+      promoteVideo(pending, target, {
+        delayMs: 0,
+        renameFile: async () => {
+          throw Object.assign(new Error("disk"), { code: "ENOSPC" });
+        },
+      }),
+    );
+    assert.equal(await readFile(target, "utf8"), "old");
+    assert.equal(await readFile(pending, "utf8"), "new");
+    let attempts = 0;
+    await promoteVideo(pending, target, {
+      delayMs: 0,
+      renameFile: async (a, b) => {
+        if (++attempts < 3)
+          throw Object.assign(new Error("locked"), { code: "EPERM" });
+        await rename(a, b);
+      },
+    });
+    assert.equal(attempts, 3);
+    assert.equal(await readFile(target, "utf8"), "new");
+  } finally {
+    assert.ok(path.resolve(dir).startsWith(root + path.sep));
+    await rm(dir, { recursive: true, force: true });
+  }
 });
 
 test("intro plus gapped replacements delivers exact CFR metadata and frame count", async () => {

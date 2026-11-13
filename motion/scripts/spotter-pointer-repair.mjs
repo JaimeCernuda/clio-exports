@@ -1,10 +1,11 @@
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { readFile, writeFile, rename } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { createReadStream } from "node:fs";
 import { createHash } from "node:crypto";
 import { pathToFileURL } from "node:url";
 import path from "node:path";
+import { promoteVideo } from "./finalize-spotter-v3.mjs";
 
 const run = promisify(execFile);
 
@@ -140,7 +141,7 @@ async function main() {
     pending,
   ]);
   const video = await probe(pending, bodyFrames + 480);
-  await rename(pending, output);
+  await promoteVideo(pending, output);
   const ledger = JSON.parse(
     await readFile("../videos/spotter-opal/v3/source-projection.json", "utf8"),
   );

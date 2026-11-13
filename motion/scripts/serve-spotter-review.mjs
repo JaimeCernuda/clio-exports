@@ -77,6 +77,7 @@ const server = http.createServer(async (req, res) => {
       return;
     }
     const stream = createReadStream(file, { start, end });
+    res.once("close", () => stream.destroy());
     stream.on("error", () => res.destroy());
     stream.pipe(res);
   } catch (error) {

@@ -15,6 +15,7 @@ import { once } from "node:events";
 import { promisify } from "node:util";
 import path from "node:path";
 import { DELIVERY_FRAME_ARGS } from "./spotter-pointer-repair.mjs";
+import { promoteVideo } from "./finalize-spotter-v3.mjs";
 
 const mode = process.argv[2] ?? "proof";
 if (!["proof", "full", "benchmark", "graph-proof", "repair"].includes(mode))
@@ -427,7 +428,7 @@ try {
     ).streams.find((s) => s.codec_type === "video");
     if (Number(deliveryVideo.nb_read_frames) !== sourceFrames.length + 480)
       throw new Error("Approved-intro conform frame count failed");
-    await rename(conforming, target);
+    await promoteVideo(conforming, target);
     const introHash = createHash("sha256");
     for await (const bytes of createReadStream(intro)) introHash.update(bytes);
     introSha256 = introHash.digest("hex");

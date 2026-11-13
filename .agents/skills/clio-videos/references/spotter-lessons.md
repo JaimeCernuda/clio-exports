@@ -57,6 +57,10 @@ views into Flowcept as genuine primary-agent telemetry.
   frame count did not guarantee `avg_frame_rate=60/1` or a full final-frame duration.
   Qualify decoded count, rate and duration together; preserve the previous final
   until the replacement passes.
+- A media player can keep a Windows file open after playback. Close aborted HTTP
+  video streams on response close, retry transient promotion locks, and retain
+  the verified conform for a finalization-only recovery. A failed rename does
+  not justify recapturing an already complete, qualified body.
 - Keep recorded reasoning excerpts as source spans. Stream them, hold briefly,
   then animate the disclosure closed. Do not invent private reasoning or leave
   the reviewer frozen while the source clock advances.

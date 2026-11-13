@@ -1,0 +1,200 @@
+{
+  "schema": "clio.spotter-v3-review.v1",
+  "status": "ready-for-user-review",
+  "created": "2026-11-13T10:44:46.085Z",
+  "rendererCommit": "da3cda2",
+  "delivery": {
+    "file": "motion/out/spotter-v3/spotter-three-steps-full.mp4",
+    "sha256": "a16b40364554e8dfae1b4fffe91d28574da29aff5d5e21f33ecbd7f5842e7ea3",
+    "frames": 12660,
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "durationSeconds": 211,
+    "audio": "silent"
+  },
+  "implementation": {
+    "displaySteps": [
+      1,
+      2,
+      3
+    ],
+    "originalRounds": [
+      1,
+      2,
+      5
+    ],
+    "actualPrimaryToolCalls": 0,
+    "reconstructedLookupViews": 9,
+    "actualReviewerToolCalls": 7,
+    "attentionDefault": "Words / Max",
+    "originalSourceSha256": "cfdd456f2640519c6a0f715e817927c7fb70e77974d6d9605be12cc903131cd5"
+  },
+  "checks": {
+    "motionTests": 159,
+    "pythonTests": 140,
+    "skipped": 0,
+    "nativeTypecheck": "passed",
+    "genericBrowserRegressions": 2,
+    "spotterBrowserStates": 70,
+    "viewportProfiles": [
+      [
+        1920,
+        1080
+      ],
+      [
+        1116,
+        970
+      ]
+    ],
+    "coldSequentialPngParity": [
+      {
+        "frame": 420,
+        "same": true
+      },
+      {
+        "frame": 421,
+        "same": true
+      },
+      {
+        "frame": 424,
+        "same": true
+      },
+      {
+        "frame": 3060,
+        "same": true
+      },
+      {
+        "frame": 5130,
+        "same": true
+      },
+      {
+        "frame": 6270,
+        "same": true
+      },
+      {
+        "frame": 6786,
+        "same": true
+      },
+      {
+        "frame": 6787,
+        "same": true
+      },
+      {
+        "frame": 6788,
+        "same": true
+      },
+      {
+        "frame": 9030,
+        "same": true
+      },
+      {
+        "frame": 10320,
+        "same": true
+      },
+      {
+        "frame": 10470,
+        "same": true
+      },
+      {
+        "frame": 11010,
+        "same": true
+      },
+      {
+        "frame": 11280,
+        "same": true
+      },
+      {
+        "frame": 11580,
+        "same": true
+      }
+    ],
+    "pointerAudit": {
+      "frames": 12180,
+      "maximumPixelsPerFrame": 29.958214714936705,
+      "missingOrStale": 0
+    },
+    "decodedFramesScanned": 12660
+  },
+  "visualInspection": {
+    "playback": {
+      "rate": 1,
+      "fromSeconds": 0,
+      "toSeconds": 211,
+      "ended": true,
+      "observedProgressSeconds": [
+        72.222,
+        211
+      ]
+    },
+    "fullResolutionTimes": [
+      9.5,
+      77,
+      114.5,
+      160.5,
+      173,
+      194
+    ],
+    "stripsInspected": [
+      [
+        48,
+        48.5
+      ],
+      [
+        183,
+        185.1
+      ],
+      [
+        192,
+        193.5
+      ]
+    ],
+    "consecutiveFramesInspected": [
+      [
+        6843,
+        6854
+      ],
+      [
+        3619,
+        3630
+      ],
+      [
+        6079,
+        6090
+      ],
+      [
+        12355,
+        12366
+      ]
+    ],
+    "overview": true,
+    "scannerCandidates": [
+      {
+        "frame": 12359,
+        "amplitude": 0.20637152777777779,
+        "classification": "closing fade/compression variation; no unrelated content"
+      },
+      {
+        "frame": 6083,
+        "amplitude": 0.14739583333333334,
+        "classification": "busy indicator; text and layout stable"
+      },
+      {
+        "frame": 3623,
+        "amplitude": 0.14553819444444444,
+        "classification": "busy indicator; text and layout stable"
+      }
+    ],
+    "resolvedScrollJumpFrames": [
+      6847,
+      6848
+    ],
+    "scope": "Full-duration 1x browser playback plus sampled visual observations, full-size keyframes and consecutive transition frames. Not a claim of continuous human viewing of every frame."
+  },
+  "knownLimitations": [
+    "Finite saved attention selections; arbitrary live selections require the recorded-bundle backend.",
+    "Main lookup rows and lineage are explicitly reconstructed from archived prompt packets. Tool-role model inference was not rerun.",
+    "Additional original rounds are omitted; recorded alert timing and attention denominator/context remain intact."
+  ],
+  "remainingKnownTechnicalDefects": []
+}

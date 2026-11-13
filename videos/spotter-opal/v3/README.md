@@ -2,6 +2,10 @@
 
 See [REVIEW.md](REVIEW.md) for delivery status and the exact inspection coverage.
 
+Latest delivery: **3:31, 1080p/60fps**. Local watch/download gallery:
+**http://127.0.0.1:3373/?clip=full**. The movie stays local; render and review
+receipts are committed alongside this guide.
+
 Original rounds **1, 2, 5 become Step 1, 2, 3**. Each step shows a prompt,
 three native lookup views, a recorded reasoning excerpt and the recorded answer.
 The 211-second, 1920×1080/60fps silent cut alternates Evidence, Lineage and
@@ -62,6 +66,11 @@ pages share one browser only after exact cold/sequential pixel-parity checks.
 The final conform joins the approved introduction with the native body; its
 frame count and both source hashes are recorded. An absent approved intro is
 regenerated from its existing Remotion composition.
+
+If Windows blocks promotion because the previous movie is open, release the
+player and run `node scripts/finalize-spotter-v3.mjs`. It requalifies the completed
+conform, checks saved pointer poses/parity, and promotes it without another render.
+The local gallery closes aborted video streams so replaced files can be released.
 
 The renderer disables wall-clock interpolation on frame-owned elements and
 requires measured and declared cursor positions to agree. Follow-scroll is

@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { mkdtemp, mkdir, writeFile, rm } from "node:fs/promises";
+import { mkdtemp, mkdir, writeFile, rm, rename } from "node:fs/promises";
+import { promoteVideo } from "../scripts/finalize-spotter-v3.mjs";
 import { spawn } from "node:child_process";
 import { once } from "node:events";
 import path from "node:path";
@@ -91,6 +92,14 @@ test("the local review gallery supports seeking, direct downloads and read-only 
       405,
     );
     assert.equal((await fetch(new URL("absent.mp4", ready))).status, 404);
+    const large = path.join(root, "large.mp4"),
+      moved = path.join(root, "moved.mp4");
+    await writeFile(large, Buffer.alloc(16 * 1024 * 1024, 42));
+    const interrupted = await fetch(new URL("large.mp4", ready));
+    const reader = interrupted.body.getReader();
+    await reader.read();
+    await reader.cancel();
+    await promoteVideo(large, moved, { renameFile: rename });
     assert.equal(
       (await fetch(new URL("..%2f..%2fpackage.json", ready))).status,
       403,
