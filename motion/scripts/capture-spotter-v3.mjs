@@ -211,7 +211,7 @@ try {
   const parity = [];
   for (const frame of [
     420, 421, 424, 3060, 5130, 6270, 6786, 6787, 6788, 9030, 10320, 10470,
-    11010, 11280, 11580,
+    11010, 11051, 11052, 11053, 11280, 11580,
   ]) {
     console.log(JSON.stringify({ checkingPixelParity: frame }));
     await capture(workers[0], Math.max(0, frame - 1), "png");

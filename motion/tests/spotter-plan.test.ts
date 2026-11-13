@@ -87,6 +87,24 @@ test("the graph is visible while new step groups and their actual result nodes a
   }
   assert.equal(spotterPocketAt(114 * 60), "evidence");
 });
+test("attention inspection pocket changes follow explicit actions instead of an unrelated close", () => {
+  assert.equal(spotterPocketAt(164 * 60), "spotter");
+  for (const second of [165.5, 167, 174, 179.9])
+    assert.equal(spotterPocketAt(Math.round(second * 60)), "evidence");
+  for (const second of [180, 182, 184, 184.18])
+    assert.equal(spotterPocketAt(Math.round(second * 60)), "lineage");
+  assert.equal(spotterPocketAt(Math.round(184.2 * 60)), "evidence");
+  for (const profile of pointerTrack.profiles) {
+    assert.ok(
+      profile.points.some(
+        (point) =>
+          point.frame === Math.round(184.2 * 60) &&
+          point.target === "tab-evidence",
+      ),
+      "The Evidence return needs its own visible tab interaction",
+    );
+  }
+});
 test("renumbering preserves references to omitted ranges instead of aliasing them to the poisoned step", () => {
   assert.equal(
     displayedStepText("Round 1; round 2; ROUND 5."),

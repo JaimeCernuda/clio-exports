@@ -435,7 +435,7 @@ function SpotterWorkspace({
   }, [frame]);
   const selecting =
     (frame >= 168 * 60 && frame < 174 * 60) ||
-    (frame >= 185 * 60 && frame < 191 * 60);
+    (frame >= 185.2 * 60 && frame < 191 * 60);
   // Exact DOM selection precedes the menu; all attention inspection freezes source time.
   useLayoutEffect(() => {
     const selection = window.getSelection();
@@ -449,7 +449,7 @@ function SpotterWorkspace({
     const range = document.createRange(),
       full = element.textContent ?? "";
     const start = selectionText === "73" ? full.indexOf("73") : 0;
-    const begin = frame < 184 * 60 ? 168 * 60 : 185 * 60;
+    const begin = frame < 184 * 60 ? 168 * 60 : 185.2 * 60;
     const length = Math.max(
       1,
       Math.ceil(
@@ -881,7 +881,7 @@ function SpotterWorkspace({
                       <button
                         data-target="inspect-alert"
                         onClick={() => {
-                          setPocket("lineage");
+                          setPocket("evidence");
                         }}
                       >
                         Inspect evidence

@@ -78,7 +78,7 @@ export const SPOTTER_MARKERS = [
   [159, "SPOTTER alert"],
   [167, "Select the answer"],
   [174, "Word attention"],
-  [184, "Select 73"],
+  [185.2, "Select 73"],
   [191, "Inspect the tool result"],
   [204, "Close"],
 ] as const;
@@ -181,15 +181,17 @@ export function spotterSourceAt(pair: PairedReplay, frame: number): number {
 /** Choose the canvas by shot purpose while reviewer activity continues offscreen. */
 export function spotterPocketAt(frame: number): PocketName {
   if (frame >= 12 * 60 && frame < 18 * 60) return "spotter";
-  if (frame >= 165.5 * 60 && frame < 167 * 60) return "lineage";
   if (
     (frame >= f(50) && frame < f(64.5)) ||
     (frame >= f(90) && frame < f(114)) ||
-    (frame >= f(180) && frame < f(184)) ||
+    (frame >= f(180) && frame < f(184.2)) ||
     frame >= f(198)
   )
     return "lineage";
-  if ((frame >= f(144) && frame < f(167)) || (frame >= f(74) && frame < f(88)))
+  if (
+    (frame >= f(144) && frame < f(165.5)) ||
+    (frame >= f(74) && frame < f(88))
+  )
     return "spotter";
   return "evidence";
 }

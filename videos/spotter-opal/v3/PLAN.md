@@ -35,6 +35,10 @@ transparent-logo introduction; SPOTTER-AI remains the subject.
 5. **Inspect why.** The alert motivates selection of the answer, the native action
    menu, Understand attention, and scrolling to the tool result. Repeat with
    `73`. Default to Words / Max; the intensity rail follows the same data.
+   Inspect evidence opens Evidence directly. After the first inspection closes,
+   keep Lineage in place until the pointer explicitly selects Evidence at
+   emulator 184.2s. Start the second selection at 185.2s; do not couple an
+   unrelated pocket change to closing attention.
 
 An initial budget is roughly three minutes, including setup and two attention
 inspections. Adjust after the moving review. Do not inherit the old 15-minute

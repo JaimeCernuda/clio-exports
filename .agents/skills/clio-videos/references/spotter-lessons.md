@@ -236,6 +236,12 @@ accepted timing, synchronization or pointer template.
 
 ## Review and publication
 
+Inspect the cause of every pocket change. A named evidence action should open
+Evidence directly; do not briefly show Lineage and then switch without another
+action. Closing attention must not also change the pocket. Keep the current view
+until a deliberate tab interaction, with enough pointer travel time before the
+next text selection. Check the actual alert button as well as its filmed timing.
+
 Encoding, tests, sampled contact sheets and source ordering did not establish
 full-film motion quality. Record what was actually inspected, preserve later
 user findings, and keep technical verification separate from creative acceptance.

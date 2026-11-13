@@ -56,8 +56,8 @@ async function seek(page, seconds) {
 }
 const shots = [
   0, 8.5, 12.5, 18, 20.5, 29.5, 36, 44, 47.2, 50.5, 59, 65.7, 76, 85, 90.5, 100,
-  104, 113.5, 121, 134.5, 142, 145, 151, 154, 159.5, 164, 168.8, 172, 175.5,
-  180.5, 185.8, 189, 193, 200, 207,
+  104, 113.5, 121, 134.5, 142, 145, 151, 154, 159.5, 164, 165.5, 168.8, 172,
+  175.5, 180.5, 184, 184.2, 186, 189, 193, 200, 207,
 ];
 const actions = [
   [8, "policy"],
@@ -76,8 +76,9 @@ const actions = [
   [174, "understand-attention"],
   [180, "tab-lineage"],
   [182, "close-attention"],
-  [185, "73-start"],
-  [185.8, "73-end"],
+  [184.2, "tab-evidence"],
+  [185.2, "73-start"],
+  [186, "73-end"],
   [191, "understand-attention"],
   [198, "tab-lineage"],
 ];
@@ -259,6 +260,13 @@ try {
         "A collapsed native shell must never acknowledge capture",
       );
     }
+    await seek(page, 164);
+    await page.locator('[data-target="inspect-alert"]').click();
+    assert.equal(
+      await page.locator('[data-pocket="evidence"]').count(),
+      1,
+      "Inspect evidence must open its named pocket directly",
+    );
     const points = [];
     for (const [seconds, target] of actions) {
       const at =
