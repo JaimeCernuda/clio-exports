@@ -688,6 +688,10 @@ html .current-demo.sv3 *::after {
   font-size: 15px;
   color: var(--muted-foreground);
 }
+.sv3-close {
+  /* Keep text on the same compositing path before and after the fade reaches 1. */
+  will-change: opacity;
+}
 .sv3-time-cut {
   position: absolute;
   left: 30%;
