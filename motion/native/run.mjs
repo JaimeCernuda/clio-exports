@@ -3,6 +3,7 @@ import { createRequire } from "node:module";
 import { spawnSync, spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { nativeProfile } from "./profiles.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
@@ -12,8 +13,7 @@ if (!["dev", "build", "preview", "check"].includes(command))
 const flag = args.indexOf("--source");
 const profileFlag = args.indexOf("--profile");
 const profile = profileFlag < 0 ? "default" : args[profileFlag + 1];
-if (!["default", "opal", "wordle", "engineering"].includes(profile))
-  throw new Error("Choose default, opal, wordle or engineering profile");
+const selectedProfile = nativeProfile(profile);
 const nativeTemporary = path.join(here, "../.native-ui/tmp");
 mkdirSync(nativeTemporary, { recursive: true });
 process.env.TEMP = nativeTemporary;
@@ -21,16 +21,14 @@ process.env.TMP = nativeTemporary;
 process.env.TMPDIR = nativeTemporary;
 if (flag >= 0 && !args[flag + 1])
   throw new Error("--source needs a checkout path");
+const expected = JSON.parse(
+  readFileSync(path.join(here, selectedProfile.sourceFile), "utf8"),
+);
 const source = path.resolve(
   flag >= 0
     ? args[flag + 1]
-    : (process.env.CLIO_UI_SOURCE ?? path.join(here, "../.native-ui/source")),
-);
-const expected = JSON.parse(
-  readFileSync(
-    path.join(here, profile !== "default" ? "source-opal.json" : "source.json"),
-    "utf8",
-  ),
+    : (process.env.CLIO_UI_SOURCE ??
+        path.join(here, "../.native-ui", expected.checkout ?? "source")),
 );
 if (!existsSync(path.join(source, "web/package.json")))
   throw new Error(
@@ -88,6 +86,7 @@ if (command === "check") {
           "react-dom/*": [path.join(reactDomTypes, "*")],
           "@tanstack/react-query": [packageTypes("@tanstack/react-query")],
           "lucide-react": [packageTypes("lucide-react")],
+          "react-router-dom": [packageTypes("react-router-dom")],
           "@noble/hashes/*": [
             path.join(
               path.dirname(requireSource.resolve("@noble/hashes/sha2.js")),
@@ -101,17 +100,7 @@ if (command === "check") {
       },
       include: [],
       files: [
-        path.join(here, "entry.tsx"),
-        ...(profile === "engineering"
-          ? [path.join(here, "engineering-entry.tsx")]
-          : []),
-        ...(profile === "wordle" ? [path.join(here, "study-entry.tsx")] : []),
-        path.join(here, "workspace.tsx"),
-        path.join(here, "recorded-prompt.tsx"),
-        path.join(here, "recorded-paragraph.tsx"),
-        path.join(here, "recorded-thinking.tsx"),
-        path.join(here, "spotter-notification.ts"),
-        path.join(here, "map-context.ts"),
+        ...selectedProfile.entries.map((entry) => path.join(here, entry)),
         path.join(
           path.dirname(requireSource.resolve("vite/package.json")),
           "client.d.ts",
@@ -138,17 +127,7 @@ const vite = path.join(
 const options = command === "dev" ? [] : [command];
 const child = spawn(
   process.execPath,
-  [
-    vite,
-    ...options,
-    "--config",
-    path.join(
-      here,
-      profile === "engineering"
-        ? "engineering.vite.config.mjs"
-        : "vite.config.mjs",
-    ),
-  ],
+  [vite, ...options, "--config", path.join(here, selectedProfile.config)],
   {
     cwd: here,
     stdio: "inherit",

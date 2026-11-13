@@ -1,5 +1,6 @@
 {
   "files": [
+    ".npmrc",
     ".gitattributes",
     ".gitignore",
     "AGENTS.md",
@@ -29,6 +30,7 @@
     "motion/story"
   ],
   "motionFiles": [
+    ".npmrc",
     "package.json",
     "package-lock.json",
     "tsconfig.json",

@@ -61,9 +61,14 @@ These skills are stored in the repository for any agent to read; no global skill
 installation is required. The original three documents under `motion/references/`
 are historical references. Use the maintained local skills for current commands.
 The earlier `motion/src/ui` kit was rejected for product fidelity. It is retained
-for its animation examples, not as an authoritative CLIO reconstruction. Start
-conversation work from `motion/native/workspace.tsx`, which imports the pinned
-production gact-tui shell, composer, conversation rows, Markdown, A2UI and artifact
+for its animation examples, not as an authoritative CLIO reconstruction.
+For **new demos on the redesigned interface**, use `motion/native/current/README.md`
+and its separate `current` profile. Keep older film pins intact. The current
+adapter and its source-linked manifest replace copying a previous film's
+conversation IDs or applying its source patches to a newer checkout.
+
+Historical conversation films use `motion/native/workspace.tsx`, which imports
+the pinned production gact-tui shell, composer, conversation rows, Markdown, A2UI and artifact
 viewers. Small recorded navigation/context-bar presenters retain the native
 layout and agent `+` without requiring uncaptured live state. Setup and the precise
 adaptations are in `motion/native/README.md`.

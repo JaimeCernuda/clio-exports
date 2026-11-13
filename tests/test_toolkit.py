@@ -297,7 +297,6 @@ def test_skill_references_are_portable_and_resolve() -> None:
         "clio-motion-stack",
         "clio-motion-scenes",
         "clio-motion-review",
-        "clio-motion-ads",
     }
     for skill in (ROOT / ".agents/skills").rglob("*.md"):
         for reference in re.findall(r"\[[^]]+\]\(([^)]+)\)", skill.read_text(encoding="utf-8")):

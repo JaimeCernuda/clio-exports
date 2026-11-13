@@ -18,6 +18,26 @@ retain its inspection limits and full-film one-worker render requirement.
 
 ## Source and component checks
 
+For the redesigned UI use [the current adapter](../../../motion/native/current/README.md)
+and its recorded [review](../../../motion/native/current/REVIEW.md). Check real
+native fonts/providers, right-edge strip, tabs, composer and transcript. Do not
+wait for every `aria-busy` on the page: a running tool is intentionally busy;
+wait for asset loaders within rich surfaces. Correct follow-scroll after images
+and maps resize, not only on source-block commit. Test direct and backward seeks,
+closing/reopening tabs, and actual image/map paint. A scoped single-session proof
+does not qualify paired SPOTTER timing or all historical films on the new UI.
+Test ordinary Play/Pause separately from absolute frame seeking: mixed vsync/
+`performance.now()` epochs caused a negative first preview frame even though
+render seeks passed. Capture failures must propagate through an error boundary,
+not acknowledge an empty stage. Current CLIO virtualizes offscreen transcript
+rows, so open an earlier result before declaring its chart missing. Validate the
+complete native workbench by opening a captured file as well as surface tabs.
+Audit elapsed-time readouts too. Historical `started_at` plus a live clock
+produced a misleading `593h` in an otherwise valid encode. The current adapter
+binds UI time to captured call progress and tests the duration at repeated seeks.
+Keep actual execution milliseconds separate from editorial seconds. Inspect
+high-resolution active-tool frames; contact sheets can hide a unit error.
+
 Confirm the selected request, child identities, tool calls and results occur in
 the indexed archive. Read truncation flags and stop reasons; an `end_turn` is not
 proof that every requested task succeeded. Do not turn an author's coverage claim

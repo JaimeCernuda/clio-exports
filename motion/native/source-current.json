@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/iowarp/gact-tui.git",
+  "branch": "rc1/ui-liftoff",
+  "revision": "47b74250e512358dda6275cd5084e9d4a8d1a376",
+  "checkout": "source-ui-47b74250",
+  "port": 3372
+}

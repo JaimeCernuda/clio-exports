@@ -100,11 +100,13 @@ const url = await bundle({
     root,
     options.composition === "ClioComposableAd"
       ? "src/composable-ad-index.tsx"
-      : options.composition.startsWith("ClioComposable")
-        ? "src/composable-index.tsx"
-        : options.composition.startsWith("WordleStudy")
-          ? "src/wordle-index.tsx"
-          : "src/index.tsx",
+      : options.composition === "ClioCurrentDemo"
+        ? "src/current-index.tsx"
+        : options.composition.startsWith("ClioComposable")
+          ? "src/composable-index.tsx"
+          : options.composition.startsWith("WordleStudy")
+            ? "src/wordle-index.tsx"
+            : "src/index.tsx",
   ),
   publicDir: path.join(root, "public"),
   outDir: path.join(root, "bundle"),

@@ -16,7 +16,10 @@ import type { FocusBeat } from "../native/presentation-plan";
 /** Host the editable native React stage; each captured frame waits for its paint acknowledgement. */
 export const NativeProductFilm: React.FC<{
   nativeServer?: string;
-  mode?: "film" | "campaign" | "spotter" | "study";
+  mode?: "film" | "campaign" | "spotter" | "study" | "current";
+  demoFile?: string;
+  sceneFile?: string;
+  sourceFrame?: number;
   pairFile?: string;
   attentionFile?: string;
   attentionShot?: string;
@@ -30,6 +33,9 @@ export const NativeProductFilm: React.FC<{
 }> = ({
   nativeServer = "http://127.0.0.1:3357",
   mode = "film",
+  demoFile,
+  sceneFile,
+  sourceFrame,
   pairFile = "opal-spotter.native.json",
   attentionFile,
   attentionShot,
@@ -43,6 +49,7 @@ export const NativeProductFilm: React.FC<{
 }) => {
   const localFrame = useCurrentFrame();
   const frame =
+    sourceFrame ??
     (recordCursor && inspectionFocus
       ? inspectionUiFrame(inspectionFocus, localFrame)
       : localFrame) + frameOffset;
@@ -52,6 +59,7 @@ export const NativeProductFilm: React.FC<{
   const url = new URL("/?render=1", nativeServer);
   if (recordCursor) url.searchParams.set("cursor", "record");
   url.searchParams.set("mode", mode);
+  if (mode === "current" && demoFile) url.searchParams.set("demo", demoFile);
   if (mode === "study") {
     url.searchParams.set("cut", cut === "social" ? "proof" : "full");
     if (debugLayout) url.searchParams.set("layout", "record");
@@ -66,10 +74,14 @@ export const NativeProductFilm: React.FC<{
     url.searchParams.set("cut", cut);
     url.searchParams.set("campaign", campaignId);
   }
-  url.searchParams.set(
-    "scene",
-    mode === "campaign" ? campaignStory(campaignId).sceneFile : story.sceneFile,
-  );
+  if (mode !== "current" || sceneFile)
+    url.searchParams.set(
+      "scene",
+      sceneFile ??
+        (mode === "campaign"
+          ? campaignStory(campaignId).sceneFile
+          : story.sceneFile),
+    );
   useLayoutEffect(() => {
     const id = ++nonce.current;
     const handle = delayRender(`Native CLIO frame ${frame}`, {

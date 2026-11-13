@@ -1,4 +1,5 @@
 import React from "react";
+import { CurrentDemo } from "./CurrentDemo";
 import { SpotterTextRepairs } from "./SpotterTextRepairs";
 import textRepairs from "../native/spotter-text-repairs.json";
 import paintRepairs from "../native/spotter-paint-repairs.json";
@@ -32,6 +33,40 @@ validatePairedReplay(chainReplay);
 /** Named composition root so Studio can locate and persist editable default props. */
 export const RemotionRoot: React.FC = () => (
   <>
+    <Composition
+      id="ClioCurrentDemo"
+      component={CurrentDemo}
+      width={1920}
+      height={1080}
+      fps={60}
+      durationInFrames={2400}
+      defaultProps={{
+        demoFile: "demos/tahoe-current.json",
+        frames: 2400,
+      }}
+      calculateMetadata={({ props }) => {
+        if (Array.isArray(props.sourceFrames)) {
+          if (
+            !props.sourceFrames.length ||
+            props.sourceFrames.some(
+              (frame) =>
+                typeof frame !== "number" ||
+                !Number.isSafeInteger(frame) ||
+                frame < 0,
+            )
+          )
+            throw new Error("Invalid current source-frame selection");
+          return { durationInFrames: props.sourceFrames.length };
+        }
+        if (
+          typeof props.frames !== "number" ||
+          !Number.isSafeInteger(props.frames) ||
+          props.frames < 1
+        )
+          throw new Error("Invalid current demo duration");
+        return { durationInFrames: props.frames };
+      }}
+    />
     <Composition
       id="SpotterPaintRepairs"
       component={SpotterTextRepairs}

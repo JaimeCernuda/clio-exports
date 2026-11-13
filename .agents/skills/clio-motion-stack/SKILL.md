@@ -11,6 +11,15 @@ The earlier concept and current component proof are examples, not approved style
 
 ## Start from the repository
 
+New transcript demos should use the [current UI adapter](../../../motion/native/current/README.md),
+not the historical `NativeWorkspace`. Run `demo:create`, inspect `demo:plan`, then
+`demo:check`, `demo:build` and `demo:browser-test` on port 3372. Keep the upstream
+UI pin explicit and detached; preserve historical profiles. A UI revision changes
+providers and component contracts as well as CSS. Do not reuse brittle old source
+string replacements against a new checkout. The current adapter qualifies one
+recorded session; paired-agent/attention, Science Log and mesh choreography still
+require deliberate ports and separate visual qualification.
+
 Use the existing `motion/` project and lockfiles. From the repo root run `uv sync`;
 from `motion/` run `npm ci`. Node.js, uv, FFmpeg and FFprobe must be available.
 The renderer downloads its supported Chrome when needed; `DEMO_CHROME_PATH` can

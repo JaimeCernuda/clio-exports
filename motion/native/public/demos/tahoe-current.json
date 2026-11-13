@@ -1,0 +1,40 @@
+{
+  "schema": "clio.demo.v1",
+  "id": "tahoe-current",
+  "title": "CLIO current UI — recorded NDP investigation",
+  "sceneFile": "tahoe.native.json",
+  "sourceSha256": "e5f762a73eaa749738780b095a24133cec08d8d125c81bd24ecfc8c3bda0dbf4",
+  "sessionId": "sess_9cca40f4085e",
+  "frames": 2400,
+  "fps": 60,
+  "turns": 1,
+  "holdFrames": 240,
+  "edits": {
+    "toolIds": [
+      "call_ab09646f162e",
+      "call_b289879bb9dc",
+      "call_9318527a9744",
+      "call_602d42cce5a7",
+      "call_a2327bf600cb",
+      "call_d484952b7674",
+      "call_59e8aba094b6",
+      "call_8ec17c20ee0b",
+      "call_afddda4755fa"
+    ],
+    "reasoningIds": [],
+    "includeInjections": false,
+    "answerParagraphs": 2
+  },
+  "pocket": [
+    {
+      "afterBlock": "live_a2ui_d5075ed1cdf7",
+      "label": "Map",
+      "surfaceId": "tahoe-boundary-map"
+    },
+    {
+      "afterBlock": "live_a2ui_9b42982eafe1",
+      "label": "Method",
+      "surfaceId": "tahoe-area-method-figure"
+    }
+  ]
+}

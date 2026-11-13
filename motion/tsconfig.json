@@ -22,6 +22,9 @@
     "scripts/retime-study-captions.ts",
     "scripts/measure-engineering.ts",
     "scripts/review-composable.ts",
-    "scripts/review-composable-ad.ts"
+    "scripts/review-composable-ad.ts",
+    "scripts/current-demo.ts",
+    "scripts/create-current-demo.ts",
+    "scripts/repair-current-tool-clock.ts"
   ]
 }

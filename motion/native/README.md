@@ -1,5 +1,10 @@
 # Production CLIO fidelity baseline
 
+**For new demos using the redesigned CLIO UI**, start with
+[current/README.md](current/README.md) and `npm run demo:dev`. Its separate
+`current` profile imports the RC1 production components. The older profiles
+below remain reproducible at their historical source revisions.
+
 This replaces the loose visual approximation as the starting point for UI work.
 It renders the Lake Tahoe/NDP science conversation through **actual production
 React components**, imported from the revision pinned in `source.json`.

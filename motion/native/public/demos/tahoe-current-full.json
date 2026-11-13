@@ -1,0 +1,34 @@
+{
+  "schema": "clio.demo.v1",
+  "id": "tahoe-current-full",
+  "title": "Lake Tahoe mapped area and detail",
+  "sceneFile": "tahoe.native.json",
+  "sourceSha256": "e5f762a73eaa749738780b095a24133cec08d8d125c81bd24ecfc8c3bda0dbf4",
+  "sessionId": "sess_9cca40f4085e",
+  "frames": 7200,
+  "fps": 60,
+  "turns": 3,
+  "holdFrames": 240,
+  "pocket": [
+    {
+      "afterBlock": "live_a2ui_d5075ed1cdf7",
+      "surfaceId": "tahoe-boundary-map",
+      "label": "tahoe boundary map"
+    },
+    {
+      "afterBlock": "live_a2ui_9b42982eafe1",
+      "surfaceId": "tahoe-area-method-figure",
+      "label": "tahoe area method figure"
+    },
+    {
+      "afterBlock": "live_a2ui_d6c07f59c87c",
+      "surfaceId": "tahoe-shoreline-resolution",
+      "label": "tahoe shoreline resolution"
+    },
+    {
+      "afterBlock": "live_a2ui_ca0176177960",
+      "surfaceId": "tahoe-shoreline-detail-figure",
+      "label": "tahoe shoreline detail figure"
+    }
+  ]
+}

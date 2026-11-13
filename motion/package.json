@@ -8,8 +8,8 @@
     "native:build": "node native/run.mjs build",
     "native:check": "node native/run.mjs check",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test tests/ui.test.tsx tests/render-options.test.mjs tests/native-session.test.ts tests/native-film.test.ts tests/campaign.test.ts tests/ndp-campaigns.test.ts tests/story.test.ts tests/cursor.test.ts tests/vector-chart.test.ts tests/frame-review.test.ts tests/video-flash-scan.test.ts tests/paired-replay.test.ts tests/spotter-intro.test.ts tests/spotter-investigation.test.ts tests/opal-rules.test.ts tests/spotter-conform.test.ts tests/spotter-text-conform.test.ts tests/spotter-paint-repairs.test.ts tests/spotter-pointer-audit.test.ts tests/spotter-review-server.test.mjs tests/study-replay.test.ts tests/engineering-plan.test.ts tests/engineering-film.test.ts tests/engineering-assembly.test.mjs tests/prompt-morph.test.ts tests/composable-ad.test.ts",
-    "format:check": "prettier --check src scripts tests render.mjs examples native/*.ts native/*.tsx native/*.mjs native/*.css native/*.html native/source.json",
+    "test": "tsx --test tests/ui.test.tsx tests/render-options.test.mjs tests/native-session.test.ts tests/native-film.test.ts tests/campaign.test.ts tests/ndp-campaigns.test.ts tests/story.test.ts tests/cursor.test.ts tests/vector-chart.test.ts tests/frame-review.test.ts tests/video-flash-scan.test.ts tests/paired-replay.test.ts tests/spotter-intro.test.ts tests/spotter-investigation.test.ts tests/opal-rules.test.ts tests/spotter-conform.test.ts tests/spotter-text-conform.test.ts tests/spotter-paint-repairs.test.ts tests/spotter-pointer-audit.test.ts tests/spotter-review-server.test.mjs tests/study-replay.test.ts tests/engineering-plan.test.ts tests/engineering-film.test.ts tests/engineering-assembly.test.mjs tests/prompt-morph.test.ts tests/composable-ad.test.ts tests/current-demo.test.ts tests/native-profiles.test.mjs tests/current-demo-cli.test.mjs",
+    "format:check": "prettier --check src scripts tests render.mjs examples native/*.ts native/*.tsx native/*.mjs native/*.css native/*.html native/source.json native/current native/profiles.mjs native/source-current.json native/public/demos",
     "stills": "node render.mjs stills",
     "promo:stills": "node render.mjs stills --composition ClioNativePromo",
     "promo:render": "node render.mjs video --composition ClioNativePromo --scale 1 --output out/clio-investigation-story.mp4",
@@ -34,7 +34,16 @@
     "composable:review": "tsx scripts/review-composable-ad.ts",
     "composable:legacy-review": "tsx scripts/review-composable.ts",
     "spotter:prepare": "tsx scripts/prepare-spotter-investigation.ts",
-    "spotter:review": "node scripts/serve-spotter-review.mjs"
+    "spotter:review": "node scripts/serve-spotter-review.mjs",
+    "demo:dev": "node native/run.mjs dev --profile current",
+    "demo:build": "node native/run.mjs build --profile current",
+    "demo:check": "node native/run.mjs check --profile current",
+    "demo:preview": "node native/run.mjs preview --profile current",
+    "demo:plan": "tsx scripts/current-demo.ts plan",
+    "demo:render": "tsx scripts/current-demo.ts render",
+    "demo:stills": "tsx scripts/current-demo.ts stills",
+    "demo:browser-test": "node --test tests/current-demo-browser.test.mjs",
+    "demo:create": "tsx scripts/create-current-demo.ts"
   },
   "dependencies": {
     "@fontsource-variable/inter": "5.3.0",

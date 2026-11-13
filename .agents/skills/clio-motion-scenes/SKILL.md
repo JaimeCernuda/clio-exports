@@ -14,6 +14,13 @@ wording are not a style prescription.
 
 ## Build with shared components
 
+For the redesigned interface, use the [current UI adapter](../../../motion/native/current/README.md)
+and its manifest/projection API. The historical stage names and measured camera/
+cursor tracks below belong to older pins. Reflow the current native components
+for a film, then measure new tracks; matching the new theme does not port the
+old choreography. Keep the full native shell as a fidelity baseline, not a
+mandatory advertising composition.
+
 For an accelerated conversation, use [REPLAY.md](../../../motion/native/REPLAY.md)
 and `NativeConversationReplay`. Keep one native log: calls accumulate, completed
 activity collapses, public agent text streams, generated UI appears inline, and
