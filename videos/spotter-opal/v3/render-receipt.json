@@ -1,7 +1,8 @@
 {
   "schema": "clio.spotter-v3-render.v1",
+  "capture": "direct native page; same frame/paint protocol as Remotion bridge",
   "mode": "full",
-  "sha256": "a16b40364554e8dfae1b4fffe91d28574da29aff5d5e21f33ecbd7f5842e7ea3",
+  "sha256": "e834b7f9aae63a8f5355768cd9e66b05c095ea9b49ac059687c6473ec7cf214f",
   "ui": {
     "repository": "https://github.com/iowarp/gact-tui.git",
     "branch": "rc1/ui-liftoff",
@@ -22,7 +23,6 @@
     ]
   ],
   "errors": [],
-  "capturePages": 2,
   "independentPagePixelParity": [
     {
       "frame": 420,
@@ -77,6 +77,18 @@
       "same": true
     },
     {
+      "frame": 11051,
+      "same": true
+    },
+    {
+      "frame": 11052,
+      "same": true
+    },
+    {
+      "frame": 11053,
+      "same": true
+    },
+    {
       "frame": 11280,
       "same": true
     },
@@ -85,8 +97,10 @@
       "same": true
     }
   ],
+  "capturePages": 2,
   "sourcePreroll": {
-    "leadFrames": 24
+    "leadFrames": 24,
+    "discardedRequests": 24
   },
   "pointerAudit": {
     "frames": 12180,
@@ -147,7 +161,7 @@
       "Word attention"
     ],
     [
-      185,
+      186.2,
       "Select 73"
     ],
     [
@@ -193,7 +207,7 @@
     "start_time": "0.000000",
     "duration_ts": 3240960,
     "duration": "211.000000",
-    "bit_rate": "675878",
+    "bit_rate": "673704",
     "bits_per_raw_sample": "8",
     "nb_frames": "12660",
     "nb_read_frames": "12660",
@@ -237,6 +251,5 @@
     "frames": 480,
     "source": "src/SpotterIntro.tsx",
     "deliveryOffsetSeconds": 1
-  },
-  "promotionRecovery": "Revalidated the completed clean conform after the prior movie was held open on Windows. No recapture or reencode."
+  }
 }

@@ -4,7 +4,7 @@ Status: **ready for user review**. The clean full encode is delivered; creative
 acceptance remains with the user. Exact coverage is in [review-receipt.json](review-receipt.json).
 
 Final: 211 seconds, 1920×1080, CFR 60fps, 12,660 decoded frames, silent.
-SHA256: `a16b40364554e8dfae1b4fffe91d28574da29aff5d5e21f33ecbd7f5842e7ea3`.
+SHA256: `e834b7f9aae63a8f5355768cd9e66b05c095ea9b49ac059687c6473ec7cf214f`.
 This is a fresh complete native body with the approved intro, without internal
 correction splices. See [render-receipt.json](render-receipt.json).
 
@@ -31,16 +31,17 @@ correction splices. See [render-receipt.json](render-receipt.json).
 
 ## Completed technical checks
 
-- 159 motion and 140 Python tests passed, with no failures or skips.
+- 160 motion tests passed in the second visual pass, with no failures or skips.
+  The unchanged attention/Python scope retains its previous 140-test qualification.
 - Native strict typecheck passed at the final source freeze.
 - Ruff and strict Pyright passed for relocation and its tests.
 - Eleven real attention selections passed capture/hash/token-ownership checks.
   Total source mass and residual were conserved.
-- Seventy native browser states passed at two sizes, with assertions rejecting
+- Seventy-six native browser states passed at two sizes, with assertions rejecting
   tables before tool completion or entries for future steps.
 - Sequential reasoning-collapse geometry passed at 1920×1080. The capture gate
   rejected an intentionally collapsed 150px shell until its real layout returned.
-- Fifteen source frames passed exact cold/sequential decoded PNG parity before the
+- Eighteen source frames passed exact cold/sequential decoded PNG parity before the
   complete capture, including both native selection toolbars and attention views.
 - Both full pointer profiles retain their measured targets and identical reverse
   seeks. Their peak travel is bounded to 30px/frame over the entire source clock.
@@ -75,7 +76,10 @@ received the final encoded review below. The earlier splice is not the delivery.
 - Reasoning excerpts round-trip to canonical Unicode spans. Source primary tools
   remain zero; actual reviewer tool IDs are retained.
 
-## Final delivery review
+## Initial complete delivery review
+
+This pass reviewed the earlier `a16b4036` delivery. The second visual pass below
+found and corrected two additional editorial handoffs.
 
 No known technical defect remains within the recorded inspection coverage.
 The final file completed 1× browser playback from start to end. Visual checks
@@ -95,3 +99,30 @@ movie open at promotion; the new conform was requalified and promoted without
 recapture. The review server now closes aborted streams, and promotion retries
 temporary locks while preserving the previous final. The finite-selection and
 source-reconstruction limits remain documented in the guide.
+
+## Second visual pass
+
+The earlier movie received another full-duration 1× playback, eight chronological
+sample grids spanning its edit, full-resolution attention views and additional
+collapse/result/alert strips. This exposed two pocket changes that geometry and
+frame-count checks had not identified as story problems:
+
+| Delivery time | Finding | Correction |
+| --- | --- | --- |
+| 02:46.5 | Inspect evidence briefly opened Lineage, followed by an automatic change to Evidence. | Open Evidence directly, matching the button's name and purpose. Test the actual paused-replay button too. |
+| 03:05–03:07 | Closing the first attention inspection also changed the pocket without a tab action. | Retain Lineage after closing; visibly select Evidence at 03:05.2, then begin selecting `73` at 03:06.2. Remeasure both pointer profiles. |
+
+The complete native body was rerendered from renderer commit `605ce86`; the
+approved intro and 211-second runtime remain intact. The current hash at the top
+identifies this replacement. The review script now includes both revised handoffs.
+Eighteen cold/sequential pixel comparisons include the exact frame before, at and
+after the new tab click. All 12,180 measured pointer poses pass, with no missing
+or stale pose and a maximum 29.96px/frame.
+
+Encoded inspection includes the two revised handoffs at full resolution, their
+12-consecutive-frame windows, attention return/second-entry strips, the overview,
+and refreshed neighbouring frames around every scanner candidate and the earlier
+scroll repair. All 12,660 decoded frames were scanned again: only the same three
+low-amplitude spinner/fade candidates remain, with stable text and layout. The
+machine-readable receipt records the current playback and precise visual scope;
+it does not claim continuous human observation of every frame.

@@ -21,8 +21,7 @@ const times =
         0, 4, 7.9, 8, 9.5, 12, 14, 19, 21, 25.5, 30, 34.5, 45, 48.2, 51.5, 60,
         66.7, 77, 86, 91.5, 101, 105, 114.5, 122, 135.5, 143, 146, 152, 155,
         160.5, 165, 166.5, 169.8, 173, 175, 176.5, 181.5, 185.1, 185.2, 185.4,
-        186.2, 186.8, 190, 192, 194, 199.5,
-        205.5, 209,
+        186.2, 186.8, 190, 192, 194, 199.5, 205.5, 209,
       ];
 for (const time of times)
   await run("ffmpeg", [
@@ -77,6 +76,32 @@ for (const [a, b] of strips)
     "1",
     path.join(dir, `strip-${a}.png`),
   ]);
+const consecutiveFrames =
+  mode === "full"
+    ? [
+        [3619, 3630],
+        [6079, 6090],
+        [6843, 6854],
+        [9986, 9997],
+        [11108, 11119],
+        [12355, 12366],
+      ]
+    : [];
+for (const [first, last] of consecutiveFrames)
+  await run("ffmpeg", [
+    "-v",
+    "error",
+    "-y",
+    "-ss",
+    String(first / receipt.fps),
+    "-i",
+    file,
+    "-vf",
+    `trim=end_frame=${last - first + 1},setpts=PTS-STARTPTS,scale=640:360,tile=3x4`,
+    "-frames:v",
+    "1",
+    path.join(dir, `consecutive-${first}.png`),
+  ]);
 await run("ffmpeg", [
   "-v",
   "error",
@@ -98,6 +123,7 @@ await writeFile(
       frames: receipt.frames,
       times,
       strips,
+      consecutiveFrames,
       note: "Generated review material; inspection must be recorded separately.",
     },
     null,

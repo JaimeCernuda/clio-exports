@@ -1,11 +1,11 @@
 {
   "schema": "clio.spotter-v3-review.v1",
   "status": "ready-for-user-review",
-  "created": "2026-11-13T10:44:46.085Z",
-  "rendererCommit": "da3cda2",
+  "created": "2026-11-13T11:13:32.824Z",
+  "rendererCommit": "605ce86",
   "delivery": {
     "file": "motion/out/spotter-v3/spotter-three-steps-full.mp4",
-    "sha256": "a16b40364554e8dfae1b4fffe91d28574da29aff5d5e21f33ecbd7f5842e7ea3",
+    "sha256": "e834b7f9aae63a8f5355768cd9e66b05c095ea9b49ac059687c6473ec7cf214f",
     "frames": 12660,
     "width": 1920,
     "height": 1080,
@@ -31,12 +31,12 @@
     "originalSourceSha256": "cfdd456f2640519c6a0f715e817927c7fb70e77974d6d9605be12cc903131cd5"
   },
   "checks": {
-    "motionTests": 159,
+    "motionTests": 160,
     "pythonTests": 140,
     "skipped": 0,
     "nativeTypecheck": "passed",
     "genericBrowserRegressions": 2,
-    "spotterBrowserStates": 70,
+    "spotterBrowserStates": 76,
     "viewportProfiles": [
       [
         1920,
@@ -101,6 +101,18 @@
         "same": true
       },
       {
+        "frame": 11051,
+        "same": true
+      },
+      {
+        "frame": 11052,
+        "same": true
+      },
+      {
+        "frame": 11053,
+        "same": true
+      },
+      {
         "frame": 11280,
         "same": true
       },
@@ -114,7 +126,21 @@
       "maximumPixelsPerFrame": 29.958214714936705,
       "missingOrStale": 0
     },
-    "decodedFramesScanned": 12660
+    "decodedFramesScanned": 12660,
+    "validationScope": {
+      "rerunThisPass": [
+        "motionTests",
+        "nativeTypecheck",
+        "spotterBrowserStates",
+        "coldSequentialPngParity",
+        "pointerAudit",
+        "decodedFramesScanned"
+      ],
+      "carriedForwardUnchanged": [
+        "pythonTests",
+        "genericBrowserRegressions"
+      ]
+    }
   },
   "visualInspection": {
     "playback": {
@@ -123,7 +149,14 @@
       "toSeconds": 211,
       "ended": true,
       "observedProgressSeconds": [
-        72.222,
+        0.0713,
+        64.628,
+        101.1411,
+        159.8589,
+        165.0011,
+        169.6442,
+        179.4987,
+        194.6218,
         211
       ]
     },
@@ -132,8 +165,11 @@
       77,
       114.5,
       160.5,
-      173,
-      194
+      166.5,
+      185.2,
+      186.2,
+      194,
+      209
     ],
     "stripsInspected": [
       [
@@ -141,8 +177,16 @@
         48.5
       ],
       [
+        166.3,
+        167.2
+      ],
+      [
         183,
         185.1
+      ],
+      [
+        185.1,
+        187.2
       ],
       [
         192,
@@ -151,16 +195,24 @@
     ],
     "consecutiveFramesInspected": [
       [
-        6843,
-        6854
-      ],
-      [
         3619,
         3630
       ],
       [
         6079,
         6090
+      ],
+      [
+        6843,
+        6854
+      ],
+      [
+        9986,
+        9997
+      ],
+      [
+        11108,
+        11119
       ],
       [
         12355,
@@ -189,12 +241,135 @@
       6847,
       6848
     ],
-    "scope": "Full-duration 1x browser playback plus sampled visual observations, full-size keyframes and consecutive transition frames. Not a claim of continuous human viewing of every frame."
+    "scope": "Full-duration 1x browser playback plus sampled visual observations, full-size keyframes, overview and consecutive transition frames. Not continuous human observation of every frame."
   },
   "knownLimitations": [
     "Finite saved attention selections; arbitrary live selections require the recorded-bundle backend.",
     "Main lookup rows and lineage are explicitly reconstructed from archived prompt packets. Tool-role model inference was not rerun.",
     "Additional original rounds are omitted; recorded alert timing and attention denominator/context remain intact."
   ],
-  "remainingKnownTechnicalDefects": []
+  "remainingKnownTechnicalDefects": [],
+  "previousDelivery": {
+    "sha256": "a16b40364554e8dfae1b4fffe91d28574da29aff5d5e21f33ecbd7f5842e7ea3",
+    "visualInspection": {
+      "playback": {
+        "rate": 1,
+        "fromSeconds": 0,
+        "toSeconds": 211,
+        "ended": true,
+        "observedProgressSeconds": [
+          72.222,
+          211
+        ]
+      },
+      "fullResolutionTimes": [
+        9.5,
+        77,
+        114.5,
+        160.5,
+        173,
+        194
+      ],
+      "stripsInspected": [
+        [
+          48,
+          48.5
+        ],
+        [
+          183,
+          185.1
+        ],
+        [
+          192,
+          193.5
+        ]
+      ],
+      "consecutiveFramesInspected": [
+        [
+          6843,
+          6854
+        ],
+        [
+          3619,
+          3630
+        ],
+        [
+          6079,
+          6090
+        ],
+        [
+          12355,
+          12366
+        ]
+      ],
+      "overview": true,
+      "scannerCandidates": [
+        {
+          "frame": 12359,
+          "amplitude": 0.20637152777777779,
+          "classification": "closing fade/compression variation; no unrelated content"
+        },
+        {
+          "frame": 6083,
+          "amplitude": 0.14739583333333334,
+          "classification": "busy indicator; text and layout stable"
+        },
+        {
+          "frame": 3623,
+          "amplitude": 0.14553819444444444,
+          "classification": "busy indicator; text and layout stable"
+        }
+      ],
+      "resolvedScrollJumpFrames": [
+        6847,
+        6848
+      ],
+      "scope": "Full-duration 1x browser playback plus sampled visual observations, full-size keyframes and consecutive transition frames. Not a claim of continuous human viewing of every frame."
+    }
+  },
+  "secondVisualPass": {
+    "reviewedPriorSha256": "a16b40364554e8dfae1b4fffe91d28574da29aff5d5e21f33ecbd7f5842e7ea3",
+    "priorPlayback": {
+      "rate": 1,
+      "fromSeconds": 0,
+      "toSeconds": 211,
+      "ended": true,
+      "observedProgressSeconds": [
+        0.0848,
+        4.25,
+        38.04,
+        59.8104,
+        97.5938,
+        112.8743,
+        131.21,
+        211
+      ]
+    },
+    "chronologicalMontages": {
+      "sampleFps": "1/3",
+      "windowStartsSeconds": [
+        0,
+        27,
+        54,
+        81,
+        108,
+        135,
+        162,
+        189
+      ],
+      "maximumWindowDurationSeconds": 24
+    },
+    "findings": [
+      {
+        "deliverySeconds": 166.5,
+        "defect": "Inspect evidence briefly opened Lineage before changing to Evidence without another action.",
+        "correction": "Open Evidence directly; verify the real paused-replay button."
+      },
+      {
+        "deliverySeconds": 185,
+        "defect": "Closing attention also changed the pocket without a tab action.",
+        "correction": "Keep Lineage through the close. Click Evidence at 185.2 seconds, then begin the second selection at 186.2 seconds."
+      }
+    ]
+  }
 }
