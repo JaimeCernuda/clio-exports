@@ -111,6 +111,22 @@ try {
         return {
           frame: Number(document.querySelector("[data-frame]").dataset.frame),
           theme: document.documentElement.dataset.theme,
+          appearance: {
+            background: getComputedStyle(document.documentElement)
+              .getPropertyValue("--background")
+              .trim(),
+            font: getComputedStyle(document.querySelector(".sv3")).fontFamily,
+            promptRanges: [
+              ...document.querySelectorAll("[data-prompt-heat-ranges]"),
+            ].reduce((n, el) => n + Number(el.dataset.promptHeatRanges), 0),
+            registeredPromptRanges: [...CSS.highlights]
+              .filter(([name]) => name.startsWith("clio-sv3-prompt-"))
+              .reduce((n, [, ranges]) => n + ranges.size, 0),
+            toolHeat: [
+              ...document.querySelectorAll('[data-heat-kind="tool"]'),
+            ].filter((el) => el.style.textDecorationLine === "underline")
+              .length,
+          },
           documentWidth: document.documentElement.scrollWidth,
           viewport: innerWidth,
           frameTransition: getComputedStyle(
@@ -157,7 +173,23 @@ try {
           },
         };
       });
-      assert.equal(report.theme, "classic-light");
+      assert.equal(report.theme, "light");
+      assert.match(report.appearance.font, /IBM Plex Sans/);
+      assert.equal(report.appearance.background, "#f3efe6");
+      if (second === 175.5 || second === 193) {
+        assert.ok(
+          report.appearance.promptRanges > 0,
+          "Retained prompt must paint its original text heat",
+        );
+        assert.equal(
+          report.appearance.registeredPromptRanges,
+          report.appearance.promptRanges,
+        );
+        assert.ok(
+          report.appearance.toolHeat > 0,
+          "Reconstructed results must retain their distinct tool heat",
+        );
+      }
       assert.ok(report.documentWidth <= report.viewport);
       assert.ok(Math.abs(report.cursor.x - report.cursorDeclared.x) < 0.05);
       assert.ok(Math.abs(report.cursor.y - report.cursorDeclared.y) < 0.05);

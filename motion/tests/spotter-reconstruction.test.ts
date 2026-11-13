@@ -2,6 +2,11 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import { buildSpotterReconstruction } from "../native/current/spotter-scenario";
+import {
+  SPOTTER_THEME,
+  spotterHeatStyle,
+  spotterPromptProjection,
+} from "../native/current/spotter-appearance";
 import type { PairedReplay } from "../native/paired-replay";
 
 const pair = JSON.parse(
@@ -13,6 +18,69 @@ const pair = JSON.parse(
     "utf8",
   ),
 ) as PairedReplay;
+
+test("Notebook heat uses the native discrete ramps without renormalizing excerpts", () => {
+  assert.equal(SPOTTER_THEME, "light");
+  assert.deepEqual(spotterHeatStyle(0, "tool"), {});
+  assert.deepEqual(spotterHeatStyle(0.001, "text"), {});
+  assert.match(
+    spotterHeatStyle(1, "tool").backgroundColor!,
+    /--attention-heat-tool\) 90%/,
+  );
+  assert.match(
+    spotterHeatStyle(0.5, "text").backgroundColor!,
+    /--attention-heat-text\) 56%/,
+  );
+  assert.equal(spotterHeatStyle(1, "tool").textDecoration, "underline");
+});
+
+test("prompt heat retains Unicode source ownership and leaves renamed aliases unpainted", () => {
+  const source =
+    "ROUND 5 - TASK (test)\nWhich 🧪 result from round 1?\nRULES\nKeep control.\nTOOL OUTPUTS\n>>> lookup()\n    value";
+  const points = [...source];
+  const span = (text: string, value: number): [number, number, number] => {
+    const lo = [...source.slice(0, source.indexOf(text))].length;
+    return [lo, lo + [...text].length, value];
+  };
+  const runs = [
+    span("result", 0.4),
+    span("round 1", 0.9),
+    span("control", 0.7),
+    span("lookup", 1),
+  ];
+  const before = JSON.stringify(runs);
+  const projected = spotterPromptProjection(source, 5, runs);
+  assert.equal(
+    projected.text,
+    "Which 🧪 result from Step 1?\nRULES\nKeep control.",
+  );
+  assert.deepEqual(
+    projected.runs.map(([a, b, value]) => [
+      [...projected.text].slice(a, b).join(""),
+      value,
+    ]),
+    [
+      ["result", 0.4],
+      ["control", 0.7],
+    ],
+  );
+  assert.equal(JSON.stringify(runs), before);
+  assert.equal(points.slice(runs[0][0], runs[0][1]).join(""), "result");
+});
+
+test("displayed prompt slices stay identical to the archived task and rule excerpt", () => {
+  const main = pair.sessions.find((session) => session.role === "primary")!;
+  for (const step of buildSpotterReconstruction(pair).steps) {
+    const source = main.view.messages
+      .find((message) => message.id === step.promptId)!
+      .blocks.find((block) => block.type === "text")!.text!;
+    const projected = spotterPromptProjection(source, step.sourceRound);
+    assert.ok(projected.text.includes("RULES"));
+    assert.ok(!projected.text.includes("TOOL OUTPUTS"));
+    assert.ok(!projected.text.includes(">>>"));
+    assert.equal(projected.runs.length, 0);
+  }
+});
 
 test("three displayed steps retain the recorded 1,2,5 dependency chain and reviewer tools", () => {
   const before = JSON.stringify(pair),

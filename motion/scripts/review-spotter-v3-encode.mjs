@@ -5,7 +5,7 @@ import path from "node:path";
 const run = promisify(execFile),
   mode = process.argv[2] ?? "full";
 if (!["full", "proof"].includes(mode)) throw new Error("Choose full or proof");
-const root = path.resolve("out/spotter-v3"),
+const root = path.resolve("out/spotter-v3-notebook"),
   file = path.join(root, `spotter-three-steps-${mode}.mp4`),
   dir = path.join(root, `${mode}-review`);
 const receipt = JSON.parse(await readFile(file + ".json", "utf8"));

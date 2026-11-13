@@ -2,7 +2,12 @@
 
 See [REVIEW.md](REVIEW.md) for delivery status and the exact inspection coverage.
 
-Latest delivery: **3:31, 1080p/60fps**. Local watch/download gallery:
+Notebook revision: **3:31, 1080p/60fps**, with the native warm `light` palette,
+IBM Plex typography and the separate green text/red tool ramps from gact-tui
+PR 1288 (`075c0581`). See [NOTEBOOK-REVIEW.md](NOTEBOOK-REVIEW.md) for its own
+delivery and inspection status. The earlier Cool encode remains in
+`motion/out/spotter-v3/`; the Notebook outputs use `motion/out/spotter-v3-notebook/`.
+Local watch/download gallery:
 **http://127.0.0.1:3373/?clip=full**. The movie stays local; render and review
 receipts are committed alongside this guide.
 
@@ -48,7 +53,7 @@ To serve the completed movie and its review controls, use another terminal
 from `motion/`:
 
 ```powershell
-$env:CLIO_SPOTTER_REVIEW_ROOT="$PWD/out/spotter-v3"
+$env:CLIO_SPOTTER_REVIEW_ROOT="$PWD/out/spotter-v3-notebook"
 $env:CLIO_SPOTTER_REVIEW_GALLERY="$PWD/../videos/spotter-opal/v3/review.html"
 $env:CLIO_SPOTTER_REVIEW_PORT="3373"
 npm run spotter:review
@@ -78,7 +83,7 @@ frame count and both source hashes are recorded. An absent approved intro is
 regenerated from its existing Remotion composition.
 
 If Windows blocks promotion because the previous movie is open, release the
-player and run `node scripts/finalize-spotter-v3.mjs`. It requalifies the completed
+player and run `node scripts/finalize-spotter-v3.mjs --notebook`. It requalifies the completed
 conform, checks saved pointer poses/parity, and promotes it without another render.
 The local gallery closes aborted video streams so replaced files can be released.
 
@@ -103,11 +108,20 @@ Full captures use the corrected renderer directly. Finals are promoted only
 after dimensions and decoded frame counts pass; a failed conform preserves the
 previous final.
 
-Local outputs in **`motion/out/spotter-v3/`**:
+Latest local outputs in **`motion/out/spotter-v3-notebook/`**:
 
 - `spotter-three-steps-full.mp4`: complete film.
 - `spotter-three-steps-proof.mp4`: discontinuous internal mechanics proof.
 - Movie `.json`: source/UI identity, hash, dimensions and verified frame count.
+
+The Notebook variant keeps the native shell pinned to `47b74250` and backports
+the reviewed heat presentation in a film-scoped adapter. It does not claim to run
+the newer PR's entire frontend or a fresh Barebone model session. The original
+attention, masses, scale and source identities remain unchanged. Prompt heat
+comes from its exact original display runs; renamed Step aliases stay unpainted.
+Green prompt and red reconstructed-result rail marks retain that ownership.
+The eight-second intro uses `SpotterIntroNotebook`, the same logo/routes and
+geometry on Notebook paper with IBM Plex Sans. The original intro is preserved.
 
 Browser review saves 78 states at 1920×1080 and 1116×970 and measures the pointer
 into `motion/native/current/spotter-pointer.json`. Immutable paths reproduce

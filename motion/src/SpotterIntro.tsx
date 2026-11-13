@@ -81,9 +81,12 @@ function Packet({
 /** Lead with the full SPOTTER mark; supporting project logos remain unboxed. */
 export function SpotterIntro({
   question = copy.question,
+  notebook = false,
 }: {
   question?: string;
+  notebook?: boolean;
 }) {
+  const background = notebook ? "#f3efe6" : "#f5f5f1";
   const frame = useCurrentFrame(),
     { width } = useVideoConfig(),
     pose = spotterIntroFrame(frame);
@@ -108,9 +111,11 @@ export function SpotterIntro({
   return (
     <AbsoluteFill
       style={{
-        background: "#f5f5f1",
+        background,
         color: ink,
-        fontFamily: "Inter Variable, sans-serif",
+        fontFamily: notebook
+          ? "IBM Plex Sans, sans-serif"
+          : "Inter Variable, sans-serif",
       }}
     >
       <div
@@ -118,7 +123,7 @@ export function SpotterIntro({
           position: "absolute",
           width: 1920,
           height: 1080,
-          background: "#f5f5f1",
+          background,
           transform: `scale(${width / 1920})`,
           transformOrigin: "0 0",
         }}

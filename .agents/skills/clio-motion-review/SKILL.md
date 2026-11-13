@@ -225,6 +225,11 @@ frames: a low ratio is diagnostic, not proof of a defect. This caught blank nati
 code blocks and alternating scroll positions that a clean cursor audit missed.
 Use one worker for the full SPOTTER film; its native adapter uses immediate raw
 code tokens and settles transcript scrolling before acknowledging a frame.
+The newer three-step v3 direct-capture path qualifies two pages in one browser
+with exact cold/sequential PNG comparisons at its 24 adversarial seeks, a
+frame/paint acknowledgement and a measured pointer audit for every captured
+frame. Preserve those gates; do not generalize that exception to the older v2
+renderer. Inspect and scan the resulting delivery independently.
 One worker did not eliminate every native paint defect: code containers with
 `content-visibility: auto` and an intrinsic placeholder could still flash blank
 and feed changing heights back into scrolling. Force full code-container paint

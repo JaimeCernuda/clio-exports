@@ -32,6 +32,7 @@ import {
   spotterProgress,
   displayedStepText,
 } from "./spotter-plan";
+import { spotterHeatStyle } from "./spotter-appearance";
 
 const ContentMarkdown = memo(NativeContentMarkdown);
 export interface RelocatedBlock {
@@ -47,6 +48,12 @@ export interface RelocatedRecord {
   displayBlocks: RelocatedBlock[];
   captureSha256: string;
   selectedSteps: number[];
+  originalTextBlocks: Array<{
+    messageId: string;
+    partId: string;
+    contentRevision: string;
+    displayRuns: [number, number, number][];
+  }>;
 }
 export interface RelocatedAttention {
   sourceSha256: string;
@@ -84,12 +91,12 @@ export const SourceHeat = memo(function SourceHeat({
             {before}
             <span
               data-heat={segment.value.toFixed(4)}
-              style={{
-                background:
-                  segment.value > 0
-                    ? `rgba(209, 58, 61, ${Math.min(1, segment.value) * 0.65})`
-                    : undefined,
-              }}
+              data-heat-kind="tool"
+              style={
+                value.trim()
+                  ? spotterHeatStyle(segment.value, "tool")
+                  : undefined
+              }
             >
               {value}
             </span>

@@ -22,12 +22,20 @@ if (!["proof", "full", "benchmark", "graph-proof", "repair"].includes(mode))
   throw new Error("Choose proof, full or benchmark");
 const root = path.resolve("."),
   temp = path.join(root, ".native-ui/spotter-v3-direct"),
-  out = path.join(root, "out/spotter-v3");
+  out = path.join(root, "out/spotter-v3-notebook");
 await mkdir(temp, { recursive: true });
 await mkdir(out, { recursive: true });
 process.env.TEMP = temp;
 process.env.TMP = temp;
 process.env.TMPDIR = temp;
+const renderer = {
+  commit: (
+    await promisify(execFile)("git", ["rev-parse", "HEAD"])
+  ).stdout.trim(),
+  dirty: Boolean(
+    (await promisify(execFile)("git", ["status", "--porcelain"])).stdout.trim(),
+  ),
+};
 const disk = await statfs(root);
 if (disk.bavail * disk.bsize < 2 * 1024 ** 3)
   throw new Error("Need 2 GiB of free project-drive space");
@@ -65,7 +73,7 @@ const sourceFrames = ranges.flatMap(([a, b]) =>
 );
 const target = path.join(out, `spotter-three-steps-${mode}.mp4`),
   pending = path.join(out, `spotter-three-steps-${mode}.pending.mp4`);
-const intro = path.resolve("out/spotter-intro-v4.mp4");
+const intro = path.resolve("out/spotter-intro-notebook-v1.mp4");
 if (mode === "full") {
   try {
     await access(intro);
@@ -77,7 +85,7 @@ if (mode === "full") {
           "render.mjs",
           "video",
           "--composition",
-          "SpotterIntro",
+          "SpotterIntroNotebook",
           "--scale",
           "1",
           "--concurrency",
@@ -460,6 +468,15 @@ try {
         mode,
         sha256: hash.digest("hex"),
         ui: pin,
+        renderer,
+        presentation: {
+          theme: "light",
+          family: "Notebook",
+          heatStyleRevision: "075c0581f1f9ef15d6206b0339e7c105889a546f",
+          heatDefault: "Words / Max",
+          scope:
+            "Native pinned shell with scoped heat-style backport; unchanged recorded attention",
+        },
         sourceSha256:
           "cfdd456f2640519c6a0f715e817927c7fb70e77974d6d9605be12cc903131cd5",
         frames: Number(deliveryVideo.nb_read_frames),
@@ -494,7 +511,7 @@ try {
         approvedIntro:
           mode === "full"
             ? {
-                file: "out/spotter-intro-v4.mp4",
+                file: "out/spotter-intro-notebook-v1.mp4",
                 sha256: introSha256,
                 frames: 480,
                 source: "src/SpotterIntro.tsx",

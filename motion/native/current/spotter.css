@@ -47,6 +47,9 @@ html .current-demo.sv3 *::after {
   padding-top: 10px;
 }
 .sv3 {
+  /* Native light palette from gact-tui PR 1288, scoped to this film. */
+  --attention-heat-text: oklch(0.62 0.2 145);
+  --attention-heat-tool: oklch(0.6 0.23 27);
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-sans);

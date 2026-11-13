@@ -302,6 +302,21 @@ def relocate_attention(
                 "originalSources": original_sources,
                 "displaySources": sources,
                 "displayBlocks": blocks,
+                "originalTextBlocks": [
+                    {
+                        "messageId": original["message_id"],
+                        "partId": original["part_id"],
+                        "contentRevision": original["content_revision"],
+                        "displayRuns": original["display_runs"],
+                    }
+                    for original in response["blocks"]
+                    if original["kind"] in ("user_text", "assistant_text")
+                    and (original["message_id"], original["part_id"]) in parts
+                    and hashlib.sha256(
+                        parts[(original["message_id"], original["part_id"])].encode()
+                    ).hexdigest()
+                    == original["content_revision"]
+                ],
                 "checks": {
                     "sections": verified_sections,
                     "massConserved": True,

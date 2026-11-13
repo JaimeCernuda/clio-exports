@@ -238,6 +238,15 @@ export const RemotionRoot: React.FC = () => (
       durationInFrames={1170}
     />
     <Composition
+      id="SpotterIntroNotebook"
+      component={SpotterIntro}
+      width={1920}
+      height={1080}
+      fps={60}
+      durationInFrames={480}
+      defaultProps={{ notebook: true }}
+    />
+    <Composition
       id="SpotterAttentionProof"
       component={NativeProductFilm}
       width={1280}

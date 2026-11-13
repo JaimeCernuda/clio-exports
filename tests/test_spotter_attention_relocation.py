@@ -182,6 +182,7 @@ def relocation_fixture(bundle: Path) -> tuple[dict[str, Any], dict[str, Any], di
                     "blocks": [
                         {
                             "message_id": "message",
+                            "kind": "user_text",
                             "part_id": "part",
                             "section": 0,
                             "content_revision": revision,
@@ -213,6 +214,14 @@ def test_real_capture_join_conserves_mass_without_using_display_runs_or_characte
     assert result["residual"] == attention["records"][0]["response"]["residual"]
     assert all(block["displayRuns"] == [] for block in result["displayBlocks"])
     assert all(section["tokenIdsExact"] for section in result["checks"]["sections"])
+    assert result["originalTextBlocks"] == [
+        {
+            "messageId": "message",
+            "partId": "part",
+            "contentRevision": attention["records"][0]["response"]["blocks"][0]["content_revision"],
+            "displayRuns": [],
+        }
+    ]
 
 
 def test_mismatched_sources_and_overlapping_projection_are_rejected(tmp_path: Path) -> None:

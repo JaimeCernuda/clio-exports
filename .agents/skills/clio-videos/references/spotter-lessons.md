@@ -221,6 +221,19 @@ accepted timing, synchronization or pointer template.
 
 ## Attention and manual replay are separate paths
 
+- Restyling attention must preserve its denominator and display scale. Use the
+  native discrete ramp and distinct text/tool ownership, including the rail.
+  Do not normalize an excerpt so its largest value looks maximally attended.
+  Keep ordinary prompt heat from its original display runs; a tool-result
+  relocation is not a reason to discard the retained prompt's green heat.
+- Unicode source projection and editorial Round/Step aliases are separate.
+  Leave renamed glyphs unpainted rather than borrowing values for replacement
+  labels. CSS Custom Highlights can preserve native Markdown geometry; verify
+  actual registered ranges and painted colors, not just metadata in a response.
+- Notebook light uses theme ID `light`, with its native fonts and paper palette.
+  A scoped heat-style backport must record both the shell pin and heat-source
+  revision. Do not call an old recorded scenario a fresh run of a new agent.
+
 - The film's response sidecar contains exact recorded requests and replies. It
   cannot answer arbitrary new selections. For a manual demonstration, connect the
   full native frontend to `serve_recorded_bundle.py` and its real tensor reader.

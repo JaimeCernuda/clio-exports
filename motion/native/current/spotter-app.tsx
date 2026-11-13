@@ -87,6 +87,12 @@ import {
   type PocketName,
 } from "./spotter-plan";
 import { awaitSpotterPaint, reconcileSpotterScroll } from "./spotter-readiness";
+import { PromptHeat } from "./spotter-prompt-heat";
+import {
+  SPOTTER_THEME,
+  spotterHeatStyle,
+  spotterPromptProjection,
+} from "./spotter-appearance";
 import { isCaptureViewport, type CaptureViewport } from "./capture-viewport";
 import type { AttentionHeatView } from "../word-attention/attention-segment-heat";
 import "./spotter.css";
@@ -304,7 +310,7 @@ export function SpotterApp() {
         </div>
       )}
       <div className="current-demo-stage">
-        <CurrentProviders scene={scene!} theme="classic-light">
+        <CurrentProviders scene={scene!} theme={SPOTTER_THEME}>
           <SelectionActionsProvider>
             <SpotterWorkspace
               pair={data.pair}
@@ -475,11 +481,7 @@ function SpotterWorkspace({
       text = primary.view.messages
         .find((m) => m.id === step.promptId)!
         .blocks.find((b) => b.type === "text")!.text!;
-    const task =
-      text.indexOf("\n", text.indexOf(`ROUND ${step.sourceRound} - TASK`)) + 1;
-    return displayedStepText(
-      text.slice(task, text.indexOf("TOOL OUTPUTS", task)).trim(),
-    );
+    return spotterPromptProjection(text, step.sourceRound).text;
   };
   const prompt = draftTiming
     ? spotterPrefix(
@@ -721,11 +723,22 @@ function SpotterWorkspace({
                       <UserIcon size={13} />
                       You <span>Step {step.number}</span>
                     </div>
-                    <div className="sv3-user">
-                      <ContentMarkdown isAnimating={false}>
-                        {promptText(index)}
-                      </ContentMarkdown>
-                    </div>
+                    <PromptHeat
+                      source={
+                        primary.view.messages
+                          .find((m) => m.id === step.promptId)!
+                          .blocks.find((b) => b.type === "text")!.text!
+                      }
+                      sourceRound={step.sourceRound}
+                      runs={
+                        inspectPhase
+                          ? record?.originalTextBlocks.find(
+                              (b) => b.messageId === step.promptId,
+                            )?.displayRuns
+                          : undefined
+                      }
+                      view={view}
+                    />
                     <div className="sv3-agent-label">
                       <BrandIcon className="size-4 text-primary" />
                       <span>CLIO</span>
@@ -1060,7 +1073,13 @@ function AttentionRail({
     undefined,
   );
   const [marks, setMarks] = useState<
-    Array<{ at: number; value: number; tool: string }>
+    Array<{
+      at: number;
+      value: number;
+      tool: string;
+      kind: "tool" | "text";
+      selector: string;
+    }>
   >([]);
   useLayoutEffect(() => {
     const host = document.querySelector<HTMLElement>(".sv3-main-log");
@@ -1090,6 +1109,8 @@ function AttentionRail({
               host.scrollHeight,
             value: Number(e.dataset.heat),
             tool: block.toolId,
+            kind: "tool" as const,
+            selector: `[data-tool="${block.toolId}"]`,
           }));
         return [
           {
@@ -1098,10 +1119,27 @@ function AttentionRail({
               host.scrollHeight,
             value: Math.max(0, ...block.displayRuns.map((r) => r[2])),
             tool: block.toolId,
+            kind: "tool" as const,
+            selector: `[data-tool="${block.toolId}"]`,
           },
         ];
       });
-    setMarks(items);
+    const prompts = [
+      ...host.querySelectorAll<HTMLElement>("[data-prompt-heat-maximum]"),
+    ].map((element) => ({
+      at:
+        (element.getBoundingClientRect().top - top + host.scrollTop) /
+        host.scrollHeight,
+      value: Number(element.dataset.promptHeatMaximum),
+      tool: `prompt for source round ${element.dataset.promptRound}`,
+      kind: "text" as const,
+      selector: `[data-prompt-round="${element.dataset.promptRound}"]`,
+    }));
+    setMarks(
+      [...items, ...prompts].filter(
+        (mark) => spotterHeatStyle(mark.value, mark.kind).backgroundColor,
+      ),
+    );
   }, [record, frame, view]);
   return (
     <div
@@ -1111,16 +1149,17 @@ function AttentionRail({
       {marks.map((m, i) => (
         <button
           key={i}
+          data-rail-kind={m.kind}
           aria-label={`Attention in ${m.tool}`}
           title={`${(m.value * 100).toFixed(0)}% display intensity`}
           style={{
             top: `${Math.max(0, Math.min(1, m.at)) * 100}%`,
             width: 2 + m.value * 7,
-            background: `rgba(209,58,61,${m.value * 0.7})`,
+            ...spotterHeatStyle(m.value, m.kind),
           }}
           onClick={() =>
             document
-              .querySelector(`[data-tool="${m.tool}"]`)
+              .querySelector(m.selector)
               ?.scrollIntoView({ block: "center" })
           }
         />

@@ -36,7 +36,8 @@ async function sha(file) {
 
 /** Recover only a finished clean conform after a blocked promotion; never recapture or reencode. */
 async function main() {
-  const target = "out/spotter-v3/spotter-three-steps-full.mp4",
+  const notebook = process.argv.includes("--notebook");
+  const target = `out/${notebook ? "spotter-v3-notebook" : "spotter-v3"}/spotter-three-steps-full.mp4`,
     pending = target.replace(/\.mp4$/, ".conform.pending.mp4");
   const run = promisify(execFile);
   const video = JSON.parse(
@@ -78,7 +79,14 @@ async function main() {
   });
   assert.ok(maximumPixelsPerFrame <= 30.1);
   const parity = JSON.parse(
-    (await readFile(".native-ui/spotter-v3-full-clean.log", "utf8"))
+    (
+      await readFile(
+        notebook
+          ? ".native-ui/spotter-notebook-full.log"
+          : ".native-ui/spotter-v3-full-clean.log",
+        "utf8",
+      )
+    )
       .split(/\r?\n/)
       .find((line) => line.startsWith('{"pixelParity":')),
   ).pixelParity;
@@ -87,12 +95,26 @@ async function main() {
   const ledger = JSON.parse(
     await readFile("../videos/spotter-opal/v3/source-projection.json", "utf8"),
   );
-  const intro = "out/spotter-intro-v4.mp4";
+  const intro = notebook
+    ? "out/spotter-intro-notebook-v1.mp4"
+    : "out/spotter-intro-v4.mp4";
   const receipt = {
     schema: "clio.spotter-v3-render.v1",
     mode: "full",
     sha256: await sha(pending),
     ui: JSON.parse(await readFile("native/source-current.json", "utf8")),
+    ...(notebook
+      ? {
+          presentation: {
+            theme: "light",
+            family: "Notebook",
+            heatStyleRevision: "075c0581f1f9ef15d6206b0339e7c105889a546f",
+            heatDefault: "Words / Max",
+            scope:
+              "Native pinned shell with scoped heat-style backport; unchanged recorded attention",
+          },
+        }
+      : {}),
     sourceSha256: ledger.source.sha256,
     frames: 12660,
     bodyFrames: 12180,
@@ -125,7 +147,7 @@ async function main() {
   };
   await promoteVideo(pending, target);
   await writeFile(target + ".json", JSON.stringify(receipt, null, 2) + "\n");
-  await unlink("out/spotter-v3/spotter-three-steps-full.pending.mp4");
+  await unlink(target.replace(/\.mp4$/, ".pending.mp4"));
   console.log(
     JSON.stringify({
       output: path.resolve(target),
