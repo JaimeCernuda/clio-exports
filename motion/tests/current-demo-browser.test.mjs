@@ -129,6 +129,46 @@ test(
       );
       assert.match(log.text, /497\.7/);
       await page.screenshot({ path: path.join(dir, "method.png") });
+      // Asset readiness alone used to acknowledge a collapsed workspace, producing
+      // a one-frame 150px shell in the encoded delivery. Delay ready until it recovers.
+      await page.evaluate(() => {
+        const collapsed = document.createElement("style");
+        collapsed.id = "test-transient-collapse";
+        collapsed.textContent =
+          ".current-demo-stage { flex: none !important; height: 150px !important; }";
+        document.head.append(collapsed);
+        setTimeout(() => collapsed.remove(), 300);
+      });
+      await seek(page, 1690, 105);
+      assert.equal(
+        await page
+          .locator(".current-demo-stage")
+          .evaluate((el) => Math.round(el.getBoundingClientRect().height)),
+        1080,
+      );
+      const strip = page.locator('[data-slot="workbench-strip"]');
+      await strip
+        .getByRole("button", { name: "Terminal", exact: true })
+        .click();
+      await page
+        .getByRole("status")
+        .filter({ hasText: "A terminal was not captured" })
+        .waitFor();
+      assert.equal(
+        await page.getByRole("tab", { name: "Method", exact: true }).count(),
+        1,
+      );
+      await page
+        .getByRole("button", { name: "Dismiss canvas notice", exact: true })
+        .click();
+      await strip.getByRole("button", { name: "Browser", exact: true }).click();
+      await page
+        .getByRole("status")
+        .filter({ hasText: "A browser session was not captured" })
+        .waitFor();
+      await page
+        .getByRole("button", { name: "Dismiss canvas notice", exact: true })
+        .click();
       await page.getByRole("tab", { name: "Map", exact: true }).click();
       await page.waitForFunction(() =>
         document
@@ -200,6 +240,25 @@ test(
         1,
       );
       await page.screenshot({ path: path.join(dir, "native-artifact.png") });
+      await seek(page, 100, 103);
+      assert.equal(
+        await page.locator('[data-slot="image-viewport"]').count(),
+        0,
+        "A backwards seek clears later opened artifacts",
+      );
+      await seek(page, 2399, 104);
+      await page.getByRole("tab", { name: "Map", exact: true }).click();
+      await page.getByRole("tab", { name: "Map", exact: true }).press("Delete");
+      assert.equal(
+        await page.getByRole("tab", { name: "Map", exact: true }).count(),
+        0,
+      );
+      assert.equal(
+        await page
+          .getByRole("tab", { name: "Method", exact: true })
+          .getAttribute("aria-selected"),
+        "true",
+      );
       assert.deepEqual(errors, []);
       assert.deepEqual(
         remote,

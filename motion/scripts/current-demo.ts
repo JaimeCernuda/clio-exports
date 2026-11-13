@@ -11,6 +11,7 @@ import {
   type DemoSpec,
 } from "../native/current/demo-model";
 import { sceneAssetPath } from "../native/scene-selection";
+import { demoTheme } from "../native/current/theme";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const publicDir = path.join(root, "native/public");
@@ -42,6 +43,7 @@ if (command === "plan") {
         sessionId: scene.session.id,
         frames: spec.frames,
         fps: spec.fps,
+        theme: demoTheme(spec.theme),
         events: plan.events,
         pocket: spec.pocket,
       },
@@ -113,6 +115,7 @@ if (command === "plan") {
           sessionId: scene.session.id,
           frames: spec.frames,
           fps: spec.fps,
+          theme: demoTheme(spec.theme),
           width: 1920,
           height: 1080,
           output,

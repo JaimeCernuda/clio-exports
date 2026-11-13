@@ -10,12 +10,15 @@ import {
   type DemoSpec,
 } from "../native/current/demo-model";
 import { sceneAssetPath } from "../native/scene-selection";
+import { parseRepairRanges } from "../native/current/repair-ranges";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const [
   manifest = "demos/tahoe-current.json",
   name = "out/current-ui/tahoe-current.mp4",
+  rangeSelection,
 ] = process.argv.slice(2);
+const repairKind = rangeSelection === undefined ? "clock" : "layout";
 sceneAssetPath(manifest);
 const movie = path.resolve(root, name);
 if (
@@ -46,20 +49,28 @@ if (
   throw new Error(
     "The base movie receipt does not match this manifest and file",
   );
-const ranges = plan.events
-  .filter((event) => event.type === "tool" && event.toolId)
-  .map((event) => ({ start: event.start, end: event.revealEnd }));
+const ranges =
+  rangeSelection === undefined
+    ? plan.events
+        .filter((event) => event.type === "tool" && event.toolId)
+        .map((event) => ({ start: event.start, end: event.revealEnd }))
+    : parseRepairRanges(rangeSelection, spec.frames);
 if (!ranges.length) throw new Error("No tool ranges to repair");
 const sourceFrames = ranges.flatMap((range) =>
   Array.from({ length: range.end - range.start }, (_, i) => range.start + i),
 );
-const work = path.join(root, ".native-ui/current-tool-clock-repair");
+const work = path.join(
+  root,
+  rangeSelection === undefined
+    ? ".native-ui/current-tool-clock-repair"
+    : ".native-ui/current-layout-repair",
+);
 await mkdir(work, { recursive: true });
 process.env.TEMP = work;
 process.env.TMP = work;
 process.env.TMPDIR = work;
 const props = path.join(work, "props.json"),
-  patch = path.join(work, "tools.mp4"),
+  patch = path.join(work, `${repairKind}.mp4`),
   fixed = path.join(work, "conformed.mp4");
 await writeFile(
   props,
@@ -183,7 +194,11 @@ execFileSync(
   { stdio: "inherit" },
 );
 const report = {
-  schema: "clio.demo-tool-clock-repair.v1",
+  schema:
+    rangeSelection === undefined
+      ? "clio.demo-tool-clock-repair.v1"
+      : "clio.demo-layout-repair.v1",
+  reason: repairKind,
   manifest,
   sourceSha256: scene.source.sha256,
   ranges,
@@ -200,18 +215,22 @@ const review = path.join(path.dirname(movie), "review");
 await mkdir(review, { recursive: true });
 await copyFile(
   movie,
-  path.join(review, path.basename(movie, ".mp4") + "-before-clock-fix.mp4"),
+  path.join(
+    review,
+    path.basename(movie, ".mp4") + `-before-${repairKind}-fix.mp4`,
+  ),
   constants.COPYFILE_EXCL,
 );
 await copyFile(fixed, movie);
 await writeFile(
-  movie + ".clock-repair.json",
+  movie + `.${repairKind}-repair.json`,
   JSON.stringify(report, null, 2) + "\n",
 );
 const receipt = JSON.parse(await readFile(movie + ".json", "utf8"));
 receipt.baseSha256 = receipt.sha256;
 receipt.sha256 = report.sha256;
-receipt.clockRepair = path.basename(movie) + ".clock-repair.json";
+receipt[repairKind === "clock" ? "clockRepair" : "layoutRepair"] =
+  path.basename(movie) + `.${repairKind}-repair.json`;
 await writeFile(movie + ".json", JSON.stringify(receipt, null, 2) + "\n");
 console.log(
   JSON.stringify({

@@ -1,5 +1,6 @@
 {
   "schema": "clio.demo.v1",
+  "theme": "classic-light",
   "id": "tahoe-current",
   "title": "CLIO current UI — recorded NDP investigation",
   "sceneFile": "tahoe.native.json",

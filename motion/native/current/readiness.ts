@@ -6,6 +6,10 @@ const paint = () =>
 /** Wait for real native surface paint, decoded assets and settled layout, never just React's commit. */
 export async function awaitCurrentPaint(
   isCurrent: () => boolean,
+  viewport: { width: number; height: number } = {
+    width: innerWidth,
+    height: innerHeight,
+  },
 ): Promise<boolean> {
   await document.fonts.ready;
   const deadline = performance.now() + 45000;
@@ -38,7 +42,36 @@ export async function awaitCurrentPaint(
         '[id^="a2ui-surface-"], [data-current-surface]',
       ),
     );
+    const main = document.querySelector<HTMLElement>(".current-demo");
+    const stage = document.querySelector<HTMLElement>(".current-demo-stage");
+    const nav = document.querySelector<HTMLElement>(
+      '[aria-label="Workspace navigation"]',
+    );
+    const composer = document.querySelector<HTMLElement>(
+      '[data-slot="clio-composer"]',
+    );
+    const mainBox = main?.getBoundingClientRect();
+    const stageBox = stage?.getBoundingClientRect();
+    const navBox = nav?.getBoundingClientRect();
+    const composerBox = composer?.getBoundingClientRect();
+    // Assets can be stable inside a transient 150px iframe layout. Require the
+    // complete shell to occupy the host's declared capture viewport as well.
+    const shellReady =
+      innerWidth === viewport.width &&
+      innerHeight === viewport.height &&
+      mainBox?.width === viewport.width &&
+      mainBox?.height === viewport.height &&
+      Boolean(
+        stageBox &&
+          navBox &&
+          composerBox &&
+          Math.abs(stageBox.bottom - viewport.height) < 1 &&
+          Math.abs(navBox.height - stageBox.height) < 1 &&
+          composerBox.bottom <= viewport.height &&
+          composerBox.bottom > viewport.height - 48,
+      );
     const ready =
+      shellReady &&
       Boolean(document.querySelector('[data-slot="clio-composer"]')) &&
       mapsReady &&
       images.every((image) => image.complete && image.naturalWidth > 0) &&
@@ -50,6 +83,10 @@ export async function awaitCurrentPaint(
     const log = document.querySelector<HTMLElement>(".current-demo-log");
     if (log) log.scrollTop = log.scrollHeight;
     const layout = JSON.stringify([
+      mainBox,
+      stageBox,
+      navBox,
+      composerBox,
       log?.scrollHeight,
       ...surfaces.map((host) => {
         const box = host.getBoundingClientRect();

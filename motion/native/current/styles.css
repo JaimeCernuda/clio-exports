@@ -9,15 +9,51 @@ body,
   height: 100%;
 }
 .current-demo {
-  height: 100dvh;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
 }
 .current-demo-stage {
   min-height: 0;
+  min-width: 0;
   flex: 1;
-  transform: translateZ(0);
+  position: relative;
   isolation: isolate;
+}
+.current-result-tabs {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: stretch;
+}
+.current-result-tabs > * {
+  min-width: 0;
+  max-width: 240px;
+  flex: 1;
+}
+.current-result-tabs[data-compact]
+  > [data-slot="frame-tab"]:not([data-active]) {
+  flex: 0 0 34px;
+}
+.current-result-tabs[data-compact] > [data-active] {
+  flex: 1;
+  max-width: none;
+}
+.current-demo-notice {
+  margin: 0 24px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.current-demo-notice button {
+  margin-left: auto;
+  flex-shrink: 0;
 }
 .current-demo-log {
   min-height: 0;
@@ -27,6 +63,13 @@ body,
 .current-demo-log [data-language] {
   content-visibility: visible !important;
   contain-intrinsic-size: none !important;
+}
+/* The cached Tahoe raster has native source attribution. The archive-only
+   fallback caption describes a different basemap and overlaps that attribution. */
+.current-demo[data-demo-map-context="cached-usgs"]
+  [data-slot="a2ui-map-surface"]
+  > p:not([role]) {
+  display: none;
 }
 .current-demo[data-render] * {
   scroll-behavior: auto !important;
@@ -43,9 +86,19 @@ body,
   padding: 8px 12px;
   border-bottom: 1px solid var(--border);
   font-size: 12px;
+  flex-shrink: 0;
+  min-width: 0;
+  background: var(--background);
+}
+.current-demo-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 24%;
 }
 .current-demo-controls input[type="range"] {
   flex: 1;
+  min-width: 60px;
 }
 .current-demo-controls button,
 .current-demo-controls select {
@@ -53,6 +106,16 @@ body,
   border-radius: 6px;
   padding: 4px 8px;
   background: var(--card);
+  flex-shrink: 0;
+}
+@media (max-width: 700px) {
+  .current-demo-title {
+    display: none;
+  }
+  .current-demo-controls {
+    gap: 6px;
+    padding: 6px;
+  }
 }
 .current-demo-error {
   padding: 24px;

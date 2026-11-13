@@ -1,5 +1,6 @@
 {
   "schema": "clio.demo.v1",
+  "theme": "classic-light",
   "id": "tahoe-current-full",
   "title": "Lake Tahoe mapped area and detail",
   "sceneFile": "tahoe.native.json",

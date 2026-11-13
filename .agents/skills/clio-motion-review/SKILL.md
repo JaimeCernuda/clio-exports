@@ -18,6 +18,34 @@ retain its inspection limits and full-film one-worker render requirement.
 
 ## Source and component checks
 
+For the RC1 framework, check native theme **IDs**, not the generic word "light":
+`light` is the warm Notebook palette and `classic-light` is the native Cool
+palette. Do not override a user's preference for light by switching to dark.
+Confirm the selected native palette in the rendered preview. A theme selector
+does not excuse an incorrect capture default.
+
+Use `Sidebar contained` inside the resizable native shell. A viewport-fixed
+sidebar overlaps the header when collapsed; a CSS transform around the stage
+only masks that error. Use native navigation header/footer and complete composer
+controls rather than abbreviated replacements. Keep archived connection state
+explicit instead of displaying an endless live reconnection spinner.
+Review actual controls after sidebar folding, canvas maximize/restore and image
+load. Wait for settled layout and test bounds plus hit targets; document-level
+`overflow:hidden` alone can conceal clipped buttons. Inspect at the user's
+browser width as well as 1080p. Native source import/build success is not visual
+acceptance. Compare map notes with attribution too: redundant fallback labels
+can collide even when the surrounding shell fits.
+
+The RC1 corrective encode exposed a **one-frame full-workspace collapse** even
+after responsive layout tests passed. Asset-only readiness accepted a stable
+thumbnail inside a 150px-tall shell. Current capture fixes dimensions to the
+host's declared viewport and requires stable whole-shell/navigation/composer
+bounds before acknowledgement. Keep the transient-collapse regression. Still
+scan every encoded frame, inspect candidates with neighbours, and regenerate
+the exact source range after fixing the cause. Never replace a bad frame with
+an unrelated neighbouring scientific/product state. Preserve base, patch and
+conform hashes, then verify the entire conformed delivery again.
+
 For the redesigned UI use [the current adapter](../../../motion/native/current/README.md)
 and its recorded [review](../../../motion/native/current/REVIEW.md). Check real
 native fonts/providers, right-edge strip, tabs, composer and transcript. Do not

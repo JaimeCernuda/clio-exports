@@ -84,8 +84,13 @@ encode is not visual approval. The movie is silent and stays local/ignored.
 ## Components and behavior
 
 - `CurrentProviders` installs the production appearance, conversation-display,
-  motion, tooltip, repository, routing and A2UI providers. The native light theme,
-  type scale and fonts come from the pinned source CSS, not copied old values.
+  motion, tooltip, repository, routing and A2UI providers. Palette, type scale and
+  fonts come from the pinned source CSS. RC1 has two light palettes: `light`
+  (warm, labelled **Light**) and `classic-light` (cool, labelled **Cool**).
+  Demos default to **Cool**. Set the optional manifest `theme` to an exact native
+  ID (`classic-light`, `light`, `classic-dark`, `dark`) to change a capture.
+  The preview dropdown compares the palettes without changing the manifest.
+  Interface size is explicitly 100%, independent of browser-local preferences.
 - `CurrentWorkspace` uses `ClioAppShell`, `ClioSessionContextBar`,
   `ClioComposer` and `ArchiveConversation`. They can be independently reflowed
   for a film; the full application frame is a baseline, not mandatory ad layout.
@@ -100,7 +105,17 @@ encode is not visual approval. The movie is silent and stays local/ignored.
   inspection. An uncaptured file listing is explicitly unavailable.
 - The transport is production `ArchiveTransport`: captured reads and locally
   supported saved table queries; no live inference or invented successful writes.
-  The composer is disabled for live submission. Archive-unavailable actions fail.
+  The composer permits offline draft editing and shows its native attachment,
+  reference, confirmation, model, execution and send controls. It cannot submit
+  to a live agent. Uncaptured services are not represented as successfully connected.
+- The contained native sidebar uses the production navigation header/footer,
+  including collapse, search, new/import, notifications, archive, infrastructure
+  and settings positions. Its small archive menu presenter replaces live stream
+  and release probes with an explicit offline label. The right strip includes
+  Files, Sources, Artifacts, Activity, Agent, Terminal and Browser. Uncaptured
+  terminal/browser actions show an availability notice, not another unrelated tab.
+  Canvas maximize uses the native host so it leaves the left bar visible.
+  Result tabs use native tab semantics and support keyboard navigation/Delete.
 - A scoped presentation-clock adapter supplies captured execution time to the
   native UI clock hook. Active tool durations interpolate their actual recorded
   milliseconds; completed calls retain their original durations. The clock
@@ -112,10 +127,42 @@ encode is not visual approval. The movie is silent and stays local/ignored.
   loader. Scroll position is corrected after asset resize. Render spinners use
   the same frame clock. Fonts, maps and rich views are not acknowledged merely
   because React mounted their containers.
+- The private capture protocol includes the composition's CSS-pixel viewport.
+  Render mode fixes the stage to those dimensions; readiness checks the whole
+  shell and composer as well as rich assets. A stable map inside a temporarily
+  collapsed 150px workspace is not a ready capture. The normal preview remains
+  responsive. A browser regression injects that temporary collapse and requires
+  recovery before the frame acknowledgement.
 - Tahoe's cached, georeferenced USGS map context is an explicit presentation
   adapter shared with the historical renderer. Other scenes do not inherit it.
 
 ## Coverage and migration boundaries
+
+Run `npm run demo:browser-test` against the production preview before handoff.
+It now checks 1920×1080, 1280×720, 1116×970 and 900×700, expanded/collapsed
+navigation, maximize/restore, long titles, native theme selection and complete
+visible control bounds/hit targets. Inspect the screenshots in
+`.native-ui/current-layout-review/`; geometry assertions supplement visual review.
+The first compatibility movie/review was rejected for theme/layout fidelity.
+Its passing 1920-only tests did not qualify responsive composition. See
+[REVIEW.md](REVIEW.md) for the corrective review and its exact scope.
+
+After rendering, scan the **encoded file** using
+`tsx scripts/scan-video-flashes.ts out/current-ui/my-run.mp4 FRAME_COUNT` and
+inspect each candidate with its neighbours. Layout checks do not replace this.
+The existing `repair-current-tool-clock.ts` conformer defaults to captured tool
+ranges; an optional third argument selects exact `[start,end)` source ranges:
+
+```powershell
+tsx scripts/repair-current-tool-clock.ts demos/tahoe-current.json out/current-ui/tahoe-current-rc1-light-v2.mp4 1688:1693
+```
+
+It renders those source frames through the current native UI, validates the
+source/movie receipts and output frame count, preserves the base movie, and
+records input, patch and conformed hashes. It does not substitute a neighbouring
+frame. Recheck the full delivery after conforming. Fix the actual capture defect
+before using this targeted workflow; it is not permission to hide scientific or
+product-state errors.
 
 This is a **single-session recorded replay adapter**. The representative Tahoe
 manifest selects the first recorded turn. No scientific calculation or product

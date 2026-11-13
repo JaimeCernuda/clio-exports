@@ -1,0 +1,97 @@
+{
+  "schema": "clio.demo-review.v1",
+  "status": "superseded-appearance",
+  "ui": {
+    "repository": "https://github.com/iowarp/gact-tui.git",
+    "branch": "rc1/ui-liftoff",
+    "revision": "47b74250e512358dda6275cd5084e9d4a8d1a376",
+    "checkout": "source-ui-47b74250",
+    "port": 3372
+  },
+  "source": {
+    "archive": "tahoe-original.html",
+    "sha256": "e5f762a73eaa749738780b095a24133cec08d8d125c81bd24ecfc8c3bda0dbf4"
+  },
+  "sessionId": "sess_9cca40f4085e",
+  "manifest": "native/public/demos/tahoe-current.json",
+  "manifestSha256": "257036f5dced2f296a04a613819b289641fb4c844a15d6bada8e15221688f050",
+  "sceneSha256": "ea27356c687d52935fe01ebdb45408bb378887e040d0f425d5de8c0b97b82267",
+  "movie": "out/current-ui/tahoe-current.mp4",
+  "movieSha256": "13ca50034816afe037fc507c4d8f77fdb36d5b62fc2347c38c9f8e9f9dde8a63",
+  "captureHtmlSha256": "6396b0785cc66168a5bf95f9bf2f6e00e86c1ae5cb561b96d948df0a927c4695",
+  "finalPreviewHtmlSha256": "430163d7d196fc8c9d435ab48740a2277fa214472c973bea3e251817b009d651",
+  "verification": {
+    "width": 1920,
+    "height": 1080,
+    "fps": "60",
+    "frames": 2400,
+    "seconds": 40,
+    "codec": "h264",
+    "pixelFormat": "yuv420p",
+    "colorRange": "tv",
+    "matrix": "bt709",
+    "audioStreams": 0
+  },
+  "fullDecode": "passed",
+  "flashScan": {
+    "frames": 2400,
+    "candidates": 0,
+    "scope": "320x180 luma, temporal candidate heuristic"
+  },
+  "checks": {
+    "motionTests": 140,
+    "pythonTests": 134,
+    "skipped": 0,
+    "browserIntegration": "passed",
+    "normalPreview": "completed 2399/2399 in IAB",
+    "typecheck": "passed",
+    "nativeCurrentCheck": "passed",
+    "legacyOpalCheck": "passed"
+  },
+  "visualSamples": [100, 190, 370, 500, 700, 900, 1150, 1300, 2399],
+  "consecutiveRanges": [
+    [203, 208],
+    [1043, 1048],
+    [1241, 1246]
+  ],
+  "limits": [
+    "Compatibility proof, not a new edited marketing film.",
+    "Encoded review used sampled stills and consecutive ranges plus a full-frame scan; no full subjective playback review is claimed.",
+    "Paired SPOTTER/attention, Science Log graph and mesh choreography remain on historical profiles.",
+    "Native pane reflow/activity folding has not received a new authored smoothing/camera/pointer pass."
+  ],
+  "clockRepair": {
+    "baseSha256": "8caeb2ea4d92417dd293afec495392ea7236f489bf07b700f205a6274282b087",
+    "patchSha256": "96932e817cbe91302d2f92eae01df6c4e6288ef0b9c96063502e030d5c1a26f3",
+    "sha256": "13ca50034816afe037fc507c4d8f77fdb36d5b62fc2347c38c9f8e9f9dde8a63",
+    "ranges": [
+      {
+        "start": 173,
+        "end": 204
+      },
+      {
+        "start": 412,
+        "end": 443
+      },
+      {
+        "start": 460,
+        "end": 491
+      },
+      {
+        "start": 508,
+        "end": 538
+      },
+      {
+        "start": 801,
+        "end": 832
+      }
+    ],
+    "frames": 154
+  },
+  "storage": {
+    "drive": "D:",
+    "retainedGeneratedBuild": ".native-ui/build-current-previous",
+    "reason": "Automatic approval review rejected deletion with blocked by policy."
+  },
+  "reason": "Rejected by the user for theme/layout fidelity; see ../REVIEW.md."
+}

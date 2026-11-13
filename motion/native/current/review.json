@@ -1,6 +1,7 @@
 {
-  "schema": "clio.demo-review.v1",
-  "status": "compatibility-reviewed",
+  "schema": "clio.demo-review.v2",
+  "status": "layout-reviewed",
+  "reviewedDate": "2026-11-12",
   "ui": {
     "repository": "https://github.com/iowarp/gact-tui.git",
     "branch": "rc1/ui-liftoff",
@@ -8,89 +9,145 @@
     "checkout": "source-ui-47b74250",
     "port": 3372
   },
+  "theme": "classic-light",
+  "previousReceipt": "review/compatibility-v1.json",
+  "manifest": "native/public/demos/tahoe-current.json",
+  "manifestSha256": "028396c5b5655ec6d34a4ec1d7bc73370ea53b682b94c1fc145e2465486aaad8",
+  "scene": "native/public/tahoe.native.json",
+  "sceneSha256": "ea27356c687d52935fe01ebdb45408bb378887e040d0f425d5de8c0b97b82267",
   "source": {
     "archive": "tahoe-original.html",
     "sha256": "e5f762a73eaa749738780b095a24133cec08d8d125c81bd24ecfc8c3bda0dbf4"
   },
   "sessionId": "sess_9cca40f4085e",
-  "manifest": "native/public/demos/tahoe-current.json",
-  "manifestSha256": "257036f5dced2f296a04a613819b289641fb4c844a15d6bada8e15221688f050",
-  "sceneSha256": "ea27356c687d52935fe01ebdb45408bb378887e040d0f425d5de8c0b97b82267",
-  "movie": "out/current-ui/tahoe-current.mp4",
-  "movieSha256": "13ca50034816afe037fc507c4d8f77fdb36d5b62fc2347c38c9f8e9f9dde8a63",
-  "captureHtmlSha256": "6396b0785cc66168a5bf95f9bf2f6e00e86c1ae5cb561b96d948df0a927c4695",
-  "finalPreviewHtmlSha256": "430163d7d196fc8c9d435ab48740a2277fa214472c973bea3e251817b009d651",
-  "verification": {
+  "checks": {
+    "motionTests": 143,
+    "skipped": 0,
+    "motionTypecheck": "passed",
+    "nativeTypecheck": "passed",
+    "productionBuild": "passed",
+    "formatting": "passed",
+    "browserIntegration": "passed",
+    "layoutIntegration": "passed",
+    "transientCollapsedShell": "passed: readiness waits for restoration"
+  },
+  "layout": {
+    "viewports": [
+      [1920, 1080],
+      [1280, 720],
+      [1116, 970],
+      [900, 700]
+    ],
+    "cases": [
+      "typing and captured results",
+      "expanded and collapsed sidebar",
+      "canvas maximize and restore",
+      "long titles",
+      "four result tabs with active-name retention",
+      "both native light themes",
+      "no document overflow or covered controls",
+      "no Tahoe imagery inherited by another scene"
+    ]
+  },
+  "visualEvidence": [
+    {
+      "path": "review/rc1-cool-1116.png",
+      "sha256": "1f5393ef5e987697c3edcdc3a7e041f2089b8b4927ee0d5d3b375b03a91cbd14"
+    },
+    {
+      "path": "review/rc1-cool-1920.png",
+      "sha256": "8924c5a1b0f35756341b217ef54381649ae78f433c77ee3247849d5279fda97e"
+    },
+    {
+      "path": "review/rc1-tabs-1116.png",
+      "sha256": "d8726afe65ba637142abf52116a43aea9469360083e972827db23285acb1efb2"
+    }
+  ],
+  "preview": {
+    "normalPlay": "0 to 2399 in the in-app browser",
+    "inspection": "Production-browser screenshots and geometry checks; native shell, composer, result views and map attribution reviewed."
+  },
+  "movie": {
+    "schema": "clio.demo-render.v1",
+    "manifest": "demos/tahoe-current.json",
+    "manifestSha256": "028396c5b5655ec6d34a4ec1d7bc73370ea53b682b94c1fc145e2465486aaad8",
+    "sceneSha256": "ea27356c687d52935fe01ebdb45408bb378887e040d0f425d5de8c0b97b82267",
+    "previewHtmlSha256": "53b56b3a50b7d6ba71b40e24ae7f07954eacc2170a1921ee6c4564f31740cc7e",
+    "ui": {
+      "repository": "https://github.com/iowarp/gact-tui.git",
+      "branch": "rc1/ui-liftoff",
+      "revision": "47b74250e512358dda6275cd5084e9d4a8d1a376",
+      "checkout": "source-ui-47b74250",
+      "port": 3372
+    },
+    "source": {
+      "archive": "tahoe-original.html",
+      "sha256": "e5f762a73eaa749738780b095a24133cec08d8d125c81bd24ecfc8c3bda0dbf4"
+    },
+    "sessionId": "sess_9cca40f4085e",
+    "frames": 2400,
+    "fps": 60,
+    "theme": "classic-light",
     "width": 1920,
     "height": 1080,
-    "fps": "60",
-    "frames": 2400,
-    "seconds": 40,
-    "codec": "h264",
-    "pixelFormat": "yuv420p",
-    "colorRange": "tv",
-    "matrix": "bt709",
-    "audioStreams": 0
+    "output": "D:\\Libraries\\Documents\\projects\\clio-exports\\motion\\out\\current-ui\\tahoe-current-rc1-light-v2.mp4",
+    "sha256": "d5bee03cf89104012a85fd40b76483611768ca3a88710f01772a302fb1c560d3",
+    "review": "Rendering is complete; visual acceptance is recorded separately.",
+    "baseSha256": "73bbcbf26a75c995c4848984b0a92d4f2802ce49efff1856e4848de0661f89ee",
+    "layoutRepair": "tahoe-current-rc1-light-v2.mp4.layout-repair.json",
+    "path": "out/current-ui/tahoe-current-rc1-light-v2.mp4",
+    "status": "encoded-and-checked",
+    "verification": {
+      "width": 1920,
+      "height": 1080,
+      "fps": "60",
+      "frames": 2400,
+      "seconds": 40,
+      "codec": "h264",
+      "pixelFormat": "yuv420p",
+      "colorRange": "tv",
+      "matrix": "bt709",
+      "audioStreams": 0
+    },
+    "fullDecode": "passed",
+    "flashScan": {
+      "frames": 2400,
+      "candidates": 0
+    }
   },
-  "fullDecode": "passed",
-  "flashScan": {
-    "frames": 2400,
-    "candidates": 0,
-    "scope": "320x180 luma, temporal candidate heuristic"
-  },
-  "checks": {
-    "motionTests": 140,
-    "pythonTests": 134,
-    "skipped": 0,
-    "browserIntegration": "passed",
-    "normalPreview": "completed 2399/2399 in IAB",
-    "typecheck": "passed",
-    "nativeCurrentCheck": "passed",
-    "legacyOpalCheck": "passed"
-  },
-  "visualSamples": [100, 190, 370, 500, 700, 900, 1150, 1300, 2399],
-  "consecutiveRanges": [
-    [203, 208],
-    [1043, 1048],
-    [1241, 1246]
-  ],
   "limits": [
-    "Compatibility proof, not a new edited marketing film.",
-    "Encoded review used sampled stills and consecutive ranges plus a full-frame scan; no full subjective playback review is claimed.",
-    "Paired SPOTTER/attention, Science Log graph and mesh choreography remain on historical profiles.",
-    "Native pane reflow/activity folding has not received a new authored smoothing/camera/pointer pass."
+    "Single-session compatibility demonstration, not a new marketing edit.",
+    "Paired SPOTTER, attention, Science Log and mesh-film choreography remain on their historical profiles.",
+    "Layout review does not qualify authored camera, cursor or smoothing choreography.",
+    "No full subjective encoded-playback review is claimed."
   ],
-  "clockRepair": {
-    "baseSha256": "8caeb2ea4d92417dd293afec495392ea7236f489bf07b700f205a6274282b087",
-    "patchSha256": "96932e817cbe91302d2f92eae01df6c4e6288ef0b9c96063502e030d5c1a26f3",
-    "sha256": "13ca50034816afe037fc507c4d8f77fdb36d5b62fc2347c38c9f8e9f9dde8a63",
-    "ranges": [
-      {
-        "start": 173,
-        "end": 204
-      },
-      {
-        "start": 412,
-        "end": 443
-      },
-      {
-        "start": 460,
-        "end": 491
-      },
-      {
-        "start": 508,
-        "end": 538
-      },
-      {
-        "start": 801,
-        "end": 832
-      }
-    ],
-    "frames": 154
-  },
-  "storage": {
-    "drive": "D:",
-    "retainedGeneratedBuild": ".native-ui/build-current-previous",
-    "reason": "Automatic approval review rejected deletion with blocked by policy."
+  "encodedReview": {
+    "fullResolutionFrames": [190, 1046, 1246, 2399],
+    "contactSheets": {
+      "samplingFps": 4,
+      "sheets": 8,
+      "coverage": "complete timeline sampled; encoded sheets 2,4,6,8 and full-resolution handoffs inspected"
+    },
+    "repair": {
+      "schema": "clio.demo-layout-repair.v1",
+      "reason": "layout",
+      "manifest": "demos/tahoe-current.json",
+      "sourceSha256": "e5f762a73eaa749738780b095a24133cec08d8d125c81bd24ecfc8c3bda0dbf4",
+      "ranges": [
+        {
+          "start": 1688,
+          "end": 1693
+        }
+      ],
+      "sourceFrames": [1688, 1689, 1690, 1691, 1692],
+      "frames": 2400,
+      "originalSha256": "73bbcbf26a75c995c4848984b0a92d4f2802ce49efff1856e4848de0661f89ee",
+      "patchSha256": "291bed8374ec0351ff31e9f5cb18e9dfacb7d825ceb9c4484da158735fc19adb",
+      "sha256": "d5bee03cf89104012a85fd40b76483611768ca3a88710f01772a302fb1c560d3",
+      "captureHtmlSha256": "b68db544accaf1141292c5690373581906e62d83c171eb933d5c896eb034c108",
+      "inspectedBoundary": [1687, 1688, 1689, 1690, 1691, 1692, 1693]
+    },
+    "result": "The isolated collapsed shell is corrected; no further collapse or isolated-flash candidates remain in the final scan.",
+    "playbackLimit": "Encoded inspection uses sampled and consecutive frames; no full subjective playback review is claimed."
   }
 }

@@ -79,12 +79,16 @@ export default {
   resolve: {
     alias: [
       {
+        find: /^\.\/navigation-agent-menu$/,
+        replacement: path.join(here, "navigation-agent-menu.tsx"),
+      },
+      {
         find: "@/lib/shared-clock",
         replacement: path.join(here, "replay-clock.ts"),
       },
       {
         find: /^\.\/map-initial-view$/,
-        replacement: path.join(native, "map-context.ts"),
+        replacement: path.join(here, "map-context.ts"),
       },
       { find: "@clio-ui", replacement: path.join(web, "src") },
       {

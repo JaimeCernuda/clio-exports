@@ -7,6 +7,10 @@ test("the current UI is isolated while every previous film retains its pinned so
   assert.equal(nativeProfile("default").sourceFile, "source.json");
   for (const name of ["opal", "wordle", "engineering"])
     assert.equal(nativeProfile(name).sourceFile, "source-opal.json");
-  assert.deepEqual(nativeProfile("current").entries, ["current/entry.tsx"]);
+  assert.deepEqual(nativeProfile("current").entries, [
+    "current/entry.tsx",
+    "current/navigation-agent-menu.tsx",
+    "current/map-context.ts",
+  ]);
   assert.throws(() => nativeProfile("unknown"), /Unknown native profile/);
 });

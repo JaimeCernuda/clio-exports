@@ -18,9 +18,16 @@ import {
 import { sceneAssetPath } from "../scene-selection";
 import "./styles.css";
 import { awaitCurrentPaint } from "./readiness";
+import { DEMO_THEMES, demoTheme, type DemoTheme } from "./theme";
+import { isCaptureViewport, type CaptureViewport } from "./capture-viewport";
 
 const query = new URLSearchParams(location.search);
 const render = query.get("render") === "1";
+type FrameRequest = {
+  frame: number;
+  nonce: number;
+  viewport?: CaptureViewport;
+};
 
 /** Turn production component/schema failures into explicit capture failures. */
 class DemoBoundary extends Component<
@@ -42,8 +49,10 @@ class DemoBoundary extends Component<
 function App() {
   const [loaded, setLoaded] = useState<{ spec: DemoSpec; scene: DemoScene }>();
   const [error, setError] = useState("");
-  const [request, setRequest] = useState({ frame: 0, nonce: 0 });
+  const [request, setRequest] = useState<FrameRequest>({ frame: 0, nonce: 0 });
+  const initialViewport = useRef({ width: innerWidth, height: innerHeight });
   const [playing, setPlaying] = useState(false);
+  const [theme, setTheme] = useState<DemoTheme>();
   const pending = useRef(request);
   useEffect(() => {
     let active = true;
@@ -74,17 +83,18 @@ function App() {
         event.data?.kind !== "clio-film-frame"
       )
         return;
-      const { frame, nonce } = event.data;
+      const { frame, nonce, viewport } = event.data;
       if (
         !Number.isInteger(frame) ||
         frame < 0 ||
         frame >= loaded.spec.frames ||
-        !Number.isInteger(nonce)
+        !Number.isInteger(nonce) ||
+        (viewport !== undefined && !isCaptureViewport(viewport))
       )
         return;
       if (pending.current.frame === frame && pending.current.nonce === nonce)
         return;
-      pending.current = { frame, nonce };
+      pending.current = { frame, nonce, viewport };
       setRequest(pending.current);
     };
     window.addEventListener("message", receive);
@@ -100,6 +110,7 @@ function App() {
           active &&
           pending.current.frame === request.frame &&
           pending.current.nonce === request.nonce,
+        request.viewport ?? initialViewport.current,
       );
       if (!ready) return;
       window.parent.postMessage({ kind: "clio-film-ready", ...request }, "*");
@@ -153,13 +164,39 @@ function App() {
       className="current-demo"
       data-render={render || undefined}
       data-frame={request.frame}
+      data-demo-map-context={
+        (query.get("scene") ?? loaded.spec.sceneFile) === "tahoe.native.json"
+          ? "cached-usgs"
+          : undefined
+      }
       style={
-        { "--demo-spin": `${request.frame * 6}deg` } as React.CSSProperties
+        {
+          "--demo-spin": `${request.frame * 6}deg`,
+          ...(render
+            ? {
+                width: (request.viewport ?? initialViewport.current).width,
+                height: (request.viewport ?? initialViewport.current).height,
+              }
+            : {}),
+        } as React.CSSProperties
       }
     >
       {!render && (
         <div className="current-demo-controls">
-          <span>{loaded.spec.title}</span>
+          <span className="current-demo-title" title={loaded.spec.title}>
+            {loaded.spec.title}
+          </span>
+          <select
+            aria-label="Preview theme"
+            value={theme ?? demoTheme(loaded.spec.theme)}
+            onChange={(event) => setTheme(demoTheme(event.target.value))}
+          >
+            {DEMO_THEMES.map((option) => (
+              <option key={option.id} value={option.id}>
+                {option.label}
+              </option>
+            ))}
+          </select>
           <button onClick={() => setPlaying((v) => !v)}>
             {playing ? "Pause" : "Play"}
           </button>
@@ -187,7 +224,10 @@ function App() {
       )}
       <div className="current-demo-stage">
         <DemoBoundary onError={(error) => setError(error.message)}>
-          <CurrentProviders scene={loaded.scene}>
+          <CurrentProviders
+            scene={loaded.scene}
+            theme={theme ?? demoTheme(loaded.spec.theme)}
+          >
             <CurrentWorkspace
               scene={loaded.scene}
               spec={loaded.spec}

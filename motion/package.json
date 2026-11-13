@@ -42,7 +42,7 @@
     "demo:plan": "tsx scripts/current-demo.ts plan",
     "demo:render": "tsx scripts/current-demo.ts render",
     "demo:stills": "tsx scripts/current-demo.ts stills",
-    "demo:browser-test": "node --test tests/current-demo-browser.test.mjs",
+    "demo:browser-test": "node --test --test-concurrency=1 tests/current-demo-browser.test.mjs tests/current-demo-layout.test.mjs",
     "demo:create": "tsx scripts/create-current-demo.ts"
   },
   "dependencies": {

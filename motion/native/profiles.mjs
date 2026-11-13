@@ -41,7 +41,11 @@ export function nativeProfile(name = "default") {
     current: {
       sourceFile: "source-current.json",
       config: "current/vite.config.mjs",
-      entries: ["current/entry.tsx"],
+      entries: [
+        "current/entry.tsx",
+        "current/navigation-agent-menu.tsx",
+        "current/map-context.ts",
+      ],
     },
   };
   if (!Object.hasOwn(profiles, name))

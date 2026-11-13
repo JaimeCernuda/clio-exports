@@ -6,6 +6,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { createPortal } from "react-dom";
 import { MemoryRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
@@ -29,11 +30,12 @@ import { ClioMotionProvider } from "@clio-ui/components/clio/motion";
 import { TooltipProvider } from "@clio-ui/components/ui/tooltip";
 import { ClioAppShell } from "@clio-ui/components/clio/app-shell";
 import { ClioSessionContextBar } from "@clio-ui/components/clio/session-context-bar";
-import { BrandIcon } from "@clio-ui/components/clio/brand-icon";
+import { NavigationHeader } from "@clio-ui/components/clio/navigation-header";
+import { NavigationFooter } from "@clio-ui/components/clio/navigation-footer";
+import { useWorkbenchMaximize } from "@clio-ui/components/clio/use-workbench-maximize";
 import {
   Sidebar,
   SidebarContent,
-  SidebarHeader,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
@@ -55,6 +57,14 @@ import {
   ChartNoAxesCombinedIcon,
   Maximize2Icon,
   Minimize2Icon,
+  BellIcon,
+  MessageSquareIcon,
+  PaperclipIcon,
+  BoxIcon,
+  BotIcon,
+  TerminalSquareIcon,
+  GlobeIcon,
+  ImageIcon,
 } from "lucide-react";
 import {
   demoAt,
@@ -65,25 +75,36 @@ import {
   type DemoSpec,
 } from "./demo-model";
 import { RecordedClock } from "./replay-clock";
+import { type DemoTheme } from "./theme";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@clio-ui/components/ui/tabs";
 
 const unavailable = async (): Promise<never> => {
   throw new Error("This recorded demo has no live agent connection.");
 };
-function Preferences() {
+function Preferences({ theme }: { theme: DemoTheme }) {
   const p = useAppearancePreferences();
   useLayoutEffect(() => {
-    p.setTheme("light");
+    p.setTheme(theme);
     p.setMotion("reduced");
-  }, []);
+    p.setInterfaceSize(100);
+    p.setConversationWidth("focused");
+  }, [theme]);
   return null;
 }
 
 /** Use the current production providers and immutable archive transport on an isolated origin. */
 export function CurrentProviders({
   scene,
+  theme,
   children,
 }: {
   scene: DemoScene;
+  theme: DemoTheme;
   children: ReactNode;
 }) {
   const [client] = useState(
@@ -104,7 +125,7 @@ export function CurrentProviders({
         <ArchiveConnectionProvider>
           <RepositoryOverrideProvider repository={repository}>
             <AppearanceProvider>
-              <Preferences />
+              <Preferences theme={theme} />
               <ConversationDisplayProvider>
                 <ClioMotionProvider>
                   <TooltipProvider>{children}</TooltipProvider>
@@ -142,8 +163,27 @@ function ResultPocket({
   );
   const [choice, setChoice] = useState<string>();
   const active = panes.find((p) => p.surfaceId === choice) ?? panes.at(-1);
-  const [maximized, setMaximized] = useState(false);
+  const {
+    maximized,
+    setMaximized,
+    toggleMaximized,
+    restore,
+    portalHost,
+    inSection,
+    maximizeButtonRef,
+  } = useWorkbenchMaximize();
   const [builtin, setBuiltin] = useState<ClioWorkbenchOpenRequest>();
+  const [unsupported, setUnsupported] = useState<string>();
+  const tabRow = useRef<HTMLDivElement>(null);
+  const [tabWidth, setTabWidth] = useState(0);
+  useLayoutEffect(() => {
+    const row = tabRow.current;
+    if (!row) return;
+    const observer = new ResizeObserver(() => setTabWidth(row.clientWidth));
+    observer.observe(row);
+    return () => observer.disconnect();
+  }, [active?.surfaceId, maximized, builtin]);
+  const compactTabs = tabWidth > 0 && tabWidth < panes.length * 132;
   const lastFrame = useRef(frame);
   useLayoutEffect(() => {
     if (frame < lastFrame.current) {
@@ -151,6 +191,7 @@ function ResultPocket({
       setBuiltin(undefined);
       setMaximized(false);
       setClosed(new Set());
+      setUnsupported(undefined);
     }
     lastFrame.current = frame;
   }, [frame]);
@@ -186,79 +227,175 @@ function ResultPocket({
       />
     );
   const surface = scene.view.surfaces.find((s) => s.id === active.surfaceId)!;
-  return (
+  const canvas = (
     <aside
       aria-label="Workspace canvas"
       data-workbench-pocket=""
       data-current-surface={active.surfaceId}
       className="relative flex h-full min-w-0 bg-background"
       style={
-        maximized ? { position: "fixed", inset: 0, zIndex: 80 } : undefined
+        maximized
+          ? { position: inSection ? "absolute" : "fixed", inset: 0, zIndex: 80 }
+          : undefined
       }
+      onKeyDown={(event) => {
+        if (maximized && event.key === "Escape" && !event.defaultPrevented) {
+          event.preventDefault();
+          restore();
+        }
+      }}
     >
       <div className="flex min-h-0 min-w-0 flex-1 flex-col">
-        <div
-          role="tablist"
-          aria-label="Result views"
-          className="flex h-10 shrink-0 items-stretch overflow-x-auto border-b"
+        <Tabs
+          value={active.surfaceId}
+          onValueChange={setChoice}
+          className="flex min-h-0 min-w-0 flex-1 flex-col gap-0"
         >
-          {panes.map((p) => (
-            <FrameTab
-              key={p.surfaceId}
-              label={p.label}
-              icon={
-                p.surfaceId.includes("map") ? (
-                  <MapIcon className="size-3.5" />
-                ) : (
-                  <ChartNoAxesCombinedIcon className="size-3.5" />
-                )
-              }
-              active={p.surfaceId === active.surfaceId}
-              onSelect={() => setChoice(p.surfaceId)}
-              onClose={() =>
-                setClosed((previous) => new Set([...previous, p.surfaceId]))
-              }
-            />
-          ))}
-          <div className="ml-auto flex items-center">
-            <IconButton
-              label={
-                maximized
-                  ? "Restore canvas beside conversation"
-                  : "Maximize canvas"
-              }
-              icon={maximized ? <Minimize2Icon /> : <Maximize2Icon />}
-              onClick={() => setMaximized((v) => !v)}
-            />
+          <div
+            data-slot="canvas-tab-row"
+            className="flex h-10 shrink-0 items-stretch border-b"
+          >
+            <TabsList
+              ref={tabRow}
+              data-compact={compactTabs || undefined}
+              aria-label="Result views"
+              variant="line"
+              className="current-result-tabs h-full items-stretch justify-start gap-0.5 rounded-none bg-transparent p-0 group-data-horizontal/tabs:h-full"
+            >
+              {panes.map((p) => (
+                <FrameTab
+                  key={p.surfaceId}
+                  label={p.label}
+                  icon={
+                    p.surfaceId.includes("map") ? (
+                      <MapIcon className="size-3.5" />
+                    ) : p.surfaceId.includes("figure") ? (
+                      <ImageIcon className="size-3.5" />
+                    ) : (
+                      <ChartNoAxesCombinedIcon className="size-3.5" />
+                    )
+                  }
+                  active={p.surfaceId === active.surfaceId}
+                  compact={compactTabs}
+                  onSelect={() => setChoice(p.surfaceId)}
+                  renderTrigger={({ className, children }) => (
+                    <TabsTrigger
+                      className={className}
+                      value={p.surfaceId}
+                      aria-keyshortcuts="Delete"
+                      onKeyDown={(event) => {
+                        if (event.key === "Delete") {
+                          event.preventDefault();
+                          setClosed(
+                            (previous) => new Set([...previous, p.surfaceId]),
+                          );
+                        }
+                      }}
+                    >
+                      {children}
+                    </TabsTrigger>
+                  )}
+                  onClose={() =>
+                    setClosed((previous) => new Set([...previous, p.surfaceId]))
+                  }
+                />
+              ))}
+            </TabsList>
+            <div className="ml-auto flex shrink-0 items-center px-1">
+              <IconButton
+                ref={maximizeButtonRef}
+                label={
+                  maximized
+                    ? "Restore canvas beside conversation"
+                    : "Maximize canvas"
+                }
+                icon={maximized ? <Minimize2Icon /> : <Maximize2Icon />}
+                onClick={(event) => toggleMaximized(event.currentTarget)}
+              />
+            </div>
           </div>
-        </div>
-        <div
-          className="clio-scrollbar min-h-0 flex-1 overflow-auto"
-          data-current-pocket-body=""
-        >
-          <ClioA2UISurface surface={a2uiSurfaceSchema.parse(surface)} />
-        </div>
+          <TabsContent
+            value={active.surfaceId}
+            className="clio-scrollbar min-h-0 flex-1 overflow-auto"
+            data-current-pocket-body=""
+          >
+            {unsupported && (
+              <div role="status" className="current-demo-notice">
+                {unsupported} was not captured in this export.
+                <button
+                  aria-label="Dismiss canvas notice"
+                  onClick={() => setUnsupported(undefined)}
+                >
+                  ×
+                </button>
+              </div>
+            )}
+            <ClioA2UISurface surface={a2uiSurfaceSchema.parse(surface)} />
+          </TabsContent>
+        </Tabs>
       </div>
       <WorkbenchStrip
         items={[
           { id: "files", label: "Files", icon: <FolderIcon />, pressed: false },
+          {
+            id: "sources",
+            label: "Sources",
+            icon: <PaperclipIcon />,
+            pressed: false,
+          },
+          {
+            id: "artifacts",
+            label: "Artifacts",
+            icon: <BoxIcon />,
+            pressed: false,
+          },
           {
             id: "activity",
             label: "Activity",
             icon: <ActivityIcon />,
             pressed: false,
           },
+          { id: "agent", label: "Agent", icon: <BotIcon />, pressed: false },
+          {
+            id: "terminal",
+            label: "Terminal",
+            icon: <TerminalSquareIcon />,
+            pressed: false,
+          },
+          {
+            id: "browser",
+            label: "Browser",
+            icon: <GlobeIcon />,
+            pressed: false,
+          },
         ]}
-        onSelect={(id) =>
+        onSelect={(id) => {
+          if (id === "terminal" || id === "browser") {
+            setUnsupported(
+              id === "terminal" ? "A terminal" : "A browser session",
+            );
+            return;
+          }
           setBuiltin(
-            id === "files"
-              ? { kind: "resources", section: "files" }
-              : { kind: "session" },
-          )
-        }
+            id === "activity"
+              ? { kind: "session" }
+              : id === "agent"
+                ? { kind: "resources", section: "agent" }
+                : {
+                    kind: "resources",
+                    section:
+                      id === "sources"
+                        ? "resources"
+                        : id === "artifacts"
+                          ? "artifacts"
+                          : "files",
+                  },
+          );
+        }}
       />
     </aside>
   );
+  return maximized ? createPortal(canvas, portalHost) : canvas;
 }
 
 /** Reflow the production shell, composer and transcript around the frame-projected recorded session. */
@@ -289,6 +426,17 @@ export function CurrentWorkspace({
   );
   const scroll = useRef<HTMLDivElement>(null);
   const [opened, setOpened] = useState<ClioWorkbenchOpenRequest>();
+  const [draft, setDraft] = useState<{ frame: number; value: string }>();
+  const [notice, setNotice] = useState("");
+  const lastFrame = useRef(frame);
+  useLayoutEffect(() => {
+    if (frame < lastFrame.current) {
+      setOpened(undefined);
+      setDraft(undefined);
+      setNotice("");
+    }
+    lastFrame.current = frame;
+  }, [frame]);
   const workbench = useRef<ClioWorkbenchHandle>(null);
   useLayoutEffect(() => {
     if (scroll.current) scroll.current.scrollTop = scroll.current.scrollHeight;
@@ -310,23 +458,63 @@ export function CurrentWorkspace({
       <Registry id={session.id} />
       <ClioAppShell
         navigation={
-          <Sidebar collapsible="icon">
-            <SidebarHeader>
-              <div className="flex h-10 items-center gap-2 px-2">
-                <BrandIcon className="size-5" />
-                <span className="font-semibold">CLIO</span>
-              </div>
-            </SidebarHeader>
-            <SidebarContent>
-              <SidebarMenu>
-                <SidebarMenuItem>
-                  <SidebarMenuButton isActive title={session.title}>
-                    <FolderIcon />
-                    <span className="truncate">{session.title}</span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              </SidebarMenu>
-            </SidebarContent>
+          <Sidebar collapsible="icon" contained>
+            <nav
+              aria-label="Workspace navigation"
+              className="flex h-full min-w-0 flex-1 flex-col"
+            >
+              <NavigationHeader
+                endpoint="https://archive.invalid"
+                activeLabel="Offline archive"
+                currentPath="/"
+                connectionAvailabilities={{}}
+                connections={[]}
+                onConnect={unavailable}
+                onNewSession={() =>
+                  setNotice(
+                    "This preview replays a saved session. Start new conversations in CLIO.",
+                  )
+                }
+                onImportSession={() =>
+                  setNotice(
+                    "Prepare another export with demo:create, then choose its manifest in the preview URL.",
+                  )
+                }
+                attentionControl={
+                  <li className="shrink-0">
+                    <IconButton
+                      label="Notifications"
+                      icon={<BellIcon />}
+                      onClick={() =>
+                        setNotice(
+                          "No notifications were captured in this export.",
+                        )
+                      }
+                    />
+                  </li>
+                }
+              />
+              <SidebarContent className="gap-0 px-2 py-3">
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton isActive title={session.title}>
+                      <MessageSquareIcon />
+                      <span className="truncate">{session.title}</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarContent>
+              <NavigationFooter
+                endpoint="https://archive.invalid"
+                from="/"
+                availability={undefined}
+                onOpenArchived={() =>
+                  setNotice(
+                    "This preview contains the selected exported session.",
+                  )
+                }
+              />
+            </nav>
           </Sidebar>
         }
         contextBar={
@@ -368,7 +556,7 @@ export function CurrentWorkspace({
             : demoPocket(spec, plan, frame).at(-1)?.surfaceId
         }
       >
-        <div className="relative flex h-full min-h-0 flex-col">
+        <div className="relative flex h-full min-h-0 min-w-0 flex-col">
           <div
             className="current-demo-log clio-scrollbar flex-1"
             role="log"
@@ -388,11 +576,33 @@ export function CurrentWorkspace({
               />
             </div>
           </div>
+          {notice && (
+            <div role="status" className="current-demo-notice">
+              {notice}
+              <button
+                aria-label="Dismiss preview notice"
+                onClick={() => setNotice("")}
+              >
+                ×
+              </button>
+            </div>
+          )}
           <ClioComposer
-            disabled
-            state={frame < plan.frames ? "running" : session.state}
-            attachments={false}
-            contextReferences={false}
+            state={session.state}
+            attachments
+            contextReferences
+            confirmationPolicy={
+              session.approval_mode === "unknown"
+                ? "ask"
+                : session.approval_mode
+            }
+            executionMode={
+              session.mode === "plan"
+                ? "plan"
+                : session.mode === "architect"
+                  ? "deep_research"
+                  : "execute"
+            }
             provider={scene.session.model.provider_id}
             model={scene.session.model.model_id}
             modelOptions={[
@@ -404,7 +614,8 @@ export function CurrentWorkspace({
                 available: true,
               },
             ]}
-            value={projection.draft}
+            value={draft?.frame === frame ? draft.value : projection.draft}
+            onValueChange={(value) => setDraft({ frame, value })}
             onSubmit={unavailable}
             variant="docked"
           />

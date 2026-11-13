@@ -90,7 +90,12 @@ export const NativeProductFilm: React.FC<{
     let finished = false;
     const send = () =>
       iframe.current?.contentWindow?.postMessage(
-        { kind: "clio-film-frame", frame, nonce: id },
+        {
+          kind: "clio-film-frame",
+          frame,
+          nonce: id,
+          ...(mode === "current" ? { viewport: { width, height } } : {}),
+        },
         url.origin,
       );
     const receive = (event: MessageEvent) => {
@@ -129,7 +134,7 @@ export const NativeProductFilm: React.FC<{
       window.removeEventListener("message", receive);
       if (!finished) continueRender(handle);
     };
-  }, [frame, url.origin]);
+  }, [frame, url.origin, mode, width, height]);
   return (
     <AbsoluteFill style={{ background: "#f5f5f1" }}>
       <IFrame

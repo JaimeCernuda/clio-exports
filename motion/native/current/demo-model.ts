@@ -5,6 +5,7 @@ import {
   type ReplayMessage,
 } from "../replay-plan";
 import { sceneAssetPath, conversationTurns } from "../scene-selection";
+import { demoTheme } from "./theme";
 
 export interface DemoBlock extends Record<string, unknown> {
   id: string;
@@ -43,6 +44,7 @@ export interface DemoScene {
   snapshot: unknown;
 }
 export interface DemoSpec {
+  theme?: import("./theme").DemoTheme;
   schema: "clio.demo.v1";
   id: string;
   sceneFile: string;
@@ -83,6 +85,7 @@ export function previewFrameAt(
 
 /** Reject mismatched footage and unsafe scene paths before projecting any content. */
 export function validateDemo(spec: DemoSpec, scene: DemoScene): void {
+  demoTheme(spec.theme);
   if (
     spec.schema !== "clio.demo.v1" ||
     !/^[a-z0-9][a-z0-9-]*$/.test(spec.id) ||

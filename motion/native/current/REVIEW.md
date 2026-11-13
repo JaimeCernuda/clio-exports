@@ -1,5 +1,80 @@
 # Current adapter verification
 
+## Corrective visual pass — 2026-11-12
+
+The previous compatibility review below was **not visual acceptance**. The user
+rejected its warm palette, overlapping collapsed sidebar, abbreviated navigation,
+missing composer buttons and clipped boundaries. These are framework defects,
+not artistic choices for a later film.
+
+Corrections in this pass:
+
+- Native **Cool** light palette by default, with the other native palettes available
+  in the preview. The earlier forced `light` ID selected RC1's warm palette.
+- `Sidebar contained` and native navigation header/footer. Removed the stage
+  transform workaround. The owl, collapse, new/import, search, notification and
+  footer controls retain their source layout when the sidebar folds.
+- Correct application-shell body/height containment; the whole document no longer
+  scrolls alongside the conversation. The external preview toolbar also contains
+  long titles.
+- Complete native composer context/reference and behavior controls, readable
+  offline editing, source approval/mode, and archive-only submission semantics.
+- Full native right-edge launcher strip, image/map/chart tab icons, keyboard tabs
+  and a maximize action outside the tablist. Maximize uses the native workspace
+  host and leaves navigation visible. Crowded inactive tabs compact to native
+  format icons, preserving the active name; the full four-result screenshot
+  exposed unreadable fragments despite passing bounds checks. Backward seeks
+  also clear opened artifacts.
+- No invented live connection: the header explicitly says offline archive rather
+  than animating a reconnection loop. Uncaptured terminal/browser actions show a
+  notice instead of incorrectly opening Files.
+- Removed Tahoe's redundant fallback-map caption that collided with native
+  attribution. Scientific layers and map attribution remain.
+- The cached Tahoe map style is also gated by the loaded scene, so another
+  manifest cannot inherit Tahoe imagery merely by using the default preview URL.
+- The full encoded scan found a genuine one-frame workspace collapse at source
+  frame **1690** (28.17s). Asset-only readiness had not rejected a stable thumbnail
+  inside a 150px shell. Render mode now uses explicit host viewport dimensions
+  and validates whole-shell/navigation/composer geometry before acknowledgement.
+  A regression injects a temporary 150px stage and requires recovery before ready.
+  Frames **1688–1692** are regenerated through that corrected renderer and
+  conformed at their exact source positions, retaining the original movie and
+  hashes. The completed conformed file is decoded/scanned again.
+
+The new browser layout matrix checks 1920×1080, 1280×720, 1116×970 and 900×700.
+It measures visible controls, covering/overflow, sidebar/header separation,
+composer containment, both light palettes and long titles after layout settles.
+Native-source checks and the integration test still cover real saved maps, images,
+the full chart/table, tools, backwards seeking and artifact inspection. Screenshot
+review found the map-caption collision after the initial geometry pass; tests
+alone did not find it. Local review images are in
+`motion/.native-ui/current-layout-review/`.
+
+Saved visual evidence:
+
+![Native Cool palette and result controls at 1116 pixels](review/rc1-cool-1116.png)
+![Expanded navigation and composer at 1920 pixels](review/rc1-cool-1920.png)
+![Four open results with the active name retained](review/rc1-tabs-1116.png)
+
+The corrected production preview is the framework baseline. The replacement is
+`motion/out/current-ui/tahoe-current-rc1-light-v2.mp4`: 40 seconds, 1920×1080,
+60fps, H.264/yuv420p, BT.709, silent. SHA256:
+`d5bee03cf89104012a85fd40b76483611768ca3a88710f01772a302fb1c560d3`.
+All 2,400 conformed frames pass full decode; the final all-frame scan has zero
+isolated-flash candidates. The repaired frame and both conform boundaries were
+inspected at full resolution. Encoded contact sheets sample the entire timeline
+at 4fps; sheets 2, 4, 6 and 8 plus the handoff frames were inspected. This does
+not claim a full subjective normal-speed viewing of the encoded delivery.
+
+**143 motion tests, both production-browser suites, motion/native typechecks,
+production build and formatting pass without skips.** [review.json](review.json)
+records the source, viewport matrix, capture/base/patch/conform hashes and exact
+review scope. The movie and hashes below describe the **superseded warm-layout
+encode**. This remains a single-session compatibility story; it does not port
+paired SPOTTER choreography or establish new marketing pacing.
+
+## Previous compatibility receipt (superseded appearance)
+
 Target: `iowarp/gact-tui` rc1/ui-liftoff at
 `47b74250e512358dda6275cd5084e9d4a8d1a376`.
 
