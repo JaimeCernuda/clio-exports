@@ -63,6 +63,24 @@ The final conform joins the approved introduction with the native body; its
 frame count and both source hashes are recorded. An absent approved intro is
 regenerated from its existing Remotion composition.
 
+The delivered revision also has a bounded pointer correction pass. The native
+1ms reduced-motion rule delayed its portal's measured position; the original
+body was rejected by the post-capture audit. Inline priority now disables that
+transition, and readiness requires measured and declared positions to agree.
+All visible movement intervals, with 12-frame handles, are replaced using a
+frame-splicing operation tested at both boundaries. Reproduce that conform
+when the retained body is available:
+
+```powershell
+npx tsx scripts/prepare-spotter-pointer-repair.ts
+node scripts/capture-spotter-v3.mjs repair
+node scripts/spotter-pointer-repair.mjs
+```
+
+Fresh full captures use the corrected portal directly. Finals are promoted only
+after dimensions and decoded frame counts pass; a failed conform preserves the
+previous final.
+
 Local outputs in **`motion/out/spotter-v3/`**:
 
 - `spotter-three-steps-full.mp4`: complete film.

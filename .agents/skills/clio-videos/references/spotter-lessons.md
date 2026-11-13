@@ -34,6 +34,15 @@ views into Flowcept as genuine primary-agent telemetry.
   Budget time from distance and the easing curve's peak velocity; retain measured
   action times. Audit the complete path, including off-frame exits after the
   second selection, and verify the actual DOM pointer pose on every captured frame.
+- A native reduced-motion rule of **1ms is still a wall-clock transition**.
+  Layered `!important` rules defeated an unlayered cursor stylesheet. The body
+  portal therefore sets transition/animation to `none` with inline priority.
+  Require the measured pointer box to agree with its declared frame pose before
+  acknowledgement, not merely the correct parent `data-frame`. Persist audit
+  poses before evaluating them so a rejected render retains its diagnostic data.
+- Corrections must cover every affected movement, not just the first failure.
+  Derive their union from the immutable path, retain settling handles, test exact
+  discontinuous frame replacement, and inspect the assembled movie and its joins.
 - Keep recorded reasoning excerpts as source spans. Stream them, hold briefly,
   then animate the disclosure closed. Do not invent private reasoning or leave
   the reviewer frozen while the source clock advances.

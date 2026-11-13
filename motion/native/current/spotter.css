@@ -698,6 +698,8 @@
   margin-top: 6px;
 }
 .sv3-pointer {
+  transition: none !important;
+  animation: none !important;
   position: fixed;
   width: 24px;
   height: 30px;

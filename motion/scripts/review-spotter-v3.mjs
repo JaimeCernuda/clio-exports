@@ -126,10 +126,23 @@ try {
             .querySelector(".sv3-pointer")
             .getBoundingClientRect()
             .toJSON(),
+          cursorDeclared: {
+            x: Number.parseFloat(
+              document.querySelector(".sv3-pointer").style.left,
+            ),
+            y: Number.parseFloat(
+              document.querySelector(".sv3-pointer").style.top,
+            ),
+            transition: getComputedStyle(document.querySelector(".sv3-pointer"))
+              .transitionDuration,
+          },
         };
       });
       assert.equal(report.theme, "classic-light");
       assert.ok(report.documentWidth <= report.viewport);
+      assert.ok(Math.abs(report.cursor.x - report.cursorDeclared.x) < 0.05);
+      assert.ok(Math.abs(report.cursor.y - report.cursorDeclared.y) < 0.05);
+      assert.equal(report.cursorDeclared.transition, "0s");
       for (const box of report.bounds)
         assert.ok(
           box.x >= 0 &&

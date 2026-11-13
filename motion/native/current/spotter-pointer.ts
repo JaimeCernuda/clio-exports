@@ -86,3 +86,30 @@ export function spotterPointerAt(
     y: a.y + (b.y - a.y) * progress,
   };
 }
+
+/** Cover every visible movement and its settling handles without replacing idle footage. */
+export function spotterPointerMotionRanges(
+  profile: PointerProfile,
+  first: number,
+  end: number,
+  handles = 12,
+): Array<[number, number]> {
+  const points = spotterPointerWaypoints(profile);
+  const ranges: Array<[number, number]> = [];
+  for (let index = 1; index < points.length; index++) {
+    const a = points[index - 1],
+      b = points[index];
+    if (
+      (a.x === b.x && a.y === b.y) ||
+      (a.x > profile.width + 24 && b.x > profile.width + 24)
+    )
+      continue;
+    const start = Math.max(first, a.frame - handles),
+      stop = Math.min(end, b.frame + handles);
+    if (stop <= start) continue;
+    const prior = ranges.at(-1);
+    if (prior && start <= prior[1]) prior[1] = Math.max(stop, prior[1]);
+    else ranges.push([start, stop]);
+  }
+  return ranges;
+}

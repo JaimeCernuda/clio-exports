@@ -16,7 +16,7 @@ import { promisify } from "node:util";
 import path from "node:path";
 
 const mode = process.argv[2] ?? "proof";
-if (!["proof", "full", "benchmark", "graph-proof"].includes(mode))
+if (!["proof", "full", "benchmark", "graph-proof", "repair"].includes(mode))
   throw new Error("Choose proof, full or benchmark");
 const root = path.resolve("."),
   temp = path.join(root, ".native-ui/spotter-v3-direct"),
@@ -36,21 +36,25 @@ const live = await (
 if (live.revision !== pin.revision)
   throw new Error("Start the pinned current UI on 3372");
 const ranges =
-  mode === "full"
-    ? [[7, 210]]
-    : mode === "graph-proof"
-      ? [
-          [58.5, 63],
-          [99.5, 104],
-          [108, 114.5],
-        ]
-      : mode === "benchmark"
-        ? [[101, 101.5]]
-        : [
-            [101, 104],
-            [132, 134],
-            [168, 194],
-          ];
+  mode === "repair"
+    ? JSON.parse(
+        await readFile(".native-ui/spotter-v3-pointer-repair.json", "utf8"),
+      ).ranges.map(([a, b]) => [a / 60, b / 60])
+    : mode === "full"
+      ? [[7, 210]]
+      : mode === "graph-proof"
+        ? [
+            [58.5, 63],
+            [99.5, 104],
+            [108, 114.5],
+          ]
+        : mode === "benchmark"
+          ? [[101, 101.5]]
+          : [
+              [101, 104],
+              [132, 134],
+              [168, 194],
+            ];
 const sourceFrames = ranges.flatMap(([a, b]) =>
   Array.from(
     { length: Math.round((b - a) * 60) },
@@ -153,6 +157,8 @@ try {
                 x: box?.x,
                 y: box?.y,
                 opacity: cursor ? Number(getComputedStyle(cursor).opacity) : 0,
+                expectedX: cursor ? Number.parseFloat(cursor.style.left) : null,
+                expectedY: cursor ? Number.parseFloat(cursor.style.top) : null,
               });
             }
           }
@@ -171,6 +177,13 @@ try {
     );
     if (pose.paintedFrame !== frame || pose.count !== 1 || pose.opacity !== 1)
       throw new Error(`Missing or stale native pointer at ${frame}`);
+    if (
+      Math.abs(pose.x - pose.expectedX) > 0.05 ||
+      Math.abs(pose.y - pose.expectedY) > 0.05
+    )
+      throw new Error(
+        `Native pointer CSS paint lags its declared pose at ${frame}`,
+      );
     if (collectPointer) pointerPoses.push(pose);
     const shot = await worker.cdp.send("Page.captureScreenshot", {
       format,
@@ -185,7 +198,7 @@ try {
   const { PNG } = await import("pngjs");
   const parity = [];
   for (const frame of [
-    3060, 5130, 6270, 9030, 10320, 10470, 11010, 11280, 11580,
+    420, 421, 424, 3060, 5130, 6270, 9030, 10320, 10470, 11010, 11280, 11580,
   ]) {
     console.log(JSON.stringify({ checkingPixelParity: frame }));
     await capture(workers[0], Math.max(0, frame - 1), "png");
@@ -273,6 +286,7 @@ try {
   const [code] = await finished;
   if (code !== 0) throw new Error(`FFmpeg failed: ${stderr}`);
   pointerPoses.sort((a, b) => a.frame - b.frame);
+  await writeFile(`${target}.pointer-poses.json`, JSON.stringify(pointerPoses));
   let maximumPointerTravel = 0;
   for (let index = 1; index < pointerPoses.length; index++) {
     const previous = pointerPoses[index - 1],
@@ -311,6 +325,7 @@ try {
   let deliveryVideo = video,
     introSha256;
   if (mode === "full") {
+    const conforming = target.replace(/\.mp4$/, ".conform.pending.mp4");
     const introProbe = JSON.parse(
       (
         await promisify(execFile)("ffprobe", [
@@ -363,7 +378,7 @@ try {
       "bt709",
       "-movflags",
       "+faststart",
-      target,
+      conforming,
     ]);
     deliveryVideo = JSON.parse(
       (
@@ -374,12 +389,13 @@ try {
           "-show_streams",
           "-of",
           "json",
-          target,
+          conforming,
         ])
       ).stdout,
     ).streams.find((s) => s.codec_type === "video");
     if (Number(deliveryVideo.nb_read_frames) !== sourceFrames.length + 480)
       throw new Error("Approved-intro conform frame count failed");
+    await rename(conforming, target);
     const introHash = createHash("sha256");
     for await (const bytes of createReadStream(intro)) introHash.update(bytes);
     introSha256 = introHash.digest("hex");

@@ -21,6 +21,19 @@ export async function awaitSpotterPaint(
     // This film has no changing rich assets. Let native layout effects settle,
     // force layout twice, then capture the compositor with its own paint fence.
     await task();
+    const cursor = document.querySelector<SVGElement>(".sv3-pointer");
+    const cursorBox = cursor?.getBoundingClientRect();
+    if (
+      !cursor ||
+      !cursorBox ||
+      Math.abs(cursorBox.x - Number.parseFloat(cursor.style.left)) > 0.05 ||
+      Math.abs(cursorBox.y - Number.parseFloat(cursor.style.top)) > 0.05
+    ) {
+      await new Promise<void>((resolve) =>
+        requestAnimationFrame(() => resolve()),
+      );
+      continue;
+    }
     const selected = window.getSelection();
     const toolbar = document.querySelector('[data-slot="selection-actions"]');
     const needsToolbar = Boolean(
@@ -86,6 +99,7 @@ export async function awaitSpotterPaint(
       document.querySelector(".sv3-main-log")?.scrollHeight,
       document.querySelector(".sv3-main-log")?.scrollTop,
       toolbar?.getBoundingClientRect(),
+      cursorBox,
       needsToolbar && selected?.rangeCount
         ? selected.getRangeAt(0).getBoundingClientRect()
         : null,

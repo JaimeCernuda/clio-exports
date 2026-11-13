@@ -94,6 +94,12 @@ import pointerTrack from "./spotter-pointer.json";
 import { spotterPointerAt, spotterPointerWaypoints } from "./spotter-pointer";
 const ContentMarkdown = memo(NativeContentMarkdown);
 
+/** Inline priority beats the native reduced-motion layer's still-animated 1ms rule. */
+function freezePointerPortal(node: SVGSVGElement | null): void {
+  node?.style.setProperty("transition", "none", "important");
+  node?.style.setProperty("animation", "none", "important");
+}
+
 const unavailable = async (): Promise<never> => {
   throw new Error(
     "This film presents archived evidence; it cannot execute an agent.",
@@ -1127,6 +1133,7 @@ function FilmCursor({ frame }: { frame: number }) {
   return createPortal(
     <svg
       className="sv3-pointer"
+      ref={freezePointerPortal}
       aria-hidden
       viewBox="0 0 32 40"
       style={{ left: point.x, top: point.y }}

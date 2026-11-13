@@ -6,6 +6,7 @@ import pointerTrack from "../native/current/spotter-pointer.json";
 import {
   spotterPointerAt,
   spotterPointerWaypoints,
+  spotterPointerMotionRanges,
 } from "../native/current/spotter-pointer";
 import { buildSpotterReconstruction } from "../native/current/spotter-scenario";
 import {
@@ -22,6 +23,24 @@ import {
 const pair = JSON.parse(
   readFileSync("native/public/opal-chainB-7795459.native.json", "utf8"),
 ) as PairedReplay;
+test("correction windows cover every visible moving frame and settling handle", () => {
+  const profile = pointerTrack.profiles[0],
+    points = spotterPointerWaypoints(profile);
+  const ranges = spotterPointerMotionRanges(profile, 420, SPOTTER_FRAMES);
+  for (let f = 420; f < SPOTTER_FRAMES - 1; f++) {
+    const a = spotterPointerAt(points, f),
+      b = spotterPointerAt(points, f + 1);
+    if (
+      Math.hypot(b.x - a.x, b.y - a.y) < 1e-6 ||
+      (a.x > profile.width + 24 && b.x > profile.width + 24)
+    )
+      continue;
+    assert.ok(
+      ranges.some(([start, end]) => f >= start && f + 1 < end),
+      `Uncovered visible movement at ${f}`,
+    );
+  }
+});
 test("the whole pointer track retains measured targets, forward/backward parity and bounded peak speed", () => {
   for (const profile of pointerTrack.profiles) {
     const points = spotterPointerWaypoints(profile);

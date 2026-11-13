@@ -22,23 +22,30 @@ acceptance or a claim that the full delivery encode has been watched.
 | Selection | The old vertical action menu did not match RC1. | Register the recorded selections with the current native action toolbar. |
 | Opening | Rehearsal title replaced the approved motion introduction. | Conform the approved eight-second intro with the native body; keep both source hashes. |
 | Pointer travel | A fixed 36-frame exit produced a 73.6px/frame cross-screen spike. | Use distance-aware travel durations; test the complete path and audit each captured DOM pose. |
+| Capture protocol | The first complete body failed its measured-pointer audit: native CSS still applied a 1ms transition to the portal. | Override it with inline priority and require declared/measured positions to agree. Repaint every visible movement interval with 12-frame handles; test discontinuous splicing. This was a readiness failure, not proof that every corresponding encoded frame was visibly wrong. |
 
 ## Completed technical checks
 
-- 154 motion and 140 Python tests passed, with no failures or skips.
+- 157 motion and 140 Python tests passed, with no failures or skips.
 - Native strict typecheck passed at the final source freeze.
 - Ruff and strict Pyright passed for relocation and its tests.
 - Eleven real attention selections passed capture/hash/token-ownership checks.
   Total source mass and residual were conserved.
 - Seventy native browser states passed at two sizes, with assertions rejecting
   tables before tool completion or entries for future steps.
-- Sequential reasoning-collapse geometry passed at both sizes. The capture gate
+- Sequential reasoning-collapse geometry passed at 1920×1080. The capture gate
   rejected an intentionally collapsed 150px shell until its real layout returned.
 - Nine source frames passed exact cold/sequential decoded PNG parity before the
   complete capture, including both native selection toolbars and attention views.
 - Both full pointer profiles retain their measured targets and identical reverse
   seeks. Their peak travel is bounded to 30px/frame over the entire source clock.
   The capture also rejects missing/stale pointers or a measured speed spike.
+- The generic RC1 transcript and responsive-layout browser regressions both
+  passed. The final SPOTTER browser pass also requires zero cursor transition
+  duration and agreement between its declared and measured position.
+- Thirty correction windows cover every visible moving frame and its settling
+  handles. A decoded red/blue fixture proved that the conform preserves untouched
+  frames and the exact start/end of each replacement.
 - The 31-second internal proof (`23851a7c404a93a6810b519bcc90cd8a0fd757efa3e3e3f1c35a5fa96c9a85a2`)
   contains continuous selection → native toolbar → attention → scroll → return →
   second selection. Its 1,860 decoded frames produced no flash-scan candidates.
