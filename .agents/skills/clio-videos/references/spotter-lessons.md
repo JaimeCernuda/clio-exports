@@ -1,5 +1,56 @@
 # SPOTTER / OPAL lessons and open defects
 
+## Three-step reconstruction on RC1 (v3)
+
+Read `videos/spotter-opal/v3/README.md`, its plan and actual review receipt.
+The selected source rounds 1/2/5 are displayed as Step 1/2/3. A request may
+explicitly authorize reflowing precomputed prompt packets into tool presentations;
+that does not authorize claiming new executions. Keep `reconstruction:*` IDs,
+exact source spans and a concise reconstruction disclosure. Never write those
+views into Flowcept as genuine primary-agent telemetry.
+
+- Stage prompt → three tools → recorded thinking → response. Evidence arrives
+  with each tool result, not when Enter submits the request. A step selector gains
+  only started steps. Stable dashed step groups grow instead of being replaced.
+- Keep Lineage visible while the next container and its result nodes arrive.
+  Opening an already complete graph does not demonstrate that progression.
+- Tool names alone may be ambiguous: distinguish panel membership from dose
+  series even though both use `design_lookup`. Edges start at actual visible
+  answers/results and route outside other cards.
+- Moving recorded attention to another presentation requires exact token
+  ownership and full captured mass. Top-10% display runs cannot allocate the
+  rest by character length. Verify capture SHA/bytes, tokenizer round trips,
+  disjoint source spans, unchanged residual and total denominator. Ambiguous
+  boundary tokens stay in their original domain. Relabelled mass is a source
+  grouping in the reconstruction, not a new tool-role inference measurement.
+- Retain Words/Max, the global heat scale and a matching conversation rail.
+  Never rescale each packet separately to force the override to look hotter.
+- Native ring spinners may use `motion-safe:animate-spin`, not `.animate-spin`.
+  Drive the actual `data-slot="ring-spinner"` transform from the frame clock.
+- DOM-target caches can make direct seeks disagree with sequential capture.
+  Measure immutable pointer profiles; test cold/backward seeks against warmed
+  frames. Use short deliberate travel and edge exits during long idle intervals.
+- Fixed travel durations can still cause speed spikes across a large viewport.
+  Budget time from distance and the easing curve's peak velocity; retain measured
+  action times. Audit the complete path, including off-frame exits after the
+  second selection, and verify the actual DOM pointer pose on every captured frame.
+- Keep recorded reasoning excerpts as source spans. Stream them, hold briefly,
+  then animate the disclosure closed. Do not invent private reasoning or leave
+  the reviewer frozen while the source clock advances.
+- A direct native-page capture can share the Remotion frame/paint protocol. Keep
+  whole-shell geometry checks; screenshot pixels must follow acknowledgement.
+  Independent pages require exact cold/sequential pixel-parity qualification
+  before using them for capture. The historical v2 single-worker rule remains
+  applicable to v2; it does not establish parity for a new renderer.
+- Reuse the current native selection-action toolbar, including its registry and
+  exact message/part selection scope. A cold split-layout seek can anchor its
+  portal to an earlier width. Qualify the live Range and toolbar geometry, refresh
+  the native selection event after layout settles, and wait for the portal paint.
+  A correct DOM box alone did not establish identical captured pixels.
+- Attention inspection includes the return: scroll back to the answer before
+  closing the banner and reopened tool body. Check the complete moving interval,
+  not just the inspection's beginning and the next selection's ending.
+
 ## Investigation revision: words and purposeful pocket views
 
 - The v2 revision is grouped under `videos/spotter-opal/`; read its revision plan,

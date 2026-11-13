@@ -20,6 +20,7 @@ import "./styles.css";
 import { awaitCurrentPaint } from "./readiness";
 import { DEMO_THEMES, demoTheme, type DemoTheme } from "./theme";
 import { isCaptureViewport, type CaptureViewport } from "./capture-viewport";
+import { SpotterApp } from "./spotter-app";
 
 const query = new URLSearchParams(location.search);
 const render = query.get("render") === "1";
@@ -241,4 +242,6 @@ function App() {
 }
 const target = document.getElementById("root");
 if (!target) throw new Error("Demo root missing");
-createRoot(target).render(<App />);
+createRoot(target).render(
+  query.get("demo") === "demos/spotter-current.json" ? <SpotterApp /> : <App />,
+);

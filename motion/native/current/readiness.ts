@@ -81,7 +81,8 @@ export async function awaitCurrentPaint(
       surfaces.every((host) => !host.querySelector('[aria-busy="true"]'));
     // Loading rich results changes the scroll height after the source block commits.
     const log = document.querySelector<HTMLElement>(".current-demo-log");
-    if (log) log.scrollTop = log.scrollHeight;
+    if (log && log.dataset.filmScroll !== "manual")
+      log.scrollTop = log.scrollHeight;
     const layout = JSON.stringify([
       mainBox,
       stageBox,

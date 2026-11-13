@@ -12,8 +12,11 @@ const root = path.resolve(
     ),
 );
 const gallery = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "../native/spotter-investigation-review.html",
+  process.env.CLIO_SPOTTER_REVIEW_GALLERY ??
+    path.resolve(
+      path.dirname(fileURLToPath(import.meta.url)),
+      "../native/spotter-investigation-review.html",
+    ),
 );
 const types = {
   ".html": "text/html; charset=utf-8",

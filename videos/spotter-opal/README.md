@@ -7,6 +7,10 @@ recorded alert times, native attention bodies and UI revision are documented in
 
 ## Investigation revision (v2)
 
+The new [three-step RC1 revision](v3/README.md) stages source packets as explicitly
+reconstructed tool views and groups captured attention by exact token ownership.
+Its [review](v3/REVIEW.md) records current delivery coverage separately.
+
 The [implementation plan](REVISION-PLAN.md) and generated
 [source ledger](investigation-v2.sources.json) describe the revised film.
 The [review history](REVIEW-V2.md) records the defects found, corrections and

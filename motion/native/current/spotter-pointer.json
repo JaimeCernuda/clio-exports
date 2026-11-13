@@ -1,0 +1,257 @@
+{
+  "schema": "clio.spotter-pointer.v1",
+  "profiles": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "points": [
+        {
+          "frame": 480,
+          "target": "policy",
+          "x": 167,
+          "y": 1032
+        },
+        {
+          "frame": 660,
+          "target": "security-spotter",
+          "x": 246,
+          "y": 958.5
+        },
+        {
+          "frame": 768,
+          "target": "tab-spotter",
+          "x": 1656.4765625,
+          "y": 14
+        },
+        {
+          "frame": 1080,
+          "target": "tab-evidence",
+          "x": 1129.6953125,
+          "y": 14
+        },
+        {
+          "frame": 3000,
+          "target": "tab-lineage",
+          "x": 1393.0859375,
+          "y": 14
+        },
+        {
+          "frame": 3870,
+          "target": "tab-evidence",
+          "x": 1129.6953125,
+          "y": 14
+        },
+        {
+          "frame": 4440,
+          "target": "tab-spotter",
+          "x": 1656.4765625,
+          "y": 14
+        },
+        {
+          "frame": 5400,
+          "target": "tab-lineage",
+          "x": 1393.0859375,
+          "y": 14
+        },
+        {
+          "frame": 6840,
+          "target": "tab-evidence",
+          "x": 1129.6953125,
+          "y": 14
+        },
+        {
+          "frame": 8640,
+          "target": "tab-spotter",
+          "x": 1656.4765625,
+          "y": 14
+        },
+        {
+          "frame": 9930,
+          "target": "inspect-alert",
+          "x": 202.421875,
+          "y": 906.46875
+        },
+        {
+          "frame": 10080,
+          "target": "answer-start",
+          "x": 98,
+          "y": 400.35625
+        },
+        {
+          "frame": 10128,
+          "target": "answer-end",
+          "x": 273.390625,
+          "y": 400.35625
+        },
+        {
+          "frame": 10440,
+          "target": "understand-attention",
+          "x": 237.6484375,
+          "y": 364.90625
+        },
+        {
+          "frame": 10800,
+          "target": "tab-lineage",
+          "x": 1393.0859375,
+          "y": 14
+        },
+        {
+          "frame": 10920,
+          "target": "close-attention",
+          "x": 971,
+          "y": 70
+        },
+        {
+          "frame": 11100,
+          "target": "73-start",
+          "x": 172.78125,
+          "y": 400.35625
+        },
+        {
+          "frame": 11148,
+          "target": "73-end",
+          "x": 190.734375,
+          "y": 400.35625
+        },
+        {
+          "frame": 11460,
+          "target": "understand-attention",
+          "x": 233.7109375,
+          "y": 364.90625
+        },
+        {
+          "frame": 11880,
+          "target": "tab-lineage",
+          "x": 1393.0859375,
+          "y": 14
+        }
+      ]
+    },
+    {
+      "width": 1116,
+      "height": 970,
+      "points": [
+        {
+          "frame": 480,
+          "target": "policy",
+          "x": 167,
+          "y": 922
+        },
+        {
+          "frame": 660,
+          "target": "security-spotter",
+          "x": 246,
+          "y": 848.5
+        },
+        {
+          "frame": 768,
+          "target": "tab-spotter",
+          "x": 943.3359375,
+          "y": 14
+        },
+        {
+          "frame": 1080,
+          "target": "tab-evidence",
+          "x": 652.6640625,
+          "y": 14
+        },
+        {
+          "frame": 3000,
+          "target": "tab-lineage",
+          "x": 798,
+          "y": 14
+        },
+        {
+          "frame": 3870,
+          "target": "tab-evidence",
+          "x": 652.6640625,
+          "y": 14
+        },
+        {
+          "frame": 4440,
+          "target": "tab-spotter",
+          "x": 943.3359375,
+          "y": 14
+        },
+        {
+          "frame": 5400,
+          "target": "tab-lineage",
+          "x": 798,
+          "y": 14
+        },
+        {
+          "frame": 6840,
+          "target": "tab-evidence",
+          "x": 652.6640625,
+          "y": 14
+        },
+        {
+          "frame": 8640,
+          "target": "tab-spotter",
+          "x": 943.3359375,
+          "y": 14
+        },
+        {
+          "frame": 9930,
+          "target": "inspect-alert",
+          "x": 185.421875,
+          "y": 798.46875
+        },
+        {
+          "frame": 10080,
+          "target": "answer-start",
+          "x": 81,
+          "y": 163.73125
+        },
+        {
+          "frame": 10128,
+          "target": "answer-end",
+          "x": 256.390625,
+          "y": 163.73125
+        },
+        {
+          "frame": 10440,
+          "target": "understand-attention",
+          "x": 220.6484375,
+          "y": 128.28125
+        },
+        {
+          "frame": 10800,
+          "target": "tab-lineage",
+          "x": 798,
+          "y": 14
+        },
+        {
+          "frame": 10920,
+          "target": "close-attention",
+          "x": 553,
+          "y": 80.75
+        },
+        {
+          "frame": 11100,
+          "target": "73-start",
+          "x": 155.78125,
+          "y": 163.73125
+        },
+        {
+          "frame": 11148,
+          "target": "73-end",
+          "x": 173.734375,
+          "y": 163.73125
+        },
+        {
+          "frame": 11460,
+          "target": "understand-attention",
+          "x": 216.7109375,
+          "y": 128.28125
+        },
+        {
+          "frame": 11880,
+          "target": "tab-lineage",
+          "x": 798,
+          "y": 14
+        }
+      ]
+    }
+  ]
+}

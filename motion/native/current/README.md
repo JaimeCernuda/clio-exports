@@ -13,6 +13,12 @@ It does not patch tracked files in gact-tui or change CLIO's public API.
 The setup assumes an existing `D:/Libraries/Documents/projects/gact-tui`
 checkout; clone `https://github.com/iowarp/gact-tui.git` there first on a fresh machine.
 
+The [three-step SPOTTER film](../../../videos/spotter-opal/v3/README.md) uses
+this profile with source-bound lookup views, a growing lineage graph, recorded
+reviewer work and word attention. Its dedicated frame-driven route is
+`/?demo=demos/spotter-current.json`; use its dedicated capture script rather
+than the generic JSON-scene renderer.
+
 ## Setup on D:
 
 From `D:/Libraries/Documents/projects/clio-exports`, with Node 22.22+, pnpm

@@ -10,6 +10,7 @@ motion/out/
 motion/review/
 /ad/out/
 motion/.native-ui/
+motion/.tmp/
 .cache/
 # Machine-specific release-profile inventories; unrelated to portable video sources.
 /work/storage-cleanup-*/
