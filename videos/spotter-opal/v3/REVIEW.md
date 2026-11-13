@@ -4,7 +4,7 @@ Status: **ready for user review**. The clean full encode is delivered; creative
 acceptance remains with the user. Exact coverage is in [review-receipt.json](review-receipt.json).
 
 Final: 211 seconds, 1920×1080, CFR 60fps, 12,660 decoded frames, silent.
-SHA256: `e834b7f9aae63a8f5355768cd9e66b05c095ea9b49ac059687c6473ec7cf214f`.
+SHA256: `7a775fd71dbbd585461442bd9a6b68b07575c8ff5ad4bdf8be95c20d38d4c88f`.
 This is a fresh complete native body with the approved intro, without internal
 correction splices. See [render-receipt.json](render-receipt.json).
 
@@ -31,18 +31,19 @@ correction splices. See [render-receipt.json](render-receipt.json).
 
 ## Completed technical checks
 
-- 160 motion tests passed in the second visual pass, with no failures or skips.
+- 161 motion tests passed in the cursor revision, with no failures or skips.
   The unchanged attention/Python scope retains its previous 140-test qualification.
-- Native strict typecheck passed at the final source freeze.
+- Native and root strict typechecks passed at the final source freeze.
 - Ruff and strict Pyright passed for relocation and its tests.
 - Eleven real attention selections passed capture/hash/token-ownership checks.
   Total source mass and residual were conserved.
-- Seventy-six native browser states passed at two sizes, with assertions rejecting
+- Seventy-eight native browser states passed at two sizes, with assertions rejecting
   tables before tool completion or entries for future steps.
 - Sequential reasoning-collapse geometry passed at 1920×1080. The capture gate
   rejected an intentionally collapsed 150px shell until its real layout returned.
-- Eighteen source frames passed exact cold/sequential decoded PNG parity before the
-  complete capture, including both native selection toolbars and attention views.
+- Twenty-four source frames passed exact cold/sequential decoded PNG parity before the
+  complete capture, including both native selection toolbars, attention rests,
+  paint-time extent changes and closing-fade compositing.
 - Both full pointer profiles retain their measured targets and identical reverse
   seeks. Their peak travel is bounded to 30px/frame over the entire source clock.
   The capture also rejects missing/stale pointers or a measured speed spike.
@@ -113,8 +114,8 @@ frame-count checks had not identified as story problems:
 | 03:05–03:07 | Closing the first attention inspection also changed the pocket without a tab action. | Retain Lineage after closing; visibly select Evidence at 03:05.2, then begin selecting `73` at 03:06.2. Remeasure both pointer profiles. |
 
 The complete native body was rerendered from renderer commit `605ce86`; the
-approved intro and 211-second runtime remain intact. The current hash at the top
-identifies this replacement. The review script now includes both revised handoffs.
+approved intro and 211-second runtime remain intact. That replacement was
+`e834b7f9`; the later cursor revision below supersedes it. The review script now includes both revised handoffs.
 Eighteen cold/sequential pixel comparisons include the exact frame before, at and
 after the new tab click. All 12,180 measured pointer poses pass, with no missing
 or stale pose and a maximum 29.96px/frame.
@@ -126,3 +127,41 @@ scroll repair. All 12,660 decoded frames were scanned again: only the same three
 low-amplitude spinner/fade candidates remain, with stable text and layout. The
 machine-readable receipt records the current playback and precise visual scope;
 it does not claim continuous human observation of every frame.
+
+## User-reported cursor revision
+
+The user rejected the repeated cursor exits as unnatural and distracting. The
+previous pose audit checked speed and presence, but allowed that authored
+behaviour. In the `e834b7f9` delivery, the cursor left the viewport bounds 13 times;
+9,339 of its 11,820 pre-close interface frames were outside those bounds.
+
+The cursor now holds at the last action and travels directly to the next target.
+After each attention command it makes a short move into the nearby left gutter
+so it does not cover the highlighted override. It remains on screen throughout
+the interface shot, then fades with the whole interface at the branded close.
+There is no independent exit gesture at the end and no random idle drift.
+
+The revised checks cover on-screen rests and local move-aside distances as well
+as every action target, reverse seeks, speed and actual captured poses. The
+capture also qualifies cursor opacity against the closing curtain. An additional
+browser regression expands content at paint time and requires follow-scroll to
+settle before acknowledgement. The closing overlay keeps its text compositing
+consistent through the last fade frame; cold/sequential pixel parity covers both
+attention rests and the closing fade.
+
+The complete native body was rerendered from `046b0a4`. All 12,180 measured
+cursor poses pass; none of the 11,820 pre-close interface frames places its
+bounds outside the viewport. All 24 cold/sequential pixel comparisons, 78 browser
+states and 161 motion tests pass, with no skipped tests. The source and dataset
+identity remain unchanged.
+
+The actual `7a775fd7` delivery completed 1× playback from 0 to 211 seconds.
+Visual inspection covered full-size views at 02:56.5, 03:14 and 03:19.5; six
+cursor-motion strips, including both nearby rests and the interface fade; and
+consecutive encoded neighbours around both scanner candidates, the repaired
+scroll transition and the closing fade. The scan covers all 12,660 decoded
+frames. Its only two candidates are busy-indicator changes with stable text and
+layout. The earlier closing-fade candidate is absent. This is sampled visual
+coverage alongside full-duration playback, not continuous human viewing of
+every frame. Exact reviewed ranges and the superseded delivery are retained
+in the machine-readable receipt.

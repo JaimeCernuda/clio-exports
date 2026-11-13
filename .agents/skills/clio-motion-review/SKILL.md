@@ -102,6 +102,12 @@ No failed or skipped tests count as a passing result.
 
 ## Visual and motion checks
 
+Review idle cursor behaviour as well as its clicks. Repeated edge exits and
+re-entries were rejected as unnatural and distracting. Let it stay near the last
+action or move a short distance into nearby clear space; verify that its resting
+shape does not cover the evidence being discussed. Speed and presence checks
+alone do not qualify this choreography.
+
 For website loops, inspect the encoded first/last join, not only the middle of
 the original advertisement. Continue a word wheel forward across the wrap; hold
 the resolved word cleanly. A compact composition can reset while hidden after

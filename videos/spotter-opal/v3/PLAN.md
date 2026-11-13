@@ -44,6 +44,14 @@ An initial budget is roughly three minutes, including setup and two attention
 inspections. Adjust after the moving review. Do not inherit the old 15-minute
 runtime or long pauses before short activity groups collapse.
 
+## Cursor direction
+
+Keep the pointer on screen between actions. Hold near its last target; after each
+attention command, make only a short move into the nearby gutter so the source
+text remains readable. Travel directly to the next action. Do not choreograph
+repeated edge exits, re-entries or random idle drift. Fade the pointer with the
+interface at the branded close.
+
 ## Right pocket
 
 ### Evidence

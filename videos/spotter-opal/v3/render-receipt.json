@@ -2,7 +2,7 @@
   "schema": "clio.spotter-v3-render.v1",
   "capture": "direct native page; same frame/paint protocol as Remotion bridge",
   "mode": "full",
-  "sha256": "e834b7f9aae63a8f5355768cd9e66b05c095ea9b49ac059687c6473ec7cf214f",
+  "sha256": "7a775fd71dbbd585461442bd9a6b68b07575c8ff5ad4bdf8be95c20d38d4c88f",
   "ui": {
     "repository": "https://github.com/iowarp/gact-tui.git",
     "branch": "rc1/ui-liftoff",
@@ -16,12 +16,7 @@
   "fps": 60,
   "width": 1920,
   "height": 1080,
-  "ranges": [
-    [
-      7,
-      210
-    ]
-  ],
+  "ranges": [[7, 210]],
   "errors": [],
   "independentPagePixelParity": [
     {
@@ -38,6 +33,14 @@
     },
     {
       "frame": 3060,
+      "same": true
+    },
+    {
+      "frame": 5100,
+      "same": true
+    },
+    {
+      "frame": 5101,
       "same": true
     },
     {
@@ -73,6 +76,10 @@
       "same": true
     },
     {
+      "frame": 10530,
+      "same": true
+    },
+    {
       "frame": 11010,
       "same": true
     },
@@ -93,7 +100,19 @@
       "same": true
     },
     {
+      "frame": 11550,
+      "same": true
+    },
+    {
       "frame": 11580,
+      "same": true
+    },
+    {
+      "frame": 12270,
+      "same": true
+    },
+    {
+      "frame": 12300,
       "same": true
     }
   ],
@@ -105,73 +124,27 @@
   "pointerAudit": {
     "frames": 12180,
     "maximumPixelsPerFrame": 29.958214714936705,
-    "missingOrStale": 0
+    "missingOrStale": 0,
+    "offscreenDuringInterface": 0,
+    "opacityFollowsInterfaceClose": true
   },
   "markers": [
-    [
-      8,
-      "Enable SPOTTER"
-    ],
-    [
-      15,
-      "Step 1 · Dose response"
-    ],
-    [
-      34.5,
-      "Recorded reasoning"
-    ],
-    [
-      51,
-      "Baseline lineage"
-    ],
-    [
-      56,
-      "Step 2 · Transition"
-    ],
-    [
-      74.5,
-      "Concurrent review"
-    ],
-    [
-      97,
-      "Step 3 · Analogue"
-    ],
-    [
-      103,
-      "Lookup result"
-    ],
-    [
-      117.5,
-      "Recorded reasoning"
-    ],
-    [
-      145,
-      "Later in the recorded review"
-    ],
-    [
-      160,
-      "SPOTTER alert"
-    ],
-    [
-      168,
-      "Select the answer"
-    ],
-    [
-      175,
-      "Word attention"
-    ],
-    [
-      186.2,
-      "Select 73"
-    ],
-    [
-      192,
-      "Inspect the tool result"
-    ],
-    [
-      205,
-      "Close"
-    ]
+    [8, "Enable SPOTTER"],
+    [15, "Step 1 · Dose response"],
+    [34.5, "Recorded reasoning"],
+    [51, "Baseline lineage"],
+    [56, "Step 2 · Transition"],
+    [74.5, "Concurrent review"],
+    [97, "Step 3 · Analogue"],
+    [103, "Lookup result"],
+    [117.5, "Recorded reasoning"],
+    [145, "Later in the recorded review"],
+    [160, "SPOTTER alert"],
+    [168, "Select the answer"],
+    [175, "Word attention"],
+    [186.2, "Select 73"],
+    [192, "Inspect the tool result"],
+    [205, "Close"]
   ],
   "video": {
     "index": 0,
@@ -207,7 +180,7 @@
     "start_time": "0.000000",
     "duration_ts": 3240960,
     "duration": "211.000000",
-    "bit_rate": "673704",
+    "bit_rate": "671704",
     "bits_per_raw_sample": "8",
     "nb_frames": "12660",
     "nb_read_frames": "12660",

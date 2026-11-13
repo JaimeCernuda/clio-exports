@@ -44,6 +44,16 @@ npm run demo:build
 npm run demo:preview
 ```
 
+To serve the completed movie and its review controls, use another terminal
+from `motion/`:
+
+```powershell
+$env:CLIO_SPOTTER_REVIEW_ROOT="$PWD/out/spotter-v3"
+$env:CLIO_SPOTTER_REVIEW_GALLERY="$PWD/../videos/spotter-opal/v3/review.html"
+$env:CLIO_SPOTTER_REVIEW_PORT="3373"
+npm run spotter:review
+```
+
 Open **http://127.0.0.1:3372/?demo=demos/spotter-current.json**. Play, Shot and
 absolute frame controls use the same component as capture. Tabs, the available
 step selector and tool inspection operate on source-bound views. This archive
@@ -104,9 +114,8 @@ into `motion/native/current/spotter-pointer.json`. Immutable paths reproduce
 absolute seeks and sequential capture. The cursor stays at its last action
 during idle intervals and travels directly to the next target. The two attention
 clicks have short rests in the nearby gutter so the pointer does not cover the
-highlighted source. It fades only
-with the interface at the branded close. Native spinners share the film clock. Both source
-clocks freeze during attention inspection.
+highlighted source. It fades only with the interface at the branded close. Native
+spinners share the film clock. Both source clocks freeze during attention inspection.
 
 ## Rebuild attention
 
