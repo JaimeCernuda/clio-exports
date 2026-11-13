@@ -86,7 +86,7 @@ import {
   displayedStepText,
   type PocketName,
 } from "./spotter-plan";
-import { awaitSpotterPaint } from "./spotter-readiness";
+import { awaitSpotterPaint, reconcileSpotterScroll } from "./spotter-readiness";
 import { isCaptureViewport, type CaptureViewport } from "./capture-viewport";
 import type { AttentionHeatView } from "../word-attention/attention-segment-heat";
 import "./spotter.css";
@@ -256,7 +256,6 @@ export function SpotterApp() {
       data-frame={request.frame}
       style={
         {
-          "--demo-spin": `${request.frame * 6}deg`,
           ...(render
             ? {
                 width: (request.viewport ?? initial.current).width,
@@ -422,23 +421,18 @@ function SpotterWorkspace({
   useLayoutEffect(() => {
     const host = log.current;
     if (!host) return;
-    const max = Math.max(0, host.scrollHeight - host.clientHeight);
-    const target = inspectedTool
-      ? host.querySelector<HTMLElement>(`[data-tool="${inspectedTool.id}"]`)
-      : undefined;
-    const desired = target
-      ? Math.min(
-          max,
-          target.getBoundingClientRect().top -
-            host.getBoundingClientRect().top +
-            host.scrollTop -
-            24,
-        )
-      : max;
-    host.scrollTop = inspectPhase
-      ? max + (desired - max) * inspection.scrollAmount
-      : max;
+    reconcileSpotterScroll(host);
   }, [frame, inspectPhase, inspectedTool]);
+  useLayoutEffect(() => {
+    // A frame variable on the whole transcript invalidates every descendant's
+    // style. Only the native spinner nodes need this changing value.
+    document
+      .querySelectorAll<SVGElement>('[data-slot="ring-spinner"]')
+      .forEach((node) => {
+        node.style.setProperty("--demo-spin", `${frame * 6}deg`);
+        node.dataset.spinFrame = String(frame);
+      });
+  }, [frame]);
   const selecting =
     (frame >= 168 * 60 && frame < 174 * 60) ||
     (frame >= 185 * 60 && frame < 191 * 60);
@@ -651,7 +645,9 @@ function SpotterWorkspace({
         workbenchRevealKey={frame >= 12 * 60 ? "investigation" : undefined}
       >
         <div className="sv3-chat">
-          {inspectPhase && <AttentionRail record={record} frame={frame} />}
+          {inspectPhase && (
+            <AttentionRail record={record} frame={frame} view={view} />
+          )}
           {inspectPhase && (
             <div className="sv3-attention" data-slot="attention-mode-banner">
               <div className="sv3-attention-top">
@@ -680,6 +676,9 @@ function SpotterWorkspace({
             role="log"
             aria-label="Conversation"
             data-film-scroll="manual"
+            data-inspecting={String(inspectPhase)}
+            data-scroll-target={inspectedTool?.id}
+            data-scroll-amount={inspection.scrollAmount}
           >
             <div className="sv3-main-content">
               {frame < 18 * 60 && (
@@ -1047,16 +1046,28 @@ function AttentionShares({
 function AttentionRail({
   record,
   frame,
+  view,
 }: {
   record: RelocatedAttention["records"][number];
   frame: number;
+  view: AttentionHeatView;
 }) {
+  const previous = useRef<{ record: object; layout: string } | undefined>(
+    undefined,
+  );
   const [marks, setMarks] = useState<
     Array<{ at: number; value: number; tool: string }>
   >([]);
   useLayoutEffect(() => {
     const host = document.querySelector<HTMLElement>(".sv3-main-log");
     if (!host) return;
+    const layout = JSON.stringify([host.scrollHeight, host.clientWidth, view]);
+    if (
+      previous.current?.record === record &&
+      previous.current.layout === layout
+    )
+      return;
+    previous.current = { record, layout };
     const top = host.getBoundingClientRect().top;
     const items = record.displayBlocks
       .filter((b) => b.field === "result")
@@ -1087,7 +1098,7 @@ function AttentionRail({
         ];
       });
     setMarks(items);
-  }, [record, frame]);
+  }, [record, frame, view]);
   return (
     <div
       className="sv3-heat-rail"

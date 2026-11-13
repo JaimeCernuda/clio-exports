@@ -26,7 +26,7 @@ acceptance or a claim that the full delivery encode has been watched.
 
 ## Completed technical checks
 
-- 157 motion and 140 Python tests passed, with no failures or skips.
+- 158 motion and 140 Python tests passed, with no failures or skips.
 - Native strict typecheck passed at the final source freeze.
 - Ruff and strict Pyright passed for relocation and its tests.
 - Eleven real attention selections passed capture/hash/token-ownership checks.
@@ -46,6 +46,24 @@ acceptance or a claim that the full delivery encode has been watched.
 - Thirty correction windows cover every visible moving frame and its settling
   handles. A decoded red/blue fixture proved that the conform preserves untouched
   frames and the exact start/end of each replacement.
+
+## Rejected first conform
+
+The first full conform, `fb577741067b7e4a6f7ac37cac8809758c5b55574a390442a738f52df5359f5c`,
+was rejected after its all-frame scan. Frames 6847–6848 showed a visible scroll
+jump at the beginning of a cold correction window. Lower-amplitude candidates
+3623 and 6083 were inspected with neighbours: layout and text remained stable
+around the busy indicator. Candidate 12359 was at the closing fade; no unrelated
+UI appearance was found. Black unused contact-sheet cells are not movie frames.
+
+The correction went into the renderer: zero wall-clock durations for frame-owned
+elements, scroll reconciliation after result layout, discarded source lead-in
+for discontinuous windows, and parity checks at source frames 6786/6787/6788.
+All fifteen cold/sequential PNG comparisons passed. Seventy browser states also
+passed with zero disclosure/cursor transition duration, matching spinner frame
+identity and settled normal-flow scroll. The clean full body is being rendered
+and must receive another encoded review. The earlier splice is not approved as
+the delivery.
 - The 31-second internal proof (`23851a7c404a93a6810b519bcc90cd8a0fd757efa3e3e3f1c35a5fa96c9a85a2`)
   contains continuous selection → native toolbar → attention → scroll → return →
   second selection. Its 1,860 decoded frames produced no flash-scan candidates.

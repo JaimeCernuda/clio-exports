@@ -35,14 +35,28 @@ views into Flowcept as genuine primary-agent telemetry.
   action times. Audit the complete path, including off-frame exits after the
   second selection, and verify the actual DOM pointer pose on every captured frame.
 - A native reduced-motion rule of **1ms is still a wall-clock transition**.
-  Layered `!important` rules defeated an unlayered cursor stylesheet. The body
-  portal therefore sets transition/animation to `none` with inline priority.
+  A local cursor stylesheet did not override it. The body portal therefore sets
+  transition/animation to `none` with inline priority. Frame-owned descendants
+  also need explicit zero durations with sufficient selector priority.
   Require the measured pointer box to agree with its declared frame pose before
   acknowledgement, not merely the correct parent `data-frame`. Persist audit
   poses before evaluating them so a rejected render retains its diagnostic data.
+- Reconcile follow-scroll against the settled content extent, rather than a
+  height measured before a result finishes opening. A two-frame scroll jump in
+  the first conform exposed this. Include its exact source frames in cold/warm
+  pixel parity. Sparse renders need discarded source-frame lead-in before every
+  discontinuous window; leading handles included in the encode are not pre-roll.
+- Keep changing spinner variables on the spinner nodes, not the transcript root.
+  Root inheritance invalidated the growing heat DOM every frame. Memoize
+  unchanged heat projections; refresh rail geometry when content extent, record
+  or aggregation view changes. Preserve its globally scaled values.
 - Corrections must cover every affected movement, not just the first failure.
   Derive their union from the immutable path, retain settling handles, test exact
   discontinuous frame replacement, and inspect the assembled movie and its joins.
+- Force CFR and a suitable MP4 track time base after concat/framesync. A correct
+  frame count did not guarantee `avg_frame_rate=60/1` or a full final-frame duration.
+  Qualify decoded count, rate and duration together; preserve the previous final
+  until the replacement passes.
 - Keep recorded reasoning excerpts as source spans. Stream them, hold briefly,
   then animate the disclosure closed. Do not invent private reasoning or leave
   the reviewer frozen while the source clock advances.

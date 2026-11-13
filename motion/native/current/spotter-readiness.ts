@@ -2,6 +2,31 @@ import { awaitCurrentPaint } from "./readiness";
 
 let qualifiedViewport = "";
 const task = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
+
+/** Reconcile film-owned scroll against the settled content extent, including cold result opens. */
+export function reconcileSpotterScroll(host: HTMLElement): void {
+  const max = Math.max(0, host.scrollHeight - host.clientHeight);
+  const target = host.dataset.scrollTarget
+    ? host.querySelector<HTMLElement>(
+        `[data-tool="${host.dataset.scrollTarget}"]`,
+      )
+    : undefined;
+  const desired = target
+    ? Math.min(
+        max,
+        target.getBoundingClientRect().top -
+          host.getBoundingClientRect().top +
+          host.scrollTop -
+          24,
+      )
+    : max;
+  const amount = Math.max(
+    0,
+    Math.min(1, Number(host.dataset.scrollAmount ?? 0)),
+  );
+  host.scrollTop =
+    host.dataset.inspecting === "true" ? max + (desired - max) * amount : max;
+}
 /** Qualify the full native shell, then recheck its geometry on every static-asset film frame. */
 export async function awaitSpotterPaint(
   isCurrent: () => boolean,
@@ -21,6 +46,8 @@ export async function awaitSpotterPaint(
     // This film has no changing rich assets. Let native layout effects settle,
     // force layout twice, then capture the compositor with its own paint fence.
     await task();
+    const log = document.querySelector<HTMLElement>(".sv3-main-log");
+    if (log) reconcileSpotterScroll(log);
     const cursor = document.querySelector<SVGElement>(".sv3-pointer");
     const cursorBox = cursor?.getBoundingClientRect();
     if (

@@ -1,3 +1,12 @@
+/* The native reduced-motion rule still assigns 1ms to every property. Film
+   geometry and opacity already come from the frame clock, so no wall-clock
+   interpolation may run between commit, measurement and capture. */
+html .current-demo.sv3 *,
+html .current-demo.sv3 *::before,
+html .current-demo.sv3 *::after {
+  transition-duration: 0s !important;
+  animation-duration: 0s !important;
+}
 .sv3-analogue {
   border: 1px solid var(--border);
   border-radius: 9px;

@@ -110,6 +110,19 @@ try {
           theme: document.documentElement.dataset.theme,
           documentWidth: document.documentElement.scrollWidth,
           viewport: innerWidth,
+          frameTransition: getComputedStyle(
+            document.querySelector(".sv3-disclosure") ??
+              document.querySelector(".sv3-main-content"),
+          ).transitionDuration,
+          spinnerFrames: [
+            ...document.querySelectorAll('[data-slot="ring-spinner"]'),
+          ].map((node) => Number(node.dataset.spinFrame)),
+          logGap: (() => {
+            const log = document.querySelector(".sv3-main-log");
+            return (
+              Math.max(0, log.scrollHeight - log.clientHeight) - log.scrollTop
+            );
+          })(),
           bounds: selectors.flatMap((selector) =>
             [...document.querySelectorAll(selector)].map((element) => ({
               selector,
@@ -143,6 +156,13 @@ try {
       assert.ok(Math.abs(report.cursor.x - report.cursorDeclared.x) < 0.05);
       assert.ok(Math.abs(report.cursor.y - report.cursorDeclared.y) < 0.05);
       assert.equal(report.cursorDeclared.transition, "0s");
+      assert.equal(report.frameTransition, "0s");
+      assert.ok(report.spinnerFrames.every((frame) => frame === report.frame));
+      if (second < 174 || (second >= 184 && second < 191))
+        assert.ok(
+          Math.abs(report.logGap) < 1,
+          `Unsettled follow scroll at ${second}: ${report.logGap}`,
+        );
       for (const box of report.bounds)
         assert.ok(
           box.x >= 0 &&

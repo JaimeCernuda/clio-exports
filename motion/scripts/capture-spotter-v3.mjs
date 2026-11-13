@@ -14,6 +14,7 @@ import { spawn, execFile } from "node:child_process";
 import { once } from "node:events";
 import { promisify } from "node:util";
 import path from "node:path";
+import { DELIVERY_FRAME_ARGS } from "./spotter-pointer-repair.mjs";
 
 const mode = process.argv[2] ?? "proof";
 if (!["proof", "full", "benchmark", "graph-proof", "repair"].includes(mode))
@@ -49,7 +50,7 @@ const ranges =
             [108, 114.5],
           ]
         : mode === "benchmark"
-          ? [[101, 101.5]]
+          ? [[193, 193.5]]
           : [
               [101, 104],
               [132, 134],
@@ -107,6 +108,7 @@ let ffmpeg,
   nonce = 1;
 let collectPointer = false;
 const pointerPoses = [];
+let seededFrames = 0;
 try {
   const errors = [];
   const workers = await Promise.all(
@@ -184,7 +186,16 @@ try {
       throw new Error(
         `Native pointer CSS paint lags its declared pose at ${frame}`,
       );
-    if (collectPointer) pointerPoses.push(pose);
+    if (collectPointer && format !== "seed") pointerPoses.push(pose);
+    if (format === "seed") {
+      await worker.page.evaluate(
+        () =>
+          new Promise((resolve) =>
+            requestAnimationFrame(() => requestAnimationFrame(resolve)),
+          ),
+      );
+      return null;
+    }
     const shot = await worker.cdp.send("Page.captureScreenshot", {
       format,
       ...(format === "jpeg" ? { quality: 100 } : {}),
@@ -198,7 +209,8 @@ try {
   const { PNG } = await import("pngjs");
   const parity = [];
   for (const frame of [
-    420, 421, 424, 3060, 5130, 6270, 9030, 10320, 10470, 11010, 11280, 11580,
+    420, 421, 424, 3060, 5130, 6270, 6786, 6787, 6788, 9030, 10320, 10470,
+    11010, 11280, 11580,
   ]) {
     console.log(JSON.stringify({ checkingPixelParity: frame }));
     await capture(workers[0], Math.max(0, frame - 1), "png");
@@ -251,6 +263,7 @@ try {
       "bt709",
       "-movflags",
       "+faststart",
+      ...DELIVERY_FRAME_ARGS,
       pending,
     ],
     { stdio: ["pipe", "ignore", "pipe"] },
@@ -260,11 +273,29 @@ try {
   });
   const finished = once(ffmpeg, "exit");
   const started = performance.now();
+  const previousSource = workers.map(() => undefined);
   for (let offset = 0; offset < sourceFrames.length; offset += workers.length) {
     if (errors.length) throw new Error(errors.join("\n"));
     const batch = sourceFrames.slice(offset, offset + workers.length);
     const buffers = await Promise.all(
-      batch.map((frame, i) => capture(workers[i], frame)),
+      batch.map(async (frame, i) => {
+        if (
+          previousSource[i] === undefined ||
+          frame !== previousSource[i] + workers.length
+        ) {
+          for (
+            let seed = Math.max(0, frame - 24);
+            seed < frame;
+            seed += workers.length
+          ) {
+            await capture(workers[i], seed, "seed");
+            seededFrames++;
+          }
+        }
+        const bytes = await capture(workers[i], frame);
+        previousSource[i] = frame;
+        return bytes;
+      }),
     );
     for (const bytes of buffers)
       if (!ffmpeg.stdin.write(bytes)) await once(ffmpeg.stdin, "drain");
@@ -378,6 +409,7 @@ try {
       "bt709",
       "-movflags",
       "+faststart",
+      ...DELIVERY_FRAME_ARGS,
       conforming,
     ]);
     deliveryVideo = JSON.parse(
@@ -424,6 +456,7 @@ try {
         errors,
         independentPagePixelParity: parity,
         capturePages: workers.length,
+        sourcePreroll: { leadFrames: 24, discardedRequests: seededFrames },
         pointerAudit: {
           frames: pointerPoses.length,
           maximumPixelsPerFrame: maximumPointerTravel,

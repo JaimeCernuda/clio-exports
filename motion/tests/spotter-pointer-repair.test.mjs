@@ -2,7 +2,12 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { pointerRepairFilter } from "../scripts/spotter-pointer-repair.mjs";
+import {
+  pointerRepairFilter,
+  DELIVERY_FRAME_ARGS,
+} from "../scripts/spotter-pointer-repair.mjs";
+import { mkdir, mkdtemp, rm } from "node:fs/promises";
+import path from "node:path";
 
 test("repair intervals reject overlap, noninteger coordinates and extent errors", () => {
   for (const ranges of [
@@ -17,6 +22,73 @@ test("repair intervals reject overlap, noninteger coordinates and extent errors"
     [],
   ])
     assert.throws(() => pointerRepairFilter({ first: 10, end: 60, ranges }));
+});
+
+test("intro plus gapped replacements delivers exact CFR metadata and frame count", async () => {
+  const root = path.resolve(".native-ui");
+  await mkdir(root, { recursive: true });
+  const dir = await mkdtemp(path.join(root, "pointer-conform-test-"));
+  try {
+    const file = path.join(dir, "test.mp4"),
+      plan = {
+        first: 420,
+        end: 480,
+        ranges: [
+          [430, 435],
+          [460, 466],
+        ],
+      };
+    const { graph, frames } = pointerRepairFilter(plan, 1, 2);
+    const run = promisify(execFile);
+    await run("ffmpeg", [
+      "-v",
+      "error",
+      "-filter_complex_threads",
+      "1",
+      "-f",
+      "lavfi",
+      "-i",
+      `color=c=white:s=16x16:r=60:d=${4 / 60}`,
+      "-f",
+      "lavfi",
+      "-i",
+      "color=c=red:s=16x16:r=60:d=1",
+      "-f",
+      "lavfi",
+      "-i",
+      `color=c=blue:s=16x16:r=60:d=${frames / 60}`,
+      "-filter_complex",
+      graph +
+        ";[0:v]setpts=PTS-STARTPTS[i];[repaired]setpts=PTS-STARTPTS[b];[i][b]concat=n=2:v=1:a=0[v]",
+      "-map",
+      "[v]",
+      "-c:v",
+      "libx264",
+      "-threads",
+      "1",
+      ...DELIVERY_FRAME_ARGS,
+      file,
+    ]);
+    const video = JSON.parse(
+      (
+        await run("ffprobe", [
+          "-v",
+          "error",
+          "-count_frames",
+          "-show_streams",
+          "-of",
+          "json",
+          file,
+        ])
+      ).stdout,
+    ).streams[0];
+    assert.equal(video.avg_frame_rate, "60/1");
+    assert.equal(Number(video.nb_read_frames), 64);
+    assert.ok(Math.abs(Number(video.duration) - 64 / 60) < 1e-5);
+  } finally {
+    assert.ok(path.resolve(dir).startsWith(root + path.sep));
+    await rm(dir, { recursive: true, force: true });
+  }
 });
 test("discontinuous replacement preserves every untouched frame and both boundaries exactly", async () => {
   const plan = {

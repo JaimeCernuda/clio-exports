@@ -63,13 +63,16 @@ The final conform joins the approved introduction with the native body; its
 frame count and both source hashes are recorded. An absent approved intro is
 regenerated from its existing Remotion composition.
 
-The delivered revision also has a bounded pointer correction pass. The native
-1ms reduced-motion rule delayed its portal's measured position; the original
-body was rejected by the post-capture audit. Inline priority now disables that
-transition, and readiness requires measured and declared positions to agree.
-All visible movement intervals, with 12-frame handles, are replaced using a
-frame-splicing operation tested at both boundaries. Reproduce that conform
-when the retained body is available:
+The renderer disables wall-clock interpolation on frame-owned elements and
+requires measured and declared cursor positions to agree. Follow-scroll is
+reconciled after content settles. Discontinuous windows receive discarded
+24-frame source lead-in. Spinner variables stay on their own nodes, and unchanged
+heat projections are memoized. The final clean render uses the complete native
+body, with the approved intro as its only assembly join.
+
+An earlier correction experiment and its exact frame-splicing tests are retained
+for maintenance. It needs the corresponding retained base; it is not the default
+delivery workflow:
 
 ```powershell
 npx tsx scripts/prepare-spotter-pointer-repair.ts
@@ -77,7 +80,7 @@ node scripts/capture-spotter-v3.mjs repair
 node scripts/spotter-pointer-repair.mjs
 ```
 
-Fresh full captures use the corrected portal directly. Finals are promoted only
+Full captures use the corrected renderer directly. Finals are promoted only
 after dimensions and decoded frame counts pass; a failed conform preserves the
 previous final.
 

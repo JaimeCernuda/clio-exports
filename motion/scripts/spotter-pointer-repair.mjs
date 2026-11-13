@@ -8,6 +8,16 @@ import path from "node:path";
 
 const run = promisify(execFile);
 
+/** Keep concat/framesync time bases from turning a 60fps delivery into VFR metadata. */
+export const DELIVERY_FRAME_ARGS = Object.freeze([
+  "-r",
+  "60",
+  "-fps_mode",
+  "cfr",
+  "-video_track_timescale",
+  "15360",
+]);
+
 /** Put discontinuous replacement frames at their exact original frame positions. */
 export function pointerRepairFilter(plan, baseIndex = 0, repairIndex = 1) {
   if (
@@ -126,6 +136,7 @@ async function main() {
     "bt709",
     "-movflags",
     "+faststart",
+    ...DELIVERY_FRAME_ARGS,
     pending,
   ]);
   const video = await probe(pending, bodyFrames + 480);

@@ -54,7 +54,7 @@ export interface RelocatedAttention {
 }
 
 /** Paint the unchanged global display scale, aggregated to first-level words by default. */
-export function SourceHeat({
+export const SourceHeat = memo(function SourceHeat({
   text,
   runs,
   view,
@@ -99,7 +99,7 @@ export function SourceHeat({
       {points.slice(at).join("")}
     </>
   );
-}
+});
 
 /** A native activity row around an archived packet; its identifier declares reconstruction. */
 export function LookupRow({
