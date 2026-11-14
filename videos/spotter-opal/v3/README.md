@@ -1,12 +1,14 @@
 # Three-step SPOTTER investigation
 
-See [REVIEW.md](REVIEW.md) for delivery status and the exact inspection coverage.
+See [COMPACT-REVIEW.md](COMPACT-REVIEW.md) for current delivery status and the exact inspection coverage.
 
-Notebook revision: **3:31, 1080p/60fps**, with the native warm `light` palette,
+Compact Notebook revision: **3:37, 1080p/60fps**, with the native warm `light` palette,
 IBM Plex typography and the separate green text/red tool ramps from gact-tui
-PR 1288 (`075c0581`). See [NOTEBOOK-REVIEW.md](NOTEBOOK-REVIEW.md) for its own
-delivery and inspection status. The earlier Cool encode remains in
-`motion/out/spotter-v3/`; the Notebook outputs use `motion/out/spotter-v3-notebook/`.
+PR 1288 (`075c0581`). See [COMPACT-REVIEW.md](COMPACT-REVIEW.md) for the current
+delivery and inspection status. The rejected palette-only Notebook restyle is
+retained in [NOTEBOOK-REVIEW.md](NOTEBOOK-REVIEW.md). The earlier Cool encode
+remains in `motion/out/spotter-v3/`; current Notebook outputs use
+`motion/out/spotter-v3-notebook-compact/`.
 Local watch/download gallery:
 **http://127.0.0.1:3373/?clip=full**. The movie stays local; render and review
 receipts are committed alongside this guide.
@@ -111,7 +113,7 @@ Full captures use the corrected renderer directly. Finals are promoted only
 after dimensions and decoded frame counts pass; a failed conform preserves the
 previous final.
 
-Latest local outputs in **`motion/out/spotter-v3-notebook/`**:
+Latest local outputs in **`motion/out/spotter-v3-notebook-compact/`**:
 
 - `spotter-three-steps-full.mp4`: complete film.
 - `spotter-three-steps-proof.mp4`: discontinuous internal mechanics proof.

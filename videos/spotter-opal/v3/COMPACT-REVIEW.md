@@ -76,5 +76,34 @@ flash-scan candidates across 2,280 decoded frames. Its SHA256 is
 Proof inspection: 1x browser playback with observations at 0.34, 20.48, 26.78,
 32.36 and 36.54 seconds; encoded transition strips around docking, earlier-source
 navigation and the second graph click. This is sampled visual coverage, not a
-claim of continuous human viewing. The final full render/review is in progress;
-delivery hashes and actual inspection coverage will be recorded after validation.
+claim of continuous human viewing. Full delivery review follows below.
+
+## Full delivery
+
+- File: `motion/out/spotter-v3-notebook-compact/spotter-three-steps-full.mp4`.
+- SHA256: `45679dffbe9a25c71d5fcc43a7bad02cc70764ccc049b655365068c741131e75`.
+- Renderer: clean `1e8c9ec8aef67b8c274780234c1c3137df4312cc`.
+- 17,264,538 bytes; 217 seconds; 1920x1080, 60 fps; 13,020 frames.
+- Silent H.264, YUV420P, BT.709. Approved intro retained without source changes.
+- 32 exact cold/sequential page comparisons pass. All 12,540 body cursor poses
+  match their expected frame and position; none are stale, missing or offscreen.
+  Maximum travel is 29.93 pixels per frame; cursor fade follows the closing UI.
+- Full decode passes. All 13,020 delivery frames were scanned; zero flash candidates.
+- The two shared native UI browser integration/layout tests also pass without skips.
+
+Status: **ready for user review**. Full-duration 1x browser playback reached
+217 seconds with no media error. Intermittent visual observations covered
+0.02, 12.03, 30.29, 54.31, 83.06, 108.77, 126.65, 149.83, 162.56, 174.61,
+185.38, 192.36, 208.66 and 217 seconds. Full-size encoded images were checked
+at 9.5, 155 and 187 seconds. Transition strips covered docking, source reveal,
+the prompt rail, earlier-source graph click and the second flagged graph click.
+An additional 154.6-155.6 second strip confirms the brief reviewer gap is an
+animated disclosure close into the next real tool, not a missing frame.
+
+No additional corrective render was needed after these delivery checks. This is
+sampled visual inspection alongside complete playback and frame scanning, not
+continuous human viewing of every frame or user approval. The finite sidecar
+still answers only its saved selections. Arbitrary selection requires the full
+recorded-bundle backend; no new agent inference was performed.
+
+Machine-readable evidence is in [compact-review-receipt.json](compact-review-receipt.json).

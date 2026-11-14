@@ -1,0 +1,438 @@
+{
+  "schema": "clio.spotter-v3-compact-review.v1",
+  "status": "ready-for-user-review",
+  "renderer": {
+    "commit": "1e8c9ec8aef67b8c274780234c1c3137df4312cc",
+    "dirty": false
+  },
+  "delivery": {
+    "file": "motion/out/spotter-v3-notebook-compact/spotter-three-steps-full.mp4",
+    "sha256": "45679dffbe9a25c71d5fcc43a7bad02cc70764ccc049b655365068c741131e75",
+    "bytes": 17264538,
+    "seconds": 217,
+    "frames": 13020,
+    "bodyFrames": 12540,
+    "fps": 60,
+    "width": 1920,
+    "height": 1080,
+    "audioStreams": 0
+  },
+  "sourceSha256": "cfdd456f2640519c6a0f715e817927c7fb70e77974d6d9605be12cc903131cd5",
+  "presentation": {
+    "theme": "light",
+    "family": "Notebook",
+    "layout": "Native welcome and focused column; linked multi-source attention inspection",
+    "heatStyleRevision": "075c0581f1f9ef15d6206b0339e7c105889a546f",
+    "heatDefault": "Words / Max",
+    "scope": "Native pinned shell with scoped heat-style backport; unchanged recorded attention"
+  },
+  "checks": {
+    "motionTests": 165,
+    "pythonTests": 140,
+    "browserStates": 84,
+    "viewports": [
+      [
+        1920,
+        1080
+      ],
+      [
+        1116,
+        970
+      ]
+    ],
+    "sharedNativeBrowserTests": 2,
+    "rootTypes": "pass",
+    "nativeTypes": "pass",
+    "ruff": "pass",
+    "pyright": "pass",
+    "format": "pass",
+    "skipped": 0,
+    "independentPagePixelParity": [
+      {
+        "frame": 420,
+        "same": true
+      },
+      {
+        "frame": 421,
+        "same": true
+      },
+      {
+        "frame": 424,
+        "same": true
+      },
+      {
+        "frame": 480,
+        "same": true
+      },
+      {
+        "frame": 481,
+        "same": true
+      },
+      {
+        "frame": 570,
+        "same": true
+      },
+      {
+        "frame": 660,
+        "same": true
+      },
+      {
+        "frame": 720,
+        "same": true
+      },
+      {
+        "frame": 1080,
+        "same": true
+      },
+      {
+        "frame": 1095,
+        "same": true
+      },
+      {
+        "frame": 1110,
+        "same": true
+      },
+      {
+        "frame": 3060,
+        "same": true
+      },
+      {
+        "frame": 5100,
+        "same": true
+      },
+      {
+        "frame": 5101,
+        "same": true
+      },
+      {
+        "frame": 5130,
+        "same": true
+      },
+      {
+        "frame": 6270,
+        "same": true
+      },
+      {
+        "frame": 6786,
+        "same": true
+      },
+      {
+        "frame": 6787,
+        "same": true
+      },
+      {
+        "frame": 6788,
+        "same": true
+      },
+      {
+        "frame": 9030,
+        "same": true
+      },
+      {
+        "frame": 10320,
+        "same": true
+      },
+      {
+        "frame": 10470,
+        "same": true
+      },
+      {
+        "frame": 10530,
+        "same": true
+      },
+      {
+        "frame": 10830,
+        "same": true
+      },
+      {
+        "frame": 11069,
+        "same": true
+      },
+      {
+        "frame": 11070,
+        "same": true
+      },
+      {
+        "frame": 11071,
+        "same": true
+      },
+      {
+        "frame": 11280,
+        "same": true
+      },
+      {
+        "frame": 11850,
+        "same": true
+      },
+      {
+        "frame": 12180,
+        "same": true
+      },
+      {
+        "frame": 12630,
+        "same": true
+      },
+      {
+        "frame": 12660,
+        "same": true
+      }
+    ],
+    "pointerAudit": {
+      "frames": 12540,
+      "maximumPixelsPerFrame": 29.926945556011898,
+      "missingOrStale": 0,
+      "offscreenDuringInterface": 0,
+      "opacityFollowsInterfaceClose": true
+    },
+    "decode": "pass",
+    "scan": {
+      "sha256": "45679dffbe9a25c71d5fcc43a7bad02cc70764ccc049b655365068c741131e75",
+      "frames": 13020,
+      "candidates": [],
+      "interpretation": "Low-resolution temporal candidates only; inspect consecutive encoded frames before drawing conclusions."
+    }
+  },
+  "interactionChecks": [
+    "Flagged Evidence footer opens and scrolls to its actual result",
+    "Green rail click scrolls to the user prompt, including cold paused seeks",
+    "Step 2 Lineage click opens the earlier membership lookup and matching evidence",
+    "Step 3 flagged Lineage click returns to the poisoned result",
+    "Native menu contains all five policies and compact icons",
+    "Native welcome and measured composer geometry survive pocket remount"
+  ],
+  "playback": {
+    "rate": 1,
+    "ended": true,
+    "seconds": 217,
+    "mediaError": null,
+    "observedSeconds": [
+      0.019,
+      12.0346,
+      30.2884,
+      54.3105,
+      83.0578,
+      108.7653,
+      126.6504,
+      149.8297,
+      162.5593,
+      174.6126,
+      185.3837,
+      192.3601,
+      208.6567,
+      217
+    ],
+    "coverage": "Full-duration playback with intermittent screenshots; not continuous human viewing"
+  },
+  "encodedInspection": {
+    "fullSizeSeconds": [
+      9.5,
+      155,
+      187
+    ],
+    "stripsSeconds": [
+      [
+        10.7,
+        11.7
+      ],
+      [
+        175,
+        177
+      ],
+      [
+        180.8,
+        182.2
+      ],
+      [
+        183.5,
+        186.5
+      ],
+      [
+        201.5,
+        205.5
+      ],
+      [
+        154.6,
+        155.6
+      ]
+    ],
+    "generatedCoverage": {
+      "video": "spotter-three-steps-full.mp4",
+      "sha256": "45679dffbe9a25c71d5fcc43a7bad02cc70764ccc049b655365068c741131e75",
+      "frames": 13020,
+      "times": [
+        0,
+        4,
+        7.9,
+        8,
+        9.5,
+        12,
+        14,
+        19,
+        21,
+        25.5,
+        30,
+        34.5,
+        45,
+        48.2,
+        51.5,
+        60,
+        66.7,
+        77,
+        86,
+        91.5,
+        101,
+        105,
+        114.5,
+        122,
+        135.5,
+        143,
+        146,
+        152,
+        155,
+        160.5,
+        165,
+        166.5,
+        169.8,
+        173,
+        175,
+        177.5,
+        181.5,
+        184.5,
+        185.5,
+        187,
+        190.5,
+        192.2,
+        194,
+        198.5,
+        202.5,
+        204.5,
+        207,
+        211.5,
+        216
+      ],
+      "strips": [
+        [
+          7.7,
+          8.3
+        ],
+        [
+          19,
+          21
+        ],
+        [
+          23.9,
+          24.5
+        ],
+        [
+          48,
+          48.5
+        ],
+        [
+          50.3,
+          51.2
+        ],
+        [
+          61.8,
+          62.4
+        ],
+        [
+          100.8,
+          101.5
+        ],
+        [
+          102.8,
+          103.6
+        ],
+        [
+          114.03,
+          114.26
+        ],
+        [
+          133.9,
+          134.5
+        ],
+        [
+          159.8,
+          160.6
+        ],
+        [
+          166.3,
+          167.2
+        ],
+        [
+          175,
+          177
+        ],
+        [
+          180.8,
+          182.2
+        ],
+        [
+          183.5,
+          186.5
+        ],
+        [
+          189,
+          191.2
+        ],
+        [
+          192,
+          194
+        ],
+        [
+          197.8,
+          199.2
+        ],
+        [
+          201.5,
+          205.5
+        ],
+        [
+          210.8,
+          212.2
+        ]
+      ],
+      "consecutiveFrames": [
+        [
+          3619,
+          3630
+        ],
+        [
+          6079,
+          6090
+        ],
+        [
+          6843,
+          6854
+        ],
+        [
+          9986,
+          9997
+        ],
+        [
+          11108,
+          11119
+        ],
+        [
+          12355,
+          12366
+        ]
+      ],
+      "note": "Generated review material; inspection must be recorded separately."
+    },
+    "findings": [
+      "Native compact welcome, policy menu and composer align without the previous custom title",
+      "User rule and earlier lookup are visible during frozen source time",
+      "Reviewer disclosure closes smoothly into its next recorded call"
+    ],
+    "unresolvedObservedDefects": []
+  },
+  "limitations": [
+    "Nine main lookup rows reconstruct archived prompt packets; zero original main-agent tool calls",
+    "Seven SPOTTER tool calls remain real recorded calls",
+    "Attention values, denominator and residual are preserved; word/max default",
+    "Finite attention sidecar supports only saved selections; arbitrary selections require the recorded-bundle backend",
+    "No new inference and no claim of user approval"
+  ],
+  "supersedes": "notebook-review-receipt.json"
+}
