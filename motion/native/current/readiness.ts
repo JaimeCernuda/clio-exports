@@ -68,7 +68,12 @@ export async function awaitCurrentPaint(
           Math.abs(stageBox.bottom - viewport.height) < 1 &&
           Math.abs(navBox.height - stageBox.height) < 1 &&
           composerBox.bottom <= viewport.height &&
-          composerBox.bottom > viewport.height - 48,
+          (composerBox.bottom > viewport.height - 48 ||
+            (Boolean(
+              document.querySelector('[data-composer-layout="welcome"]'),
+            ) &&
+              composerBox.width <= 896 &&
+              composerBox.top >= stageBox.top)),
       );
     const ready =
       shellReady &&

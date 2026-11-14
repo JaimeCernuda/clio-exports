@@ -19,6 +19,7 @@ import {
   spotterPrefix,
   displayedStepText,
   spotterInspectionAt,
+  spotterAttentionNavigationAt,
 } from "../native/current/spotter-plan";
 
 const pair = JSON.parse(
@@ -33,22 +34,28 @@ test("idle gaps retain an on-screen pointer instead of repeated exits and re-ent
     const rests = profile.points.filter(
       (point) => point.target === "attention-rest",
     );
-    assert.equal(rests.length, 2);
+    assert.equal(rests.length, 1);
     for (const rest of rests) {
       const prior = profile.points[profile.points.indexOf(rest) - 1];
-      assert.equal(prior.target, "understand-attention");
+      assert.ok(
+        [
+          "understand-attention",
+          "graph-reconstruction:step-2:tool-1",
+          "graph-reconstruction:step-3:tool-1",
+        ].includes(prior.target),
+      );
       assert.ok(
         Math.hypot(rest.x - prior.x, rest.y - prior.y) < 300,
         "Move aside locally instead of parking across the viewport",
       );
     }
     const points = spotterPointerWaypoints(profile);
-    for (let frame = 7 * 60; frame < 205 * 60; frame++) {
+    for (let frame = 7 * 60; frame < 211 * 60; frame++) {
       const point = spotterPointerAt(points, frame);
       assert.ok(point.x >= 0 && point.x + 24 <= profile.width);
       assert.ok(point.y >= 0 && point.y + 30 <= profile.height);
     }
-    for (const second of [25, 40, 60, 80, 100, 130, 150, 202]) {
+    for (const second of [25, 40, 60, 80, 100, 130, 150]) {
       const frame = second * 60;
       const prior = profile.points
         .filter((point) => point.frame <= frame)
@@ -65,9 +72,9 @@ test("idle gaps retain an on-screen pointer instead of repeated exits and re-ent
   }
   assert.equal(spotterPointerOpacityAt(6 * 60), 0);
   assert.equal(spotterPointerOpacityAt(7 * 60), 1);
-  assert.equal(spotterPointerOpacityAt(204 * 60), 1);
-  assert.equal(spotterPointerOpacityAt(204.5 * 60), 0.5);
-  assert.equal(spotterPointerOpacityAt(205 * 60), 0);
+  assert.equal(spotterPointerOpacityAt(210 * 60), 1);
+  assert.equal(spotterPointerOpacityAt(210.5 * 60), 0.5);
+  assert.equal(spotterPointerOpacityAt(211 * 60), 0);
 });
 test("correction windows cover every visible moving frame and settling handle", () => {
   const profile = pointerTrack.profiles[0],
@@ -118,12 +125,12 @@ test("attention opens smoothly, returns to the answer before closing, and stays 
     spotterInspectionAt(174 * 60 + 12).openness > 0 &&
       spotterInspectionAt(174 * 60 + 12).openness < 1,
   );
-  assert.equal(spotterInspectionAt(182 * 60).scrollAmount, 1);
+  assert.equal(spotterInspectionAt(188 * 60).scrollAmount, 1);
   assert.ok(
-    spotterInspectionAt(183 * 60).scrollAmount > 0 &&
-      spotterInspectionAt(183 * 60).scrollAmount < 1,
+    spotterInspectionAt(189 * 60).scrollAmount > 0 &&
+      spotterInspectionAt(189 * 60).scrollAmount < 1,
   );
-  assert.equal(spotterInspectionAt(184 * 60).active, false);
+  assert.equal(spotterInspectionAt(190 * 60).active, false);
   assert.equal(spotterInspectionAt(205 * 60).active, true);
 });
 test("the graph is visible while new step groups and their actual result nodes arrive", () => {
@@ -135,21 +142,48 @@ test("the graph is visible while new step groups and their actual result nodes a
 });
 test("attention inspection pocket changes follow explicit actions instead of an unrelated close", () => {
   assert.equal(spotterPocketAt(164 * 60), "spotter");
-  for (const second of [165.5, 167, 174, 179.9])
+  for (const second of [165.5, 167, 174, 179.9, 181, 185.5, 190, 197, 204])
     assert.equal(spotterPocketAt(Math.round(second * 60)), "evidence");
-  for (const second of [180, 182, 184, 184.18])
+  for (const second of [183, 184.4, 201, 202.9])
     assert.equal(spotterPocketAt(Math.round(second * 60)), "lineage");
-  assert.equal(spotterPocketAt(Math.round(184.2 * 60)), "evidence");
+  assert.equal(spotterPocketAt(Math.round(184.5 * 60)), "evidence");
   for (const profile of pointerTrack.profiles) {
     assert.ok(
       profile.points.some(
         (point) =>
-          point.frame === Math.round(184.2 * 60) &&
-          point.target === "tab-evidence",
+          point.frame === Math.round(184.5 * 60) &&
+          point.target === "graph-reconstruction:step-2:tool-1",
       ),
-      "The Evidence return needs its own visible tab interaction",
+      "The Evidence return must follow its source graph interaction",
     );
   }
+});
+
+test("frozen attention follows the suspect packet, user rule and an earlier lookup", () => {
+  const positions = [177.5, 181.5, 186, 189.5, 204.5].map((seconds) =>
+    spotterAttentionNavigationAt(seconds * 60),
+  );
+  assert.deepEqual(
+    positions.map((p) => p.to),
+    [
+      '[data-tool="reconstruction:step-3:tool-1"]',
+      '[data-prompt-round="5"]',
+      '[data-tool="reconstruction:step-2:tool-1"]',
+      '[data-answer="3"]',
+      '[data-tool="reconstruction:step-3:tool-1"]',
+    ],
+  );
+  assert.ok(positions.every((p) => p.progress === 1));
+  assert.equal(positions[2].evidenceStep, 2);
+  assert.equal(positions[4].evidenceStep, 3);
+  assert.ok(
+    positions[2].expanded.some((p) => p.id === "reconstruction:step-2:tool-1"),
+  );
+  assert.equal(spotterAttentionNavigationAt(190.5 * 60).expanded.length, 0);
+  assert.equal(
+    spotterSourceAt(pair, 177 * 60),
+    spotterSourceAt(pair, 204 * 60),
+  );
 });
 test("renumbering preserves references to omitted ranges instead of aliasing them to the poisoned step", () => {
   assert.equal(

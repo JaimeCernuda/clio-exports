@@ -6,6 +6,28 @@ const task = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
 /** Reconcile film-owned scroll against the settled content extent, including cold result opens. */
 export function reconcileSpotterScroll(host: HTMLElement): void {
   const max = Math.max(0, host.scrollHeight - host.clientHeight);
+  const position = (selector: string | undefined): number => {
+    const target = selector ? host.querySelector<HTMLElement>(selector) : null;
+    return target
+      ? Math.max(
+          0,
+          Math.min(
+            max,
+            target.getBoundingClientRect().top -
+              host.getBoundingClientRect().top +
+              host.scrollTop -
+              24,
+          ),
+        )
+      : max;
+  };
+  if (host.dataset.inspecting === "true" && host.dataset.scrollTo) {
+    const progress = Number(host.dataset.scrollProgress ?? 1);
+    const from = position(host.dataset.scrollFrom),
+      to = position(host.dataset.scrollTo);
+    host.scrollTop = from + (to - from) * progress;
+    return;
+  }
   const target = host.dataset.scrollTarget
     ? host.querySelector<HTMLElement>(
         `[data-tool="${host.dataset.scrollTarget}"]`,
@@ -48,8 +70,43 @@ export async function awaitSpotterPaint(
     await task();
     const log = document.querySelector<HTMLElement>(".sv3-main-log");
     if (log) reconcileSpotterScroll(log);
+    // Rail positions depend on every source row, not just total scroll extent.
+    // Measure again after the native shell and fonts have actually settled.
+    document.dispatchEvent(new Event("spotter-measure-attention"));
     const cursor = document.querySelector<SVGElement>(".sv3-pointer");
     const cursorBox = cursor?.getBoundingClientRect();
+    const filmFrame = Number(
+      document.querySelector("[data-frame]")?.getAttribute("data-frame"),
+    );
+    const policyMenu = document.querySelector<HTMLElement>(
+      '[data-slot="dropdown-menu-content"]',
+    );
+    const menuBox = policyMenu?.getBoundingClientRect();
+    const anchorBox = document
+      .querySelector(".sv3-policy-anchor")
+      ?.getBoundingClientRect();
+    const menuExpected = filmFrame >= 480 && filmFrame < 660;
+    if (
+      menuExpected !== Boolean(menuBox) ||
+      (menuBox &&
+        anchorBox &&
+        (Math.abs(
+          menuBox.left -
+            Math.max(
+              8,
+              Math.min(
+                viewport.width - menuBox.width - 8,
+                anchorBox.right - menuBox.width,
+              ),
+            ),
+        ) > 0.75 ||
+          Math.abs(menuBox.bottom - anchorBox.top + 8) > 0.75))
+    ) {
+      await new Promise<void>((resolve) =>
+        requestAnimationFrame(() => resolve()),
+      );
+      continue;
+    }
     if (
       !cursor ||
       !cursorBox ||
@@ -117,7 +174,7 @@ export async function awaitSpotterPaint(
       Math.abs(stage.bottom - viewport.height) < 1 &&
       Math.abs(nav.height - stage.height) < 1 &&
       composer.bottom <= viewport.height &&
-      composer.bottom > viewport.height - 48 &&
+      composer.top >= stage.top &&
       [...document.images].every(
         (image) => image.complete && image.naturalWidth > 0,
       );
@@ -130,6 +187,8 @@ export async function awaitSpotterPaint(
       needsToolbar && selected?.rangeCount
         ? selected.getRangeAt(0).getBoundingClientRect()
         : null,
+      menuBox,
+      document.querySelector(".sv3-heat-rail")?.innerHTML,
     ]);
     stable = valid && layout === prior ? stable + 1 : 0;
     prior = layout;

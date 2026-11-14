@@ -715,15 +715,31 @@
         "Word attention"
       ],
       [
-        185.2,
+        176,
+        "Open the flagged source"
+      ],
+      [
+        180,
+        "Compare the user's rule"
+      ],
+      [
+        184.5,
+        "Inspect the earlier lookup"
+      ],
+      [
+        191.2,
         "Select 73"
       ],
       [
-        191,
-        "Inspect the tool result"
+        197,
+        "Word attention for 73"
       ],
       [
-        204,
+        203,
+        "Trace the flagged graph node"
+      ],
+      [
+        210,
         "Close"
       ]
     ],

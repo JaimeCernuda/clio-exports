@@ -8,14 +8,14 @@
         {
           "frame": 480,
           "target": "policy",
-          "x": 167,
-          "y": 1032
+          "x": 613.5,
+          "y": 619
         },
         {
           "frame": 660,
           "target": "security-spotter",
-          "x": 246,
-          "y": 958.5
+          "x": 435,
+          "y": 539.84375
         },
         {
           "frame": 768,
@@ -68,80 +68,98 @@
         {
           "frame": 9930,
           "target": "inspect-alert",
-          "x": 200.203125,
-          "y": 906.46875
+          "x": 214.203125,
+          "y": 919.5625
         },
         {
           "frame": 10080,
           "target": "answer-start",
-          "x": 98,
-          "y": 400.35625
+          "x": 112,
+          "y": 419.45
         },
         {
           "frame": 10128,
           "target": "answer-end",
-          "x": 263.984375,
-          "y": 400.35625
+          "x": 277.984375,
+          "y": 419.45
         },
         {
           "frame": 10440,
           "target": "understand-attention",
-          "x": 231.421875,
-          "y": 364.90625
+          "x": 245.421875,
+          "y": 384
         },
         {
-          "frame": 10530,
-          "target": "attention-rest",
-          "x": 65,
-          "y": 194
+          "frame": 10560,
+          "target": "evidence-flagged",
+          "x": 1432,
+          "y": 728.5
         },
         {
           "frame": 10800,
+          "target": "attention-prompt-3",
+          "x": 72.0546875,
+          "y": 514.671875
+        },
+        {
+          "frame": 10980,
           "target": "tab-lineage",
           "x": 1393.0859375,
           "y": 14
         },
         {
-          "frame": 10920,
+          "frame": 11070,
+          "target": "graph-reconstruction:step-2:tool-1",
+          "x": 1268.082275390625,
+          "y": 521.0759429931641
+        },
+        {
+          "frame": 11280,
+          "target": "scroll-answer",
+          "x": 65,
+          "y": 194
+        },
+        {
+          "frame": 11400,
           "target": "close-attention",
           "x": 971,
           "y": 70
         },
         {
-          "frame": 11052,
-          "target": "tab-evidence",
-          "x": 1129.6953125,
-          "y": 14
-        },
-        {
-          "frame": 11112,
+          "frame": 11472,
           "target": "73-start",
-          "x": 169.359375,
-          "y": 400.35625
+          "x": 183.359375,
+          "y": 419.45
         },
         {
-          "frame": 11160,
+          "frame": 11520,
           "target": "73-end",
-          "x": 187.375,
-          "y": 400.35625
+          "x": 201.375,
+          "y": 419.45
         },
         {
-          "frame": 11460,
+          "frame": 11820,
           "target": "understand-attention",
-          "x": 228.796875,
-          "y": 364.90625
+          "x": 242.796875,
+          "y": 384
         },
         {
-          "frame": 11550,
-          "target": "attention-rest",
-          "x": 65,
-          "y": 194
-        },
-        {
-          "frame": 11880,
+          "frame": 12060,
           "target": "tab-lineage",
           "x": 1393.0859375,
           "y": 14
+        },
+        {
+          "frame": 12180,
+          "target": "graph-reconstruction:step-3:tool-1",
+          "x": 1268.082275390625,
+          "y": 804.9747009277344
+        },
+        {
+          "frame": 12300,
+          "target": "attention-rest",
+          "x": 1006,
+          "y": 728.5
         }
       ]
     },
@@ -152,14 +170,14 @@
         {
           "frame": 480,
           "target": "policy",
-          "x": 167,
-          "y": 922
+          "x": 211.5,
+          "y": 564
         },
         {
           "frame": 660,
           "target": "security-spotter",
-          "x": 246,
-          "y": 848.5
+          "x": 200,
+          "y": 484.84375
         },
         {
           "frame": 768,
@@ -212,80 +230,98 @@
         {
           "frame": 9930,
           "target": "inspect-alert",
-          "x": 183.203125,
-          "y": 798
+          "x": 197.203125,
+          "y": 809.6875
         },
         {
           "frame": 10080,
           "target": "answer-start",
-          "x": 81,
-          "y": 206.1375
+          "x": 95,
+          "y": 180.95
         },
         {
           "frame": 10128,
           "target": "answer-end",
-          "x": 246.984375,
-          "y": 206.1375
+          "x": 260.984375,
+          "y": 180.95
         },
         {
           "frame": 10440,
           "target": "understand-attention",
-          "x": 214.421875,
-          "y": 170.6875
+          "x": 228.421875,
+          "y": 145.5
         },
         {
-          "frame": 10530,
-          "target": "attention-rest",
-          "x": 65,
-          "y": 218
+          "frame": 10560,
+          "target": "evidence-flagged",
+          "x": 821,
+          "y": 689.109375
         },
         {
           "frame": 10800,
+          "target": "attention-prompt-3",
+          "x": 72.0546875,
+          "y": 442.171875
+        },
+        {
+          "frame": 10980,
           "target": "tab-lineage",
           "x": 798,
           "y": 14
         },
         {
-          "frame": 10920,
+          "frame": 11070,
+          "target": "graph-reconstruction:step-2:tool-1",
+          "x": 719.3744506835938,
+          "y": 361.73846435546875
+        },
+        {
+          "frame": 11280,
+          "target": "scroll-answer",
+          "x": 65,
+          "y": 218
+        },
+        {
+          "frame": 11400,
           "target": "close-attention",
           "x": 553,
           "y": 72.5
         },
         {
-          "frame": 11052,
-          "target": "tab-evidence",
-          "x": 652.6640625,
-          "y": 14
-        },
-        {
-          "frame": 11112,
+          "frame": 11472,
           "target": "73-start",
-          "x": 152.359375,
-          "y": 206.1375
+          "x": 166.359375,
+          "y": 180.95
         },
         {
-          "frame": 11160,
+          "frame": 11520,
           "target": "73-end",
-          "x": 170.375,
-          "y": 206.1375
+          "x": 184.375,
+          "y": 180.95
         },
         {
-          "frame": 11460,
+          "frame": 11820,
           "target": "understand-attention",
-          "x": 211.796875,
-          "y": 170.6875
+          "x": 225.796875,
+          "y": 145.5
         },
         {
-          "frame": 11550,
-          "target": "attention-rest",
-          "x": 65,
-          "y": 213
-        },
-        {
-          "frame": 11880,
+          "frame": 12060,
           "target": "tab-lineage",
           "x": 798,
           "y": 14
+        },
+        {
+          "frame": 12180,
+          "target": "graph-reconstruction:step-3:tool-1",
+          "x": 719.3744506835938,
+          "y": 537.7496948242188
+        },
+        {
+          "frame": 12300,
+          "target": "attention-rest",
+          "x": 588,
+          "y": 689.109375
         }
       ]
     }

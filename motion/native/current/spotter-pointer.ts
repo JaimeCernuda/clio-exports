@@ -1,4 +1,4 @@
-import { spotterProgress } from "./spotter-plan";
+import { SPOTTER_CUES, spotterProgress } from "./spotter-plan";
 
 export interface PointerPoint {
   frame: number;
@@ -46,7 +46,14 @@ export function spotterPointerWaypoints(
 
 /** The pointer belongs to the interface shot and fades with its closing curtain. */
 export function spotterPointerOpacityAt(frame: number): number {
-  return frame < 7 * 60 ? 0 : 1 - spotterProgress(frame, 204 * 60, 205 * 60);
+  return frame < 7 * 60
+    ? 0
+    : 1 -
+        spotterProgress(
+          frame,
+          SPOTTER_CUES.close * 60,
+          (SPOTTER_CUES.close + 1) * 60,
+        );
 }
 
 /** Evaluate the same immutable path for sequential playback, reverse seeks and capture. */

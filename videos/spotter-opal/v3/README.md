@@ -13,7 +13,7 @@ receipts are committed alongside this guide.
 
 Original rounds **1, 2, 5 become Step 1, 2, 3**. Each step shows a prompt,
 three native lookup views, a recorded reasoning excerpt and the recorded answer.
-The 211-second, 1920×1080/60fps silent cut alternates Evidence, Lineage and
+The 217-second, 1920×1080/60fps silent cut alternates Evidence, Lineage and
 SPOTTER. Tables arrive with their results; dashed graph groups grow in place.
 SPOTTER's danger alert leads into both attention inspections. Delivery retains
 the approved eight-second animated introduction from `src/SpotterIntro.tsx`.
@@ -53,7 +53,7 @@ To serve the completed movie and its review controls, use another terminal
 from `motion/`:
 
 ```powershell
-$env:CLIO_SPOTTER_REVIEW_ROOT="$PWD/out/spotter-v3-notebook"
+$env:CLIO_SPOTTER_REVIEW_ROOT="$PWD/out/spotter-v3-notebook-compact"
 $env:CLIO_SPOTTER_REVIEW_GALLERY="$PWD/../videos/spotter-opal/v3/review.html"
 $env:CLIO_SPOTTER_REVIEW_PORT="3373"
 npm run spotter:review
@@ -83,7 +83,7 @@ frame count and both source hashes are recorded. An absent approved intro is
 regenerated from its existing Remotion composition.
 
 If Windows blocks promotion because the previous movie is open, release the
-player and run `node scripts/finalize-spotter-v3.mjs --notebook`. It requalifies the completed
+player and run `node scripts/finalize-spotter-v3.mjs --notebook-compact`. It requalifies the completed
 conform, checks saved pointer poses/parity, and promotes it without another render.
 The local gallery closes aborted video streams so replaced files can be released.
 
@@ -92,7 +92,10 @@ requires measured and declared cursor positions to agree. Follow-scroll is
 reconciled after content settles. Discontinuous windows receive discarded
 24-frame source lead-in. Spinner variables stay on their own nodes, and unchanged
 heat projections are memoized. The final clean render uses the complete native
-body, with the approved intro as its only assembly join.
+body, with the approved intro as its only assembly join. The compact revision's
+native composition and multi-source attention navigation are documented in
+[COMPACT-REVIEW.md](COMPACT-REVIEW.md). The preceding Notebook encode is retained
+as rejected history in [NOTEBOOK-REVIEW.md](NOTEBOOK-REVIEW.md).
 
 An earlier correction experiment and its exact frame-splicing tests are retained
 for maintenance. It needs the corresponding retained base; it is not the default

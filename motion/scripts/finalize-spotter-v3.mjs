@@ -36,8 +36,11 @@ async function sha(file) {
 
 /** Recover only a finished clean conform after a blocked promotion; never recapture or reencode. */
 async function main() {
-  const notebook = process.argv.includes("--notebook");
-  const target = `out/${notebook ? "spotter-v3-notebook" : "spotter-v3"}/spotter-three-steps-full.mp4`,
+  const compact = process.argv.includes("--notebook-compact");
+  const notebook = compact || process.argv.includes("--notebook");
+  const bodyEnd = compact ? 216 : 210;
+  const totalFrames = (bodyEnd - 7) * 60 + 480;
+  const target = `out/${compact ? "spotter-v3-notebook-compact" : notebook ? "spotter-v3-notebook" : "spotter-v3"}/spotter-three-steps-full.mp4`,
     pending = target.replace(/\.mp4$/, ".conform.pending.mp4");
   const run = promisify(execFile);
   const video = JSON.parse(
@@ -56,18 +59,24 @@ async function main() {
   assert.equal(video.width, 1920);
   assert.equal(video.height, 1080);
   assert.equal(video.avg_frame_rate, "60/1");
-  assert.equal(Number(video.nb_read_frames), 12660);
-  assert.equal(Number(video.duration), 211);
+  assert.equal(Number(video.nb_read_frames), totalFrames);
+  assert.equal(Number(video.duration), bodyEnd + 1);
   const poses = JSON.parse(
     await readFile(target + ".pointer-poses.json", "utf8"),
   );
-  assert.equal(poses.length, 12180);
+  assert.equal(poses.length, totalFrames - 480);
   let maximumPixelsPerFrame = 0;
   poses.forEach((p, index) => {
     assert.equal(p.frame, 420 + index);
     assert.equal(p.paintedFrame, p.frame);
     assert.equal(p.count, 1);
-    assert.equal(p.opacity, 1);
+    const phase = Math.max(
+      0,
+      Math.min(1, p.frame / 60 - (compact ? 210 : 204)),
+    );
+    assert.ok(
+      Math.abs(p.opacity - (1 - phase * phase * (3 - 2 * phase))) < 0.001,
+    );
     assert.ok(
       Math.abs(p.x - p.expectedX) < 0.05 && Math.abs(p.y - p.expectedY) < 0.05,
     );
@@ -81,16 +90,18 @@ async function main() {
   const parity = JSON.parse(
     (
       await readFile(
-        notebook
-          ? ".native-ui/spotter-notebook-full.log"
-          : ".native-ui/spotter-v3-full-clean.log",
+        compact
+          ? ".native-ui/spotter-compact-full.log"
+          : notebook
+            ? ".native-ui/spotter-notebook-full.log"
+            : ".native-ui/spotter-v3-full-clean.log",
         "utf8",
       )
     )
       .split(/\r?\n/)
       .find((line) => line.startsWith('{"pixelParity":')),
   ).pixelParity;
-  assert.equal(parity.length, 24);
+  assert.equal(parity.length, compact ? 32 : 24);
   assert.ok(parity.every((p) => p.same));
   const ledger = JSON.parse(
     await readFile("../videos/spotter-opal/v3/source-projection.json", "utf8"),
@@ -116,12 +127,12 @@ async function main() {
         }
       : {}),
     sourceSha256: ledger.source.sha256,
-    frames: 12660,
-    bodyFrames: 12180,
+    frames: totalFrames,
+    bodyFrames: totalFrames - 480,
     fps: 60,
     width: 1920,
     height: 1080,
-    ranges: [[7, 210]],
+    ranges: [[7, bodyEnd]],
     errors: [],
     capturePages: 2,
     independentPagePixelParity: parity,

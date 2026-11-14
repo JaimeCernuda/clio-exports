@@ -256,6 +256,22 @@ accepted timing, synchronization or pointer template.
 
 ## Review and publication
 
+The first Notebook restyle was rejected even though its palette and encode
+checks passed. Match the native composition too: centered welcome, measured
+conversation-column edges, compact docked composer and the complete five-option
+policy menu with real icons. A custom title plus a full-width bottom composer
+does not represent the product. Geometry observers belong inside the mounted
+panel subtree: the native shell can replace that subtree when the pocket opens.
+
+Attention inspection must navigate actual source text. Follow the flagged
+Evidence card to its result, the green rail to the user rule, and an earlier
+Lineage node to its lookup. Keep source time frozen and animate disclosure and
+scroll. Test that each real click moves the viewport to the expected source;
+checking only a selector or state attribute missed a broken effect dependency.
+Keep rail hit targets clear of the native navigation resize handle. Recompute
+rail positions after settled source layout, not only a total-height change;
+equal scroll extents can still contain different row positions.
+
 Inspect the cause of every pocket change. A named evidence action should open
 Evidence directly; do not briefly show Lineage and then switch without another
 action. Closing attention must not also change the pocket. Keep the current view

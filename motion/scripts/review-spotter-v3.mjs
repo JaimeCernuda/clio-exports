@@ -3,7 +3,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import assert from "node:assert/strict";
 
-const out = path.resolve(".native-ui/spotter-v3-review");
+const out = path.resolve(".native-ui/spotter-v3-compact-review");
 await mkdir(out, { recursive: true });
 process.env.TEMP = out;
 process.env.TMP = out;
@@ -57,7 +57,8 @@ async function seek(page, seconds) {
 const shots = [
   0, 8.5, 12.5, 18, 20.5, 29.5, 36, 44, 47.2, 50.5, 59, 65.7, 76, 85, 90.5, 100,
   104, 113.5, 121, 134.5, 142, 145, 151, 154, 159.5, 164, 165.5, 168.8, 172,
-  175.5, 180.5, 184, 184.2, 186, 189, 193, 200, 204.5, 207,
+  175.5, 177.5, 181, 183.5, 185.5, 189, 190.5, 193, 197.5, 202, 204.5, 210.5,
+  213,
 ];
 const actions = [
   [8, "policy"],
@@ -74,18 +75,34 @@ const actions = [
   [168, "answer-start"],
   [168.8, "answer-end"],
   [174, "understand-attention"],
-  [175.5, "attention-rest"],
-  [180, "tab-lineage"],
-  [182, "close-attention"],
-  [184.2, "tab-evidence"],
-  [185.2, "73-start"],
-  [186, "73-end"],
-  [191, "understand-attention"],
-  [192.5, "attention-rest"],
-  [198, "tab-lineage"],
+  [176, "evidence-flagged"],
+  [180, "attention-prompt-3"],
+  [183, "tab-lineage"],
+  [184.5, "graph-reconstruction:step-2:tool-1"],
+  [188, "scroll-answer"],
+  [190, "close-attention"],
+  [191.2, "73-start"],
+  [192, "73-end"],
+  [197, "understand-attention"],
+  [201, "tab-lineage"],
+  [203, "graph-reconstruction:step-3:tool-1"],
+  [205, "attention-rest"],
 ];
 const profiles = [],
   reports = [];
+async function assertSourceVisible(page, selector) {
+  const offset = await page.evaluate((selector) => {
+    const log = document.querySelector(".sv3-main-log");
+    return (
+      log.querySelector(selector).getBoundingClientRect().top -
+      log.getBoundingClientRect().top
+    );
+  }, selector);
+  assert.ok(
+    offset >= -1 && offset <= 120,
+    `Click did not reveal source ${selector}: ${offset}`,
+  );
+}
 try {
   const page = await browser.newPage();
   const errors = [];
@@ -111,6 +128,45 @@ try {
         return {
           frame: Number(document.querySelector("[data-frame]").dataset.frame),
           theme: document.documentElement.dataset.theme,
+          compact: {
+            chat: document
+              .querySelector(".sv3-chat")
+              .getBoundingClientRect()
+              .toJSON(),
+            welcome: document
+              .querySelector('[aria-label="CLIO conversation welcome"]')
+              .getBoundingClientRect()
+              .toJSON(),
+            composer: document
+              .querySelector('[data-slot="clio-composer"]')
+              .getBoundingClientRect()
+              .toJSON(),
+            content: document
+              .querySelector(".sv3-main-content")
+              .getBoundingClientRect()
+              .toJSON(),
+            gutter: parseFloat(
+              getComputedStyle(document.querySelector(".sv3-main-content"))
+                .paddingLeft,
+            ),
+            menuOptions: [
+              ...document.querySelectorAll(
+                '[data-slot="dropdown-menu-radio-item"]',
+              ),
+            ].map((el) => el.textContent),
+            target: document.querySelector(".sv3-main-log").dataset.scrollTo,
+            targetBox: (() => {
+              const log = document.querySelector(".sv3-main-log");
+              return log
+                .querySelector(log.dataset.scrollTo)
+                ?.getBoundingClientRect()
+                .toJSON();
+            })(),
+            log: document
+              .querySelector(".sv3-main-log")
+              .getBoundingClientRect()
+              .toJSON(),
+          },
           appearance: {
             background: getComputedStyle(document.documentElement)
               .getPropertyValue("--background")
@@ -174,9 +230,52 @@ try {
         };
       });
       assert.equal(report.theme, "light");
+      assert.ok(
+        report.compact.composer.width <= 896.1,
+        "Composer must retain the native focused width",
+      );
+      if (second === 8.5) {
+        assert.equal(
+          report.compact.menuOptions.length,
+          5,
+          "Use every native confirmation option",
+        );
+        assert.match(report.compact.menuOptions.join(" "), /Workspace edits/);
+        assert.match(report.compact.menuOptions.join(" "), /AI review/);
+        assert.ok(
+          Math.abs(
+            report.compact.welcome.y +
+              report.compact.welcome.height / 2 -
+              report.compact.chat.y -
+              report.compact.chat.height / 2,
+          ) < 1,
+        );
+      }
+      if (second >= 20.5) {
+        assert.ok(
+          Math.abs(
+            report.compact.composer.x -
+              report.compact.content.x -
+              report.compact.gutter,
+          ) < 1,
+          `Composer/chat alignment at ${second}, ${viewport.width}: ${JSON.stringify({ composer: report.compact.composer, content: report.compact.content, gutter: report.compact.gutter })}`,
+        );
+        assert.ok(report.compact.composer.bottom > viewport.height - 48);
+      }
+      if ([177.5, 181, 185.5, 204.5].includes(second)) {
+        assert.ok(
+          report.compact.targetBox,
+          "Captured source target is mounted",
+        );
+        assert.ok(
+          report.compact.targetBox.y >= report.compact.log.y - 1 &&
+            report.compact.targetBox.y < report.compact.log.bottom - 100,
+          `Source not revealed at ${second}, ${viewport.width}: ${JSON.stringify({ target: report.compact.target, box: report.compact.targetBox, log: report.compact.log })}`,
+        );
+      }
       assert.match(report.appearance.font, /IBM Plex Sans/);
       assert.equal(report.appearance.background, "#f3efe6");
-      if (second === 175.5 || second === 193) {
+      if (second === 177.5 || second === 204.5) {
         assert.ok(
           report.appearance.promptRanges > 0,
           "Retained prompt must paint its original text heat",
@@ -196,9 +295,9 @@ try {
       assert.equal(report.cursorDeclared.transition, "0s");
       assert.equal(
         report.cursorDeclared.opacity,
-        second < 7 || second >= 205 ? 0 : second === 204.5 ? 0.5 : 1,
+        second < 7 || second >= 211 ? 0 : second === 210.5 ? 0.5 : 1,
       );
-      if (second >= 7 && second < 205) {
+      if (second >= 7 && second < 211) {
         assert.ok(
           report.cursor.x >= 0 && report.cursor.right <= viewport.width,
         );
@@ -208,7 +307,7 @@ try {
       }
       assert.equal(report.frameTransition, "0s");
       assert.ok(report.spinnerFrames.every((frame) => frame === report.frame));
-      if (second < 174 || (second >= 184 && second < 191))
+      if (second < 174 || (second >= 190 && second < 197))
         assert.ok(
           Math.abs(report.logGap) < 1,
           `Unsettled follow scroll at ${second}: ${report.logGap}`,
@@ -246,7 +345,7 @@ try {
           1,
         );
       }
-      if (second === 193) {
+      if (second === 204.5) {
         assert.ok((await page.locator("[data-heat]").count()) > 0);
         assert.ok(
           await page
@@ -255,7 +354,7 @@ try {
             .then((t) => t.includes("Tool results 3.4%")),
         );
       }
-      if (second === 172 || second === 189) {
+      if (second === 172 || second === 193) {
         assert.equal(
           await page.locator('[data-slot="selection-actions"]').count(),
           1,
@@ -267,7 +366,7 @@ try {
           1,
         );
       }
-      if (second === 175.5 || second === 193)
+      if (second === 175.5 || second === 197.5)
         assert.equal(
           await page.locator('[data-slot="selection-actions"]').count(),
           0,
@@ -337,6 +436,39 @@ try {
       1,
       "Inspect evidence must open its named pocket directly",
     );
+    await seek(page, 175.5);
+    await page.locator('[data-target="evidence-flagged"]').click();
+    await assertSourceVisible(
+      page,
+      '[data-tool="reconstruction:step-3:tool-1"]',
+    );
+    assert.equal(
+      await page.locator(".sv3-main-log").getAttribute("data-scroll-to"),
+      '[data-tool="reconstruction:step-3:tool-1"]',
+    );
+    await seek(page, 181);
+    await page.locator('[data-target="attention-prompt-3"]').click();
+    await assertSourceVisible(page, '[data-prompt-round="5"]');
+    assert.equal(
+      await page.locator(".sv3-main-log").getAttribute("data-scroll-to"),
+      '[data-prompt-round="5"]',
+    );
+    await seek(page, 183.5);
+    await page
+      .locator('[data-target="graph-reconstruction:step-2:tool-1"]')
+      .click();
+    await assertSourceVisible(
+      page,
+      '[data-tool="reconstruction:step-2:tool-1"]',
+    );
+    assert.equal(
+      await page.locator('[aria-label="Evidence step"]').inputValue(),
+      "2",
+    );
+    assert.equal(
+      await page.locator(".sv3-main-log").getAttribute("data-scroll-to"),
+      '[data-tool="reconstruction:step-2:tool-1"]',
+    );
     const points = [];
     for (const [seconds, target] of actions) {
       const at =
@@ -344,14 +476,34 @@ try {
           ? 10.7
           : target === "understand-attention"
             ? seconds - 0.2
-            : seconds;
+            : target === "close-attention"
+              ? seconds - 0.1
+              : target.startsWith("graph-")
+                ? seconds - 0.1
+                : seconds;
       await seek(page, at);
       const point = await page.evaluate((target) => {
-        if (target === "attention-rest") {
+        if (target === "attention-rest" || target === "scroll-answer") {
           const log = document
-            .querySelector(".sv3-main-log")
+            .querySelector(
+              target === "attention-rest"
+                ? ".sv3-pocket-body"
+                : ".sv3-main-log",
+            )
             .getBoundingClientRect();
-          return { x: log.left + 8, y: log.top + 40 };
+          const source = document
+            .querySelector('[data-target="evidence-flagged"]')
+            ?.getBoundingClientRect();
+          return {
+            x: log.left + 8,
+            y:
+              target === "attention-rest" && source
+                ? Math.max(
+                    log.top + 20,
+                    Math.min(log.bottom - 20, source.top + source.height / 2),
+                  )
+                : log.top + 40,
+          };
         }
         if (/^(?:73|answer)-(?:start|end)$/.test(target)) {
           const el = document.querySelector('[data-target="answer-line"]');

@@ -293,6 +293,9 @@ export function EvidenceView({
                   className="sv3-evidence-card"
                   key={tool.id}
                   data-selected={selectedTool === tool.id || undefined}
+                  data-flagged={
+                    (alert && tool.step === 3 && tool.order === 1) || undefined
+                  }
                 >
                   <button
                     className="sv3-result-heading"
@@ -325,12 +328,17 @@ export function EvidenceView({
                     </table>
                   </div>
                   {alert && tool.step === 3 && tool.order === 1 && (
-                    <div className="sv3-flag">
+                    <button
+                      className="sv3-flag"
+                      data-target="evidence-flagged"
+                      onClick={() => onTool(tool)}
+                      aria-label="Inspect flagged lookup in conversation"
+                    >
                       <ShieldAlertIcon size={15} />
                       <span>
                         SPOTTER found an instruction inside this result.
                       </span>
-                    </div>
+                    </button>
                   )}
                 </section>
               );

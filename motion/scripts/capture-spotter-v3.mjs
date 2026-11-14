@@ -22,7 +22,7 @@ if (!["proof", "full", "benchmark", "graph-proof", "repair"].includes(mode))
   throw new Error("Choose proof, full or benchmark");
 const root = path.resolve("."),
   temp = path.join(root, ".native-ui/spotter-v3-direct"),
-  out = path.join(root, "out/spotter-v3-notebook");
+  out = path.join(root, "out/spotter-v3-notebook-compact");
 await mkdir(temp, { recursive: true });
 await mkdir(out, { recursive: true });
 process.env.TEMP = temp;
@@ -51,7 +51,7 @@ const ranges =
         await readFile(".native-ui/spotter-v3-pointer-repair.json", "utf8"),
       ).ranges.map(([a, b]) => [a / 60, b / 60])
     : mode === "full"
-      ? [[7, 210]]
+      ? [[7, 216]]
       : mode === "graph-proof"
         ? [
             [58.5, 63],
@@ -61,9 +61,9 @@ const ranges =
         : mode === "benchmark"
           ? [[193, 193.5]]
           : [
-              [101, 104],
-              [132, 134],
-              [168, 194],
+              [7, 19],
+              [174, 190],
+              [197, 207],
             ];
 const sourceFrames = ranges.flatMap(([a, b]) =>
   Array.from(
@@ -232,8 +232,9 @@ try {
   const { PNG } = await import("pngjs");
   const parity = [];
   for (const frame of [
-    420, 421, 424, 3060, 5100, 5101, 5130, 6270, 6786, 6787, 6788, 9030, 10320,
-    10470, 10530, 11010, 11051, 11052, 11053, 11280, 11550, 11580, 12270, 12300,
+    420, 421, 424, 480, 481, 570, 660, 720, 1080, 1095, 1110, 3060, 5100, 5101,
+    5130, 6270, 6786, 6787, 6788, 9030, 10320, 10470, 10530, 10830, 11069,
+    11070, 11071, 11280, 11850, 12180, 12630, 12660,
   ]) {
     console.log(JSON.stringify({ checkingPixelParity: frame }));
     await capture(workers[0], Math.max(0, frame - 1), "png");
@@ -472,6 +473,8 @@ try {
         presentation: {
           theme: "light",
           family: "Notebook",
+          layout:
+            "Native welcome and focused column; linked multi-source attention inspection",
           heatStyleRevision: "075c0581f1f9ef15d6206b0339e7c105889a546f",
           heatDefault: "Words / Max",
           scope:

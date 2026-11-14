@@ -24,8 +24,12 @@ selections. Original exports and tensors were not modified.
 
 ## Production status
 
-Status: **ready for user review**. This revision has its own encoded review;
-approval has not been transferred from the prior Cool movie.
+Status: **revision required after user review**. The user rejected this palette-only
+restyle for its empty composition, oversized menu and poor representation of the
+compact native UI. Attention also stayed near the latest lookup instead of
+visiting the user prompt and earlier evidence. The technical checks below remain
+historical evidence; they do not establish acceptance. The corrective work is
+tracked in [COMPACT-REVIEW.md](COMPACT-REVIEW.md).
 
 Before full capture: 140 Python tests, 164 motion tests, root/native type checks,
 Ruff, Pyright and formatting pass without skipped tests. The browser pass checks

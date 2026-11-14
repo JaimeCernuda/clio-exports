@@ -1,6 +1,12 @@
 {
   "schema": "clio.spotter-v3-notebook-review.v1",
-  "status": "ready-for-user-review",
+  "status": "revision-required-after-user-review",
+  "userFindings": [
+    "Palette-only restyle does not represent the compact native welcome and composer",
+    "Oversized inaccurate confirmation menu",
+    "Attention stays near latest lookup and misses user prompt, earlier source and evidence clicks"
+  ],
+  "correctiveReview": "COMPACT-REVIEW.md",
   "renderer": {
     "commit": "add1f25d2a97efdfbd7adf7dc2df2f2c6fc47f6d",
     "dirty": false

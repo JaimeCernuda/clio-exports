@@ -1,7 +1,14 @@
 import type { PairedReplay, PairedSession } from "../paired-replay";
 import { buildSpotterReconstruction } from "./spotter-scenario";
 
-export const SPOTTER_FRAMES = 210 * 60;
+export const SPOTTER_FRAMES = 216 * 60;
+export const SPOTTER_CUES = {
+  firstAttention: 174,
+  firstClose: 190,
+  secondSelect: 191.2,
+  secondAttention: 197,
+  close: 210,
+} as const;
 export const SPOTTER_FPS = 60;
 export type PocketName = "evidence" | "lineage" | "spotter";
 export interface StepTiming {
@@ -78,9 +85,13 @@ export const SPOTTER_MARKERS = [
   [159, "SPOTTER alert"],
   [167, "Select the answer"],
   [174, "Word attention"],
-  [185.2, "Select 73"],
-  [191, "Inspect the tool result"],
-  [204, "Close"],
+  [176, "Open the flagged source"],
+  [180, "Compare the user's rule"],
+  [184.5, "Inspect the earlier lookup"],
+  [191.2, "Select 73"],
+  [197, "Word attention for 73"],
+  [203, "Trace the flagged graph node"],
+  [210, "Close"],
 ] as const;
 
 /** Smooth frame-only interpolation, shared by layout, cursor and disclosure. */
@@ -101,15 +112,74 @@ export function spotterInspectionAt(frame: number): {
   openness: number;
   scrollAmount: number;
 } {
-  const first = frame >= 174 * 60 && frame < 184 * 60,
-    second = frame >= 191 * 60;
-  const begin = (first ? 174 : 191) * 60;
+  const first = frame >= 174 * 60 && frame < 190 * 60,
+    second = frame >= 197 * 60;
+  const begin = (first ? 174 : 197) * 60;
   return {
     active: first || second,
     openness: spotterProgress(frame, begin, begin + 24),
     scrollAmount:
       spotterProgress(frame, begin, begin + 80) *
-      (first ? 1 - spotterProgress(frame, 182 * 60, 184 * 60) : 1),
+      (first ? 1 - spotterProgress(frame, 188 * 60, 190 * 60) : 1),
+  };
+}
+
+const answerSource = '[data-answer="3"]';
+const poisonSource = '[data-tool="reconstruction:step-3:tool-1"]';
+const ruleSource = '[data-prompt-round="5"]';
+const priorSource = '[data-tool="reconstruction:step-2:tool-1"]';
+/** Navigate one frozen captured selection through its rule, earlier evidence and suspect result. */
+export function spotterAttentionNavigationAt(frame: number): {
+  from: string;
+  to: string;
+  progress: number;
+  evidenceStep: number;
+  expanded: Array<{ id: string; openness: number }>;
+} {
+  const second = frame >= f(191.2);
+  const beats: Array<[number, string, number]> = second
+    ? [
+        [197, answerSource, 0],
+        [203, poisonSource, 1],
+      ]
+    : [
+        [174, answerSource, 0],
+        [176, poisonSource, 1],
+        [180, ruleSource, 1],
+        [184.5, priorSource, 1],
+        [188, answerSource, 1.2],
+      ];
+  const index = beats.reduce(
+    (latest, [at], index) => (frame >= f(at) ? index : latest),
+    0,
+  );
+  const [at, to, duration] = beats[index];
+  const from = beats[Math.max(0, index - 1)][1];
+  const active = spotterInspectionAt(frame).active;
+  const expanded = active
+    ? (second
+        ? [[203, "reconstruction:step-3:tool-1"]]
+        : [
+            [176, "reconstruction:step-3:tool-1"],
+            [184.5, "reconstruction:step-2:tool-1"],
+          ]
+      )
+        .filter(([start]) => frame >= f(Number(start)))
+        .map(([start, id]) => ({
+          id: String(id),
+          openness: spotterProgress(
+            frame,
+            f(Number(start)),
+            f(Number(start) + 0.5),
+          ),
+        }))
+    : [];
+  return {
+    from,
+    to,
+    progress: duration ? spotterProgress(frame, f(at), f(at + duration)) : 1,
+    evidenceStep: frame >= f(184.5) && frame < f(203) ? 2 : 3,
+    expanded,
   };
 }
 /** Linear text prefixes retain an even reading rate, independent of motion easing. */
@@ -184,8 +254,8 @@ export function spotterPocketAt(frame: number): PocketName {
   if (
     (frame >= f(50) && frame < f(64.5)) ||
     (frame >= f(90) && frame < f(114)) ||
-    (frame >= f(180) && frame < f(184.2)) ||
-    frame >= f(198)
+    (frame >= f(183) && frame < f(184.5)) ||
+    (frame >= f(201) && frame < f(203))
   )
     return "lineage";
   if (

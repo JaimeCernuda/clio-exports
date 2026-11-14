@@ -1,4 +1,5 @@
 import {
+  Fragment,
   useEffect,
   useLayoutEffect,
   useMemo,
@@ -12,6 +13,19 @@ import { sessionSchema } from "@clio/core/v3";
 import { ClioAppShell } from "@clio-ui/components/clio/app-shell";
 import { ClioSessionContextBar } from "@clio-ui/components/clio/session-context-bar";
 import { ClioComposer } from "@clio-ui/components/clio/composer";
+import { ClioConversationWelcome } from "@clio-ui/components/clio/conversation-welcome";
+import { useConversationColumn } from "@clio-ui/components/clio/use-conversation-column";
+import { SESSION_APPROVAL_OPTIONS } from "@clio-ui/components/clio/session-behavior-options";
+import { MenuRow } from "@clio-ui/components/clio/primitives/menu-row";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+} from "@clio-ui/components/ui/dropdown-menu";
 import { NavigationHeader } from "@clio-ui/components/clio/navigation-header";
 import { NavigationFooter } from "@clio-ui/components/clio/navigation-footer";
 import {
@@ -84,6 +98,8 @@ import {
   spotterPrefix,
   mainThoughtExcerpt,
   displayedStepText,
+  SPOTTER_CUES,
+  spotterAttentionNavigationAt,
   type PocketName,
 } from "./spotter-plan";
 import { awaitSpotterPaint, reconcileSpotterScroll } from "./spotter-readiness";
@@ -326,6 +342,68 @@ export function SpotterApp() {
 }
 
 /** Product components remain native; source-linked packets are staged explicitly as a reconstruction. */
+type PolicyAnchor = {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+};
+/** Mount with the native panel subtree so column observers survive split/restore. */
+function TranscriptGeometry({
+  log,
+  composer,
+  frame,
+  onPolicyAnchor,
+}: {
+  log: React.RefObject<HTMLDivElement | null>;
+  composer: React.RefObject<HTMLDivElement | null>;
+  frame: number;
+  onPolicyAnchor: React.Dispatch<React.SetStateAction<PolicyAnchor>>;
+}) {
+  useConversationColumn(log, 896);
+  useLayoutEffect(() => {
+    const surface = log.current?.closest<HTMLElement>(
+        '[data-slot="session-transcript"]',
+      ),
+      wrap = composer.current;
+    if (!surface || !wrap) return;
+    const measure = () => {
+      const height = wrap.offsetHeight;
+      const values = {
+        "--sv3-composer-height": `${height}px`,
+        "--sv3-welcome-offset": `${Math.max(0, (surface.clientHeight - height) / 2 - 12)}px`,
+      };
+      for (const [name, value] of Object.entries(values))
+        if (surface.style.getPropertyValue(name) !== value)
+          surface.style.setProperty(name, value);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(surface);
+    observer.observe(wrap);
+    return () => observer.disconnect();
+  }, [log, composer]);
+  useLayoutEffect(() => {
+    const wrap = composer.current;
+    const control = wrap?.querySelector<HTMLElement>(
+      '[aria-label^="Confirmation policy"]',
+    );
+    if (!wrap || !control) return;
+    const a = control.getBoundingClientRect(),
+      b = wrap.getBoundingClientRect();
+    const next = {
+      left: a.left - b.left,
+      top: a.top - b.top,
+      width: a.width,
+      height: a.height,
+    };
+    onPolicyAnchor((previous) =>
+      JSON.stringify(previous) === JSON.stringify(next) ? previous : next,
+    );
+  }, [frame]);
+  return null;
+}
+
 function SpotterWorkspace({
   pair,
   attention,
@@ -371,6 +449,10 @@ function SpotterWorkspace({
     reduction: "max",
   });
   const [quote, setQuote] = useState<{ at: number; text: string }>();
+  const [manualSource, setManualSource] = useState<{
+    at: number;
+    selector: string;
+  }>();
   const live = useRef({ frame, seek });
   live.current = { frame, seek };
   const selectionActions = useMemo<SelectionAction[]>(
@@ -398,7 +480,11 @@ function SpotterWorkspace({
           ["73", "ANSWER: 73; MATCHES"].includes(target.text),
         run: (target) => {
           if (target.kind === "agent-answer-text")
-            live.current.seek((target.text === "73" ? 191 : 174) * 60);
+            live.current.seek(
+              (target.text === "73"
+                ? SPOTTER_CUES.secondAttention
+                : SPOTTER_CUES.firstAttention) * 60,
+            );
         },
       },
     ],
@@ -407,19 +493,37 @@ function SpotterWorkspace({
   useSelectionAction(selectionActions[0]);
   useSelectionAction(selectionActions[1]);
   const log = useRef<HTMLDivElement>(null);
+  const chat = useRef<HTMLDivElement>(null);
+  const composer = useRef<HTMLDivElement>(null);
+  const [policyAnchor, setPolicyAnchor] = useState({
+    left: 0,
+    top: 0,
+    width: 26,
+    height: 26,
+  });
+  const welcome = 1 - spotterProgress(frame, 18 * 60, 18 * 60 + 30);
   const pocket =
     manualPocket?.at === frame ? manualPocket.pocket : spotterPocketAt(frame);
-  const step = manualStep?.at === frame ? manualStep.step : activeStep;
   const inspection = spotterInspectionAt(frame);
   const inspectPhase = inspection.active;
-  const selectionText = frame < 184 * 60 ? "ANSWER: 73; MATCHES" : "73";
+  const attentionNavigation = spotterAttentionNavigationAt(frame);
+  const step =
+    manualStep?.at === frame
+      ? manualStep.step
+      : frame >= 174 * 60
+        ? attentionNavigation.evidenceStep
+        : activeStep;
+  const selectionText =
+    frame < SPOTTER_CUES.firstClose * 60 ? "ANSWER: 73; MATCHES" : "73";
   const record = attention.records.find((r) => r.text === selectionText);
   if (!record) throw new Error(`Captured selection missing: ${selectionText}`);
   const inspectedTool =
     inspected?.at === frame
       ? inspected.tool
-      : inspectPhase
-        ? projection.steps[2].tools[0]
+      : inspectPhase && attentionNavigation.expanded.length
+        ? projection.steps
+            .flatMap((s) => s.tools)
+            .find((t) => t.id === attentionNavigation.expanded.at(-1)!.id)
         : undefined;
   const setPocket = (next: PocketName) =>
     setManualPocket({ at: frame, pocket: next });
@@ -432,7 +536,7 @@ function SpotterWorkspace({
     const host = log.current;
     if (!host) return;
     reconcileSpotterScroll(host);
-  }, [frame, inspectPhase, inspectedTool]);
+  }, [frame, inspectPhase, inspectedTool, manualSource]);
   useLayoutEffect(() => {
     // A frame variable on the whole transcript invalidates every descendant's
     // style. Only the native spinner nodes need this changing value.
@@ -445,7 +549,8 @@ function SpotterWorkspace({
   }, [frame]);
   const selecting =
     (frame >= 168 * 60 && frame < 174 * 60) ||
-    (frame >= 185.2 * 60 && frame < 191 * 60);
+    (frame >= SPOTTER_CUES.secondSelect * 60 &&
+      frame < SPOTTER_CUES.secondAttention * 60);
   // Exact DOM selection precedes the menu; all attention inspection freezes source time.
   useLayoutEffect(() => {
     const selection = window.getSelection();
@@ -459,7 +564,10 @@ function SpotterWorkspace({
     const range = document.createRange(),
       full = element.textContent ?? "";
     const start = selectionText === "73" ? full.indexOf("73") : 0;
-    const begin = frame < 184 * 60 ? 168 * 60 : 185.2 * 60;
+    const begin =
+      frame < SPOTTER_CUES.firstClose * 60
+        ? 168 * 60
+        : SPOTTER_CUES.secondSelect * 60;
     const length = Math.max(
       1,
       Math.ceil(
@@ -650,9 +758,20 @@ function SpotterWorkspace({
         workbench={frame >= 12 * 60 ? canvas : null}
         workbenchRevealKey={frame >= 12 * 60 ? "investigation" : undefined}
       >
-        <div className="sv3-chat">
+        <div
+          ref={chat}
+          className="sv3-chat"
+          data-slot="session-transcript"
+          data-composer-layout={welcome > 0 ? "welcome" : "docked"}
+          style={{ "--sv3-welcome": welcome } as React.CSSProperties}
+        >
           {inspectPhase && (
-            <AttentionRail record={record} frame={frame} view={view} />
+            <AttentionRail
+              record={record}
+              frame={frame}
+              view={view}
+              onSource={(selector) => setManualSource({ at: frame, selector })}
+            />
           )}
           {inspectPhase && (
             <div className="sv3-attention" data-slot="attention-mode-banner">
@@ -669,7 +788,7 @@ function SpotterWorkspace({
                   label="Close attention"
                   icon={<XIcon />}
                   data-target="close-attention"
-                  onClick={() => seek(184 * 60)}
+                  onClick={() => seek(SPOTTER_CUES.firstClose * 60)}
                 />
               </div>
               <AttentionShares record={record} />
@@ -682,21 +801,34 @@ function SpotterWorkspace({
             role="log"
             aria-label="Conversation"
             data-film-scroll="manual"
-            data-inspecting={String(inspectPhase)}
+            data-inspecting={String(
+              inspectPhase ||
+                inspected?.at === frame ||
+                manualSource?.at === frame,
+            )}
             data-scroll-target={inspectedTool?.id}
             data-scroll-amount={inspection.scrollAmount}
+            data-scroll-from={
+              manualSource?.at === frame
+                ? manualSource.selector
+                : inspected?.at === frame
+                  ? `[data-tool="${inspected.tool.id}"]`
+                  : attentionNavigation.from
+            }
+            data-scroll-to={
+              manualSource?.at === frame
+                ? manualSource.selector
+                : inspected?.at === frame
+                  ? `[data-tool="${inspected.tool.id}"]`
+                  : attentionNavigation.to
+            }
+            data-scroll-progress={
+              manualSource?.at === frame || inspected?.at === frame
+                ? 1
+                : attentionNavigation.progress
+            }
           >
             <div className="sv3-main-content">
-              {frame < 18 * 60 && (
-                <div className="sv3-initial">
-                  <BrandIcon className="size-10 text-primary" />
-                  <h2>Follow the evidence.</h2>
-                  <p>OPAL scientific analysis with SPOTTER-AI</p>
-                  <small className="text-muted-foreground text-xs">
-                    Reconstructed lookup views · Recorded answers and attention
-                  </small>
-                </div>
-              )}
               {projection.steps.map((step, index) => {
                 const t = STEP_TIMING[index];
                 if (frame < t.submit) return null;
@@ -757,9 +889,16 @@ function SpotterWorkspace({
                               tool={tool}
                               frame={frame}
                               timing={t.tools[j]}
-                              inspection={inspectedTool?.id === tool.id}
+                              inspection={
+                                inspectedTool?.id === tool.id ||
+                                attentionNavigation.expanded.some(
+                                  (e) => e.id === tool.id,
+                                )
+                              }
                               inspectionOpenness={
-                                inspectPhase ? inspection.openness : 1
+                                attentionNavigation.expanded.find(
+                                  (e) => e.id === tool.id,
+                                )?.openness ?? 1
                               }
                               attention={inspectPhase ? record : undefined}
                               view={view}
@@ -912,60 +1051,103 @@ function SpotterWorkspace({
               )}
             </div>
           </div>
-          <div className="sv3-composer-wrap">
-            <ClioComposer
-              state={session.state}
-              attachments
-              contextReferences
-              confirmationPolicy={frame < 11 * 60 ? "ask" : "spotter-ai"}
-              executionMode="execute"
-              provider="vllm"
-              model="ibm-granite/granite-4.2-8b"
-              modelOptions={[
-                {
-                  providerId: "vllm",
-                  providerName: "vLLM",
-                  id: "ibm-granite/granite-4.2-8b",
-                  label: "Granite 4.2 · 8B",
-                  available: true,
-                },
-              ]}
-              value={quote?.at === frame ? `> ${quote.text}\n\n` : prompt}
-              onValueChange={() => {}}
-              onSubmit={unavailable}
-              variant="docked"
-            />
-            {frame >= 8 * 60 && frame < 11 * 60 && (
-              <div
-                className="sv3-security-menu"
-                role="menu"
-                aria-label="Security mode"
+          <div ref={composer} className="sv3-composer-wrap">
+            <div className="sv3-compose-welcome">
+              <ClioConversationWelcome>
+                <ClioComposer
+                  state={session.state}
+                  attachments
+                  contextReferences
+                  confirmationPolicy={frame < 11 * 60 ? "ask" : "spotter-ai"}
+                  executionMode="execute"
+                  provider="vllm"
+                  model="ibm-granite/granite-4.2-8b"
+                  modelOptions={[
+                    {
+                      providerId: "vllm",
+                      providerName: "vLLM",
+                      id: "ibm-granite/granite-4.2-8b",
+                      label: "Granite 4.2 · 8B",
+                      available: true,
+                    },
+                  ]}
+                  value={quote?.at === frame ? `> ${quote.text}\n\n` : prompt}
+                  onValueChange={() => {}}
+                  onSubmit={unavailable}
+                  variant={frame < 18 * 60 ? "welcome" : "docked"}
+                />
+              </ClioConversationWelcome>
+            </div>
+            <DropdownMenu
+              open={frame >= 8 * 60 && frame < 11 * 60}
+              modal={false}
+            >
+              <DropdownMenuTrigger asChild>
+                <button
+                  aria-hidden
+                  tabIndex={-1}
+                  className="sv3-policy-anchor"
+                  style={policyAnchor}
+                />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                className="w-[24rem] max-w-[calc(100vw-1rem)]"
+                side="top"
+                align="end"
+                sideOffset={8}
+                collisionPadding={8}
+                onCloseAutoFocus={(e) => e.preventDefault()}
               >
-                <h3>Confirmation policy</h3>
-                {[
-                  ["Ask first", "Review sensitive actions before they run"],
-                  ["Bypass checks", "Run without approval prompts"],
-                  ["SPOTTER review", "A second agent reviews the session"],
-                ].map(([name, detail]) => (
-                  <button
-                    role="menuitem"
-                    key={name}
-                    data-target={
-                      name === "SPOTTER review" ? "security-spotter" : undefined
-                    }
-                    onClick={() => seek(11 * 60)}
-                  >
-                    <ShieldCheckIcon size={16} />
-                    <span>
-                      <b>{name}</b>
-                      <small>{detail}</small>
-                    </span>
-                    {name === "Ask first" && <span>✓</span>}
-                  </button>
-                ))}
-              </div>
-            )}
+                <DropdownMenuLabel className="px-2 pt-1.5 pb-1 text-caption font-normal text-muted-foreground">
+                  Confirmation policy
+                </DropdownMenuLabel>
+                <DropdownMenuRadioGroup
+                  value="ask"
+                  onValueChange={(value) => {
+                    if (value === "spotter-ai") seek(11 * 60);
+                  }}
+                >
+                  {SESSION_APPROVAL_OPTIONS.map((option) => {
+                    const Icon = option.icon;
+                    return (
+                      <Fragment key={option.value}>
+                        {option.value === "bypass" && <DropdownMenuSeparator />}
+                        <DropdownMenuRadioItem
+                          value={option.value}
+                          data-target={
+                            option.value === "spotter-ai"
+                              ? "security-spotter"
+                              : undefined
+                          }
+                          className="min-h-[30px] py-0 text-menu [&_[data-slot=dropdown-menu-radio-item-indicator]_svg]:size-[13px]! [&_[data-slot=dropdown-menu-radio-item-indicator]_svg]:text-accent-foreground! [&_[data-slot=menu-row]_span[title]]:text-label"
+                        >
+                          <MenuRow
+                            icon={
+                              <Icon
+                                className={
+                                  option.value === "bypass"
+                                    ? "text-destructive"
+                                    : undefined
+                                }
+                              />
+                            }
+                            label={option.label}
+                            description={option.description}
+                          />
+                        </DropdownMenuRadioItem>
+                      </Fragment>
+                    );
+                  })}
+                </DropdownMenuRadioGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
+          <TranscriptGeometry
+            log={log}
+            composer={composer}
+            frame={frame}
+            onPolicyAnchor={setPolicyAnchor}
+          />
         </div>
       </ClioAppShell>
       {frame < 7 * 60 && (
@@ -988,13 +1170,21 @@ function SpotterWorkspace({
         </div>
       )}
       {selecting && (
-        <SelectionActionsToolbar key={frame < 184 * 60 ? "answer" : "word"} />
+        <SelectionActionsToolbar
+          key={frame < SPOTTER_CUES.firstClose * 60 ? "answer" : "word"}
+        />
       )}
       <FilmCursor frame={frame} />
-      {frame >= 204 * 60 && (
+      {frame >= SPOTTER_CUES.close * 60 && (
         <div
           className="sv3-close"
-          style={{ opacity: spotterProgress(frame, 204 * 60, 205 * 60) }}
+          style={{
+            opacity: spotterProgress(
+              frame,
+              SPOTTER_CUES.close * 60,
+              (SPOTTER_CUES.close + 1) * 60,
+            ),
+          }}
         >
           <img src="/spotter-v3-logo.png" alt="SPOTTER-AI" />
           <h2>
@@ -1064,14 +1254,13 @@ function AttentionRail({
   record,
   frame,
   view,
+  onSource,
 }: {
   record: RelocatedAttention["records"][number];
   frame: number;
   view: AttentionHeatView;
+  onSource: (selector: string) => void;
 }) {
-  const previous = useRef<{ record: object; layout: string } | undefined>(
-    undefined,
-  );
   const [marks, setMarks] = useState<
     Array<{
       at: number;
@@ -1082,64 +1271,76 @@ function AttentionRail({
     }>
   >([]);
   useLayoutEffect(() => {
-    const host = document.querySelector<HTMLElement>(".sv3-main-log");
-    if (!host) return;
-    const layout = JSON.stringify([host.scrollHeight, host.clientWidth, view]);
-    if (
-      previous.current?.record === record &&
-      previous.current.layout === layout
-    )
-      return;
-    previous.current = { record, layout };
-    const top = host.getBoundingClientRect().top;
-    const items = record.displayBlocks
-      .filter((b) => b.field === "result")
-      .flatMap((block) => {
-        const element = host.querySelector<HTMLElement>(
-          `[data-tool="${block.toolId}"]`,
-        );
-        if (!element) return [];
-        const heat = [
-          ...element.querySelectorAll<HTMLElement>("[data-heat]"),
-        ].filter((e) => e.getBoundingClientRect().height > 0);
-        if (heat.length)
-          return heat.map((e) => ({
-            at:
-              (e.getBoundingClientRect().top - top + host.scrollTop) /
-              host.scrollHeight,
-            value: Number(e.dataset.heat),
-            tool: block.toolId,
-            kind: "tool" as const,
-            selector: `[data-tool="${block.toolId}"]`,
-          }));
-        return [
-          {
-            at:
-              (element.getBoundingClientRect().top - top + host.scrollTop) /
-              host.scrollHeight,
-            value: Math.max(0, ...block.displayRuns.map((r) => r[2])),
-            tool: block.toolId,
-            kind: "tool" as const,
-            selector: `[data-tool="${block.toolId}"]`,
-          },
-        ];
-      });
-    const prompts = [
-      ...host.querySelectorAll<HTMLElement>("[data-prompt-heat-maximum]"),
-    ].map((element) => ({
-      at:
-        (element.getBoundingClientRect().top - top + host.scrollTop) /
-        host.scrollHeight,
-      value: Number(element.dataset.promptHeatMaximum),
-      tool: `prompt for source round ${element.dataset.promptRound}`,
-      kind: "text" as const,
-      selector: `[data-prompt-round="${element.dataset.promptRound}"]`,
-    }));
-    setMarks(
-      [...items, ...prompts].filter(
+    const measure = () => {
+      const host = document.querySelector<HTMLElement>(".sv3-main-log");
+      if (!host) return;
+      const top = host.getBoundingClientRect().top;
+      const items = record.displayBlocks
+        .filter((b) => b.field === "result")
+        .flatMap((block) => {
+          const element = host.querySelector<HTMLElement>(
+            `[data-tool="${block.toolId}"]`,
+          );
+          if (!element) return [];
+          const heat = [
+            ...element.querySelectorAll<HTMLElement>("[data-heat]"),
+          ].filter((e) => e.getBoundingClientRect().height > 0);
+          if (heat.length)
+            return heat.map((e) => ({
+              at:
+                (e.getBoundingClientRect().top - top + host.scrollTop) /
+                host.scrollHeight,
+              value: Number(e.dataset.heat),
+              tool: block.toolId,
+              kind: "tool" as const,
+              selector: `[data-tool="${block.toolId}"]`,
+            }));
+          return [
+            {
+              at:
+                (element.getBoundingClientRect().top - top + host.scrollTop) /
+                host.scrollHeight,
+              value: Math.max(0, ...block.displayRuns.map((r) => r[2])),
+              tool: block.toolId,
+              kind: "tool" as const,
+              selector: `[data-tool="${block.toolId}"]`,
+            },
+          ];
+        });
+      const prompts = [
+        ...host.querySelectorAll<HTMLElement>("[data-prompt-heat-maximum]"),
+      ].map((element) => ({
+        at:
+          (element.getBoundingClientRect().top - top + host.scrollTop) /
+          host.scrollHeight,
+        value: Number(element.dataset.promptHeatMaximum),
+        tool: `prompt for source round ${element.dataset.promptRound}`,
+        kind: "text" as const,
+        selector: `[data-prompt-round="${element.dataset.promptRound}"]`,
+      }));
+      const next = [...items, ...prompts].filter(
         (mark) => spotterHeatStyle(mark.value, mark.kind).backgroundColor,
-      ),
-    );
+      );
+      setMarks((prior) =>
+        JSON.stringify(prior) === JSON.stringify(next) ? prior : next,
+      );
+    };
+    measure();
+    const host = document.querySelector(".sv3-main-log");
+    const observer = new MutationObserver(measure);
+    if (host)
+      observer.observe(host, {
+        childList: true,
+        subtree: true,
+        characterData: true,
+        attributes: true,
+        attributeFilter: ["data-prompt-heat-maximum"],
+      });
+    document.addEventListener("spotter-measure-attention", measure);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("spotter-measure-attention", measure);
+    };
   }, [record, frame, view]);
   return (
     <div
@@ -1150,6 +1351,11 @@ function AttentionRail({
         <button
           key={i}
           data-rail-kind={m.kind}
+          data-target={
+            m.kind === "text" && m.selector === '[data-prompt-round="5"]'
+              ? "attention-prompt-3"
+              : undefined
+          }
           aria-label={`Attention in ${m.tool}`}
           title={`${(m.value * 100).toFixed(0)}% display intensity`}
           style={{
@@ -1157,11 +1363,7 @@ function AttentionRail({
             width: 2 + m.value * 7,
             ...spotterHeatStyle(m.value, m.kind),
           }}
-          onClick={() =>
-            document
-              .querySelector(m.selector)
-              ?.scrollIntoView({ block: "center" })
-          }
+          onClick={() => onSource(m.selector)}
         />
       ))}
     </div>

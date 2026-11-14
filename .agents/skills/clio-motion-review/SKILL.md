@@ -24,6 +24,12 @@ palette. Do not override a user's preference for light by switching to dark.
 Confirm the selected native palette in the rendered preview. A theme selector
 does not excuse an incorrect capture default.
 
+Native theme tokens alone do not qualify a restyle. Check the compact welcome,
+the measured chat-column/composer alignment, native menu rows and complete icons.
+For attention navigation, click the flagged Evidence card, the prompt rail marker
+and an earlier Lineage node, then assert and inspect the actual scrolled source.
+Test the resize handle's hit region as well as the visual marker position.
+
 Use `Sidebar contained` inside the resizable native shell. A viewport-fixed
 sidebar overlaps the header when collapsed; a CSS transform around the stage
 only masks that error. Use native navigation header/footer and complete composer
