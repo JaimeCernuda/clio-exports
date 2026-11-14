@@ -1,0 +1,225 @@
+{
+  "schema": "clio.spotter-v3-notebook-review.v1",
+  "status": "ready-for-user-review",
+  "renderer": {
+    "commit": "add1f25d2a97efdfbd7adf7dc2df2f2c6fc47f6d",
+    "dirty": false
+  },
+  "delivery": {
+    "file": "motion/out/spotter-v3-notebook/spotter-three-steps-full.mp4",
+    "sha256": "ac7f8dffe06fb80ca3a2de279a6492bc04128a6867426e5c2dc102c8553fb0bd",
+    "bytes": 16435530,
+    "width": 1920,
+    "height": 1080,
+    "fps": "60",
+    "frames": 12660,
+    "seconds": 211.0,
+    "codec": "h264",
+    "pixelFormat": "yuv420p",
+    "colorRange": "tv",
+    "matrix": "bt709",
+    "audioStreams": 0
+  },
+  "presentation": {
+    "theme": "light",
+    "family": "Notebook",
+    "heatStyleRevision": "075c0581f1f9ef15d6206b0339e7c105889a546f",
+    "heatDefault": "Words / Max",
+    "scope": "Native pinned shell with scoped heat-style backport; unchanged recorded attention"
+  },
+  "sourceSha256": "cfdd456f2640519c6a0f715e817927c7fb70e77974d6d9605be12cc903131cd5",
+  "checks": {
+    "pythonTests": 140,
+    "motionTests": 164,
+    "skippedLocalTests": 0,
+    "ruff": "passed",
+    "pyright": "passed",
+    "rootTypecheck": "passed",
+    "nativeTypecheck": "passed",
+    "formatting": "passed",
+    "browserStates": 78,
+    "viewportProfiles": [
+      [1920, 1080],
+      [1116, 970]
+    ],
+    "pixelParity": [
+      {
+        "frame": 420,
+        "same": true
+      },
+      {
+        "frame": 421,
+        "same": true
+      },
+      {
+        "frame": 424,
+        "same": true
+      },
+      {
+        "frame": 3060,
+        "same": true
+      },
+      {
+        "frame": 5100,
+        "same": true
+      },
+      {
+        "frame": 5101,
+        "same": true
+      },
+      {
+        "frame": 5130,
+        "same": true
+      },
+      {
+        "frame": 6270,
+        "same": true
+      },
+      {
+        "frame": 6786,
+        "same": true
+      },
+      {
+        "frame": 6787,
+        "same": true
+      },
+      {
+        "frame": 6788,
+        "same": true
+      },
+      {
+        "frame": 9030,
+        "same": true
+      },
+      {
+        "frame": 10320,
+        "same": true
+      },
+      {
+        "frame": 10470,
+        "same": true
+      },
+      {
+        "frame": 10530,
+        "same": true
+      },
+      {
+        "frame": 11010,
+        "same": true
+      },
+      {
+        "frame": 11051,
+        "same": true
+      },
+      {
+        "frame": 11052,
+        "same": true
+      },
+      {
+        "frame": 11053,
+        "same": true
+      },
+      {
+        "frame": 11280,
+        "same": true
+      },
+      {
+        "frame": 11550,
+        "same": true
+      },
+      {
+        "frame": 11580,
+        "same": true
+      },
+      {
+        "frame": 12270,
+        "same": true
+      },
+      {
+        "frame": 12300,
+        "same": true
+      }
+    ],
+    "pointerAudit": {
+      "frames": 12180,
+      "maximumPixelsPerFrame": 29.958214714936705,
+      "missingOrStale": 0,
+      "offscreenDuringInterface": 0,
+      "opacityFollowsInterfaceClose": true
+    },
+    "fullDecode": "passed",
+    "flashScan": {
+      "frames": 12660,
+      "candidates": 0,
+      "strongest": []
+    }
+  },
+  "inspection": {
+    "playback": {
+      "rate": 1,
+      "from": 0,
+      "to": 211,
+      "observedSeconds": [
+        25.5423, 57.168, 88.7525, 147.1776, 171.4291, 191.8511, 211
+      ],
+      "note": "Full-duration playback with intermittent observations, not continuous human viewing of every frame."
+    },
+    "fullSizeFramesSeconds": [9.5, 12, 122, 155, 176.5, 199.5],
+    "encodedStripsSeconds": [
+      [7.7, 8.3],
+      [133.9, 134.5],
+      [175, 177],
+      [183, 185.1],
+      [204.8, 206.2]
+    ],
+    "additionalReviewerCollapseSeconds": [154.5, 155.3],
+    "introGridSeconds": [
+      0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0,
+      7.5
+    ],
+    "findings": [
+      "Notebook palette, native fonts, controls and text bounds agree with browser qualification.",
+      "The reviewer disclosure gap closes through its animated height transition into the next captured tool call.",
+      "No verified new encoded flicker, clipping or cursor defect was found in the inspected coverage."
+    ]
+  },
+  "limitations": [
+    "Recorded Chain B scenario; no fresh Barebone/GPU inference.",
+    "Main lookup rows are source-packet reconstructions, not newly executed tools.",
+    "The known runtime plan-injection coupling is not fixed by this presentation change.",
+    "Finite attention sidecar does not support arbitrary new selections.",
+    "Earlier original source rounds are editorially omitted as documented."
+  ],
+  "priorDelivery": {
+    "file": "motion/out/spotter-v3/spotter-three-steps-full.mp4",
+    "sha256": "7a775fd71dbbd585461442bd9a6b68b07575c8ff5ad4bdf8be95c20d38d4c88f",
+    "unchanged": true
+  },
+  "upstreamReview": {
+    "backend": {
+      "pr": "https://github.com/iowarp/clio-agent/pull/2329",
+      "head": "12fe76af54aebacead791fefd3810a3183c8b2b2",
+      "merge": "e57098fb1f6d9b30dd334abed0f30233d5c834d7",
+      "ciRun": 43527557050,
+      "requiredChecks": "passed",
+      "focusedLocalTests": 17,
+      "mypy": "passed",
+      "sdkCorrection": "Explicitly type AgentSpec.to_json body as dict[str, Any]."
+    },
+    "ui": {
+      "pr": "https://github.com/iowarp/gact-tui/pull/1288",
+      "head": "075c0581f1f9ef15d6206b0339e7c105889a546f",
+      "merge": "14dae6d7351179b70e4d7ccb79d7fa2582af8f58",
+      "ciRun": 43506427744,
+      "requiredChecks": "passed after retry of one browser fixture timeout"
+    },
+    "marketplace": {
+      "pr": "https://github.com/iowarp/clio-agent-marketplace/pull/138",
+      "head": "eaaf620a1b4fde1ae55b1c5db7573743524064e9",
+      "merge": "0e89a8fd88189fb51a6e2d809ea9fb8dfb9aeb1b",
+      "ciChecks": "none configured",
+      "previousLocalDefinitionValidation": "63 definitions passed"
+    },
+    "planInjectionLimit": "Plan templates are in the bundled core plugin, but clio_react still directly schedules reinjection/person-edit messages. The earlier Barebone regression is not fixed by these merges."
+  }
+}

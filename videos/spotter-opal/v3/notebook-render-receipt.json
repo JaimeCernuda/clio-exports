@@ -1,0 +1,239 @@
+{
+  "schema": "clio.spotter-v3-render.v1",
+  "capture": "direct native page; same frame/paint protocol as Remotion bridge",
+  "mode": "full",
+  "sha256": "ac7f8dffe06fb80ca3a2de279a6492bc04128a6867426e5c2dc102c8553fb0bd",
+  "ui": {
+    "repository": "https://github.com/iowarp/gact-tui.git",
+    "branch": "rc1/ui-liftoff",
+    "revision": "47b74250e512358dda6275cd5084e9d4a8d1a376",
+    "checkout": "source-ui-47b74250",
+    "port": 3372
+  },
+  "renderer": {
+    "commit": "add1f25d2a97efdfbd7adf7dc2df2f2c6fc47f6d",
+    "dirty": false
+  },
+  "presentation": {
+    "theme": "light",
+    "family": "Notebook",
+    "heatStyleRevision": "075c0581f1f9ef15d6206b0339e7c105889a546f",
+    "heatDefault": "Words / Max",
+    "scope": "Native pinned shell with scoped heat-style backport; unchanged recorded attention"
+  },
+  "sourceSha256": "cfdd456f2640519c6a0f715e817927c7fb70e77974d6d9605be12cc903131cd5",
+  "frames": 12660,
+  "bodyFrames": 12180,
+  "fps": 60,
+  "width": 1920,
+  "height": 1080,
+  "ranges": [[7, 210]],
+  "errors": [],
+  "independentPagePixelParity": [
+    {
+      "frame": 420,
+      "same": true
+    },
+    {
+      "frame": 421,
+      "same": true
+    },
+    {
+      "frame": 424,
+      "same": true
+    },
+    {
+      "frame": 3060,
+      "same": true
+    },
+    {
+      "frame": 5100,
+      "same": true
+    },
+    {
+      "frame": 5101,
+      "same": true
+    },
+    {
+      "frame": 5130,
+      "same": true
+    },
+    {
+      "frame": 6270,
+      "same": true
+    },
+    {
+      "frame": 6786,
+      "same": true
+    },
+    {
+      "frame": 6787,
+      "same": true
+    },
+    {
+      "frame": 6788,
+      "same": true
+    },
+    {
+      "frame": 9030,
+      "same": true
+    },
+    {
+      "frame": 10320,
+      "same": true
+    },
+    {
+      "frame": 10470,
+      "same": true
+    },
+    {
+      "frame": 10530,
+      "same": true
+    },
+    {
+      "frame": 11010,
+      "same": true
+    },
+    {
+      "frame": 11051,
+      "same": true
+    },
+    {
+      "frame": 11052,
+      "same": true
+    },
+    {
+      "frame": 11053,
+      "same": true
+    },
+    {
+      "frame": 11280,
+      "same": true
+    },
+    {
+      "frame": 11550,
+      "same": true
+    },
+    {
+      "frame": 11580,
+      "same": true
+    },
+    {
+      "frame": 12270,
+      "same": true
+    },
+    {
+      "frame": 12300,
+      "same": true
+    }
+  ],
+  "capturePages": 2,
+  "sourcePreroll": {
+    "leadFrames": 24,
+    "discardedRequests": 24
+  },
+  "pointerAudit": {
+    "frames": 12180,
+    "maximumPixelsPerFrame": 29.958214714936705,
+    "missingOrStale": 0,
+    "offscreenDuringInterface": 0,
+    "opacityFollowsInterfaceClose": true
+  },
+  "markers": [
+    [8, "Enable SPOTTER"],
+    [15, "Step 1 \u00c2\u00b7 Dose response"],
+    [34.5, "Recorded reasoning"],
+    [51, "Baseline lineage"],
+    [56, "Step 2 \u00c2\u00b7 Transition"],
+    [74.5, "Concurrent review"],
+    [97, "Step 3 \u00c2\u00b7 Analogue"],
+    [103, "Lookup result"],
+    [117.5, "Recorded reasoning"],
+    [145, "Later in the recorded review"],
+    [160, "SPOTTER alert"],
+    [168, "Select the answer"],
+    [175, "Word attention"],
+    [186.2, "Select 73"],
+    [192, "Inspect the tool result"],
+    [205, "Close"]
+  ],
+  "video": {
+    "index": 0,
+    "codec_name": "h264",
+    "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+    "profile": "High",
+    "codec_type": "video",
+    "codec_tag_string": "avc1",
+    "codec_tag": "0x31637661",
+    "width": 1920,
+    "height": 1080,
+    "coded_width": 1920,
+    "coded_height": 1088,
+    "closed_captions": 0,
+    "film_grain": 0,
+    "has_b_frames": 2,
+    "sample_aspect_ratio": "1:1",
+    "display_aspect_ratio": "16:9",
+    "pix_fmt": "yuv420p",
+    "level": 42,
+    "color_range": "tv",
+    "color_space": "bt709",
+    "chroma_location": "center",
+    "field_order": "progressive",
+    "refs": 4,
+    "is_avc": "true",
+    "nal_length_size": "4",
+    "id": "0x1",
+    "r_frame_rate": "60/1",
+    "avg_frame_rate": "60/1",
+    "time_base": "1/15360",
+    "start_pts": 0,
+    "start_time": "0.000000",
+    "duration_ts": 3240960,
+    "duration": "211.000000",
+    "bit_rate": "617432",
+    "bits_per_raw_sample": "8",
+    "nb_frames": "12660",
+    "nb_read_frames": "12660",
+    "extradata_size": 51,
+    "disposition": {
+      "default": 1,
+      "dub": 0,
+      "original": 0,
+      "comment": 0,
+      "lyrics": 0,
+      "karaoke": 0,
+      "forced": 0,
+      "hearing_impaired": 0,
+      "visual_impaired": 0,
+      "clean_effects": 0,
+      "attached_pic": 0,
+      "timed_thumbnails": 0,
+      "non_diegetic": 0,
+      "captions": 0,
+      "descriptions": 0,
+      "metadata": 0,
+      "dependent": 0,
+      "still_image": 0,
+      "multilayer": 0
+    },
+    "tags": {
+      "language": "und",
+      "handler_name": "VideoHandler",
+      "vendor_id": "[0][0][0][0]",
+      "encoder": "Lavc61.19.101 libx264"
+    },
+    "side_data_list": [
+      {
+        "side_data_type": "ICC Profile"
+      }
+    ]
+  },
+  "approvedIntro": {
+    "file": "out/spotter-intro-notebook-v1.mp4",
+    "sha256": "0ef1e38ba6e0e1c9fc4a65708fc9d5bf0400f2a3b940a68fe9782150e08d3191",
+    "frames": 480,
+    "source": "src/SpotterIntro.tsx",
+    "deliveryOffsetSeconds": 1
+  }
+}
