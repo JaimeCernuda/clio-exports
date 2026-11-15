@@ -11,6 +11,7 @@ into the build, so a changed file never reaches the site unnoticed.
 | `delegation/Skill-review-session.html` | A review of every plugin's skills, split across six review agents |
 | `studies/Wordle-study-session.html` | A branched study of Wordle strategies: three hypotheses as parallel branches, 60 games across 12 child agents |
 | `quantum/Hybrid-QML-session.html` | A hybrid quantum-classical MNIST 0-vs-1 classifier against a classical baseline, evaluated exactly and on a simulated noisy IBM device, with the per-image comparison and one image's boundary question |
+| `hdf5/Hurricane-Helene-dashboard.html` | The shared dashboard from a conversation on Hurricane Helene in ERA5 HDF5 data: track, central pressure, sea-surface temperature and a time-linked 3D cloud view (its recording, offline) |
 
 `sha256sum -c SHA256SUMS` in a folder checks its files.
 
